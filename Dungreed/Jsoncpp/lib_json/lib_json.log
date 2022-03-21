@@ -1,0 +1,9 @@
+﻿cl : 명령줄 warning D9035: 'Gm' 옵션은 더 이상 사용되지 않으므로 이후 릴리스에서 제거될 예정입니다.
+cl : 명령줄 warning D9035: 'Zc:forScope-' 옵션은 더 이상 사용되지 않으므로 이후 릴리스에서 제거될 예정입니다.
+  json_writer.cpp
+  json_value.cpp
+  json_reader.cpp
+  코드를 생성하고 있습니다...
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1397,5): warning MSB8012: TargetPath(C:\Users\wjdwl\Documents\jsoncpp-src-0.5.0\jsoncpp-src-0.5.0\makefiles\vs71\../../build/vs71/debug/lib_json\lib_json.lib)이(가) Library의 OutputFile 속성 값(C:\Users\wjdwl\Documents\jsoncpp-src-0.5.0\jsoncpp-src-0.5.0\build\vs71\debug\lib_json\json_vc71_libmtd.lib)과 일치하지 않습니다. 이로 인해 프로젝트가 잘못 빌드될 수 있습니다. 이를 수정하려면 $(OutDir), $(TargetName) 및 $(TargetExt) 속성 값이 %(Lib.OutputFile)에 지정된 값과 일치해야 합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1399,5): warning MSB8012: TargetName(lib_json)이(가) Library의 OutputFile 속성 값(json_vc71_libmtd)과 일치하지 않습니다. 이로 인해 프로젝트가 잘못 빌드될 수 있습니다. 이를 수정하려면 $(OutDir), $(TargetName) 및 $(TargetExt) 속성 값이 %(Lib.OutputFile)에 지정된 값과 일치해야 합니다.
+  lib_json.vcxproj -> C:\Users\wjdwl\Documents\jsoncpp-src-0.5.0\jsoncpp-src-0.5.0\makefiles\vs71\../../build/vs71/debug/lib_json\lib_json.lib

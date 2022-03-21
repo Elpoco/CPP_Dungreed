@@ -1,17 +1,173 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="API FrameWork">
+      <UniqueIdentifier>{fd1f8705-41e5-4eec-9173-4ae613734c4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="API FrameWork\Animation">
+      <UniqueIdentifier>{ed41234d-b8d3-425f-ba25-474130a4bbb7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="API FrameWork\DesignPattern">
+      <UniqueIdentifier>{44b58eac-a6c6-47ca-a906-385f0ab5a09f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="API FrameWork\DesignPattern\Singleton">
+      <UniqueIdentifier>{f41ccd50-f510-4e24-ae4b-2be03bc5b2f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\FileIO">
+      <UniqueIdentifier>{4428204b-52d7-4577-9e87-e62ececa397d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\GameNode">
+      <UniqueIdentifier>{283f3f27-2a49-4502-8633-97881cb7f779}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\Image">
+      <UniqueIdentifier>{6745354d-98f6-4b27-9b21-b2fd11800d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\Manager">
+      <UniqueIdentifier>{a6342fab-2358-4f50-b9c3-2d82de621cf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\ProgressBar">
+      <UniqueIdentifier>{0a965148-8c79-412f-b364-bc31c5df6fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\Stdafx">
+      <UniqueIdentifier>{84564e55-9008-480a-9efc-e3cb10108352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\Timer">
+      <UniqueIdentifier>{1ab14265-be7d-4bfe-8268-5e6e9f96fef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\Utillity">
+      <UniqueIdentifier>{a2378cb6-df4d-45f3-aa66-c5b28d334200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame">
+      <UniqueIdentifier>{2d960861-93ce-4435-a619-cddb009d46d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\Json">
+      <UniqueIdentifier>{44fe4207-fedd-40e1-a5ed-c9c60c6cfc2d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="Animation.cpp">
+      <Filter>API FrameWork\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="FileIO.cpp">
+      <Filter>API FrameWork\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameNode.cpp">
+      <Filter>API FrameWork\GameNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>API FrameWork\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>API FrameWork\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonSaveLoader.cpp">
+      <Filter>API FrameWork\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressBar.cpp">
+      <Filter>API FrameWork\ProgressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Stdafx.cpp">
+      <Filter>API FrameWork\Stdafx</Filter>
+    </ClCompile>
+    <ClCompile Include="TextDataManager.cpp">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>API FrameWork\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>API FrameWork\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>API FrameWork\Utillity</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>API FrameWork</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TestScene.h" />
+    <ClInclude Include="Animation.h">
+      <Filter>API FrameWork\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonMacroFuntion.h">
+      <Filter>API FrameWork\Utillity</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FileIO.h">
+      <Filter>API FrameWork\FileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameNode.h">
+      <Filter>API FrameWork\GameNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>API FrameWork\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>API FrameWork\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonSaveLoader.h">
+      <Filter>API FrameWork\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressBar.h">
+      <Filter>API FrameWork\ProgressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomFuntion.h">
+      <Filter>API FrameWork\Utillity</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SingletonBase.h">
+      <Filter>API FrameWork\DesignPattern\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Stdafx.h">
+      <Filter>API FrameWork\Stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="TextDataManager.h">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>API FrameWork\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>API FrameWork\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>API FrameWork\Utillity</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

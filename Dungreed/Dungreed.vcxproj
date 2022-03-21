@@ -30,7 +30,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -88,7 +88,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,6 +143,50 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="FontManager.cpp" />
+    <ClCompile Include="GameNode.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="JsonSaveLoader.cpp" />
+    <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="ProgressBar.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Stdafx.cpp" />
+    <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="TextDataManager.cpp" />
+    <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="CommonMacroFuntion.h" />
+    <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="FileIO.h" />
+    <ClInclude Include="FontManager.h" />
+    <ClInclude Include="GameNode.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="JsonSaveLoader.h" />
+    <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="ProgressBar.h" />
+    <ClInclude Include="RandomFuntion.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SingletonBase.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="TestScene.h" />
+    <ClInclude Include="TextDataManager.h" />
+    <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
