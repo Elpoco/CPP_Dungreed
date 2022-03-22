@@ -89,6 +89,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -152,15 +154,25 @@
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="JsonSaveLoader.cpp" />
     <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="LoadScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MapToolScene.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PixelCollider.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="Stdafx.cpp" />
+    <ClCompile Include="Stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="TextDataManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
@@ -175,7 +187,12 @@
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="JsonSaveLoader.h" />
     <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="LoadScene.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MapToolScene.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="PixelCollider.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="RandomFuntion.h" />
     <ClInclude Include="SceneManager.h" />
@@ -184,8 +201,10 @@
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TextDataManager.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

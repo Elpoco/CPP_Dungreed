@@ -74,7 +74,7 @@ void SceneManager::render(void)
 }
 
 // ¾À Ãß°¡
-GameNode * SceneManager::addScene(string sceneName, GameNode * scene)
+GameNode* SceneManager::addScene(string sceneName, GameNode * scene)
 {
 	// ¾ÀÀÌ ¾ø´Ù¸é ¸®ÅÏ
 	if (!scene) return nullptr;
@@ -84,7 +84,7 @@ GameNode * SceneManager::addScene(string sceneName, GameNode * scene)
 	return scene;
 }
 
-GameNode * SceneManager::addLoadingScene(string loadingSceneName, GameNode * scene)
+GameNode* SceneManager::addLoadingScene(string loadingSceneName, GameNode * scene)
 {
 	if (!scene) return nullptr;
 
@@ -106,6 +106,7 @@ HRESULT SceneManager::changeScene(string sceneName)
 	if (SUCCEEDED(find->second->init()))
 	{
 		_currentScene = find->second;
+		_currentSceneName = sceneName;
 
 		return S_OK;
 	}

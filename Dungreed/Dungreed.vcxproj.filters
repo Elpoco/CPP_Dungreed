@@ -43,9 +43,26 @@
     <Filter Include="API FrameWork\Json">
       <UniqueIdentifier>{44fe4207-fedd-40e1-a5ed-c9c60c6cfc2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{52aca5fe-bae4-4b56-b875-34aecfec2038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{edff070e-76ee-4020-8943-96230d727fd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Unit">
+      <UniqueIdentifier>{fcfb8975-00ba-40e0-846b-93b7d8b379e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Unit\Player">
+      <UniqueIdentifier>{2e57d9be-c75f-4fca-8fa4-04fb92afcebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapTool">
+      <UniqueIdentifier>{4a2e862f-1d40-4c56-923d-3c24bbe9541a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PixelCollider">
+      <UniqueIdentifier>{41e39f3a-a2b5-4bae-b9eb-ed103a41e44a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Animation.cpp">
       <Filter>API FrameWork\Animation</Filter>
     </ClCompile>
@@ -103,9 +120,32 @@
     <ClCompile Include="WinMain.cpp">
       <Filter>API FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Object\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>MapTool</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelCollider.cpp">
+      <Filter>PixelCollider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestScene.h" />
     <ClInclude Include="Animation.h">
       <Filter>API FrameWork\Animation</Filter>
     </ClInclude>
@@ -168,6 +208,30 @@
     </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>API FrameWork\Utillity</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Object\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Object\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="MapToolScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>MapTool</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelCollider.h">
+      <Filter>PixelCollider</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,6 +17,8 @@ private:
 	mapSceneList _mSceneList;
 	mapSceneList _mLoadingSceneList;
 
+	string _currentSceneName;
+
 public:
 	HRESULT init(void);
 	void release(void);
@@ -33,6 +35,8 @@ public:
 	// 로딩 스레드 함수
 	// LPVOID: void* (어떤 타입으로도 변환 가능)
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
+
+	inline string getCurrentSceneName() { return _currentSceneName; }
 
 	SceneManager() {}
 	~SceneManager() {}

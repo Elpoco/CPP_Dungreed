@@ -95,13 +95,17 @@ using namespace MY_UTIL;
 
 #define MAGENTA			RGB(255,0,255)
 
+// =============
+// # 파일 경로 #
+// =============
 #define PATH_RESOURCE	"Resources/"
+
 #define PATH_IMAGE		PATH_RESOURCE"Images/"
 #define PATH_SOUND		PATH_RESOURCE"Sounds/"
+
 #define PATH_BACKGROUND	PATH_IMAGE"Background/"
 #define PATH_OBJECT		PATH_IMAGE"Object/"
 #define PATH_UNIT		PATH_IMAGE"Unit/"
-#define PATH_ENEMY		PATH_UNIT"Enemy/"
 
 // =============================================
 // # 매크로 함수 # (클래스에서 동적할당된 부분 해제)
