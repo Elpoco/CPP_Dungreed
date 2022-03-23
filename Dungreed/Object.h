@@ -44,6 +44,13 @@ public:
 
 	void setFrameY(int frameY) { _frameInfo.y = frameY; }
 
+	const float getX(void) { return _x; }
+	const float getY(void) { return _y; }
+	const RECT getRect(void) { return _rc; }
+
+	void setX(float x) { _x = x; }
+	void setY(float y) { _y = y; }
+
 	Object();
 	virtual ~Object() {}
 };

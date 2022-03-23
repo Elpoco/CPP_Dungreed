@@ -16,4 +16,5 @@ void MapToolScene::update(void)
 
 void MapToolScene::render(void)
 {
+	IMAGEMANAGER->render("Tile1", getMemDC());
 }

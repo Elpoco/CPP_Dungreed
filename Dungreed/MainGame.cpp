@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MainGame.h"
 
-#include "LoadScene.h"
+#include "StartScene.h"
 #include "MapToolScene.h"
 
 #include "TestScene.h"
@@ -11,7 +11,7 @@ HRESULT MainGame::init(void)
 	GameNode::init(TRUE);
 
 	// ===================================================
-	SCENEMANAGER->addScene("Loading", new LoadScene);
+	SCENEMANAGER->addScene("Loading", new StartScene);
 	SCENEMANAGER->addScene("MapTool", new MapToolScene);
 	SCENEMANAGER->addScene("test", new TestScene);
 
@@ -41,7 +41,7 @@ void MainGame::render(void)
 
 	SCENEMANAGER->render();
 
-	TextOut(getMemDC(), 0, 0, SCENEMANAGER->getCurrentSceneName().c_str(), SCENEMANAGER->getCurrentSceneName().length());
+	//TextOut(getMemDC(), 0, 0, SCENEMANAGER->getCurrentSceneName().c_str(), SCENEMANAGER->getCurrentSceneName().length());
 
 	//TIMEMANAGER->render(getMemDC());
 

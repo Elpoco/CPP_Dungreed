@@ -61,6 +61,9 @@
     <Filter Include="PixelCollider">
       <UniqueIdentifier>{41e39f3a-a2b5-4bae-b9eb-ed103a41e44a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="API FrameWork\Camera">
+      <UniqueIdentifier>{844f0a79-be8e-4655-b5ce-6791b472172e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -123,9 +126,6 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="LoadScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -143,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="PixelCollider.cpp">
       <Filter>PixelCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>API FrameWork\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +218,6 @@
     <ClInclude Include="TestScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="LoadScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -232,6 +235,12 @@
     </ClInclude>
     <ClInclude Include="PixelCollider.h">
       <Filter>PixelCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>API FrameWork\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -56,6 +56,8 @@ HRESULT GameNode::init(bool managerInit)
 		JSONDATAMANAGER->init();
 
 		EFFECTMANAGER->init();
+
+		CAMERAMANAGER->init();
 	}
 
 	return S_OK;
@@ -105,6 +107,9 @@ void GameNode::release(void)
 
 		EFFECTMANAGER->release();
 		EFFECTMANAGER->releaseSingleton();
+
+		CAMERAMANAGER->release();
+		CAMERAMANAGER->releaseSingleton();
 	}
 
 	// 포인터 변수들은 안하면 메모리 누수...

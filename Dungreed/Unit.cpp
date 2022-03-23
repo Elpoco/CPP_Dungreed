@@ -5,6 +5,7 @@ Unit::Unit() :
 	_isLeft(false),
 	_isJump(false),
 	_isFall(false),
+	_isCollision(false),
 	_moveSpeed(UNIT_MOVE_SPEED),
 	_jumpSpeed(UNIT_JUMP_SPEED),
 	_fallSpeed(UNIT_FALL_SPEED),
@@ -15,7 +16,8 @@ Unit::Unit() :
 HRESULT Unit::init(void)
 {
 	Object::init();
-	PixelCollider::init(&_rc, &_x, &_y, &_isJump);
+	//PixelCollider::init(&_rc, &_x, &_y, &_isJump);
+	PixelCollider::init(this);
 	
 	return S_OK;
 }
@@ -47,6 +49,17 @@ void Unit::move(void)
 		_y -= _jumpSpeed + _fallSpeed;
 		_fallSpeed -= _gravity;
 	}
+
+	if (_isCollision && _isJump)
+	{
+		_isJump = false;
+	}
+
+	if (!_isCollision && !_isJump)
+	{
+		_y -= _fallSpeed;
+		_fallSpeed -= _gravity;
+	}
 }
 
 void Unit::animation(void)
@@ -63,4 +76,6 @@ void Unit::animation(void)
 
 void Unit::jump(void)
 {
+	_isJump = true;
+	_fallSpeed = UNIT_FALL_SPEED;
 }

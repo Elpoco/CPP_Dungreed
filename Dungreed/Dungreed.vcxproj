@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="FontManager.cpp" />
@@ -154,7 +155,7 @@
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="JsonSaveLoader.cpp" />
     <ClCompile Include="KeyManager.cpp" />
-    <ClCompile Include="LoadScene.cpp" />
+    <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MapToolScene.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -178,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CommonMacroFuntion.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="FileIO.h" />
@@ -187,7 +189,7 @@
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="JsonSaveLoader.h" />
     <ClInclude Include="KeyManager.h" />
-    <ClInclude Include="LoadScene.h" />
+    <ClInclude Include="StartScene.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MapToolScene.h" />
     <ClInclude Include="Object.h" />

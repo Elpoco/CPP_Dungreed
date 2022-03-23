@@ -57,6 +57,7 @@ using namespace std;
 #include "JsonSaveLoader.h"
 
 #include "EffectManager.h"
+#include "CameraManager.h"
 
 using namespace MY_UTIL;
 
@@ -74,6 +75,7 @@ using namespace MY_UTIL;
 #define JSONDATAMANAGER JsonSaveLoader::getSingleton()
 
 #define EFFECTMANAGER EffectManager::getSingleton()
+#define CAMERAMANAGER CameraManager::getSingleton()
 
 // ==========================
 // # 매크로 # (윈도우창 초기화)
@@ -120,3 +122,9 @@ using namespace MY_UTIL;
 extern HINSTANCE	_hInstance;
 extern HWND			_hWnd;
 extern POINT		_ptMouse;
+
+struct fPOINT
+{
+	float x;
+	float y;
+};

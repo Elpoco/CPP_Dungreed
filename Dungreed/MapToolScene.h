@@ -2,6 +2,9 @@
 #include "GameNode.h"
 class MapToolScene : public GameNode
 {
+private:
+
+
 public:
 	HRESULT init(void);
 	void release(void);

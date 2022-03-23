@@ -13,6 +13,7 @@ protected:
 	bool _isLeft;
 	bool _isJump;
 	bool _isFall;
+	bool _isCollision;
 
 	float _moveSpeed;
 	float _jumpSpeed;
@@ -29,6 +30,8 @@ public:
 	void animation(void);
 
 	virtual void jump(void);
+
+	void setCollision(bool isCollision) { _isCollision = isCollision; }
 
 	Unit();
 	virtual ~Unit() {}

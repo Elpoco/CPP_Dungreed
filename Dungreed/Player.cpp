@@ -72,8 +72,7 @@ void Player::move(void)
 	if (KEYMANAGER->isOnceKeyUp(KEY_UP) || 
 		KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
-		_isJump = true;
-		_fallSpeed = UNIT_FALL_SPEED;
+		Unit::jump();
 	}
 
 

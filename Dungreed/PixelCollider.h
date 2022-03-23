@@ -1,25 +1,30 @@
 #pragma once
 
+class Unit;
+
 class PixelCollider
 {
 private:
-	struct tagPixelColliderInfo
+	enum COLLIDER_DIRECTION
 	{
-		RECT* rc;
-		float* x;
-		float* y;
-		bool* isJump;
+		LEFT,
+		TOP,
+		RIGHT,
+		BOTTOM,
+		DIR_CNT
 	};
 
 private:
-	tagPixelColliderInfo _colliderInfo;
-	int _proveY;
+	Unit* _unit;
+	POINT _prove[DIR_CNT];
 
 public:
-	HRESULT init(RECT* rc, float* x, float* y, bool* isJump);
+	HRESULT init(Unit* unit);
 	void release(void);
 	void update(void); 
 	void render(HDC hdc);
+
+	void setProve(void);
 
 	PixelCollider() {}
 	~PixelCollider() {}
