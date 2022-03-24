@@ -45,15 +45,16 @@ void TestScene::update(void)
 
 void TestScene::render(void)
 {
-	HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
 	IMAGEMANAGER->render("PixelTest", getMemDC());
-	for (_viTile = _vTiles.begin(); _viTile != _vTiles.end(); ++_viTile)
-	{
-		if ((*_viTile).type == NONE)
-			RectangleMakeRect(getMemDC(), (*_viTile).rc);
-		else
-			FillRect(getMemDC(), &(*_viTile).rc, hBrush);
-	}
+	//IMAGEMANAGER->render("Floor", getMemDC(), 0, CENTER_Y);
+	HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
+	//for (_viTile = _vTiles.begin(); _viTile != _vTiles.end(); ++_viTile)
+	//{
+	//	if ((*_viTile).type == NONE)
+	//		RectangleMakeRect(getMemDC(), (*_viTile).rc);
+	//	else
+	//		FillRect(getMemDC(), &(*_viTile).rc, hBrush);
+	//}
 	DeleteObject(hBrush);
 	_player->render(getMemDC());
 }

@@ -13,7 +13,6 @@ void ImageManager::release(void)
 
 Image* ImageManager::addImage(string strKey, int width, int height)
 {
-	// 추가하려는 이미지가 존재하는지 키값으로 확인
 	Image* img = findImage(strKey);
 
 	if (img) return img;
@@ -21,10 +20,10 @@ Image* ImageManager::addImage(string strKey, int width, int height)
 	img = new Image;
 	if (FAILED(img->init(width, height))) {
 		SAFE_DELETE(img);
+		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
 		return NULL;
 	}
 
-	//_mImageList.insert(pair<string, Image*>(strKey, img));
 	_mImageList.insert(make_pair(strKey, img));
 
 	return img;
@@ -39,6 +38,7 @@ Image* ImageManager::addImage(string strKey, const char * fileName, int width, i
 	img = new Image;
 	if (FAILED(img->init(fileName, width, height, isTrans, transColor))) {
 		SAFE_DELETE(img);
+		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
 		return NULL;
 	}
 
@@ -56,6 +56,7 @@ Image* ImageManager::addImage(string strKey, const char * fileName, float x, flo
 	img = new Image;
 	if (FAILED(img->init(fileName, x, y, width, height, isTrans, transColor))) {
 		SAFE_DELETE(img);
+		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
 		return NULL;
 	}
 
@@ -73,6 +74,7 @@ Image* ImageManager::addFrameImage(string strKey, const char * fileName, int wid
 	img = new Image;
 	if (FAILED(img->init(fileName, width, height, maxFrameX, maxFrameY, isTrans, transColor))) {
 		SAFE_DELETE(img);
+		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
 		return NULL;
 	}
 
@@ -81,7 +83,7 @@ Image* ImageManager::addFrameImage(string strKey, const char * fileName, int wid
 	return img;
 }
 
-Image* ImageManager::addFrameImage(string strKey, const char * fileName, float x, float y, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor)
+Image* ImageManager::addFrameImage(string strKey, const char* fileName, float x, float y, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor)
 {
 	Image* img = findImage(strKey);
 
@@ -90,6 +92,43 @@ Image* ImageManager::addFrameImage(string strKey, const char * fileName, float x
 	img = new Image;
 	if (FAILED(img->init(fileName, x, y, width, height, maxFrameX, maxFrameY, isTrans, transColor))) {
 		SAFE_DELETE(img);
+		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
+		return NULL;
+	}
+
+	_mImageList.insert(make_pair(strKey, img));
+
+	return img;
+}
+
+Image * ImageManager::addImage(string strKey, const WCHAR* fileName)
+{
+	Image* img = findImage(strKey);
+
+	if (img) return img;
+
+	img = new Image;
+	if (FAILED(img->init(fileName))) {
+		SAFE_DELETE(img);
+		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
+		return NULL;
+	}
+
+	_mImageList.insert(make_pair(strKey, img));
+
+	return img;
+}
+
+Image * ImageManager::addFrameImage(string strKey, const WCHAR * fileName, int maxFrameX, int maxFrameY)
+{
+	Image* img = findImage(strKey);
+
+	if (img) return img;
+
+	img = new Image;
+	if (FAILED(img->init(fileName, maxFrameX, maxFrameY))) {
+		SAFE_DELETE(img);
+		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
 		return NULL;
 	}
 
@@ -102,12 +141,10 @@ Image* ImageManager::findImage(string strKey)
 {
 	auto key = _mImageList.find(strKey);
 
-	// 검색한 키를 찾았다면
 	if (key != _mImageList.end()) {
 		return key->second;
 	}
 
-	// 검색한 키로 이미지를 못찾았다면 nullptr 리턴
 	return nullptr;
 }
 
@@ -144,32 +181,43 @@ bool ImageManager::deleteAll()
 	return true;
 }
 
-// 이미지를 찾아서 렌더
 // ==============
 // ## 일반 렌더 ##
 // ==============
 void ImageManager::render(string strKey, HDC hdc)
 {
 	Image* img = findImage(strKey);
-	if (img) img->render(hdc);
+	if (img)
+	{
+		if (img->checkGdiPlus()) img->gpRender(hdc);
+		else img->render(hdc);
+	}
+		
 }
 
 void ImageManager::render(string strKey, HDC hdc, int destX, int destY)
 {
 	Image* img = findImage(strKey);
-	if (img) img->render(hdc, destX, destY);
+	if (img)
+	{
+		if (img->checkGdiPlus()) img->gpRender(hdc, destX, destY);
+		else img->render(hdc, destX, destY);
+	}
 }
 
 void ImageManager::render(string strKey, HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight)
 {
 	Image* img = findImage(strKey);
-	if (img) img->render(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight);
+	if (img)
+	{
+		if (img->checkGdiPlus()) img->gpRender(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight);
+		else img->render(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight);
+	}
 }
 
 // ==============
 // ## 알파 렌더 ##
 // ==============
-
 void ImageManager::alphaRender(string strKey, HDC hdc, BYTE alpha)
 {
 	Image* img = findImage(strKey);
@@ -213,4 +261,16 @@ void ImageManager::loopAlphaRender(string strKey, HDC hdc, const LPRECT drawArea
 {
 	Image* img = findImage(strKey);
 	if (img) img->loopAlphaRender(hdc, drawArea, offsetX, offsetY, alpha);
+}
+
+void ImageManager::errorMsg(IM_ERROR_CODE code, string str)
+{
+	switch (code)
+	{
+	case IM_ERROR_CODE::LOAD_FAILD:
+		cout << "IMAGE LOAD FALED: " << str << endl;
+		break;
+	default:
+		break;
+	}
 }

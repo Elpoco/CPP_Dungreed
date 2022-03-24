@@ -150,6 +150,9 @@
     <ClCompile Include="CameraManager.cpp">
       <Filter>API FrameWork\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>MapTool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="CameraManager.h">
       <Filter>API FrameWork\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>MapTool</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

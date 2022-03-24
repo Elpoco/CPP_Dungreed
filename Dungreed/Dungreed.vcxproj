@@ -155,6 +155,7 @@
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="JsonSaveLoader.cpp" />
     <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MapToolScene.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="JsonSaveLoader.h" />
     <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="MapManager.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MapToolScene.h" />

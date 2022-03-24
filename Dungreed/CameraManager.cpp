@@ -3,6 +3,8 @@
 
 HRESULT CameraManager::init(void)
 {
+	_x = INIT_X;
+	_y = INIT_Y;
 	return S_OK;
 }
 

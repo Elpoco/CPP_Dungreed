@@ -3,8 +3,6 @@
 
 HRESULT EffectManager::init(void)
 {
-	IMAGEMANAGER->addFrameImage("effect_missile", "Resources/Images/Object/effect_missile.bmp", 0.0f, 0.0f, 330, 97, 3, 1, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("effect_beam", "Resources/Images/Object/effect_beam.bmp", 0.0f, 0.0f, 237, 73, 3, 1, true, RGB(255, 0, 255));
 	return S_OK;
 }
 

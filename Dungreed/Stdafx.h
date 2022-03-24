@@ -1,7 +1,6 @@
 #pragma once
 #include<SDKDDKVer.h>
 
-#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 //! 디버깅용 콘솔창
@@ -26,6 +25,9 @@
 #include <math.h>
 #include <mmsystem.h>
 #include <mciapi.h>
+
+#include <gdiplus.h>
+#pragma comment (lib,"Gdiplus.lib")
 
 //! C++ 런타임 헤더
 #include <iostream>
@@ -80,7 +82,7 @@ using namespace MY_UTIL;
 // ==========================
 // # 매크로 # (윈도우창 초기화)
 // ==========================
-#define WINNAME				(LPSTR)(TEXT("Windows API"))
+#define WINNAME				(LPSTR)(TEXT("던그리드"))
 
 #define WINSTART_X			100
 #define WINSTART_Y			100
@@ -92,10 +94,12 @@ using namespace MY_UTIL;
 // ========================
 // # 매크로 # (기능 및 효율)
 // ========================
-#define CENTER_X		WINSIZE_X / 2
-#define CENTER_Y		WINSIZE_Y / 2
+#define CENTER_X		(WINSIZE_X / 2)
+#define CENTER_Y		(WINSIZE_Y / 2)
 
 #define MAGENTA			RGB(255,0,255)
+#define TILE_SCALE		2
+#define TILE_SIZE		(16 * TILE_SCALE)
 
 // =============
 // # 파일 경로 #
@@ -108,6 +112,7 @@ using namespace MY_UTIL;
 #define PATH_BACKGROUND	PATH_IMAGE"Background/"
 #define PATH_OBJECT		PATH_IMAGE"Object/"
 #define PATH_UNIT		PATH_IMAGE"Unit/"
+#define PATH_MAPTOOL	PATH_IMAGE"MapTool/"
 
 // =============================================
 // # 매크로 함수 # (클래스에서 동적할당된 부분 해제)

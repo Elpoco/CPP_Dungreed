@@ -14,6 +14,8 @@ void setWindowSize(int x, int y, int width, int height, HWND hWnd);
 
 MainGame* _mg;
 
+using namespace Gdiplus;
+
 int APIENTRY WinMain(HINSTANCE hInstance,
 					 HINSTANCE hPrevInstance,
 					 LPSTR lpszCmdParam,
@@ -22,6 +24,12 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	_mg = new MainGame();
 	
 	_hInstance = hInstance;
+
+	GdiplusStartupInput gdiplusStartupInput;
+	ULONG_PTR           gdiplusToken;
+
+	// Initialize GDI+.
+	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 
 	WNDCLASS wndClass;
 	wndClass.cbClsExtra = 0;
@@ -81,6 +89,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	_mg->release();
 	UnregisterClass(WINNAME, hInstance);
 
+	GdiplusShutdown(gdiplusToken);
 	return message.wParam;
 }
 
