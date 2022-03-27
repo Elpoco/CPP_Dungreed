@@ -95,6 +95,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -146,16 +147,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="EffectManager.cpp" />
-    <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="JsonSaveLoader.cpp" />
     <ClCompile Include="KeyManager.cpp" />
-    <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MapToolScene.cpp" />
@@ -174,23 +178,30 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManager.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="CommonMacroFuntion.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="EffectManager.h" />
-    <ClInclude Include="FileIO.h" />
+    <ClInclude Include="Enums.h" />
+    <ClInclude Include="FileManager.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="JsonSaveLoader.h" />
     <ClInclude Include="KeyManager.h" />
-    <ClInclude Include="MapManager.h" />
+    <ClInclude Include="TileManager.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MapToolScene.h" />
@@ -208,6 +219,8 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>

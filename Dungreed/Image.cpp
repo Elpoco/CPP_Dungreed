@@ -87,7 +87,7 @@ HRESULT Image::init(const char* fileName, int width, int height, BOOL isTrans, C
 	_imageInfo->height = height;
 	
 	int len = strlen(fileName);
-
+	
 	_fileName = new CHAR[len + 1];
 	strcpy_s(_fileName, len + 1, fileName);
 
@@ -219,13 +219,15 @@ HRESULT Image::init(const char* fileName, float x, float y, int width, int heigh
 	return S_OK;
 }
 
-HRESULT Image::init(const WCHAR* fileName)
+HRESULT Image::init(const WCHAR* fileName, HDC memDc)
 {
 	if (_imageInfo != NULL) this->release();
 
-	//_gpImage = new Gdiplus::Image(fileName);
-	_gpImage = new Gdiplus::Bitmap(fileName, PixelFormat16bppARGB1555);
+	_gpImage = new Gdiplus::Bitmap(fileName); 
 	if (_gpImage->GetLastStatus() != Gdiplus::Ok) return E_FAIL;
+
+	_graphics = new Gdiplus::Graphics(memDc);
+	_cashedBitmap = new Gdiplus::CachedBitmap(_gpImage, _graphics);
 	
 	HDC hdc = GetDC(_hWnd);
 	_imageInfo = new IMAGE_INFO;
@@ -236,8 +238,6 @@ HRESULT Image::init(const WCHAR* fileName)
 	_imageInfo->y = 0;
 	_imageInfo->width = _gpImage->GetWidth();
 	_imageInfo->height = _gpImage->GetHeight();
-
-	_graphics = new Gdiplus::Graphics(hdc);
 
 	ReleaseDC(_hWnd, hdc);
 
@@ -254,23 +254,24 @@ HRESULT Image::init(const WCHAR* fileName, int maxFrameX, int maxFrameY)
 	return S_OK;
 }
 
-void Image::gpRender(HDC hdc, int destX, int destY, int angle)
+void Image::gpRender(int destX, int destY, int angle)
 {
 }
 
-void Image::gpRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight)
+void Image::gpRender(int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight)
 {
 	Gdiplus::ImageAttributes imgAttr;
 
 	if (sourWidth == 0) sourWidth = _imageInfo->width;
 	if (sourHeight == 0) sourHeight = _imageInfo->height;
-
+	
 	_graphics->DrawImage(
 		_gpImage,
-		Gdiplus::Rect(destX, destY, _imageInfo->width, _imageInfo->height),
+		Gdiplus::Rect(destX, destY, sourWidth, sourHeight),
 		sourX, sourY,
 		sourWidth, sourHeight,
 		Gdiplus::UnitPixel, &imgAttr, NULL, NULL);
+	//_graphics->DrawCachedBitmap(_cashedBitmap, destX, destY);
 }
 
 HRESULT Image::initForAlphaBlend(void)

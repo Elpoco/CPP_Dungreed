@@ -13,9 +13,6 @@
     <Filter Include="API FrameWork\DesignPattern\Singleton">
       <UniqueIdentifier>{f41ccd50-f510-4e24-ae4b-2be03bc5b2f0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\FileIO">
-      <UniqueIdentifier>{4428204b-52d7-4577-9e87-e62ececa397d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="API FrameWork\GameNode">
       <UniqueIdentifier>{283f3f27-2a49-4502-8633-97881cb7f779}</UniqueIdentifier>
     </Filter>
@@ -58,11 +55,29 @@
     <Filter Include="MapTool">
       <UniqueIdentifier>{4a2e862f-1d40-4c56-923d-3c24bbe9541a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PixelCollider">
-      <UniqueIdentifier>{41e39f3a-a2b5-4bae-b9eb-ed103a41e44a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="API FrameWork\Camera">
       <UniqueIdentifier>{844f0a79-be8e-4655-b5ce-6791b472172e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\UI">
+      <UniqueIdentifier>{84928863-93f7-429b-b64f-ebb5f3ce260d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\MapTool">
+      <UniqueIdentifier>{e0663c24-937b-4348-b263-d58789da2f6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Start">
+      <UniqueIdentifier>{cf471333-634a-4830-849e-a72c238ba66d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Test">
+      <UniqueIdentifier>{8239d58c-9c48-4977-b305-898c7aae269f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{ea8818b9-e05d-4726-b9a2-7cdee1a10f77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\Collider">
+      <UniqueIdentifier>{7423818a-c6a4-4d2f-980a-d7cbfdedf660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\PixelCollider">
+      <UniqueIdentifier>{41e39f3a-a2b5-4bae-b9eb-ed103a41e44a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,9 +86,6 @@
     </ClCompile>
     <ClCompile Include="EffectManager.cpp">
       <Filter>API FrameWork\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="FileIO.cpp">
-      <Filter>API FrameWork\FileIO</Filter>
     </ClCompile>
     <ClCompile Include="FontManager.cpp">
       <Filter>API FrameWork\Manager</Filter>
@@ -99,9 +111,6 @@
     <ClCompile Include="ProgressBar.cpp">
       <Filter>API FrameWork\ProgressBar</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>API FrameWork\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>API FrameWork\Manager</Filter>
     </ClCompile>
@@ -123,9 +132,6 @@
     <ClCompile Include="WinMain.cpp">
       <Filter>API FrameWork</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -135,23 +141,47 @@
     <ClCompile Include="Player.cpp">
       <Filter>Object\Unit\Player</Filter>
     </ClCompile>
-    <ClCompile Include="MapToolScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>MapTool</Filter>
     </ClCompile>
     <ClCompile Include="PixelCollider.cpp">
-      <Filter>PixelCollider</Filter>
-    </ClCompile>
-    <ClCompile Include="StartScene.cpp">
-      <Filter>Scene</Filter>
+      <Filter>API FrameWork\PixelCollider</Filter>
     </ClCompile>
     <ClCompile Include="CameraManager.cpp">
       <Filter>API FrameWork\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="MapManager.cpp">
+    <ClCompile Include="TileManager.cpp">
       <Filter>MapTool</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>API FrameWork\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLoader.cpp">
+      <Filter>API FrameWork\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>API FrameWork\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>API FrameWork\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolScene.cpp">
+      <Filter>Scene\MapTool</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>Scene\Start</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>API FrameWork\Collider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>API FrameWork\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="FileIO.h">
-      <Filter>API FrameWork\FileIO</Filter>
     </ClInclude>
     <ClInclude Include="FontManager.h">
       <Filter>API FrameWork\Manager</Filter>
@@ -194,9 +221,6 @@
     <ClInclude Include="RandomFuntion.h">
       <Filter>API FrameWork\Utillity</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>API FrameWork\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="SingletonBase.h">
       <Filter>API FrameWork\DesignPattern\Singleton</Filter>
     </ClInclude>
@@ -218,9 +242,6 @@
     <ClInclude Include="Utils.h">
       <Filter>API FrameWork\Utillity</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -230,23 +251,53 @@
     <ClInclude Include="Player.h">
       <Filter>Object\Unit\Player</Filter>
     </ClInclude>
-    <ClInclude Include="MapToolScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>MapTool</Filter>
     </ClInclude>
     <ClInclude Include="PixelCollider.h">
-      <Filter>PixelCollider</Filter>
-    </ClInclude>
-    <ClInclude Include="StartScene.h">
-      <Filter>Scene</Filter>
+      <Filter>API FrameWork\PixelCollider</Filter>
     </ClInclude>
     <ClInclude Include="CameraManager.h">
       <Filter>API FrameWork\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="MapManager.h">
+    <ClInclude Include="TileManager.h">
       <Filter>MapTool</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>API FrameWork\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLoader.h">
+      <Filter>API FrameWork\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>API FrameWork\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>API FrameWork\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MapToolScene.h">
+      <Filter>Scene\MapTool</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>Scene\Start</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>API FrameWork\Collider</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

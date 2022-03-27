@@ -13,7 +13,6 @@ protected:
 	bool _isLeft;
 	bool _isJump;
 	bool _isFall;
-	bool _isCollision;
 
 	float _moveSpeed;
 	float _jumpSpeed;
@@ -21,15 +20,15 @@ protected:
 	float _gravity;
 
 public:
-	virtual HRESULT init(void);
-	virtual void release(void);
-	virtual void update(void);
+	virtual HRESULT init();
+	virtual void release();
+	virtual void update();
 	virtual void render(HDC hdc);
 
-	void move(void);
-	void animation(void);
+	void move();
+	void animation();
 
-	virtual void jump(void);
+	virtual void jump();
 
 	void setCollision(bool isCollision) { _isCollision = isCollision; }
 

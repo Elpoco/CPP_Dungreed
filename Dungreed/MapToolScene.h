@@ -1,30 +1,45 @@
 #pragma once
 #include "GameNode.h"
 
-#define TILE_CNT	100
-
-class Tile;
+using namespace MapTool;
 
 class MapToolScene : public GameNode
 {
 private:
-	vector<Tile*> _vTiles;
-	vector<Tile*>::iterator _viTiles;
+	RECT _rcTileWindow;
+	RECT _rcToolWindow;
+	RECT _btnSave;
+	RECT _btnLoad;
 
-	int x;
-	int y;
+	bool _isBtn;
 
-	int mX;
-	int mY;
+	float _x;
+	float _y;
+
+	float _cX;
+	float _cY;
+
+	POINT _curTile;
+
+	Image* mapImg;
+	Image* tileImg;
 
 public:
-	HRESULT init(void);
+	MapToolScene();
+	~MapToolScene();
 
-	void release(void);
-	void update(void);
-	void render(void);
+	HRESULT init();
+	void release();
+	void update();
+	void render();
 
-	MapToolScene() {}
-	~MapToolScene() {}
+	void clickDrawTile();
+	void clickUndoTile();
+
+	void clickChangeTile();
+
+	void clickSave();
+	void clickLoad();
+	
 };
 

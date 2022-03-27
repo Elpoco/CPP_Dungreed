@@ -1,16 +1,20 @@
 #pragma once
 #include "GameNode.h"
 
+class ImageLoader;
+
 class MainGame : public GameNode
 {
-private:
-	
 public:
-	HRESULT init(void);
-	void release(void);
-	void update(void);
-	void render(void);
+	MainGame();
+	~MainGame();
+	
+	HRESULT init();
+	void release();
+	void update();
+	void render();
 
-	MainGame() {}
-	~MainGame() {}
+private:
+	ImageLoader* _imageLoader;
+
 };

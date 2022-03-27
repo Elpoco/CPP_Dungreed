@@ -66,7 +66,8 @@ private:
 
 	bool _isGdiPlus;
 	Gdiplus::Graphics* _graphics;
-	Gdiplus::Image* _gpImage;
+	Gdiplus::Bitmap* _gpImage;
+	Gdiplus::CachedBitmap* _cashedBitmap;
 
 public:
 	HRESULT init(int width, int height);
@@ -78,11 +79,11 @@ public:
 	HRESULT init(const char* fileName, float x, float y, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
 
 	// gdi+
-	HRESULT init(const WCHAR* fileName);
+	HRESULT init(const WCHAR* fileName, HDC memDc);
 	HRESULT init(const WCHAR* fileName, int maxFrameX, int maxFrameY);
 
-	void gpRender(HDC hdc, int destX, int destY, int angle);
-	void gpRender(HDC hdc, int destX = 0, int destY = 0, int sourX = 0, int sourY = 0, int sourWidth = 0, int sourHeight = 0);
+	void gpRender(int destX, int destY, int angle);
+	void gpRender(int destX = 0, int destY = 0, int sourX = 0, int sourY = 0, int sourWidth = 0, int sourHeight = 0);
 
 	HRESULT initForAlphaBlend(void);
 

@@ -15,9 +15,11 @@ private:
 
 private:
 	mapImageList _mImageList;
+	HDC _memDc;
 
 public:
 	HRESULT init(void);
+	HRESULT init(HDC hdc);
 	void release(void);
 
 	Image* addImage(string strKey, int width, int height);

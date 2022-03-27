@@ -5,7 +5,8 @@ Object::Object() :
 	_imgCurrent(0),
 	_x(CENTER_X),
 	_y(CENTER_Y),
-	_rc({0,0,0,0})
+	_rc({0,0,0,0}),
+	_isCollision(false)
 {
 }
 
@@ -27,6 +28,7 @@ void Object::update(void)
 void Object::render(HDC hdc)
 {
 	_vImages[_imgCurrent]->frameRender(hdc, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
+	CAMERAMANAGER->addRender(this);
 }
 
 void Object::animation()

@@ -1,28 +1,36 @@
 #pragma once
-class Tile
+#include "GameNode.h"
+
+using namespace MapTool;
+
+class Tile : public GameNode
 {
 private:
-	enum class PixelTileType
-	{
-
-	};
-
-private:
 	RECT _rc;
-	float _x;
-	float _y;
-	PixelTileType _type;
+	POINT _idx;
+	POINT _frame;
+	TILE_TYPE _type;
 
-	bool _isClick;
+	float* tempX, * tempY;
 
 public:
-	HRESULT init(void);
-	HRESULT init(float x, float y);
-	void release(void);
-	void update(void);
-	void render(HDC hdc);
-
 	Tile();
-	~Tile() {}
+	Tile(int x, int y);
+	~Tile();
+
+	HRESULT init();
+	HRESULT init(int x, int y);
+	HRESULT init(int x, int y, TILE_TYPE type);
+	void release();
+	void update();
+	void render();
+
+	TILE_TYPE getType() { return _type; }
+	RECT getRect() { return _rc; }
+
+	void setType(TILE_TYPE type) { _type = type; }
+
+	void setFrame(int x, int y, TILE_TYPE type) { _frame = { x,y }; _type = type; }
+
 };
 

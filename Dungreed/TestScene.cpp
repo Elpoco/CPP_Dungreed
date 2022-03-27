@@ -23,6 +23,8 @@ HRESULT TestScene::init(void)
 		}
 	}
 
+	TILEMANAGER->loadMap();
+
 	return S_OK;
 }
 
@@ -45,7 +47,7 @@ void TestScene::update(void)
 
 void TestScene::render(void)
 {
-	IMAGEMANAGER->render("PixelTest", getMemDC());
+	//IMAGEMANAGER->render("PixelTest", getMemDC());
 	//IMAGEMANAGER->render("Floor", getMemDC(), 0, CENTER_Y);
 	HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
 	//for (_viTile = _vTiles.begin(); _viTile != _vTiles.end(); ++_viTile)
@@ -56,5 +58,6 @@ void TestScene::render(void)
 	//		FillRect(getMemDC(), &(*_viTile).rc, hBrush);
 	//}
 	DeleteObject(hBrush);
+	//TILEMANAGER->render();
 	_player->render(getMemDC());
 }

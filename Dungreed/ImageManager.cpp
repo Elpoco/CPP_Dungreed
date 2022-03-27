@@ -6,6 +6,12 @@ HRESULT ImageManager::init(void)
 	return S_OK;
 }
 
+HRESULT ImageManager::init(HDC hdc)
+{
+	_memDc = hdc;
+	return S_OK;
+}
+
 void ImageManager::release(void)
 {
 	this->deleteAll();
@@ -101,14 +107,14 @@ Image* ImageManager::addFrameImage(string strKey, const char* fileName, float x,
 	return img;
 }
 
-Image * ImageManager::addImage(string strKey, const WCHAR* fileName)
+Image* ImageManager::addImage(string strKey, const WCHAR* fileName)
 {
 	Image* img = findImage(strKey);
 
 	if (img) return img;
 
 	img = new Image;
-	if (FAILED(img->init(fileName))) {
+	if (FAILED(img->init(fileName, _memDc))) {
 		SAFE_DELETE(img);
 		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
 		return NULL;
@@ -119,7 +125,7 @@ Image * ImageManager::addImage(string strKey, const WCHAR* fileName)
 	return img;
 }
 
-Image * ImageManager::addFrameImage(string strKey, const WCHAR * fileName, int maxFrameX, int maxFrameY)
+Image* ImageManager::addFrameImage(string strKey, const WCHAR* fileName, int maxFrameX, int maxFrameY)
 {
 	Image* img = findImage(strKey);
 
@@ -189,7 +195,7 @@ void ImageManager::render(string strKey, HDC hdc)
 	Image* img = findImage(strKey);
 	if (img)
 	{
-		if (img->checkGdiPlus()) img->gpRender(hdc);
+		if (img->checkGdiPlus()) img->gpRender();
 		else img->render(hdc);
 	}
 		
@@ -200,7 +206,7 @@ void ImageManager::render(string strKey, HDC hdc, int destX, int destY)
 	Image* img = findImage(strKey);
 	if (img)
 	{
-		if (img->checkGdiPlus()) img->gpRender(hdc, destX, destY);
+		if (img->checkGdiPlus()) img->gpRender(destX, destY);
 		else img->render(hdc, destX, destY);
 	}
 }
@@ -210,7 +216,7 @@ void ImageManager::render(string strKey, HDC hdc, int destX, int destY, int sour
 	Image* img = findImage(strKey);
 	if (img)
 	{
-		if (img->checkGdiPlus()) img->gpRender(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight);
+		if (img->checkGdiPlus()) img->gpRender(destX, destY, sourX, sourY, sourWidth, sourHeight);
 		else img->render(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight);
 	}
 }

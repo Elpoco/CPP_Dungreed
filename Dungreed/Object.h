@@ -33,20 +33,22 @@ protected:
 	float _y;
 	RECT _rc;
 
+	bool _isCollision;
+
 public:
-	virtual HRESULT init(void);
-	virtual void release(void);
-	virtual void update(void);
+	virtual HRESULT init();
+	virtual void release();
+	virtual void update();
 	virtual void render(HDC hdc);
 
-	void animation(void);
-	void updateRect(void);
+	void animation();
+	void updateRect();
 
 	void setFrameY(int frameY) { _frameInfo.y = frameY; }
 
-	const float getX(void) { return _x; }
-	const float getY(void) { return _y; }
-	const RECT getRect(void) { return _rc; }
+	const float getX() { return _x; }
+	const float getY() { return _y; }
+	const RECT getRect() { return _rc; }
 
 	void setX(float x) { _x = x; }
 	void setY(float y) { _y = y; }

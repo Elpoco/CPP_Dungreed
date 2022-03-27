@@ -7,6 +7,7 @@
 HINSTANCE _hInstance;  
 HWND _hWnd;
 POINT _ptMouse = { 0,0 };
+bool _isDebug;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -22,6 +23,12 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 					 int nCmdShow)
 {
 	_mg = new MainGame();
+
+#ifdef _DEBUG
+	_isDebug = true;
+#else
+	_isDebug = false;
+#endif
 	
 	_hInstance = hInstance;
 

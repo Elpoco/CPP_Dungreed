@@ -46,30 +46,32 @@ void Player::initAnimation(void)
 
 void Player::move(void)
 {
-	if (KEYMANAGER->isStayKeyDown(KEY_LEFT))
+	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::LEFT)))
 	{
 		_state = PLAYER_STATE::RUN;
 		_x -= _moveSpeed;
+		CAMERAMANAGER->moveX(-_moveSpeed);
 	}
 
-	if (KEYMANAGER->isStayKeyDown(KEY_RIGHT))
+	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::RIGHT)))
 	{
 		_state = PLAYER_STATE::RUN;
 		_x += _moveSpeed;
+		CAMERAMANAGER->moveX(_moveSpeed);
 	}
 
-	if (KEYMANAGER->isStayKeyDown(KEY_DOWN))
+	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::DOWN)))
 	{
 
 	}
 
-	if (KEYMANAGER->isOnceKeyUp(KEY_LEFT) ||
-		KEYMANAGER->isOnceKeyUp(KEY_RIGHT))
+	if (KEYMANAGER->isOnceKeyUp(castingToInt(KEY::LEFT)) ||
+		KEYMANAGER->isOnceKeyUp(castingToInt(KEY::RIGHT)))
 	{
 		_state = PLAYER_STATE::IDLE;
 	}
 
-	if (KEYMANAGER->isOnceKeyUp(KEY_UP) || 
+	if (KEYMANAGER->isOnceKeyUp(castingToInt(KEY::UP)) ||
 		KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
 		Unit::jump();
@@ -92,10 +94,10 @@ void Player::animation(void)
 	switch (_state)
 	{
 	case PLAYER_STATE::IDLE:
-		_imgCurrent = static_cast<int>(PLAYER_STATE::IDLE);
+		_imgCurrent = castingToInt(PLAYER_STATE::IDLE);
 		break;
 	case PLAYER_STATE::RUN:
-		_imgCurrent = static_cast<int>(PLAYER_STATE::RUN);
+		_imgCurrent = castingToInt(PLAYER_STATE::RUN);
 		break;
 	default:
 		break;

@@ -5,7 +5,6 @@ Unit::Unit() :
 	_isLeft(false),
 	_isJump(false),
 	_isFall(false),
-	_isCollision(false),
 	_moveSpeed(UNIT_MOVE_SPEED),
 	_jumpSpeed(UNIT_JUMP_SPEED),
 	_fallSpeed(UNIT_FALL_SPEED),

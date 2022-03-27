@@ -94,8 +94,3 @@ inline bool CollisionEllipseCheck(RECT rc1, RECT rc2) {
 	}
 	return false;
 }
-
-template <typename T>
-inline int GetArrLen(T arr[]) {
-	return sizeof(*arr) / sizeof(*arr[0]);
-}

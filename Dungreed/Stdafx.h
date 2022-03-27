@@ -58,8 +58,16 @@ using namespace std;
 #include "SoundManager.h"
 #include "JsonSaveLoader.h"
 
+#include "Enums.h"
+#include "Config.h"
+
 #include "EffectManager.h"
 #include "CameraManager.h"
+#include "UIManager.h"
+#include "FileManager.h"
+#include "TileManager.h"
+
+
 
 using namespace MY_UTIL;
 
@@ -78,28 +86,32 @@ using namespace MY_UTIL;
 
 #define EFFECTMANAGER EffectManager::getSingleton()
 #define CAMERAMANAGER CameraManager::getSingleton()
+#define UIMANAGER UIManager::getSingleton()
+#define FILEMANAGER FileManager::getSingleton()
+#define TILEMANAGER	TileManager::getSingleton()
 
 // ==========================
 // # 매크로 # (윈도우창 초기화)
 // ==========================
-#define WINNAME				(LPSTR)(TEXT("던그리드"))
+#define WINNAME				(LPSTR)(TEXT("Dungreed"))
 
 #define WINSTART_X			100
 #define WINSTART_Y			100
 #define WINSIZE_X			1280
-//#define WINSIZE_X			600
 #define WINSIZE_Y			800
-#define WINSTYLE			WS_CAPTION | WS_SYSMENU       //caption 타이틀바, sysmenu X 버튼
+#define WINSTYLE			WS_CAPTION | WS_SYSMENU
 
 // ========================
 // # 매크로 # (기능 및 효율)
 // ========================
 #define CENTER_X		(WINSIZE_X / 2)
 #define CENTER_Y		(WINSIZE_Y / 2)
-
 #define MAGENTA			RGB(255,0,255)
-#define TILE_SCALE		2
-#define TILE_SIZE		(16 * TILE_SCALE)
+
+#define TILE_SCALE			3
+#define TILE_SIZE			(16 * TILE_SCALE)
+#define TILE_SCALE_MAPTOOL	2
+#define TILE_SIZE_MAPTOOL	(16 * TILE_SCALE_MAPTOOL)
 
 // =============
 // # 파일 경로 #
@@ -108,6 +120,7 @@ using namespace MY_UTIL;
 
 #define PATH_IMAGE		PATH_RESOURCE"Images/"
 #define PATH_SOUND		PATH_RESOURCE"Sounds/"
+#define PATH_DATA		PATH_RESOURCE"Data/"
 
 #define PATH_BACKGROUND	PATH_IMAGE"Background/"
 #define PATH_OBJECT		PATH_IMAGE"Object/"
@@ -127,6 +140,7 @@ using namespace MY_UTIL;
 extern HINSTANCE	_hInstance;
 extern HWND			_hWnd;
 extern POINT		_ptMouse;
+extern bool			_isDebug;
 
 struct fPOINT
 {

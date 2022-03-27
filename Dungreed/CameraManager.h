@@ -1,32 +1,46 @@
 #pragma once
 #include "SingletonBase.h"
 
-#define INIT_X		0
-#define INIT_Y		0
+class Camera;
+class UI;
+class Object;
 
 class CameraManager : public SingletonBase<CameraManager>
 {
 private:
-	float _x;
-	float _y;
+	typedef vector<UI*> vUI;
+	typedef vector<UI*>::iterator viUI;
+
+	typedef vector<Object*> vObjects;
+	typedef vector<Object*>::iterator viObjects;
+
+private:
+	Camera* _camera;
+
+	vUI _vUI;
+	vObjects _vObjects;
 
 public:
-	HRESULT init(void);
-	void release(void);
-	void update(void);
+	CameraManager();
+	~CameraManager();
 
-	inline float getRelX(float x) { return x - _x; }
-	inline float getRelY(float y) { return y - _y; }
-	inline float getAbsX() { return _x; }
-	inline float getAbsY() { return _y; }
-	inline void setAbsX(float x) { _x = x; }
-	inline void setAbsY(float y) { _y = y; }
+	HRESULT init();
+	void release();
+	void update();
+	void render();
+	void renderObject();
 
-	inline void updateX(float x) { _x += x; }
-	inline void updateY(float y) { _y += y; }
+	void addRender(Object* object);
 
-	CameraManager() {}
-	~CameraManager() {}
+	float getRelX(float x);
+	float getRelY(float y);
+	float getAbsX();
+	float getAbsY();
+
+	void moveX(float x);
+	void moveY(float y);
+
+	void setCameraPos(float x, float y);
 
 };
 
