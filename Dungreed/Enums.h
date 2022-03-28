@@ -22,7 +22,8 @@ namespace PlayerInfo
 	enum PLAYER_STATE
 	{
 		IDLE,
-		RUN
+		RUN,
+		JUMP
 	};
 }
 

@@ -30,10 +30,10 @@ private:
 	int _proveBottom;
 
 public:
-	HRESULT init(void);
-	void release(void);
-	void update(void);
-	void render(void);
+	HRESULT init();
+	void release();
+	void update();
+	void render();
 
 	TestScene() {}
 	~TestScene() {}

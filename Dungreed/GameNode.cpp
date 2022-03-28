@@ -17,33 +17,24 @@ HRESULT GameNode::init(bool managerInit)
 
 		SetTimer(_hWnd, 1, 10, NULL);
 
-		KEYMANAGER->init();
+		KEYMANAGER		->init();
+		RND				->init();
+		IMAGEMANAGER	->init();
+		TIMEMANAGER		->init();
+		TEXTDATAMANAGER	->init();
+		SOUNDMANAGER	->init();
+		JSONDATAMANAGER	->init();
+		EFFECTMANAGER	->init();
+		CAMERAMANAGER	->init();
+		TIMEMANAGER		->init();
+		UIMANAGER		->init();
+		FILEMANAGER		->init();
+		TILEMANAGER		->init();
+		MSGBOXMANAGER	->init();
+		SCENEMANAGER	->init();
+		COLLISIONMANAGER->init();
 
-		RND->init();
-
-		IMAGEMANAGER->init(getMemDC());
-
-		TIMEMANAGER->init();
-
-		TEXTDATAMANAGER->init();
-
-		SCENEMANAGER->init();
-
-		SOUNDMANAGER->init();
-
-		JSONDATAMANAGER->init();
-
-		EFFECTMANAGER->init();
-
-		CAMERAMANAGER->init();
-
-		TIMEMANAGER->init();
-		
-		UIMANAGER->init();
-
-		FILEMANAGER->init();
-
-		TILEMANAGER->init();
+		IMAGEMANAGER->setMemDc(getMemDC());
 	}
 
 	return S_OK;
@@ -56,7 +47,6 @@ void GameNode::release(void)
 		KillTimer(_hWnd, 1);
 
 		KEYMANAGER->releaseSingleton();
-
 		RND->releaseSingleton();
 
 		IMAGEMANAGER->release();
@@ -93,6 +83,12 @@ void GameNode::release(void)
 
 		TILEMANAGER->release();
 		TILEMANAGER->releaseSingleton();
+
+		MSGBOXMANAGER->release();
+		MSGBOXMANAGER->releaseSingleton();
+
+		COLLISIONMANAGER->release();
+		COLLISIONMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);

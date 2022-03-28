@@ -1,8 +1,6 @@
 #pragma once
 #include "GameNode.h"
 
-using namespace MapTool;
-
 class MapToolScene : public GameNode
 {
 private:
@@ -11,18 +9,19 @@ private:
 	RECT _btnSave;
 	RECT _btnLoad;
 
-	bool _isBtn;
-
-	float _x;
-	float _y;
-
-	float _cX;
-	float _cY;
+	RECT _rcSelectTile;
 
 	POINT _curTile;
+	POINT _selectedTileCnt; // 선택된 타일 갯수
+	POINT _startCursor;
 
-	Image* mapImg;
-	Image* tileImg;
+	bool _isDrag;
+
+	float _x; // 타일선택 카메라
+	float _y; // 타일선택 카메라
+
+	Image* _mapImg;
+	Image* _tileImg;
 
 public:
 	MapToolScene();
@@ -41,5 +40,8 @@ public:
 	void clickSave();
 	void clickLoad();
 	
+	void settingSelectTileRect();
+	void drawSelectTile(HDC hdc);
+
 };
 

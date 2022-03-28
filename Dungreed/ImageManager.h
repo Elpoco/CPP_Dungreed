@@ -18,9 +18,10 @@ private:
 	HDC _memDc;
 
 public:
-	HRESULT init(void);
-	HRESULT init(HDC hdc);
-	void release(void);
+	HRESULT init();
+	void release();
+
+	void setMemDc(HDC hdc) { _memDc = hdc; }
 
 	Image* addImage(string strKey, int width, int height);
 	Image* addImage(string strKey, const char* fileName, int width, int height, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));

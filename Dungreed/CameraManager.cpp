@@ -41,9 +41,16 @@ void CameraManager::renderObject()
 	}
 }
 
-void CameraManager::addRender(Object* object)
+void CameraManager::addRender(Object* object, bool isFront)
 {
-	_vObjects.push_back(object);
+	if (isFront)
+	{
+		_vFrontObject.push_back(object);
+	}
+	else
+	{
+		_vObjects.push_back(object);
+	}
 }
 
 float CameraManager::getRelX(float x)

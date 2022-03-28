@@ -48,6 +48,8 @@ void MainGame::update(void)
 	CAMERAMANAGER->update();
 	UIMANAGER->update();
 
+	COLLISIONMANAGER->update();
+
 	if (KEYMANAGER->isOnceKeyDown(VK_F1)) _isDebug = !_isDebug;
 }
 
@@ -55,9 +57,12 @@ void MainGame::render(void)
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
 	SetBkMode(getMemDC(), TRANSPARENT);
-	SetTextColor(getMemDC(), RGB(0, 0, 0));
+	SetTextColor(getMemDC(), Color::BLACK);
 
 	SCENEMANAGER->render();
+
+	COLLISIONMANAGER->render();
+
 	UIMANAGER->render();
 	TIMEMANAGER->render(getMemDC());
 

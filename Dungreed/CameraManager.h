@@ -19,6 +19,7 @@ private:
 
 	vUI _vUI;
 	vObjects _vObjects;
+	vObjects _vFrontObject;
 
 public:
 	CameraManager();
@@ -30,7 +31,7 @@ public:
 	void render();
 	void renderObject();
 
-	void addRender(Object* object);
+	void addRender(Object* object, bool isFront);
 
 	float getRelX(float x);
 	float getRelY(float y);

@@ -3,7 +3,7 @@
 
 #include "Player.h"
 
-HRESULT TestScene::init(void)
+HRESULT TestScene::init()
 {
 	_player = new Player;
 	_player->init();
@@ -28,26 +28,28 @@ HRESULT TestScene::init(void)
 	return S_OK;
 }
 
-void TestScene::release(void)
+void TestScene::release()
 {
 }
 
-void TestScene::update(void)
+void TestScene::update()
 {
 	_player->update();
 	_proveBottom = _player->getRect().bottom;
 	int idxY = _proveBottom / TILE_SIZE;
 	int idxX = _player->getX() / TILE_SIZE;
 	int row = WINSIZE_X / TILE_SIZE;
-	if (_vTiles[idxY * row + idxX].type == BLOCK)
-	{
+	//if (_vTiles[idxY * row + idxX].type == BLOCK)
+	//{
 		//_player->setY(_vTiles[idxY * row + idxX].rc.top);
-	}
+	//}
+
+	if (KEYMANAGER->isOnceKeyDown('J')) TILEMANAGER->loadMap();
 }
 
-void TestScene::render(void)
+void TestScene::render()
 {
-	//IMAGEMANAGER->render("PixelTest", getMemDC());
+	IMAGEMANAGER->render("PixelTest", getMemDC());
 	//IMAGEMANAGER->render("Floor", getMemDC(), 0, CENTER_Y);
 	HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
 	//for (_viTile = _vTiles.begin(); _viTile != _vTiles.end(); ++_viTile)
@@ -58,6 +60,6 @@ void TestScene::render(void)
 	//		FillRect(getMemDC(), &(*_viTile).rc, hBrush);
 	//}
 	DeleteObject(hBrush);
-	//TILEMANAGER->render();
+	TILEMANAGER->render(getMemDC());
 	_player->render(getMemDC());
 }

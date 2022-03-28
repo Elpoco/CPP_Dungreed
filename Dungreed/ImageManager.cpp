@@ -1,18 +1,12 @@
 #include "Stdafx.h"
 #include "ImageManager.h"
 
-HRESULT ImageManager::init(void)
+HRESULT ImageManager::init()
 {
 	return S_OK;
 }
 
-HRESULT ImageManager::init(HDC hdc)
-{
-	_memDc = hdc;
-	return S_OK;
-}
-
-void ImageManager::release(void)
+void ImageManager::release()
 {
 	this->deleteAll();
 }

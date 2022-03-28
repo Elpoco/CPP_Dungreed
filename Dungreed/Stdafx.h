@@ -66,8 +66,8 @@ using namespace std;
 #include "UIManager.h"
 #include "FileManager.h"
 #include "TileManager.h"
-
-
+#include "MessageBoxManager.h"
+#include "CollisionManager.h"
 
 using namespace MY_UTIL;
 
@@ -89,6 +89,8 @@ using namespace MY_UTIL;
 #define UIMANAGER UIManager::getSingleton()
 #define FILEMANAGER FileManager::getSingleton()
 #define TILEMANAGER	TileManager::getSingleton()
+#define MSGBOXMANAGER MessageBoxManager::getSingleton()
+#define COLLISIONMANAGER CollisionManager::getSingleton()
 
 // ==========================
 // # 매크로 # (윈도우창 초기화)
@@ -106,12 +108,6 @@ using namespace MY_UTIL;
 // ========================
 #define CENTER_X		(WINSIZE_X / 2)
 #define CENTER_Y		(WINSIZE_Y / 2)
-#define MAGENTA			RGB(255,0,255)
-
-#define TILE_SCALE			3
-#define TILE_SIZE			(16 * TILE_SCALE)
-#define TILE_SCALE_MAPTOOL	2
-#define TILE_SIZE_MAPTOOL	(16 * TILE_SCALE_MAPTOOL)
 
 // =============
 // # 파일 경로 #

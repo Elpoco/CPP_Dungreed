@@ -141,9 +141,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Object\Unit\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>MapTool</Filter>
-    </ClCompile>
     <ClCompile Include="PixelCollider.cpp">
       <Filter>API FrameWork\PixelCollider</Filter>
     </ClCompile>
@@ -181,6 +178,12 @@
       <Filter>API FrameWork\Manager</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
+      <Filter>API FrameWork\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageBoxManager.cpp">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
       <Filter>API FrameWork\Collider</Filter>
     </ClCompile>
   </ItemGroup>
@@ -251,9 +254,6 @@
     <ClInclude Include="Player.h">
       <Filter>Object\Unit\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>MapTool</Filter>
-    </ClInclude>
     <ClInclude Include="PixelCollider.h">
       <Filter>API FrameWork\PixelCollider</Filter>
     </ClInclude>
@@ -297,6 +297,12 @@
       <Filter>Config</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
+      <Filter>API FrameWork\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageBoxManager.h">
+      <Filter>API FrameWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
       <Filter>API FrameWork\Collider</Filter>
     </ClInclude>
   </ItemGroup>

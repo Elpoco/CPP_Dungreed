@@ -16,6 +16,16 @@ namespace MY_UTIL
 	float getDistance(float startX, float startY, float endX, float endY);
 	float getAngle(float startX, float startY, float endX, float endY);
 
+	void printPt(HDC hdc, float x, float y, int ptX, int ptY, char* format = "%d, %d");
+
+	template<typename T>
+	void swapValue(T& a, T& b)
+	{
+		T temp = a;
+		a = b;
+		b = temp;
+	}
+
 	template<typename T>
 	int castingToInt(T num)
 	{

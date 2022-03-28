@@ -18,6 +18,7 @@ public:
 	void release();
 	void update();
 	void render();
+	void render(Object obj);
 
 	inline float getX() { return _x; }
 	inline float getY() { return _y; }

@@ -9,7 +9,7 @@ Player::~Player()
 {
 }
 
-HRESULT Player::init(void)
+HRESULT Player::init()
 {
 	Unit::init();
 
@@ -20,12 +20,12 @@ HRESULT Player::init(void)
 	return S_OK;
 }
 
-void Player::release(void)
+void Player::release()
 {
 	Unit::release();
 }
 
-void Player::update(void)
+void Player::update()
 {
 	Unit::update();
 
@@ -38,13 +38,13 @@ void Player::render(HDC hdc)
 	Unit::render(hdc);
 }
 
-void Player::initAnimation(void)
+void Player::initAnimation()
 {
 	_vImages.push_back(IMAGEMANAGER->findImage("PlayerIdle"));
 	_vImages.push_back(IMAGEMANAGER->findImage("PlayerRun"));
 }
 
-void Player::move(void)
+void Player::move()
 {
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::LEFT)))
 	{
@@ -89,7 +89,7 @@ void Player::move(void)
 	}
 }
 
-void Player::animation(void)
+void Player::animation()
 {
 	switch (_state)
 	{
@@ -103,6 +103,6 @@ void Player::animation(void)
 		break;
 	}
 
-	if (_ptMouse.x < _x) _isLeft = true;
+	if (_ptMouse.x < CAMERAMANAGER->getRelX(_x)) _isLeft = true;
 	else _isLeft = false;
 }

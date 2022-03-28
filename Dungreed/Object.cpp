@@ -10,25 +10,32 @@ Object::Object() :
 {
 }
 
-HRESULT Object::init(void)
+HRESULT Object::init()
 {
+	COLLISIONMANAGER->addObject(this);
+
 	return S_OK;
 }
 
-void Object::release(void)
+void Object::release()
 {
 }
 
-void Object::update(void)
+void Object::update()
 {
 	this->animation();
-	this->updateRect();
+	this->move();
 }
 
 void Object::render(HDC hdc)
 {
-	_vImages[_imgCurrent]->frameRender(hdc, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
-	CAMERAMANAGER->addRender(this);
+	_vImages[_imgCurrent]->frameRender(hdc, CAMERAMANAGER->getRelX(_rc.left), CAMERAMANAGER->getRelY(_rc.top), _frameInfo.x, _frameInfo.y);
+	//CAMERAMANAGER->addRender(this);
+
+	if (_isDebug)
+	{
+		printPt(hdc, CAMERAMANAGER->getRelX(_rc.left), CAMERAMANAGER->getRelY(_rc.top), _x, _y, "x: %d, y: %d");
+	}
 }
 
 void Object::animation()
@@ -45,7 +52,12 @@ void Object::animation()
 	}
 }
 
-void Object::updateRect(void)
+void Object::move()
 {
+	// юс╫ц
+	if (!_isCollision)
+	{
+		_y+=5;
+	}
 	_rc = RectMakeCenter(_x, _y, _vImages[_imgCurrent]->getFrameWidth(), _vImages[_imgCurrent]->getFrameHeight());
 }

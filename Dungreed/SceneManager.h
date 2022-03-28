@@ -20,20 +20,16 @@ private:
 	string _currentSceneName;
 
 public:
-	HRESULT init(void);
-	void release(void);
-	void update(void);
-	void render(void);
+	HRESULT init();
+	void release();
+	void update();
+	void render();
 
-	// 씬 추가
 	GameNode* addScene(string sceneName, GameNode* scene);
 	GameNode* addLoadingScene(string loadingSceneName, GameNode* scene);
 
-	// 씬 교체
 	HRESULT changeScene(string sceneName);
 
-	// 로딩 스레드 함수
-	// LPVOID: void* (어떤 타입으로도 변환 가능)
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
 
 	inline string getCurrentSceneName() { return _currentSceneName; }

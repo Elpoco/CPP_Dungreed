@@ -28,3 +28,7 @@ void Camera::update()
 void Camera::render()
 {
 }
+
+void Camera::render(Object obj)
+{
+}

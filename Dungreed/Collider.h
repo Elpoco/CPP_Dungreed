@@ -3,22 +3,24 @@
 
 class Object;
 
-using namespace ColliderInfo;
-
 class Collider : public GameNode
 {
 private:
 	Object* _object;
-	POINT _prove[DIRECTION::DIR_CNT];
+	POINT _prove[ColliderInfo::DIRECTION::DIR_CNT];
 
 public:
+	Collider(Object* object);
+	~Collider();
+
 	HRESULT init();
-	HRESULT init(Object* object);
 	void release();
 	void update();
 	void render();
 
 	void settingProve();
+
+	void tileCollision();
 
 };
 

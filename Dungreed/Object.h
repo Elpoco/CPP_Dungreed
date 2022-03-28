@@ -1,4 +1,5 @@
 #pragma once
+
 class Object
 {
 private:
@@ -42,7 +43,7 @@ public:
 	virtual void render(HDC hdc);
 
 	void animation();
-	void updateRect();
+	void move();
 
 	void setFrameY(int frameY) { _frameInfo.y = frameY; }
 
@@ -52,6 +53,8 @@ public:
 
 	void setX(float x) { _x = x; }
 	void setY(float y) { _y = y; }
+
+	void setCollision(bool collision) { _isCollision = collision; }
 
 	Object();
 	virtual ~Object() {}
