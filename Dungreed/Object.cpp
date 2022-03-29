@@ -6,12 +6,21 @@ Object::Object() :
 	_x(CENTER_X),
 	_y(CENTER_Y),
 	_rc({0,0,0,0}),
-	_isCollision(false)
+	_isLeft(false)
+{
+}
+
+Object::~Object()
 {
 }
 
 HRESULT Object::init()
 {
+	for (int i = 0; i < ColliderInfo::DIRECTION::DIR_CNT; i++)
+	{
+		_isCollision[i] = false;
+	}
+
 	COLLISIONMANAGER->addObject(this);
 
 	return S_OK;
@@ -19,22 +28,38 @@ HRESULT Object::init()
 
 void Object::release()
 {
+	viImages iter = _vImages.begin();
+	for (; iter != _vImages.end(); ++iter)
+	{
+		SAFE_DELETE(*iter);
+	}
 }
 
 void Object::update()
 {
+	_rc = RectMakeCenter(_x, _y, _vImages[_imgCurrent]->getFrameWidth(), _vImages[_imgCurrent]->getFrameHeight());
 	this->animation();
-	this->move();
 }
 
 void Object::render(HDC hdc)
 {
-	_vImages[_imgCurrent]->frameRender(hdc, CAMERAMANAGER->getRelX(_rc.left), CAMERAMANAGER->getRelY(_rc.top), _frameInfo.x, _frameInfo.y);
-	//CAMERAMANAGER->addRender(this);
+	CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 
 	if (_isDebug)
 	{
-		printPt(hdc, CAMERAMANAGER->getRelX(_rc.left), CAMERAMANAGER->getRelY(_rc.top), _x, _y, "x: %d, y: %d");
+		CAMERAMANAGER->printPoint(hdc, _rc.left, _rc.top, _x, _y, "x: %d, y: %d");
+	}
+}
+
+void Object::move()
+{
+	if (_isLeft)
+	{
+		Object::setFrameY(1);
+	}
+	else
+	{
+		Object::setFrameY(0);
 	}
 }
 
@@ -50,14 +75,4 @@ void Object::animation()
 		bool checkFrame = _vImages[_imgCurrent]->getMaxFrameX() < _frameInfo.x;
 		if (checkFrame) _frameInfo.x = 0;
 	}
-}
-
-void Object::move()
-{
-	// юс╫ц
-	if (!_isCollision)
-	{
-		_y+=5;
-	}
-	_rc = RectMakeCenter(_x, _y, _vImages[_imgCurrent]->getFrameWidth(), _vImages[_imgCurrent]->getFrameHeight());
 }

@@ -13,8 +13,8 @@ TileManager::~TileManager()
 
 HRESULT TileManager::init()
 {
-	_tileCntX = TILE_CNT_X;
-	_tileCntY = TILE_CNT_Y;
+	_tileCntX = MapTool::TILE_CNT_X;
+	_tileCntY = MapTool::TILE_CNT_Y;
 	_tileTotalCnt = _tileCntX * _tileCntY;
 
 	_tiles = new Tile[_tileTotalCnt];
@@ -24,10 +24,12 @@ HRESULT TileManager::init()
 		for (int x = 0; x < _tileCntX; x++)
 		{
 			int idx = y * _tileCntX + x;
-			_tiles[idx].idx = { x,y };
+			_tiles[idx].pos = { x,y };
 			_tiles[idx].rc = RectMake(x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE);
 		}
 	}
+
+	_imgTile = IMAGEMANAGER->findImage(ImageName::mapTile);
 
 	return S_OK;
 }
@@ -66,26 +68,20 @@ void TileManager::tileRender(HDC hdc, Tile tile)
 {
 	switch (tile.type)
 	{
-	case TILE_TYPE::NONE:
-		if (_isDebug)
-			RectangleMake(hdc, 
-				CAMERAMANAGER->getRelX(tile.rc.left), 
-				CAMERAMANAGER->getRelY(tile.rc.top), 
-				TILE_SIZE, TILE_SIZE);
+	case MapTool::TILE_TYPE::NONE:
+		if (_isDebug || SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
+			CAMERAMANAGER->printRectangle(hdc, tile.rc.left, tile.rc.top, TILE_SIZE, TILE_SIZE);
 		break;
-	case TILE_TYPE::BLOCK:
-		IMAGEMANAGER->frameRender("MapTile", hdc, 
-			CAMERAMANAGER->getRelX(tile.rc.left), 
-			CAMERAMANAGER->getRelY(tile.rc.top), 
-			tile.tileFrame.x, tile.tileFrame.y);
+	case MapTool::TILE_TYPE::BLOCK:
+		CAMERAMANAGER->frameRender(hdc, _imgTile, tile.rc.left, tile.rc.top, tile.tileFrameX, tile.tileFrameY);
 		break;
 	default:
 		break;
 	}
 
-	if (_isDebug)
+	if (_isDebug || SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
 	{
-		printPt(hdc, CAMERAMANAGER->getRelX(tile.rc.left), CAMERAMANAGER->getRelY(tile.rc.top), tile.idx.y, tile.idx.x);
+		CAMERAMANAGER->printPoint(hdc, tile.rc.left, tile.rc.top, tile.pos.y, tile.pos.x);
 	}
 }
 
@@ -95,11 +91,12 @@ void TileManager::setRenderSize(int width, int height)
 	_renderHeight = height;
 }
 
-void TileManager::setTileFrame(int idx, int frameX, int frameY, TILE_TYPE type)
+void TileManager::setTileFrame(int idx, int frameX, int frameY, MapTool::TILE_TYPE type)
 {
 	if (idx > _tileCntX * _tileCntY - 1 || idx < 0) return;
 
-	_tiles[idx].tileFrame = { frameX, frameY };
+	_tiles[idx].tileFrameX = frameX;
+	_tiles[idx].tileFrameY = frameY;
 	_tiles[idx].type = type;
 }
 
@@ -108,14 +105,14 @@ int TileManager::getTileIndex(POINT pt)
 	int x = (pt.x + CAMERAMANAGER->getAbsX()) / TILE_SIZE;
 	int y = (pt.y + CAMERAMANAGER->getAbsY()) / TILE_SIZE;
 
-	int idx = y * TILE_CNT_X + x;
+	int idx = y * MapTool::TILE_CNT_X + x;
 
 	if (idx > _tileCntX * _tileCntY - 1 || idx < 0) idx = 0;
 
 	return idx;
 }
 
-TILE_TYPE TileManager::getTileType(POINT pt)
+MapTool::TILE_TYPE TileManager::getTileType(POINT pt)
 {
 	int idx = this->getTileIndex(pt);
 

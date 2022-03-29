@@ -1,9 +1,14 @@
 #pragma once
 
+/*
+애니메이션, 위치정보, 충돌
+*/
+
 class Object
 {
 private:
 	typedef vector<Image*> vImages;
+	typedef vector<Image*>::iterator viImages;
 
 	struct tagFrameInfo
 	{
@@ -14,7 +19,7 @@ private:
 
 		tagFrameInfo()
 		{
-			tick = 8;
+			tick = 14;
 			cnt = 0;
 			x = 0;
 			y = 0;
@@ -34,16 +39,20 @@ protected:
 	float _y;
 	RECT _rc;
 
-	bool _isCollision;
+	bool _isCollision[ColliderInfo::DIRECTION::DIR_CNT];
+	bool _isLeft;
 
 public:
+	Object();
+	virtual ~Object();
+
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render(HDC hdc);
 
-	void animation();
 	void move();
+	void animation();
 
 	void setFrameY(int frameY) { _frameInfo.y = frameY; }
 
@@ -54,9 +63,7 @@ public:
 	void setX(float x) { _x = x; }
 	void setY(float y) { _y = y; }
 
-	void setCollision(bool collision) { _isCollision = collision; }
+	void setCollision(ColliderInfo::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }
 
-	Object();
-	virtual ~Object() {}
 };
 

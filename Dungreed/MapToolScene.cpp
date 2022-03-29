@@ -1,6 +1,8 @@
 #include "Stdafx.h"
 #include "MapToolScene.h"
 
+#include "Object.h"
+
 MapToolScene::MapToolScene() :
 	_x(0.f),
 	_y(0.f),
@@ -15,20 +17,21 @@ MapToolScene::~MapToolScene()
 
 HRESULT MapToolScene::init()
 {
-	CAMERAMANAGER->setCameraPos(0.f, 0.f);
+	_camera = new Object;
+	CAMERAMANAGER->followCamera(_camera);
 
-	_rcTileWindow = { 0,0, TOOL_START_X, WINSIZE_Y };
-	_rcToolWindow = { TOOL_START_X, 0, WINSIZE_X, WINSIZE_Y };
-	_btnSave = { TOOL_START_X, WINSIZE_Y - 100, TOOL_START_X + 100, WINSIZE_Y - 50 };
-	_btnLoad = { TOOL_START_X, WINSIZE_Y - 50, TOOL_START_X + 100, WINSIZE_Y };
+	_rcTileWindow = { 0,0, MapTool::TOOL_START_X, WINSIZE_Y };
+	_rcToolWindow = { MapTool::TOOL_START_X, 0, WINSIZE_X, WINSIZE_Y };
+	_btnSave = { MapTool::TOOL_START_X, WINSIZE_Y - 100, MapTool::TOOL_START_X + 100, WINSIZE_Y - 50 };
+	_btnLoad = { MapTool::TOOL_START_X, WINSIZE_Y - 50, MapTool::TOOL_START_X + 100, WINSIZE_Y };
 
-	_mapImg = IMAGEMANAGER->findImage("MapToolTile");
-	_tileImg = IMAGEMANAGER->findImage("MapTile");
+	_mapImg = IMAGEMANAGER->findImage(ImageName::mapToolTile);
+	_tileImg = IMAGEMANAGER->findImage(ImageName::mapTile);
 
 	_rcSelectTile = {
-		TOOL_START_X,
+		MapTool::TOOL_START_X,
 		0,
-		TOOL_START_X + MapTool::TOOL_TILE_SIZE,
+		MapTool::TOOL_START_X + MapTool::TOOL_TILE_SIZE,
 		MapTool::TOOL_TILE_SIZE
 	};
 
@@ -41,15 +44,15 @@ void MapToolScene::release()
 
 void MapToolScene::update()
 {
-	if (KEYMANAGER->isStayKeyDown('A')) CAMERAMANAGER->moveX(-CAMERA_SPPED);
-	if (KEYMANAGER->isStayKeyDown('W')) CAMERAMANAGER->moveY(-CAMERA_SPPED);
-	if (KEYMANAGER->isStayKeyDown('D')) CAMERAMANAGER->moveX(CAMERA_SPPED);
-	if (KEYMANAGER->isStayKeyDown('S')) CAMERAMANAGER->moveY(CAMERA_SPPED);
+	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::UP)))	 _camera->setY(-MapTool::CAMERA_SPPED + _camera->getY());
+	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::DOWN)))  _camera->setY( MapTool::CAMERA_SPPED + _camera->getY());
+	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::LEFT)))  _camera->setX(-MapTool::CAMERA_SPPED + _camera->getX());
+	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::RIGHT))) _camera->setX( MapTool::CAMERA_SPPED + _camera->getX());
 
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))  _x -= CAMERA_SPPED;
-	if (KEYMANAGER->isStayKeyDown(VK_UP))	 _y -= CAMERA_SPPED;
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += CAMERA_SPPED;
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))  _y += CAMERA_SPPED;
+	if (KEYMANAGER->isStayKeyDown(VK_UP))	 _y -= MapTool::CAMERA_SPPED;
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN))  _y += MapTool::CAMERA_SPPED;
+	if (KEYMANAGER->isStayKeyDown(VK_LEFT))  _x -= MapTool::CAMERA_SPPED;
+	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += MapTool::CAMERA_SPPED;
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
@@ -110,16 +113,16 @@ void MapToolScene::render()
 {
 	TILEMANAGER->render(getMemDC());
 
-	Rectangle(getMemDC(), TOOL_START_X, 0, WINSIZE_X, WINSIZE_Y);
-	_mapImg->render(getMemDC(), TOOL_START_X, 0, _x, _y, _x + WINSIZE_X - TOOL_START_X, _y + WINSIZE_Y);
+	Rectangle(getMemDC(), MapTool::TOOL_START_X, 0, WINSIZE_X, WINSIZE_Y);
+	_mapImg->render(getMemDC(), MapTool::TOOL_START_X, 0, _x, _y, _x + WINSIZE_X - MapTool::TOOL_START_X, _y + WINSIZE_Y);
 
 	drawSelectTile(getMemDC());
 
 	char str[128];
-	wsprintf(str, "SAVE");
+	wsprintf(str, String::btnSave);
 	RectangleMakeRect(getMemDC(), _btnSave);
 	TextOut(getMemDC(), _btnSave.left, _btnSave.top, str, strlen(str));
-	wsprintf(str, "LOAD");
+	wsprintf(str, String::btnLoad);
 	RectangleMakeRect(getMemDC(), _btnLoad);
 	TextOut(getMemDC(), _btnLoad.left, _btnLoad.top, str, strlen(str));
 }
@@ -132,7 +135,7 @@ void MapToolScene::clickDrawTile()
 	{
 		for (int x = 0; x < _selectedTileCnt.x; x++)
 		{
-			TILEMANAGER->setTileFrame(idx + x + y*MapTool::TILE_CNT_X, _curTile.x + x, _curTile.y+y, TILE_TYPE::BLOCK);
+			TILEMANAGER->setTileFrame(idx + x + y*MapTool::TILE_CNT_X, _curTile.x + x, _curTile.y+y, MapTool::TILE_TYPE::BLOCK);
 		}
 	}
 }
@@ -141,13 +144,13 @@ void MapToolScene::clickUndoTile()
 {
 	int idx = TILEMANAGER->getTileIndex(_ptMouse);
 
-	TILEMANAGER->setTileFrame(idx, 0, 0, TILE_TYPE::NONE);
+	TILEMANAGER->setTileFrame(idx, 0, 0, MapTool::TILE_TYPE::NONE);
 }
 
 void MapToolScene::clickChangeTile()
 {
-	int x = (_ptMouse.x - TOOL_START_X) / TOOL_TILE_SIZE;
-	int y = (_ptMouse.y) / TOOL_TILE_SIZE;
+	int x = (_ptMouse.x - MapTool::TOOL_START_X) / MapTool::TOOL_TILE_SIZE;
+	int y = (_ptMouse.y) / MapTool::TOOL_TILE_SIZE;
 
 	_curTile = { x,y };
 
@@ -157,26 +160,26 @@ void MapToolScene::clickChangeTile()
 void MapToolScene::clickSave()
 {
 	if (TILEMANAGER->saveMap()) 
-		MSGBOXMANAGER->showMessage("Save success");
+		MSGBOXMANAGER->showMessage(String::msgSaveSuccess);
 	else
-		MSGBOXMANAGER->showMessage("Save failed");
+		MSGBOXMANAGER->showMessage(String::msgSaveFail);
 }
 
 void MapToolScene::clickLoad()
 {
 	if (TILEMANAGER->loadMap())
-		MSGBOXMANAGER->showMessage("Load success");
+		MSGBOXMANAGER->showMessage(String::msgLoadSuccess);
 	else
-		MSGBOXMANAGER->showMessage("Load failed");
+		MSGBOXMANAGER->showMessage(String::msgLoadFail);
 }
 
 void MapToolScene::settingSelectTileRect()
 {
-	int startX = (_startCursor.x - TOOL_START_X) / TOOL_TILE_SIZE;
-	int startY = (_startCursor.y) / TOOL_TILE_SIZE;
+	int startX = (_startCursor.x - MapTool::TOOL_START_X) / MapTool::TOOL_TILE_SIZE;
+	int startY = (_startCursor.y) / MapTool::TOOL_TILE_SIZE;
 
-	int endX = (_ptMouse.x - TOOL_START_X) / TOOL_TILE_SIZE + 1;
-	int endY = (_ptMouse.y) / TOOL_TILE_SIZE + 1;
+	int endX = (_ptMouse.x - MapTool::TOOL_START_X) / MapTool::TOOL_TILE_SIZE + 1;
+	int endY = (_ptMouse.y) / MapTool::TOOL_TILE_SIZE + 1;
 
 	if (startX > endX) swap(startX, endX);
 	if (startY > endY) swap(startY, endY);
@@ -185,9 +188,9 @@ void MapToolScene::settingSelectTileRect()
 	_selectedTileCnt.y = endY - startY;
 
 	_rcSelectTile = {
-		TOOL_START_X + startX * MapTool::TOOL_TILE_SIZE,
+		MapTool::TOOL_START_X + startX * MapTool::TOOL_TILE_SIZE,
 		startY * MapTool::TOOL_TILE_SIZE,
-		TOOL_START_X + endX * MapTool::TOOL_TILE_SIZE,
+		MapTool::TOOL_START_X + endX * MapTool::TOOL_TILE_SIZE,
 		endY * MapTool::TOOL_TILE_SIZE
 	};
 }
@@ -199,7 +202,7 @@ void MapToolScene::drawSelectTile(HDC hdc)
 
 	SetTextColor(getMemDC(), Color::RED);
 
-	printPt(getMemDC(), _rcSelectTile.left, _rcSelectTile.top, _selectedTileCnt.y, _selectedTileCnt.x);
+	printPoint(getMemDC(), _rcSelectTile.left, _rcSelectTile.top, _selectedTileCnt.y, _selectedTileCnt.x);
 
 	SetTextColor(getMemDC(), Color::BLACK);
 }

@@ -1,8 +1,6 @@
 #pragma once
 #include "GameNode.h"
 
-class ImageLoader;
-
 class MainGame : public GameNode
 {
 public:
@@ -13,8 +11,5 @@ public:
 	void release();
 	void update();
 	void render();
-
-private:
-	ImageLoader* _imageLoader;
 
 };

@@ -19,17 +19,23 @@ HRESULT MainGame::init(void)
 {
 	GameNode::init(TRUE);
 
-	_imageLoader = new ImageLoader;
-	_imageLoader->init();
-
 	// ===================================================
-	SCENEMANAGER->addScene("Loading", new StartScene);
-	SCENEMANAGER->addScene("MapTool", new MapToolScene);
-	SCENEMANAGER->addScene("Test", new TestScene);
+	SCENEMANAGER->addScene(SceneName::startScene, new StartScene);
+	SCENEMANAGER->addScene(SceneName::mapToolScene, new MapToolScene);
+	SCENEMANAGER->addScene(SceneName::testScene, new TestScene);
 
 	// ===================================================
 
-	SCENEMANAGER->changeScene("Loading");
+	SCENEMANAGER->changeScene(SceneName::startScene);
+
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	for (int j = 0; j < 2; j++)
+	//	{
+	//		cout << (i + j) * 2 + i * -4 << ", " << -2 + (i + j) * 2 << endl;
+	//	}
+	//}
+
 	
 	return S_OK;
 }
@@ -37,8 +43,6 @@ HRESULT MainGame::init(void)
 void MainGame::release(void)
 {
 	GameNode::release();
-
-	SAFE_DELETE(_imageLoader);
 }
 
 void MainGame::update(void)
@@ -62,9 +66,8 @@ void MainGame::render(void)
 	SCENEMANAGER->render();
 
 	COLLISIONMANAGER->render();
-
-	UIMANAGER->render();
 	TIMEMANAGER->render(getMemDC());
+
 
 	if(_isDebug)
 		TextOut(getMemDC(), 0, WINSIZE_Y-20, SCENEMANAGER->getCurrentSceneName().c_str(), SCENEMANAGER->getCurrentSceneName().length());

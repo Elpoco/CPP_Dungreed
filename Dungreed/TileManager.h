@@ -1,29 +1,29 @@
 #pragma once
 #include "SingletonBase.h"
 
-using namespace MapTool;
-
 class TileManager : public SingletonBase<TileManager>
 {
 private:
 	typedef struct tagTile
 	{
 		RECT rc;
-		POINT idx;
-		POINT tileFrame;
-		TILE_TYPE type;
+		POINT pos;
+		int tileFrameX;
+		int tileFrameY;
+		MapTool::TILE_TYPE type;
 		
 		tagTile()
 		{
 			rc = { 0,0,0,0 };
-			idx = { 0,0 };
-			tileFrame = { 0,0 };
-			type = TILE_TYPE::NONE;
+			pos = { 0,0 };
+			tileFrameX = 0;
+			tileFrameY = 0;
+			type = MapTool::TILE_TYPE::NONE;
 		}
 	} Tile;
 
 private:
-	Image* _tileImg;
+	Image* _imgTile;
 	Tile* _tiles;
 
 	int _renderWidth;
@@ -45,13 +45,13 @@ public:
 	void tileRender(HDC hdc, Tile tile);
 
 	void setRenderSize(int width, int height);
-	void setTileFrame(int idx, int frameX, int frameY, TILE_TYPE type);
+	void setTileFrame(int idx, int frameX, int frameY, MapTool::TILE_TYPE type);
 
 	int getTileIndex(POINT pt);
-	TILE_TYPE getTileType(POINT pt);
+	MapTool::TILE_TYPE getTileType(POINT pt);
 
-	int saveMap(string str = "testSave.dat");
-	int loadMap(string str = "testSave.dat");
+	int saveMap(string str = String::tempSaveFile);
+	int loadMap(string str = String::tempSaveFile);
 
 };
 

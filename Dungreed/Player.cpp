@@ -17,6 +17,8 @@ HRESULT Player::init()
 
 	_moveSpeed = MOVE_SPEED;
 
+	CAMERAMANAGER->followCamera(this);
+
 	return S_OK;
 }
 
@@ -28,7 +30,6 @@ void Player::release()
 void Player::update()
 {
 	Unit::update();
-
 	this->move();
 	this->animation();
 }
@@ -40,8 +41,8 @@ void Player::render(HDC hdc)
 
 void Player::initAnimation()
 {
-	_vImages.push_back(IMAGEMANAGER->findImage("PlayerIdle"));
-	_vImages.push_back(IMAGEMANAGER->findImage("PlayerRun"));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::playerIdle));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::playerRun));
 }
 
 void Player::move()
@@ -50,14 +51,12 @@ void Player::move()
 	{
 		_state = PLAYER_STATE::RUN;
 		_x -= _moveSpeed;
-		CAMERAMANAGER->moveX(-_moveSpeed);
 	}
 
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::RIGHT)))
 	{
 		_state = PLAYER_STATE::RUN;
 		_x += _moveSpeed;
-		CAMERAMANAGER->moveX(_moveSpeed);
 	}
 
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::DOWN)))
@@ -71,12 +70,11 @@ void Player::move()
 		_state = PLAYER_STATE::IDLE;
 	}
 
-	if (KEYMANAGER->isOnceKeyUp(castingToInt(KEY::UP)) ||
+	if (KEYMANAGER->isOnceKeyDown(castingToInt(KEY::UP)) ||
 		KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
 		Unit::jump();
 	}
-
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
@@ -86,6 +84,21 @@ void Player::move()
 	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
 	{
 
+	}
+
+	// юс╫ц
+	if (!_isCollision)
+	{
+		//_y += 5;
+	}
+
+	if (_isJump)
+	{
+		_y -= _jumpSpeed;
+		if (_isCollision)
+		{
+			_isJump = false;
+		}
 	}
 }
 
@@ -103,6 +116,6 @@ void Player::animation()
 		break;
 	}
 
-	if (_ptMouse.x < CAMERAMANAGER->getRelX(_x)) _isLeft = true;
+	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x)) _isLeft = true;
 	else _isLeft = false;
 }

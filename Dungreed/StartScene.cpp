@@ -18,7 +18,7 @@ HRESULT StartScene::init()
 	_logo = RectMakeCenter(CENTER_X, CENTER_Y, 468, 255);
 
 	UI* ui = new UI;
-	ui->init("Logo", RectMakeCenter(CENTER_X, CENTER_Y, 468, 255));
+	ui->init(ImageName::logo, RectMakeCenter(CENTER_X, CENTER_Y, 468, 255));
 	//UIMANAGER->addUI(ui);
 
 	return S_OK;
@@ -31,10 +31,10 @@ void StartScene::release()
 void StartScene::update()
 {
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
-		SCENEMANAGER->changeScene("Test");
+		SCENEMANAGER->changeScene(SceneName::testScene);
 
 	if (KEYMANAGER->isOnceKeyDown('M'))
-		SCENEMANAGER->changeScene("MapTool");
+		SCENEMANAGER->changeScene(SceneName::mapToolScene);
 
 	_loop1 += 0.1f;
 	_loop2 += 0.7f;

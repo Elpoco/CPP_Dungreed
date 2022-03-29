@@ -1,6 +1,8 @@
 #pragma once
 #include "GameNode.h"
 
+class Object;
+
 class MapToolScene : public GameNode
 {
 private:
@@ -17,6 +19,7 @@ private:
 
 	bool _isDrag;
 
+	Object* _camera;
 	float _x; // 타일선택 카메라
 	float _y; // 타일선택 카메라
 

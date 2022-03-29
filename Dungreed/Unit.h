@@ -1,16 +1,13 @@
 #pragma once
 #include "Object.h"
-#include "PixelCollider.h"
 
-#define UNIT_MOVE_SPEED		1.0f
-#define UNIT_JUMP_SPEED		15.0f
-#define UNIT_FALL_SPEED		0.0f
-#define UNIT_GRAVITY		0.3f
+/*
+»óÅÂ°ª
+*/
 
-class Unit : public Object, public PixelCollider
+class Unit : public Object
 {
 protected:
-	bool _isLeft;
 	bool _isJump;
 	bool _isFall;
 
@@ -26,11 +23,8 @@ public:
 	virtual void render(HDC hdc);
 
 	void move();
-	void animation();
 
 	virtual void jump();
-
-	void setCollision(bool isCollision) { _isCollision = isCollision; }
 
 	Unit();
 	virtual ~Unit() {}

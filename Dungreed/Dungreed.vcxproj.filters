@@ -76,7 +76,7 @@
     <Filter Include="API FrameWork\Collider">
       <UniqueIdentifier>{7423818a-c6a4-4d2f-980a-d7cbfdedf660}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\PixelCollider">
+    <Filter Include="API FrameWork\Collider\PixelCollider">
       <UniqueIdentifier>{41e39f3a-a2b5-4bae-b9eb-ed103a41e44a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -142,16 +142,13 @@
       <Filter>Object\Unit\Player</Filter>
     </ClCompile>
     <ClCompile Include="PixelCollider.cpp">
-      <Filter>API FrameWork\PixelCollider</Filter>
+      <Filter>API FrameWork\Collider\PixelCollider</Filter>
     </ClCompile>
     <ClCompile Include="CameraManager.cpp">
       <Filter>API FrameWork\Camera</Filter>
     </ClCompile>
     <ClCompile Include="TileManager.cpp">
       <Filter>MapTool</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>API FrameWork\Camera</Filter>
     </ClCompile>
     <ClCompile Include="ImageLoader.cpp">
       <Filter>API FrameWork\Image</Filter>
@@ -255,16 +252,13 @@
       <Filter>Object\Unit\Player</Filter>
     </ClInclude>
     <ClInclude Include="PixelCollider.h">
-      <Filter>API FrameWork\PixelCollider</Filter>
+      <Filter>API FrameWork\Collider\PixelCollider</Filter>
     </ClInclude>
     <ClInclude Include="CameraManager.h">
       <Filter>API FrameWork\Camera</Filter>
     </ClInclude>
     <ClInclude Include="TileManager.h">
       <Filter>MapTool</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>API FrameWork\Camera</Filter>
     </ClInclude>
     <ClInclude Include="ImageLoader.h">
       <Filter>API FrameWork\Image</Filter>
@@ -304,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>API FrameWork\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="String.h">
+      <Filter>Config</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

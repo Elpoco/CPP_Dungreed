@@ -1,25 +1,16 @@
 #pragma once
 #include "SingletonBase.h"
 
-class Camera;
-class UI;
 class Object;
 
 class CameraManager : public SingletonBase<CameraManager>
 {
 private:
-	typedef vector<UI*> vUI;
-	typedef vector<UI*>::iterator viUI;
+	float _x;
+	float _y;
 
-	typedef vector<Object*> vObjects;
-	typedef vector<Object*>::iterator viObjects;
-
-private:
-	Camera* _camera;
-
-	vUI _vUI;
-	vObjects _vObjects;
-	vObjects _vFrontObject;
+	Object* _object; // 따라다닐 오브젝트
+	bool _isFollow;
 
 public:
 	CameraManager();
@@ -28,20 +19,24 @@ public:
 	HRESULT init();
 	void release();
 	void update();
-	void render();
-	void renderObject();
+	void render(HDC hdc);
 
-	void addRender(Object* object, bool isFront);
+	void printPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format = "%d, %d");
+	void printRectangle(HDC hdc, float x, float y, float width, float height);
 
-	float getRelX(float x);
-	float getRelY(float y);
-	float getAbsX();
-	float getAbsY();
+	int checkObjectInCamera(Image* img, float x, float y);
 
-	void moveX(float x);
-	void moveY(float y);
+	void render(HDC hdc, Image* img, float x, float y);
+	void frameRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY);
 
-	void setCameraPos(float x, float y);
+	void followCamera(Object* object);
+	void startFollow() { _isFollow = true; }
+	void stopFollow() { _isFollow = false; }
+
+	float getAbsX() { return _x; }
+	float getAbsY() { return _y; }
+	float calRelX(float x) { return x - _x; }
+	float calRelY(float y) { return y - _y; }
 
 };
 

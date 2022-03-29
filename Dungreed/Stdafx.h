@@ -46,6 +46,10 @@ using namespace std;
 // =================================
 // # 내가 만든 헤더파일을 이곳에 추가 #
 // =================================
+#include "Enums.h"
+#include "Config.h"
+#include "String.h"
+
 #include "CommonMacroFuntion.h"
 #include "RandomFuntion.h"
 #include "KeyManager.h"
@@ -57,9 +61,6 @@ using namespace std;
 #include "SceneManager.h"
 #include "SoundManager.h"
 #include "JsonSaveLoader.h"
-
-#include "Enums.h"
-#include "Config.h"
 
 #include "EffectManager.h"
 #include "CameraManager.h"

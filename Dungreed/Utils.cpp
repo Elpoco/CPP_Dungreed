@@ -21,7 +21,7 @@ namespace MY_UTIL
 		return angle;
 	}
 
-	void printPt(HDC hdc, float x, float y, int ptX, int ptY, char* format)
+	void printPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format)
 	{
 		char str[128];
 		wsprintf(str, format, ptX, ptY);

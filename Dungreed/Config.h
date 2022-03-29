@@ -20,3 +20,11 @@ namespace Color
 	constexpr DWORD RED		= RGB(255, 0, 0);
 	constexpr DWORD MAGENTA = RGB(255, 0, 255);
 }
+
+namespace UnitSet
+{
+	constexpr float MOVE_SPEED = 1.0f;
+	constexpr float JUMP_SPEED = 15.0f;
+	constexpr float FALL_SPEED = 0.0f;
+	constexpr float GRAVITY = 0.3f;
+}

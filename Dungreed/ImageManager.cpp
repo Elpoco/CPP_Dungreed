@@ -1,14 +1,20 @@
 #include "Stdafx.h"
 #include "ImageManager.h"
 
+#include "ImageLoader.h"
+
 HRESULT ImageManager::init()
 {
+	_imageLoader = new ImageLoader;
+	_imageLoader->init();
+
 	return S_OK;
 }
 
 void ImageManager::release()
 {
 	this->deleteAll();
+	SAFE_DELETE(_imageLoader);
 }
 
 Image* ImageManager::addImage(string strKey, int width, int height)

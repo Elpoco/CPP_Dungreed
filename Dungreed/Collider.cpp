@@ -24,7 +24,7 @@ void Collider::release()
 void Collider::update()
 {
 	this->settingProve();
-	if (TILEMANAGER->getTileType(_prove[ColliderInfo::DIRECTION::BOTTOM]) == TILE_TYPE::BLOCK)
+	if (TILEMANAGER->getTileType(_prove[ColliderInfo::DIRECTION::BOTTOM]) == MapTool::TILE_TYPE::BLOCK)
 		_object->setCollision(true);
 	else
 		_object->setCollision(false);
@@ -40,8 +40,8 @@ void Collider::render()
 void Collider::settingProve()
 {
 	RECT rc = _object->getRect();
-	_prove[ColliderInfo::DIRECTION::TOP]	= PointMake(CAMERAMANAGER->getRelX(_object->getX()), CAMERAMANAGER->getRelY(rc.top));
-	_prove[ColliderInfo::DIRECTION::LEFT]	= PointMake(CAMERAMANAGER->getRelX(rc.left), CAMERAMANAGER->getRelY(_object->getY()));
-	_prove[ColliderInfo::DIRECTION::RIGHT]	= PointMake(CAMERAMANAGER->getRelX(rc.right), CAMERAMANAGER->getRelY(_object->getY()));
-	_prove[ColliderInfo::DIRECTION::BOTTOM]	= PointMake(CAMERAMANAGER->getRelX(_object->getX()), CAMERAMANAGER->getRelY(rc.bottom));
+	//_prove[ColliderInfo::DIRECTION::TOP]	= PointMake(CAMERAMANAGER->getRelX(_object->getX()), CAMERAMANAGER->getRelY(rc.top));
+	//_prove[ColliderInfo::DIRECTION::LEFT]	= PointMake(CAMERAMANAGER->getRelX(rc.left), CAMERAMANAGER->getRelY(_object->getY()));
+	//_prove[ColliderInfo::DIRECTION::RIGHT]	= PointMake(CAMERAMANAGER->getRelX(rc.right), CAMERAMANAGER->getRelY(_object->getY()));
+	//_prove[ColliderInfo::DIRECTION::BOTTOM]	= PointMake(CAMERAMANAGER->getRelX(_object->getX()), CAMERAMANAGER->getRelY(rc.bottom));
 }

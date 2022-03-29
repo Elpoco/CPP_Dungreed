@@ -1,11 +1,13 @@
 #include "Stdafx.h"
 #include "CameraManager.h"
 
-#include "Camera.h"
-#include "UI.h"
 #include "Object.h"
 
-CameraManager::CameraManager()
+CameraManager::CameraManager() :
+	_x(0.f),
+	_y(0.f),
+	_object(nullptr),
+	_isFollow(false)
 {
 }
 
@@ -15,8 +17,6 @@ CameraManager::~CameraManager()
 
 HRESULT CameraManager::init()
 {
-	_camera = new Camera;
-
 	return S_OK;
 }
 
@@ -26,64 +26,53 @@ void CameraManager::release()
 
 void CameraManager::update()
 {
-}
-
-void CameraManager::render()
-{
-}
-
-void CameraManager::renderObject()
-{
-	viObjects iter = _vObjects.begin();
-	for (; iter != _vObjects.end(); ++iter)
+	if (_object != nullptr && _isFollow)
 	{
-		_camera->render();
+		_x = _object->getX() - CENTER_X;
+		_y = _object->getY() - CENTER_Y;
 	}
 }
 
-void CameraManager::addRender(Object* object, bool isFront)
+void CameraManager::render(HDC hdc)
 {
-	if (isFront)
-	{
-		_vFrontObject.push_back(object);
-	}
-	else
-	{
-		_vObjects.push_back(object);
-	}
 }
 
-float CameraManager::getRelX(float x)
+void CameraManager::printPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format)
 {
-	return x - _camera->getX();
+	MY_UTIL::printPoint(hdc, x - _x, y - _y, ptX, ptY, format);
 }
 
-float CameraManager::getRelY(float y)
+void CameraManager::printRectangle(HDC hdc, float x, float y, float width, float height)
 {
-	return y - _camera->getY();
+	RectangleMake(hdc, x - _x, y - _y, width, height);
 }
 
-float CameraManager::getAbsX()
+int CameraManager::checkObjectInCamera(Image * img, float x, float y)
 {
-	return _camera->getX();
+	int posX = x - _x;
+	int posY = y - _y;
+	int frameWidth = img->getFrameWidth();
+	int frameHeight = img->getFrameHeight();
+
+	return posX < -frameWidth || posY < -frameHeight || frameWidth > WINSIZE_X || frameHeight > WINSIZE_Y;
 }
 
-float CameraManager::getAbsY()
+void CameraManager::render(HDC hdc, Image * img, float x, float y)
 {
-	return _camera->getY();
+	if (this->checkObjectInCamera(img, x, y)) return;
+
+	img->render(hdc, x - _x, y - _y);
 }
 
-void CameraManager::moveX(float x)
+void CameraManager::frameRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY)
 {
-	_camera->moveX(x);
+	if (this->checkObjectInCamera(img, x, y)) return;
+	
+	img->frameRender(hdc, x - _x, y - _y, frameX, frameY);
 }
 
-void CameraManager::moveY(float y)
+void CameraManager::followCamera(Object* object)
 {
-	_camera->moveY(y);
-}
-
-void CameraManager::setCameraPos(float x, float y)
-{
-	_camera->setCameraPos(x, y);
+	_object = object;
+	_isFollow = true;
 }

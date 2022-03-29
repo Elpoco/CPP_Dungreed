@@ -2,6 +2,8 @@
 #include "SingletonBase.h"
 #include "Image.h"
 
+class ImageLoader;
+
 class ImageManager : public SingletonBase<ImageManager>
 {
 private:
@@ -16,6 +18,8 @@ private:
 private:
 	mapImageList _mImageList;
 	HDC _memDc;
+
+	ImageLoader* _imageLoader;
 
 public:
 	HRESULT init();
