@@ -4,6 +4,10 @@
 
 class StartScene : public GameNode
 {
+private:
+	float _loop1, _loop2;
+	RectF _logo;
+
 public:
 	StartScene();
 	~StartScene();
@@ -12,10 +16,6 @@ public:
 	void release();
 	void update();
 	void render();
-
-private:
-	float _loop1, _loop2;
-	RECT _logo;
 
 };
 

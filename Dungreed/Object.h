@@ -39,7 +39,7 @@ protected:
 	// Position
 	float _x;
 	float _y;
-	RECTF _rc;
+	RectF _rc;
 
 	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
 	bool _isLeft;
@@ -62,7 +62,7 @@ public:
 	const float getY() { return _y; }
 	const float getWidth() { return _imgWidth; }
 	const float getHeight() { return _imgHeight; }
-	const RECTF getRect() { return _rc; }
+	const RectF getRect() { return _rc; }
 
 	void setX(float x) { _x = x; }
 	void setY(float y) { _y = y; }

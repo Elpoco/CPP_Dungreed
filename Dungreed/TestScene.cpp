@@ -5,8 +5,7 @@
 
 HRESULT TestScene::init()
 {
-	_player = new Player;
-	_player->init();
+	OBJECTMANAGER->addObject(new Player);
 
 	TILEMANAGER->loadMap();
 
@@ -19,11 +18,9 @@ void TestScene::release()
 
 void TestScene::update()
 {
-	_player->update();
 }
 
 void TestScene::render()
 {
 	TILEMANAGER->render(getMemDC());
-	_player->render(getMemDC());
 }

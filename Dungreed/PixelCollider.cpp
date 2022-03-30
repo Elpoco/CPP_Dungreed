@@ -30,7 +30,7 @@ void PixelCollider::update(void)
 			(r == 0 && g == 255 && b == 255))
 		{
 			//_unit->setCollision(true);
-			_unit->setY(i - (_unit->getRect().bottom - _unit->getRect().top) / 2);
+			_unit->setY(i - (_unit->getRect().GetBottom() - _unit->getRect().GetTop()) / 2);
 			break;
 		}
 		else {
@@ -49,7 +49,7 @@ void PixelCollider::render(HDC hdc)
 
 void PixelCollider::setProve(void)
 {
-	RECT rc = _unit->getRect();
+	RectF rc = _unit->getRect();
 	//_prove[LEFT] = { rc.left, (long)_unit->getY() };
 	//_prove[TOP] = { (long)_unit->getX(), rc.top };
 	//_prove[RIGHT] = { rc.right, (long)_unit->getY() };

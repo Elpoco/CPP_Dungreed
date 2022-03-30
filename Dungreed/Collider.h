@@ -1,15 +1,14 @@
 #pragma once
 
-class Object;
+using namespace ColliderEnum;
 
 class Collider
 {
 private:
-	Object* _object;
-	POINT _prove[ColliderEnum::DIRECTION::DIR_CNT];
+	PointF _prove[DIRECTION::DIR_CNT];
 
 public:
-	Collider(Object* object);
+	Collider();
 	~Collider();
 
 	HRESULT init();
@@ -19,7 +18,7 @@ public:
 
 	void settingProve();
 
-	void tileCollision();
+	void tileCollision(); 
 
 };
 

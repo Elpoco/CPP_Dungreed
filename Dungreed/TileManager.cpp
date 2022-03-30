@@ -19,13 +19,13 @@ HRESULT TileManager::init()
 
 	_tiles = new Tile[_tileTotalCnt];
 
-	for (int y = 0; y < _tileCntY; y++)
+	for (float y = 0; y < _tileCntY; y++)
 	{
-		for (int x = 0; x < _tileCntX; x++)
+		for (float x = 0; x < _tileCntX; x++)
 		{
 			int idx = y * _tileCntX + x;
 			_tiles[idx].pos = { x,y };
-			_tiles[idx].rc = RectMake(x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE);
+			_tiles[idx].rc = RectFMake(x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE);
 		}
 	}
 
@@ -71,18 +71,18 @@ void TileManager::tileRender(HDC hdc, Tile tile)
 	{
 	case MapToolEnum::TILE_TYPE::NONE:
 		if (_isDebug || SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
-			CAMERAMANAGER->printRectangle(hdc, tile.rc.left, tile.rc.top, TILE_SIZE, TILE_SIZE);
+			CAMERAMANAGER->printRectangle(hdc, tile.rc.GetLeft(), tile.rc.GetTop(), TILE_SIZE, TILE_SIZE);
 		break;
 	case MapToolEnum::TILE_TYPE::BLOCK:
-		CAMERAMANAGER->frameRender(hdc, _imgTile, tile.rc.left, tile.rc.top, tile.tileFrameX, tile.tileFrameY);
+		CAMERAMANAGER->frameRender(hdc, _imgTile, tile.rc.GetLeft(), tile.rc.GetTop(), tile.tileFrameX, tile.tileFrameY);
 		break;
 	default:
 		break;
 	}
 
-	if (_isDebug || SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
+	if (_isDebug)
 	{
-		CAMERAMANAGER->printPoint(hdc, tile.rc.left, tile.rc.top, tile.pos.y, tile.pos.x);
+		CAMERAMANAGER->printPoint(hdc, tile.rc.GetLeft(), tile.rc.GetTop(), tile.pos.Y, tile.pos.X);
 	}
 }
 
@@ -101,17 +101,17 @@ void TileManager::setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TIL
 	_tiles[idx].type = type;
 }
 
-POINTF TileManager::getTilePt(POINTF pt)
+PointF TileManager::getTilePt(PointF pt)
 {
 	int idx = getTileIndex(pt);
 
 	return _tiles[idx].pos;
 }
 
-int TileManager::getTileIndex(POINTF pt)
+int TileManager::getTileIndex(PointF pt)
 {
-	int x = (pt.x + CAMERAMANAGER->getAbsX()) / TILE_SIZE;
-	int y = (pt.y + CAMERAMANAGER->getAbsY()) / TILE_SIZE;
+	int x = (pt.X + CAMERAMANAGER->getAbsX()) / TILE_SIZE;
+	int y = (pt.Y + CAMERAMANAGER->getAbsY()) / TILE_SIZE;
 
 	int idx = MapToolSet::TILE_CNT_X * y + x;
 	int maxTile = _tileCntX * _tileCntY;
@@ -121,7 +121,7 @@ int TileManager::getTileIndex(POINTF pt)
 	return idx;
 }
 
-MapToolEnum::TILE_TYPE TileManager::getTileType(POINTF pt)
+MapToolEnum::TILE_TYPE TileManager::getTileType(PointF pt)
 {
 	int idx = this->getTileIndex(pt);
 

@@ -64,12 +64,12 @@ void Player::move()
 
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::DOWN)))
 	{
-		//_y += _moveSpeed;
+		_y += _moveSpeed;
 	}
 
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::UP)))
 	{
-		//_y -= _moveSpeed;
+		_y -= _moveSpeed;
 	}
 
 	if (KEYMANAGER->isOnceKeyUp(castingToInt(KEY::LEFT)) ||
@@ -81,7 +81,7 @@ void Player::move()
 	if (KEYMANAGER->isOnceKeyDown(castingToInt(KEY::UP)) ||
 		KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
-		Unit::jump();
+		//Unit::jump();
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
@@ -118,6 +118,6 @@ void Player::animation()
 		break;
 	}
 
-	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x)) _isLeft = true;
+	if (_ptMouse.X < CAMERAMANAGER->calRelX(_x)) _isLeft = true;
 	else _isLeft = false;
 }

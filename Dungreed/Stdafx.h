@@ -43,58 +43,6 @@
 
 using namespace std;
 
-// =================================
-// # 내가 만든 헤더파일을 이곳에 추가 #
-// =================================
-#include "Enums.h"
-#include "String.h"
-#include "Config.h"
-
-#include "CommonMacroFuntion.h"
-#include "RandomFuntion.h"
-#include "KeyManager.h"
-#include "ImageManager.h"
-#include "FontManager.h"
-#include "Utils.h"
-#include "TimeManager.h"
-#include "TextDataManager.h"
-#include "SceneManager.h"
-#include "SoundManager.h"
-#include "JsonSaveLoader.h"
-
-#include "EffectManager.h"
-#include "CameraManager.h"
-#include "UIManager.h"
-#include "FileManager.h"
-#include "TileManager.h"
-#include "MessageBoxManager.h"
-#include "CollisionManager.h"
-
-using namespace MY_UTIL;
-using Gdiplus::RectF;
-using Gdiplus::PointF;
-
-// =======================
-// # 싱글톤을 이곳에 추가 #
-// =======================
-#define RND RandomFuntion::getSingleton()
-#define KEYMANAGER KeyManager::getSingleton()
-#define IMAGEMANAGER ImageManager::getSingleton()
-#define FONTMANAGER FontManager::getSingleton()
-#define TIMEMANAGER TimeManager::getSingleton()
-#define TEXTDATAMANAGER TextDataManager::getSingleton()
-#define SCENEMANAGER SceneManager::getSingleton()
-#define SOUNDMANAGER SoundManager::getSingleton()
-#define JSONDATAMANAGER JsonSaveLoader::getSingleton()
-
-#define EFFECTMANAGER EffectManager::getSingleton()
-#define CAMERAMANAGER CameraManager::getSingleton()
-#define UIMANAGER UIManager::getSingleton()
-#define FILEMANAGER FileManager::getSingleton()
-#define TILEMANAGER	TileManager::getSingleton()
-#define MSGBOXMANAGER MessageBoxManager::getSingleton()
-#define COLLISIONMANAGER CollisionManager::getSingleton()
-
 // ==========================
 // # 매크로 # (윈도우창 초기화)
 // ==========================
@@ -133,10 +81,66 @@ using Gdiplus::PointF;
 #define SAFE_DELETE_ARRAY(p)	{if(p) {delete[] (p); (p)=nullptr;}}
 #define SAFE_RELEASE(p)			{if(p) {(p)->release(); (p)=nullptr;}}
 
+// =================================
+// # 내가 만든 헤더파일을 이곳에 추가 #
+// =================================
+#include "Enums.h"
+#include "Structs.h"
+#include "String.h"
+#include "Config.h"
+
+#include "CommonMacroFuntion.h"
+#include "RandomFuntion.h"
+#include "KeyManager.h"
+#include "ImageManager.h"
+#include "FontManager.h"
+#include "Utils.h"
+#include "TimeManager.h"
+#include "TextDataManager.h"
+#include "SceneManager.h"
+#include "SoundManager.h"
+#include "JsonSaveLoader.h"
+
+#include "ObjectManager.h"
+#include "EffectManager.h"
+#include "CameraManager.h"
+#include "UIManager.h"
+#include "FileManager.h"
+#include "TileManager.h"
+#include "MessageBoxManager.h"
+#include "CollisionManager.h"
+
+using namespace MY_UTIL;
+using Gdiplus::RectF;
+using Gdiplus::PointF;
+using Gdiplus::Color;
+
+// =======================
+// # 싱글톤을 이곳에 추가 #
+// =======================
+#define RND RandomFuntion::getSingleton()
+#define KEYMANAGER KeyManager::getSingleton()
+#define IMAGEMANAGER ImageManager::getSingleton()
+#define FONTMANAGER FontManager::getSingleton()
+#define TIMEMANAGER TimeManager::getSingleton()
+#define TEXTDATAMANAGER TextDataManager::getSingleton()
+#define SCENEMANAGER SceneManager::getSingleton()
+#define SOUNDMANAGER SoundManager::getSingleton()
+#define JSONDATAMANAGER JsonSaveLoader::getSingleton()
+
+#define OBJECTMANAGER ObjectManager::getSingleton()
+#define EFFECTMANAGER EffectManager::getSingleton()
+#define CAMERAMANAGER CameraManager::getSingleton()
+#define UIMANAGER UIManager::getSingleton()
+#define FILEMANAGER FileManager::getSingleton()
+#define TILEMANAGER	TileManager::getSingleton()
+#define MSGBOXMANAGER MessageBoxManager::getSingleton()
+#define COLLISIONMANAGER CollisionManager::getSingleton()
+
 // =============
 // # 전역 변수 #
 // =============
 extern HINSTANCE	_hInstance;
 extern HWND			_hWnd;
-extern POINT		_ptMouse;
+extern PointF		_ptMouse;
 extern bool			_isDebug;

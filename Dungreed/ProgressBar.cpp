@@ -7,7 +7,7 @@ HRESULT ProgressBar::init(int x, int y, int width, int height)
 	_y = y;
 
 
-	_rc = RectMakeCenter(_x, _y, width, height);
+	_rc = RectFMakeCenter(_x, _y, width, height);
 
 	_progressBarUp = IMAGEMANAGER->addImage("BarUp",
 		"Resources/Images/Object/HpBarUp.bmp",
@@ -28,20 +28,20 @@ void ProgressBar::release(void)
 
 void ProgressBar::update(void)
 {
-	_rc = RectMakeCenter(_x, _y, _progressBarDown->getWidth(), _progressBarDown->getHeight());
+	_rc = RectFMakeCenter(_x, _y, _progressBarDown->getWidth(), _progressBarDown->getHeight());
 }
 
 void ProgressBar::render(void)
 {
 	_progressBarDown->render(getMemDC(),
-		_rc.left + _progressBarDown->getWidth() / 2,
+		_rc.GetLeft() + _progressBarDown->getWidth() / 2,
 		_y + _progressBarDown->getHeight() / 2,
 		0, 0,
 		_progressBarDown->getWidth(),
 		_progressBarDown->getHeight());
 
 	_progressBarUp->render(getMemDC(),
-		_rc.left + _progressBarDown->getWidth() / 2,
+		_rc.GetLeft() + _progressBarDown->getWidth() / 2,
 		_y + _progressBarDown->getHeight() / 2,
 		0, 0,
 		_width,

@@ -183,6 +183,9 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>API FrameWork\Collider</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -301,6 +304,12 @@
     </ClInclude>
     <ClInclude Include="String.h">
       <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Structs.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

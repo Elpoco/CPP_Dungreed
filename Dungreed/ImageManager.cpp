@@ -71,7 +71,7 @@ Image* ImageManager::addImage(string strKey, const char * fileName, float x, flo
 	return img;
 }
 
-Image* ImageManager::addFrameImage(string strKey, const char * fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor)
+Image* ImageManager::addFrameImage(string strKey, const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor)
 {
 	Image* img = findImage(strKey);
 
@@ -79,24 +79,6 @@ Image* ImageManager::addFrameImage(string strKey, const char * fileName, int wid
 
 	img = new Image;
 	if (FAILED(img->init(fileName, width, height, maxFrameX, maxFrameY, isTrans, transColor))) {
-		SAFE_DELETE(img);
-		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
-		return NULL;
-	}
-
-	_mImageList.insert(make_pair(strKey, img));
-
-	return img;
-}
-
-Image* ImageManager::addFrameImage(string strKey, const char* fileName, float x, float y, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor)
-{
-	Image* img = findImage(strKey);
-
-	if (img) return img;
-
-	img = new Image;
-	if (FAILED(img->init(fileName, x, y, width, height, maxFrameX, maxFrameY, isTrans, transColor))) {
 		SAFE_DELETE(img);
 		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
 		return NULL;

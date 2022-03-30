@@ -7,11 +7,11 @@ class Object;
 class CollisionManager : public SingletonBase<CollisionManager>
 {
 private:
-	typedef vector<Collider*> vColliders;
-	typedef vector<Collider*>::iterator viColliders;
+	typedef vector<Object*> vObjects;
 
 private:
-	vColliders _vColliders;
+	vObjects* _vObjects;
+	Collider* _collider;
 
 	bool _onTileCollision;
 
@@ -24,7 +24,7 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	void addObject(Object* object);
+	void setObjectVector(vObjects* vObjects) { _vObjects = vObjects; }
 
 	void onTileCollision() { _onTileCollision = true; }
 	void offTIleCollision() { _onTileCollision = false; }

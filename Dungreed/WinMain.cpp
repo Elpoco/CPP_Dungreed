@@ -6,7 +6,7 @@
 // =============
 HINSTANCE _hInstance;  
 HWND _hWnd;
-POINT _ptMouse = { 0,0 };
+PointF _ptMouse = { 0,0 };
 bool _isDebug;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);

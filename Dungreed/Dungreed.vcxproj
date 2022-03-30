@@ -160,6 +160,7 @@
     <ClCompile Include="JsonSaveLoader.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MessageBoxManager.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -202,7 +203,9 @@
     <ClInclude Include="JsonSaveLoader.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MessageBoxManager.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Structs.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="MainGame.h" />

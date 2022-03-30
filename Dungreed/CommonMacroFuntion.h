@@ -1,6 +1,13 @@
 #pragma once
 
-inline PointF PointMake(int x, int y)
+using Gdiplus::PointF;
+using Gdiplus::RectF;
+using Gdiplus::Graphics;
+using Gdiplus::Pen;
+using Gdiplus::SolidBrush;
+using Gdiplus::Color;
+
+inline PointF PointMake(float x, float y)
 {
 	PointF pt = { x,y };
 	return pt;
@@ -12,15 +19,27 @@ inline void LineMake(HDC hdc, int startX, int startY, int endX, int endY)
 	LineTo(hdc, endX, endY);
 }
 
-inline RectF RectMake(float x, float y, float width, float height)
+inline RECT RectMake(float x, float y, float width, float height)
 {
-	RectF rc = { x, y, x + width, y + height };
+	RECT rc = { x, y, x + width, y + height };
 	return rc;
 }
 
-inline RectF RectMakeCenter(float x, float y, float width, float height)
+inline RectF RectFMake(float x, float y, float width, float height)
 {
-	RectF rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
+	RectF rc = { x, y, width, height };
+	return rc;
+}
+
+inline RECT RectMakeCenter(float x, float y, float width, float height)
+{
+	RECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
+	return rc;
+}
+
+inline RectF RectFMakeCenter(float x, float y, float width, float height)
+{
+	RectF rc = { x - width / 2, y - height / 2, width, height };
 	return rc;
 }
 
@@ -46,29 +65,33 @@ inline void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height)
 
 inline RectF CollisionAreaResizing(RectF &rcDest, int width, int height)
 {
-	RectF rc = { rcDest. + width / 2, rcDest.top + height / 2,
-				rcDest.right - width / 2, rcDest.bottom - height / 2 };
+	RectF rc = { rcDest.GetLeft() + width / 2, rcDest.GetTop() + height / 2,
+				rcDest.GetRight() - width / 2, rcDest.GetBottom() - height / 2 };
 
 	return rc;
 }
 
-inline void RectangleMakeRect(HDC hdc, RECTF rc) {
+inline void RectangleMakeRect(HDC hdc, RectF rc) {
 
-	Rectangle(hdc, rc.left, rc.top, rc.right, rc.bottom);
+	Rectangle(hdc, rc.GetLeft(), rc.GetTop(), rc.GetRight(), rc.GetBottom());
 }
 
-inline void ColorRectangleMake(HDC hdc, RECTF rc, COLORREF color = RGB(0, 0, 0), bool isTrans = false)
+inline void RectangleMake(HDC hdc, RectF rc, bool isFill = false, Color color = Color::Black, Color fillColor = Color::White)
 {
-	HGDIOBJ hPen = SelectObject(hdc, GetStockObject(DC_PEN));
-	HGDIOBJ hBrush = SelectObject(hdc, GetStockObject(WHITE_BRUSH));
-	SetDCPenColor(hdc, color);
+	Graphics graphics(hdc);
 
-	if (isTrans) SelectObject(hdc, GetStockObject(NULL_BRUSH));
+	if (isFill)
+	{
+		SolidBrush brush(fillColor);
 
-	Rectangle(hdc, rc.left, rc.top, rc.right, rc.bottom);
+		graphics.FillRectangle(&brush, rc);
+	}
+	else
+	{
+		Pen pen(color);
 
-	SelectObject(hdc, hPen);
-	SelectObject(hdc, hBrush);
+		graphics.DrawRectangle(&pen, rc);
+	}
 }
 
 inline void PolygonMake(HDC hdc, POINT points[], int size) {

@@ -27,4 +27,9 @@ namespace MY_UTIL
 		wsprintf(str, format, ptX, ptY);
 		TextOut(hdc, x, y, str, strlen(str));
 	}
+
+	bool ptInRectF(RectF rect)
+	{
+		return rect.Contains(_ptMouse);
+	}
 }

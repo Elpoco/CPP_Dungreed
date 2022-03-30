@@ -17,6 +17,7 @@ namespace MY_UTIL
 	float getAngle(float startX, float startY, float endX, float endY);
 
 	void printPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format = "%d, %d");
+	bool ptInRectF(RectF rect);
 
 	template<typename T>
 	void swapValue(T& a, T& b)

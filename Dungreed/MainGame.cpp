@@ -23,7 +23,6 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->addScene(SceneName::testScene, new TestScene);
 	SCENEMANAGER->addScene(SceneName::startScene, new StartScene);
 	SCENEMANAGER->addScene(SceneName::mapToolScene, new MapToolScene);
-
 	// ===================================================
 
 	SCENEMANAGER->changeScene(SceneName::startScene);
@@ -43,7 +42,10 @@ void MainGame::update(void)
 	GameNode::update();
 	SCENEMANAGER->update();
 
+	OBJECTMANAGER->update();
+
 	CAMERAMANAGER->update();
+
 	COLLISIONMANAGER->update();
 
 	if (KEYMANAGER->isOnceKeyDown(VK_F1)) _isDebug = !_isDebug;
@@ -56,6 +58,8 @@ void MainGame::render(void)
 	SetTextColor(getMemDC(), ColorSet::BLACK);
 
 	SCENEMANAGER->render();
+
+	OBJECTMANAGER->render(getMemDC());
 
 	COLLISIONMANAGER->render(getMemDC());
 

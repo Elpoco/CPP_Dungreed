@@ -15,6 +15,8 @@ CollisionManager::~CollisionManager()
 
 HRESULT CollisionManager::init()
 {
+	_collider = new Collider;
+
 	return S_OK;
 }
 
@@ -24,33 +26,21 @@ void CollisionManager::release()
 
 void CollisionManager::update()
 {
-	viColliders iter = _vColliders.begin();
-	for (; iter != _vColliders.end(); ++iter)
-	{
-		(*iter)->update();
-	}
 	if (_onTileCollision) this->tileCollision();
 }
 
 void CollisionManager::render(HDC hdc)
 {
-	viColliders iter = _vColliders.begin();
-	for (; iter != _vColliders.end(); ++iter)
+	for (Object* obj : *_vObjects)
 	{
-		(*iter)->render(hdc);
+		//_collider
 	}
-}
-
-void CollisionManager::addObject(Object* object)
-{
-	_vColliders.push_back(new Collider(object));
 }
 
 void CollisionManager::tileCollision()
 {
-	viColliders iter = _vColliders.begin();
-	for (; iter != _vColliders.end(); ++iter)
+	for (Object* obj : *_vObjects)
 	{
-		(*iter)->tileCollision();
+		//_collider
 	}
 }

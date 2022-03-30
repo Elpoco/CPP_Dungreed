@@ -15,10 +15,10 @@ HRESULT StartScene::init()
 {
 	_loop1 = _loop2 = 0.0f;
 
-	_logo = RectMakeCenter(CENTER_X, CENTER_Y, 468, 255);
+	_logo = RectFMakeCenter(CENTER_X, CENTER_Y, 468, 255);
 
 	UI* ui = new UI;
-	ui->init(ImageName::logo, RectMakeCenter(CENTER_X, CENTER_Y, 468, 255));
+	//ui->init(ImageName::logo, RectMakeCenter(CENTER_X, CENTER_Y, 468, 255));
 	//UIMANAGER->addUI(ui);
 
 	return S_OK;
@@ -47,5 +47,5 @@ void StartScene::render()
 	IMAGEMANAGER->loopRender("Cloud1", getMemDC(), &rc, _loop1, 0);
 	IMAGEMANAGER->loopRender("Cloud2", getMemDC(), &rc, _loop2, 0);
 
-	IMAGEMANAGER->render("Logo", getMemDC(), _logo.left, _logo.top - 100);
+	IMAGEMANAGER->render("Logo", getMemDC(), _logo.GetLeft(), _logo.GetTop() - 100);
 }

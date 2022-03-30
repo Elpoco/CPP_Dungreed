@@ -21,8 +21,6 @@ HRESULT Object::init()
 	for (int i = 0; i < ColliderEnum::DIRECTION::DIR_CNT; i++) 
 		_isCollision[i] = false;
 
-	COLLISIONMANAGER->addObject(this);
-
 	return S_OK;
 }
 
@@ -41,7 +39,7 @@ void Object::update()
 
 void Object::render(HDC hdc)
 {
-	_rc = RectMakeCenter(
+	_rc = RectFMakeCenter(
 		_x, _y,
 		_imgWidth,
 		_imgHeight
@@ -50,10 +48,10 @@ void Object::render(HDC hdc)
 	if (_isDebug)
 	{
 		CAMERAMANAGER->printRectangleCenter(hdc, _x, _y, _imgWidth, _imgHeight);
-		CAMERAMANAGER->printPoint(hdc, _rc.left, _rc.top, _x, _y, "x: %d, y: %d");
+		CAMERAMANAGER->printPoint(hdc, _rc.GetLeft(), _rc.GetTop(), _x, _y, "x: %d, y: %d");
 	}
 
-	CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
+	CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.GetLeft(), _rc.GetTop(), _frameInfo.x, _frameInfo.y);
 
 }
 
