@@ -7,7 +7,8 @@ CameraManager::CameraManager() :
 	_x(0.f),
 	_y(0.f),
 	_object(nullptr),
-	_isFollow(false)
+	_isFollow(false),
+	_isLock(true)
 {
 }
 
@@ -28,13 +29,20 @@ void CameraManager::update()
 {
 	if (_object != nullptr && _isFollow)
 	{
-		_x = _object->getX() - CENTER_X;
-		_y = _object->getY() - CENTER_Y;
-	}
-}
+		int x = _object->getX();
+		int y = _object->getY();
 
-void CameraManager::render(HDC hdc)
-{
+		if (_isLock)
+		{
+			if (x >= CENTER_X) _x = x - CENTER_X;
+			if (y >= CENTER_Y) _y = y - CENTER_Y;
+		}
+		else
+		{
+			_x = x - CENTER_X;
+			_y = y - CENTER_Y;
+		}
+	}
 }
 
 void CameraManager::printPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format)
@@ -47,6 +55,11 @@ void CameraManager::printRectangle(HDC hdc, float x, float y, float width, float
 	RectangleMake(hdc, x - _x, y - _y, width, height);
 }
 
+void CameraManager::printRectangleCenter(HDC hdc, float x, float y, float width, float height)
+{
+	RectangleMakeCenter(hdc, x - _x, y - _y, width, height);
+}
+
 int CameraManager::checkObjectInCamera(Image * img, float x, float y)
 {
 	int posX = x - _x;
@@ -57,7 +70,7 @@ int CameraManager::checkObjectInCamera(Image * img, float x, float y)
 	return posX < -frameWidth || posY < -frameHeight || frameWidth > WINSIZE_X || frameHeight > WINSIZE_Y;
 }
 
-void CameraManager::render(HDC hdc, Image * img, float x, float y)
+void CameraManager::render(HDC hdc, Image* img, float x, float y)
 {
 	if (this->checkObjectInCamera(img, x, y)) return;
 

@@ -3,11 +3,16 @@
 
 Unit::Unit() :
 	_isJump(false),
-	_isFall(false),
+	_isFall(true),
+	_isFlying(false),
 	_moveSpeed(UnitSet::MOVE_SPEED),
 	_jumpSpeed(UnitSet::JUMP_SPEED),
 	_fallSpeed(UnitSet::FALL_SPEED),
 	_gravity(UnitSet::GRAVITY)
+{
+}
+
+Unit::~Unit()
 {
 }
 
@@ -27,7 +32,6 @@ void Unit::update()
 {
 	Object::update();
 	this->move();
-	this->animation();
 }
 
 void Unit::render(HDC hdc)
@@ -37,7 +41,7 @@ void Unit::render(HDC hdc)
 
 void Unit::move()
 {
-	if (_isFall)
+	if (!_isCollision[ColliderEnum::DIRECTION::BOTTOM] && !_isFlying)
 	{
 		_y -= _fallSpeed;
 		if (_fallSpeed < 3)
@@ -51,5 +55,4 @@ void Unit::jump()
 {
 	_isJump = true;
 	_fallSpeed = UnitSet::FALL_SPEED;
-	_isCollision = false;
 }

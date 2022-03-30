@@ -1,13 +1,12 @@
 #pragma once
-#include "GameNode.h"
 
 class Object;
 
-class Collider : public GameNode
+class Collider
 {
 private:
 	Object* _object;
-	POINT _prove[ColliderInfo::DIRECTION::DIR_CNT];
+	POINT _prove[ColliderEnum::DIRECTION::DIR_CNT];
 
 public:
 	Collider(Object* object);
@@ -16,7 +15,7 @@ public:
 	HRESULT init();
 	void release();
 	void update();
-	void render();
+	void render(HDC hdc);
 
 	void settingProve();
 

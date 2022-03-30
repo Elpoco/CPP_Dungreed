@@ -100,8 +100,7 @@ public:
 	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
 
 	void frameRender(HDC hdc, int destX, int destY);
-	void frameRender(HDC hdc, int destX, int destY, int tick, BYTE alpha = 0, bool reverseFrameX = false);
-	void frameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY);
+	void frameRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY);
 
 	void loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
 	void loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);

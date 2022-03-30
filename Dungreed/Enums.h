@@ -8,7 +8,7 @@ enum class KEY
 	DOWN  =	'S'
 };
 
-namespace MapTool
+namespace MapToolEnum
 {
 	enum class TILE_TYPE
 	{
@@ -17,7 +17,7 @@ namespace MapTool
 	};
 }
 
-namespace PlayerInfo
+namespace PlayerEnum
 {
 	enum PLAYER_STATE
 	{
@@ -27,7 +27,7 @@ namespace PlayerInfo
 	};
 }
 
-namespace ColliderInfo
+namespace ColliderEnum
 {
 	enum DIRECTION
 	{

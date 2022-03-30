@@ -525,78 +525,7 @@ void Image::frameRender(HDC hdc, int destX, int destY)
 	}
 }
 
-void Image::frameRender(HDC hdc, int destX, int destY, int tick, BYTE alpha, bool reverseFrameX)
-{
-	if (_imageInfo->currentFrameX > _imageInfo->maxFrameX) {
-		_imageInfo->currentFrameX = 0;
-	}
-	if (_imageInfo->currentFrameY > _imageInfo->maxFrameY) {
-		_imageInfo->currentFrameY = _imageInfo->maxFrameY;
-	}
-
-	if (_imageInfo->currentFrameX < 0) {
-		_imageInfo->currentFrameX = _imageInfo->maxFrameX;
-	}
-
-	_imageInfo->x = destX;
-	_imageInfo->y = destY;
-
-	if (!_blendImage) initForAlphaBlend();
-
-	_blendFunc.SourceConstantAlpha = alpha;
-
-	if (_isTrans) {
-		BitBlt(
-			_blendImage->hMemDC,
-			0, 0,
-			_imageInfo->frameWidth,
-			_imageInfo->frameHeight,
-			hdc,
-			destX, destY,
-			SRCCOPY
-		);
-
-		GdiTransparentBlt(
-			hdc,
-			destX, destY,
-			_imageInfo->frameWidth,
-			_imageInfo->frameHeight,
-			_imageInfo->hMemDC,
-			_imageInfo->currentFrameX * _imageInfo->frameWidth,
-			_imageInfo->currentFrameY * _imageInfo->frameHeight,
-			_imageInfo->frameWidth,
-			_imageInfo->frameHeight,
-			_transColor
-		);
-
-		AlphaBlend(
-			hdc,
-			destX, destY,
-			_imageInfo->frameWidth,
-			_imageInfo->frameHeight,
-			_blendImage->hMemDC,
-			0,0,
-			_imageInfo->frameWidth,
-			_imageInfo->frameHeight,
-			_blendFunc
-		);
-	}
-	else {
-		BitBlt(hdc, destX, destY, _imageInfo->frameWidth, _imageInfo->frameHeight, _imageInfo->hMemDC, 
-			_imageInfo->currentFrameX * _imageInfo->frameWidth,
-			_imageInfo->currentFrameY * _imageInfo->frameHeight, SRCCOPY);
-	}
-	
-	_imageInfo->count++;
-	if (!reverseFrameX && _imageInfo->count % tick == 0) {
-		_imageInfo->currentFrameX++;
-	}
-	if (reverseFrameX && _imageInfo->count % tick == 0) {
-		_imageInfo->currentFrameX--;
-	}
-}
-
-void Image::frameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY)
+void Image::frameRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY)
 {
 	_imageInfo->currentFrameX = currentFrameX;
 	_imageInfo->currentFrameY = currentFrameY;

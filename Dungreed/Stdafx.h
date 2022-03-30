@@ -47,8 +47,8 @@ using namespace std;
 // # 내가 만든 헤더파일을 이곳에 추가 #
 // =================================
 #include "Enums.h"
-#include "Config.h"
 #include "String.h"
+#include "Config.h"
 
 #include "CommonMacroFuntion.h"
 #include "RandomFuntion.h"
@@ -71,6 +71,8 @@ using namespace std;
 #include "CollisionManager.h"
 
 using namespace MY_UTIL;
+using Gdiplus::RectF;
+using Gdiplus::PointF;
 
 // =======================
 // # 싱글톤을 이곳에 추가 #
@@ -138,9 +140,3 @@ extern HINSTANCE	_hInstance;
 extern HWND			_hWnd;
 extern POINT		_ptMouse;
 extern bool			_isDebug;
-
-struct fPOINT
-{
-	float x;
-	float y;
-};

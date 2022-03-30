@@ -13,6 +13,8 @@ private:
 private:
 	vColliders _vColliders;
 
+	bool _onTileCollision;
+
 public:
 	CollisionManager();
 	~CollisionManager();
@@ -20,10 +22,12 @@ public:
 	HRESULT init();
 	void release();
 	void update();
-	void render();
+	void render(HDC hdc);
 
 	void addObject(Object* object);
 
+	void onTileCollision() { _onTileCollision = true; }
+	void offTIleCollision() { _onTileCollision = false; }
 	void tileCollision();
 
 };

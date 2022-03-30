@@ -7,7 +7,7 @@
 
 #define MOVE_SPEED	2.0f
 
-using namespace PlayerInfo;
+using namespace PlayerEnum;
 
 class Player : public Unit
 {

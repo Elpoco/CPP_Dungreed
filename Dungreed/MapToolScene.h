@@ -6,10 +6,10 @@ class Object;
 class MapToolScene : public GameNode
 {
 private:
-	RECT _rcTileWindow;
-	RECT _rcToolWindow;
-	RECT _btnSave;
-	RECT _btnLoad;
+	RECTF _rcTileWindow;
+	RECTF _rcToolWindow;
+	RECTF _btnSave;
+	RECTF _btnLoad;
 
 	RECT _rcSelectTile;
 

@@ -245,13 +245,13 @@ void ImageManager::alphaRender(string strKey, HDC hdc, int destX, int destY, int
 // ================
 // ## ÇÁ·¹ÀÓ ·»´õ ##
 // ================
-void ImageManager::frameRender(string strKey, HDC hdc, int destX, int destY, int tick)
+void ImageManager::frameRender(string strKey, HDC hdc, int destX, int destY)
 {
 	Image* img = findImage(strKey);
-	if (img) img->frameRender(hdc, destX, destY, tick);
+	if (img) img->frameRender(hdc, destX, destY);
 }
 
-void ImageManager::frameRender(string strKey, HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY)
+void ImageManager::frameRender(string strKey, HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY)
 {
 	Image* img = findImage(strKey);
 	if (img) img->frameRender(hdc, destX, destY, currentFrameX, currentFrameY);

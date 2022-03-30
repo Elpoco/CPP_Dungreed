@@ -10,6 +10,7 @@ class Unit : public Object
 protected:
 	bool _isJump;
 	bool _isFall;
+	bool _isFlying;
 
 	float _moveSpeed;
 	float _jumpSpeed;
@@ -17,6 +18,9 @@ protected:
 	float _gravity;
 
 public:
+	Unit();
+	virtual ~Unit();
+
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
@@ -26,7 +30,5 @@ public:
 
 	virtual void jump();
 
-	Unit();
-	virtual ~Unit() {}
 };
 

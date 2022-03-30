@@ -6,6 +6,7 @@ HRESULT ProgressBar::init(int x, int y, int width, int height)
 	_x = x;
 	_y = y;
 
+
 	_rc = RectMakeCenter(_x, _y, width, height);
 
 	_progressBarUp = IMAGEMANAGER->addImage("BarUp",

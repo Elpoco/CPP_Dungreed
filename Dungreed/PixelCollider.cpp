@@ -29,12 +29,12 @@ void PixelCollider::update(void)
 		if ((r == 255 && g == 0 && b == 0) ||
 			(r == 0 && g == 255 && b == 255))
 		{
-			_unit->setCollision(true);
+			//_unit->setCollision(true);
 			_unit->setY(i - (_unit->getRect().bottom - _unit->getRect().top) / 2);
 			break;
 		}
 		else {
-			_unit->setCollision(false);
+			//_unit->setCollision(false);
 		}
 	}
 }
@@ -50,8 +50,8 @@ void PixelCollider::render(HDC hdc)
 void PixelCollider::setProve(void)
 {
 	RECT rc = _unit->getRect();
-	_prove[LEFT] = { rc.left, (long)_unit->getY() };
-	_prove[TOP] = { (long)_unit->getX(), rc.top };
-	_prove[RIGHT] = { rc.right, (long)_unit->getY() };
-	_prove[BOTTOM] = { (long)_unit->getX(), rc.bottom };
+	//_prove[LEFT] = { rc.left, (long)_unit->getY() };
+	//_prove[TOP] = { (long)_unit->getX(), rc.top };
+	//_prove[RIGHT] = { rc.right, (long)_unit->getY() };
+	//_prove[BOTTOM] = { (long)_unit->getX(), rc.bottom };
 }

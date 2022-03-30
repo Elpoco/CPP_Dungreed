@@ -4,7 +4,8 @@
 #include "Collider.h"
 #include "Object.h"
 
-CollisionManager::CollisionManager()
+CollisionManager::CollisionManager() :
+	_onTileCollision(false)
 {
 }
 
@@ -28,14 +29,15 @@ void CollisionManager::update()
 	{
 		(*iter)->update();
 	}
+	if (_onTileCollision) this->tileCollision();
 }
 
-void CollisionManager::render()
+void CollisionManager::render(HDC hdc)
 {
 	viColliders iter = _vColliders.begin();
 	for (; iter != _vColliders.end(); ++iter)
 	{
-		(*iter)->render();
+		(*iter)->render(hdc);
 	}
 }
 
@@ -46,4 +48,9 @@ void CollisionManager::addObject(Object* object)
 
 void CollisionManager::tileCollision()
 {
+	viColliders iter = _vColliders.begin();
+	for (; iter != _vColliders.end(); ++iter)
+	{
+		(*iter)->tileCollision();
+	}
 }

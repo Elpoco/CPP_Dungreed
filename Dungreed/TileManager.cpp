@@ -13,8 +13,8 @@ TileManager::~TileManager()
 
 HRESULT TileManager::init()
 {
-	_tileCntX = MapTool::TILE_CNT_X;
-	_tileCntY = MapTool::TILE_CNT_Y;
+	_tileCntX = MapToolSet::TILE_CNT_X;
+	_tileCntY = MapToolSet::TILE_CNT_Y;
 	_tileTotalCnt = _tileCntX * _tileCntY;
 
 	_tiles = new Tile[_tileTotalCnt];
@@ -53,6 +53,7 @@ void TileManager::render(HDC hdc)
 {
 	int cX = CAMERAMANAGER->getAbsX();
 	int cY = CAMERAMANAGER->getAbsY();
+
 	for (int y = cY / TILE_SIZE; y <= (_renderHeight / TILE_SIZE) + (cY / TILE_SIZE); y++)
 	{
 		if (y >= _tileCntY || y < 0) continue;
@@ -68,11 +69,11 @@ void TileManager::tileRender(HDC hdc, Tile tile)
 {
 	switch (tile.type)
 	{
-	case MapTool::TILE_TYPE::NONE:
+	case MapToolEnum::TILE_TYPE::NONE:
 		if (_isDebug || SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
 			CAMERAMANAGER->printRectangle(hdc, tile.rc.left, tile.rc.top, TILE_SIZE, TILE_SIZE);
 		break;
-	case MapTool::TILE_TYPE::BLOCK:
+	case MapToolEnum::TILE_TYPE::BLOCK:
 		CAMERAMANAGER->frameRender(hdc, _imgTile, tile.rc.left, tile.rc.top, tile.tileFrameX, tile.tileFrameY);
 		break;
 	default:
@@ -91,7 +92,7 @@ void TileManager::setRenderSize(int width, int height)
 	_renderHeight = height;
 }
 
-void TileManager::setTileFrame(int idx, int frameX, int frameY, MapTool::TILE_TYPE type)
+void TileManager::setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TILE_TYPE type)
 {
 	if (idx > _tileCntX * _tileCntY - 1 || idx < 0) return;
 
@@ -100,19 +101,27 @@ void TileManager::setTileFrame(int idx, int frameX, int frameY, MapTool::TILE_TY
 	_tiles[idx].type = type;
 }
 
-int TileManager::getTileIndex(POINT pt)
+POINTF TileManager::getTilePt(POINTF pt)
+{
+	int idx = getTileIndex(pt);
+
+	return _tiles[idx].pos;
+}
+
+int TileManager::getTileIndex(POINTF pt)
 {
 	int x = (pt.x + CAMERAMANAGER->getAbsX()) / TILE_SIZE;
 	int y = (pt.y + CAMERAMANAGER->getAbsY()) / TILE_SIZE;
 
-	int idx = y * MapTool::TILE_CNT_X + x;
+	int idx = MapToolSet::TILE_CNT_X * y + x;
+	int maxTile = _tileCntX * _tileCntY;
 
-	if (idx > _tileCntX * _tileCntY - 1 || idx < 0) idx = 0;
+	if (idx >= maxTile || idx < 0) idx = 0;
 
 	return idx;
 }
 
-MapTool::TILE_TYPE TileManager::getTileType(POINT pt)
+MapToolEnum::TILE_TYPE TileManager::getTileType(POINTF pt)
 {
 	int idx = this->getTileIndex(pt);
 

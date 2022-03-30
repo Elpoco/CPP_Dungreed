@@ -43,6 +43,9 @@ void Player::initAnimation()
 {
 	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::playerIdle));
 	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::playerRun));
+
+	_imgWidth = _vImages[0]->getFrameWidth();
+	_imgHeight = _vImages[0]->getFrameHeight();
 }
 
 void Player::move()
@@ -61,7 +64,12 @@ void Player::move()
 
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::DOWN)))
 	{
+		//_y += _moveSpeed;
+	}
 
+	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::UP)))
+	{
+		//_y -= _moveSpeed;
 	}
 
 	if (KEYMANAGER->isOnceKeyUp(castingToInt(KEY::LEFT)) ||
@@ -86,19 +94,13 @@ void Player::move()
 
 	}
 
-	// юс╫ц
-	if (!_isCollision)
-	{
-		//_y += 5;
-	}
-
 	if (_isJump)
 	{
 		_y -= _jumpSpeed;
-		if (_isCollision)
-		{
-			_isJump = false;
-		}
+		//if (_isCollision)
+		//{
+		//	_isJump = false;
+		//}
 	}
 }
 
