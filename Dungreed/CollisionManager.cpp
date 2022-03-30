@@ -1,7 +1,6 @@
 #include "Stdafx.h"
 #include "CollisionManager.h"
 
-#include "Collider.h"
 #include "Object.h"
 
 CollisionManager::CollisionManager() :
@@ -15,8 +14,6 @@ CollisionManager::~CollisionManager()
 
 HRESULT CollisionManager::init()
 {
-	_collider = new Collider;
-
 	return S_OK;
 }
 
@@ -31,9 +28,26 @@ void CollisionManager::update()
 
 void CollisionManager::render(HDC hdc)
 {
-	for (Object* obj : *_vObjects)
+	if (_isDebug)
 	{
-		//_collider
+		for (Object* obj : *_vObjects)
+		{
+			PointF* prove = obj->getProve();
+			for (int i = 0; i < DIRECTION::DIR_CNT; i++)
+			{
+				Tile tile = TILEMANAGER->getTile(prove[i]);
+				CAMERAMANAGER->printRectangle(hdc, tile.rc, false, Color::Red);
+				if (obj->getCollision((DIRECTION)i))
+				{
+					RectangleMakePoint(hdc, prove[i], 10, 10, Color::Red);
+				}
+				else
+				{
+					RectangleMakePoint(hdc, prove[i], 10, 10, Color::Blue);
+
+				}
+			}
+		}
 	}
 }
 
@@ -41,6 +55,33 @@ void CollisionManager::tileCollision()
 {
 	for (Object* obj : *_vObjects)
 	{
-		//_collider
+		PointF* prove = obj->getProve();
+		for (int i = 0; i < DIRECTION::DIR_CNT; i++)
+		{
+			Tile tile = TILEMANAGER->getTile(prove[i]);
+			if (tile.type == MapToolEnum::TILE_TYPE::BLOCK)
+			{
+				obj->setCollision((DIRECTION)i, true);
+				switch (i)
+				{
+				case DIRECTION::LEFT:
+					obj->setX(tile.rc.GetRight() + obj->getWidth() / 2);
+					break;
+				case DIRECTION::TOP:
+					obj->setY(tile.rc.GetBottom() + obj->getHeight() / 2);
+					break;
+				case DIRECTION::RIGHT:
+					obj->setX(tile.rc.GetLeft() - obj->getWidth() / 2);
+					break;
+				case DIRECTION::BOTTOM:
+					obj->setY(tile.rc.GetTop() - obj->getHeight() / 2);
+					break;
+				default:
+					break;
+				}
+			}
+			else
+				obj->setCollision((DIRECTION)i, false);
+		}
 	}
 }

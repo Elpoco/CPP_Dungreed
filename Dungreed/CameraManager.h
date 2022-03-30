@@ -23,6 +23,8 @@ public:
 
 	void printPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format = "%d, %d");
 	void printRectangle(HDC hdc, float x, float y, float width, float height);
+	void printRectangle(HDC hdc, RectF rc, bool isFill = true, Color color = Color::Black, Color fillColor = Color::White);
+	void printRectanglePoint(HDC hdc, PointF point, float width, float height, Color color = Color::Black);
 	void printRectangleCenter(HDC hdc, float x, float y, float width, float height);
 
 	int checkObjectInCamera(Image* img, float x, float y);
@@ -41,6 +43,7 @@ public:
 
 	float calRelX(float x) { return x - _x; }
 	float calRelY(float y) { return y - _y; }
+	PointF calRelPt(PointF pt) { return { pt.X - _x, pt.Y - _y }; }
 
 };
 

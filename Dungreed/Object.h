@@ -19,7 +19,7 @@ private:
 
 		tagFrameInfo()
 		{
-			tick = 14;
+			tick = 10;
 			cnt = 0;
 			x = 0;
 			y = 0;
@@ -41,7 +41,9 @@ protected:
 	float _y;
 	RectF _rc;
 
+	PointF _prove[ColliderEnum::DIRECTION::DIR_CNT];
 	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
+
 	bool _isLeft;
 
 public:
@@ -53,21 +55,24 @@ public:
 	virtual void update();
 	virtual void render(HDC hdc);
 
-	void move();
 	void animation();
 
-	void setFrameY(int frameY) { _frameInfo.y = frameY; }
+	void settingProve();
+	PointF* getProve() { return _prove; }
 
-	const float getX() { return _x; }
-	const float getY() { return _y; }
-	const float getWidth() { return _imgWidth; }
-	const float getHeight() { return _imgHeight; }
-	const RectF getRect() { return _rc; }
+	void setCollision(ColliderEnum::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }
+	bool getCollision(ColliderEnum::DIRECTION dir) { return _isCollision[dir]; }
 
+	void setFrameY(int frameY) { _frameInfo.y = frameY; }	
+
+	float getX() { return _x; }
+	float getY() { return _y; }
 	void setX(float x) { _x = x; }
 	void setY(float y) { _y = y; }
 
-	void setCollision(ColliderEnum::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }
+	float getWidth() { return _imgWidth; }
+	float getHeight() { return _imgHeight; }
+	RectF getRect() { return _rc; }
 
 };
 

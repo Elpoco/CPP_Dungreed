@@ -76,7 +76,7 @@ inline void RectangleMakeRect(HDC hdc, RectF rc) {
 	Rectangle(hdc, rc.GetLeft(), rc.GetTop(), rc.GetRight(), rc.GetBottom());
 }
 
-inline void RectangleMake(HDC hdc, RectF rc, bool isFill = false, Color color = Color::Black, Color fillColor = Color::White)
+inline void RectangleMake(HDC hdc, RectF rc, bool isFill = true, Color color = Color::Black, Color fillColor = Color::White)
 {
 	Graphics graphics(hdc);
 
@@ -92,6 +92,14 @@ inline void RectangleMake(HDC hdc, RectF rc, bool isFill = false, Color color = 
 
 		graphics.DrawRectangle(&pen, rc);
 	}
+}
+
+inline void RectangleMakePoint(HDC hdc, PointF pt, float width, float height, Color color = Color::White)
+{
+	Graphics graphics(hdc);
+	SolidBrush brush(color);
+
+	graphics.FillRectangle(&brush, RectFMakeCenter(pt.X, pt.Y, width, height));
 }
 
 inline void PolygonMake(HDC hdc, POINT points[], int size) {

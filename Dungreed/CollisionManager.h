@@ -1,8 +1,9 @@
 #pragma once
 #include "SingletonBase.h"
 
-class Collider;
 class Object;
+
+using namespace ColliderEnum;
 
 class CollisionManager : public SingletonBase<CollisionManager>
 {
@@ -11,7 +12,6 @@ private:
 
 private:
 	vObjects* _vObjects;
-	Collider* _collider;
 
 	bool _onTileCollision;
 

@@ -174,9 +174,6 @@
     <ClCompile Include="FileManager.cpp">
       <Filter>API FrameWork\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>API FrameWork\Collider</Filter>
-    </ClCompile>
     <ClCompile Include="MessageBoxManager.cpp">
       <Filter>API FrameWork\Manager</Filter>
     </ClCompile>
@@ -292,9 +289,6 @@
     </ClInclude>
     <ClInclude Include="Config.h">
       <Filter>Config</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>API FrameWork\Collider</Filter>
     </ClInclude>
     <ClInclude Include="MessageBoxManager.h">
       <Filter>API FrameWork\Manager</Filter>

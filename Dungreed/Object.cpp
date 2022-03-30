@@ -18,7 +18,7 @@ Object::~Object()
 
 HRESULT Object::init()
 {
-	for (int i = 0; i < ColliderEnum::DIRECTION::DIR_CNT; i++) 
+	for (int i = 0; i < ColliderEnum::DIRECTION::DIR_CNT; i++)
 		_isCollision[i] = false;
 
 	return S_OK;
@@ -35,16 +35,11 @@ void Object::release()
 void Object::update()
 {
 	this->animation();
+	this->settingProve();
 }
 
 void Object::render(HDC hdc)
 {
-	_rc = RectFMakeCenter(
-		_x, _y,
-		_imgWidth,
-		_imgHeight
-	);
-
 	if (_isDebug)
 	{
 		CAMERAMANAGER->printRectangleCenter(hdc, _x, _y, _imgWidth, _imgHeight);
@@ -53,18 +48,6 @@ void Object::render(HDC hdc)
 
 	CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.GetLeft(), _rc.GetTop(), _frameInfo.x, _frameInfo.y);
 
-}
-
-void Object::move()
-{
-	if (_isLeft)
-	{
-		Object::setFrameY(1);
-	}
-	else
-	{
-		Object::setFrameY(0);
-	}
 }
 
 void Object::animation()
@@ -79,4 +62,22 @@ void Object::animation()
 		bool checkFrame = _vImages[_imgCurrent]->getMaxFrameX() < _frameInfo.x;
 		if (checkFrame) _frameInfo.x = 0;
 	}
+
+	if (_isLeft) _frameInfo.y = 1;
+	else _frameInfo.y = 0;
+}
+
+void Object::settingProve()
+{
+	_rc = RectFMakeCenter(
+		_x, 
+		_y,
+		_imgWidth,
+		_imgHeight
+	);
+
+	_prove[ColliderEnum::LEFT]	 = CAMERAMANAGER->calRelPt(PointMake(_rc.GetLeft(), _y));
+	_prove[ColliderEnum::RIGHT]  = CAMERAMANAGER->calRelPt(PointMake(_rc.GetRight(), _y));
+	_prove[ColliderEnum::TOP]	 = CAMERAMANAGER->calRelPt(PointMake(_x, _rc.GetTop()));
+	_prove[ColliderEnum::BOTTOM] = CAMERAMANAGER->calRelPt(PointMake(_x, _rc.GetBottom()));
 }

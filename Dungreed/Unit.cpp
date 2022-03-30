@@ -41,14 +41,14 @@ void Unit::render(HDC hdc)
 
 void Unit::move()
 {
-	//if (!_isCollision[ColliderEnum::DIRECTION::BOTTOM] && !_isFlying)
-	//{
-	//	_y -= _fallSpeed;
-	//	if (_fallSpeed < 3)
-	//	{
-	//		_fallSpeed -= _gravity;
-	//	}
-	//}
+	if (!_isCollision[ColliderEnum::DIRECTION::BOTTOM] && !_isFlying)
+	{
+		//_y -= _fallSpeed;
+		//if (_fallSpeed < 2)
+		//{
+		//	_fallSpeed -= _gravity;
+		//}
+	}
 }
 
 void Unit::jump()

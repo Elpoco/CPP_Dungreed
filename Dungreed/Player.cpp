@@ -15,7 +15,7 @@ HRESULT Player::init()
 
 	this->initAnimation();
 
-	_moveSpeed = MOVE_SPEED;
+	//_moveSpeed = MOVE_SPEED;
 
 	CAMERAMANAGER->followCamera(this);
 
@@ -50,35 +50,37 @@ void Player::initAnimation()
 
 void Player::move()
 {
-	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::LEFT)))
+	if (KEYMANAGER->isStayKeyDown(KEY::LEFT))
 	{
 		_state = PLAYER_STATE::RUN;
-		_x -= _moveSpeed;
+		//if(!_isCollision[ColliderEnum::DIRECTION::LEFT])
+			_x -= _moveSpeed;
 	}
 
-	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::RIGHT)))
+	if (KEYMANAGER->isStayKeyDown(KEY::RIGHT))
 	{
 		_state = PLAYER_STATE::RUN;
-		_x += _moveSpeed;
+		//if (!_isCollision[ColliderEnum::DIRECTION::RIGHT])
+			_x += _moveSpeed;
 	}
 
-	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::DOWN)))
+	if (KEYMANAGER->isStayKeyDown(KEY::DOWN))
 	{
 		_y += _moveSpeed;
 	}
 
-	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::UP)))
+	if (KEYMANAGER->isStayKeyDown(KEY::UP))
 	{
 		_y -= _moveSpeed;
 	}
 
-	if (KEYMANAGER->isOnceKeyUp(castingToInt(KEY::LEFT)) ||
-		KEYMANAGER->isOnceKeyUp(castingToInt(KEY::RIGHT)))
+	if (KEYMANAGER->isOnceKeyUp(KEY::LEFT) ||
+		KEYMANAGER->isOnceKeyUp(KEY::RIGHT))
 	{
 		_state = PLAYER_STATE::IDLE;
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(castingToInt(KEY::UP)) ||
+	if (KEYMANAGER->isOnceKeyDown(KEY::UP) ||
 		KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
 		//Unit::jump();
@@ -109,10 +111,10 @@ void Player::animation()
 	switch (_state)
 	{
 	case PLAYER_STATE::IDLE:
-		_imgCurrent = castingToInt(PLAYER_STATE::IDLE);
+		_imgCurrent = PLAYER_STATE::IDLE;
 		break;
 	case PLAYER_STATE::RUN:
-		_imgCurrent = castingToInt(PLAYER_STATE::RUN);
+		_imgCurrent = PLAYER_STATE::RUN;
 		break;
 	default:
 		break;

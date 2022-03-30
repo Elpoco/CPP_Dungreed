@@ -4,25 +4,6 @@
 class TileManager : public SingletonBase<TileManager>
 {
 private:
-	typedef struct tagTile
-	{
-		RectF rc;
-		PointF pos;
-		int tileFrameX;
-		int tileFrameY;
-		MapToolEnum::TILE_TYPE type;
-
-		tagTile()
-		{
-			rc = { 0,0,0,0 };
-			pos = { 0,0 };
-			tileFrameX = 0;
-			tileFrameY = 0;
-			type = MapToolEnum::TILE_TYPE::NONE;
-		}
-	} Tile;
-
-private:
 	Image* _imgTile;
 	Tile* _tiles;
 
@@ -47,6 +28,7 @@ public:
 	void setRenderSize(int width, int height);
 	void setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TILE_TYPE type);
 
+	Tile getTile(PointF pt);
 	PointF getTilePt(PointF pt);
 	int getTileIndex(PointF pt);
 	MapToolEnum::TILE_TYPE getTileType(PointF pt);

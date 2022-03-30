@@ -1,6 +1,6 @@
 #pragma once
 
-enum class KEY
+enum KEY
 {
 	LEFT  =	'A',
 	UP	  =	'W',

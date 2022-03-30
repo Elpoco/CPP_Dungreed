@@ -29,13 +29,13 @@ void CameraManager::update()
 {
 	if (_object != nullptr && _isFollow)
 	{
-		int x = _object->getX();
-		int y = _object->getY();
+		float x = _object->getX();
+		float y = _object->getY();
 
 		if (_isLock)
 		{
-			if (x >= CENTER_X) _x = x - CENTER_X;
-			if (y >= CENTER_Y) _y = y - CENTER_Y;
+			if (x >= CENTER_X && MapToolSet::TILE_CNT_X * TILE_SIZE - CENTER_X > x) _x = x - CENTER_X;
+			if (y >= CENTER_Y && MapToolSet::TILE_CNT_Y * TILE_SIZE - CENTER_Y > y) _y = y - CENTER_Y;
 		}
 		else
 		{
@@ -53,6 +53,16 @@ void CameraManager::printPoint(HDC hdc, float x, float y, int ptX, int ptY, char
 void CameraManager::printRectangle(HDC hdc, float x, float y, float width, float height)
 {
 	RectangleMake(hdc, x - _x, y - _y, width, height);
+}
+
+void CameraManager::printRectangle(HDC hdc, RectF rc, bool isFill, Color color, Color fillColor)
+{
+	RectangleMake(hdc, { rc.GetLeft() - _x, rc.GetTop() - _y, rc.Width, rc.Height }, isFill, color, fillColor);
+}
+
+void CameraManager::printRectanglePoint(HDC hdc, PointF point, float width, float height, Color color)
+{
+	RectangleMakePoint(hdc, {point.X -_x, point.Y - _y}, width, height, color);
 }
 
 void CameraManager::printRectangleCenter(HDC hdc, float x, float y, float width, float height)

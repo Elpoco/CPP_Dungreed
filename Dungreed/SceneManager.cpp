@@ -60,7 +60,7 @@ void SceneManager::render()
 	if (_currentScene) _currentScene->render();
 }
 
-GameNode* SceneManager::addScene(string sceneName, GameNode * scene)
+GameNode* SceneManager::addScene(string sceneName, GameNode* scene)
 {
 	if (!scene) return nullptr;
 
@@ -69,7 +69,7 @@ GameNode* SceneManager::addScene(string sceneName, GameNode * scene)
 	return scene;
 }
 
-GameNode* SceneManager::addLoadingScene(string loadingSceneName, GameNode * scene)
+GameNode* SceneManager::addLoadingScene(string loadingSceneName, GameNode* scene)
 {
 	if (!scene) return nullptr;
 

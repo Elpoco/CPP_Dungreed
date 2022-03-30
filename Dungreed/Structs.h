@@ -1,18 +1,22 @@
 #pragma once
 
-typedef struct tagARGB
-{
-	BYTE a;
-	BYTE r;
-	BYTE g;
-	BYTE b;
+using Gdiplus::RectF;
+using Gdiplus::PointF;
 
-	tagARGB() {}
-	tagARGB(BYTE a, BYTE r, BYTE g, BYTE b)
+typedef struct tagTile
+{
+	RectF rc;
+	PointF pos;
+	int tileFrameX;
+	int tileFrameY;
+	MapToolEnum::TILE_TYPE type;
+
+	tagTile()
 	{
-		this->a = a;
-		this->r = r;
-		this->g = g;
-		this->b = b;
+		rc = { 0,0,0,0 };
+		pos = { 0,0 };
+		tileFrameX = 0;
+		tileFrameY = 0;
+		type = MapToolEnum::TILE_TYPE::NONE;
 	}
-} ARGB;
+} Tile;

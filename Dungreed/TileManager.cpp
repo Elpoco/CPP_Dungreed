@@ -70,7 +70,7 @@ void TileManager::tileRender(HDC hdc, Tile tile)
 	switch (tile.type)
 	{
 	case MapToolEnum::TILE_TYPE::NONE:
-		if (_isDebug || SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
+		if (SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
 			CAMERAMANAGER->printRectangle(hdc, tile.rc.GetLeft(), tile.rc.GetTop(), TILE_SIZE, TILE_SIZE);
 		break;
 	case MapToolEnum::TILE_TYPE::BLOCK:
@@ -99,6 +99,13 @@ void TileManager::setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TIL
 	_tiles[idx].tileFrameX = frameX;
 	_tiles[idx].tileFrameY = frameY;
 	_tiles[idx].type = type;
+}
+
+Tile TileManager::getTile(PointF pt)
+{
+	int idx = getTileIndex(pt);
+
+	return _tiles[idx];
 }
 
 PointF TileManager::getTilePt(PointF pt)
