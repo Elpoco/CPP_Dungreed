@@ -15,6 +15,7 @@ private:
 	RectF _btnLoad;
 
 	RectF _rcSelectTile;
+	RectF _rcHoverTile;
 
 	POINT _curTile;			// 현재 타일
 	POINT _selectedTileCnt; // 선택된 타일 갯수
@@ -50,6 +51,9 @@ public:
 	void calSelectTile();
 	void settingSelectTileRect();
 	void drawSelectTile(HDC hdc);
+	void settingHoverTile();
+
+	TILE_TYPE getTileType(int x, int y);
 
 };
 

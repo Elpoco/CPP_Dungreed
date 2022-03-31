@@ -14,7 +14,7 @@ ObjectManager::~ObjectManager()
 HRESULT ObjectManager::init()
 {
 	COLLISIONMANAGER->setObjectVector(&_vObjects);
-	
+
 	return S_OK;
 }
 

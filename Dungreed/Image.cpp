@@ -304,7 +304,8 @@ void Image::setTransColor(BOOL isTrans, COLORREF transColopr)
 
 void Image::release(void)
 {
-	if (_imageInfo) {
+	if (_imageInfo)
+	{
 		SelectObject(_imageInfo->hMemDC, _imageInfo->hOBit);
 		DeleteObject(_imageInfo->hBit);
 		DeleteDC(_imageInfo->hMemDC);
@@ -316,13 +317,17 @@ void Image::release(void)
 		_transColor = RGB(0, 0, 0);
 	}
 
-	if (_blendImage) {
+	if (_blendImage)
+	{
 		SelectObject(_blendImage->hMemDC, _blendImage->hOBit);
 		DeleteObject(_blendImage->hBit);
 		DeleteDC(_blendImage->hMemDC);
 
 		SAFE_DELETE(_blendImage);
 	}
+
+	SAFE_DELETE(_graphics);
+	SAFE_DELETE(_gpImage);
 }
 
 void Image::render(HDC hdc)

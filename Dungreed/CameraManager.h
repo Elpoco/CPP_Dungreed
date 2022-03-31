@@ -43,7 +43,10 @@ public:
 
 	float calRelX(float x) { return x - _x; }
 	float calRelY(float y) { return y - _y; }
+	float calAbsX(float x) { return x + _x; }
+	float calAbsY(float y) { return y + _y; }
 	PointF calRelPt(PointF pt) { return { pt.X - _x, pt.Y - _y }; }
+	PointF calAbsPt(PointF pt) { return { pt.X + _x, pt.Y + _y }; }
 
 };
 

@@ -15,9 +15,9 @@ HRESULT Player::init()
 
 	this->initAnimation();
 
-	//_moveSpeed = MOVE_SPEED;
-
 	CAMERAMANAGER->followCamera(this);
+
+	hand.image = IMAGEMANAGER->findImage(ImageName::Player::hand);
 
 	return S_OK;
 }
@@ -31,18 +31,21 @@ void Player::update()
 {
 	Unit::update();
 	this->move();
+	Object::updateRect();
 	this->animation();
 }
 
 void Player::render(HDC hdc)
 {
 	Unit::render(hdc);
+
+	CAMERAMANAGER->render(hdc, hand.image, _x + 15, _y + 15);
 }
 
 void Player::initAnimation()
 {
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::playerIdle));
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::playerRun));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::idle));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::run));
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
@@ -53,14 +56,14 @@ void Player::move()
 	if (KEYMANAGER->isStayKeyDown(KEY::LEFT))
 	{
 		_state = PLAYER_STATE::RUN;
-		//if(!_isCollision[ColliderEnum::DIRECTION::LEFT])
+		//if(!_isCollision[ColliderEnum::DIRECTION::LB])
 			_x -= _moveSpeed;
 	}
 
 	if (KEYMANAGER->isStayKeyDown(KEY::RIGHT))
 	{
 		_state = PLAYER_STATE::RUN;
-		//if (!_isCollision[ColliderEnum::DIRECTION::RIGHT])
+		//if (!_isCollision[ColliderEnum::DIRECTION::LT])
 			_x += _moveSpeed;
 	}
 
@@ -83,7 +86,7 @@ void Player::move()
 	if (KEYMANAGER->isOnceKeyDown(KEY::UP) ||
 		KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
-		//Unit::jump();
+		Unit::jump();
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))

@@ -31,7 +31,7 @@ private:
 
 protected:
 	// Image
-	vImages _vImages;
+	vImages _vImages; 
 	int _imgCurrent;
 	float _imgWidth;
 	float _imgHeight;
@@ -40,6 +40,7 @@ protected:
 	float _x;
 	float _y;
 	RectF _rc;
+	RectF _rcBounding;
 
 	PointF _prove[ColliderEnum::DIRECTION::DIR_CNT];
 	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
@@ -57,7 +58,9 @@ public:
 
 	void animation();
 
-	void settingProve();
+	void updateRect();
+	void updateProve();
+
 	PointF* getProve() { return _prove; }
 
 	void setCollision(ColliderEnum::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }

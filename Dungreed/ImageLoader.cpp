@@ -31,9 +31,10 @@ void ImageLoader::render()
 void ImageLoader::loadImages()
 {
 	// Player
-	IMAGEMANAGER->addFrameImage(ImageName::playerIdle, PATH_UNIT"Player/Idle.bmp", 390, 150, 5, 2, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::playerRun, PATH_UNIT"Player/Run.bmp", 624, 150, 8, 2, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::playerDie, PATH_UNIT"Player/Die.bmp", 78, 75, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Player::idle, PATH_UNIT"Player/Idle.bmp", 390, 150, 5, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Player::run, PATH_UNIT"Player/Run.bmp", 624, 150, 8, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Player::die, PATH_UNIT"Player/Die.bmp", 78, 75, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Player::hand, PATH_UNIT"Player/Hand.bmp", 12, 12);
 
 	// Map
 	IMAGEMANAGER->addImage(ImageName::pixelTest, PATH_IMAGE"PixelTest.bmp", WINSIZE_X, WINSIZE_Y);
@@ -53,4 +54,7 @@ void ImageLoader::loadImages()
 
 	// Town
 	IMAGEMANAGER->addImage(ImageName::floor, PATH_IMAGE"Town/Floor.bmp", 2752, 448, true, ColorSet::MAGENTA);
+
+	// Item
+	//IMAGEMANAGER->addImage(ima)
 }

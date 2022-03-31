@@ -30,7 +30,6 @@ namespace ColorSet
 namespace UnitSet
 {
 	constexpr float MOVE_SPEED = 3.0f;
-	constexpr float JUMP_SPEED = 15.0f;
-	constexpr float FALL_SPEED = 0.0f;
-	constexpr float GRAVITY = 0.2f;
+	constexpr float JUMP_SPEED = 4.0f;
+	constexpr float GRAVITY = 0.1f;
 }

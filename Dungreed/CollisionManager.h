@@ -29,6 +29,7 @@ public:
 	void onTileCollision() { _onTileCollision = true; }
 	void offTIleCollision() { _onTileCollision = false; }
 	void tileCollision();
+	void collisionBlock(Object* obj, Tile tile, DIRECTION dir);
 
 };
 

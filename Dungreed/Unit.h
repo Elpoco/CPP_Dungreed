@@ -14,17 +14,16 @@ protected:
 
 	float _moveSpeed;
 	float _jumpSpeed;
-	float _fallSpeed;
 	float _gravity;
 
 public:
 	Unit();
 	virtual ~Unit();
 
-	virtual HRESULT init();
-	virtual void release();
-	virtual void update();
-	virtual void render(HDC hdc);
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
 
 	void move();
 

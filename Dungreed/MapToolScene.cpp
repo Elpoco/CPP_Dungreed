@@ -47,10 +47,10 @@ void MapToolScene::update()
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::LEFT)))  _camera->setX(_camera->getX() - CAMERA_SPPED);
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::RIGHT))) _camera->setX(_camera->getX() + CAMERA_SPPED);
 
-	if (KEYMANAGER->isStayKeyDown(VK_UP))	 _y -= CAMERA_SPPED;
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))  _y += CAMERA_SPPED;
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))  _x -= CAMERA_SPPED;
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += CAMERA_SPPED;
+	//if (KEYMANAGER->isStayKeyDown(VK_UP))	 _y -= CAMERA_SPPED;
+	//if (KEYMANAGER->isStayKeyDown(VK_DOWN))  _y += CAMERA_SPPED;
+	//if (KEYMANAGER->isStayKeyDown(VK_LEFT))  _x -= CAMERA_SPPED;
+	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += CAMERA_SPPED;
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
@@ -93,6 +93,8 @@ void MapToolScene::update()
 	}
 
 	TILEMANAGER->update();
+
+	if(ptInRectF(_rcToolWindow)) this->settingHoverTile();
 }
 
 void MapToolScene::render()
@@ -103,7 +105,7 @@ void MapToolScene::render()
 
 	_imgMap->render(getMemDC(), TOOL_START_X, 0, _x, _y, _x + WINSIZE_X - TOOL_SIZE_X, _y + WINSIZE_Y);
 
-	drawSelectTile(getMemDC());
+	this->drawSelectTile(getMemDC());
 
 	char str[128];
 	wsprintf(str, String::btnSave);
@@ -116,20 +118,25 @@ void MapToolScene::render()
 
 void MapToolScene::clickDrawTile()
 {
-	int idx = TILEMANAGER->getTileIndex(_ptMouse);
+	int idx = TILEMANAGER->getTileIndex(CAMERAMANAGER->calAbsPt(_ptMouse));
 
 	for (int y = 0; y < _selectedTileCnt.y; y++)
 	{
 		for (int x = 0; x < _selectedTileCnt.x; x++)
 		{
-			TILEMANAGER->setTileFrame(idx + x + y*TILE_CNT_X, _curTile.x + x, _curTile.y+y, TILE_TYPE::BLOCK);
+			TILEMANAGER->setTileFrame(
+				idx + x + y * TILE_CNT_X,
+				_curTile.x + x,
+				_curTile.y + y, 
+				getTileType(_curTile.x + x, _curTile.y + y)
+			);
 		}
 	}
 }
 
 void MapToolScene::clickUndoTile()
 {
-	int idx = TILEMANAGER->getTileIndex(_ptMouse);
+	int idx = TILEMANAGER->getTileIndex(CAMERAMANAGER->calAbsPt(_ptMouse));
 
 	TILEMANAGER->setTileFrame(idx, 0, 0, TILE_TYPE::NONE);
 }
@@ -162,8 +169,8 @@ void MapToolScene::clickLoad()
 
 void MapToolScene::calSelectTile()
 {
-	float disX = _ptMouse.X - _startCursor.X;
-	float disY = _ptMouse.Y - _startCursor.Y;
+	int disX = _ptMouse.X - _startCursor.X;
+	int disY = _ptMouse.Y - _startCursor.Y;
 
 	_selectedTileCnt.x = disX / TOOL_TILE_SIZE + 1;
 	_selectedTileCnt.y = disY / TOOL_TILE_SIZE + 1;
@@ -187,9 +194,30 @@ void MapToolScene::drawSelectTile(HDC hdc)
 {
 	RectangleMake(hdc, _rcSelectTile, false, Color::Red);
 
+	if (ptInRectF(_rcToolWindow)) RectangleMake(hdc, _rcHoverTile, false, Color::Blue);
+
 	SetTextColor(getMemDC(), ColorSet::RED);
 
 	printPoint(getMemDC(), _rcSelectTile.GetLeft(), _rcSelectTile.GetTop(), _selectedTileCnt.y, _selectedTileCnt.x);
 
 	SetTextColor(getMemDC(), ColorSet::BLACK);
+}
+
+void MapToolScene::settingHoverTile()
+{
+	int x = (_ptMouse.X - TOOL_START_X) / TOOL_TILE_SIZE;
+	int y = (_ptMouse.Y) / TOOL_TILE_SIZE;
+
+	_rcHoverTile = RectFMake(
+		x * TOOL_TILE_SIZE + TOOL_START_X,
+		y * TOOL_TILE_SIZE,
+		TOOL_TILE_SIZE,
+		TOOL_TILE_SIZE
+	);
+}
+
+TILE_TYPE MapToolScene::getTileType(int x, int y)
+{
+	if (x == 3 && y == 0) return TILE_TYPE::DIG_L;
+	return TILE_TYPE::BLOCK;
 }

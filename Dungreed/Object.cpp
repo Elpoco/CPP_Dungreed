@@ -35,7 +35,7 @@ void Object::release()
 void Object::update()
 {
 	this->animation();
-	this->settingProve();
+	this->updateRect();
 }
 
 void Object::render(HDC hdc)
@@ -47,7 +47,6 @@ void Object::render(HDC hdc)
 	}
 
 	CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.GetLeft(), _rc.GetTop(), _frameInfo.x, _frameInfo.y);
-
 }
 
 void Object::animation()
@@ -67,17 +66,23 @@ void Object::animation()
 	else _frameInfo.y = 0;
 }
 
-void Object::settingProve()
+void Object::updateRect()
 {
 	_rc = RectFMakeCenter(
-		_x, 
+		_x,
 		_y,
 		_imgWidth,
 		_imgHeight
 	);
+	this->updateProve();
+}
 
-	_prove[ColliderEnum::LEFT]	 = CAMERAMANAGER->calRelPt(PointMake(_rc.GetLeft(), _y));
-	_prove[ColliderEnum::RIGHT]  = CAMERAMANAGER->calRelPt(PointMake(_rc.GetRight(), _y));
-	_prove[ColliderEnum::TOP]	 = CAMERAMANAGER->calRelPt(PointMake(_x, _rc.GetTop()));
-	_prove[ColliderEnum::BOTTOM] = CAMERAMANAGER->calRelPt(PointMake(_x, _rc.GetBottom()));
+void Object::updateProve()
+{
+	_prove[ColliderEnum::LEFT]	  = PointMake(_rc.GetLeft(), _y);
+	_prove[ColliderEnum::RIGHT]   = PointMake(_rc.GetRight(), _y);
+	_prove[ColliderEnum::TOP]	  = PointMake(_x, _rc.GetTop());
+	_prove[ColliderEnum::BOTTOM]  = PointMake(_x, _rc.GetBottom());
+	_prove[ColliderEnum::LBOTTOM] = PointMake(_rc.GetLeft(), _rc.GetBottom());
+	_prove[ColliderEnum::RBOTTOM] = PointMake(_rc.GetRight(), _rc.GetBottom());
 }

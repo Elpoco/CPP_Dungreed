@@ -1,9 +1,13 @@
 #pragma once
 namespace ImageName
 {
-	constexpr char* playerIdle = "PlayerIdle";
-	constexpr char* playerRun = "PlayerRun";
-	constexpr char* playerDie = "PlayerDie";
+	namespace Player
+	{
+		constexpr char* idle = "PlayerIdle";
+		constexpr char* run = "PlayerRun";
+		constexpr char* die = "PlayerDie";
+		constexpr char* hand = "PlayerHand";
+	}
 
 	constexpr char* pixelTest = "PixelTest";
 	constexpr char* testTile = "TestTile";

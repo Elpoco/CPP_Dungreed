@@ -13,7 +13,9 @@ namespace MapToolEnum
 	enum class TILE_TYPE
 	{
 		NONE,
-		BLOCK
+		BLOCK,
+		DIG_L,
+		DIG_R
 	};
 }
 
@@ -35,6 +37,8 @@ namespace ColliderEnum
 		TOP,
 		RIGHT,
 		BOTTOM,
+		LBOTTOM,
+		RBOTTOM,
 		DIR_CNT
 	};
 }

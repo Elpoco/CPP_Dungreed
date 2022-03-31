@@ -73,14 +73,14 @@ void TileManager::tileRender(HDC hdc, Tile tile)
 		if (SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
 			CAMERAMANAGER->printRectangle(hdc, tile.rc.GetLeft(), tile.rc.GetTop(), TILE_SIZE, TILE_SIZE);
 		break;
-	case MapToolEnum::TILE_TYPE::BLOCK:
-		CAMERAMANAGER->frameRender(hdc, _imgTile, tile.rc.GetLeft(), tile.rc.GetTop(), tile.tileFrameX, tile.tileFrameY);
-		break;
+	//case MapToolEnum::TILE_TYPE::BLOCK:
+	//	break;
 	default:
+		CAMERAMANAGER->frameRender(hdc, _imgTile, tile.rc.GetLeft(), tile.rc.GetTop(), tile.tileFrameX, tile.tileFrameY);
 		break;
 	}
 
-	if (_isDebug)
+	if (SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene && _isDebug)
 	{
 		CAMERAMANAGER->printPoint(hdc, tile.rc.GetLeft(), tile.rc.GetTop(), tile.pos.Y, tile.pos.X);
 	}
@@ -117,8 +117,8 @@ PointF TileManager::getTilePt(PointF pt)
 
 int TileManager::getTileIndex(PointF pt)
 {
-	int x = (pt.X + CAMERAMANAGER->getAbsX()) / TILE_SIZE;
-	int y = (pt.Y + CAMERAMANAGER->getAbsY()) / TILE_SIZE;
+	int x = (pt.X) / TILE_SIZE;
+	int y = (pt.Y) / TILE_SIZE;
 
 	int idx = MapToolSet::TILE_CNT_X * y + x;
 	int maxTile = _tileCntX * _tileCntY;

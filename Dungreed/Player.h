@@ -5,23 +5,29 @@
 #define KEY_CHANGE_WEAPON	'~'
 #define KEY_INTERACTION		'F'
 
-#define MOVE_SPEED	2.0f
-
 using namespace PlayerEnum;
 
 class Player : public Unit
 {
 private:
+	typedef struct tagPlayerHand
+	{
+		Image* image;
+		RECT rc;
+	} PlayerHand;
+
+private:
 	PLAYER_STATE _state;
+	PlayerHand hand;
 
 public:
 	Player();
 	~Player();
 
-	virtual HRESULT init();
-	virtual void release();
-	virtual void update();
-	virtual void render(HDC hdc);
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
 
 	void initAnimation();
 

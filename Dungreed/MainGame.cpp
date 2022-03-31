@@ -44,9 +44,9 @@ void MainGame::update(void)
 
 	OBJECTMANAGER->update();
 
-	CAMERAMANAGER->update();
-
 	COLLISIONMANAGER->update();
+
+	CAMERAMANAGER->update();
 
 	if (KEYMANAGER->isOnceKeyDown(VK_F1)) _isDebug = !_isDebug;
 }

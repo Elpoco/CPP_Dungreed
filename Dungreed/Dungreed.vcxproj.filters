@@ -183,6 +183,9 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="GpImage.cpp">
+      <Filter>API FrameWork\Image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -304,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GpImage.h">
+      <Filter>API FrameWork\Image</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
