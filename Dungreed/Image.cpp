@@ -7,8 +7,7 @@ Image::Image() :
 	_fileName(NULL), 
 	_isTrans(FALSE), 
 	_transColor(RGB(0,0,0)),
-	_blendImage(NULL),
-	_isGdiPlus(false)
+	_blendImage(NULL)
 {
 }
 
@@ -219,61 +218,6 @@ HRESULT Image::init(const char* fileName, float x, float y, int width, int heigh
 	return S_OK;
 }
 
-HRESULT Image::init(const WCHAR* fileName, HDC memDc)
-{
-	if (_imageInfo != NULL) this->release();
-
-	_gpImage = new Gdiplus::Bitmap(fileName); 
-	if (_gpImage->GetLastStatus() != Gdiplus::Ok) return E_FAIL;
-
-	_graphics = new Gdiplus::Graphics(memDc);
-	_cashedBitmap = new Gdiplus::CachedBitmap(_gpImage, _graphics);
-	
-	HDC hdc = GetDC(_hWnd);
-	_imageInfo = new IMAGE_INFO;
-	_imageInfo->loadType = LOAD_FILE;
-	_imageInfo->resID = 0;
-	_imageInfo->hMemDC = CreateCompatibleDC(hdc);
-	_imageInfo->x = 0;
-	_imageInfo->y = 0;
-	_imageInfo->width = _gpImage->GetWidth();
-	_imageInfo->height = _gpImage->GetHeight();
-
-	ReleaseDC(_hWnd, hdc);
-
-	_isGdiPlus = true;
-
-	return S_OK;
-}
-
-HRESULT Image::init(const WCHAR* fileName, int maxFrameX, int maxFrameY)
-{
-
-	_isGdiPlus = true;
-
-	return S_OK;
-}
-
-void Image::gpRender(int destX, int destY, int angle)
-{
-}
-
-void Image::gpRender(int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight)
-{
-	Gdiplus::ImageAttributes imgAttr;
-
-	if (sourWidth == 0) sourWidth = _imageInfo->width;
-	if (sourHeight == 0) sourHeight = _imageInfo->height;
-	
-	_graphics->DrawImage(
-		_gpImage,
-		Gdiplus::Rect(destX, destY, sourWidth, sourHeight),
-		sourX, sourY,
-		sourWidth, sourHeight,
-		Gdiplus::UnitPixel, &imgAttr, NULL, NULL);
-	//_graphics->DrawCachedBitmap(_cashedBitmap, destX, destY);
-}
-
 HRESULT Image::initForAlphaBlend(void)
 {
 	HDC hdc = GetDC(_hWnd);
@@ -325,9 +269,6 @@ void Image::release(void)
 
 		SAFE_DELETE(_blendImage);
 	}
-
-	SAFE_DELETE(_graphics);
-	SAFE_DELETE(_gpImage);
 }
 
 void Image::render(HDC hdc)

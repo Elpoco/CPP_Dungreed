@@ -31,8 +31,6 @@ public:
 		int			frameHeight;
 		BYTE		loadType;
 
-		int count;
-
 		tagImage()
 		{
 			resID = 0;
@@ -49,8 +47,6 @@ public:
 			frameWidth = 0;
 			frameHeight = 0;
 			loadType = LOAD_RESOURCE;
-
-			count = 0;
 		}
 	} IMAGE_INFO, *LPIMAGE_INFO;
 
@@ -64,11 +60,6 @@ private:
 	LPIMAGE_INFO	_blendImage;
 
 
-	bool _isGdiPlus;
-	Gdiplus::Graphics* _graphics;
-	Gdiplus::Bitmap* _gpImage;
-	Gdiplus::CachedBitmap* _cashedBitmap;
-
 public:
 	HRESULT init(int width, int height);
 	HRESULT init(const DWORD resID, int width, int height, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
@@ -78,18 +69,11 @@ public:
 	HRESULT init(const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
 	HRESULT init(const char* fileName, float x, float y, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
 
-	// gdi+
-	HRESULT init(const WCHAR* fileName, HDC memDc);
-	HRESULT init(const WCHAR* fileName, int maxFrameX, int maxFrameY);
-
-	void gpRender(int destX, int destY, int angle);
-	void gpRender(int destX = 0, int destY = 0, int sourX = 0, int sourY = 0, int sourWidth = 0, int sourHeight = 0);
-
-	HRESULT initForAlphaBlend(void);
+	HRESULT initForAlphaBlend();
 
 	void setTransColor(BOOL isTrans, COLORREF transColopr);
 
-	void release(void);
+	void release();
 
 	void render(HDC hdc);
 	void render(HDC hdc, int destX, int destY);
@@ -166,8 +150,6 @@ public:
 
 	inline int getMaxFrameX(void) { return _imageInfo->maxFrameX; }
 	inline int getMaxFrameY(void) { return _imageInfo->maxFrameY; }
-
-	inline bool checkGdiPlus(void) { return _isGdiPlus; }
 
 	Image();
 	~Image() {}

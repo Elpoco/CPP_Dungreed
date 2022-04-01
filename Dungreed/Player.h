@@ -20,6 +20,14 @@ private:
 	PLAYER_STATE _state;
 	PlayerHand hand;
 
+	int mainHandX;
+	int mainWeaponX;
+	int tempAngle;
+
+	ImageGp* _weapon;
+	int angle;
+	int attackAngle;
+
 public:
 	Player();
 	~Player();

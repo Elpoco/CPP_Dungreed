@@ -1,7 +1,4 @@
 #pragma once
-#define TILE_RES_SIZE		16
-#define TILE_SCALE			3
-#define TILE_SIZE			(TILE_RES_SIZE * TILE_SCALE)
 
 namespace MapToolSet
 {

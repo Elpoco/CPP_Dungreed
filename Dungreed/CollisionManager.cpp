@@ -36,7 +36,7 @@ void CollisionManager::render(HDC hdc)
 			for (int i = 0; i < DIRECTION::DIR_CNT; i++)
 			{
 				Tile tile = TILEMANAGER->getTile(prove[i]);
-				CAMERAMANAGER->printRectangle(hdc, tile.rc, false, Color::Red);
+				CAMERAMANAGER->printRectangle(hdc, tile.rc, Color::Red);
 				if (obj->getCollision((DIRECTION)i))
 				{
 					CAMERAMANAGER->printRectanglePoint(hdc, prove[i], 10, 10, Color::Red);

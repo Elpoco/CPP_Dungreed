@@ -34,8 +34,7 @@ HRESULT GameNode::init(bool managerInit)
 		MSGBOXMANAGER	->init();
 		SCENEMANAGER	->init();
 		COLLISIONMANAGER->init();
-
-		IMAGEMANAGER->setMemDc(getMemDC());
+		GPIMAGEMANAGER	->init();
 	}
 
 	return S_OK;
@@ -93,6 +92,9 @@ void GameNode::release(void)
 
 		COLLISIONMANAGER->release();
 		COLLISIONMANAGER->releaseSingleton();
+		
+		GPIMAGEMANAGER->release();
+		GPIMAGEMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);

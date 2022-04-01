@@ -153,8 +153,9 @@
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
-    <ClCompile Include="GpImage.cpp" />
+    <ClCompile Include="ImageGp.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageGpManager.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="JsonSaveLoader.cpp" />
@@ -191,13 +192,15 @@
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CommonMacroFuntion.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="Define.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameNode.h" />
-    <ClInclude Include="GpImage.h" />
+    <ClInclude Include="ImageGp.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageGpManager.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="JsonSaveLoader.h" />

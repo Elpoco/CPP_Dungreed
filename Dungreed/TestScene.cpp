@@ -22,5 +22,6 @@ void TestScene::update()
 
 void TestScene::render()
 {
+	IMAGEMANAGER->render(ImageName::background, getMemDC());
 	TILEMANAGER->render(getMemDC());
 }

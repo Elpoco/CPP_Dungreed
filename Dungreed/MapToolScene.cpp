@@ -169,14 +169,15 @@ void MapToolScene::clickLoad()
 
 void MapToolScene::calSelectTile()
 {
-	int disX = _ptMouse.X - _startCursor.X;
-	int disY = _ptMouse.Y - _startCursor.Y;
+	_selectedTileCnt.x = (_ptMouse.X - TOOL_START_X) / TOOL_TILE_SIZE + 1;
+	_selectedTileCnt.y = _ptMouse.Y / TOOL_TILE_SIZE + 1;
 
-	_selectedTileCnt.x = disX / TOOL_TILE_SIZE + 1;
-	_selectedTileCnt.y = disY / TOOL_TILE_SIZE + 1;
-
+	_selectedTileCnt.x -= _curTile.x;
+	_selectedTileCnt.y -= _curTile.y;
+	
 	if (_selectedTileCnt.x < 1) _selectedTileCnt.x = 1;
 	if (_selectedTileCnt.y < 1) _selectedTileCnt.y = 1;
+
 }
 
 void MapToolScene::settingSelectTileRect()
@@ -192,9 +193,9 @@ void MapToolScene::settingSelectTileRect()
 
 void MapToolScene::drawSelectTile(HDC hdc)
 {
-	RectangleMake(hdc, _rcSelectTile, false, Color::Red);
+	RectangleMake(hdc, _rcSelectTile, Color::Red);
 
-	if (ptInRectF(_rcToolWindow)) RectangleMake(hdc, _rcHoverTile, false, Color::Blue);
+	if (ptInRectF(_rcToolWindow)) RectangleMake(hdc, _rcHoverTile, Color::Blue);
 
 	SetTextColor(getMemDC(), ColorSet::RED);
 

@@ -43,47 +43,10 @@
 
 using namespace std;
 
-// ==========================
-// # 매크로 # (윈도우창 초기화)
-// ==========================
-#define WINNAME				(LPSTR)(TEXT("Dungreed"))
-
-#define WINSTART_X			100
-#define WINSTART_Y			100
-#define WINSIZE_X			1280
-#define WINSIZE_Y			800
-#define WINSTYLE			WS_CAPTION | WS_SYSMENU
-
-// ========================
-// # 매크로 # (기능 및 효율)
-// ========================
-#define CENTER_X		(WINSIZE_X / 2)
-#define CENTER_Y		(WINSIZE_Y / 2)
-
-// =============
-// # 파일 경로 #
-// =============
-#define PATH_RESOURCE	"Resources/"
-
-#define PATH_IMAGE		PATH_RESOURCE"Images/"
-#define PATH_SOUND		PATH_RESOURCE"Sounds/"
-#define PATH_DATA		PATH_RESOURCE"Data/"
-
-#define PATH_BACKGROUND	PATH_IMAGE"Background/"
-#define PATH_OBJECT		PATH_IMAGE"Object/"
-#define PATH_UNIT		PATH_IMAGE"Unit/"
-#define PATH_MAPTOOL	PATH_IMAGE"MapTool/"
-
-// =============================================
-// # 매크로 함수 # (클래스에서 동적할당된 부분 해제)
-// =============================================
-#define SAFE_DELETE(p)			{if(p) {delete (p); (p)=nullptr;}}
-#define SAFE_DELETE_ARRAY(p)	{if(p) {delete[] (p); (p)=nullptr;}}
-#define SAFE_RELEASE(p)			{if(p) {(p)->release(); (p)=nullptr;}}
-
 // =================================
 // # 내가 만든 헤더파일을 이곳에 추가 #
 // =================================
+#include "Define.h"
 #include "Enums.h"
 #include "Structs.h"
 #include "String.h"
@@ -93,6 +56,7 @@ using namespace std;
 #include "RandomFuntion.h"
 #include "KeyManager.h"
 #include "ImageManager.h"
+#include "ImageGpManager.h"
 #include "FontManager.h"
 #include "Utils.h"
 #include "TimeManager.h"
@@ -136,6 +100,7 @@ using Gdiplus::Color;
 #define TILEMANAGER	TileManager::getSingleton()
 #define MSGBOXMANAGER MessageBoxManager::getSingleton()
 #define COLLISIONMANAGER CollisionManager::getSingleton()
+#define GPIMAGEMANAGER ImageGpManager::getSingleton()
 
 // =============
 // # 전역 변수 #

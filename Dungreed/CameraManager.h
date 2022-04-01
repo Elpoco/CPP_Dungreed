@@ -23,13 +23,14 @@ public:
 
 	void printPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format = "%d, %d");
 	void printRectangle(HDC hdc, float x, float y, float width, float height);
-	void printRectangle(HDC hdc, RectF rc, bool isFill = true, Color color = Color::Black, Color fillColor = Color::White);
+	void printRectangle(HDC hdc, RectF rc, Color penColor = Color::Black, bool isFill = false,  Color fillColor = Color::White);
 	void printRectanglePoint(HDC hdc, PointF point, float width, float height, Color color = Color::Black);
 	void printRectangleCenter(HDC hdc, float x, float y, float width, float height);
 
-	int checkObjectInCamera(Image* img, float x, float y);
+	int checkObjectInCamera(float x, float y, float width, float height);
 
 	void render(HDC hdc, Image* img, float x, float y);
+	void render(HDC hdc, ImageGp* img, float x, float y, int angle = 0, PointF rotateCenter = { 0,0 });
 	void frameRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY);
 
 	void followCamera(Object* object);

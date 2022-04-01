@@ -1,23 +1,24 @@
 #pragma once
 #include "SingletonBase.h"
+
 #include "Image.h"
 
 class ImageLoader;
 
 class ImageManager : public SingletonBase<ImageManager>
 {
-private:
-	typedef map<string, Image*> mapImageList;
-	typedef map<string, Image*>::iterator mapImageIter;
-
+public:
 	enum class IM_ERROR_CODE
 	{
 		LOAD_FAILD
 	};
 
 private:
+	typedef map<string, Image*> mapImageList;
+	typedef map<string, Image*>::iterator mapImageIter;
+
+private:
 	mapImageList _mImageList;
-	HDC _memDc;
 
 	ImageLoader* _imageLoader;
 
@@ -25,16 +26,10 @@ public:
 	HRESULT init();
 	void release();
 
-	void setMemDc(HDC hdc) { _memDc = hdc; }
-
 	Image* addImage(string strKey, int width, int height);
 	Image* addImage(string strKey, const char* fileName, int width, int height, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
 	Image* addImage(string strKey, const char* fileName, float x, float y, int width, int height, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
 	Image* addFrameImage(string strKey, const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
-
-	// gdi+
-	Image* addImage(string strKey, const WCHAR* fileName);
-	Image* addFrameImage(string strKey, const WCHAR* fileName, int maxFrameX, int maxFrameY);
 
 	Image* findImage(string strKey);
 	bool deleteImage(string strKey);
@@ -54,7 +49,7 @@ public:
 	void loopRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
 	void loopAlphaRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
 
-	void errorMsg(IM_ERROR_CODE code, string str);
+	static void errorMsg(IM_ERROR_CODE code, string str);
 
 	ImageManager() {}
 	~ImageManager() {}

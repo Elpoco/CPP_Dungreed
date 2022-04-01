@@ -4,312 +4,321 @@
     <Filter Include="API FrameWork">
       <UniqueIdentifier>{fd1f8705-41e5-4eec-9173-4ae613734c4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\Animation">
-      <UniqueIdentifier>{ed41234d-b8d3-425f-ba25-474130a4bbb7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\DesignPattern">
-      <UniqueIdentifier>{44b58eac-a6c6-47ca-a906-385f0ab5a09f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\DesignPattern\Singleton">
-      <UniqueIdentifier>{f41ccd50-f510-4e24-ae4b-2be03bc5b2f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\GameNode">
-      <UniqueIdentifier>{283f3f27-2a49-4502-8633-97881cb7f779}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\Image">
-      <UniqueIdentifier>{6745354d-98f6-4b27-9b21-b2fd11800d6a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\Manager">
-      <UniqueIdentifier>{a6342fab-2358-4f50-b9c3-2d82de621cf0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\ProgressBar">
-      <UniqueIdentifier>{0a965148-8c79-412f-b364-bc31c5df6fca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\Stdafx">
-      <UniqueIdentifier>{84564e55-9008-480a-9efc-e3cb10108352}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\Timer">
-      <UniqueIdentifier>{1ab14265-be7d-4bfe-8268-5e6e9f96fef3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\Utillity">
-      <UniqueIdentifier>{a2378cb6-df4d-45f3-aa66-c5b28d334200}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame">
       <UniqueIdentifier>{2d960861-93ce-4435-a619-cddb009d46d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\Json">
-      <UniqueIdentifier>{44fe4207-fedd-40e1-a5ed-c9c60c6cfc2d}</UniqueIdentifier>
+    <Filter Include="API FrameWork\01. Stdafx">
+      <UniqueIdentifier>{84564e55-9008-480a-9efc-e3cb10108352}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{52aca5fe-bae4-4b56-b875-34aecfec2038}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{edff070e-76ee-4020-8943-96230d727fd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Unit">
-      <UniqueIdentifier>{fcfb8975-00ba-40e0-846b-93b7d8b379e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Unit\Player">
-      <UniqueIdentifier>{2e57d9be-c75f-4fca-8fa4-04fb92afcebe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MapTool">
-      <UniqueIdentifier>{4a2e862f-1d40-4c56-923d-3c24bbe9541a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\Camera">
-      <UniqueIdentifier>{844f0a79-be8e-4655-b5ce-6791b472172e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\UI">
-      <UniqueIdentifier>{84928863-93f7-429b-b64f-ebb5f3ce260d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\MapTool">
-      <UniqueIdentifier>{e0663c24-937b-4348-b263-d58789da2f6a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\Start">
-      <UniqueIdentifier>{cf471333-634a-4830-849e-a72c238ba66d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene\Test">
-      <UniqueIdentifier>{8239d58c-9c48-4977-b305-898c7aae269f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Config">
+    <Filter Include="API FrameWork\02. Config">
       <UniqueIdentifier>{ea8818b9-e05d-4726-b9a2-7cdee1a10f77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\Collider">
+    <Filter Include="API FrameWork\03. DesignPattern">
+      <UniqueIdentifier>{44b58eac-a6c6-47ca-a906-385f0ab5a09f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\03. DesignPattern\Singleton">
+      <UniqueIdentifier>{f41ccd50-f510-4e24-ae4b-2be03bc5b2f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\04. GameNode">
+      <UniqueIdentifier>{283f3f27-2a49-4502-8633-97881cb7f779}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\05. Utillity">
+      <UniqueIdentifier>{a2378cb6-df4d-45f3-aa66-c5b28d334200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\06. Manager">
+      <UniqueIdentifier>{a6342fab-2358-4f50-b9c3-2d82de621cf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\07. Camera">
+      <UniqueIdentifier>{844f0a79-be8e-4655-b5ce-6791b472172e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\08. Image">
+      <UniqueIdentifier>{6745354d-98f6-4b27-9b21-b2fd11800d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\09. Animation">
+      <UniqueIdentifier>{ed41234d-b8d3-425f-ba25-474130a4bbb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\10. Timer">
+      <UniqueIdentifier>{1ab14265-be7d-4bfe-8268-5e6e9f96fef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\11. ProgressBar">
+      <UniqueIdentifier>{0a965148-8c79-412f-b364-bc31c5df6fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\12. Collider">
       <UniqueIdentifier>{7423818a-c6a4-4d2f-980a-d7cbfdedf660}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\Collider\PixelCollider">
+    <Filter Include="API FrameWork\12. Collider\PixelCollider">
       <UniqueIdentifier>{41e39f3a-a2b5-4bae-b9eb-ed103a41e44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\13. Json">
+      <UniqueIdentifier>{44fe4207-fedd-40e1-a5ed-c9c60c6cfc2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\14 .UI">
+      <UniqueIdentifier>{84928863-93f7-429b-b64f-ebb5f3ce260d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object">
+      <UniqueIdentifier>{edff070e-76ee-4020-8943-96230d727fd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit">
+      <UniqueIdentifier>{fcfb8975-00ba-40e0-846b-93b7d8b379e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Player">
+      <UniqueIdentifier>{2e57d9be-c75f-4fca-8fa4-04fb92afcebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\01. Scene">
+      <UniqueIdentifier>{52aca5fe-bae4-4b56-b875-34aecfec2038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\01. Scene\MapTool">
+      <UniqueIdentifier>{e0663c24-937b-4348-b263-d58789da2f6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\01. Scene\Start">
+      <UniqueIdentifier>{cf471333-634a-4830-849e-a72c238ba66d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\01. Scene\Test">
+      <UniqueIdentifier>{8239d58c-9c48-4977-b305-898c7aae269f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\03. MapTool">
+      <UniqueIdentifier>{4a2e862f-1d40-4c56-923d-3c24bbe9541a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
-      <Filter>API FrameWork\Animation</Filter>
+      <Filter>API FrameWork\09. Animation</Filter>
     </ClCompile>
     <ClCompile Include="EffectManager.cpp">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="FontManager.cpp">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameNode.cpp">
-      <Filter>API FrameWork\GameNode</Filter>
+      <Filter>API FrameWork\04. GameNode</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
-      <Filter>API FrameWork\Image</Filter>
+      <Filter>API FrameWork\08. Image</Filter>
     </ClCompile>
     <ClCompile Include="ImageManager.cpp">
-      <Filter>API FrameWork\Image</Filter>
+      <Filter>API FrameWork\08. Image</Filter>
     </ClCompile>
     <ClCompile Include="JsonSaveLoader.cpp">
-      <Filter>API FrameWork\Json</Filter>
+      <Filter>API FrameWork\13. Json</Filter>
     </ClCompile>
     <ClCompile Include="KeyManager.cpp">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
       <Filter>MainGame</Filter>
     </ClCompile>
     <ClCompile Include="ProgressBar.cpp">
-      <Filter>API FrameWork\ProgressBar</Filter>
+      <Filter>API FrameWork\11. ProgressBar</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="Stdafx.cpp">
-      <Filter>API FrameWork\Stdafx</Filter>
+      <Filter>API FrameWork\01. Stdafx</Filter>
     </ClCompile>
     <ClCompile Include="TextDataManager.cpp">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">
-      <Filter>API FrameWork\Timer</Filter>
+      <Filter>API FrameWork\10. Timer</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>API FrameWork\Timer</Filter>
+      <Filter>API FrameWork\10. Timer</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
-      <Filter>API FrameWork\Utillity</Filter>
+      <Filter>API FrameWork\05. Utillity</Filter>
     </ClCompile>
     <ClCompile Include="WinMain.cpp">
       <Filter>API FrameWork</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Object</Filter>
+      <Filter>MainGame\02. Object</Filter>
     </ClCompile>
     <ClCompile Include="Unit.cpp">
-      <Filter>Object\Unit</Filter>
+      <Filter>MainGame\02. Object\Unit</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Object\Unit\Player</Filter>
+      <Filter>MainGame\02. Object\Unit\Player</Filter>
     </ClCompile>
     <ClCompile Include="PixelCollider.cpp">
-      <Filter>API FrameWork\Collider\PixelCollider</Filter>
+      <Filter>API FrameWork\12. Collider\PixelCollider</Filter>
     </ClCompile>
     <ClCompile Include="CameraManager.cpp">
-      <Filter>API FrameWork\Camera</Filter>
+      <Filter>API FrameWork\07. Camera</Filter>
     </ClCompile>
     <ClCompile Include="TileManager.cpp">
-      <Filter>MapTool</Filter>
+      <Filter>MainGame\03. MapTool</Filter>
     </ClCompile>
     <ClCompile Include="ImageLoader.cpp">
-      <Filter>API FrameWork\Image</Filter>
+      <Filter>API FrameWork\08. Image</Filter>
     </ClCompile>
     <ClCompile Include="UI.cpp">
-      <Filter>API FrameWork\UI</Filter>
+      <Filter>API FrameWork\14 .UI</Filter>
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
-      <Filter>API FrameWork\UI</Filter>
+      <Filter>API FrameWork\14 .UI</Filter>
     </ClCompile>
     <ClCompile Include="MapToolScene.cpp">
-      <Filter>Scene\MapTool</Filter>
+      <Filter>MainGame\01. Scene\MapTool</Filter>
     </ClCompile>
     <ClCompile Include="StartScene.cpp">
-      <Filter>Scene\Start</Filter>
+      <Filter>MainGame\01. Scene\Start</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Scene</Filter>
+      <Filter>MainGame\01. Scene</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
-      <Filter>Scene\Test</Filter>
+      <Filter>MainGame\01. Scene\Test</Filter>
     </ClCompile>
     <ClCompile Include="FileManager.cpp">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="MessageBoxManager.cpp">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
-      <Filter>API FrameWork\Collider</Filter>
+      <Filter>API FrameWork\12. Collider</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
-      <Filter>Object</Filter>
+      <Filter>MainGame\02. Object</Filter>
     </ClCompile>
-    <ClCompile Include="GpImage.cpp">
-      <Filter>API FrameWork\Image</Filter>
+    <ClCompile Include="ImageGp.cpp">
+      <Filter>API FrameWork\08. Image</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageGpManager.cpp">
+      <Filter>API FrameWork\08. Image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
-      <Filter>API FrameWork\Animation</Filter>
+      <Filter>API FrameWork\09. Animation</Filter>
     </ClInclude>
     <ClInclude Include="CommonMacroFuntion.h">
-      <Filter>API FrameWork\Utillity</Filter>
+      <Filter>API FrameWork\05. Utillity</Filter>
     </ClInclude>
     <ClInclude Include="EffectManager.h">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="FontManager.h">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="GameNode.h">
-      <Filter>API FrameWork\GameNode</Filter>
+      <Filter>API FrameWork\04. GameNode</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
-      <Filter>API FrameWork\Image</Filter>
+      <Filter>API FrameWork\08. Image</Filter>
     </ClInclude>
     <ClInclude Include="ImageManager.h">
-      <Filter>API FrameWork\Image</Filter>
+      <Filter>API FrameWork\08. Image</Filter>
     </ClInclude>
     <ClInclude Include="JsonSaveLoader.h">
-      <Filter>API FrameWork\Json</Filter>
+      <Filter>API FrameWork\13. Json</Filter>
     </ClInclude>
     <ClInclude Include="KeyManager.h">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="MainGame.h">
       <Filter>MainGame</Filter>
     </ClInclude>
     <ClInclude Include="ProgressBar.h">
-      <Filter>API FrameWork\ProgressBar</Filter>
+      <Filter>API FrameWork\11. ProgressBar</Filter>
     </ClInclude>
     <ClInclude Include="RandomFuntion.h">
-      <Filter>API FrameWork\Utillity</Filter>
+      <Filter>API FrameWork\05. Utillity</Filter>
     </ClInclude>
     <ClInclude Include="SingletonBase.h">
-      <Filter>API FrameWork\DesignPattern\Singleton</Filter>
+      <Filter>API FrameWork\03. DesignPattern\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="Stdafx.h">
-      <Filter>API FrameWork\Stdafx</Filter>
+      <Filter>API FrameWork\01. Stdafx</Filter>
     </ClInclude>
     <ClInclude Include="TextDataManager.h">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="TimeManager.h">
-      <Filter>API FrameWork\Timer</Filter>
+      <Filter>API FrameWork\10. Timer</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>API FrameWork\Timer</Filter>
+      <Filter>API FrameWork\10. Timer</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
-      <Filter>API FrameWork\Utillity</Filter>
+      <Filter>API FrameWork\05. Utillity</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Object</Filter>
+      <Filter>MainGame\02. Object</Filter>
     </ClInclude>
     <ClInclude Include="Unit.h">
-      <Filter>Object\Unit</Filter>
+      <Filter>MainGame\02. Object\Unit</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Object\Unit\Player</Filter>
+      <Filter>MainGame\02. Object\Unit\Player</Filter>
     </ClInclude>
     <ClInclude Include="PixelCollider.h">
-      <Filter>API FrameWork\Collider\PixelCollider</Filter>
+      <Filter>API FrameWork\12. Collider\PixelCollider</Filter>
     </ClInclude>
     <ClInclude Include="CameraManager.h">
-      <Filter>API FrameWork\Camera</Filter>
+      <Filter>API FrameWork\07. Camera</Filter>
     </ClInclude>
     <ClInclude Include="TileManager.h">
-      <Filter>MapTool</Filter>
+      <Filter>MainGame\03. MapTool</Filter>
     </ClInclude>
     <ClInclude Include="ImageLoader.h">
-      <Filter>API FrameWork\Image</Filter>
+      <Filter>API FrameWork\08. Image</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">
-      <Filter>API FrameWork\UI</Filter>
+      <Filter>API FrameWork\14 .UI</Filter>
     </ClInclude>
     <ClInclude Include="UIManager.h">
-      <Filter>API FrameWork\UI</Filter>
+      <Filter>API FrameWork\14 .UI</Filter>
     </ClInclude>
     <ClInclude Include="MapToolScene.h">
-      <Filter>Scene\MapTool</Filter>
+      <Filter>MainGame\01. Scene\MapTool</Filter>
     </ClInclude>
     <ClInclude Include="StartScene.h">
-      <Filter>Scene\Start</Filter>
+      <Filter>MainGame\01. Scene\Start</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Scene</Filter>
+      <Filter>MainGame\01. Scene</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">
-      <Filter>Scene\Test</Filter>
+      <Filter>MainGame\01. Scene\Test</Filter>
     </ClInclude>
     <ClInclude Include="Enums.h">
-      <Filter>Config</Filter>
+      <Filter>API FrameWork\02. Config</Filter>
     </ClInclude>
     <ClInclude Include="FileManager.h">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="Config.h">
-      <Filter>Config</Filter>
+      <Filter>API FrameWork\02. Config</Filter>
     </ClInclude>
     <ClInclude Include="MessageBoxManager.h">
-      <Filter>API FrameWork\Manager</Filter>
+      <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
-      <Filter>API FrameWork\Collider</Filter>
+      <Filter>API FrameWork\12. Collider</Filter>
     </ClInclude>
     <ClInclude Include="String.h">
-      <Filter>Config</Filter>
+      <Filter>API FrameWork\02. Config</Filter>
     </ClInclude>
     <ClInclude Include="Structs.h">
-      <Filter>Config</Filter>
+      <Filter>API FrameWork\02. Config</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
-      <Filter>Object</Filter>
+      <Filter>MainGame\02. Object</Filter>
     </ClInclude>
-    <ClInclude Include="GpImage.h">
-      <Filter>API FrameWork\Image</Filter>
+    <ClInclude Include="ImageGp.h">
+      <Filter>API FrameWork\08. Image</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageGpManager.h">
+      <Filter>API FrameWork\08. Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>API FrameWork\02. Config</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

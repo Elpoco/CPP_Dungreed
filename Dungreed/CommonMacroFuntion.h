@@ -76,7 +76,7 @@ inline void RectangleMakeRect(HDC hdc, RectF rc) {
 	Rectangle(hdc, rc.GetLeft(), rc.GetTop(), rc.GetRight(), rc.GetBottom());
 }
 
-inline void RectangleMake(HDC hdc, RectF rc, bool isFill = true, Color color = Color::Black, Color fillColor = Color::White)
+inline void RectangleMake(HDC hdc, RectF rc,  Color penColor = Color::Black, bool isFill = false, Color fillColor = Color::White)
 {
 	Graphics graphics(hdc);
 
@@ -88,7 +88,7 @@ inline void RectangleMake(HDC hdc, RectF rc, bool isFill = true, Color color = C
 	}
 	else
 	{
-		Pen pen(color);
+		Pen pen(penColor);
 
 		graphics.DrawRectangle(&pen, rc);
 	}

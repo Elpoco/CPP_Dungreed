@@ -22,6 +22,14 @@ namespace ImageName
 	constexpr char* background = "Background";
 
 	constexpr char* floor = "Floor";
+
+	namespace Item
+	{
+		namespace Weapon
+		{
+			constexpr char* basicShotSword = "BasicShotSword";
+		}
+	}
 }
 
 namespace SceneName

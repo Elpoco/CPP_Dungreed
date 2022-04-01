@@ -89,42 +89,6 @@ Image* ImageManager::addFrameImage(string strKey, const char* fileName, int widt
 	return img;
 }
 
-Image* ImageManager::addImage(string strKey, const WCHAR* fileName)
-{
-	Image* img = findImage(strKey);
-
-	if (img) return img;
-
-	img = new Image;
-	if (FAILED(img->init(fileName, _memDc))) {
-		SAFE_DELETE(img);
-		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
-		return NULL;
-	}
-
-	_mImageList.insert(make_pair(strKey, img));
-
-	return img;
-}
-
-Image* ImageManager::addFrameImage(string strKey, const WCHAR* fileName, int maxFrameX, int maxFrameY)
-{
-	Image* img = findImage(strKey);
-
-	if (img) return img;
-
-	img = new Image;
-	if (FAILED(img->init(fileName, maxFrameX, maxFrameY))) {
-		SAFE_DELETE(img);
-		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
-		return NULL;
-	}
-
-	_mImageList.insert(make_pair(strKey, img));
-
-	return img;
-}
-
 Image* ImageManager::findImage(string strKey)
 {
 	auto key = _mImageList.find(strKey);
@@ -177,8 +141,7 @@ void ImageManager::render(string strKey, HDC hdc)
 	Image* img = findImage(strKey);
 	if (img)
 	{
-		if (img->checkGdiPlus()) img->gpRender();
-		else img->render(hdc);
+		img->render(hdc);
 	}
 		
 }
@@ -188,8 +151,7 @@ void ImageManager::render(string strKey, HDC hdc, int destX, int destY)
 	Image* img = findImage(strKey);
 	if (img)
 	{
-		if (img->checkGdiPlus()) img->gpRender(destX, destY);
-		else img->render(hdc, destX, destY);
+		img->render(hdc, destX, destY);
 	}
 }
 
@@ -198,8 +160,7 @@ void ImageManager::render(string strKey, HDC hdc, int destX, int destY, int sour
 	Image* img = findImage(strKey);
 	if (img)
 	{
-		if (img->checkGdiPlus()) img->gpRender(destX, destY, sourX, sourY, sourWidth, sourHeight);
-		else img->render(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight);
+		img->render(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight);
 	}
 }
 

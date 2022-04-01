@@ -18,6 +18,13 @@ HRESULT Player::init()
 	CAMERAMANAGER->followCamera(this);
 
 	hand.image = IMAGEMANAGER->findImage(ImageName::Player::hand);
+	_weapon = GPIMAGEMANAGER->findImage(ImageName::Item::Weapon::basicShotSword);
+	angle = 0;
+	attackAngle = 110;
+
+	mainHandX = 15;
+	mainWeaponX = mainHandX;
+	tempAngle = 0;
 
 	return S_OK;
 }
@@ -33,13 +40,30 @@ void Player::update()
 	this->move();
 	Object::updateRect();
 	this->animation();
+
+	angle = getAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.X, _ptMouse.Y)  / PI *180;
 }
 
 void Player::render(HDC hdc)
 {
 	Unit::render(hdc);
 
-	CAMERAMANAGER->render(hdc, hand.image, _x + 15, _y + 15);
+	//CAMERAMANAGER->render(hdc, hand.image, _x + 15, _y + 15);
+	CAMERAMANAGER->printRectangle(hdc, RectFMakeCenter(_x + 15, _y + 20, 5, 5));
+
+	CAMERAMANAGER->render(hdc, 
+		_weapon, 
+		_x + mainWeaponX,
+		_y + 20 - _weapon->getHeight(),
+		angle + attackAngle - 110 + tempAngle,
+		{ _x + mainWeaponX, _y + 20 });
+
+
+	// x 15 y 20
+	//_img->render(hdc, CENTER_X, CENTER_Y, 90);
+	//_img->render(hdc, CENTER_X, CENTER_Y, 180);
+	//_img->render(hdc, CENTER_X, CENTER_Y, 270);
+
 }
 
 void Player::initAnimation()
@@ -91,7 +115,7 @@ void Player::move()
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
-
+		attackAngle *= -1;
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
@@ -123,6 +147,16 @@ void Player::animation()
 		break;
 	}
 
-	if (_ptMouse.X < CAMERAMANAGER->calRelX(_x)) _isLeft = true;
-	else _isLeft = false;
+	if (_ptMouse.X < CAMERAMANAGER->calRelX(_x))
+	{
+		_isLeft = true;
+		mainWeaponX = mainHandX * -1;
+		tempAngle = 180;
+	}
+	else 
+	{ 
+		_isLeft = false; 
+		mainWeaponX = mainHandX;
+		tempAngle = 0;
+	}
 }

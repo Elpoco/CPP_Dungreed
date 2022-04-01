@@ -55,9 +55,9 @@ void CameraManager::printRectangle(HDC hdc, float x, float y, float width, float
 	RectangleMake(hdc, x - _x, y - _y, width, height);
 }
 
-void CameraManager::printRectangle(HDC hdc, RectF rc, bool isFill, Color color, Color fillColor)
+void CameraManager::printRectangle(HDC hdc, RectF rc, Color penColor, bool isFill, Color fillColor)
 {
-	RectangleMake(hdc, { rc.GetLeft() - _x, rc.GetTop() - _y, rc.Width, rc.Height }, isFill, color, fillColor);
+	RectangleMake(hdc, { rc.GetLeft() - _x, rc.GetTop() - _y, rc.Width, rc.Height }, penColor, isFill, fillColor);
 }
 
 void CameraManager::printRectanglePoint(HDC hdc, PointF point, float width, float height, Color color)
@@ -70,26 +70,34 @@ void CameraManager::printRectangleCenter(HDC hdc, float x, float y, float width,
 	RectangleMakeCenter(hdc, x - _x, y - _y, width, height);
 }
 
-int CameraManager::checkObjectInCamera(Image * img, float x, float y)
+int CameraManager::checkObjectInCamera(float x, float y, float width, float height)
 {
 	int posX = x - _x;
 	int posY = y - _y;
-	int frameWidth = img->getFrameWidth();
-	int frameHeight = img->getFrameHeight();
 
-	return posX < -frameWidth || posY < -frameHeight || frameWidth > WINSIZE_X || frameHeight > WINSIZE_Y;
+	return posX < -width || posY < -height || width > WINSIZE_X || height > WINSIZE_Y;
 }
 
 void CameraManager::render(HDC hdc, Image* img, float x, float y)
 {
-	if (this->checkObjectInCamera(img, x, y)) return;
+	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;
 
 	img->render(hdc, x - _x, y - _y);
 }
 
+void CameraManager::render(HDC hdc, ImageGp* img, float x, float y, int angle, PointF rotateCenter)
+{
+	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;
+
+	if (rotateCenter.X != 0) rotateCenter.X -= _x;
+	if (rotateCenter.Y != 0) rotateCenter.Y -= _y;
+
+	img->render(hdc, x - _x, y - _y, angle, rotateCenter);
+}
+
 void CameraManager::frameRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY)
 {
-	if (this->checkObjectInCamera(img, x, y)) return;
+	if (this->checkObjectInCamera(x, y, img->getFrameWidth(), img->getFrameHeight())) return;
 	
 	img->frameRender(hdc, x - _x, y - _y, frameX, frameY);
 }
