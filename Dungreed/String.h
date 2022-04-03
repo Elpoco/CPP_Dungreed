@@ -9,6 +9,11 @@ namespace ImageName
 		constexpr char* hand = "PlayerHand";
 	}
 
+	namespace Enemy
+	{
+		constexpr char* dogIdle = "dogIdle";
+	}
+	
 	constexpr char* pixelTest = "PixelTest";
 	constexpr char* testTile = "TestTile";
 

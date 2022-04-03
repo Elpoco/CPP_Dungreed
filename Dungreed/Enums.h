@@ -42,3 +42,14 @@ namespace ColliderEnum
 		DIR_CNT
 	};
 }
+
+namespace ObjectEnum
+{
+	enum class TYPE
+	{
+		PLAYER,
+		ITEM,
+		ENEMY,
+		NPC,
+	};
+}

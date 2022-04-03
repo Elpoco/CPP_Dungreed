@@ -50,7 +50,7 @@ bool ImageGpManager::deleteAll()
 	return false;
 }
 
-ImageGp * ImageGpManager::addImage(string strKey, string fileName, float scaleW, float scaleH)
+ImageGp * ImageGpManager::addImage(HDC memDc, string strKey, string fileName, float scaleW, float scaleH)
 {
 	ImageGp* img = findImage(strKey);
 
@@ -60,7 +60,7 @@ ImageGp * ImageGpManager::addImage(string strKey, string fileName, float scaleW,
 
 	wstring name = wstring(fileName.begin(), fileName.end());
 
-	if (FAILED(img->init(name.c_str(), scaleW, scaleH)))
+	if (FAILED(img->init(memDc, name.c_str(), scaleW, scaleH)))
 	{
 		SAFE_DELETE(img);
 		ImageManager::errorMsg(ImageManager::IM_ERROR_CODE::LOAD_FAILD, strKey);

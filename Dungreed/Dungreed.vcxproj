@@ -150,6 +150,7 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
@@ -158,10 +159,12 @@
     <ClCompile Include="ImageGpManager.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="JsonSaveLoader.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MessageBoxManager.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="SkelDog.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -194,6 +197,7 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="FontManager.h" />
@@ -203,10 +207,12 @@
     <ClInclude Include="ImageGpManager.h" />
     <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="JsonSaveLoader.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MessageBoxManager.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="SkelDog.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Structs.h" />
     <ClInclude Include="TileManager.h" />

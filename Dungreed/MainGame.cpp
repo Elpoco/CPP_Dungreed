@@ -65,8 +65,11 @@ void MainGame::render(void)
 
 	TIMEMANAGER->render(getMemDC());
 
+	// ÇöÀç ¾À ÀÌ¸§
 	if(_isDebug)
-		TextOut(getMemDC(), 0, WINSIZE_Y-20, SCENEMANAGER->getCurrentSceneName().c_str(), SCENEMANAGER->getCurrentSceneName().length());
+		TextOut(getMemDC(), 0, WINSIZE_Y-20, 
+			SCENEMANAGER->getCurrentSceneName().c_str(), SCENEMANAGER->getCurrentSceneName().length());
 
 	this->getBackBuffer()->render(getHDC());
+
 }

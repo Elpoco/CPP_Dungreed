@@ -1,5 +1,7 @@
 #pragma once
-class ImageLoader
+#include "GameNode.h"
+
+class ImageLoader : public GameNode
 {
 public:
 	ImageLoader();

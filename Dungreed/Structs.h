@@ -6,7 +6,7 @@ using Gdiplus::PointF;
 typedef struct tagTile
 {
 	RectF rc;
-	PointF pos;
+	PointF pos;		// ≈∏¿œ ¿Œµ¶Ω∫
 	int tileFrameX;
 	int tileFrameY;
 	MapToolEnum::TILE_TYPE type;
@@ -19,4 +19,20 @@ typedef struct tagTile
 		tileFrameY = 0;
 		type = MapToolEnum::TILE_TYPE::NONE;
 	}
-} Tile;
+} TILE;
+
+typedef struct tagFrameInfo
+{
+	int tick;
+	int cnt;
+	int x;
+	int y;
+
+	tagFrameInfo()
+	{
+		tick = 10;
+		cnt = 0;
+		x = 0;
+		y = 0;
+	}
+} FRAME_INFO;

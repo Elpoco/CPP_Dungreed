@@ -76,8 +76,17 @@
     <Filter Include="MainGame\01. Scene\Test">
       <UniqueIdentifier>{8239d58c-9c48-4977-b305-898c7aae269f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\03. MapTool">
+    <Filter Include="MainGame\02. Object\Item">
+      <UniqueIdentifier>{a567b791-cce3-45b1-92ff-361e5d6a83ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\01. Scene\MapTool\TileManager">
       <UniqueIdentifier>{4a2e862f-1d40-4c56-923d-3c24bbe9541a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Enemy">
+      <UniqueIdentifier>{2682263a-073d-4ed9-ad59-c202ad36ccd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Enemy\SkelDog">
+      <UniqueIdentifier>{bbf4c483-2573-46b3-a748-571616648327}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +157,7 @@
       <Filter>API FrameWork\07. Camera</Filter>
     </ClCompile>
     <ClCompile Include="TileManager.cpp">
-      <Filter>MainGame\03. MapTool</Filter>
+      <Filter>MainGame\01. Scene\MapTool\TileManager</Filter>
     </ClCompile>
     <ClCompile Include="ImageLoader.cpp">
       <Filter>API FrameWork\08. Image</Filter>
@@ -188,6 +197,15 @@
     </ClCompile>
     <ClCompile Include="ImageGpManager.cpp">
       <Filter>API FrameWork\08. Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>MainGame\02. Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>MainGame\02. Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="SkelDog.cpp">
+      <Filter>MainGame\02. Object\Unit\Enemy\SkelDog</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -264,7 +282,7 @@
       <Filter>API FrameWork\07. Camera</Filter>
     </ClInclude>
     <ClInclude Include="TileManager.h">
-      <Filter>MainGame\03. MapTool</Filter>
+      <Filter>MainGame\01. Scene\MapTool\TileManager</Filter>
     </ClInclude>
     <ClInclude Include="ImageLoader.h">
       <Filter>API FrameWork\08. Image</Filter>
@@ -319,6 +337,15 @@
     </ClInclude>
     <ClInclude Include="Define.h">
       <Filter>API FrameWork\02. Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>MainGame\02. Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>MainGame\02. Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="SkelDog.h">
+      <Filter>MainGame\02. Object\Unit\Enemy\SkelDog</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

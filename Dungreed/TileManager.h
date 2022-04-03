@@ -5,7 +5,7 @@ class TileManager : public SingletonBase<TileManager>
 {
 private:
 	Image* _imgTile;
-	Tile* _tiles;
+	TILE* _tiles;
 
 	int _renderWidth;
 	int _renderHeight;
@@ -23,12 +23,12 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	void tileRender(HDC hdc, Tile tile);
+	void tileRender(HDC hdc, TILE tile);
 
 	void setRenderSize(int width, int height);
 	void setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TILE_TYPE type);
 
-	Tile getTile(PointF pt);
+	TILE getTile(PointF pt);
 	PointF getTilePt(PointF pt);
 	int getTileIndex(PointF pt);
 	MapToolEnum::TILE_TYPE getTileType(PointF pt);

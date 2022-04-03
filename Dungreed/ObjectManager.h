@@ -5,7 +5,11 @@ class Object;
 
 class ObjectManager : public SingletonBase<ObjectManager>
 {	
+public:
+	typedef map<ObjectEnum::TYPE, vector<Object*>> mapObjects;
+
 private:
+	mapObjects _mObjects;
 	vector<Object*> _vObjects;
 
 public:
@@ -17,7 +21,7 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	void addObject(Object* object);
+	void addObject(ObjectEnum::TYPE type, Object* object);
 
 };
 

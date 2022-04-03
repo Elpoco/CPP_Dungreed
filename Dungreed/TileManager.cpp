@@ -17,7 +17,7 @@ HRESULT TileManager::init()
 	_tileCntY = MapToolSet::TILE_CNT_Y;
 	_tileTotalCnt = _tileCntX * _tileCntY;
 
-	_tiles = new Tile[_tileTotalCnt];
+	_tiles = new TILE[_tileTotalCnt];
 
 	for (float y = 0; y < _tileCntY; y++)
 	{
@@ -65,7 +65,7 @@ void TileManager::render(HDC hdc)
 	}
 }
 
-void TileManager::tileRender(HDC hdc, Tile tile)
+void TileManager::tileRender(HDC hdc, TILE tile)
 {
 	switch (tile.type)
 	{
@@ -101,7 +101,7 @@ void TileManager::setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TIL
 	_tiles[idx].type = type;
 }
 
-Tile TileManager::getTile(PointF pt)
+TILE TileManager::getTile(PointF pt)
 {
 	int idx = getTileIndex(pt);
 
@@ -137,10 +137,10 @@ MapToolEnum::TILE_TYPE TileManager::getTileType(PointF pt)
 
 int TileManager::saveMap(string str)
 {
-	return FILEMANAGER->saveFile(PATH_DATA, str, _tiles, _tileTotalCnt * sizeof(Tile));
+	return FILEMANAGER->saveFile(PATH_DATA, str, _tiles, _tileTotalCnt * sizeof(TILE));
 }
 
 int TileManager::loadMap(string str)
 {
-	return FILEMANAGER->loadFile(PATH_DATA, str, _tiles, _tileTotalCnt * sizeof(Tile));
+	return FILEMANAGER->loadFile(PATH_DATA, str, _tiles, _tileTotalCnt * sizeof(TILE));
 }

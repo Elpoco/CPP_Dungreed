@@ -3,6 +3,8 @@
 
 #include "Object.h"
 
+using namespace ObjectEnum;
+
 ObjectManager::ObjectManager()
 {
 }
@@ -13,33 +15,53 @@ ObjectManager::~ObjectManager()
 
 HRESULT ObjectManager::init()
 {
-	COLLISIONMANAGER->setObjectVector(&_vObjects);
+	_mObjects.insert(make_pair(TYPE::PLAYER, vector<Object*> ()));
+	_mObjects.insert(make_pair(TYPE::ITEM, vector<Object*> ()));
+	_mObjects.insert(make_pair(TYPE::ENEMY, vector<Object*> ()));
+
+	COLLISIONMANAGER->setObject(&_mObjects);
 
 	return S_OK;
 }
 
 void ObjectManager::release()
 {
+	for (auto pairObject : _mObjects)
+	{
+		for (Object* obj : pairObject.second)
+		{
+			obj->release();
+			SAFE_DELETE(obj);
+		}
+		pairObject.second.clear();
+	}
+	_mObjects.clear();
 }
 
 void ObjectManager::update()
 {
-	for (Object* obj : _vObjects)
+	for (auto pairObject : _mObjects)
 	{
-		obj->update();
+		for (Object* obj : pairObject.second)
+		{
+			obj->update();
+		}
 	}
 }
 
 void ObjectManager::render(HDC hdc)
 {
-	for (Object* obj : _vObjects)
+	for (auto pairObject : _mObjects)
 	{
-		obj->render(hdc);
+		for (Object* obj : pairObject.second)
+		{
+			obj->render(hdc);
+		}
 	}
 }
 
-void ObjectManager::addObject(Object* object)
+void ObjectManager::addObject(ObjectEnum::TYPE type, Object* object)
 {
 	object->init();
-	_vObjects.push_back(object);
+	_mObjects.find(type)->second.push_back(object);
 }

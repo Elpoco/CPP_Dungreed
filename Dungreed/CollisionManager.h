@@ -8,10 +8,7 @@ using namespace ColliderEnum;
 class CollisionManager : public SingletonBase<CollisionManager>
 {
 private:
-	typedef vector<Object*> vObjects;
-
-private:
-	vObjects* _vObjects;
+	ObjectManager::mapObjects* _mObjects;
 
 	bool _onTileCollision;
 
@@ -24,12 +21,12 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	void setObjectVector(vObjects* vObjects) { _vObjects = vObjects; }
+	void setObject(ObjectManager::mapObjects* mObjects) { _mObjects = mObjects; }
 
 	void onTileCollision() { _onTileCollision = true; }
 	void offTIleCollision() { _onTileCollision = false; }
 	void tileCollision();
-	void collisionBlock(Object* obj, Tile tile, DIRECTION dir);
+	void collisionBlock(Object* obj, TILE tile, DIRECTION dir);
 
 };
 

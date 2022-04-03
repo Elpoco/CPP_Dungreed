@@ -36,6 +36,9 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::Player::die, PATH_UNIT"Player/Die.bmp", 78, 75, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Player::hand, PATH_UNIT"Player/Hand.bmp", 8, 8);
 
+	// Enemy
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::dogIdle, PATH_UNIT"Enemy/SkelDogIdle.bmp", 300, 108, 5, 2, true, ColorSet::MAGENTA);
+
 	// Map
 	IMAGEMANAGER->addImage(ImageName::pixelTest, PATH_IMAGE"PixelTest.bmp", WINSIZE_X, WINSIZE_Y);
 	IMAGEMANAGER->addImage(ImageName::testTile, PATH_IMAGE"TestTile.bmp", 48, 48);
@@ -56,5 +59,6 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::floor, PATH_IMAGE"Town/Floor.bmp", 2752, 448, true, ColorSet::MAGENTA);
 
 	// Item
-	GPIMAGEMANAGER->addImage(ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword_New.png", 4, 4);
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, 
+		PATH_ITEM"Weapon/BasicShortSword_New.png", 3.0f, 3.0f);
 }

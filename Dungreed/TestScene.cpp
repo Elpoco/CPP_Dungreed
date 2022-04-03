@@ -2,10 +2,12 @@
 #include "TestScene.h"
 
 #include "Player.h"
+#include "SkelDog.h"
 
 HRESULT TestScene::init()
 {
-	OBJECTMANAGER->addObject(new Player);
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::PLAYER, new Player);
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new SkelDog);
 
 	TILEMANAGER->loadMap();
 

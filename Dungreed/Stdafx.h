@@ -1,6 +1,6 @@
 #pragma once
 #include<SDKDDKVer.h>
-
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 //! 디버깅용 콘솔창
@@ -26,6 +26,7 @@
 #include <mmsystem.h>
 #include <mciapi.h>
 
+#include <ole2.h>
 #include <gdiplus.h>
 #pragma comment (lib,"Gdiplus.lib")
 

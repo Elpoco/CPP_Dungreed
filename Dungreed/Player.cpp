@@ -38,10 +38,10 @@ void Player::update()
 {
 	Unit::update();
 	this->move();
-	Object::updateRect();
+	Unit::updateRect();
 	this->animation();
 
-	angle = getAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.X, _ptMouse.Y)  / PI *180;
+	//angle = getAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.X, _ptMouse.Y)  / PI *180;
 }
 
 void Player::render(HDC hdc)
@@ -55,9 +55,10 @@ void Player::render(HDC hdc)
 		_weapon, 
 		_x + mainWeaponX,
 		_y + 20 - _weapon->getHeight(),
-		angle + attackAngle - 110 + tempAngle,
+		angle + attackAngle - 100 + tempAngle,
 		{ _x + mainWeaponX, _y + 20 });
 
+	//GPIMAGEMANAGER->render(ImageName::Item::Weapon::basicShotSword, hdc, 0, 0);
 
 	// x 15 y 20
 	//_img->render(hdc, CENTER_X, CENTER_Y, 90);
@@ -93,12 +94,12 @@ void Player::move()
 
 	if (KEYMANAGER->isStayKeyDown(KEY::DOWN))
 	{
-		_y += _moveSpeed;
+		//_y += _moveSpeed;
 	}
 
 	if (KEYMANAGER->isStayKeyDown(KEY::UP))
 	{
-		_y -= _moveSpeed;
+		//_y -= _moveSpeed;
 	}
 
 	if (KEYMANAGER->isOnceKeyUp(KEY::LEFT) ||

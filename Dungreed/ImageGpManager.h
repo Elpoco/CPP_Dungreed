@@ -22,7 +22,7 @@ public:
 	ImageGp* findImage(string strKey);
 	bool deleteAll();
 
-	ImageGp* addImage(string strKey, string fileName, float scaleW = 1, float scaleH = 1);
+	ImageGp* addImage(HDC memDc, string strKey, string fileName, float scaleW = 1, float scaleH = 1);
 
 	void render(string strKey, HDC hdc, int destX, int destY, int angle = 0, PointF rotateCenter = { 0,0 });
 };
