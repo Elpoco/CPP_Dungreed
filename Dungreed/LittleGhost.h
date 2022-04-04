@@ -1,22 +1,16 @@
 #pragma once
 #include "Enemy.h"
-class SkelDog : public Enemy
+class LittleGhost : public Enemy
 {
 private:
-	enum SKELDOG_MOTION
+	enum LITTLEGHOST_MOTION
 	{
-		IDLE,
-		RUN,
-		DIE
+		IDLE
 	};
 
-private:
-	float _overMove;
-	int _atkCnt;
-
 public:
-	SkelDog();
-	~SkelDog();
+	LittleGhost();
+	~LittleGhost();
 
 	virtual HRESULT init() override;
 	virtual void release() override;
@@ -27,9 +21,6 @@ public:
 	void animation();
 
 	void initAnimation();
-
-	void attack();
-
 
 };
 

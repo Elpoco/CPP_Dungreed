@@ -23,10 +23,14 @@ public:
 
 	void setObject(ObjectManager::mapObjects* mObjects) { _mObjects = mObjects; }
 
+	// 타일 충돌
 	void onTileCollision() { _onTileCollision = true; }
 	void offTIleCollision() { _onTileCollision = false; }
 	void tileCollision();
 	void collisionBlock(Object* obj, TILE tile, DIRECTION dir);
+
+	// 몬스터 인식범위
+	void enemyScanCollision();
 
 };
 

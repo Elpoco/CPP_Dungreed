@@ -6,6 +6,7 @@
 #include "TestScene.h"
 #include "StartScene.h"
 #include "MapToolScene.h"
+#include "TownScene.h"
 
 MainGame::MainGame()
 {
@@ -23,6 +24,7 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->addScene(SceneName::testScene, new TestScene);
 	SCENEMANAGER->addScene(SceneName::startScene, new StartScene);
 	SCENEMANAGER->addScene(SceneName::mapToolScene, new MapToolScene);
+	SCENEMANAGER->addScene(SceneName::townScene, new TownScene);
 	// ===================================================
 
 	SCENEMANAGER->changeScene(SceneName::startScene);

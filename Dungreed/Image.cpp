@@ -11,6 +11,14 @@ Image::Image() :
 {
 }
 
+void Image::setSize(string fileName, int& width, int& height)
+{
+	POINT size = GPIMAGEMANAGER->getImageSize(fileName);
+
+	if (width == 0) width = size.x;
+	if (height == 0) height = size.y;
+}
+
 HRESULT Image::init(int width, int height)
 {
 	if (_imageInfo != NULL) this->release();
@@ -74,6 +82,8 @@ HRESULT Image::init(const char* fileName, int width, int height, BOOL isTrans, C
 {
 	if (_imageInfo != NULL) this->release();
 
+	if (width == 0 || height == 0) setSize(fileName, width, height);
+
 	HDC hdc = GetDC(_hWnd);
 
 	_imageInfo = new IMAGE_INFO;
@@ -106,6 +116,8 @@ HRESULT Image::init(const char* fileName, int width, int height, BOOL isTrans, C
 HRESULT Image::init(const char* fileName, float x, float y, int width, int height, BOOL isTrans, COLORREF transColor)
 {
 	if (_imageInfo != NULL) this->release();
+
+	if (width == 0 || height == 0) setSize(fileName, width, height);
 
 	HDC hdc = GetDC(_hWnd);
 
@@ -141,6 +153,8 @@ HRESULT Image::init(const char* fileName, float x, float y, int width, int heigh
 HRESULT Image::init(const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor)
 {
 	if (_imageInfo != NULL) this->release();
+
+	if (width == 0 || height == 0) setSize(fileName, width, height);
 
 	HDC hdc = GetDC(_hWnd);
 
@@ -180,6 +194,8 @@ HRESULT Image::init(const char* fileName, int width, int height, int maxFrameX, 
 HRESULT Image::init(const char* fileName, float x, float y, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor)
 {
 	if (_imageInfo != NULL) this->release();
+
+	if (width == 0 || height == 0) setSize(fileName, width, height);
 
 	HDC hdc = GetDC(_hWnd);
 

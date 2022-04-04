@@ -10,8 +10,6 @@ protected:
 	float _x;
 	float _y;
 	RectF _rc;
-	RECT _rcRender;
-	RectF _rcResizing;
 
 	PointF _prove[ColliderEnum::DIRECTION::DIR_CNT];
 	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
@@ -34,6 +32,7 @@ public:
 	inline float getY() { return _y; }
 	inline void setX(float x) { _x = x; }
 	inline void setY(float y) { _y = y; }
+	inline PointF getPt() { return { _x,_y }; }
 
 	inline RectF getRect() { return _rc; }
 

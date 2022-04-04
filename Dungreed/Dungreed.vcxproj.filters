@@ -88,6 +88,12 @@
     <Filter Include="MainGame\02. Object\Unit\Enemy\SkelDog">
       <UniqueIdentifier>{bbf4c483-2573-46b3-a748-571616648327}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\01. Scene\Town">
+      <UniqueIdentifier>{c13acad6-ea91-40bf-9763-fe4ab3061f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Enemy\LittleGhost">
+      <UniqueIdentifier>{755de569-0a98-4610-9c9b-a021c8099349}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -206,6 +212,12 @@
     </ClCompile>
     <ClCompile Include="SkelDog.cpp">
       <Filter>MainGame\02. Object\Unit\Enemy\SkelDog</Filter>
+    </ClCompile>
+    <ClCompile Include="TownScene.cpp">
+      <Filter>MainGame\01. Scene\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="LittleGhost.cpp">
+      <Filter>MainGame\02. Object\Unit\Enemy\LittleGhost</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +358,12 @@
     </ClInclude>
     <ClInclude Include="SkelDog.h">
       <Filter>MainGame\02. Object\Unit\Enemy\SkelDog</Filter>
+    </ClInclude>
+    <ClInclude Include="TownScene.h">
+      <Filter>MainGame\01. Scene\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="LittleGhost.h">
+      <Filter>MainGame\02. Object\Unit\Enemy\LittleGhost</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

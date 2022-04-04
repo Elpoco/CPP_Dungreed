@@ -13,9 +13,11 @@ HRESULT Player::init()
 {
 	Unit::init();
 
+	_reSize = 30;
 	this->initAnimation();
 
 	CAMERAMANAGER->followCamera(this);
+
 
 	hand.image = IMAGEMANAGER->findImage(ImageName::Player::hand);
 	_weapon = GPIMAGEMANAGER->findImage(ImageName::Item::Weapon::basicShotSword);
@@ -41,7 +43,7 @@ void Player::update()
 	Unit::updateRect();
 	this->animation();
 
-	//angle = getAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.X, _ptMouse.Y)  / PI *180;
+	angle = getAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.X, _ptMouse.Y)  / PI *180;
 }
 
 void Player::render(HDC hdc)
@@ -67,27 +69,18 @@ void Player::render(HDC hdc)
 
 }
 
-void Player::initAnimation()
-{
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::idle));
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::run));
-
-	_imgWidth = _vImages[0]->getFrameWidth();
-	_imgHeight = _vImages[0]->getFrameHeight();
-}
-
 void Player::move()
 {
 	if (KEYMANAGER->isStayKeyDown(KEY::LEFT))
 	{
-		_state = PLAYER_STATE::RUN;
+		_state = PLAYER_MOTION::RUN;
 		//if(!_isCollision[ColliderEnum::DIRECTION::LB])
 			_x -= _moveSpeed;
 	}
 
 	if (KEYMANAGER->isStayKeyDown(KEY::RIGHT))
 	{
-		_state = PLAYER_STATE::RUN;
+		_state = PLAYER_MOTION::RUN;
 		//if (!_isCollision[ColliderEnum::DIRECTION::LT])
 			_x += _moveSpeed;
 	}
@@ -105,7 +98,7 @@ void Player::move()
 	if (KEYMANAGER->isOnceKeyUp(KEY::LEFT) ||
 		KEYMANAGER->isOnceKeyUp(KEY::RIGHT))
 	{
-		_state = PLAYER_STATE::IDLE;
+		_state = PLAYER_MOTION::IDLE;
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(KEY::UP) ||
@@ -126,7 +119,7 @@ void Player::move()
 
 	if (_isJump)
 	{
-		_y -= _jumpSpeed;
+		//_y -= _jumpSpeed;
 		//if (_isCollision)
 		//{
 		//	_isJump = false;
@@ -136,17 +129,7 @@ void Player::move()
 
 void Player::animation()
 {
-	switch (_state)
-	{
-	case PLAYER_STATE::IDLE:
-		_imgCurrent = PLAYER_STATE::IDLE;
-		break;
-	case PLAYER_STATE::RUN:
-		_imgCurrent = PLAYER_STATE::RUN;
-		break;
-	default:
-		break;
-	}
+	_imgCurrent = _state;
 
 	if (_ptMouse.X < CAMERAMANAGER->calRelX(_x))
 	{
@@ -160,4 +143,13 @@ void Player::animation()
 		mainWeaponX = mainHandX;
 		tempAngle = 0;
 	}
+}
+
+void Player::initAnimation()
+{
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::idle));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::run));
+
+	_imgWidth = _vImages[0]->getFrameWidth() - _reSize;
+	_imgHeight = _vImages[0]->getFrameHeight();
 }

@@ -11,7 +11,18 @@ namespace ImageName
 
 	namespace Enemy
 	{
-		constexpr char* dogIdle = "dogIdle";
+		constexpr char* dogIdle = "DogIdle";
+		constexpr char* dogRun = "DogRun";
+		constexpr char* dogDie = "DogDie";
+		
+		constexpr char* littleGhostIdle = "littleGhostIdle";
+	}
+
+	namespace Town
+	{
+		constexpr char* cloud = "TownCloud";
+		constexpr char* townBgDay = "TownBgDay";
+		constexpr char* townLayerDay = "TownLayerDay";
 	}
 	
 	constexpr char* pixelTest = "PixelTest";
@@ -42,6 +53,7 @@ namespace SceneName
 	constexpr char* testScene = "Test";
 	constexpr char* startScene = "Start";
 	constexpr char* mapToolScene = "MapTool";
+	constexpr char* townScene = "Town";
 }
 
 namespace String

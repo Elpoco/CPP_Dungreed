@@ -80,3 +80,14 @@ void ImageGpManager::render(string strKey, HDC hdc, int destX, int destY, int an
 		img->render(hdc, destX, destY, angle, rotateCenter);
 	}
 }
+
+POINT ImageGpManager::getImageSize(string fileName)
+{
+	wstring name = wstring(fileName.begin(), fileName.end());
+	ImageGp img(name.c_str());
+
+	POINT size = { img.getWidth(), img.getHeight() };
+	img.release();
+
+	return size;
+}

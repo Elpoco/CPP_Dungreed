@@ -41,6 +41,7 @@ private:
 
 public:
 	ImageGp();
+	ImageGp(const WCHAR* fileName);
 	~ImageGp();
 	
 	HRESULT init(HDC memDc, const WCHAR* fileName, float scaleW = 1, float scaleH = 1);

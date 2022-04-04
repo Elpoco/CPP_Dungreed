@@ -5,8 +5,6 @@
 #define KEY_CHANGE_WEAPON	'~'
 #define KEY_INTERACTION		'F'
 
-using namespace PlayerEnum;
-
 class Player : public Unit
 {
 private:
@@ -16,8 +14,14 @@ private:
 		RECT rc;
 	} PlayerHand;
 
+	enum PLAYER_MOTION
+	{
+		IDLE,
+		RUN
+	};
+
 private:
-	PLAYER_STATE _state;
+	PLAYER_MOTION _state;
 	PlayerHand hand;
 
 	int mainHandX;
@@ -37,10 +41,10 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
-	void initAnimation();
-
 	void move();
 	void animation();
+
+	void initAnimation();
 
 };
 

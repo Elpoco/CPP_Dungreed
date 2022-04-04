@@ -11,6 +11,8 @@ private:
 	FRAME_INFO _frameInfo;
 
 protected:
+	string _name;
+
 	// Image
 	vector<Image*> _vImages;
 	int _imgCurrent;
@@ -26,6 +28,9 @@ protected:
 	float _jumpSpeed;
 	float _gravity;
 
+	int _reSize;	// 렉트랑 이미지 리사이즈
+
+
 public:
 	Unit();
 	virtual ~Unit();
@@ -35,8 +40,10 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
-	void animation();
 	void move();
+	void animation();
+
+	void checkCollision();
 
 	void updateRect();
 	void updateProve();

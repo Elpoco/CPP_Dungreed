@@ -19,16 +19,6 @@ namespace MapToolEnum
 	};
 }
 
-namespace PlayerEnum
-{
-	enum PLAYER_STATE
-	{
-		IDLE,
-		RUN,
-		JUMP
-	};
-}
-
 namespace ColliderEnum
 {
 	enum DIRECTION

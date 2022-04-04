@@ -2,6 +2,7 @@
 #include "Unit.h"
 
 Unit::Unit() :
+	_name(""),
 	_imgCurrent(0),
 	_imgWidth(0.0f),
 	_imgHeight(0.0f),
@@ -11,7 +12,8 @@ Unit::Unit() :
 	_isFlying(false),
 	_moveSpeed(UnitSet::MOVE_SPEED),
 	_jumpSpeed(UnitSet::JUMP_SPEED),
-	_gravity(0.0f)
+	_gravity(0.0f),
+	_reSize(0)
 {
 }
 
@@ -37,6 +39,7 @@ void Unit::update()
 	this->animation();
 	this->move();
 	this->updateRect();
+	this->checkCollision();
 }
 
 void Unit::render(HDC hdc)
@@ -44,7 +47,7 @@ void Unit::render(HDC hdc)
 	Object::render(hdc);
 	if (_isDebug)
 	{
-		CAMERAMANAGER->printRectangleCenter(hdc, _x, _y, _imgWidth, _imgHeight);
+		CAMERAMANAGER->printRectangle(hdc, _rc, Color::Green);
 		CAMERAMANAGER->printPoint(hdc, _rc.GetLeft(), _rc.GetTop(), _x, _y, "x: %d, y: %d");
 	}
 
@@ -55,7 +58,21 @@ void Unit::render(HDC hdc)
 	}
 	else
 	{
-		CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rcRender.left, _rcRender.top, _frameInfo.x, _frameInfo.y);
+		CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.GetLeft() - _reSize/2, _rc.GetTop(), _frameInfo.x, _frameInfo.y);
+	}
+}
+
+void Unit::move()
+{
+	if (_isFall && !_isFlying)
+	{
+		_y += _gravity;
+		_gravity += UnitSet::GRAVITY;
+	}
+	
+	if (_isJump)
+	{
+		_y -= _jumpSpeed;
 	}
 }
 
@@ -76,19 +93,8 @@ void Unit::animation()
 	else _frameInfo.y = 0;
 }
 
-void Unit::move()
+void Unit::checkCollision()
 {
-	if (_isJump)
-	{
-		_y -= _jumpSpeed;
-	}
-
-	if (_isFall)
-	{
-		_y += _gravity;
-		_gravity += UnitSet::GRAVITY;
-	}
-
 	if (_isCollision[ColliderEnum::DIRECTION::BOTTOM])
 	{
 		_isFall = false;
@@ -115,13 +121,6 @@ void Unit::updateRect()
 		_imgHeight
 	);
 
-	_rcRender = RectMakeCenter(
-		_x,
-		_y,
-		_imgWidth,
-		_imgHeight
-	);
-
 	this->updateProve();
 }
 
@@ -140,4 +139,5 @@ void Unit::jump()
 	_isJump = true;
 	_isFall = true;
 	_gravity = 0.0f;
+	_y -= _jumpSpeed;
 }

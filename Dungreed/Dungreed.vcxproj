@@ -162,6 +162,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="JsonSaveLoader.cpp" />
     <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="LittleGhost.cpp" />
     <ClCompile Include="MessageBoxManager.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SkelDog.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="TextDataManager.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TownScene.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="Unit.cpp" />
@@ -210,6 +212,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="JsonSaveLoader.h" />
     <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="LittleGhost.h" />
     <ClInclude Include="MessageBoxManager.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="SkelDog.h" />
@@ -232,6 +235,7 @@
     <ClInclude Include="TextDataManager.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TownScene.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="Unit.h" />

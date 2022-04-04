@@ -2,8 +2,20 @@
 #include "Unit.h"
 class Enemy : public Unit
 {
-private:
-	string name;
+protected:
+	float	_hp;
+	bool	_isAutoLeft;	// 플레이어 위치에 따라 자동으로 변경할지
+
+	RectF	_rcScan;		// 플레이어 탐지 범위
+	POINT	_scanScale;		// 탐지 범위 배율
+	PointF	_ptPlayer;		// 플레이어 위치
+	RectF	_rcPlayer;		// 플레이어 렉트
+	int		_isPlayerScan;	// 플레이어 탐지 했는지
+	int		_isDead;
+
+	BYTE	_state;
+	bool	_isAttack;
+	
 
 public:
 	Enemy();
@@ -14,6 +26,12 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
+	void move();
+	void animation();
+
+	inline RectF getScanRect() { return _rcScan; }
+	inline int getPlayerScan() { return _isPlayerScan; }
+	void scanPlayer(PointF ptPlayer, RectF rcPlayer);
 
 };
 

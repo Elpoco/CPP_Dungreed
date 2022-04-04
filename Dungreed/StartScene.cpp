@@ -36,6 +36,9 @@ void StartScene::update()
 	if (KEYMANAGER->isOnceKeyDown('M'))
 		SCENEMANAGER->changeScene(SceneName::mapToolScene);
 
+	if (KEYMANAGER->isOnceKeyDown('T'))
+		SCENEMANAGER->changeScene(SceneName::townScene);
+
 	_loop1 += 0.1f;
 	_loop2 += 0.7f;
 }

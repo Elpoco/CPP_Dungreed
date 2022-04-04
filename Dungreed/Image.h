@@ -59,6 +59,7 @@ private:
 	BLENDFUNCTION	_blendFunc;
 	LPIMAGE_INFO	_blendImage;
 
+	void setSize(string fileName, int& width, int& height);
 
 public:
 	HRESULT init(int width, int height);

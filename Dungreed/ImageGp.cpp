@@ -7,6 +7,15 @@ ImageGp::ImageGp()
 {
 }
 
+ImageGp::ImageGp(const WCHAR* fileName)
+{
+	// 이미지 사이즈만 얻는 기능
+	_img = new Bitmap(fileName);
+	_imageInfo = new GP_IMAGE_INFO;
+	_imageInfo->width = _img->GetWidth();
+	_imageInfo->height = _img->GetHeight();
+}
+
 ImageGp::~ImageGp()
 {
 }

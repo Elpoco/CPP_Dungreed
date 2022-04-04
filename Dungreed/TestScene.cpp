@@ -3,11 +3,13 @@
 
 #include "Player.h"
 #include "SkelDog.h"
+#include "LittleGhost.h"
 
 HRESULT TestScene::init()
 {
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::PLAYER, new Player);
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new SkelDog);
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new LittleGhost);
 
 	TILEMANAGER->loadMap();
 
