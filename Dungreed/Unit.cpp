@@ -89,8 +89,8 @@ void Unit::animation()
 		if (checkFrame) _frameInfo.x = 0;
 	}
 
-	//if (_isLeft) _frameInfo.y = 1;
-	//else _frameInfo.y = 0;
+	if (_isLeft) _frameInfo.y = 1;
+	else _frameInfo.y = 0;
 }
 
 void Unit::checkCollision()
@@ -110,6 +110,12 @@ void Unit::checkCollision()
 	//{
 	//	if (_isJump) _isJump = false;
 	//}
+}
+
+void Unit::pushObject(float x, float y)
+{
+	if (x > 0) _x = x - _imgWidth / 2;
+	if (y > 0) _y = y - _imgHeight / 2;
 }
 
 void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
@@ -134,6 +140,8 @@ void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
 	case ColliderEnum::RB:
 		break;
 	case ColliderEnum::DIR_CNT:
+		_x = x - _imgWidth / 2;
+		_y = y - _imgHeight / 2;
 		break;
 	default:
 		break;

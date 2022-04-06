@@ -44,6 +44,7 @@ public:
 	void animation();
 
 	void checkCollision();
+	virtual void pushObject(float x = 0, float y = 0) override;
 	virtual void pushObject(ColliderEnum::DIRECTION dir, float x, float y) override;
 
 	void updateRect();

@@ -24,6 +24,7 @@ public:
 
 	bool getCollision(ColliderEnum::DIRECTION dir) { return _isCollision[dir]; }
 	void setCollision(ColliderEnum::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }
+	virtual void pushObject(float x = 0, float y = 0) {}
 	virtual void pushObject(ColliderEnum::DIRECTION dir, float x, float y) {}
 
 	inline float getX() { return _x; }

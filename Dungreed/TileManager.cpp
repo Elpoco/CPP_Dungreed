@@ -27,8 +27,8 @@ HRESULT TileManager::init()
 		for (float x = 0; x < _tileCntX; x++)
 		{
 			int idx = y * _tileCntX + x;
-			//_tiles[idx].x = x * TILE_SIZE + TILE_SIZE/2;
-			//_tiles[idx].y = y * TILE_SIZE + TILE_SIZE/2;
+			_tiles[idx].x = x * TILE_SIZE + TILE_SIZE/2;
+			_tiles[idx].y = y * TILE_SIZE + TILE_SIZE/2;
 			_tiles[idx].pos = PointMake(x, y);
 			_tiles[idx].rc = RectMake(x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE);
 		}

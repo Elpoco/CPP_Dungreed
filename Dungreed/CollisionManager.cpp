@@ -78,11 +78,6 @@ void CollisionManager::tileCollision()
 
 		for (Object* obj : pairObject.second)
 		{
-			for (int i = 0; i < DIRECTION::DIR_CNT; i++)
-			{
-				obj->setCollision((DIRECTION)i, false);
-			}
-
 			RECT rcObj = obj->getRect();
 
 			int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
@@ -97,25 +92,26 @@ void CollisionManager::tileCollision()
 				for (int x = startX; x <= endX; x++)
 				{
 					TILE tile = TILEMANAGER->getTile(y + x);
+					obj->setCollision(DIRECTION::BOTTOM, false);
 					switch (tile.type)
 					{
 					case MapToolEnum::TYPE::BLOCK:
-						if (tile.rc.left < rcObj.right)
-						{
-							//obj->setCollision(DIRECTION::RIGHT, true);
-							//obj->pushObject(DIRECTION::RIGHT, tile.rc.left, 0);
-						}
-
-						if (tile.rc.top < rcObj.bottom)// && tile.y > rcObj.bottom)
-						{
+						//if (rcObj.bottom >= tile.rc.top)
+						//{
 							obj->setCollision(DIRECTION::BOTTOM, true);
 							obj->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
-						}
+						//}
 						break;
+					case MapToolEnum::TYPE::DIG_R:
+					{
+						obj->setCollision(DIRECTION::BOTTOM, true);
+						int moveY = rcObj.right - tile.rc.left;
+						obj->pushObject(0, tile.rc.bottom - moveY);
+						break;
+					}
 					default:
 						break;
 					}
-					//CAMERAMANAGER->printRectangle(hdc, TILEMANAGER->getTile(y + x).rc, Color::AntiqueWhite);
 				}
 			}
 		}

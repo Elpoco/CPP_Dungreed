@@ -131,6 +131,8 @@ void Player::move()
 
 void Player::animation()
 {
+	_imgCurrent = _state;
+
 	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
 	{
 		_isLeft = true;
@@ -139,9 +141,6 @@ void Player::animation()
 	{ 
 		_isLeft = false; 
 	}
-
-	_imgCurrent = _state;
-	//if (!_isLeft) _imgCurrent += 1;
 
 }
 
