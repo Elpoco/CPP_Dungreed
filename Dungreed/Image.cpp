@@ -310,6 +310,8 @@ void Image::render(HDC hdc)
 void Image::render(HDC hdc, int destX, int destY)
 {
 	if (_isTrans) {
+	
+
 		GdiTransparentBlt(
 			hdc,
 			destX, destY,

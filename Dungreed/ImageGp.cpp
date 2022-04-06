@@ -25,19 +25,16 @@ HRESULT ImageGp::init(HDC memDc, const WCHAR* fileName, float scaleW, float scal
 	if (_imageInfo != NULL) this->release();
 
 	_img = new Bitmap(fileName);
+
 	if (_img->GetLastStatus() != Ok) return E_FAIL;
-
-	HDC hdc = GetDC(_hWnd);
-	_imageInfo = new GP_IMAGE_INFO;
-	_imageInfo->width = _img->GetWidth() * scaleW;
-	_imageInfo->height = _img->GetHeight() * scaleH;
-
-	_imageInfo->scaleW = scaleW;
-	_imageInfo->scaleH = scaleH;
 
 	_graphics = new Graphics(memDc);
 
-	ReleaseDC(_hWnd, hdc);
+	_imageInfo = new GP_IMAGE_INFO;
+	_imageInfo->width = _img->GetWidth();
+	_imageInfo->height = _img->GetHeight();
+	_imageInfo->scaleW = scaleW;
+	_imageInfo->scaleH = scaleH;
 
 	return S_OK;
 }
@@ -49,19 +46,23 @@ void ImageGp::release()
 	SAFE_DELETE(_img);
 }
 
-void ImageGp::render(HDC hdc, float destX, float destY, int angle, PointF rotateCenter)
+void ImageGp::render(HDC hdc, float destX, float destY, int angle, POINT rotateCenter)
 {
-	//Graphics graphics(hdc);
-
+	Graphics graphics(hdc);
 	// rotate
-	if (rotateCenter.X == 0) rotateCenter.X = destX;
-	if (rotateCenter.Y == 0) rotateCenter.Y = destY;
+	if (rotateCenter.x == 0) rotateCenter.x = destX;
+	if (rotateCenter.y == 0) rotateCenter.y = destY;
 	Matrix matrix;
-	//matrix.Scale(_imageInfo->scaleW, _imageInfo->scaleH);
-	matrix.RotateAt(-angle, rotateCenter);
+	//matrix.SetElements(cosf(PI / 2), -sinf(PI / 2), cosf(PI / 2), sinf(PI / 2), destX, destY);
+	matrix.Scale(_imageInfo->scaleW, _imageInfo->scaleH);
 	_graphics->SetTransform(&matrix);
+	//matrix.RotateAt(-angle, rotateCenter);
+	//_graphics->SetTransform(&matrix);
 	// rotate
-	
+	//_graphics->TranslateTransform(_imageInfo->width, _imageInfo->height);
 	//_graphics->ScaleTransform(_imageInfo->scaleW, _imageInfo->scaleH);
-	_graphics->DrawImage(_img, (int)destX, (int)destY, _imageInfo->width, _imageInfo->height);
+	//_graphics->ScaleTransform(_imageInfo->scaleW, _imageInfo->scaleH);
+	//_graphics->RotateTransform(30);
+	//_graphics->DrawImage(_img, (int)destX, (int)destY, _imageInfo->width, _imageInfo->height);
+	_graphics->DrawImage(_img, (int)destX, (int)destY);
 }

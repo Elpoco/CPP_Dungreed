@@ -47,30 +47,30 @@ void CameraManager::update()
 
 void CameraManager::printPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format)
 {
-	MY_UTIL::printPoint(hdc, x - _x, y - _y, ptX, ptY, format);
+	PrintPoint(hdc, x - _x, y - _y, ptX, ptY, format);
 }
 
-void CameraManager::printRectangle(HDC hdc, float x, float y, float width, float height)
+void CameraManager::printRectangle(HDC hdc, float x, float y, int width, int height)
 {
-	RectangleMake(hdc, x - _x, y - _y, width, height);
+	PrintRectangle(hdc, x - _x, y - _y, width, height);
 }
 
-void CameraManager::printRectangle(HDC hdc, RectF rc, Color penColor, bool isFill, Color fillColor)
+void CameraManager::printRectangle(HDC hdc, RECT rc, Color penColor, bool isFill, Color fillColor)
 {
-	RectangleMake(hdc, { rc.GetLeft() - _x, rc.GetTop() - _y, rc.Width, rc.Height }, penColor, isFill, fillColor);
+	PrintRectangleColor(hdc, calRelRc(rc), penColor, isFill, fillColor);
 }
 
-void CameraManager::printRectanglePoint(HDC hdc, PointF point, float width, float height, Color color)
+void CameraManager::printRectanglePoint(HDC hdc, POINT point, int width, int height, Color color)
 {
-	RectangleMakePoint(hdc, {point.X -_x, point.Y - _y}, width, height, color);
+	PrintRectangleByPoint(hdc, PointMake(point.x -_x, point.y - _y), width, height, color);
 }
 
-void CameraManager::printRectangleCenter(HDC hdc, float x, float y, float width, float height)
+void CameraManager::printRectangleCenter(HDC hdc, float x, float y, int width, int height)
 {
-	RectangleMakeCenter(hdc, x - _x, y - _y, width, height);
+	PrintRectangle(hdc, x, y, width, height);
 }
 
-int CameraManager::checkObjectInCamera(float x, float y, float width, float height)
+int CameraManager::checkObjectInCamera(float x, float y, int width, int height)
 {
 	int posX = x - _x;
 	int posY = y - _y;
@@ -85,12 +85,12 @@ void CameraManager::render(HDC hdc, Image* img, float x, float y)
 	img->render(hdc, x - _x, y - _y);
 }
 
-void CameraManager::render(HDC hdc, ImageGp* img, float x, float y, int angle, PointF rotateCenter)
+void CameraManager::render(HDC hdc, ImageGp* img, float x, float y, int angle, POINT rotateCenter)
 {
 	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;
 
-	if (rotateCenter.X != 0) rotateCenter.X -= _x;
-	if (rotateCenter.Y != 0) rotateCenter.Y -= _y;
+	if (rotateCenter.x != 0) rotateCenter.x -= _x;
+	if (rotateCenter.y != 0) rotateCenter.y -= _y;
 
 	img->render(hdc, x - _x, y - _y, angle, rotateCenter);
 }

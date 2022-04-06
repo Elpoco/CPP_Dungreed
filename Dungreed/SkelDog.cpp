@@ -1,10 +1,12 @@
 #include "Stdafx.h"
 #include "SkelDog.h"
 
-SkelDog::SkelDog() :
+SkelDog::SkelDog(float x, float y) :
 	_overMove(70),
 	_atkCnt(0)
 {
+	_x = x;
+	_y = y;
 }
 
 SkelDog::~SkelDog()
@@ -15,9 +17,6 @@ HRESULT SkelDog::init()
 {
 	Enemy::init();
 	this->initAnimation();
-
-	_x = 100;
-	_y = 200;
 
 	_name = "½ºÄÌ¸®µ¶";
 	_scanScale = { 15,6 };
@@ -52,13 +51,13 @@ void SkelDog::move()
 	{
 		if (!_isAttack)
 		{
-			if (_x + (!_isLeft ? -_overMove : _overMove) <= _ptPlayer.X)
+			if (_x + (!_isLeft ? -_overMove : _overMove) <= _ptPlayer.x)
 			{
 				if (_isLeft) _atkCnt++;
 				_isLeft = false;
 				_state = SKELDOG_MOTION::RUN;
 			}
-			else if (_x + (_isLeft ? _overMove : -_overMove) > _ptPlayer.X)
+			else if (_x + (_isLeft ? _overMove : -_overMove) > _ptPlayer.x)
 			{
 				if (!_isLeft) _atkCnt++;
 				_isLeft = true;
@@ -82,7 +81,7 @@ void SkelDog::move()
 		_isAttack = false;
 	}
 
-	_rcScan = RectFMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
+	_rcScan = RectMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
 }
 
 void SkelDog::animation()

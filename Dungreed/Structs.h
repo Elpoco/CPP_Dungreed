@@ -1,23 +1,31 @@
 #pragma once
 
-using Gdiplus::RectF;
-using Gdiplus::PointF;
-
 typedef struct tagTile
 {
-	RectF rc;
-	PointF pos;		// ≈∏¿œ ¿Œµ¶Ω∫
+	float x;
+	float y;
+	RECT rc;
+	POINT pos;		// ≈∏¿œ ¿Œµ¶Ω∫
 	int tileFrameX;
 	int tileFrameY;
-	MapToolEnum::TILE_TYPE type;
+
+	MapToolEnum::TYPE type;
+
+	//MapToolEnum::TERRAIN	terrain;
+	//MapToolEnum::MAP_OBJECT object;
 
 	tagTile()
 	{
+		x = 0.0f;
+		y = 0.0f;
 		rc = { 0,0,0,0 };
 		pos = { 0,0 };
 		tileFrameX = 0;
 		tileFrameY = 0;
-		type = MapToolEnum::TILE_TYPE::NONE;
+		type = MapToolEnum::TYPE::NONE;
+
+		//terrain = MapToolEnum::TERRAIN::TR_NONE;
+		//object = MapToolEnum::MAP_OBJECT::MO_NONE;
 	}
 } TILE;
 

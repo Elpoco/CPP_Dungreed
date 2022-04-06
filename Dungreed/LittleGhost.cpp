@@ -1,8 +1,10 @@
 #include "Stdafx.h"
 #include "LittleGhost.h"
 
-LittleGhost::LittleGhost()
+LittleGhost::LittleGhost(float x, float y)
 {
+	_x = x;
+	_y = y;
 }
 
 LittleGhost::~LittleGhost()
@@ -14,8 +16,6 @@ HRESULT LittleGhost::init()
 	Enemy::init();
 	this->initAnimation();
 
-	_x = 100;
-	_y = 200;
 	_isFlying = true;
 
 	_name = "²¿¸¶ À¯·É";
@@ -47,12 +47,12 @@ void LittleGhost::move()
 {
 	if (_isPlayerScan)
 	{
-		float angle = getAngle(_x, _y, _ptPlayer.X, _ptPlayer.Y);
+		float angle = GetAngle(_x, _y, _ptPlayer.x, _ptPlayer.y);
 		_x += cosf(angle) * _moveSpeed;
 		_y -= sinf(angle) * _moveSpeed;
 	}
 
-	_rcScan = RectFMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
+	_rcScan = RectMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
 }
 
 void LittleGhost::animation()

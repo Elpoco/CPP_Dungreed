@@ -6,7 +6,7 @@ class StartScene : public GameNode
 {
 private:
 	float _loop1, _loop2;
-	RectF _logo;
+	RECT _logo;
 
 public:
 	StartScene();

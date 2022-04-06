@@ -1,5 +1,6 @@
 #pragma once
 #include "Image.h"
+#include "ImageGp.h"
 
 static Image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZE_X, WINSIZE_Y);
 
@@ -20,6 +21,7 @@ public:
 
 	HDC getMemDC() { return _backBuffer->getMemDC(); }
 	HDC getHDC() { return _hdc; }
+
 
 	LRESULT MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 

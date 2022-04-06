@@ -119,8 +119,8 @@ LRESULT GameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		this->render();
 		break;
 	case WM_MOUSEMOVE:
-		_ptMouse.X = LOWORD(lParam);
-		_ptMouse.Y = HIWORD(lParam);
+		_ptMouse.x = LOWORD(lParam);
+		_ptMouse.y = HIWORD(lParam);
 		break;
 	case WM_KEYDOWN:
 		switch (wParam)

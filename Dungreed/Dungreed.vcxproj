@@ -195,7 +195,6 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CollisionManager.h" />
-    <ClInclude Include="CommonMacroFuntion.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="EffectManager.h" />

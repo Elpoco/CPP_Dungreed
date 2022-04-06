@@ -28,16 +28,18 @@ public:
 			frameWidth = 0;
 			frameHeight = 0;
 
-			scaleW = 0.0f;
-			scaleH = 0.0f;
+			scaleW = 1.0f;
+			scaleH = 1.0f;
 		}
 	} GP_IMAGE_INFO, *LPGP_IMAGE_INFO;
 
 private:
 	LPGP_IMAGE_INFO _imageInfo;
 
-	Graphics* _graphics;
+	Gdiplus::Graphics* _graphics;
 	Gdiplus::Bitmap* _img;
+
+	HDC hdc;
 
 public:
 	ImageGp();
@@ -48,10 +50,12 @@ public:
 
 	void release();
 
-	void render(HDC hdc, float destX = 0.0f, float destY = 0.0f, int angle = 0, PointF rotateCenter = {0, 0});
+	void render(HDC hdc, float destX = 0.0f, float destY = 0.0f, int angle = 0, POINT rotateCenter = {0, 0});
 
 	inline int getWidth() { return _imageInfo->width; }
 	inline int getHeight() { return _imageInfo->height; }
+
+	inline HDC getDc() { return hdc; }
 
 };
 

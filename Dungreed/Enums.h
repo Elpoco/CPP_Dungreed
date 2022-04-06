@@ -10,12 +10,29 @@ enum KEY
 
 namespace MapToolEnum
 {
-	enum class TILE_TYPE
+	enum class TYPE : unsigned char
 	{
 		NONE,
 		BLOCK,
 		DIG_L,
-		DIG_R
+		DIG_R,
+		PLATFORM,
+		WALLPAPER
+	};
+
+	enum class TERRAIN : unsigned char
+	{
+		TR_NONE,
+		TR_WALL
+	};
+
+	enum class MAP_OBJECT : unsigned char
+	{
+		MO_NONE,
+		MO_BLOCK,
+		MO_DIG_L,
+		MO_DIG_R,
+		MO_PLATFORM
 	};
 }
 
@@ -27,8 +44,10 @@ namespace ColliderEnum
 		TOP,
 		RIGHT,
 		BOTTOM,
-		LBOTTOM,
-		RBOTTOM,
+		LT,
+		RT,
+		LB,
+		RB,
 		DIR_CNT
 	};
 }

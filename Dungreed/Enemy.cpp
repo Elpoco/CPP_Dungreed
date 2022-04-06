@@ -46,7 +46,7 @@ void Enemy::move()
 {
 	if (_isAutoLeft)
 	{
-		if (_x < _ptPlayer.X) _isLeft = false;
+		if (_x < _ptPlayer.x) _isLeft = false;
 		else _isLeft = true;
 	}
 }
@@ -55,7 +55,7 @@ void Enemy::animation()
 {
 }
 
-void Enemy::scanPlayer(PointF ptPlayer, RectF rcPlayer)
+void Enemy::scanPlayer(POINT ptPlayer, RECT rcPlayer)
 {
 	_isPlayerScan = TRUE;
 	_ptPlayer = ptPlayer;

@@ -5,6 +5,7 @@ namespace ImageName
 	{
 		constexpr char* idle = "PlayerIdle";
 		constexpr char* run = "PlayerRun";
+		constexpr char* jump = "PlayerJump";
 		constexpr char* die = "PlayerDie";
 		constexpr char* hand = "PlayerHand";
 	}

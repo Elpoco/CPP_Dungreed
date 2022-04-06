@@ -15,7 +15,7 @@ private:
 	int _atkCnt;
 
 public:
-	SkelDog();
+	SkelDog(float x, float y);
 	~SkelDog();
 
 	virtual HRESULT init() override;

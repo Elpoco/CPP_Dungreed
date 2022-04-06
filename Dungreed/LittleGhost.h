@@ -5,11 +5,12 @@ class LittleGhost : public Enemy
 private:
 	enum LITTLEGHOST_MOTION
 	{
-		IDLE
+		IDLE,
+		ATTACK
 	};
 
 public:
-	LittleGhost();
+	LittleGhost(float x, float y);
 	~LittleGhost();
 
 	virtual HRESULT init() override;

@@ -43,7 +43,7 @@ void Player::update()
 	Unit::updateRect();
 	this->animation();
 
-	angle = getAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.X, _ptMouse.Y)  / PI *180;
+	angle = GetAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.x, _ptMouse.y)  / PI *180;
 }
 
 void Player::render(HDC hdc)
@@ -51,14 +51,14 @@ void Player::render(HDC hdc)
 	Unit::render(hdc);
 
 	//CAMERAMANAGER->render(hdc, hand.image, _x + 15, _y + 15);
-	CAMERAMANAGER->printRectangle(hdc, RectFMakeCenter(_x + 15, _y + 20, 5, 5));
+	CAMERAMANAGER->printRectangle(hdc, _x + 15, _y + 20, 5, 5);
 
-	CAMERAMANAGER->render(hdc, 
-		_weapon, 
-		_x + mainWeaponX,
-		_y + 20 - _weapon->getHeight(),
-		angle + attackAngle - 100 + tempAngle,
-		{ _x + mainWeaponX, _y + 20 });
+	//CAMERAMANAGER->render(hdc, 
+	//	_weapon, 
+	//	_x + mainWeaponX,
+	//	_y + 20 - _weapon->getHeight(),
+	//	angle + attackAngle - 100 + tempAngle,
+	//	{ _x + mainWeaponX, _y + 20 });
 
 	//GPIMAGEMANAGER->render(ImageName::Item::Weapon::basicShotSword, hdc, 0, 0);
 
@@ -71,17 +71,19 @@ void Player::render(HDC hdc)
 
 void Player::move()
 {
+	_state = PLAYER_MOTION::IDLE;
+
 	if (KEYMANAGER->isStayKeyDown(KEY::LEFT))
 	{
 		_state = PLAYER_MOTION::RUN;
-		//if(!_isCollision[ColliderEnum::DIRECTION::LB])
-			_x -= _moveSpeed;
+		if(!_isCollision[ColliderEnum::DIRECTION::RIGHT])
+		_x -= _moveSpeed;
 	}
 
 	if (KEYMANAGER->isStayKeyDown(KEY::RIGHT))
 	{
 		_state = PLAYER_MOTION::RUN;
-		//if (!_isCollision[ColliderEnum::DIRECTION::LT])
+		if (!_isCollision[ColliderEnum::DIRECTION::RIGHT])
 			_x += _moveSpeed;
 	}
 
@@ -95,8 +97,12 @@ void Player::move()
 		//_y -= _moveSpeed;
 	}
 
-	if (KEYMANAGER->isOnceKeyUp(KEY::LEFT) ||
-		KEYMANAGER->isOnceKeyUp(KEY::RIGHT))
+	if (KEYMANAGER->isOnceKeyUp(KEY::LEFT))
+	{
+		_state = PLAYER_MOTION::IDLE;
+	}
+
+	if (KEYMANAGER->isOnceKeyUp(KEY::RIGHT))
 	{
 		_state = PLAYER_MOTION::IDLE;
 	}
@@ -117,38 +123,33 @@ void Player::move()
 
 	}
 
-	if (_isJump)
+	if (_isJump || _isFall)
 	{
-		//_y -= _jumpSpeed;
-		//if (_isCollision)
-		//{
-		//	_isJump = false;
-		//}
+		//_state = PLAYER_MOTION::JUMP;
 	}
 }
 
 void Player::animation()
 {
-	_imgCurrent = _state;
-
-	if (_ptMouse.X < CAMERAMANAGER->calRelX(_x))
+	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
 	{
 		_isLeft = true;
-		mainWeaponX = mainHandX * -1;
-		tempAngle = 180;
 	}
 	else 
 	{ 
 		_isLeft = false; 
-		mainWeaponX = mainHandX;
-		tempAngle = 0;
 	}
+
+	_imgCurrent = _state;
+	//if (!_isLeft) _imgCurrent += 1;
+
 }
 
 void Player::initAnimation()
 {
 	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::idle));
 	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::run));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::jump));
 
 	_imgWidth = _vImages[0]->getFrameWidth() - _reSize;
 	_imgHeight = _vImages[0]->getFrameHeight();

@@ -44,6 +44,7 @@ public:
 	void animation();
 
 	void checkCollision();
+	virtual void pushObject(ColliderEnum::DIRECTION dir, float x, float y) override;
 
 	void updateRect();
 	void updateProve();
@@ -53,7 +54,8 @@ public:
 	inline float getWidth() { return _imgWidth; }
 	inline float getHeight() { return _imgHeight; }
 
-	virtual void jump();
+	void jump();
+	bool isJump() { return _isJump; }
 
 };
 

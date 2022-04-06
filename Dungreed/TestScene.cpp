@@ -8,8 +8,8 @@
 HRESULT TestScene::init()
 {
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::PLAYER, new Player);
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new SkelDog);
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new LittleGhost);
+	//OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new SkelDog(100,200));
+	//OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new LittleGhost(100, 200));
 
 	TILEMANAGER->loadMap();
 

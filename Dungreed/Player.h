@@ -17,7 +17,8 @@ private:
 	enum PLAYER_MOTION
 	{
 		IDLE,
-		RUN
+		RUN,
+		JUMP,
 	};
 
 private:

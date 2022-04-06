@@ -224,9 +224,6 @@
     <ClInclude Include="Animation.h">
       <Filter>API FrameWork\09. Animation</Filter>
     </ClInclude>
-    <ClInclude Include="CommonMacroFuntion.h">
-      <Filter>API FrameWork\05. Utillity</Filter>
-    </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>

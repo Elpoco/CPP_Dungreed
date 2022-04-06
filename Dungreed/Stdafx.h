@@ -29,6 +29,7 @@
 #include <ole2.h>
 #include <gdiplus.h>
 #pragma comment (lib,"Gdiplus.lib")
+using Gdiplus::Color;
 
 //! C++ 런타임 헤더
 #include <iostream>
@@ -53,13 +54,14 @@ using namespace std;
 #include "String.h"
 #include "Config.h"
 
-#include "CommonMacroFuntion.h"
+#include "Utils.h"
+using namespace MY_UTIL;
+
 #include "RandomFuntion.h"
 #include "KeyManager.h"
 #include "ImageManager.h"
 #include "ImageGpManager.h"
 #include "FontManager.h"
-#include "Utils.h"
 #include "TimeManager.h"
 #include "TextDataManager.h"
 #include "SceneManager.h"
@@ -75,38 +77,34 @@ using namespace std;
 #include "MessageBoxManager.h"
 #include "CollisionManager.h"
 
-using namespace MY_UTIL;
-using Gdiplus::RectF;
-using Gdiplus::PointF;
-using Gdiplus::Color;
 
 // =======================
 // # 싱글톤을 이곳에 추가 #
 // =======================
 #define RND RandomFuntion::getSingleton()
-#define KEYMANAGER KeyManager::getSingleton()
-#define IMAGEMANAGER ImageManager::getSingleton()
-#define FONTMANAGER FontManager::getSingleton()
-#define TIMEMANAGER TimeManager::getSingleton()
-#define TEXTDATAMANAGER TextDataManager::getSingleton()
-#define SCENEMANAGER SceneManager::getSingleton()
-#define SOUNDMANAGER SoundManager::getSingleton()
-#define JSONDATAMANAGER JsonSaveLoader::getSingleton()
 
-#define OBJECTMANAGER ObjectManager::getSingleton()
-#define EFFECTMANAGER EffectManager::getSingleton()
-#define CAMERAMANAGER CameraManager::getSingleton()
-#define UIMANAGER UIManager::getSingleton()
-#define FILEMANAGER FileManager::getSingleton()
-#define TILEMANAGER	TileManager::getSingleton()
-#define MSGBOXMANAGER MessageBoxManager::getSingleton()
-#define COLLISIONMANAGER CollisionManager::getSingleton()
-#define GPIMAGEMANAGER ImageGpManager::getSingleton()
+#define KEYMANAGER			KeyManager::getSingleton()
+#define IMAGEMANAGER		ImageManager::getSingleton()
+#define FONTMANAGER			FontManager::getSingleton()
+#define TIMEMANAGER			TimeManager::getSingleton()
+#define TEXTDATAMANAGER		TextDataManager::getSingleton()
+#define SCENEMANAGER		SceneManager::getSingleton()
+#define SOUNDMANAGER		SoundManager::getSingleton()
+#define JSONDATAMANAGER		JsonSaveLoader::getSingleton()
+#define OBJECTMANAGER		ObjectManager::getSingleton()
+#define EFFECTMANAGER		EffectManager::getSingleton()
+#define CAMERAMANAGER		CameraManager::getSingleton()
+#define UIMANAGER			UIManager::getSingleton()
+#define FILEMANAGER			FileManager::getSingleton()
+#define TILEMANAGER			TileManager::getSingleton()
+#define MSGBOXMANAGER		MessageBoxManager::getSingleton()
+#define COLLISIONMANAGER	CollisionManager::getSingleton()
+#define GPIMAGEMANAGER		ImageGpManager::getSingleton()
 
 // =============
 // # 전역 변수 #
 // =============
 extern HINSTANCE	_hInstance;
 extern HWND			_hWnd;
-extern PointF		_ptMouse;
+extern POINT		_ptMouse;
 extern bool			_isDebug;

@@ -28,6 +28,7 @@ public:
 	void offTIleCollision() { _onTileCollision = false; }
 	void tileCollision();
 	void collisionBlock(Object* obj, TILE tile, DIRECTION dir);
+	void collisionDiagonal(Object* obj, TILE tile, DIRECTION dir);
 
 	// 몬스터 인식범위
 	void enemyScanCollision();

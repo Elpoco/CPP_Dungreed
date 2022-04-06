@@ -18,7 +18,6 @@ public:
 	~TileManager();
 
 	HRESULT init();
-	HRESULT init(int tileCntX, int tileCntY);
 	void release();
 	void update();
 	void render(HDC hdc);
@@ -26,12 +25,16 @@ public:
 	void tileRender(HDC hdc, TILE tile);
 
 	void setRenderSize(int width, int height);
-	void setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TILE_TYPE type);
+	//void setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TERRAIN terrain, MapToolEnum::MAP_OBJECT object);
+	void setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TYPE type);
 
-	TILE getTile(PointF pt);
-	PointF getTilePt(PointF pt);
-	int getTileIndex(PointF pt);
-	MapToolEnum::TILE_TYPE getTileType(PointF pt);
+	TILE getTile(int idx) { return _tiles[idx]; }
+	TILE getTile(float x, float y);
+	TILE getTile(POINT pt);
+	POINT getTilePt(POINT pt);
+	int getTileIndex(float x, float y);
+	int getTileIndex(POINT pt);
+	//MapToolEnum::TILE_TYPE getTileType(PointF pt);
 
 	int saveMap(string str = String::tempSaveFile);
 	int loadMap(string str = String::tempSaveFile);

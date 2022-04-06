@@ -31,9 +31,10 @@ void ImageLoader::render()
 void ImageLoader::loadImages()
 {
 	// Player
-	IMAGEMANAGER->addFrameImage(ImageName::Player::idle, PATH_UNIT"Player/Idle.bmp", 0, 0, 5, 2, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::Player::run, PATH_UNIT"Player/Run.bmp", 0, 0, 8, 2, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::Player::die, PATH_UNIT"Player/Die.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Player::idle, PATH_UNIT"Player/PlayerIdle.bmp", 0, 0, 5, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Player::run, PATH_UNIT"Player/PlayerRun.bmp", 0, 0, 8, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Player::jump, PATH_UNIT"Player/PlayerJump.bmp", 78, 150, 1, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Player::die, PATH_UNIT"Player/PlayerDie.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Player::hand, PATH_UNIT"Player/Hand.bmp");
 
 	// Enemy

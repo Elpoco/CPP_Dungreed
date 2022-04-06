@@ -9,17 +9,17 @@ using namespace MapToolSet;
 class MapToolScene : public GameNode
 {
 private:
-	RectF _rcTileWindow;
-	RectF _rcToolWindow;
-	RectF _btnSave;
-	RectF _btnLoad;
+	RECT _rcTileWindow;
+	RECT _rcToolWindow;
+	RECT _btnSave;
+	RECT _btnLoad;
 
-	RectF _rcSelectTile;
-	RectF _rcHoverTile;
+	RECT _rcSelectTile;
+	RECT _rcHoverTile;
 
 	POINT _curTile;			// 현재 타일
 	POINT _selectedTileCnt; // 선택된 타일 갯수
-	PointF _startCursor;
+	POINT _startCursor;
 
 	bool _isDrag;
 
@@ -52,8 +52,5 @@ public:
 	void settingSelectTileRect();
 	void drawSelectTile(HDC hdc);
 	void settingHoverTile();
-
-	TILE_TYPE getTileType(int x, int y);
-
 };
 

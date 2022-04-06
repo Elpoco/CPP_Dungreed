@@ -7,7 +7,7 @@ private:
 	Image* _progressBarUp;
 	Image* _progressBarDown;
 
-	RectF _rc;
+	RECT _rc;
 	int _x, _y;
 	int _width;
 

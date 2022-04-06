@@ -24,7 +24,7 @@ public:
 
 	ImageGp* addImage(HDC memDc, string strKey, string fileName, float scaleW = 1, float scaleH = 1);
 
-	void render(string strKey, HDC hdc, int destX, int destY, int angle = 0, PointF rotateCenter = { 0,0 });
+	void render(string strKey, HDC hdc, int destX, int destY, int angle = 0, POINT rotateCenter = { 0,0 });
 
 	POINT getImageSize(string fileName);
 };

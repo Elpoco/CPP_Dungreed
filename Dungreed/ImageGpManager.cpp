@@ -50,7 +50,7 @@ bool ImageGpManager::deleteAll()
 	return false;
 }
 
-ImageGp * ImageGpManager::addImage(HDC memDc, string strKey, string fileName, float scaleW, float scaleH)
+ImageGp* ImageGpManager::addImage(HDC memDc, string strKey, string fileName, float scaleW, float scaleH)
 {
 	ImageGp* img = findImage(strKey);
 
@@ -72,7 +72,7 @@ ImageGp * ImageGpManager::addImage(HDC memDc, string strKey, string fileName, fl
 	return img;
 }
 
-void ImageGpManager::render(string strKey, HDC hdc, int destX, int destY, int angle, PointF rotateCenter)
+void ImageGpManager::render(string strKey, HDC hdc, int destX, int destY, int angle, POINT rotateCenter)
 {
 	ImageGp* img = findImage(strKey);
 	if (img)

@@ -36,31 +36,33 @@ void CollisionManager::render(HDC hdc)
 		{
 			for (Object* obj : pairObject.second)
 			{
-				// 타일충돌
-				PointF* prove = obj->getProve();
-				for (int i = 0; i < DIRECTION::DIR_CNT; i++)
+				// 타일충돌 랜더
+				RECT rcObj = obj->getRect();
+					
+				int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
+				int startX = start % MapToolSet::TILE_CNT_X;
+				int startY = start - startX;
+				int end = TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
+				int endX = end % MapToolSet::TILE_CNT_X;
+				int endY = end - endX;
+					
+				for (int y = startY; y <= endY; y+= MapToolSet::TILE_CNT_X)
 				{
-					TILE tile = TILEMANAGER->getTile(prove[i]);
-					CAMERAMANAGER->printRectangle(hdc, tile.rc, Color::Red);
-					if (obj->getCollision((DIRECTION)i))
+					for (int x = startX; x <= endX; x++)
 					{
-						CAMERAMANAGER->printRectanglePoint(hdc, prove[i], 5, 5, Color::Red);
-					}
-					else
-					{
-						CAMERAMANAGER->printRectanglePoint(hdc, prove[i], 5, 5, Color::Blue);
-
+						CAMERAMANAGER->printRectangle(hdc, TILEMANAGER->getTile(y + x).rc, Color::AntiqueWhite);
 					}
 				}
-			}
-			if (pairObject.first == ObjectEnum::TYPE::ENEMY)
-			{
-				for (Object* obj : pairObject.second)
+				// 충돌되는 타일 랜더 끝!
+				
+				// 적 관련 랜더
+				if (pairObject.first == ObjectEnum::TYPE::ENEMY)
 				{
 					Enemy* enemy = dynamic_cast<Enemy*>(obj);
 					// 스캔박스
 					CAMERAMANAGER->printRectangle(hdc, enemy->getScanRect(), 
 						(enemy->getPlayerScan() ? Color::Gold : Color::Aqua));
+				
 				}
 			}
 		}
@@ -71,29 +73,49 @@ void CollisionManager::tileCollision()
 {
 	for (auto pairObject : *_mObjects)
 	{
+		if (pairObject.first != ObjectEnum::TYPE::PLAYER &&
+			pairObject.first != ObjectEnum::TYPE::ENEMY) continue;
+
 		for (Object* obj : pairObject.second)
 		{
-			PointF* prove = obj->getProve();
 			for (int i = 0; i < DIRECTION::DIR_CNT; i++)
 			{
-				TILE tile = TILEMANAGER->getTile(prove[i]);
+				obj->setCollision((DIRECTION)i, false);
+			}
 
-				switch (tile.type)
+			RECT rcObj = obj->getRect();
+
+			int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
+			int startX = start % MapToolSet::TILE_CNT_X;
+			int startY = start - startX;
+			int end = TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
+			int endX = end % MapToolSet::TILE_CNT_X;
+			int endY = end - endX;
+
+			for (int y = startY; y <= endY; y += MapToolSet::TILE_CNT_X)
+			{
+				for (int x = startX; x <= endX; x++)
 				{
-				case MapToolEnum::TILE_TYPE::BLOCK:
-					obj->setCollision((DIRECTION)i, true);
-					collisionBlock(obj, tile, (DIRECTION)i);
-					break;
-				case MapToolEnum::TILE_TYPE::DIG_L:
-					if (i == DIRECTION::LBOTTOM)
+					TILE tile = TILEMANAGER->getTile(y + x);
+					switch (tile.type)
 					{
-						obj->setCollision((DIRECTION)i, true);
-						collisionBlock(obj, tile, (DIRECTION)i);
+					case MapToolEnum::TYPE::BLOCK:
+						if (tile.rc.left < rcObj.right)
+						{
+							//obj->setCollision(DIRECTION::RIGHT, true);
+							//obj->pushObject(DIRECTION::RIGHT, tile.rc.left, 0);
+						}
+
+						if (tile.rc.top < rcObj.bottom)// && tile.y > rcObj.bottom)
+						{
+							obj->setCollision(DIRECTION::BOTTOM, true);
+							obj->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
+						}
+						break;
+					default:
+						break;
 					}
-					break;
-				default:
-					obj->setCollision((DIRECTION)i, false);
-					break;
+					//CAMERAMANAGER->printRectangle(hdc, TILEMANAGER->getTile(y + x).rc, Color::AntiqueWhite);
 				}
 			}
 		}
@@ -104,22 +126,46 @@ void CollisionManager::collisionBlock(Object* obj, TILE tile, DIRECTION dir)
 {
 	switch (dir)
 	{
-	case DIRECTION::LEFT:
-		obj->setX(tile.rc.GetRight() + obj->getRect().Width / 2);
-		break;
-	case DIRECTION::RIGHT:
-		obj->setX(tile.rc.GetLeft() - obj->getRect().Width / 2);
-		break;
-	case DIRECTION::TOP:
-		obj->setY(tile.rc.GetBottom() + obj->getRect().Height / 2);
-		break;
-	case DIRECTION::BOTTOM:
-		obj->setY(tile.rc.GetTop() - obj->getRect().Height / 2);
-		break;
-	case DIRECTION::LBOTTOM:
+	//case DIRECTION::LEFT:
+	//	obj->setX(tile.rc.GetRight() + obj->getRect().Width / 2);
+	//	break;
+	//case DIRECTION::RIGHT:
+	//	obj->setX(tile.rc.GetLeft() - obj->getRect().Width / 2 );
+	//	break;
+	//case DIRECTION::TOP:
+	//	obj->setY(tile.rc.GetBottom() + obj->getRect().Height / 2);
+	//	break;
+	//case DIRECTION::LTOP:
+	//	obj->setX(tile.rc.GetRight() + obj->getRect().Width / 2);
+	//	break;
+	//case DIRECTION::RTOP:
+	//	obj->setX(tile.rc.GetLeft() - obj->getRect().Width / 2 - 1);
+	//	break;
+	//case DIRECTION::LBOTTOM:
+	//case DIRECTION::RBOTTOM:
+		//if(obj->is)
+		//obj->setY(tile.rc.top - (obj->getRect().bottom - obj->getRect().top) / 2);
+		//break;
+	//case DIRECTION::LBOTTOM:
 		//obj->setX(tile.rc.GetLeft() - obj->getRect().Width / 2);
 		//obj->setY(tile.rc.GetTop() - obj->getRect().Height / 2);
+		//break;
+	default:
 		break;
+	}
+}
+
+void CollisionManager::collisionDiagonal(Object* obj, TILE tile, DIRECTION dir)
+{
+	switch (dir)
+	{
+	//case DIRECTION::LBOTTOM:
+		//obj->setY(tile.rc.GetTop() - obj->getRect().Height / 2);
+	//	break;
+	//case DIRECTION::RIGHT:
+	//case DIRECTION::RBOTTOM:
+		//obj->setY(tile.rc.GetTop() - obj->getRect().Height);
+	//	break;
 	default:
 		break;
 	}
@@ -134,13 +180,13 @@ void CollisionManager::enemyScanCollision()
 		for (Object* obj : pairEnemy->second)
 		{
 			Enemy* enemy = dynamic_cast<Enemy*>(obj);
-			RectF rcScan = enemy->getScanRect();
-			bool isScan = rcScan.Intersect(player->getRect());
-			
-			if (enemy->getPlayerScan() || isScan)
-			{
-				enemy->scanPlayer(player->getPt(), player->getRect());
-			}
+			//RectF rcScan = enemy->getScanRect();
+			//bool isScan = rcScan.Intersect(rectToRectF(player->getRect()));
+			//
+			//if (enemy->getPlayerScan() || isScan)
+			//{
+			//	enemy->scanPlayer(player->getPt(), player->getRect());
+			//}
 		}
 	}
 }
