@@ -18,6 +18,7 @@ HRESULT ObjectManager::init()
 	_mObjects.insert(make_pair(TYPE::PLAYER, vector<Object*> ()));
 	_mObjects.insert(make_pair(TYPE::ITEM, vector<Object*> ()));
 	_mObjects.insert(make_pair(TYPE::ENEMY, vector<Object*> ()));
+	_mObjects.insert(make_pair(TYPE::EFFECT, vector<Object*> ()));
 
 	COLLISIONMANAGER->setObject(&_mObjects);
 
@@ -40,18 +41,29 @@ void ObjectManager::release()
 
 void ObjectManager::update()
 {
-	for (auto pairObject : _mObjects)
+	for (auto& pairObject : _mObjects)
 	{
-		for (Object* obj : pairObject.second)
+		vector<Object*>::iterator iter = pairObject.second.begin();
+		for (; iter != pairObject.second.end();)
 		{
-			obj->update();
+			if ((*iter)->isLive())
+			{
+				(*iter)->update();
+				++iter;
+			}
+			else
+			{
+				(*iter)->release();
+				SAFE_DELETE(*iter);
+				iter = pairObject.second.erase(iter);
+			}
 		}
 	}
 }
 
 void ObjectManager::render(HDC hdc)
 {
-	for (auto pairObject : _mObjects)
+	for (auto& pairObject : _mObjects)
 	{
 		for (Object* obj : pairObject.second)
 		{

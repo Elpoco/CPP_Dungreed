@@ -4,7 +4,8 @@
 Object::Object() : 
 	_x(CENTER_X),
 	_y(CENTER_Y),
-	_rc({0,0,0,0})
+	_rc({0,0,0,0}),
+	_isLive(TRUE)
 {
 	for (int i = 0; i < ColliderEnum::DIRECTION::DIR_CNT; i++)
 		_isCollision[i] = false;

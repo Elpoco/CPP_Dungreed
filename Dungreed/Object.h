@@ -13,6 +13,8 @@ protected:
 
 	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
 
+	int _isLive;
+
 public:
 	Object();
 	virtual ~Object();
@@ -24,7 +26,6 @@ public:
 
 	bool getCollision(ColliderEnum::DIRECTION dir) { return _isCollision[dir]; }
 	void setCollision(ColliderEnum::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }
-	virtual void pushObject(float x = 0, float y = 0) {}
 	virtual void pushObject(ColliderEnum::DIRECTION dir, float x, float y) {}
 
 	inline float getX() { return _x; }
@@ -34,6 +35,7 @@ public:
 	inline POINT getPt() { return PointMake(_x,_y); }
 
 	inline RECT getRect() { return _rc; }
+	inline int isLive() { return _isLive; }
 
 };
 

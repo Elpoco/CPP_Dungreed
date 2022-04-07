@@ -47,13 +47,19 @@ public:
 	~ImageGp();
 	
 	HRESULT init(HDC memDc, const WCHAR* fileName, float scaleW = 1, float scaleH = 1);
+	HRESULT init(HDC memDc, const WCHAR* fileName, int maxFrameX, int maxFrameY);
 
 	void release();
 
 	void render(HDC hdc, float destX = 0.0f, float destY = 0.0f, int angle = 0, POINT rotateCenter = {0, 0});
+	void frameRender(float destX, float destY, int frameX, int frameY, int angle = 0, POINT rotateCenter = { 0, 0 });
 
 	inline int getWidth() { return _imageInfo->width; }
 	inline int getHeight() { return _imageInfo->height; }
+	inline int getFrameWidth() { return _imageInfo->frameWidth; }
+	inline int getFrameHeight() { return _imageInfo->frameHeight; }
+	inline int getMaxFrameX() { return _imageInfo->maxFrameX; }
+	inline int getMaxFrameY() { return _imageInfo->maxFrameY; }
 
 	inline HDC getDc() { return hdc; }
 

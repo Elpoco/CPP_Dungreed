@@ -47,6 +47,14 @@ namespace ImageName
 			constexpr char* basicShotSword = "BasicShotSword";
 		}
 	}
+
+	namespace Effect
+	{
+		namespace Weapon
+		{
+			constexpr char* effectBasic = "EffectBasic";
+		}
+	}
 }
 
 namespace SceneName

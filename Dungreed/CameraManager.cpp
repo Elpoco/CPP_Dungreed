@@ -102,8 +102,9 @@ void CameraManager::frameRender(HDC hdc, Image* img, float x, float y, int frame
 	img->frameRender(hdc, x - _x, y - _y, frameX, frameY);
 }
 
-void CameraManager::followCamera(Object* object)
+void CameraManager::frameRender(HDC hdc, ImageGp* img, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter)
 {
-	_object = object;
-	_isFollow = true;
+	if (this->checkObjectInCamera(x, y, img->getFrameWidth(), img->getFrameHeight())) return;
+
+	img->frameRender(x - _x, y - _y, frameX, frameY, angle, rotateCenter);
 }

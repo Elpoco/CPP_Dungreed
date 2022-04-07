@@ -22,10 +22,20 @@ void TestScene::release()
 
 void TestScene::update()
 {
+	OBJECTMANAGER->update();
+
+	COLLISIONMANAGER->update();
+
+	CAMERAMANAGER->update();
 }
 
 void TestScene::render()
 {
 	IMAGEMANAGER->render(ImageName::background, getMemDC());
+
 	TILEMANAGER->render(getMemDC());
+
+	OBJECTMANAGER->render(getMemDC());
+
+	COLLISIONMANAGER->render(getMemDC());
 }

@@ -10,8 +10,6 @@ class CollisionManager : public SingletonBase<CollisionManager>
 private:
 	ObjectManager::mapObjects* _mObjects;
 
-	bool _onTileCollision;
-
 public:
 	CollisionManager();
 	~CollisionManager();
@@ -24,13 +22,9 @@ public:
 	void setObject(ObjectManager::mapObjects* mObjects) { _mObjects = mObjects; }
 
 	// 타일 충돌
-	void onTileCollision() { _onTileCollision = true; }
-	void offTIleCollision() { _onTileCollision = false; }
 	void tileCollision();
-	void collisionBlock(Object* obj, TILE tile, DIRECTION dir);
-	void collisionDiagonal(Object* obj, TILE tile, DIRECTION dir);
 
-	// 몬스터 인식범위
+	// 몬스터 인식
 	void enemyScanCollision();
 
 };

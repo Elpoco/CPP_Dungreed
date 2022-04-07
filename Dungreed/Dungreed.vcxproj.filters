@@ -94,6 +94,9 @@
     <Filter Include="MainGame\02. Object\Unit\Enemy\LittleGhost">
       <UniqueIdentifier>{755de569-0a98-4610-9c9b-a021c8099349}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\Effect">
+      <UniqueIdentifier>{11bb3507-a854-4795-880f-a9e500bea6cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -218,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="LittleGhost.cpp">
       <Filter>MainGame\02. Object\Unit\Enemy\LittleGhost</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>MainGame\02. Object\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,6 +367,9 @@
     </ClInclude>
     <ClInclude Include="LittleGhost.h">
       <Filter>MainGame\02. Object\Unit\Enemy\LittleGhost</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>MainGame\02. Object\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

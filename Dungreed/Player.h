@@ -8,12 +8,6 @@
 class Player : public Unit
 {
 private:
-	typedef struct tagPlayerHand
-	{
-		Image* image;
-		RECT rc;
-	} PlayerHand;
-
 	enum PLAYER_MOTION
 	{
 		IDLE,
@@ -23,15 +17,12 @@ private:
 
 private:
 	PLAYER_MOTION _state;
-	PlayerHand hand;
-
-	int mainHandX;
-	int mainWeaponX;
-	int tempAngle;
 
 	ImageGp* _weapon;
-	int angle;
-	int attackAngle;
+	int _mainHandX;
+	RECT _rcWeapon;
+	int _angleWeapon;
+	int _atkCnt;		// 첫번째 공격인지 두번째 공격인지
 
 public:
 	Player();
@@ -46,6 +37,11 @@ public:
 	void animation();
 
 	void initAnimation();
+
+	void moveLeft();
+	void moveRight();
+
+	void settingWeapon();
 
 };
 

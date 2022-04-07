@@ -35,14 +35,14 @@ Image* ImageManager::addImage(string strKey, int width, int height)
 	return img;
 }
 
-Image* ImageManager::addImage(string strKey, const char* fileName, int width, int height, BOOL isTrans, COLORREF transColor)
+Image* ImageManager::addImage(string strKey, const char* fileName, int width, int height, BOOL isTrans, COLORREF transColor, float scale)
 {
 	Image* img = findImage(strKey);
 
 	if (img) return img;
 
 	img = new Image;
-	if (FAILED(img->init(fileName, width, height, isTrans, transColor))) {
+	if (FAILED(img->init(fileName, width, height, isTrans, transColor, scale))) {
 		SAFE_DELETE(img);
 		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
 		return NULL;

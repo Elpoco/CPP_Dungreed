@@ -31,16 +31,22 @@ typedef struct tagTile
 
 typedef struct tagFrameInfo
 {
+	bool isFrame;
 	int tick;
 	int cnt;
 	int x;
 	int y;
+	int maxFrameX;
+	int maxFrameY;
 
 	tagFrameInfo()
 	{
+		isFrame = false;
 		tick = 10;
 		cnt = 0;
 		x = 0;
 		y = 0;
+		maxFrameX = 0;
+		maxFrameY = 0;
 	}
 } FRAME_INFO;

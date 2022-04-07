@@ -1,6 +1,8 @@
 #include "Stdafx.h"
 #include "Player.h"
 
+#include "Effect.h"
+
 Player::Player()
 {
 }
@@ -13,20 +15,14 @@ HRESULT Player::init()
 {
 	Unit::init();
 
-	_reSize = 30;
+	_reSize = 35;
 	this->initAnimation();
 
 	CAMERAMANAGER->followCamera(this);
 
-
-	hand.image = IMAGEMANAGER->findImage(ImageName::Player::hand);
 	_weapon = GPIMAGEMANAGER->findImage(ImageName::Item::Weapon::basicShotSword);
-	angle = 0;
-	attackAngle = 110;
-
-	mainHandX = 15;
-	mainWeaponX = mainHandX;
-	tempAngle = 0;
+	_mainHandX = 15;
+	_atkCnt = 0;
 
 	return S_OK;
 }
@@ -42,50 +38,26 @@ void Player::update()
 	this->move();
 	Unit::updateRect();
 	this->animation();
-
-	angle = GetAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.x, _ptMouse.y)  / PI *180;
+	this->settingWeapon();
 }
 
 void Player::render(HDC hdc)
 {
 	Unit::render(hdc);
 
-	//CAMERAMANAGER->render(hdc, hand.image, _x + 15, _y + 15);
-	CAMERAMANAGER->printRectangle(hdc, _x + 15, _y + 20, 5, 5);
+	CAMERAMANAGER->printRectangle(hdc, RectMakeCenter(_mainHandX, _y + 20, 5, 5));
 
-	//CAMERAMANAGER->render(hdc, 
-	//	_weapon, 
-	//	_x + mainWeaponX,
-	//	_y + 20 - _weapon->getHeight(),
-	//	angle + attackAngle - 100 + tempAngle,
-	//	{ _x + mainWeaponX, _y + 20 });
+	CAMERAMANAGER->render(hdc, _weapon, _rcWeapon.left, _rcWeapon.top, _angleWeapon, PointMake(_mainHandX, _y + 20));
 
-	//GPIMAGEMANAGER->render(ImageName::Item::Weapon::basicShotSword, hdc, 0, 0);
-
-	// x 15 y 20
-	//_img->render(hdc, CENTER_X, CENTER_Y, 90);
-	//_img->render(hdc, CENTER_X, CENTER_Y, 180);
-	//_img->render(hdc, CENTER_X, CENTER_Y, 270);
-
+	//GPIMAGEMANAGER->frameRender(ImageName::Effect::Weapon::effectBasic, hdc, CENTER_X, CENTER_Y, 0, 0);
 }
 
 void Player::move()
 {
 	_state = PLAYER_MOTION::IDLE;
 
-	if (KEYMANAGER->isStayKeyDown(KEY::LEFT))
-	{
-		_state = PLAYER_MOTION::RUN;
-		if(!_isCollision[ColliderEnum::DIRECTION::RIGHT])
-		_x -= _moveSpeed;
-	}
-
-	if (KEYMANAGER->isStayKeyDown(KEY::RIGHT))
-	{
-		_state = PLAYER_MOTION::RUN;
-		if (!_isCollision[ColliderEnum::DIRECTION::RIGHT])
-			_x += _moveSpeed;
-	}
+	if (KEYMANAGER->isStayKeyDown(KEY::LEFT))	this->moveLeft();
+	if (KEYMANAGER->isStayKeyDown(KEY::RIGHT))	this->moveRight();
 
 	if (KEYMANAGER->isStayKeyDown(KEY::DOWN))
 	{
@@ -115,7 +87,19 @@ void Player::move()
 
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
-		attackAngle *= -1;
+		if (_atkCnt == 0) _atkCnt = 1;
+		else _atkCnt = 0;
+
+		OBJECTMANAGER->addObject(
+			ObjectEnum::TYPE::EFFECT, 
+			new Effect(
+				ImageName::Effect::Weapon::effectBasic,
+				_x,
+				_y,
+				_angleWeapon,
+				PointMake(_x, _y)
+			)
+		);
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
@@ -136,10 +120,12 @@ void Player::animation()
 	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
 	{
 		_isLeft = true;
+		_mainHandX = _x - 15;
 	}
 	else 
 	{ 
 		_isLeft = false; 
+		_mainHandX = _x + 15;
 	}
 
 }
@@ -152,4 +138,47 @@ void Player::initAnimation()
 
 	_imgWidth = _vImages[0]->getFrameWidth() - _reSize;
 	_imgHeight = _vImages[0]->getFrameHeight();
+}
+
+void Player::moveLeft()
+{
+	_state = PLAYER_MOTION::RUN;
+	if (!_isCollision[ColliderEnum::DIRECTION::RIGHT])
+		_x -= _moveSpeed;
+}
+
+void Player::moveRight()
+{
+	_state = PLAYER_MOTION::RUN;
+	if (!_isCollision[ColliderEnum::DIRECTION::RIGHT])
+		_x += _moveSpeed;
+}
+
+void Player::settingWeapon()
+{
+	_rcWeapon = RectMakeCenter(_mainHandX, _y + 20, _weapon->getWidth(), _weapon->getHeight());
+	_angleWeapon = GetAngleDeg(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.x, _ptMouse.y);
+
+	if (_isLeft)
+	{
+		if (_atkCnt == 0)
+		{
+			_angleWeapon -= 80;
+		}
+		else
+		{
+			_angleWeapon -= 190;
+		}
+	}
+	else
+	{
+		if (_atkCnt == 0)
+		{
+			_angleWeapon += 80;
+		}
+		else
+		{
+			_angleWeapon += 190;
+		}
+	}
 }

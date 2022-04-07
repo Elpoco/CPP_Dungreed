@@ -62,10 +62,14 @@ void ImageLoader::loadImages()
 	// Town
 	IMAGEMANAGER->addImage(ImageName::floor, PATH_IMAGE"Town/Floor.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Town::cloud, PATH_IMAGE"Town/Cloud.bmp", WINSIZE_X, WINSIZE_Y);
-	IMAGEMANAGER->addImage(ImageName::Town::townBgDay, PATH_IMAGE"Town/TownBG_Day.bmp", 0, 0, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::Town::townLayerDay, PATH_IMAGE"Town/TownLayer_Day.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Town::townBgDay, PATH_IMAGE"Town/TownBG_Day.bmp", 0, 0, true, ColorSet::MAGENTA, 4.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::townLayerDay, PATH_IMAGE"Town/TownLayer_Day.bmp", 0, 0, true, ColorSet::MAGENTA, 4.0f);
 
 	// Item
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, 
-		PATH_ITEM"Weapon/BasicShortSword_New.png", 3.5f, 3.5f);
+		PATH_ITEM"Weapon/BasicShortSword_rotate.png");
+
+	// Effect
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::effectBasic,
+		PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
 }

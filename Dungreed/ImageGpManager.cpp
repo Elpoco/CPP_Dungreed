@@ -19,7 +19,7 @@ void ImageGpManager::release()
 	this->deleteAll();
 }
 
-ImageGp * ImageGpManager::findImage(string strKey)
+ImageGp* ImageGpManager::findImage(string strKey)
 {
 	auto key = _mImageList.find(strKey);
 
@@ -72,12 +72,43 @@ ImageGp* ImageGpManager::addImage(HDC memDc, string strKey, string fileName, flo
 	return img;
 }
 
+ImageGp* ImageGpManager::addFrameImage(HDC memDc, string strKey, string fileName, int maxFrameX, int maxFrameY)
+{
+	ImageGp* img = findImage(strKey);
+
+	if (img) return img;
+
+	img = new ImageGp;
+
+	wstring name = wstring(fileName.begin(), fileName.end());
+
+	if (FAILED(img->init(memDc, name.c_str(), maxFrameX, maxFrameY)))
+	{
+		SAFE_DELETE(img);
+		ImageManager::errorMsg(ImageManager::IM_ERROR_CODE::LOAD_FAILD, strKey);
+		return NULL;
+	}
+
+	_mImageList.insert(make_pair(strKey, img));
+
+	return img;
+}
+
 void ImageGpManager::render(string strKey, HDC hdc, int destX, int destY, int angle, POINT rotateCenter)
 {
 	ImageGp* img = findImage(strKey);
 	if (img)
 	{
 		img->render(hdc, destX, destY, angle, rotateCenter);
+	}
+}
+
+void ImageGpManager::frameRender(string strKey, HDC hdc, int destX, int destY, int frameX, int frameY, int angle, POINT rotateCenter)
+{
+	ImageGp* img = findImage(strKey);
+	if (img)
+	{
+		img->frameRender(destX, destY, frameX, frameY, angle, rotateCenter);
 	}
 }
 

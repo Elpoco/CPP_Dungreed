@@ -42,6 +42,9 @@ void MapToolScene::release()
 
 void MapToolScene::update()
 {
+	TILEMANAGER->update();
+	CAMERAMANAGER->update();
+
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::UP)))	 _camera->setY(_camera->getY() - CAMERA_SPPED);
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::DOWN)))  _camera->setY(_camera->getY() + CAMERA_SPPED);
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::LEFT)))  _camera->setX(_camera->getX() - CAMERA_SPPED);
@@ -92,8 +95,6 @@ void MapToolScene::update()
 		this->clickUndoTile();
 	}
 
-	TILEMANAGER->update();
-
 	if(MouseInRect(_rcToolWindow)) this->settingHoverTile();
 }
 
@@ -129,6 +130,9 @@ void MapToolScene::clickDrawTile()
 			if (_curTile.x + x == 4 && _curTile.y + y == 0)
 				type = TYPE::DIG_R;
 				//obj = MAP_OBJECT::MO_DIG_R;
+			if (_curTile.x + x == 3 && _curTile.y + y == 0)
+				type = TYPE::DIG_L;
+
 			TILEMANAGER->setTileFrame(
 				idx + x + y * TILE_CNT_X,
 				_curTile.x + x,
@@ -153,7 +157,6 @@ void MapToolScene::clickChangeTile()
 	int y = (_ptMouse.y) / TOOL_TILE_SIZE;
 
 	_curTile = { x,y };
-	cout << x << ", " << y << endl;
 	settingSelectTileRect();
 }
 

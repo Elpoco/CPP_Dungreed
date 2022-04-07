@@ -16,6 +16,7 @@ namespace MY_UTIL
 {
 	float GetDistance(float startX, float startY, float endX, float endY);
 	float GetAngle(float startX, float startY, float endX, float endY);
+	int GetAngleDeg(float startX, float startY, float endX, float endY);
 
 	bool MouseInRect(RECT& rc);
 
@@ -26,6 +27,18 @@ namespace MY_UTIL
 	{
 		POINT pt = { x,y };
 		return pt;
+	}
+
+	inline Gdiplus::PointF PointFMake(float x, float y)
+	{
+		Gdiplus::PointF pt = { x,y };
+		return pt;
+	}
+
+	inline Gdiplus::PointF PointToPointF(POINT pt)
+	{
+		Gdiplus::PointF ptF = { (float)pt.x, (float)pt.y };
+		return ptF;
 	}
 
 	inline void LineMake(HDC hdc, int startX, int startY, int endX, int endY)

@@ -48,7 +48,8 @@ namespace ColliderEnum
 		RT,
 		LB,
 		RB,
-		DIR_CNT
+		DIR_CNT,
+		NONE
 	};
 }
 
@@ -60,5 +61,6 @@ namespace ObjectEnum
 		ITEM,
 		ENEMY,
 		NPC,
+		EFFECT
 	};
 }

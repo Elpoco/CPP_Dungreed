@@ -149,6 +149,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FileManager.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enums.h" />

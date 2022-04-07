@@ -10,14 +10,16 @@ using Gdiplus::Color;
 
 namespace MY_UTIL
 {
-	float GetDistance(float startX, float startY, float endX, float endY) {
+	float GetDistance(float startX, float startY, float endX, float endY)
+	{
 		float x = endX - startX;
 		float y = endY - startY;
 
 		return sqrt(x * x + y * y);
 	}
 
-	float GetAngle(float startX, float startY, float endX, float endY) {
+	float GetAngle(float startX, float startY, float endX, float endY)
+	{
 		float x = endX - startX;
 		float y = endY - startY;
 		float d = sqrt(x * x + y * y);
@@ -26,6 +28,11 @@ namespace MY_UTIL
 		if (y > 0)angle = PI_2 - angle;
 
 		return angle;
+	}
+
+	int GetAngleDeg(float startX, float startY, float endX, float endY)
+	{
+		return GetAngle(startX, startY, endX, endY) / PI * 180;
 	}
 
 	bool MouseInRect(RECT& rc)

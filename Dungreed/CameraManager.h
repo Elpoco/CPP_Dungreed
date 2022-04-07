@@ -32,23 +32,24 @@ public:
 	void render(HDC hdc, Image* img, float x, float y);
 	void render(HDC hdc, ImageGp* img, float x, float y, int angle = 0, POINT rotateCenter = { 0,0 });
 	void frameRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY);
+	void frameRender(HDC hdc, ImageGp* img, float x, float y, int frameX, int frameY, int angle = 0, POINT rotateCenter = { 0,0 });
 
-	void followCamera(Object* object);
-	void lockCamera() { _isLock = true; }
-	void unlockCamera() { _isLock = false; }
-	void startFollow() { _isFollow = true; }
-	void stopFollow() { _isFollow = false; }
+	inline void followCamera(Object* object) { _object = object; _isFollow = true; }
+	inline void lockCamera() { _isLock = true; }
+	inline void unlockCamera() { _isLock = false; }
+	inline void startFollow() { _isFollow = true; }
+	inline void stopFollow() { _isFollow = false; }
 
-	float getAbsX() { return _x; }
-	float getAbsY() { return _y; }
+	inline float getAbsX() { return _x; }
+	inline float getAbsY() { return _y; }
 
-	float calRelX(float x) { return x - _x; }
-	float calRelY(float y) { return y - _y; }
-	float calAbsX(float x) { return x + _x; }
-	float calAbsY(float y) { return y + _y; }
-	RECT calRelRc(RECT rc) { return { (long)(rc.left - _x), (long)(rc.top - _y), (long)(rc.right - _x), (long)(rc.bottom - _y) }; }
-	POINT calRelPt(POINT pt) { return PointMake(pt.x - _x, pt.y - _y);}
-	POINT calAbsPt(POINT pt) { return PointMake(pt.x + _x, pt.y + _y); }
+	inline float calRelX(float x) { return x - _x; }
+	inline float calRelY(float y) { return y - _y; }
+	inline float calAbsX(float x) { return x + _x; }
+	inline float calAbsY(float y) { return y + _y; }
+	inline RECT calRelRc(RECT rc) { return { (long)(rc.left - _x), (long)(rc.top - _y), (long)(rc.right - _x), (long)(rc.bottom - _y) }; }
+	inline POINT calRelPt(POINT pt) { return PointMake(pt.x - _x, pt.y - _y);}
+	inline POINT calAbsPt(POINT pt) { return PointMake(pt.x + _x, pt.y + _y); }
 
 };
 
