@@ -24,8 +24,8 @@ public:
 	// 타일 충돌
 	void tileCollision();
 
-	// 몬스터 인식
-	void enemyScanCollision();
+	// 플레이어와 몬스터 충돌 관리
+	void playerEnemyCollision();
 
 };
 

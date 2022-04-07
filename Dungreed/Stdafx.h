@@ -69,7 +69,6 @@ using namespace MY_UTIL;
 #include "JsonSaveLoader.h"
 
 #include "ObjectManager.h"
-#include "EffectManager.h"
 #include "CameraManager.h"
 #include "UIManager.h"
 #include "FileManager.h"
@@ -92,7 +91,6 @@ using namespace MY_UTIL;
 #define SOUNDMANAGER		SoundManager::getSingleton()
 #define JSONDATAMANAGER		JsonSaveLoader::getSingleton()
 #define OBJECTMANAGER		ObjectManager::getSingleton()
-#define EFFECTMANAGER		EffectManager::getSingleton()
 #define CAMERAMANAGER		CameraManager::getSingleton()
 #define UIMANAGER			UIManager::getSingleton()
 #define FILEMANAGER			FileManager::getSingleton()

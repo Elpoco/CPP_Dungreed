@@ -3,6 +3,7 @@
 
 #include "Object.h"
 #include "Enemy.h"
+#include "Player.h"
 
 CollisionManager::CollisionManager()
 {
@@ -24,7 +25,7 @@ void CollisionManager::release()
 void CollisionManager::update()
 {
 	this->tileCollision();
-	this->enemyScanCollision();
+	this->playerEnemyCollision();
 }
 
 void CollisionManager::render(HDC hdc)
@@ -58,7 +59,7 @@ void CollisionManager::render(HDC hdc)
 				}
 				
 				// 적 랜더
-				if (pairObject.first == ObjectEnum::TYPE::ENEMY)
+				else if (pairObject.first == ObjectEnum::TYPE::ENEMY)
 				{
 					Enemy* enemy = dynamic_cast<Enemy*>(obj);
 					// 스캔박스
@@ -129,30 +130,42 @@ void CollisionManager::tileCollision()
 	}
 }
 
-void CollisionManager::enemyScanCollision()
+void CollisionManager::playerEnemyCollision()
 {
 	auto pairPlayer = _mObjects->find(ObjectEnum::TYPE::PLAYER);
 	auto pairEnemy = _mObjects->find(ObjectEnum::TYPE::ENEMY);
-	for (Object* player : pairPlayer->second)
+	for (Object* objPlayer : pairPlayer->second)
 	{
+		Player* player = dynamic_cast<Player*>(objPlayer);
 		for (Object* obj : pairEnemy->second)
 		{
 			Enemy* enemy = dynamic_cast<Enemy*>(obj);
+			RECT tmp;
+			RECT playerHitBox = player->getRect();
+			RECT enemyScanBox = enemy->getScanRect();
+
+			RECT enemyHitBox = enemy->getRect();
+			RECT playerAtkBox = player->getAtkRect();
 
 			// 이전에 플레이어 감지한적 있는지
 			if (enemy->getPlayerScan())
 			{
 				// 감지한적 있으면 정보 제공
-				enemy->scanPlayer(player->getPt(), player->getRect());
+				enemy->scanPlayer(player->getPt(), playerHitBox);
 			}
 			else // 감지한적 없으면 체크하기
 			{
-				RECT tmp;
-				if (IntersectRect(&tmp, &player->getRect(), &enemy->getScanRect()))
+				if (IntersectRect(&tmp, &playerHitBox, &enemyScanBox))
 				{
 					// 감지했으면 정보 제공
-					enemy->scanPlayer(player->getPt(), player->getRect());
+					enemy->scanPlayer(player->getPt(), playerHitBox);
 				}
+			}
+			// 스캔 끝
+
+			if (IntersectRect(&tmp, &playerAtkBox, &enemyHitBox))
+			{
+				enemy->hitAttack(1);
 			}
 		}
 	}

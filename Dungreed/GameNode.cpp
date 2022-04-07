@@ -25,7 +25,6 @@ HRESULT GameNode::init(bool managerInit)
 		SOUNDMANAGER	->init();
 		JSONDATAMANAGER	->init();
 		OBJECTMANAGER	->init();
-		EFFECTMANAGER	->init();
 		CAMERAMANAGER	->init();
 		TIMEMANAGER		->init();
 		UIMANAGER		->init();
@@ -71,9 +70,6 @@ void GameNode::release(void)
 
 		OBJECTMANAGER->release();
 		OBJECTMANAGER->releaseSingleton();
-
-		EFFECTMANAGER->release();
-		EFFECTMANAGER->releaseSingleton();
 
 		CAMERAMANAGER->release();
 		CAMERAMANAGER->releaseSingleton();

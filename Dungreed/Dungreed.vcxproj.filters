@@ -40,9 +40,6 @@
     <Filter Include="API FrameWork\10. Timer">
       <UniqueIdentifier>{1ab14265-be7d-4bfe-8268-5e6e9f96fef3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\11. ProgressBar">
-      <UniqueIdentifier>{0a965148-8c79-412f-b364-bc31c5df6fca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="API FrameWork\12. Collider">
       <UniqueIdentifier>{7423818a-c6a4-4d2f-980a-d7cbfdedf660}</UniqueIdentifier>
     </Filter>
@@ -97,13 +94,16 @@
     <Filter Include="MainGame\02. Object\Effect">
       <UniqueIdentifier>{11bb3507-a854-4795-880f-a9e500bea6cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\Item\Sword">
+      <UniqueIdentifier>{d8ced728-9dfc-413d-9352-ac1cbd783ae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\PrgressBar">
+      <UniqueIdentifier>{30c21a14-4b8d-4223-b544-16664221318d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
       <Filter>API FrameWork\09. Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="EffectManager.cpp">
-      <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="FontManager.cpp">
       <Filter>API FrameWork\06. Manager</Filter>
@@ -125,9 +125,6 @@
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
       <Filter>MainGame</Filter>
-    </ClCompile>
-    <ClCompile Include="ProgressBar.cpp">
-      <Filter>API FrameWork\11. ProgressBar</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>API FrameWork\06. Manager</Filter>
@@ -225,13 +222,16 @@
     <ClCompile Include="Effect.cpp">
       <Filter>MainGame\02. Object\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>MainGame\02. Object\Item\Sword</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyHpBar.cpp">
+      <Filter>MainGame\02. Object\PrgressBar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
       <Filter>API FrameWork\09. Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="EffectManager.h">
-      <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="FontManager.h">
       <Filter>API FrameWork\06. Manager</Filter>
@@ -253,9 +253,6 @@
     </ClInclude>
     <ClInclude Include="MainGame.h">
       <Filter>MainGame</Filter>
-    </ClInclude>
-    <ClInclude Include="ProgressBar.h">
-      <Filter>API FrameWork\11. ProgressBar</Filter>
     </ClInclude>
     <ClInclude Include="RandomFuntion.h">
       <Filter>API FrameWork\05. Utillity</Filter>
@@ -370,6 +367,12 @@
     </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>MainGame\02. Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>MainGame\02. Object\Item\Sword</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyHpBar.h">
+      <Filter>MainGame\02. Object\PrgressBar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

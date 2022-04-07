@@ -11,7 +11,9 @@ private:
 	FRAME_INFO _frameInfo;
 
 protected:
-	string _name;
+	string	_name;
+	RECT	_rcAttack;
+	BYTE	_state;
 
 	// Image
 	vector<Image*> _vImages;
@@ -49,13 +51,16 @@ public:
 	void updateRect();
 	void updateProve();
 
+	void jump();
+	bool isJump() { return _isJump; }
+
+	virtual void hitAttack(int dmg) {}
+
 	inline void setFrameY(int frameY) { _frameInfo.y = frameY; }
 
 	inline float getWidth() { return _imgWidth; }
 	inline float getHeight() { return _imgHeight; }
-
-	void jump();
-	bool isJump() { return _isJump; }
+	inline RECT getAtkRect() { return _rcAttack; }
 
 };
 

@@ -5,19 +5,23 @@ Item::Item()
 {
 }
 
+Item::Item(string name)
+{
+	this->init(name);
+}
+
 Item::~Item()
 {
 }
 
 HRESULT Item::init()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 HRESULT Item::init(string name)
 {
-	//_vImages.push_back(GPIMAGEMANAGER->findImage(name));
-
+	_img = GPIMAGEMANAGER->findImage(name);
 	return S_OK;
 }
 

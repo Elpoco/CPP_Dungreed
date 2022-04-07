@@ -20,7 +20,7 @@ HRESULT SkelDog::init()
 
 	_name = "½ºÄÌ¸®µ¶";
 	_scanScale = { 15,6 };
-	_hp = UnitSet::Enemy::SkelDog::HP;
+	settingHp(UnitSet::Enemy::SkelDog::HP);
 	_isAutoLeft = false;
 	_jumpSpeed /= 2;
 

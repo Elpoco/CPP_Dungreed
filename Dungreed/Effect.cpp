@@ -13,7 +13,7 @@ Effect::~Effect()
 
 Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter)
 {
-	this->init(imgName, x, y);
+	this->init(imgName, x, y, angle, rotateCenter);
 }
 
 HRESULT Effect::init()
@@ -101,19 +101,23 @@ void Effect::render(HDC hdc)
 		}
 		else
 		{
-			_gpImg->render(hdc, _rc.left, _rc.top);
+			CAMERAMANAGER->render(hdc, _gpImg, _rc.left, _rc.top);
 		}
 	}
 	else
 	{
 		if (_frameInfo.isFrame)
 		{
-			_img->frameRender(hdc, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
+			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 		}
 		else
 		{
-			_img->render(hdc, _rc.left, _rc.top);
+			CAMERAMANAGER->render(hdc, _img, _rc.left, _rc.top);
 		}
+	}
+	if (_isDebug)
+	{
+		CAMERAMANAGER->printRectangle(hdc, _rc, Color::Red);
 	}
 }
 

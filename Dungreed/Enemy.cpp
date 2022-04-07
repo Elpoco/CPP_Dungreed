@@ -1,15 +1,17 @@
 #include "Stdafx.h"
 #include "Enemy.h"
 
+#include "EnemyHpBar.h"
+
 Enemy::Enemy() :
-	_hp(1),
 	_isAutoLeft(true),
+	_hp(1),
+	_maxHp(1),
 	_rcScan({ 0,0,0,0 }),
 	_ptPlayer({ 0,0 }),
 	_rcPlayer({ 0,0,0,0 }),
 	_isPlayerScan(FALSE),
 	_isDead(FALSE),
-	_state(0),
 	_isAttack(false)
 {
 }
@@ -21,6 +23,8 @@ Enemy::~Enemy()
 HRESULT Enemy::init()
 {
 	Unit::init();
+	_hpBar = new EnemyHpBar;
+	_hpBar->init();
 	
 	return S_OK;
 }
@@ -28,6 +32,8 @@ HRESULT Enemy::init()
 void Enemy::release()
 {
 	Unit::release();
+	_hpBar->release();
+	SAFE_DELETE(_hpBar);
 }
 
 void Enemy::update()
@@ -35,11 +41,13 @@ void Enemy::update()
 	Unit::update();
 	this->move();
 	this->animation();
+	_hpBar->update(_x, _rc.bottom + ENEMY_HP_BAR_H, _hp / _maxHp);
 }
 
 void Enemy::render(HDC hdc)
 {
 	Unit::render(hdc);
+	_hpBar->render(hdc);
 }
 
 void Enemy::move()
@@ -53,6 +61,16 @@ void Enemy::move()
 
 void Enemy::animation()
 {
+	
+}
+
+void Enemy::hitAttack(int dmg)
+{
+	_hp -= dmg;
+	if (_hp < 1)
+	{
+		_isLive = FALSE;
+	}
 }
 
 void Enemy::scanPlayer(POINT ptPlayer, RECT rcPlayer)

@@ -106,5 +106,8 @@ void CameraManager::frameRender(HDC hdc, ImageGp* img, float x, float y, int fra
 {
 	if (this->checkObjectInCamera(x, y, img->getFrameWidth(), img->getFrameHeight())) return;
 
+	if (rotateCenter.x != 0) rotateCenter.x -= _x;
+	if (rotateCenter.y != 0) rotateCenter.y -= _y;
+
 	img->frameRender(x - _x, y - _y, frameX, frameY, angle, rotateCenter);
 }

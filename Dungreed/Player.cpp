@@ -84,22 +84,30 @@ void Player::move()
 	{
 		Unit::jump();
 	}
-
+	_rcAttack = { 0,0,0,0 };
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
 		if (_atkCnt == 0) _atkCnt = 1;
 		else _atkCnt = 0;
 
+		float angle = GetAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.x, _ptMouse.y);
+
+		float effectX = cosf(angle) * 30 + _x;
+		float effectY = -sinf(angle) * 30 + _y;
+
 		OBJECTMANAGER->addObject(
 			ObjectEnum::TYPE::EFFECT, 
 			new Effect(
 				ImageName::Effect::Weapon::effectBasic,
-				_x,
-				_y,
-				_angleWeapon,
-				PointMake(_x, _y)
+				effectX,
+				effectY,
+				angle / PI * 180,
+				PointMake(effectX, effectY)
 			)
 		);
+
+
+		_rcAttack = RectMakeCenter(effectX, effectY, 100, 100);
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
@@ -109,7 +117,7 @@ void Player::move()
 
 	if (_isJump || _isFall)
 	{
-		//_state = PLAYER_MOTION::JUMP;
+		_state = PLAYER_MOTION::JUMP;
 	}
 }
 

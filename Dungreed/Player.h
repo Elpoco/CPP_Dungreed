@@ -16,8 +16,6 @@ private:
 	};
 
 private:
-	PLAYER_MOTION _state;
-
 	ImageGp* _weapon;
 	int _mainHandX;
 	RECT _rcWeapon;

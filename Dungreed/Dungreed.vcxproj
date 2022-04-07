@@ -150,7 +150,6 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Effect.cpp" />
-    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="FontManager.cpp" />
@@ -166,7 +165,9 @@
     <ClCompile Include="LittleGhost.cpp" />
     <ClCompile Include="MessageBoxManager.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="EnemyHpBar.cpp" />
     <ClCompile Include="SkelDog.cpp" />
+    <ClCompile Include="Sword.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -174,7 +175,6 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PixelCollider.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Stdafx.cpp">
@@ -199,7 +199,6 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Effect.h" />
-    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="FileManager.h" />
@@ -216,9 +215,11 @@
     <ClInclude Include="LittleGhost.h" />
     <ClInclude Include="MessageBoxManager.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="EnemyHpBar.h" />
     <ClInclude Include="SkelDog.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Structs.h" />
+    <ClInclude Include="Sword.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="MainGame.h" />
@@ -226,7 +227,6 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="PixelCollider.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="RandomFuntion.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SingletonBase.h" />
