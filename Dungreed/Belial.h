@@ -16,17 +16,14 @@ private:
 		SHOOTING_BULLET
 	};
 
-	typedef struct tagBelialBullet
+	typedef struct tagBelialHand
 	{
-		bool fire;
+		Image* img;
 		RECT rc;
 		float x;
 		float y;
-		float moveX;
-		float moveY;
-		float speed;
-		int frameX;
-	} BELIAL_BULLET;
+		bool isLeft;
+	} BELIAL_HAND;
 
 private:
 	FRAME_INFO _backFrameInfo;
@@ -38,6 +35,13 @@ private:
 	BYTE _skillActCnt;
 	BELIAL_SKILL _skill;
 	float _shootAngle;
+
+	BELIAL_HAND _handL;
+	BELIAL_HAND _handR;
+	FRAME_INFO _handLFrameInfo;
+	FRAME_INFO _handRFrameInfo;
+
+	RECT rcTemp;
 
 public:
 	Belial(float x, float y);

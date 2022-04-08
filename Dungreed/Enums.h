@@ -64,5 +64,6 @@ namespace ObjectEnum
 		PLAYER,
 		PLAYER_OBJ,
 		EFFECT,
+		FIX_UI
 	};
 }

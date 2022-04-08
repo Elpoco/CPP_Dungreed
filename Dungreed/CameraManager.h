@@ -33,6 +33,7 @@ public:
 	void render(HDC hdc, ImageGp* img, float x, float y, int angle = 0, POINT rotateCenter = { 0,0 });
 	void frameRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY);
 	void frameRender(HDC hdc, ImageGp* img, float x, float y, int frameX, int frameY, int angle = 0, POINT rotateCenter = { 0,0 });
+	void frameAlphaRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY, BYTE alpha);
 
 	inline void followCamera(Object* object) { _object = object; _isFollow = true; }
 	inline void lockCamera() { _isLock = true; }

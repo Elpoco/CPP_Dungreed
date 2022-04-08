@@ -522,6 +522,60 @@ void Image::frameRender(HDC hdc, float destX, float destY, int currentFrameX, in
 	}
 }
 
+void Image::frameAlphaRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY, BYTE alpha)
+{
+	_imageInfo->currentFrameX = currentFrameX;
+	_imageInfo->currentFrameY = currentFrameY;
+
+	if (currentFrameX > _imageInfo->maxFrameX) _imageInfo->currentFrameX = _imageInfo->maxFrameX;
+	if (currentFrameY > _imageInfo->maxFrameY) _imageInfo->currentFrameY = _imageInfo->maxFrameY;
+
+	if (!_blendImage) initForAlphaBlend();
+	_blendFunc.SourceConstantAlpha = alpha;
+
+	if (_isTrans) {
+		BitBlt(
+			_blendImage->hMemDC,
+			0, 0,
+			_imageInfo->frameWidth,
+			_imageInfo->frameHeight,
+			hdc,
+			destX, destY,
+			SRCCOPY
+		);
+
+		GdiTransparentBlt(
+			hdc,
+			destX, destY,
+			_imageInfo->frameWidth,
+			_imageInfo->frameHeight,
+			_imageInfo->hMemDC,
+			_imageInfo->currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth,
+			_imageInfo->frameHeight,
+			_transColor
+		);
+
+		AlphaBlend(
+			hdc,
+			destX, destY,
+			_imageInfo->frameWidth,
+			_imageInfo->frameHeight,
+			_blendImage->hMemDC,
+			0, 0,
+			_imageInfo->frameWidth,
+			_imageInfo->frameHeight,
+			_blendFunc
+		);
+	}
+	else {
+		BitBlt(hdc, destX, destY, _imageInfo->frameWidth, _imageInfo->frameHeight, _imageInfo->hMemDC,
+			_imageInfo->currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight, SRCCOPY);
+	}
+}
+
 void Image::loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY)
 {
 	if (offsetX < 0) offsetX = _imageInfo->width + (offsetX % _imageInfo->width);

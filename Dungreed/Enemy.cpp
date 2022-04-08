@@ -4,17 +4,17 @@
 #include "EnemyHpBar.h"
 #include "Effect.h"
 
-Enemy::Enemy() :
-	_isAutoLeft(true)
-	,_hp(1)
-	,_maxHp(1)
-	,_isSpawn(TRUE)
-	,_rcScan({ 0,0,0,0 })
-	,_ptPlayer({ 0,0 })
-	,_rcPlayer({ 0,0,0,0 })
-	,_isPlayerScan(FALSE)
-	,_isDead(FALSE)
-	,_isAttack(false)
+Enemy::Enemy()
+	: _isAutoLeft(true)
+	, _hp(1)
+	, _maxHp(1)
+	, _isSpawn(TRUE)
+	, _rcScan({ 0,0,0,0 })
+	, _ptPlayer({ 0,0 })
+	, _rcPlayer({ 0,0,0,0 })
+	, _isPlayerScan(FALSE)
+	, _isDead(FALSE)
+	, _isAttack(false)
 {
 }
 
@@ -27,7 +27,7 @@ HRESULT Enemy::init()
 	Unit::init();
 	_hpBar = new EnemyHpBar;
 	_hpBar->init();
-	
+
 	return S_OK;
 }
 
@@ -45,6 +45,7 @@ void Enemy::update()
 	Unit::update();
 	this->move();
 	this->animation();
+	_rcScan = RectMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
 	_hpBar->update(_x, _rc.bottom + ENEMY_HP_BAR_H, _hp / _maxHp);
 }
 
@@ -82,7 +83,7 @@ void Enemy::move()
 
 void Enemy::animation()
 {
-	
+
 }
 
 void Enemy::hitAttack(int dmg)

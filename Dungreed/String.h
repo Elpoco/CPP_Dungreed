@@ -24,6 +24,10 @@ namespace ImageName
 		constexpr char* belialAttack = "BelialAttack";
 		constexpr char* belialBack = "BelialBack";
 		constexpr char* belialBullet = "BelialBullet";
+		constexpr char* belialBulletEffect = "BelialBulletEffect";
+		constexpr char* belialHandL = "BelialHandL";
+		constexpr char* belialHandR = "BelialHandR";
+		constexpr char* belialSword = "BelialSword";
 	}
 
 	namespace Town

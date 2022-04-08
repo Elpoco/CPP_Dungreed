@@ -78,8 +78,6 @@ void SkelDog::move()
 	{
 		_isAttack = false;
 	}
-
-	_rcScan = RectMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
 }
 
 void SkelDog::animation()

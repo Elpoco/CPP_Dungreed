@@ -51,8 +51,6 @@ void LittleGhost::move()
 		_x += cosf(angle) * _moveSpeed;
 		_y -= sinf(angle) * _moveSpeed;
 	}
-
-	_rcScan = RectMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
 }
 
 void LittleGhost::animation()

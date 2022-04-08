@@ -21,6 +21,7 @@ HRESULT ObjectManager::init()
 	_mObjects.insert(make_pair(TYPE::EFFECT, vector<Object*> ()));
 	_mObjects.insert(make_pair(TYPE::ENEMY_OBJ, vector<Object*> ()));
 	_mObjects.insert(make_pair(TYPE::PLAYER_OBJ, vector<Object*> ()));
+	_mObjects.insert(make_pair(TYPE::PLAYER_OBJ, vector<Object*> ()));
 
 	COLLISIONMANAGER->setObject(&_mObjects);
 

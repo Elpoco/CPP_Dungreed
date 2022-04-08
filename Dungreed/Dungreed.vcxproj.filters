@@ -246,6 +246,9 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>MainGame\02. Object\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="BelialBullet.cpp">
+      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -397,6 +400,9 @@
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>MainGame\02. Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialBullet.h">
+      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

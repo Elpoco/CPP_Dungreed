@@ -111,3 +111,8 @@ void CameraManager::frameRender(HDC hdc, ImageGp* img, float x, float y, int fra
 
 	img->frameRender(x - _x, y - _y, frameX, frameY, angle, rotateCenter);
 }
+
+void CameraManager::frameAlphaRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY, BYTE alpha)
+{
+	img->frameAlphaRender(hdc, x - _x, y - _y, frameX, frameY, alpha);
+}
