@@ -36,6 +36,7 @@ public:
 
 	inline RECT getRect() { return _rc; }
 	inline int isLive() { return _isLive; }
+	inline void dieObject() { _isLive = FALSE; }
 
 };
 

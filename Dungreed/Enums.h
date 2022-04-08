@@ -57,10 +57,12 @@ namespace ObjectEnum
 {
 	enum class TYPE
 	{
-		PLAYER,
-		ITEM,
-		ENEMY,
 		NPC,
-		EFFECT
+		ENEMY,
+		ENEMY_OBJ,
+		ITEM,
+		PLAYER,
+		PLAYER_OBJ,
+		EFFECT,
 	};
 }

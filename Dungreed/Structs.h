@@ -32,12 +32,13 @@ typedef struct tagTile
 typedef struct tagFrameInfo
 {
 	bool isFrame;
-	int tick;
-	int cnt;
+	BYTE tick;
+	BYTE cnt;
 	int x;
 	int y;
-	int maxFrameX;
-	int maxFrameY;
+	BYTE maxFrameX;
+	BYTE maxFrameY;
+	BYTE startFrameX;
 
 	tagFrameInfo()
 	{
@@ -48,5 +49,8 @@ typedef struct tagFrameInfo
 		y = 0;
 		maxFrameX = 0;
 		maxFrameY = 0;
+		startFrameX = 0;
 	}
 } FRAME_INFO;
+
+typedef void(*CALLBACK_FUNC) (void);

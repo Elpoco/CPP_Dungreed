@@ -42,5 +42,10 @@ namespace UnitSet
 		{
 			constexpr float MOVE_SPEED = 2.0f;
 		}
+
+		namespace Belial
+		{
+			constexpr int HP = 50;
+		}
 	}
 }

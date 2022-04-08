@@ -38,10 +38,15 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::Player::hand, PATH_UNIT"Player/Hand.bmp");
 
 	// Enemy
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::enemySpawn, PATH_UNIT"Enemy/MonsterSpawnEffect.bmp", 0, 0, 14, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::dogIdle, PATH_UNIT"Enemy/SkelDog/SkelDogIdle.bmp", 0, 0, 5, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::dogRun, PATH_UNIT"Enemy/SkelDog/SkelDogRun.bmp", 0, 0, 7, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::dogDie, PATH_UNIT"Enemy/SkelDog/SkelDogDie.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::littleGhostIdle, PATH_UNIT"Enemy/LittleGhost/LittleGhost.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::belialIdle, PATH_UNIT"Enemy/Belial/SkellBossIdle.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::belialAttack, PATH_UNIT"Enemy/Belial/SkellBossAttack.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::belialBack, PATH_UNIT"Enemy/Belial/SkellBossBack.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::belialBullet, PATH_UNIT"Enemy/Belial/SkellBossBullet.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
 
 	// Map
 	IMAGEMANAGER->addImage(ImageName::pixelTest, PATH_IMAGE"PixelTest.bmp", WINSIZE_X, WINSIZE_Y);

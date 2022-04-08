@@ -3,7 +3,8 @@
 
 Effect::Effect() :
 	_img(nullptr),
-	_gpImg(nullptr)
+	_gpImg(nullptr),
+	test(nullptr)
 {
 }
 
@@ -131,6 +132,10 @@ void Effect::animation()
 		_frameInfo.x++;
 
 		bool checkFrame = _frameInfo.maxFrameX < _frameInfo.x;
-		if (checkFrame) _isLive = FALSE;
+		if (checkFrame) 
+		{
+			_isLive = FALSE;
+			if (test) test();
+		}
 	}
 }

@@ -57,7 +57,6 @@ void LittleGhost::move()
 
 void LittleGhost::animation()
 {
-	_imgCurrent = _state;
 }
 
 void LittleGhost::initAnimation()

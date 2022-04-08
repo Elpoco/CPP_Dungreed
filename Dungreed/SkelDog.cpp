@@ -20,9 +20,9 @@ HRESULT SkelDog::init()
 
 	_name = "½ºÄÌ¸®µ¶";
 	_scanScale = { 15,6 };
-	settingHp(UnitSet::Enemy::SkelDog::HP);
 	_isAutoLeft = false;
 	_jumpSpeed /= 2;
+	settingHp(UnitSet::Enemy::SkelDog::HP);
 
 	return S_OK;
 }
@@ -73,8 +73,6 @@ void SkelDog::move()
 			this->attack();
 		}
 	}
-
-	if (KEYMANAGER->isOnceKeyDown('T')) Unit::jump();
 	
 	if (!_isJump)
 	{
@@ -86,7 +84,6 @@ void SkelDog::move()
 
 void SkelDog::animation()
 {
-	_imgCurrent = _state;
 }
 
 void SkelDog::initAnimation()

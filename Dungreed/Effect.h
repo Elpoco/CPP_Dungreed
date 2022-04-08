@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+
 class Effect : public Object
 {
 private:
@@ -11,6 +12,8 @@ protected:
 
 	int _angle;
 	POINT _rotateCenter;
+
+	void (*test)();
 
 public:
 	Effect();
@@ -24,6 +27,8 @@ public:
 	virtual void render(HDC hdc) override;
 
 	void animation();
+
+	void setCallback(void(* callback)()) { test = callback; }
 
 };
 

@@ -123,7 +123,7 @@ void Player::move()
 
 void Player::animation()
 {
-	_imgCurrent = _state;
+	//_imgCurrent = _state;
 
 	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
 	{
@@ -151,7 +151,7 @@ void Player::initAnimation()
 void Player::moveLeft()
 {
 	_state = PLAYER_MOTION::RUN;
-	if (!_isCollision[ColliderEnum::DIRECTION::RIGHT])
+	if (!_isCollision[ColliderEnum::DIRECTION::LEFT])
 		_x -= _moveSpeed;
 }
 

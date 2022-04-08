@@ -12,11 +12,18 @@ namespace ImageName
 
 	namespace Enemy
 	{
+		constexpr char* enemySpawn = "EnemySpawn";
+
 		constexpr char* dogIdle = "DogIdle";
 		constexpr char* dogRun = "DogRun";
 		constexpr char* dogDie = "DogDie";
 		
 		constexpr char* littleGhostIdle = "littleGhostIdle";
+
+		constexpr char* belialIdle = "BelialIdle";
+		constexpr char* belialAttack = "BelialAttack";
+		constexpr char* belialBack = "BelialBack";
+		constexpr char* belialBullet = "BelialBullet";
 	}
 
 	namespace Town

@@ -169,7 +169,7 @@ HRESULT Image::init(const char* fileName, int width, int height, int maxFrameX, 
 	_imageInfo->currentFrameX = 0;
 	_imageInfo->currentFrameY = 0;
 	_imageInfo->maxFrameX = maxFrameX - 1;
-	_imageInfo->maxFrameY = maxFrameY - 1;
+	_imageInfo->maxFrameY = maxFrameY;
 	_imageInfo->frameWidth = width / maxFrameX;
 	_imageInfo->frameHeight = height / maxFrameY;
 

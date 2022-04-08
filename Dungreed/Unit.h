@@ -7,10 +7,8 @@
 
 class Unit : public Object
 {
-private:
-	FRAME_INFO _frameInfo;
-
 protected:
+	FRAME_INFO _frameInfo;
 	string	_name;
 	RECT	_rcAttack;
 	BYTE	_state;
@@ -56,6 +54,7 @@ public:
 
 	virtual void hitAttack(int dmg) {}
 
+	inline void setFrameX(int frameX) { _frameInfo.x = frameX; }
 	inline void setFrameY(int frameY) { _frameInfo.y = frameY; }
 
 	inline float getWidth() { return _imgWidth; }

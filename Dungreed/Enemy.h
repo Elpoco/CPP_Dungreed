@@ -9,6 +9,7 @@ protected:
 	bool	_isAutoLeft;	// 플레이어 위치에 따라 자동으로 변경할지
 	float	_hp;
 	float	_maxHp;
+	int		_isSpawn;
 
 	RECT	_rcScan;		// 플레이어 탐지 범위
 	POINT	_scanScale;		// 탐지 범위 배율
@@ -38,7 +39,10 @@ public:
 	void scanPlayer(POINT ptPlayer, RECT rcPlayer);
 	inline RECT getScanRect() { return _rcScan; }
 	inline int getPlayerScan() { return _isPlayerScan; }
-	inline void settingHp(int hp) { _maxHp = _hp = hp; }
 
+	inline void settingHp(int hp) { _maxHp = _hp = hp; }
+	inline int isSpawn() { return _isSpawn; }
+
+	inline void doneSpawn() { _isSpawn = TRUE; }
 };
 

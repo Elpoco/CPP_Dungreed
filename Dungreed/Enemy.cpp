@@ -2,17 +2,19 @@
 #include "Enemy.h"
 
 #include "EnemyHpBar.h"
+#include "Effect.h"
 
 Enemy::Enemy() :
-	_isAutoLeft(true),
-	_hp(1),
-	_maxHp(1),
-	_rcScan({ 0,0,0,0 }),
-	_ptPlayer({ 0,0 }),
-	_rcPlayer({ 0,0,0,0 }),
-	_isPlayerScan(FALSE),
-	_isDead(FALSE),
-	_isAttack(false)
+	_isAutoLeft(true)
+	,_hp(1)
+	,_maxHp(1)
+	,_isSpawn(TRUE)
+	,_rcScan({ 0,0,0,0 })
+	,_ptPlayer({ 0,0 })
+	,_rcPlayer({ 0,0,0,0 })
+	,_isPlayerScan(FALSE)
+	,_isDead(FALSE)
+	,_isAttack(false)
 {
 }
 
@@ -38,6 +40,8 @@ void Enemy::release()
 
 void Enemy::update()
 {
+	//if (!_isSpawn) return;
+
 	Unit::update();
 	this->move();
 	this->animation();
@@ -46,6 +50,23 @@ void Enemy::update()
 
 void Enemy::render(HDC hdc)
 {
+	//if (!_isSpawn && KEYMANAGER->isOnceKeyDown('P'))
+	//{
+	//	Effect* test = new Effect(
+	//		ImageName::Enemy::enemySpawn,
+	//		_x,
+	//		_y
+	//	);
+	//	//test->setCallback(doneSpawn);
+	//	OBJECTMANAGER->addObject(
+	//		ObjectEnum::TYPE::EFFECT,
+	//		test
+	//	);
+	//	doneSpawn();
+	//}
+
+	//if (!_isSpawn) return;
+
 	Unit::render(hdc);
 	_hpBar->render(hdc);
 }

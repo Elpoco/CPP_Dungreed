@@ -95,5 +95,6 @@ void ImageGp::frameRender(float destX, float destY, int frameX, int frameY, int 
 		frameY * _imageInfo->frameHeight, 
 		_imageInfo->frameWidth,
 		_imageInfo->frameHeight,
-		Unit::UnitPixel);
+		Unit::UnitPixel
+	);
 }

@@ -80,6 +80,8 @@ void Unit::move()
 
 void Unit::animation()
 {
+	_imgCurrent = _state;
+
 	_frameInfo.cnt++;
 
 	if (_frameInfo.cnt > _frameInfo.tick)
@@ -88,11 +90,15 @@ void Unit::animation()
 		_frameInfo.x++;
 
 		bool checkFrame = _vImages[_imgCurrent]->getMaxFrameX() < _frameInfo.x;
-		if (checkFrame) _frameInfo.x = 0;
+		if (checkFrame) _frameInfo.x = _frameInfo.startFrameX;
 	}
 
-	if (_isLeft) _frameInfo.y = 1;
-	else _frameInfo.y = 0;
+	if (_isLeft && _vImages[_imgCurrent]->getMaxFrameY() > 1)
+	{
+		_frameInfo.y = 1;
+	}
+	else 
+		_frameInfo.y = 0;
 }
 
 void Unit::checkCollision()
@@ -125,6 +131,7 @@ void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
 	switch (dir)
 	{
 	case ColliderEnum::LEFT:
+		_x = x + _imgWidth / 2;
 		break;
 	case ColliderEnum::TOP:
 		break;

@@ -82,14 +82,8 @@
     <Filter Include="MainGame\02. Object\Unit\Enemy">
       <UniqueIdentifier>{2682263a-073d-4ed9-ad59-c202ad36ccd3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Enemy\SkelDog">
-      <UniqueIdentifier>{bbf4c483-2573-46b3-a748-571616648327}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\01. Scene\Town">
       <UniqueIdentifier>{c13acad6-ea91-40bf-9763-fe4ab3061f57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Enemy\LittleGhost">
-      <UniqueIdentifier>{755de569-0a98-4610-9c9b-a021c8099349}</UniqueIdentifier>
     </Filter>
     <Filter Include="MainGame\02. Object\Effect">
       <UniqueIdentifier>{11bb3507-a854-4795-880f-a9e500bea6cc}</UniqueIdentifier>
@@ -99,6 +93,24 @@
     </Filter>
     <Filter Include="MainGame\02. Object\PrgressBar">
       <UniqueIdentifier>{30c21a14-4b8d-4223-b544-16664221318d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Enemy\Boss">
+      <UniqueIdentifier>{af0d09da-aa1d-4843-8593-d3c7455b302d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Enemy\Boss\Belial">
+      <UniqueIdentifier>{8ca91f78-9931-453e-923f-7f93015ed6cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Enemy\Monster">
+      <UniqueIdentifier>{7e4b7fe6-9d92-41a6-a1c5-5530788b4d0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Enemy\Monster\SkelDog">
+      <UniqueIdentifier>{bbf4c483-2573-46b3-a748-571616648327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Enemy\Monster\LittleGhost">
+      <UniqueIdentifier>{755de569-0a98-4610-9c9b-a021c8099349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\Bullet">
+      <UniqueIdentifier>{8389dcba-6434-4057-bfe8-2c3ff0b5f49d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -211,13 +223,13 @@
       <Filter>MainGame\02. Object\Unit\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="SkelDog.cpp">
-      <Filter>MainGame\02. Object\Unit\Enemy\SkelDog</Filter>
+      <Filter>MainGame\02. Object\Unit\Enemy\Monster\SkelDog</Filter>
     </ClCompile>
     <ClCompile Include="TownScene.cpp">
       <Filter>MainGame\01. Scene\Town</Filter>
     </ClCompile>
     <ClCompile Include="LittleGhost.cpp">
-      <Filter>MainGame\02. Object\Unit\Enemy\LittleGhost</Filter>
+      <Filter>MainGame\02. Object\Unit\Enemy\Monster\LittleGhost</Filter>
     </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>MainGame\02. Object\Effect</Filter>
@@ -227,6 +239,12 @@
     </ClCompile>
     <ClCompile Include="EnemyHpBar.cpp">
       <Filter>MainGame\02. Object\PrgressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Belial.cpp">
+      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>MainGame\02. Object\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -357,13 +375,13 @@
       <Filter>MainGame\02. Object\Unit\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="SkelDog.h">
-      <Filter>MainGame\02. Object\Unit\Enemy\SkelDog</Filter>
+      <Filter>MainGame\02. Object\Unit\Enemy\Monster\SkelDog</Filter>
     </ClInclude>
     <ClInclude Include="TownScene.h">
       <Filter>MainGame\01. Scene\Town</Filter>
     </ClInclude>
     <ClInclude Include="LittleGhost.h">
-      <Filter>MainGame\02. Object\Unit\Enemy\LittleGhost</Filter>
+      <Filter>MainGame\02. Object\Unit\Enemy\Monster\LittleGhost</Filter>
     </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>MainGame\02. Object\Effect</Filter>
@@ -373,6 +391,12 @@
     </ClInclude>
     <ClInclude Include="EnemyHpBar.h">
       <Filter>MainGame\02. Object\PrgressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Belial.h">
+      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>MainGame\02. Object\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
