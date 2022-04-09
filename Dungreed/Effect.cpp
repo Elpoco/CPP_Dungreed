@@ -1,43 +1,41 @@
 #include "Stdafx.h"
 #include "Effect.h"
 
-Effect::Effect() :
-	_img(nullptr),
-	_gpImg(nullptr),
-	test(nullptr)
+Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter) 
+	: _img(nullptr)
+	, _gpImg(nullptr)
+	, _callback(nullptr)
+	, _imgName(imgName)
+	, _angle(angle)
+	, _rotateCenter(rotateCenter)
 {
+	_x = x; 
+	_y = y;
+	
+	this->init();
 }
 
 Effect::~Effect()
 {
 }
 
-Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter)
-{
-	this->init(imgName, x, y, angle, rotateCenter);
-}
-
 HRESULT Effect::init()
 {
 	Object::init();
 
-	return S_OK;
-}
+	if (_rotateCenter.x == 0)_rotateCenter.x = _x;
+	if (_rotateCenter.y == 0)_rotateCenter.y = _y;
 
-HRESULT Effect::init(string imgName, float x, float y, int angle, POINT rotateCenter)
-{
-	Object::init();
+	_gpImg = GPIMAGEMANAGER->findImage(_imgName);
 
-	_gpImg = GPIMAGEMANAGER->findImage(imgName);
-
-	if (_gpImg != nullptr)
+	if (_gpImg)
 	{
 		_frameInfo.maxFrameX = _gpImg->getMaxFrameX();
 		_frameInfo.maxFrameY = _gpImg->getMaxFrameY();
 	}
 	else
 	{
-		_img = IMAGEMANAGER->findImage(imgName);
+		_img = IMAGEMANAGER->findImage(_imgName);
 		_frameInfo.maxFrameX = _img->getMaxFrameX();
 		_frameInfo.maxFrameY = _img->getMaxFrameY();
 	}
@@ -46,13 +44,30 @@ HRESULT Effect::init(string imgName, float x, float y, int angle, POINT rotateCe
 	if (_frameInfo.maxFrameX > 0 && _frameInfo.maxFrameY > 0)
 	{
 		_frameInfo.isFrame = true;
+		if (_gpImg)
+		{
+			_frameInfo.width = _gpImg->getFrameWidth();
+			_frameInfo.height = _gpImg->getFrameHeight();
+		}
+		else
+		{
+			_frameInfo.width = _img->getFrameWidth();
+			_frameInfo.height = _img->getFrameHeight();
+		}
 	}
-
-	_x = x;
-	_y = y;
-
-	_angle = angle;
-	_rotateCenter = rotateCenter;
+	else
+	{
+		if (_gpImg)
+		{
+			_frameInfo.width = _gpImg->getWidth();
+			_frameInfo.height = _gpImg->getHeight();
+		}
+		else
+		{
+			_frameInfo.width = _img->getWidth();
+			_frameInfo.height = _img->getHeight();
+		}
+	}
 
 	return S_OK;
 }
@@ -67,34 +82,13 @@ void Effect::update()
 	Object::update();
 	if (_frameInfo.isFrame) this->animation();
 
-	if (_gpImg != nullptr)
-	{
-		if (_frameInfo.isFrame)
-		{
-			_rc = RectMakeCenter(_x, _y, _gpImg->getFrameWidth(), _gpImg->getFrameHeight());
-		}
-		else
-		{
-			_rc = RectMakeCenter(_x, _y, _gpImg->getWidth(), _gpImg->getHeight());
-		}
-	}
-	else
-	{
-		if (_frameInfo.isFrame)
-		{
-			_rc = RectMakeCenter(_x, _y, _img->getFrameWidth(), _img->getFrameHeight());
-		}
-		else
-		{
-			_rc = RectMakeCenter(_x, _y, _img->getWidth(), _img->getHeight());
-		}
-	}
+	_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
 }
 
 void Effect::render(HDC hdc)
 {
 	Object::render(hdc);
-	if (_gpImg != nullptr)
+	if (_gpImg)
 	{
 		if (_frameInfo.isFrame)
 		{
@@ -118,7 +112,7 @@ void Effect::render(HDC hdc)
 	}
 	if (_isDebug)
 	{
-		CAMERAMANAGER->printRectangle(hdc, _rc, Color::Red);
+		CAMERAMANAGER->printRectangle(hdc, _rc, Color::Purple);
 	}
 }
 
@@ -132,10 +126,12 @@ void Effect::animation()
 		_frameInfo.x++;
 
 		bool checkFrame = _frameInfo.maxFrameX < _frameInfo.x;
-		if (checkFrame) 
-		{
-			_isLive = FALSE;
-			if (test) test();
-		}
+		if (checkFrame) this->deleteEffect();
 	}
+}
+
+void Effect::deleteEffect()
+{
+	if (_callback) _callback();
+	_isLive = FALSE;
 }

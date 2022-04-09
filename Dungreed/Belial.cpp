@@ -1,15 +1,21 @@
 #include "Stdafx.h"
 #include "Belial.h"
 
-#include "BelialBullet.h"
+#include "Bullet.h"
+#include "Effect.h"
+#include "BelialSword.h"
 
-Belial::Belial(float x, float y) :
-	_backFrameX(0),
-	_skill(BELIAL_SKILL::NONE),
-	_skillTick(0),
-	_skillActCnt(0),
-	_shootAngle(0.0f)
+Belial::Belial(float x, float y)
+	: _skill(BELIAL_SKILL::NONE)
+	, _shootAngle(0.0f)
+	, _skillActCnt(0)
+	, _backFrameX(0)
+	, _skillTick(0)
+	, _shootDir(1)
 {
+	_startSpawn = TRUE;
+	_isSpawn = TRUE;
+
 	_x = x;
 	_y = y;
 }
@@ -46,12 +52,13 @@ void Belial::update()
 	Unit::updateRect();
 	this->animation();
 
-	_rcBack = RectMakeCenter(_x + 23, _y + 55, _imgBack->getFrameWidth(), _imgBack->getFrameHeight());
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('1')) _skill = BELIAL_SKILL::SHOOTING_BULLET;
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('2')) _skill = BELIAL_SKILL::THROW_SWORD;
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('3')) _skill = BELIAL_SKILL::LAZER;
 
-	if (KEYMANAGER->isOnceKeyDown('2'))
+	if (_skill == BELIAL_SKILL::NONE)
 	{
-		_skill = BELIAL_SKILL::SHOOTING_BULLET;
-
+		//_skill = (BELIAL_SKILL)RND->getInt((int)BELIAL_SKILL::SKILL_CNT);
 	}
 
 	switch (_skill)
@@ -59,7 +66,13 @@ void Belial::update()
 	case Belial::BELIAL_SKILL::NONE:
 		break;
 	case Belial::BELIAL_SKILL::SHOOTING_BULLET:
-		shootingBullet();
+		this->shootingBullet();
+		break;
+	case Belial::BELIAL_SKILL::THROW_SWORD:
+		this->throwSword();
+		break;
+	case Belial::BELIAL_SKILL::LAZER:
+		this->lazer();
 		break;
 	default:
 		break;
@@ -69,19 +82,37 @@ void Belial::update()
 void Belial::render(HDC hdc)
 {
 	CAMERAMANAGER->frameRender(hdc, _imgBack, _rcBack.left, _rcBack.top, _backFrameInfo.x, 0);
+
 	Enemy::render(hdc);
 
 	CAMERAMANAGER->frameRender(hdc, _handL.img, _handL.rc.left, _handL.rc.top, _handLFrameInfo.x, 0);
 	CAMERAMANAGER->frameRender(hdc, _handR.img, _handR.rc.left, _handR.rc.top, _handRFrameInfo.x, 0);
 
-	for (int i = 0; i < 7; i++)
+	switch (_skill)
 	{
-		CAMERAMANAGER->render(
-			hdc, GPIMAGEMANAGER->findImage(ImageName::Enemy::belialSword), rcTemp.left + i * 100, rcTemp.top,
-			GetAngleDeg(_x - 300 + i * 100, _y - 200, _ptPlayer.x, _ptPlayer.y) - 90, PointMake(_x- 300 + i * 100, _y - 200)
-		);
+	case Belial::BELIAL_SKILL::NONE:
+		break;
+	case Belial::BELIAL_SKILL::SHOOTING_BULLET:
+		break;
+	case Belial::BELIAL_SKILL::THROW_SWORD:
+		break;
+	case Belial::BELIAL_SKILL::LAZER:
+		break;
+	default:
+		break;
 	}
+}
 
+void Belial::deleteEffect()
+{
+	OBJECTMANAGER->addObject(
+		ObjectEnum::TYPE::EFFECT,
+		new Effect(
+			ImageName::Enemy::enemyDie,
+			_x,
+			_y
+		)
+	);
 }
 
 void Belial::move()
@@ -135,13 +166,14 @@ void Belial::initAnimation()
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
 
+	_hand[R_L::RIGHT];
 	// 왼손
 	_handL.img = IMAGEMANAGER->findImage(ImageName::Enemy::belialHandL);
 	_handL.isLeft = true;
 	_handL.x = _x;
 	_handL.y = _y;
 	_handLFrameInfo.maxFrameX = _handL.img->getMaxFrameX();
-	_handL.rc = RectMakeCenter(_x - 200, _y + 100, _handL.img->getFrameWidth(), _handL.img->getFrameHeight());
+	_handL.rc = RectMakeCenter(_x - 300, _y + 100, _handL.img->getFrameWidth(), _handL.img->getFrameHeight());
 
 	// 오른손
 	_handR.img = IMAGEMANAGER->findImage(ImageName::Enemy::belialHandR);
@@ -149,9 +181,7 @@ void Belial::initAnimation()
 	_handR.x = _x;
 	_handR.y = _y;
 	_handRFrameInfo.maxFrameX = _handR.img->getMaxFrameX();
-	_handR.rc = RectMakeCenter(_x + 250, _y + 80, _handR.img->getFrameWidth(), _handR.img->getFrameHeight());
-
-	rcTemp = RectMakeCenter(_x - 300, _y - 200, 72, 220);
+	_handR.rc = RectMakeCenter(_x + 350, _y + 80, _handR.img->getFrameWidth(), _handR.img->getFrameHeight());
 }
 
 void Belial::shootingBullet()
@@ -162,11 +192,8 @@ void Belial::shootingBullet()
 		_frameInfo.startFrameX = 5;
 		_state = ATTACK;
 	}
-	_skillTick++;
 
-	if (_skillTick < 20) return;
-
-	_skillActCnt++;
+	if (_skillTick++ < 20) return;
 	_skillTick = 0;
 
 	for (int i = 0; i < 4; i++)
@@ -174,24 +201,58 @@ void Belial::shootingBullet()
 		_shootAngle += PI / 2 * i;
 		OBJECTMANAGER->addObject(
 			ObjectEnum::TYPE::ENEMY_OBJ,
-			new BelialBullet(
+			new Bullet(
 				ImageName::Enemy::belialBullet,
 				_x + 23,
 				_y + 55,
 				cosf(_shootAngle),
 				-sinf(_shootAngle),
-				4.0f
+				4.0f,
+				1.0f,
+				ImageName::Enemy::belialBulletEffect
 			)
 		);
 	}
-	// 방향 전환
-	_shootAngle += PI / 32;
+	
+	_shootAngle += PI / 32 * _shootDir;
 
-	if (_skillActCnt > 25)
+	if (++_skillActCnt > 25)
 	{
+		_skillTick = 0;
 		_skillActCnt = 0;
 		_skill = BELIAL_SKILL::NONE;
 		_frameInfo.startFrameX = 0;
 		_state = IDLE;
+		_shootDir = RND->getSigned();
+		return;
 	}
+}
+
+void Belial::throwSword()
+{
+	if (_skillTick++ < 40) return;
+	_skillTick = 0;
+
+	OBJECTMANAGER->addObject(
+		ObjectEnum::TYPE::ENEMY_OBJ, 
+		new BelialSword(
+			_x - 330 + _skillActCnt * 130,
+			_y - 300,
+			&_ptPlayer
+		)
+	);
+
+	if (++_skillActCnt > 5)
+	{
+		_skillTick = 0;
+		_skillActCnt = 0;
+		_skill = BELIAL_SKILL::NONE;
+		return;
+	}
+}
+
+void Belial::lazer()
+{
+	_handL.y = _ptPlayer.y;
+	_handL.rc = RectMakeCenter(_x - 300, _handL.y, _handL.img->getFrameWidth(), _handL.img->getFrameHeight());
 }

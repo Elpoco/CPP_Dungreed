@@ -8,7 +8,8 @@ Enemy::Enemy()
 	: _isAutoLeft(true)
 	, _hp(1)
 	, _maxHp(1)
-	, _isSpawn(TRUE)
+	, _startSpawn(FALSE)
+	, _isSpawn(FALSE)
 	, _rcScan({ 0,0,0,0 })
 	, _ptPlayer({ 0,0 })
 	, _rcPlayer({ 0,0,0,0 })
@@ -40,7 +41,7 @@ void Enemy::release()
 
 void Enemy::update()
 {
-	//if (!_isSpawn) return;
+	if (!_isSpawn) return;
 
 	Unit::update();
 	this->move();
@@ -51,25 +52,40 @@ void Enemy::update()
 
 void Enemy::render(HDC hdc)
 {
-	//if (!_isSpawn && KEYMANAGER->isOnceKeyDown('P'))
-	//{
-	//	Effect* test = new Effect(
-	//		ImageName::Enemy::enemySpawn,
-	//		_x,
-	//		_y
-	//	);
-	//	//test->setCallback(doneSpawn);
-	//	OBJECTMANAGER->addObject(
-	//		ObjectEnum::TYPE::EFFECT,
-	//		test
-	//	);
-	//	doneSpawn();
-	//}
+	if (!_startSpawn)
+	{
+		_startSpawn = true;
 
-	//if (!_isSpawn) return;
+		Effect* spawnEffect = new Effect(
+			ImageName::Enemy::enemySpawn,
+			_x,
+			_y
+		);
+
+		spawnEffect->setCallback([this]() {doneSpawn(); });
+
+		OBJECTMANAGER->addObject(
+			ObjectEnum::TYPE::EFFECT,
+			spawnEffect
+		);
+	}
+
+	if (!_isSpawn) return;
 
 	Unit::render(hdc);
 	_hpBar->render(hdc);
+}
+
+void Enemy::deleteEffect()
+{
+	OBJECTMANAGER->addObject(
+		ObjectEnum::TYPE::EFFECT,
+		new Effect(
+			ImageName::Enemy::enemyDieSmall,
+			_x,
+			_y
+		)
+	);
 }
 
 void Enemy::move()

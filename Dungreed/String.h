@@ -13,6 +13,8 @@ namespace ImageName
 	namespace Enemy
 	{
 		constexpr char* enemySpawn = "EnemySpawn";
+		constexpr char* enemyDie = "EnemyDie";
+		constexpr char* enemyDieSmall = "EnemyDieSmall";
 
 		constexpr char* dogIdle = "DogIdle";
 		constexpr char* dogRun = "DogRun";
@@ -23,11 +25,14 @@ namespace ImageName
 		constexpr char* belialIdle = "BelialIdle";
 		constexpr char* belialAttack = "BelialAttack";
 		constexpr char* belialBack = "BelialBack";
+		constexpr char* belialParticle = "BelialParticle";
 		constexpr char* belialBullet = "BelialBullet";
 		constexpr char* belialBulletEffect = "BelialBulletEffect";
+		constexpr char* belialHand = "BelialHand";
 		constexpr char* belialHandL = "BelialHandL";
 		constexpr char* belialHandR = "BelialHandR";
 		constexpr char* belialSword = "BelialSword";
+		constexpr char* belialSwordEffect = "BelialSwordEffect";
 	}
 
 	namespace Town

@@ -3,7 +3,7 @@
 namespace MapToolSet
 {
 	constexpr int TILE_CNT_X = 100;
-	constexpr int TILE_CNT_Y = 100;
+	constexpr int TILE_CNT_Y = 20;
 
 	constexpr int TOOL_TILE_SCALE = 2;
 	constexpr int TOOL_TILE_SIZE = TILE_RES_SIZE * TOOL_TILE_SCALE;

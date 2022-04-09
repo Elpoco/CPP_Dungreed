@@ -148,7 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Belial.cpp" />
-    <ClCompile Include="BelialBullet.cpp" />
+    <ClCompile Include="BelialSword.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -198,7 +198,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Belial.h" />
-    <ClInclude Include="BelialBullet.h" />
+    <ClInclude Include="BelialSword.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CollisionManager.h" />

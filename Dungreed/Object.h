@@ -1,9 +1,5 @@
 #pragma once
 
-/*
-위치정보, 충돌
-*/
-
 class Object
 {
 protected:
@@ -11,9 +7,7 @@ protected:
 	float _y;
 	RECT _rc;
 
-	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
-
-	int _isLive;
+	BOOL _isLive;
 
 public:
 	Object();
@@ -23,10 +17,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render(HDC hdc);
-
-	bool getCollision(ColliderEnum::DIRECTION dir) { return _isCollision[dir]; }
-	void setCollision(ColliderEnum::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }
-	virtual void pushObject(ColliderEnum::DIRECTION dir, float x, float y) {}
+	virtual void deleteEffect() {}
 
 	inline float getX() { return _x; }
 	inline float getY() { return _y; }
@@ -35,8 +26,10 @@ public:
 	inline POINT getPt() { return PointMake(_x,_y); }
 
 	inline RECT getRect() { return _rc; }
-	inline int isLive() { return _isLive; }
-	inline void dieObject() { _isLive = FALSE; }
+	inline BOOL isLive() { return _isLive; }
+	inline void deleteObject() { _isLive = FALSE; }
 
+	virtual void collisionObject() { deleteObject(); }
+	virtual void stopObject() {}
 };
 

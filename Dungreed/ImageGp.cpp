@@ -69,8 +69,8 @@ void ImageGp::release()
 
 void ImageGp::render(HDC hdc, float destX, float destY, int angle, POINT rotateCenter)
 {
-	if (rotateCenter.x == 0) rotateCenter.x = destX;
-	if (rotateCenter.y == 0) rotateCenter.y = destY;
+	if (rotateCenter.x == 0) rotateCenter.x = destX + _imageInfo->width / 2;
+	if (rotateCenter.y == 0) rotateCenter.y = destY + _imageInfo->height / 2;
 
 	Matrix matrix;
 	matrix.RotateAt(-angle, PointToPointF(rotateCenter));

@@ -106,3 +106,5 @@ extern HINSTANCE	_hInstance;
 extern HWND			_hWnd;
 extern POINT		_ptMouse;
 extern bool			_isDebug;
+
+typedef function<void()> callback;

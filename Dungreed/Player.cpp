@@ -84,6 +84,7 @@ void Player::move()
 	{
 		Unit::jump();
 	}
+
 	_rcAttack = { 0,0,0,0 };
 	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
 	{
@@ -105,7 +106,6 @@ void Player::move()
 				PointMake(effectX, effectY)
 			)
 		);
-
 
 		_rcAttack = RectMakeCenter(effectX, effectY, 100, 100);
 	}

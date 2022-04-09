@@ -56,6 +56,7 @@ void ObjectManager::update()
 			}
 			else
 			{
+				(*iter)->deleteEffect();
 				(*iter)->release();
 				SAFE_DELETE(*iter);
 				iter = pairObject.second.erase(iter);

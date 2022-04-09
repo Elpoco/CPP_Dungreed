@@ -13,6 +13,9 @@ protected:
 	RECT	_rcAttack;
 	BYTE	_state;
 
+	// collision
+	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
+
 	// Image
 	vector<Image*> _vImages;
 	int _imgCurrent;
@@ -40,14 +43,17 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
+	virtual void deleteEffect() override {}
+
 	void move();
 	void animation();
 
 	void checkCollision();
-	virtual void pushObject(ColliderEnum::DIRECTION dir, float x, float y) override;
+	void pushObject(ColliderEnum::DIRECTION dir, float x, float y);
+	bool getCollision(ColliderEnum::DIRECTION dir) { return _isCollision[dir]; }
+	void setCollision(ColliderEnum::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }
 
 	void updateRect();
-	void updateProve();
 
 	void jump();
 	bool isJump() { return _isJump; }

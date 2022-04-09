@@ -39,6 +39,8 @@ typedef struct tagFrameInfo
 	BYTE maxFrameX;
 	BYTE maxFrameY;
 	BYTE startFrameX;
+	int width;
+	int height;
 
 	tagFrameInfo()
 	{
@@ -50,7 +52,7 @@ typedef struct tagFrameInfo
 		maxFrameX = 0;
 		maxFrameY = 0;
 		startFrameX = 0;
+		width = 0;
+		height = 0;
 	}
 } FRAME_INFO;
-
-typedef void(*CALLBACK_FUNC) (void);

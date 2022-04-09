@@ -246,7 +246,7 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>MainGame\02. Object\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="BelialBullet.cpp">
+    <ClCompile Include="BelialSword.cpp">
       <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
     </ClCompile>
   </ItemGroup>
@@ -401,7 +401,7 @@
     <ClInclude Include="Bullet.h">
       <Filter>MainGame\02. Object\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="BelialBullet.h">
+    <ClInclude Include="BelialSword.h">
       <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
     </ClInclude>
   </ItemGroup>

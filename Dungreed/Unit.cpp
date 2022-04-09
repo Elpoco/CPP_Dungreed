@@ -17,6 +17,8 @@ Unit::Unit() :
 	_gravity(0.0f),
 	_reSize(0)
 {
+	for (int i = 0; i < ColliderEnum::DIRECTION::DIR_CNT; i++)
+		_isCollision[i] = false;
 }
 
 Unit::~Unit()
@@ -95,10 +97,10 @@ void Unit::animation()
 
 	if (_isLeft && _vImages[_imgCurrent]->getMaxFrameY() > 1)
 	{
-		_frameInfo.y = 1;
+		_frameInfo.y = R_L::L;
 	}
 	else 
-		_frameInfo.y = 0;
+		_frameInfo.y = R_L::R;
 }
 
 void Unit::checkCollision()
@@ -165,20 +167,6 @@ void Unit::updateRect()
 		_imgWidth,
 		_imgHeight
 	);
-
-	this->updateProve();
-}
-
-void Unit::updateProve()
-{
-	//_prove[ColliderEnum::LEFT] = PointMake(_rc.GetLeft(), _rc.GetBottom() - TILE_SIZE / 2);
-	//_prove[ColliderEnum::RIGHT] = PointMake(_rc.GetRight(), _rc.GetBottom() - TILE_SIZE / 2);
-	//_prove[ColliderEnum::TOP] = PointMake(_x, _rc.GetTop());
-	//_prove[ColliderEnum::BOTTOM] = PointMake(_x, _rc.GetBottom());
-	//_prove[ColliderEnum::LTOP] = { _rc.GetLeft(), _rc.GetTop() };
-	//_prove[ColliderEnum::RTOP] = { _rc.GetRight(), _rc.GetTop() };
-	//_prove[ColliderEnum::LBOTTOM] = PointMake(_rc.GetLeft(), _rc.GetBottom());
-	//_prove[ColliderEnum::RBOTTOM] = PointMake(_rc.GetRight(), _rc.GetBottom());
 }
 
 void Unit::jump()
