@@ -8,12 +8,6 @@ enum KEY
 	DOWN  =	'S'
 };
 
-enum R_L
-{
-	R,
-	L
-};
-
 namespace MapToolEnum
 {
 	enum class TYPE : unsigned char

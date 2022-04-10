@@ -22,17 +22,19 @@ namespace ImageName
 		
 		constexpr char* littleGhostIdle = "littleGhostIdle";
 
-		constexpr char* belialIdle = "BelialIdle";
-		constexpr char* belialAttack = "BelialAttack";
-		constexpr char* belialBack = "BelialBack";
-		constexpr char* belialParticle = "BelialParticle";
-		constexpr char* belialBullet = "BelialBullet";
-		constexpr char* belialBulletEffect = "BelialBulletEffect";
-		constexpr char* belialHand = "BelialHand";
-		constexpr char* belialHandL = "BelialHandL";
-		constexpr char* belialHandR = "BelialHandR";
-		constexpr char* belialSword = "BelialSword";
-		constexpr char* belialSwordEffect = "BelialSwordEffect";
+		namespace Belial
+		{
+			constexpr char* belialIdle = "BelialIdle";
+			constexpr char* belialAttack = "BelialAttack";
+			constexpr char* belialBack = "BelialBack";
+			constexpr char* belialParticle = "BelialParticle";
+			constexpr char* belialBullet = "BelialBullet";
+			constexpr char* belialBulletEffect = "BelialBulletEffect";
+			constexpr char* belialHand = "BelialHand";
+			constexpr char* belialHandAttack = "BelialHandAttack";
+			constexpr char* belialSword = "BelialSword";
+			constexpr char* belialSwordEffect = "BelialSwordEffect";
+		}
 	}
 
 	namespace Town

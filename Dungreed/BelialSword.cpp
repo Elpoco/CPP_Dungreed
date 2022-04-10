@@ -26,13 +26,13 @@ HRESULT BelialSword::init()
 {
 	Object::init();
 
-	_img = GPIMAGEMANAGER->findImage(ImageName::Enemy::belialSword);
+	_img = GPIMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialSword);
 	_initTime = TIMEMANAGER->getWorldTime();
 
 	OBJECTMANAGER->addObject(
 		ObjectEnum::TYPE::EFFECT,
 		new Effect(
-			ImageName::Enemy::belialSwordEffect,
+			ImageName::Enemy::Belial::belialSwordEffect,
 			_x,
 			_y
 		)
@@ -82,8 +82,8 @@ void BelialSword::move()
 		_isShoot = true;
 		if (_isMoving)
 		{
-			_x += cosf(_angle) * 7.0f;
-			_y -= sinf(_angle) * 7.0f;
+			_x += cosf(_angle) * SWORD_SPEED;
+			_y -= sinf(_angle) * SWORD_SPEED;
 		}
 	}
 	else

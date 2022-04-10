@@ -33,7 +33,6 @@ HRESULT Belial::init()
 	_name = "벨리알";
 	_isFlying = true;
 	_scanScale = { 4,3 };
-	_rcBack = RectMakeCenter(_x + 25, _y + 60, _imgBack->getFrameWidth(), _imgBack->getFrameHeight());
 
 	settingHp(UnitSet::Enemy::Belial::HP);
 
@@ -85,8 +84,14 @@ void Belial::render(HDC hdc)
 
 	Enemy::render(hdc);
 
-	CAMERAMANAGER->frameRender(hdc, _handL.img, _handL.rc.left, _handL.rc.top, _handLFrameInfo.x, 0);
-	CAMERAMANAGER->frameRender(hdc, _handR.img, _handR.rc.left, _handR.rc.top, _handRFrameInfo.x, 0);
+	for (int i = 0; i < RL; i++)
+	{
+		CAMERAMANAGER->frameRender(
+			hdc,
+			_imgHand[_hand[i].state],
+			_hand[i].rc.left, _hand[i].rc.top,
+			_hand[i].frameInfo.x, i);
+	}
 
 	switch (_skill)
 	{
@@ -121,9 +126,6 @@ void Belial::move()
 
 void Belial::animation()
 {
-	_imgWidth = _vImages[_imgCurrent]->getFrameWidth();
-	_imgHeight = _vImages[_imgCurrent]->getFrameHeight();
-
 	_backFrameInfo.cnt++;
 	if (_backFrameInfo.cnt > _backFrameInfo.tick)
 	{
@@ -132,56 +134,58 @@ void Belial::animation()
 
 		bool checkFrame = _backFrameInfo.maxFrameX < _backFrameInfo.x;
 		if (checkFrame) _backFrameInfo.x = 0;
+
+		OBJECTMANAGER->addObject(ObjectEnum::TYPE::EFFECT,
+			new Effect(ImageName::Enemy::Belial::belialParticle, _x + 300, _y));
 	}
 
-	_handLFrameInfo.cnt++;
-	if (_handLFrameInfo.cnt > _handLFrameInfo.tick)
+	for (int i = 0; i < RL; i++)
 	{
-		_handLFrameInfo.cnt = 0;
-		_handLFrameInfo.x++;
+		_hand[i].frameInfo.cnt++;
+		if (_hand[i].frameInfo.cnt > _hand[i].frameInfo.tick)
+		{
+			_hand[i].frameInfo.cnt = 0;
+			_hand[i].frameInfo.x++;
 
-		bool checkFrame = _handLFrameInfo.maxFrameX < _handLFrameInfo.x;
-		if (checkFrame) _handLFrameInfo.x = 0;
-	}
-
-	_handRFrameInfo.cnt++;
-	if (_handRFrameInfo.cnt > _handRFrameInfo.tick)
-	{
-		_handRFrameInfo.cnt = 0;
-		_handRFrameInfo.x++;
-
-		bool checkFrame = _handRFrameInfo.maxFrameX < _handRFrameInfo.x;
-		if (checkFrame) _handRFrameInfo.x = 0;
+			bool checkFrame = _hand[i].frameInfo.maxFrameX < _hand[i].frameInfo.x;
+			if (checkFrame) _hand[i].frameInfo.x = 0;
+		}
 	}
 }
 
 void Belial::initAnimation()
 {
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::belialIdle));
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::belialAttack));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialIdle));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialAttack));
 
-	_imgBack = IMAGEMANAGER->findImage(ImageName::Enemy::belialBack);
+	_imgBack = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialBack);
 	_backFrameInfo.maxFrameX = _imgBack->getMaxFrameX();
+	_rcBack = RectMakeCenter(_x + 23, _y + 60, _imgBack->getFrameWidth(), _imgBack->getFrameHeight());
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
 
-	_hand[R_L::RIGHT];
-	// 왼손
-	_handL.img = IMAGEMANAGER->findImage(ImageName::Enemy::belialHandL);
-	_handL.isLeft = true;
-	_handL.x = _x;
-	_handL.y = _y;
-	_handLFrameInfo.maxFrameX = _handL.img->getMaxFrameX();
-	_handL.rc = RectMakeCenter(_x - 300, _y + 100, _handL.img->getFrameWidth(), _handL.img->getFrameHeight());
+	_imgHand[BELIAL_HAND_STATE::HAND_IDLE] = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialHand);
+	_imgHand[BELIAL_HAND_STATE::LAZER] = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialHandAttack);
 
-	// 오른손
-	_handR.img = IMAGEMANAGER->findImage(ImageName::Enemy::belialHandR);
-	_handR.isLeft = true;
-	_handR.x = _x;
-	_handR.y = _y;
-	_handRFrameInfo.maxFrameX = _handR.img->getMaxFrameX();
-	_handR.rc = RectMakeCenter(_x + 350, _y + 80, _handR.img->getFrameWidth(), _handR.img->getFrameHeight());
+	_hand[R].isLeft = false;
+	_hand[R].x = _x + 450;
+	_hand[R].y = _y + 100;
+	_hand[L].isLeft = true;
+	_hand[L].x = _x - 410;
+	_hand[L].y = _y - 50;
+
+	for (int i = 0; i < RL; i++)
+	{
+		_hand[i].frameInfo.width = _imgHand[0]->getFrameWidth();
+		_hand[i].frameInfo.height = _imgHand[0]->getFrameWidth();
+		_hand[i].frameInfo.maxFrameX = _imgHand[0]->getMaxFrameX();
+		_hand[i].state = BELIAL_HAND_STATE::HAND_IDLE;
+		_hand[i].rc = RectMakeCenter(
+			_hand[i].x, _hand[i].y, 
+			_imgHand[0]->getFrameWidth(), _imgHand[0]->getFrameWidth()
+		);
+	}
 }
 
 void Belial::shootingBullet()
@@ -191,6 +195,8 @@ void Belial::shootingBullet()
 		_frameInfo.x = 0;
 		_frameInfo.startFrameX = 5;
 		_state = ATTACK;
+		_imgWidth = _vImages[_state]->getFrameWidth();
+		_imgHeight = _vImages[_state]->getFrameHeight()+30;
 	}
 
 	if (_skillTick++ < 20) return;
@@ -202,14 +208,14 @@ void Belial::shootingBullet()
 		OBJECTMANAGER->addObject(
 			ObjectEnum::TYPE::ENEMY_OBJ,
 			new Bullet(
-				ImageName::Enemy::belialBullet,
+				ImageName::Enemy::Belial::belialBullet,
 				_x + 23,
 				_y + 55,
 				cosf(_shootAngle),
 				-sinf(_shootAngle),
 				4.0f,
 				1.0f,
-				ImageName::Enemy::belialBulletEffect
+				ImageName::Enemy::Belial::belialBulletEffect
 			)
 		);
 	}
@@ -222,9 +228,10 @@ void Belial::shootingBullet()
 		_skillActCnt = 0;
 		_skill = BELIAL_SKILL::NONE;
 		_frameInfo.startFrameX = 0;
-		_state = IDLE;
 		_shootDir = RND->getSigned();
-		return;
+		_state = IDLE;
+		_imgWidth = _vImages[_state]->getFrameWidth();
+		_imgHeight = _vImages[_state]->getFrameHeight();
 	}
 }
 
@@ -253,6 +260,19 @@ void Belial::throwSword()
 
 void Belial::lazer()
 {
-	_handL.y = _ptPlayer.y;
-	_handL.rc = RectMakeCenter(_x - 300, _handL.y, _handL.img->getFrameWidth(), _handL.img->getFrameHeight());
+	_hand[L].state = BELIAL_HAND_STATE::LAZER;
+	if (_hand[L].y != _ptPlayer.y)
+	{
+		float distance =  _ptPlayer.y - _hand[L].y;
+		_hand[L].y += distance / 10;
+	}
+	_hand[L].rc = RectMakeCenter(_hand[L].x, _hand[L].y, _imgHand[_hand[L].state]->getFrameWidth(),
+		_imgHand[_hand[L].state]->getFrameHeight());
+	//_handStateR = BELIAL_HAND_STATE::LAZER;
+	//_hand[R].rc;
+	//_hand[R].rc = RectMakeCenter(_hand[R].x, _hand[R].y,
+	//	_imgHand[_handStateR]->getFrameWidth(),
+	//	_imgHand[_handStateR]->getFrameHeight());
+	//_hand[R].rc;
+	//int al;
 }

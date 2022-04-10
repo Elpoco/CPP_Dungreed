@@ -46,6 +46,10 @@
 #define ENEMY_HP_BAR_W		60
 #define ENEMY_HP_BAR_H		15
 
+#define R	0
+#define L	1
+#define RL  2
+
 #define TILE_BLOCK			0x0001
 
 #define TILE_PLAYER			0x0100

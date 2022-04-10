@@ -97,10 +97,10 @@ void Unit::animation()
 
 	if (_isLeft && _vImages[_imgCurrent]->getMaxFrameY() > 1)
 	{
-		_frameInfo.y = R_L::L;
+		_frameInfo.y = L;
 	}
 	else 
-		_frameInfo.y = R_L::R;
+		_frameInfo.y = R;
 }
 
 void Unit::checkCollision()

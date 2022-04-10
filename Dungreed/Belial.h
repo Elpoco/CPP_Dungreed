@@ -24,13 +24,14 @@ private:
 
 	enum BELIAL_HAND_STATE
 	{
-		IDLE,
+		HAND_IDLE,
 		LAZER,
 		STATE_CNT
 	};
 
 	typedef struct tagBelialHand
 	{
+		BELIAL_HAND_STATE state;
 		FRAME_INFO frameInfo;
 		RECT rc;
 		bool isLeft;
@@ -51,12 +52,8 @@ private:
 	float _shootAngle;
 	int	  _shootDir;
 
-	BELIAL_HAND _hand[2];
 	Image* _imgHand[STATE_CNT];
-	BELIAL_HAND _handL;
-	BELIAL_HAND _handR;
-	FRAME_INFO _handLFrameInfo;
-	FRAME_INFO _handRFrameInfo;
+	BELIAL_HAND _hand[RL];
 
 public:
 	Belial(float x, float y);

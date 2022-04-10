@@ -1,6 +1,8 @@
 #pragma once
 #include "Object.h"
 
+constexpr float SWORD_SPEED = 10.0f;
+
 class BelialSword : public Object
 {
 private:
