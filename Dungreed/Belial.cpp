@@ -9,9 +9,9 @@ Belial::Belial(float x, float y)
 	: _skill(BELIAL_SKILL::NONE)
 	, _shootAngle(0.0f)
 	, _skillActCnt(0)
-	, _backFrameX(0)
 	, _skillTick(0)
 	, _shootDir(1)
+	, _laserDir(1)
 {
 	_startSpawn = TRUE;
 	_isSpawn = TRUE;
@@ -53,7 +53,7 @@ void Belial::update()
 
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('1')) _skill = BELIAL_SKILL::SHOOTING_BULLET;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('2')) _skill = BELIAL_SKILL::THROW_SWORD;
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('3')) _skill = BELIAL_SKILL::LAZER;
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('3')) _skill = BELIAL_SKILL::LASER;
 
 	if (_skill == BELIAL_SKILL::NONE)
 	{
@@ -70,8 +70,8 @@ void Belial::update()
 	case Belial::BELIAL_SKILL::THROW_SWORD:
 		this->throwSword();
 		break;
-	case Belial::BELIAL_SKILL::LAZER:
-		this->lazer();
+	case Belial::BELIAL_SKILL::LASER:
+		this->laser();
 		break;
 	default:
 		break;
@@ -91,6 +91,8 @@ void Belial::render(HDC hdc)
 			_imgHand[_hand[i].state],
 			_hand[i].rc.left, _hand[i].rc.top,
 			_hand[i].frameInfo.x, i);
+		if(_isDebug)
+			CAMERAMANAGER->printRectangle(hdc, _hand[i].rc);
 	}
 
 	switch (_skill)
@@ -101,7 +103,7 @@ void Belial::render(HDC hdc)
 		break;
 	case Belial::BELIAL_SKILL::THROW_SWORD:
 		break;
-	case Belial::BELIAL_SKILL::LAZER:
+	case Belial::BELIAL_SKILL::LASER:
 		break;
 	default:
 		break;
@@ -135,8 +137,15 @@ void Belial::animation()
 		bool checkFrame = _backFrameInfo.maxFrameX < _backFrameInfo.x;
 		if (checkFrame) _backFrameInfo.x = 0;
 
-		OBJECTMANAGER->addObject(ObjectEnum::TYPE::EFFECT,
-			new Effect(ImageName::Enemy::Belial::belialParticle, _x + 300, _y));
+		OBJECTMANAGER->addObject(
+			ObjectEnum::TYPE::EFFECT_BACK,
+			new Effect(
+				ImageName::Enemy::Belial::belialParticle,
+				RND->getFromIntTo(_rcBack.left + 5, _rcBack.right - 5),
+				RND->getFromIntTo(_rcBack.top + 5, _rcBack.bottom - 5),
+				60
+			)
+		);
 	}
 
 	for (int i = 0; i < RL; i++)
@@ -149,6 +158,19 @@ void Belial::animation()
 
 			bool checkFrame = _hand[i].frameInfo.maxFrameX < _hand[i].frameInfo.x;
 			if (checkFrame) _hand[i].frameInfo.x = 0;
+		}
+
+		if (_hand[i].laserState == BELIAL_LASER_STATE::SHOOTING)
+		{
+			//_laserFrameInfo.cnt++;
+			//if (_laserFrameInfo.cnt > _laserFrameInfo.tick)
+			//{
+			//	_laserFrameInfo.cnt = 0;
+			//	_laserFrameInfo.x++;
+			//
+			//	bool checkFrame = _laserFrameInfo.maxFrameX < _laserFrameInfo.x;
+			//	if (checkFrame) _laserFrameInfo.x = 0;
+			//}
 		}
 	}
 }
@@ -166,7 +188,7 @@ void Belial::initAnimation()
 	_imgHeight = _vImages[0]->getFrameHeight();
 
 	_imgHand[BELIAL_HAND_STATE::HAND_IDLE] = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialHand);
-	_imgHand[BELIAL_HAND_STATE::LAZER] = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialHandAttack);
+	_imgHand[BELIAL_HAND_STATE::LASER] = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialHandAttack);
 
 	_hand[R].isLeft = false;
 	_hand[R].x = _x + 450;
@@ -177,13 +199,13 @@ void Belial::initAnimation()
 
 	for (int i = 0; i < RL; i++)
 	{
-		_hand[i].frameInfo.width = _imgHand[0]->getFrameWidth();
-		_hand[i].frameInfo.height = _imgHand[0]->getFrameWidth();
+		_hand[i].frameInfo.width =	_imgHand[0]->getFrameWidth();
+		_hand[i].frameInfo.height = _imgHand[0]->getFrameHeight();
 		_hand[i].frameInfo.maxFrameX = _imgHand[0]->getMaxFrameX();
-		_hand[i].state = BELIAL_HAND_STATE::HAND_IDLE;
 		_hand[i].rc = RectMakeCenter(
 			_hand[i].x, _hand[i].y, 
-			_imgHand[0]->getFrameWidth(), _imgHand[0]->getFrameWidth()
+			_hand[i].frameInfo.width, 
+			_hand[i].frameInfo.height
 		);
 	}
 }
@@ -258,21 +280,94 @@ void Belial::throwSword()
 	}
 }
 
-void Belial::lazer()
+void Belial::laser()
 {
-	_hand[L].state = BELIAL_HAND_STATE::LAZER;
-	if (_hand[L].y != _ptPlayer.y)
+	if (_hand[R].laserState == BELIAL_LASER_STATE::NONE &&
+		_hand[L].laserState == BELIAL_LASER_STATE::NONE)
 	{
-		float distance =  _ptPlayer.y - _hand[L].y;
-		_hand[L].y += distance / 10;
+		_laserDir = RND->getInt(2);
 	}
-	_hand[L].rc = RectMakeCenter(_hand[L].x, _hand[L].y, _imgHand[_hand[L].state]->getFrameWidth(),
-		_imgHand[_hand[L].state]->getFrameHeight());
-	//_handStateR = BELIAL_HAND_STATE::LAZER;
-	//_hand[R].rc;
-	//_hand[R].rc = RectMakeCenter(_hand[R].x, _hand[R].y,
-	//	_imgHand[_handStateR]->getFrameWidth(),
-	//	_imgHand[_handStateR]->getFrameHeight());
-	//_hand[R].rc;
-	//int al;
+
+	switch (_hand[_laserDir].laserState)
+	{
+	case BELIAL_LASER_STATE::NONE:
+		_hand[_laserDir].playerY = _ptPlayer.y;
+		_hand[_laserDir].laserState = BELIAL_LASER_STATE::START;
+		break;
+	case BELIAL_LASER_STATE::START:
+	{
+		float distance = _hand[_laserDir].playerY - _hand[_laserDir].y;
+		_hand[_laserDir].y += distance / 10;
+		if (abs(distance) < 5)
+		{
+			_hand[_laserDir].frameInfo.x = 0;
+			_hand[_laserDir].laserState = BELIAL_LASER_STATE::FIND;
+		}
+		break;
+	}
+	case BELIAL_LASER_STATE::FIND:
+		_hand[_laserDir].state = BELIAL_HAND_STATE::LASER;
+		_hand[_laserDir].laserState = BELIAL_LASER_STATE::SHOOT;
+		_hand[_laserDir].frameInfo.maxFrameX = _imgHand[_hand[_laserDir].state]->getMaxFrameX();
+		break;
+	case BELIAL_LASER_STATE::SHOOT:
+		if (_hand[_laserDir].frameInfo.x >= 8)
+		{
+			_hand[_laserDir].laserState = BELIAL_LASER_STATE::SHOOTING;
+			string imgName = _laserDir ? ImageName::Enemy::Belial::belialLaserHeadL : ImageName::Enemy::Belial::belialLaserHeadR;
+			int direction = _laserDir ? 1 : -1;
+
+			OBJECTMANAGER->addObject(
+				ObjectEnum::TYPE::EFFECT,
+				new Effect(
+					imgName,
+					_hand[_laserDir].x + 30 * direction,
+					_hand[_laserDir].y + 20
+				)
+			);
+
+			int headWidth = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialLaserHeadL)->getFrameWidth();
+			int laserInterval = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialLaserBody)->getFrameWidth();
+			for (int i = 0; i < LASER_CNT; i++)
+			{
+				OBJECTMANAGER->addObject(
+					ObjectEnum::TYPE::EFFECT,
+					new Effect(
+						ImageName::Enemy::Belial::belialLaserBody,
+						_hand[_laserDir].x + (30 + headWidth + laserInterval * i) * direction,
+						_hand[_laserDir].y + 18
+					)
+				);
+			}
+		}
+		break;
+	case BELIAL_LASER_STATE::SHOOTING:
+		if (_hand[_laserDir].frameInfo.x >= _hand[_laserDir].frameInfo.maxFrameX - 1)
+		{
+			_hand[_laserDir].laserState = BELIAL_LASER_STATE::DONE;
+		}
+		break;
+	case BELIAL_LASER_STATE::DONE:
+		_skillTick = 0;
+		_skillActCnt = 0;
+		_hand[_laserDir].frameInfo.maxFrameX = _imgHand[_hand[_laserDir].state]->getMaxFrameX();
+		
+		_hand[_laserDir].state = BELIAL_HAND_STATE::HAND_IDLE;
+
+		_laserDir = _laserDir ? R : L;
+		//_hand[_laserDir].laserState = BELIAL_LASER_STATE::NONE;
+		break;
+	default:
+		break;
+	}
+
+	if (_hand[R].laserState == BELIAL_LASER_STATE::DONE &&
+		_hand[L].laserState == BELIAL_LASER_STATE::DONE)
+	{
+		_skill = BELIAL_SKILL::NONE;
+	}
+
+	_hand[_laserDir].rc = RectMakeCenter(_hand[_laserDir].x, _hand[_laserDir].y,
+		_imgHand[_hand[_laserDir].state]->getFrameWidth(),
+		_imgHand[_hand[_laserDir].state]->getFrameHeight());
 }

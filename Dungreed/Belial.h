@@ -1,7 +1,8 @@
 #pragma once
 #include "Enemy.h"
 
-constexpr BYTE SWORD_CNT = 6;
+constexpr int SWORD_CNT = 6;
+constexpr int LASER_CNT = 15;
 
 class Belial : public Enemy
 {
@@ -18,15 +19,26 @@ private:
 		NONE,
 		SHOOTING_BULLET,
 		THROW_SWORD,
-		LAZER,
+		LASER,
 		SKILL_CNT
 	};
 
 	enum BELIAL_HAND_STATE
 	{
 		HAND_IDLE,
-		LAZER,
+		LASER,
 		STATE_CNT
+	};
+
+	enum class BELIAL_LASER_STATE
+	{
+		NONE,
+		START,
+		FIND,
+		SHOOT,
+		SHOOTING,
+		DONE,
+		CNT
 	};
 
 	typedef struct tagBelialHand
@@ -37,23 +49,32 @@ private:
 		bool isLeft;
 		float x;
 		float y;
+
+		BELIAL_LASER_STATE laserState;
+		float playerY;
+
+		tagBelialHand()
+		{
+			state = HAND_IDLE;
+			laserState = BELIAL_LASER_STATE::NONE;
+		}
 	} BELIAL_HAND;
 
 private:
-	FRAME_INFO _backFrameInfo;
-	int _backFrameX;
-	RECT _rcBack;
-	Image* _imgBack;
+	FRAME_INFO	_backFrameInfo;
+	RECT		_rcBack;
+	Image*		_imgBack;
 
-	BELIAL_SKILL _skill;
-	BYTE _skillTick;
-	BYTE _skillActCnt;
+	BELIAL_SKILL	_skill;
+	BYTE			_skillTick;
+	BYTE			_skillActCnt;
 
 	float _shootAngle;
 	int	  _shootDir;
 
-	Image* _imgHand[STATE_CNT];
+	Image*		_imgHand[STATE_CNT];
 	BELIAL_HAND _hand[RL];
+	int			_laserDir;
 
 public:
 	Belial(float x, float y);
@@ -73,7 +94,7 @@ public:
 
 	void shootingBullet();
 	void throwSword();
-	void lazer();
+	void laser();
 
 };
 

@@ -15,13 +15,10 @@ ObjectManager::~ObjectManager()
 
 HRESULT ObjectManager::init()
 {
-	_mObjects.insert(make_pair(TYPE::ITEM, vector<Object*> ()));
-	_mObjects.insert(make_pair(TYPE::ENEMY, vector<Object*> ()));
-	_mObjects.insert(make_pair(TYPE::PLAYER, vector<Object*> ()));
-	_mObjects.insert(make_pair(TYPE::EFFECT, vector<Object*> ()));
-	_mObjects.insert(make_pair(TYPE::ENEMY_OBJ, vector<Object*> ()));
-	_mObjects.insert(make_pair(TYPE::PLAYER_OBJ, vector<Object*> ()));
-	_mObjects.insert(make_pair(TYPE::PLAYER_OBJ, vector<Object*> ()));
+	for (int i = 0; i < (int)TYPE::TYPE_CNT; i++)
+	{
+		_mObjects.insert(make_pair((TYPE)i, vector<Object*>()));
+	}
 
 	COLLISIONMANAGER->setObject(&_mObjects);
 

@@ -2,6 +2,7 @@
 #include "Object.h"
 
 constexpr float SWORD_SPEED = 10.0f;
+constexpr float SWORD_LIFE_TIME = 8.0f;
 
 class BelialSword : public Object
 {

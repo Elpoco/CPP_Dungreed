@@ -34,6 +34,9 @@ namespace ImageName
 			constexpr char* belialHandAttack = "BelialHandAttack";
 			constexpr char* belialSword = "BelialSword";
 			constexpr char* belialSwordEffect = "BelialSwordEffect";
+			constexpr char* belialLaserHeadL = "BelialLaserHeadL";
+			constexpr char* belialLaserHeadR = "BelialLaserHeadR";
+			constexpr char* belialLaserBody = "BelialLaserBody";
 		}
 	}
 

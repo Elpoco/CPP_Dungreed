@@ -57,6 +57,7 @@ namespace ObjectEnum
 {
 	enum class TYPE
 	{
+		EFFECT_BACK,
 		NPC,
 		ENEMY,
 		ENEMY_OBJ,
@@ -64,6 +65,7 @@ namespace ObjectEnum
 		PLAYER,
 		PLAYER_OBJ,
 		EFFECT,
-		FIX_UI
+		FIX_UI,
+		TYPE_CNT
 	};
 }

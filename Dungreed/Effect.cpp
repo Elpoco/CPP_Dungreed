@@ -1,11 +1,27 @@
 #include "Stdafx.h"
 #include "Effect.h"
 
-Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter) 
+Effect::Effect(string imgName, float x, float y, BYTE alpha)
 	: _img(nullptr)
 	, _gpImg(nullptr)
 	, _callback(nullptr)
 	, _imgName(imgName)
+	, _alpha(alpha)
+	, _angle(0.0f)
+	, _rotateCenter({ 0,0 })
+{
+	_x = x;
+	_y = y;
+
+	this->init();
+}
+
+Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter)
+	: _img(nullptr)
+	, _gpImg(nullptr)
+	, _callback(nullptr)
+	, _imgName(imgName)
+	, _alpha(255)
 	, _angle(angle)
 	, _rotateCenter(rotateCenter)
 {
@@ -68,6 +84,7 @@ HRESULT Effect::init()
 			_frameInfo.height = _img->getHeight();
 		}
 	}
+	_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
 
 	return S_OK;
 }
@@ -103,7 +120,7 @@ void Effect::render(HDC hdc)
 	{
 		if (_frameInfo.isFrame)
 		{
-			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
+			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, _alpha);
 		}
 		else
 		{

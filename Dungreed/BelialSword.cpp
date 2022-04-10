@@ -51,6 +51,9 @@ void BelialSword::update()
 	Object::update();
 	this->move();
 	_rc = RectMakeCenter(_x, _y, _img->getWidth(), _img->getHeight());
+
+	if (_initTime + SWORD_LIFE_TIME < TIMEMANAGER->getWorldTime())
+		Object::deleteObject();
 }
 
 void BelialSword::render(HDC hdc)
@@ -65,6 +68,14 @@ void BelialSword::render(HDC hdc)
 
 void BelialSword::deleteEffect()
 {
+	OBJECTMANAGER->addObject(
+		ObjectEnum::TYPE::EFFECT,
+		new Effect(
+			ImageName::Enemy::Belial::belialSwordEffect,
+			_x,
+			_y
+		)
+	);
 }
 
 void BelialSword::collisionObject()

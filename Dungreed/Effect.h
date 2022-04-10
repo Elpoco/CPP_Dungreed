@@ -11,13 +11,16 @@ protected:
 	ImageGp* _gpImg;
 	string _imgName;
 
+	BYTE _alpha;
+
 	int _angle;
 	POINT _rotateCenter;
 
 	callback _callback;
 
 public:
-	Effect(string imgName, float x, float y, int angle = 0, POINT rotateCenter = { 0,0 });
+	Effect(string imgName, float x, float y, BYTE alpha = 255);
+	Effect(string imgName, float x, float y, int angle, POINT rotateCenter);
 	virtual ~Effect();
 	
 	virtual HRESULT init() override;
