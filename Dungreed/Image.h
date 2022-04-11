@@ -1,7 +1,9 @@
 #pragma once
+#include "ImageBase.h"
+
 class Animation;
 
-class Image
+class Image : public ImageBase
 {
 public:
 
@@ -77,7 +79,7 @@ public:
 	void release();
 
 	void render(HDC hdc);
-	void render(HDC hdc, int destX, int destY);
+	virtual void render(HDC hdc, float destX, float destY) override;
 	void render(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight);
 
 	void alphaRender(HDC hdc, BYTE alpha);
@@ -85,8 +87,8 @@ public:
 	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
 
 	void frameRender(HDC hdc, int destX, int destY);
-	void frameRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY);
-	void frameAlphaRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY, BYTE alpha);
+	virtual void frameRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY) override;
+	virtual void frameAlphaRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY, BYTE alpha) override;
 
 	void loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
 	void loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
@@ -108,8 +110,8 @@ public:
 		_imageInfo->y = y - (_imageInfo->height / 2);
 	}
 
-	inline int getWidth(void) { return _imageInfo->width; }
-	inline int getHeight(void) { return _imageInfo->height; }
+	virtual inline int getWidth(void) override { return _imageInfo->width; }
+	virtual inline int getHeight(void) override { return _imageInfo->height; }
 
 	inline RECT boundingBox(void) {
 		RECT rc = {
@@ -147,11 +149,11 @@ public:
 		}
 	}
 
-	inline int getFrameWidth(void) { return _imageInfo->frameWidth; }
-	inline int getFrameHeight(void) { return _imageInfo->frameHeight; }
+	virtual inline int getFrameWidth(void) override { return _imageInfo->frameWidth; }
+	virtual inline int getFrameHeight(void) override { return _imageInfo->frameHeight; }
 
-	inline int getMaxFrameX(void) { return _imageInfo->maxFrameX; }
-	inline int getMaxFrameY(void) { return _imageInfo->maxFrameY; }
+	virtual inline int getMaxFrameX(void) override { return _imageInfo->maxFrameX; }
+	virtual inline int getMaxFrameY(void) override { return _imageInfo->maxFrameY; }
 
 	Image();
 	~Image() {}

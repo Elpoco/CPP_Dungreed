@@ -168,6 +168,7 @@
     <ClCompile Include="LittleGhost.cpp" />
     <ClCompile Include="MessageBoxManager.cpp" />
     <ClCompile Include="Niflheim.cpp" />
+    <ClCompile Include="NiflheimPillar.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="EnemyHpBar.cpp" />
     <ClCompile Include="SkelDog.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameNode.h" />
+    <ClInclude Include="ImageBase.h" />
     <ClInclude Include="ImageGp.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageGpManager.h" />
@@ -222,6 +224,7 @@
     <ClInclude Include="LittleGhost.h" />
     <ClInclude Include="MessageBoxManager.h" />
     <ClInclude Include="Niflheim.h" />
+    <ClInclude Include="NiflheimPillar.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="EnemyHpBar.h" />
     <ClInclude Include="SkelDog.h" />

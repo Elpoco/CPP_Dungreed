@@ -7,6 +7,7 @@
 
 Belial::Belial(float x, float y)
 	: _skill(BELIAL_SKILL::NONE)
+	, _lastSkill(BELIAL_SKILL::NONE)
 	, _skillTick(0)
 	, _skillActCnt(0)
 	, _skillAuto(false)
@@ -63,7 +64,11 @@ void Belial::update()
 	case Belial::BELIAL_SKILL::NONE:
 		if (_skillAuto && _skillCooldown + SKILL_TIME < TIMEMANAGER->getWorldTime())
 		{
-			_skill = (BELIAL_SKILL)RND->getInt((int)BELIAL_SKILL::SKILL_CNT);
+			while (_lastSkill == _skill)
+			{
+				_skill = (BELIAL_SKILL)RND->getInt((int)BELIAL_SKILL::SKILL_CNT);
+			}
+			_lastSkill = _skill;
 		}
 		break;
 	case Belial::BELIAL_SKILL::SHOOTING_BULLET:
@@ -132,7 +137,7 @@ void Belial::animation()
 				ImageName::Enemy::Belial::particle,
 				RND->getFromIntTo(_rcBack.left + 5, _rcBack.right - 5),
 				RND->getFromIntTo(_rcBack.top + 5, _rcBack.bottom - 5),
-				60
+				50
 			)
 		);
 	}
@@ -254,7 +259,7 @@ void Belial::throwSword()
 		_skillTick = 0;
 		_skillActCnt = 0;
 		_skill = BELIAL_SKILL::NONE;
-		_skillCooldown = TIMEMANAGER->getWorldTime();
+		_skillCooldown = TIMEMANAGER->getWorldTime() + 2;
 		return;
 	}
 }

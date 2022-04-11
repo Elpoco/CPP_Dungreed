@@ -35,6 +35,11 @@ namespace MY_UTIL
 		return GetAngle(startX, startY, endX, endY) / PI * 180;
 	}
 
+	int radToDeg(float angle)
+	{
+		return angle / PI * 180;
+	}
+
 	bool MouseInRect(RECT& rc)
 	{
 		return PtInRect(&rc, _ptMouse);

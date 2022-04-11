@@ -78,14 +78,14 @@ int CameraManager::checkObjectInCamera(float x, float y, int width, int height)
 	return posX < -width || posY < -height || width > WINSIZE_X || height > WINSIZE_Y;
 }
 
-void CameraManager::render(HDC hdc, Image* img, float x, float y)
+void CameraManager::render(HDC hdc, ImageBase* img, float x, float y)
 {
 	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;
 
 	img->render(hdc, x - _x, y - _y);
 }
 
-void CameraManager::render(HDC hdc, ImageGp* img, float x, float y, int angle, POINT rotateCenter)
+void CameraManager::render(HDC hdc, ImageBase* img, float x, float y, int angle, POINT rotateCenter)
 {
 	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;
 
@@ -95,24 +95,28 @@ void CameraManager::render(HDC hdc, ImageGp* img, float x, float y, int angle, P
 	img->render(hdc, x - _x, y - _y, angle, rotateCenter);
 }
 
-void CameraManager::frameRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY, BYTE alpha)
+void CameraManager::frameRender(HDC hdc, ImageBase * img, float x, float y, int frameX, int frameY)
+{
+	if (this->checkObjectInCamera(x, y, img->getFrameWidth(), img->getFrameHeight())) return;
+
+	img->frameRender(hdc, x - _x, y - _y, frameX, frameY);
+}
+
+void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, BYTE alpha)
 {
 	if (this->checkObjectInCamera(x, y, img->getFrameWidth(), img->getFrameHeight())) return;
 	
-	if (alpha != 255)
-		img->frameAlphaRender(hdc, x - _x, y - _y, frameX, frameY, alpha);
-	else 
-		img->frameRender(hdc, x - _x, y - _y, frameX, frameY);
+	img->frameAlphaRender(hdc, x - _x, y - _y, frameX, frameY, alpha);
 }
 
-void CameraManager::frameRender(HDC hdc, ImageGp* img, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter)
+void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter)
 {
 	if (this->checkObjectInCamera(x, y, img->getFrameWidth(), img->getFrameHeight())) return;
 
 	if (rotateCenter.x != 0) rotateCenter.x -= _x;
 	if (rotateCenter.y != 0) rotateCenter.y -= _y;
 
-	img->frameRender(x - _x, y - _y, frameX, frameY, angle, rotateCenter);
+	img->frameRender(hdc, x - _x, y - _y, frameX, frameY, angle, rotateCenter);
 }
 
 void CameraManager::followCamera(Object * object)

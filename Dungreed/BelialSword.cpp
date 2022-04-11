@@ -59,7 +59,7 @@ void BelialSword::update()
 void BelialSword::render(HDC hdc)
 {
 	Object::render(hdc);
-	CAMERAMANAGER->render(hdc, _img, _rc.left, _rc.top, _degree);
+	CAMERAMANAGER->render(hdc, _img, _rc.left, _rc.top, _degree, { 0,0 });
 	if (_isDebug)
 	{
 		CAMERAMANAGER->printRectangle(hdc, _rc, Color::Red);

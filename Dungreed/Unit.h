@@ -17,10 +17,11 @@ protected:
 	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
 
 	// Image
-	vector<Image*> _vImages;
+	vector<ImageBase*> _vImages;
 	int _imgCurrent;
 	float _imgWidth;
 	float _imgHeight;
+	bool _isStopAnimation;
 
 	bool _isLeft;
 	bool _isJump;

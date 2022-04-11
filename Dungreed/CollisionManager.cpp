@@ -130,13 +130,6 @@ void CollisionManager::tileCollision()
 				float moveX = 0.0f;
 				float moveY = 0.0f;
 
-				TILE t = TILEMANAGER->getTile(rcObj.left, unit->getY());
-				if (t.type == MapToolEnum::TYPE::BLOCK)
-				{
-					unit->setCollision(DIRECTION::LEFT, true);
-					unit->pushObject(DIRECTION::LEFT, t.rc.right, 0);
-				}
-
 				for (int y = startY; y <= endY; y += MapToolSet::TILE_CNT_X)
 				{
 					for (int x = startX; x <= endX; x++)
@@ -157,8 +150,26 @@ void CollisionManager::tileCollision()
 							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY);
 							break;
 						case MapToolEnum::TYPE::BLOCK:
-							unit->setCollision(DIRECTION::BOTTOM, true);
-							unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
+							if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top) 
+							{ // ¿ÞÂÊ
+								unit->setCollision(DIRECTION::LEFT, true);
+								unit->pushObject(DIRECTION::LEFT, tile.rc.right, 0);
+							}
+							else if (tile.x > unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
+							{ // ¿À¸¥ÂÊ
+								unit->setCollision(DIRECTION::RIGHT, true);
+								unit->pushObject(DIRECTION::RIGHT, tile.rc.left, 0);
+							}
+							else if (tile.y > rcObj.bottom)
+							{ // ¹Ù´Ú
+								unit->setCollision(DIRECTION::BOTTOM, true);
+								unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
+							}
+							else
+							{ // ÃµÀå
+								unit->setCollision(DIRECTION::TOP, true);
+								unit->pushObject(DIRECTION::TOP, 0, tile.rc.bottom);
+							}
 							break;
 						default:
 							break;

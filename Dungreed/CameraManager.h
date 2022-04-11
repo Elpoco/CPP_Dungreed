@@ -29,10 +29,11 @@ public:
 
 	int checkObjectInCamera(float x, float y, int width, int height);
 
-	void render(HDC hdc, Image* img, float x, float y);
-	void render(HDC hdc, ImageGp* img, float x, float y, int angle = 0, POINT rotateCenter = { 0,0 });
-	void frameRender(HDC hdc, Image* img, float x, float y, int frameX, int frameY, BYTE alpha = 255);
-	void frameRender(HDC hdc, ImageGp* img, float x, float y, int frameX, int frameY, int angle = 0, POINT rotateCenter = { 0,0 });
+	void render(HDC hdc, ImageBase* img, float x, float y);
+	void render(HDC hdc, ImageBase* img, float x, float y, int angle, POINT rotateCenter);
+	void frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY);
+	void frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, BYTE alpha);
+	void frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter);
 
 	void followCamera(Object* object);
 	inline void lockCamera() { _isLock = true; }

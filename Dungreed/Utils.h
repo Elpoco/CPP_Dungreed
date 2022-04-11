@@ -17,6 +17,7 @@ namespace MY_UTIL
 	float GetDistance(float startX, float startY, float endX, float endY);
 	float GetAngle(float startX, float startY, float endX, float endY);
 	int GetAngleDeg(float startX, float startY, float endX, float endY);
+	int radToDeg(float angle);
 
 	bool MouseInRect(RECT& rc);
 

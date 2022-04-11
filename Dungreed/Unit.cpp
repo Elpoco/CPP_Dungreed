@@ -1,21 +1,22 @@
 #include "Stdafx.h"
 #include "Unit.h"
 
-Unit::Unit() :
-	_name(""),
-	_rcAttack({ 0,0,0,0 }),
-	_state(0),
-	_imgCurrent(0),
-	_imgWidth(0.0f),
-	_imgHeight(0.0f),
-	_isLeft(false),
-	_isJump(false),
-	_isFall(true),
-	_isFlying(false),
-	_moveSpeed(UnitSet::MOVE_SPEED),
-	_jumpSpeed(UnitSet::JUMP_SPEED),
-	_gravity(0.0f),
-	_reSize(0)
+Unit::Unit()
+	: _name("")
+	, _rcAttack({ 0,0,0,0 })
+	, _state(0)
+	, _imgCurrent(0)
+	, _imgWidth(0.0f)
+	, _imgHeight(0.0f)
+	, _isStopAnimation(false)
+	, _isLeft(false)
+	, _isJump(false)
+	, _isFall(true)
+	, _isFlying(false)
+	, _moveSpeed(UnitSet::MOVE_SPEED)
+	, _jumpSpeed(UnitSet::JUMP_SPEED)
+	, _gravity(0.0f)
+	, _reSize(0)
 {
 	for (int i = 0; i < ColliderEnum::DIRECTION::DIR_CNT; i++)
 		_isCollision[i] = false;
@@ -62,7 +63,7 @@ void Unit::render(HDC hdc)
 	}
 	else
 	{
-		CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _reSize/2, _rc.top, _frameInfo.x, _frameInfo.y);
+		CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _reSize / 2, _rc.top, _frameInfo.x, _frameInfo.y);
 	}
 }
 
@@ -82,6 +83,8 @@ void Unit::move()
 
 void Unit::animation()
 {
+	if (_isStopAnimation) return;
+
 	_imgCurrent = _state;
 
 	_frameInfo.cnt++;
@@ -117,6 +120,12 @@ void Unit::checkCollision()
 		_isJump = false;
 		_gravity = 0.0f;
 	}
+	else if (_isCollision[ColliderEnum::DIRECTION::TOP])
+	{
+		_isJump = false;
+		_isFall = true;
+		_gravity = 0.0f;
+	}
 	else
 	{
 		_isFall = true;
@@ -135,9 +144,11 @@ void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
 	case ColliderEnum::LEFT:
 		_x = x + _imgWidth / 2;
 		break;
-	case ColliderEnum::TOP:
-		break;
 	case ColliderEnum::RIGHT:
+		_x = x - _imgWidth / 2;
+		break;
+	case ColliderEnum::TOP:
+		_y = y + _imgHeight / 2;
 		break;
 	case ColliderEnum::BOTTOM:
 		_y = y - _imgHeight / 2;

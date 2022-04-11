@@ -1,6 +1,7 @@
 #pragma once
+#include "ImageBase.h"
 
-class ImageGp
+class ImageGp : public ImageBase
 {
 public:
 	typedef struct tagImageGp
@@ -46,22 +47,22 @@ public:
 	ImageGp(const WCHAR* fileName);
 	~ImageGp();
 	
-	HRESULT init(HDC memDc, const WCHAR* fileName, float scaleW = 1, float scaleH = 1);
-	HRESULT init(HDC memDc, const WCHAR* fileName, int maxFrameX, int maxFrameY);
+	HRESULT init(HDC hdc, const WCHAR* fileName, float scaleW = 1, float scaleH = 1);
+	HRESULT init(HDC hdc, const WCHAR* fileName, int maxFrameX, int maxFrameY);
 
 	void release();
 
-	void render(HDC hdc, float destX = 0.0f, float destY = 0.0f, int angle = 0, POINT rotateCenter = {0, 0});
-	void frameRender(float destX, float destY, int frameX, int frameY, int angle = 0, POINT rotateCenter = { 0, 0 });
+	virtual void render(HDC hdc, float x, float y) override;
+	virtual void render(HDC hdc, float x, float y, int angle, POINT rotateCenter) override;
+	virtual void frameRender(HDC hdc, float x, float y, int frameX, int frameY) override;
+	virtual void frameRender(HDC hdc, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter) override;
 
-	inline int getWidth() { return _imageInfo->width; }
-	inline int getHeight() { return _imageInfo->height; }
-	inline int getFrameWidth() { return _imageInfo->frameWidth; }
-	inline int getFrameHeight() { return _imageInfo->frameHeight; }
-	inline int getMaxFrameX() { return _imageInfo->maxFrameX; }
-	inline int getMaxFrameY() { return _imageInfo->maxFrameY; }
-
-	inline HDC getDc() { return hdc; }
+	virtual inline int getWidth() override { return _imageInfo->width; }
+	virtual inline int getHeight() override { return _imageInfo->height; }
+	virtual inline int getFrameWidth() override { return _imageInfo->frameWidth; }
+	virtual inline int getFrameHeight() override { return _imageInfo->frameHeight; }
+	virtual inline int getMaxFrameX() override { return _imageInfo->maxFrameX; }
+	virtual inline int getMaxFrameY() override { return _imageInfo->maxFrameY; }
 
 };
 

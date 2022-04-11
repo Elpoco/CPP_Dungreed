@@ -4,7 +4,7 @@
 constexpr int	BULLET_CNT	= 20;
 constexpr int	SWORD_CNT	= 6;
 constexpr int	LASER_CNT	= 15;
-constexpr float SKILL_TIME	= 3.5f;
+constexpr float SKILL_TIME	= 2.0f;
 
 class Belial : public Enemy
 {
@@ -68,6 +68,7 @@ private:
 	Image*		_imgBack;
 
 	BELIAL_SKILL	_skill;
+	BELIAL_SKILL	_lastSkill;
 	BYTE			_skillTick;
 	BYTE			_skillActCnt;
 	bool			_skillAuto;

@@ -45,7 +45,7 @@ namespace UnitSet
 
 		namespace Belial
 		{
-			constexpr int HP = 50;
+			constexpr int HP = 10;
 		}
 	}
 }

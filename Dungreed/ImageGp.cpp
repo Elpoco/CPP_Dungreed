@@ -20,7 +20,7 @@ ImageGp::~ImageGp()
 {
 }
 
-HRESULT ImageGp::init(HDC memDc, const WCHAR* fileName, float scaleW, float scaleH)
+HRESULT ImageGp::init(HDC hdc, const WCHAR* fileName, float scaleW, float scaleH)
 {
 	if (_imageInfo != NULL) this->release();
 
@@ -28,7 +28,7 @@ HRESULT ImageGp::init(HDC memDc, const WCHAR* fileName, float scaleW, float scal
 
 	if (_img->GetLastStatus() != Ok) return E_FAIL;
 
-	_graphics = new Graphics(memDc);
+	_graphics = new Graphics(hdc);
 
 	_imageInfo = new GP_IMAGE_INFO;
 	_imageInfo->width = _img->GetWidth();
@@ -52,7 +52,7 @@ HRESULT ImageGp::init(HDC memDc, const WCHAR* fileName, int maxFrameX, int maxFr
 	_imageInfo = new GP_IMAGE_INFO;
 	_imageInfo->width = _img->GetWidth();
 	_imageInfo->height = _img->GetHeight();
-	_imageInfo->maxFrameX = maxFrameX;
+	_imageInfo->maxFrameX = maxFrameX - 1;
 	_imageInfo->maxFrameY = maxFrameY;
 	_imageInfo->frameWidth = _imageInfo->width / maxFrameX;
 	_imageInfo->frameHeight = _imageInfo->height / maxFrameY;
@@ -67,22 +67,40 @@ void ImageGp::release()
 	SAFE_DELETE(_img);
 }
 
-void ImageGp::render(HDC hdc, float destX, float destY, int angle, POINT rotateCenter)
+void ImageGp::render(HDC hdc, float x, float y)
 {
-	if (rotateCenter.x == 0) rotateCenter.x = destX + _imageInfo->width / 2;
-	if (rotateCenter.y == 0) rotateCenter.y = destY + _imageInfo->height / 2;
+	_graphics->DrawImage(_img, x, y);
+}
+
+void ImageGp::render(HDC hdc, float x, float y, int angle, POINT rotateCenter)
+{
+	if (rotateCenter.x == 0) rotateCenter.x = x + _imageInfo->width / 2;
+	if (rotateCenter.y == 0) rotateCenter.y = y + _imageInfo->height / 2;
 
 	Matrix matrix;
 	matrix.RotateAt(-angle, PointToPointF(rotateCenter));
 	_graphics->SetTransform(&matrix);
 
-	_graphics->DrawImage(_img, destX, destY);
+	_graphics->DrawImage(_img, x, y);
 }
 
-void ImageGp::frameRender(float destX, float destY, int frameX, int frameY, int angle, POINT rotateCenter)
+void ImageGp::frameRender(HDC hdc, float x, float y, int frameX, int frameY)
 {
-	if (rotateCenter.x == 0) rotateCenter.x = destX;
-	if (rotateCenter.y == 0) rotateCenter.y = destY;
+	_graphics->DrawImage(
+		_img,
+		(int)x, (int)y,
+		frameX * _imageInfo->frameWidth,
+		frameY * _imageInfo->frameHeight,
+		_imageInfo->frameWidth,
+		_imageInfo->frameHeight,
+		Unit::UnitPixel
+	);
+}
+
+void ImageGp::frameRender(HDC hdc, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter)
+{
+	if (rotateCenter.x == 0) rotateCenter.x = x;
+	if (rotateCenter.y == 0) rotateCenter.y = y;
 
 	Matrix matrix;
 	matrix.RotateAt(-angle, PointToPointF(rotateCenter));
@@ -90,7 +108,7 @@ void ImageGp::frameRender(float destX, float destY, int frameX, int frameY, int 
 
 	_graphics->DrawImage(
 		_img,
-		(int)destX, (int)destY,
+		(int)x, (int)y,
 		frameX * _imageInfo->frameWidth, 
 		frameY * _imageInfo->frameHeight, 
 		_imageInfo->frameWidth,

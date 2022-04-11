@@ -255,6 +255,9 @@
     <ClCompile Include="Niflheim.cpp">
       <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
     </ClCompile>
+    <ClCompile Include="NiflheimPillar.cpp">
+      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -412,6 +415,12 @@
     </ClInclude>
     <ClInclude Include="Niflheim.h">
       <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
+    </ClInclude>
+    <ClInclude Include="NiflheimPillar.h">
+      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageBase.h">
+      <Filter>API FrameWork\08. Image</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

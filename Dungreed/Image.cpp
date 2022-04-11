@@ -307,7 +307,7 @@ void Image::render(HDC hdc)
 	}
 }
 
-void Image::render(HDC hdc, int destX, int destY)
+void Image::render(HDC hdc, float destX, float destY)
 {
 	if (_isTrans) {
 	

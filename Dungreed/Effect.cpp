@@ -21,7 +21,7 @@ Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter)
 	, _gpImg(nullptr)
 	, _callback(nullptr)
 	, _imgName(imgName)
-	, _alpha(255)
+	, _alpha(0)
 	, _angle(angle)
 	, _rotateCenter(rotateCenter)
 {
