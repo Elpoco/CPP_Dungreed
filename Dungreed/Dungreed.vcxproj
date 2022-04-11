@@ -167,6 +167,7 @@
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="LittleGhost.cpp" />
     <ClCompile Include="MessageBoxManager.cpp" />
+    <ClCompile Include="Niflheim.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="EnemyHpBar.cpp" />
     <ClCompile Include="SkelDog.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="LittleGhost.h" />
     <ClInclude Include="MessageBoxManager.h" />
+    <ClInclude Include="Niflheim.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="EnemyHpBar.h" />
     <ClInclude Include="SkelDog.h" />

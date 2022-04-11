@@ -7,9 +7,11 @@
 
 Belial::Belial(float x, float y)
 	: _skill(BELIAL_SKILL::NONE)
-	, _shootAngle(0.0f)
-	, _skillActCnt(0)
 	, _skillTick(0)
+	, _skillActCnt(0)
+	, _skillAuto(false)
+	, _skillCooldown(TIMEMANAGER->getWorldTime())
+	, _shootAngle(0.0f)
 	, _shootDir(1)
 	, _laserDir(1)
 {
@@ -51,18 +53,18 @@ void Belial::update()
 	Unit::updateRect();
 	this->animation();
 
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('Q')) _skillAuto = !_skillAuto;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('1')) _skill = BELIAL_SKILL::SHOOTING_BULLET;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('2')) _skill = BELIAL_SKILL::THROW_SWORD;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('3')) _skill = BELIAL_SKILL::LASER;
 
-	if (_skill == BELIAL_SKILL::NONE)
-	{
-		//_skill = (BELIAL_SKILL)RND->getInt((int)BELIAL_SKILL::SKILL_CNT);
-	}
-
 	switch (_skill)
 	{
 	case Belial::BELIAL_SKILL::NONE:
+		if (_skillAuto && _skillCooldown + SKILL_TIME < TIMEMANAGER->getWorldTime())
+		{
+			_skill = (BELIAL_SKILL)RND->getInt((int)BELIAL_SKILL::SKILL_CNT);
+		}
 		break;
 	case Belial::BELIAL_SKILL::SHOOTING_BULLET:
 		this->shootingBullet();
@@ -91,22 +93,9 @@ void Belial::render(HDC hdc)
 			_imgHand[_hand[i].state],
 			_hand[i].rc.left, _hand[i].rc.top,
 			_hand[i].frameInfo.x, i);
+
 		if(_isDebug)
 			CAMERAMANAGER->printRectangle(hdc, _hand[i].rc);
-	}
-
-	switch (_skill)
-	{
-	case Belial::BELIAL_SKILL::NONE:
-		break;
-	case Belial::BELIAL_SKILL::SHOOTING_BULLET:
-		break;
-	case Belial::BELIAL_SKILL::THROW_SWORD:
-		break;
-	case Belial::BELIAL_SKILL::LASER:
-		break;
-	default:
-		break;
 	}
 }
 
@@ -158,19 +147,6 @@ void Belial::animation()
 
 			bool checkFrame = _hand[i].frameInfo.maxFrameX < _hand[i].frameInfo.x;
 			if (checkFrame) _hand[i].frameInfo.x = 0;
-		}
-
-		if (_hand[i].laserState == BELIAL_LASER_STATE::SHOOTING)
-		{
-			//_laserFrameInfo.cnt++;
-			//if (_laserFrameInfo.cnt > _laserFrameInfo.tick)
-			//{
-			//	_laserFrameInfo.cnt = 0;
-			//	_laserFrameInfo.x++;
-			//
-			//	bool checkFrame = _laserFrameInfo.maxFrameX < _laserFrameInfo.x;
-			//	if (checkFrame) _laserFrameInfo.x = 0;
-			//}
 		}
 	}
 }
@@ -244,11 +220,13 @@ void Belial::shootingBullet()
 	
 	_shootAngle += PI / 32 * _shootDir;
 
-	if (++_skillActCnt > 25)
+	if (++_skillActCnt > BULLET_CNT)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;
 		_skill = BELIAL_SKILL::NONE;
+		_skillCooldown = TIMEMANAGER->getWorldTime();
+
 		_frameInfo.startFrameX = 0;
 		_shootDir = RND->getSigned();
 		_state = IDLE;
@@ -259,7 +237,7 @@ void Belial::shootingBullet()
 
 void Belial::throwSword()
 {
-	if (_skillTick++ < 40) return;
+	if (_skillTick++ < 35) return;
 	_skillTick = 0;
 
 	OBJECTMANAGER->addObject(
@@ -276,12 +254,14 @@ void Belial::throwSword()
 		_skillTick = 0;
 		_skillActCnt = 0;
 		_skill = BELIAL_SKILL::NONE;
+		_skillCooldown = TIMEMANAGER->getWorldTime();
 		return;
 	}
 }
 
 void Belial::laser()
 {
+	// 두손다 레이저를 안쏘면 랜덤으로 한손을 정한다
 	if (_hand[R].laserState == BELIAL_LASER_STATE::NONE &&
 		_hand[L].laserState == BELIAL_LASER_STATE::NONE)
 	{
@@ -344,30 +324,33 @@ void Belial::laser()
 	case BELIAL_LASER_STATE::SHOOTING:
 		if (_hand[_laserDir].frameInfo.x >= _hand[_laserDir].frameInfo.maxFrameX - 1)
 		{
-			_hand[_laserDir].laserState = BELIAL_LASER_STATE::DONE;
+			_hand[_laserDir].laserState = BELIAL_LASER_STATE::DONE; 
+			_skillTick = 0;
+			_skillActCnt = 0;
+			_hand[_laserDir].state = BELIAL_HAND_STATE::HAND_IDLE;
+			_hand[_laserDir].frameInfo.maxFrameX = _imgHand[_hand[_laserDir].state]->getMaxFrameX();
+
 		}
 		break;
 	case BELIAL_LASER_STATE::DONE:
-		_skillTick = 0;
-		_skillActCnt = 0;
-		_hand[_laserDir].frameInfo.maxFrameX = _imgHand[_hand[_laserDir].state]->getMaxFrameX();
-		
-		_hand[_laserDir].state = BELIAL_HAND_STATE::HAND_IDLE;
-
+		// 레이저를 쏘고나면 반대쪽 손으로 변경
 		_laserDir = _laserDir ? R : L;
-		//_hand[_laserDir].laserState = BELIAL_LASER_STATE::NONE;
 		break;
 	default:
 		break;
 	}
 
+	_hand[_laserDir].rc = RectMakeCenter(_hand[_laserDir].x, _hand[_laserDir].y,
+		_imgHand[_hand[_laserDir].state]->getFrameWidth(),
+		_imgHand[_hand[_laserDir].state]->getFrameHeight());
+
+	// 두손다 쐈으면 종료
 	if (_hand[R].laserState == BELIAL_LASER_STATE::DONE &&
 		_hand[L].laserState == BELIAL_LASER_STATE::DONE)
 	{
 		_skill = BELIAL_SKILL::NONE;
+		_skillCooldown = TIMEMANAGER->getWorldTime();
+		_hand[R].laserState = BELIAL_LASER_STATE::NONE;
+		_hand[L].laserState = BELIAL_LASER_STATE::NONE;
 	}
-
-	_hand[_laserDir].rc = RectMakeCenter(_hand[_laserDir].x, _hand[_laserDir].y,
-		_imgHand[_hand[_laserDir].state]->getFrameWidth(),
-		_imgHand[_hand[_laserDir].state]->getFrameHeight());
 }

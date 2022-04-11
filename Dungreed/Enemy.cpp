@@ -56,18 +56,16 @@ void Enemy::render(HDC hdc)
 	{
 		_startSpawn = true;
 
-		Effect* spawnEffect = new Effect(
-			ImageName::Enemy::enemySpawn,
-			_x,
-			_y
-		);
-
-		spawnEffect->setCallback([this]() {doneSpawn(); });
-
 		OBJECTMANAGER->addObject(
-			ObjectEnum::TYPE::EFFECT,
-			spawnEffect
+			ObjectEnum::TYPE::EFFECT_BACK,
+			new Effect(
+				ImageName::Enemy::enemySpawn,
+				_x,
+				_y
+			)
 		);
+
+		doneSpawn();
 	}
 
 	if (!_isSpawn) return;

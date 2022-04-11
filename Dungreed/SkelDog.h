@@ -25,7 +25,6 @@ public:
 
 	void move();
 	void animation();
-
 	void initAnimation();
 
 	void attack();

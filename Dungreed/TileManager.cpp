@@ -133,7 +133,7 @@ int TileManager::getTileIndex(POINT pt)
 	int idx = TILE_CNT_X * y + x;
 	int maxTile = _tileCntX * _tileCntY;
 
-	if (idx >= maxTile || idx < 0) idx = 0;
+	if (idx >= maxTile || idx < 0) idx = -1;
 
 	return idx;
 }

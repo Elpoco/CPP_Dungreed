@@ -120,9 +120,10 @@ void CollisionManager::tileCollision()
 				RECT rcObj = unit->getRect();
 
 				int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
+				int end	  =	TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
+				if (start < 0) return;
 				int startX = start % MapToolSet::TILE_CNT_X;
 				int startY = start - startX;
-				int end = TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
 				int endX = end % MapToolSet::TILE_CNT_X;
 				int endY = end - endX;
 

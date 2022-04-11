@@ -1,8 +1,10 @@
 #pragma once
 #include "Enemy.h"
 
-constexpr int SWORD_CNT = 6;
-constexpr int LASER_CNT = 15;
+constexpr int	BULLET_CNT	= 20;
+constexpr int	SWORD_CNT	= 6;
+constexpr int	LASER_CNT	= 15;
+constexpr float SKILL_TIME	= 3.5f;
 
 class Belial : public Enemy
 {
@@ -68,6 +70,8 @@ private:
 	BELIAL_SKILL	_skill;
 	BYTE			_skillTick;
 	BYTE			_skillActCnt;
+	bool			_skillAuto;
+	float			_skillCooldown;
 
 	float _shootAngle;
 	int	  _shootDir;
@@ -89,7 +93,6 @@ public:
 
 	void move();
 	void animation();
-
 	void initAnimation();
 
 	void shootingBullet();

@@ -112,6 +112,9 @@
     <Filter Include="MainGame\02. Object\Bullet">
       <UniqueIdentifier>{8389dcba-6434-4057-bfe8-2c3ff0b5f49d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\Unit\Enemy\Boss\Niflheim">
+      <UniqueIdentifier>{b094975f-a90d-425f-9352-aa45af8d1835}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -248,6 +251,9 @@
     </ClCompile>
     <ClCompile Include="BelialSword.cpp">
       <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
+    </ClCompile>
+    <ClCompile Include="Niflheim.cpp">
+      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -403,6 +409,9 @@
     </ClInclude>
     <ClInclude Include="BelialSword.h">
       <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
+    </ClInclude>
+    <ClInclude Include="Niflheim.h">
+      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
