@@ -1,8 +1,13 @@
 #include "Stdafx.h"
 #include "Niflheim.h"
 
-Niflheim::Niflheim()
+Niflheim::Niflheim(float x, float y)
 {
+	_startSpawn = TRUE;
+	_isSpawn = TRUE;
+
+	_x = x;
+	_y = y;
 }
 
 Niflheim::~Niflheim()
@@ -11,19 +16,32 @@ Niflheim::~Niflheim()
 
 HRESULT Niflheim::init()
 {
+	Enemy::init();
+	this->initAnimation();
+	Unit::updateRect();
+
+	_name = "니플헤임";
+	_isFlying = true;
+
 	return S_OK;
 }
 
 void Niflheim::release()
 {
+	Enemy::release();
 }
 
 void Niflheim::update()
 {
+	Enemy::update();
+	this->move();
+	Unit::updateRect();
+	this->animation();
 }
 
 void Niflheim::render(HDC hdc)
 {
+	Enemy::render(hdc);
 }
 
 void Niflheim::deleteEffect()
@@ -40,4 +58,8 @@ void Niflheim::animation()
 
 void Niflheim::initAnimation()
 {
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::Niflheim::idle));
+
+	_imgWidth = _vImages[0]->getFrameWidth();
+	_imgHeight = _vImages[0]->getFrameHeight();
 }

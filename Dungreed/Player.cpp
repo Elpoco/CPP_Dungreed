@@ -7,6 +7,12 @@ Player::Player()
 {
 }
 
+Player::Player(float x, float y)
+{
+	_x = x;
+	_y = y;
+}
+
 Player::~Player()
 {
 }

@@ -26,13 +26,13 @@ HRESULT BelialSword::init()
 {
 	Object::init();
 
-	_img = GPIMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialSword);
+	_img = GPIMAGEMANAGER->findImage(ImageName::Enemy::Belial::sword);
 	_initTime = TIMEMANAGER->getWorldTime();
 
 	OBJECTMANAGER->addObject(
 		ObjectEnum::TYPE::EFFECT,
 		new Effect(
-			ImageName::Enemy::Belial::belialSwordEffect,
+			ImageName::Enemy::Belial::swordEffect,
 			_x,
 			_y
 		)
@@ -71,7 +71,7 @@ void BelialSword::deleteEffect()
 	OBJECTMANAGER->addObject(
 		ObjectEnum::TYPE::EFFECT,
 		new Effect(
-			ImageName::Enemy::Belial::belialSwordEffect,
+			ImageName::Enemy::Belial::swordEffect,
 			_x,
 			_y
 		)

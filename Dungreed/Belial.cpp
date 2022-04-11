@@ -53,7 +53,7 @@ void Belial::update()
 	Unit::updateRect();
 	this->animation();
 
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('Q')) _skillAuto = !_skillAuto;
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('0')) _skillAuto = !_skillAuto;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('1')) _skill = BELIAL_SKILL::SHOOTING_BULLET;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('2')) _skill = BELIAL_SKILL::THROW_SWORD;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('3')) _skill = BELIAL_SKILL::LASER;
@@ -129,7 +129,7 @@ void Belial::animation()
 		OBJECTMANAGER->addObject(
 			ObjectEnum::TYPE::EFFECT_BACK,
 			new Effect(
-				ImageName::Enemy::Belial::belialParticle,
+				ImageName::Enemy::Belial::particle,
 				RND->getFromIntTo(_rcBack.left + 5, _rcBack.right - 5),
 				RND->getFromIntTo(_rcBack.top + 5, _rcBack.bottom - 5),
 				60
@@ -153,18 +153,18 @@ void Belial::animation()
 
 void Belial::initAnimation()
 {
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialIdle));
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialAttack));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::Belial::idle));
+	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::Belial::attack));
 
-	_imgBack = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialBack);
+	_imgBack = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::back);
 	_backFrameInfo.maxFrameX = _imgBack->getMaxFrameX();
 	_rcBack = RectMakeCenter(_x + 23, _y + 60, _imgBack->getFrameWidth(), _imgBack->getFrameHeight());
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
 
-	_imgHand[BELIAL_HAND_STATE::HAND_IDLE] = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialHand);
-	_imgHand[BELIAL_HAND_STATE::LASER] = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialHandAttack);
+	_imgHand[BELIAL_HAND_STATE::HAND_IDLE] = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::hand);
+	_imgHand[BELIAL_HAND_STATE::LASER] = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::handAttack);
 
 	_hand[R].isLeft = false;
 	_hand[R].x = _x + 450;
@@ -206,14 +206,14 @@ void Belial::shootingBullet()
 		OBJECTMANAGER->addObject(
 			ObjectEnum::TYPE::ENEMY_OBJ,
 			new Bullet(
-				ImageName::Enemy::Belial::belialBullet,
+				ImageName::Enemy::Belial::bullet,
 				_x + 23,
 				_y + 55,
 				cosf(_shootAngle),
 				-sinf(_shootAngle),
 				4.0f,
 				1.0f,
-				ImageName::Enemy::Belial::belialBulletEffect
+				ImageName::Enemy::Belial::bulletEffect
 			)
 		);
 	}
@@ -294,7 +294,7 @@ void Belial::laser()
 		if (_hand[_laserDir].frameInfo.x >= 8)
 		{
 			_hand[_laserDir].laserState = BELIAL_LASER_STATE::SHOOTING;
-			string imgName = _laserDir ? ImageName::Enemy::Belial::belialLaserHeadL : ImageName::Enemy::Belial::belialLaserHeadR;
+			string imgName = _laserDir ? ImageName::Enemy::Belial::laserHeadL : ImageName::Enemy::Belial::laserHeadR;
 			int direction = _laserDir ? 1 : -1;
 
 			OBJECTMANAGER->addObject(
@@ -306,14 +306,14 @@ void Belial::laser()
 				)
 			);
 
-			int headWidth = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialLaserHeadL)->getFrameWidth();
-			int laserInterval = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::belialLaserBody)->getFrameWidth();
+			int headWidth = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::laserHeadL)->getFrameWidth();
+			int laserInterval = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::laserBody)->getFrameWidth();
 			for (int i = 0; i < LASER_CNT; i++)
 			{
 				OBJECTMANAGER->addObject(
 					ObjectEnum::TYPE::EFFECT,
 					new Effect(
-						ImageName::Enemy::Belial::belialLaserBody,
+						ImageName::Enemy::Belial::laserBody,
 						_hand[_laserDir].x + (30 + headWidth + laserInterval * i) * direction,
 						_hand[_laserDir].y + 18
 					)

@@ -6,7 +6,7 @@ class Niflheim : public Enemy
 private:
 
 public:
-	Niflheim();
+	Niflheim(float x, float y);
 	~Niflheim();
 
 	virtual HRESULT init() override;

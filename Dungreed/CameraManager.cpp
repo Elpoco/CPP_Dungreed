@@ -114,3 +114,11 @@ void CameraManager::frameRender(HDC hdc, ImageGp* img, float x, float y, int fra
 
 	img->frameRender(x - _x, y - _y, frameX, frameY, angle, rotateCenter);
 }
+
+void CameraManager::followCamera(Object * object)
+{
+	_object = object;
+	_isFollow = true;
+	//_x = _object->getX() - CENTER_X;
+	//_y = _object->getY() - CENTER_Y;
+}

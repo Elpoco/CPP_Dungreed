@@ -24,6 +24,7 @@ private:
 
 public:
 	Player();
+	Player(float x, float y);
 	~Player();
 
 	virtual HRESULT init() override;

@@ -24,19 +24,24 @@ namespace ImageName
 
 		namespace Belial
 		{
-			constexpr char* belialIdle = "BelialIdle";
-			constexpr char* belialAttack = "BelialAttack";
-			constexpr char* belialBack = "BelialBack";
-			constexpr char* belialParticle = "BelialParticle";
-			constexpr char* belialBullet = "BelialBullet";
-			constexpr char* belialBulletEffect = "BelialBulletEffect";
-			constexpr char* belialHand = "BelialHand";
-			constexpr char* belialHandAttack = "BelialHandAttack";
-			constexpr char* belialSword = "BelialSword";
-			constexpr char* belialSwordEffect = "BelialSwordEffect";
-			constexpr char* belialLaserHeadL = "BelialLaserHeadL";
-			constexpr char* belialLaserHeadR = "BelialLaserHeadR";
-			constexpr char* belialLaserBody = "BelialLaserBody";
+			constexpr char* idle		 = "BelialIdle";
+			constexpr char* attack		 = "BelialAttack";
+			constexpr char* back		 = "BelialBack";
+			constexpr char* particle	 = "BelialParticle";
+			constexpr char* bullet		 = "BelialBullet";
+			constexpr char* bulletEffect = "BelialBulletEffect";
+			constexpr char* hand		 = "BelialHand";
+			constexpr char* handAttack   = "BelialHandAttack";
+			constexpr char* sword		 = "BelialSword";
+			constexpr char* swordEffect  = "BelialSwordEffect";
+			constexpr char* laserHeadL	 = "BelialLaserHeadL";
+			constexpr char* laserHeadR	 = "BelialLaserHeadR";
+			constexpr char* laserBody	 = "BelialLaserBody";
+		}
+
+		namespace Niflheim
+		{
+			constexpr char* idle = "NiflheimIdle";
 		}
 	}
 
