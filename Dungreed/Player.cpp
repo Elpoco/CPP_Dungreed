@@ -21,7 +21,7 @@ HRESULT Player::init()
 {
 	Unit::init();
 
-	_reSize = 35;
+	_rcResize = 35;
 	this->initAnimation();
 
 	CAMERAMANAGER->followCamera(this);
@@ -150,7 +150,7 @@ void Player::initAnimation()
 	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::run));
 	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::jump));
 
-	_imgWidth = _vImages[0]->getFrameWidth() - _reSize;
+	_imgWidth = _vImages[0]->getFrameWidth() - _rcResize;
 	_imgHeight = _vImages[0]->getFrameHeight();
 }
 

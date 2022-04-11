@@ -14,7 +14,6 @@ HRESULT TestScene::init()
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new Niflheim(1000, 600));
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new SkelDog(100, 800));
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new LittleGhost(100, 200));
-
 	TILEMANAGER->loadMap();
 
 	return S_OK;
@@ -35,6 +34,15 @@ void TestScene::update()
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new SkelDog(100, 800));
+	}
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('Q'))
+	{
+		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new Belial(1000, 550));
+	}
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('W'))
+	{
+		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new Niflheim(1700, 600));
+
 	}
 }
 

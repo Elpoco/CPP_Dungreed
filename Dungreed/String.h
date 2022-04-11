@@ -45,7 +45,8 @@ namespace ImageName
 #define NIFLHEIM "Niflheim"
 			constexpr char* idle	= NIFLHEIM"Idle";
 			constexpr char* attack  = NIFLHEIM"Attack";
-			constexpr char* pillar = NIFLHEIM"Pillar";
+			constexpr char* pillar  = NIFLHEIM"Pillar";
+			constexpr char* bullet  = NIFLHEIM"Bullet";
 		}
 	}
 

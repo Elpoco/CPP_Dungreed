@@ -32,8 +32,9 @@ protected:
 	float _jumpSpeed;
 	float _gravity;
 
-	int _reSize;	// 렉트랑 이미지 리사이즈
-
+	int _rcResize;	// 렉트랑 이미지 리사이즈
+	float _imgAngle;
+	POINT _rotateCenter;
 
 public:
 	Unit();

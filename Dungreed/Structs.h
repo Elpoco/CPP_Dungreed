@@ -45,7 +45,7 @@ typedef struct tagFrameInfo
 	tagFrameInfo()
 	{
 		isFrame = false;
-		tick = 10;
+		tick = 8;
 		cnt = 0;
 		x = 0;
 		y = 0;

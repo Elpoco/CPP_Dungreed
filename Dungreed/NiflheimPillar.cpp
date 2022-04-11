@@ -1,8 +1,10 @@
 #include "Stdafx.h"
 #include "NiflheimPillar.h"
 
+#include "Bullet.h"
+
 NiflheimPillar::NiflheimPillar(float x, float y)
-	: _angle(0.0f)
+	: _shootAngle(0.0f)
 {
 	_x = x;
 	_y = y;
@@ -21,8 +23,9 @@ HRESULT NiflheimPillar::init()
 	this->initAnimation();
 
 	_isFlying = true;
-
-	_name = "¾óÀ½ ±âµÕ";
+	
+	_bossAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY);
+	_bossDistance = GetDistance(_x, _y, *_niflheimX, *_niflheimY);
 
 	return S_OK;
 }
@@ -36,32 +39,37 @@ void NiflheimPillar::update()
 {
 	Enemy::update();
 	this->move();
-	Unit::updateRect();
+	Enemy::updateRect();
 	this->animation();
+
+	if (KEYMANAGER->isStayKeyDown(VK_RBUTTON))
+	{
+		OBJECTMANAGER->addObject(
+			ObjectEnum::TYPE::ENEMY_OBJ,
+			new Bullet(
+				ImageName::Enemy::Niflheim::bullet,
+				_x,
+				_y,
+				_shootAngle,
+				4.0f,
+				1.0f,
+				ImageName::Enemy::Belial::bulletEffect
+			)
+		);
+		_shootAngle += PI / 32;
+	}
 }
 
 void NiflheimPillar::render(HDC hdc)
 {
-	//Enemy::render(hdc);
-	CAMERAMANAGER->frameRender(
-		hdc,
-		_vImages[_imgCurrent],
-		_rc.left,
-		_rc.top,
-		_frameInfo.x,
-		_frameInfo.y,
-		radToDeg(_angle),
-		PointMake(_x,_y)
-	);
-	   	if (_isDebug)
-	{
-		CAMERAMANAGER->printRectangle(hdc, _rc, Color::Green);
-		CAMERAMANAGER->printPoint(hdc, _rc.left, _rc.top, _x, _y, "x: %d, y: %d");
-	}
+	Enemy::render(hdc);
+
 }
 
 void NiflheimPillar::move()
 {
+	_x = cosf(_bossAngle) * _bossDistance + *_niflheimX;
+	_y = sinf(_bossAngle) * _bossDistance + *_niflheimY;
 }
 
 void NiflheimPillar::animation()
@@ -70,13 +78,15 @@ void NiflheimPillar::animation()
 	{
 		_frameInfo.startFrameX = 12;
 		_frameInfo.tick = 15;
-		_angle += 0.03f;
+		_imgAngle = GetAngleDeg(_x, _y, *_niflheimX, *_niflheimY) + 90;
+		_bossAngle -= 0.01f;
+		_rotateCenter = PointMake(_x, _y);
 	}
 }
 void NiflheimPillar::initAnimation()
 {
 	_vImages.push_back(GPIMAGEMANAGER->findImage(ImageName::Enemy::Niflheim::pillar));
-
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
+	_frameInfo.maxFrameX = _vImages[0]->getMaxFrameX();
 }

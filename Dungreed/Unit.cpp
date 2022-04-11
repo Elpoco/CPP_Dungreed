@@ -16,7 +16,9 @@ Unit::Unit()
 	, _moveSpeed(UnitSet::MOVE_SPEED)
 	, _jumpSpeed(UnitSet::JUMP_SPEED)
 	, _gravity(0.0f)
-	, _reSize(0)
+	, _rcResize(0)
+	, _imgAngle(0)
+	, _rotateCenter({ 0,0 })
 {
 	for (int i = 0; i < ColliderEnum::DIRECTION::DIR_CNT; i++)
 		_isCollision[i] = false;
@@ -59,11 +61,18 @@ void Unit::render(HDC hdc)
 	if (_vImages[_imgCurrent]->getMaxFrameX() == 0 &&
 		_vImages[_imgCurrent]->getMaxFrameY() == 0)
 	{
-		CAMERAMANAGER->render(hdc, _vImages[_imgCurrent], _rc.left - _reSize / 2, _rc.top);
+		CAMERAMANAGER->render(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top);
 	}
 	else
 	{
-		CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _reSize / 2, _rc.top, _frameInfo.x, _frameInfo.y);
+		if (_imgAngle)
+		{
+			CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y, _imgAngle, _rotateCenter);
+		}
+		else
+		{
+			CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y);
+		}
 	}
 }
 

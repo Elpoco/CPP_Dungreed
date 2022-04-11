@@ -71,7 +71,9 @@ void Enemy::render(HDC hdc)
 	if (!_isSpawn) return;
 
 	Unit::render(hdc);
-	_hpBar->render(hdc);
+
+	if(_maxHp != _hp)
+		_hpBar->render(hdc);
 }
 
 void Enemy::deleteEffect()

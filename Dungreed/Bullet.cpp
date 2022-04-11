@@ -3,13 +3,12 @@
 
 #include "Effect.h"
 
-Bullet::Bullet(string imgName, float x, float y, float moveX, float moveY, float speed
+Bullet::Bullet(string imgName, float x, float y, float angle, float speed
 	, float damage, string destroyImgName, float distance)
 	: _imgName(imgName)
 	, _startX(x)
 	, _startY(y)
-	, _moveX(moveX)
-	, _moveY(moveY)
+	, _angle(angle)
 	, _speed(speed)
 	, _damage(damage)
 	, _distance(distance)
@@ -111,11 +110,11 @@ void Bullet::render(HDC hdc)
 	{
 		if (_frameInfo.isFrame)
 		{
-			CAMERAMANAGER->frameRender(hdc, _gpImg, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
+			CAMERAMANAGER->frameRender(hdc, _gpImg, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, radToDeg(_angle), PointMake(_x, _y));
 		}
 		else
 		{
-			CAMERAMANAGER->render(hdc, _gpImg, _rc.left, _rc.top);
+			CAMERAMANAGER->render(hdc, _gpImg, _rc.left, _rc.top, radToDeg(_angle) + 90, PointMake(_x,_y));
 		}
 	}
 }
@@ -137,8 +136,8 @@ void Bullet::deleteEffect()
 
 void Bullet::move()
 {
-	_x += _moveX * _speed;
-	_y += _moveY * _speed;
+	_x += cosf(_angle) * _speed;
+	_y -= sinf(_angle) * _speed;
 
 	if (GetDistance(_startX, _startY, _x, _y) > _distance)
 	{

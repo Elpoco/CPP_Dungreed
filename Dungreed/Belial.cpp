@@ -64,7 +64,7 @@ void Belial::update()
 	case Belial::BELIAL_SKILL::NONE:
 		if (_skillAuto && _skillCooldown + SKILL_TIME < TIMEMANAGER->getWorldTime())
 		{
-			while (_lastSkill == _skill)
+			while (_skill == BELIAL_SKILL::NONE || _lastSkill == _skill)
 			{
 				_skill = (BELIAL_SKILL)RND->getInt((int)BELIAL_SKILL::SKILL_CNT);
 			}
@@ -214,8 +214,7 @@ void Belial::shootingBullet()
 				ImageName::Enemy::Belial::bullet,
 				_x + 23,
 				_y + 55,
-				cosf(_shootAngle),
-				-sinf(_shootAngle),
+				_shootAngle,
 				4.0f,
 				1.0f,
 				ImageName::Enemy::Belial::bulletEffect

@@ -120,7 +120,10 @@ void Effect::render(HDC hdc)
 	{
 		if (_frameInfo.isFrame)
 		{
-			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, _alpha);
+			if(_alpha)
+				CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, _alpha);
+			else
+				CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 		}
 		else
 		{
