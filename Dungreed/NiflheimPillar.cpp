@@ -1,10 +1,13 @@
 #include "Stdafx.h"
 #include "NiflheimPillar.h"
 
+using namespace NiflheimPillarSet;
+
 NiflheimPillar::NiflheimPillar(float x, float y)
 	: _skill(Niflheim::NIFLHEIM_SKILL::NONE)
 	, _spinSpeed(0.01f)
 	, _isInit(false)
+	, _isDestory(false)
 	, _wideAngle(0)
 {
 	_x = x;
@@ -57,6 +60,15 @@ void NiflheimPillar::render(HDC hdc)
 
 }
 
+void NiflheimPillar::hitAttack(int dmg)
+{
+	_hp -= dmg;
+	if (_hp < 1)
+	{
+		_isDestory = true;
+	}
+}
+
 void NiflheimPillar::move()
 {
 	if (!_isInit) return;
@@ -67,18 +79,19 @@ void NiflheimPillar::move()
 	case Niflheim::NIFLHEIM_SKILL::AROUND:
 		if (_skill == Niflheim::NIFLHEIM_SKILL::NONE)
 		{
-			_spinSpeed = NiflheimPillarSet::IDLE_SPEED;
+			_spinSpeed = IDLE_SPEED;
 			_wideAngle = 0.0f;
-
+			_x = cosf(_bossAngle) * _bossDistance + *_niflheimX;
+			_y = sinf(_bossAngle) * _bossDistance + *_niflheimY;
 			this->settingOrder();
 		}
 		else
 		{
-			_spinSpeed = NiflheimPillarSet::AROUND_SPEED;
+			_spinSpeed = AROUND_SPEED;
+			_x = cosf(_bossAngle) * (_bossDistance - 50) + *_niflheimX;
+			_y = sinf(_bossAngle) * (_bossDistance - 50) + *_niflheimY;
 		}
-
-		_x = cosf(_bossAngle) * _bossDistance + *_niflheimX;
-		_y = sinf(_bossAngle) * _bossDistance + *_niflheimY;
+		
 		_imgAngle = GetAngleDeg(_x, _y, *_niflheimX, *_niflheimY) + 90;
 		_bossAngle -= _spinSpeed;
 		break;
@@ -86,8 +99,11 @@ void NiflheimPillar::move()
 	case Niflheim::NIFLHEIM_SKILL::WIDE_LINE:
 	case Niflheim::NIFLHEIM_SKILL::LINE_UP:
 		_spinSpeed = 0.0f;
-		//if(abs(_movePoint.x - _x) < 100)
-			_imgAngle += 1;
+
+		if (//_skill == Niflheim::NIFLHEIM_SKILL::LINE_UP &&
+			abs(_movePoint.x - _x) > 100) _imgAngle = 120;
+
+		_imgAngle += 1;
 
 		switch (_order)
 		{
@@ -166,7 +182,7 @@ void NiflheimPillar::settingOrder()
 	{
 		_order = RT;
 	}
-	else if (_x <= *_niflheimX && _y >= *_niflheimY) // LB
+	else if (_x < *_niflheimX && _y > *_niflheimY) // LB
 	{
 		_order = LB;
 	}

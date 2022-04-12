@@ -3,6 +3,8 @@
 
 #include "Effect.h"
 
+using namespace BelialSwordSet;
+
 BelialSword::BelialSword(float x, float y, POINT* ptPlayer)
 	: _startX(x)
 	, _startY(y)
@@ -52,7 +54,7 @@ void BelialSword::update()
 	this->move();
 	_rc = RectMakeCenter(_x, _y, _img->getWidth(), _img->getHeight());
 
-	if (_initTime + BelialSwordSet::SWORD_LIFE_TIME < TIMEMANAGER->getWorldTime())
+	if (_initTime + SWORD_LIFE_TIME < TIMEMANAGER->getWorldTime())
 		Object::deleteObject();
 }
 
@@ -81,20 +83,19 @@ void BelialSword::deleteEffect()
 void BelialSword::collisionObject()
 {
 	//Object::deleteObject();
-	
 }
 
 void BelialSword::move()
 {
-	if (GetDistance(_startX, _startY, _x, _y) > 800) return;
+	if (GetDistance(_startX, _startY, _x, _y) > 1500) return;
 
 	if (_isShoot || _initTime + 3 < TIMEMANAGER->getWorldTime())
 	{
 		_isShoot = true;
 		if (_isMoving)
 		{
-			_x += cosf(_angle) * BelialSwordSet::SWORD_SPEED;
-			_y -= sinf(_angle) * BelialSwordSet::SWORD_SPEED;
+			_x += cosf(_angle) * SWORD_SPEED;
+			_y -= sinf(_angle) * SWORD_SPEED;
 		}
 	}
 	else

@@ -5,8 +5,8 @@
 
 namespace NiflheimPillarSet
 {
-	constexpr float IDLE_SPEED		= 0.009f;
-	constexpr float AROUND_SPEED	= 0.02f;
+	constexpr float IDLE_SPEED		= 0.01f;
+	constexpr float AROUND_SPEED	= 0.03f;
 }
 
 class NiflheimPillar : public Enemy
@@ -25,12 +25,13 @@ private:
 	PILLAR_ORDER _order;
 
 	Niflheim::NIFLHEIM_SKILL _skill;
-	bool _isInit;
-	float* _niflheimX;
-	float* _niflheimY;
-	float _bossAngle;
-	float _bossDistance;
-	float _spinSpeed;
+	bool	_isInit;
+	bool	_isDestory;
+	float*  _niflheimX;
+	float*  _niflheimY;
+	float   _bossAngle;
+	float   _bossDistance;
+	float   _spinSpeed;
 
 	float _wideAngle;
 	float _wideLeft;
@@ -51,10 +52,13 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
+	virtual void hitAttack(int dmg) override;
+
 	void move();
 	void animation();
 	void initAnimation();
 
+	bool isDestroy() { return _isDestory; }
 	void settingOrder();
 
 	void setPosAddress(float* x, float* y) { _niflheimX = x; _niflheimY = y; }

@@ -5,6 +5,8 @@
 #include "Effect.h"
 #include "BelialSword.h"
 
+using namespace BelialSet;
+
 Belial::Belial(float x, float y)
 	: _skill(BELIAL_SKILL::NONE)
 	, _lastSkill(BELIAL_SKILL::NONE)
@@ -58,11 +60,12 @@ void Belial::update()
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('1')) _skill = BELIAL_SKILL::SHOOTING_BULLET;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('2')) _skill = BELIAL_SKILL::THROW_SWORD;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('3')) _skill = BELIAL_SKILL::LASER;
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('9')) _isLive = FALSE;
 
 	switch (_skill)
 	{
 	case Belial::BELIAL_SKILL::NONE:
-		if (_skillAuto && _skillCooldown + BelialSet::SKILL_TIME < TIMEMANAGER->getWorldTime())
+		if (_skillAuto && _skillCooldown + SKILL_TIME < TIMEMANAGER->getWorldTime())
 		{
 			while (_skill == BELIAL_SKILL::NONE || _lastSkill == _skill)
 			{
@@ -224,7 +227,7 @@ void Belial::shootingBullet()
 	
 	_shootAngle += PI / 32 * _shootDir;
 
-	if (++_skillActCnt > BelialSet::BULLET_CNT)
+	if (++_skillActCnt > BULLET_CNT)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;
@@ -312,7 +315,7 @@ void Belial::laser()
 
 			int headWidth = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::laserHeadL)->getFrameWidth();
 			int laserInterval = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::laserBody)->getFrameWidth();
-			for (int i = 0; i < BelialSet::LASER_CNT; i++)
+			for (int i = 0; i < LASER_CNT; i++)
 			{
 				OBJECTMANAGER->addObject(
 					ObjectEnum::TYPE::EFFECT,

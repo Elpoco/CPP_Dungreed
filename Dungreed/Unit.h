@@ -11,7 +11,7 @@ protected:
 	FRAME_INFO _frameInfo;
 	string	_name;
 	RECT	_rcAttack;
-	BYTE	_state;
+	int	_state;
 
 	// collision
 	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
@@ -27,6 +27,8 @@ protected:
 	bool _isJump;
 	bool _isFall;
 	bool _isFlying;
+	bool _isHit;
+	float _hitTime;
 
 	float _moveSpeed;
 	float _jumpSpeed;
@@ -34,6 +36,7 @@ protected:
 
 	int _rcResize;	// 렉트랑 이미지 리사이즈
 	float _imgAngle;
+	BYTE _imgAlpha;
 	POINT _rotateCenter;
 
 public:

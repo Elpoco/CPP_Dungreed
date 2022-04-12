@@ -134,6 +134,11 @@ void Bullet::deleteEffect()
 	}
 }
 
+void Bullet::collisionObject()
+{
+	Object::deleteObject();
+}
+
 void Bullet::move()
 {
 	_x += cosf(_angle) * _speed;

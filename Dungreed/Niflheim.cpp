@@ -5,6 +5,8 @@
 #include "Bullet.h"
 #include "Effect.h"
 
+using namespace NifleheimSet;
+
 Niflheim::Niflheim(float x, float y)
 	: _onInitPillar(false)
 	, _skill(NIFLHEIM_SKILL::NONE)
@@ -45,7 +47,7 @@ HRESULT Niflheim::init()
 void Niflheim::release()
 {
 	Enemy::release();
-	for (int i = 0; i < NifleheimSet::PILLAR_CNT; i++)
+	for (int i = 0; i < PILLAR_CNT; i++)
 	{
 		if (_pillar[i])
 		{
@@ -67,18 +69,20 @@ void Niflheim::update()
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('3')) _skill = NIFLHEIM_SKILL::WIDE_LINE;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('4')) _skill = NIFLHEIM_SKILL::LINE_UP;
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('5')) _skill = NIFLHEIM_SKILL::FULL_ATTACK;
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('6')) _onInitPillar = true;
+	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('9')) _isLive = FALSE;
 
 	switch (_skill)
 	{
 	case Niflheim::NIFLHEIM_SKILL::NONE:
-		for (int i = 0; i < NifleheimSet::PILLAR_CNT; i++)
+		for (int i = 0; i < PILLAR_CNT; i++)
 		{
 			if (!_pillar[i]) continue;
 
 			_pillar[i]->setSkill(_skill);
 		}
 
-		if (_skillAuto && _skillCooldown + NifleheimSet::SKILL_TIME < TIMEMANAGER->getWorldTime())
+		if (_skillAuto && _skillCooldown + SKILL_TIME < TIMEMANAGER->getWorldTime())
 		{
 			while (_skill == NIFLHEIM_SKILL::NONE || _lastSkill == _skill)
 			{
@@ -96,11 +100,19 @@ void Niflheim::update()
 	case Niflheim::NIFLHEIM_SKILL::FULL_ATTACK:
 		this->moveAndFire();
 		break;
-		break;
 	case Niflheim::NIFLHEIM_SKILL::SKILL_CNT:
 		break;
 	default:
 		break;
+	}
+
+	for (int i = 0; i < PILLAR_CNT; i++)
+	{
+		if (_pillar[i] && _pillar[i]->isDestroy())
+		{
+			_pillar[i]->deleteObject();
+			_pillar[i] = nullptr;
+		}
 	}
 }
 
@@ -118,6 +130,27 @@ void Niflheim::render(HDC hdc)
 
 void Niflheim::deleteEffect()
 {
+	OBJECTMANAGER->addObject(
+		ObjectEnum::TYPE::EFFECT,
+		new Effect(
+			ImageName::Enemy::enemyDie,
+			_x,
+			_y
+		)
+	);
+}
+
+void Niflheim::hitAttack(int dmg)
+{
+	for (int i = 0; i < PILLAR_CNT; i++)
+	{
+		if (_pillar[i]) return;
+	}
+	_hp -= dmg;
+	if (_hp < 1)
+	{
+		_isLive = FALSE;
+	}
 }
 
 void Niflheim::move()
@@ -150,7 +183,7 @@ void Niflheim::initAnimation()
 
 void Niflheim::initPillar()
 {
-	for (int i = 0; i < NifleheimSet::PILLAR_CNT; i++)
+	for (int i = 0; i < PILLAR_CNT; i++)
 	{
 		if (_pillar[i]) continue;
 		int intervalX = i % 2;
@@ -186,7 +219,7 @@ void Niflheim::shootBullet(float x, float y, float angle)
 			angle,
 			3.0f,
 			1.0f,
-			ImageName::Enemy::Belial::bulletEffect
+			ImageName::Enemy::Niflheim::bulletFX
 		)
 	);
 }
@@ -204,7 +237,7 @@ void Niflheim::turnAround()
 	_skillFirstTick = 15;
 
 
-	for (int i = 0; i < NifleheimSet::PILLAR_CNT; i++)
+	for (int i = 0; i < PILLAR_CNT; i++)
 	{
 		if (!_pillar[i]) continue;
 
@@ -216,7 +249,7 @@ void Niflheim::turnAround()
 		this->shootBullet(x, y, angle);
 	}
 
-	if (++_skillActCnt > NifleheimSet::BULLET_CNT)
+	if (++_skillActCnt > BULLET_CNT)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;
@@ -229,7 +262,7 @@ void Niflheim::turnAround()
 
 void Niflheim::moveAndFire()
 {
-	int bulletCnt = NifleheimSet::BULLET_CNT;
+	int bulletCnt = BULLET_CNT;
 
 	if (_skillActCnt == 0 && _skillTick == 0)
 	{
@@ -240,7 +273,7 @@ void Niflheim::moveAndFire()
 	// ±‚µ’ ¿Ãµø
 	if (_skillTick == 50) 
 	{
-		for (int i = 0; i < NifleheimSet::PILLAR_CNT; i++)
+		for (int i = 0; i < PILLAR_CNT; i++)
 		{
 			if (!_pillar[i]) continue;
 			_pillar[i]->setSkill(_skill);
@@ -256,15 +289,19 @@ void Niflheim::moveAndFire()
 	_skillTick = 0;
 	_skillFirstTick = 10;
 	
-	for (int i = 0; i < NifleheimSet::PILLAR_CNT; i++)
+	for (int i = 0; i < PILLAR_CNT; i++)
 	{
 		if (!_pillar[i]) continue;
-
 		
 		if (_skill == NIFLHEIM_SKILL::WIDE_LINE)
 		{
-			bulletCnt = NifleheimSet::BULLET_CNT_L;
-			int idx = _skillActCnt / ((bulletCnt+1)/4);
+			bulletCnt = BULLET_CNT_L;
+			int idx = _skillActCnt / 5;
+			if (!_pillar[idx])
+			{
+				_skillTick = _skillFirstTick;
+				continue;
+			}
 			float x = _pillar[idx]->getX();
 			float y = _pillar[idx]->getY();
 			this->shootBullet(x, y, GetAngle(x, y, _ptLastPlayer.x, _ptLastPlayer.y));

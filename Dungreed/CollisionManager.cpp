@@ -188,6 +188,7 @@ void CollisionManager::tileCollision()
 				if (tile.type == MapToolEnum::TYPE::BLOCK)
 				{
 					obj->stopObject();
+					obj->collisionObject();
 				}
 			}
 			break;
@@ -207,7 +208,6 @@ void CollisionManager::playerEnemyCollision()
 		for (Object* obj : pairEnemy->second)
 		{
 			Enemy* enemy = dynamic_cast<Enemy*>(obj);
-			//if (!enemy->isSpawn()) continue;
 
 			RECT tmp;
 			RECT playerHitBox = player->getRect();
@@ -258,6 +258,7 @@ void CollisionManager::shootingCollision()
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{
 				obj->collisionObject();
+				player->hitAttack(0);
 			}
 		}
 	}

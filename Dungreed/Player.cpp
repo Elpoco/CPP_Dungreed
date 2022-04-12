@@ -3,6 +3,8 @@
 
 #include "Effect.h"
 
+using namespace PlayerSet;
+
 Player::Player()
 {
 }
@@ -56,6 +58,15 @@ void Player::render(HDC hdc)
 	CAMERAMANAGER->render(hdc, _weapon, _rcWeapon.left, _rcWeapon.top, _angleWeapon, PointMake(_mainHandX, _y + 20));
 
 	//GPIMAGEMANAGER->frameRender(ImageName::Effect::Weapon::effectBasic, hdc, CENTER_X, CENTER_Y, 0, 0);
+}
+
+void Player::hitAttack(int dmg)
+{
+	if (_hitTime + HIT_TIME > TIMEMANAGER->getWorldTime()) return;
+
+	_hitTime = TIMEMANAGER->getWorldTime();
+	_isHit = true;
+	_imgAlpha = HIT_ALPHA;
 }
 
 void Player::move()
@@ -129,8 +140,6 @@ void Player::move()
 
 void Player::animation()
 {
-	//_imgCurrent = _state;
-
 	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
 	{
 		_isLeft = true;
@@ -140,6 +149,21 @@ void Player::animation()
 	{ 
 		_isLeft = false; 
 		_mainHandX = _x + 15;
+	}
+
+	if (_isHit)
+	{
+		if (_frameInfo.cnt == 0)
+		{
+			if (_imgAlpha < 255) _imgAlpha = 255;
+			else _imgAlpha = HIT_ALPHA;
+		}
+
+		if (_hitTime + HIT_TIME < TIMEMANAGER->getWorldTime())
+		{
+			_isHit = false;
+			_imgAlpha = 255;
+		}
 	}
 
 }

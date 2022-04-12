@@ -1,9 +1,11 @@
 #pragma once
 #include "Unit.h"
 
-#define KEY_INVENTORY		'V'
-#define KEY_CHANGE_WEAPON	'~'
-#define KEY_INTERACTION		'F'
+namespace PlayerSet
+{
+	constexpr float HIT_TIME = 2.0f;
+	constexpr BYTE HIT_ALPHA = 150;
+}
 
 class Player : public Unit
 {
@@ -32,9 +34,10 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
+	virtual void hitAttack(int dmg) override;
+
 	void move();
 	void animation();
-
 	void initAnimation();
 
 	void moveLeft();
