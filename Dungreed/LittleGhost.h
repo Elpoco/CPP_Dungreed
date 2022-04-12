@@ -1,5 +1,11 @@
 #pragma once
 #include "Enemy.h"
+
+namespace LittleGhostSet
+{
+	constexpr float MOVE_SPEED = 2.0f;
+}
+
 class LittleGhost : public Enemy
 {
 private:

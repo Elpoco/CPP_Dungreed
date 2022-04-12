@@ -40,6 +40,11 @@ namespace MY_UTIL
 		return angle / PI * 180;
 	}
 
+	float degToRad(int angle)
+	{
+		return angle * PI / 180;
+	}
+
 	bool MouseInRect(RECT& rc)
 	{
 		return PtInRect(&rc, _ptMouse);

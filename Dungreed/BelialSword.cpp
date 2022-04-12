@@ -52,7 +52,7 @@ void BelialSword::update()
 	this->move();
 	_rc = RectMakeCenter(_x, _y, _img->getWidth(), _img->getHeight());
 
-	if (_initTime + SWORD_LIFE_TIME < TIMEMANAGER->getWorldTime())
+	if (_initTime + BelialSwordSet::SWORD_LIFE_TIME < TIMEMANAGER->getWorldTime())
 		Object::deleteObject();
 }
 
@@ -93,8 +93,8 @@ void BelialSword::move()
 		_isShoot = true;
 		if (_isMoving)
 		{
-			_x += cosf(_angle) * SWORD_SPEED;
-			_y -= sinf(_angle) * SWORD_SPEED;
+			_x += cosf(_angle) * BelialSwordSet::SWORD_SPEED;
+			_y -= sinf(_angle) * BelialSwordSet::SWORD_SPEED;
 		}
 	}
 	else

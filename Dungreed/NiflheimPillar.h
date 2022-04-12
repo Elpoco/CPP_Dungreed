@@ -1,24 +1,46 @@
 #pragma once
 #include "Enemy.h"
+
+#include "Niflheim.h"
+
+namespace NiflheimPillarSet
+{
+	constexpr float IDLE_SPEED		= 0.009f;
+	constexpr float AROUND_SPEED	= 0.02f;
+}
+
 class NiflheimPillar : public Enemy
 {
 private:
-	enum class PILLAR_STATE
+	enum PILLAR_ORDER
 	{
-		IDLE,
-		MUSTER,		   // 주변에 모여서 나선형태
-		DISSOLUTION,   // 네방향으로 가서 나선형태
-		DISSOLUTION_L, // 네방향으로 가서 플레이어한테 직선형태
-		LINE_UP,	   // 중앙에 직선으로 모여서 나선형태
-		FULL_ATTACK	   // 모든기둥이 플레이어한테 연사
+		LT,
+		RT,
+		LB,
+		RB,
+		ORDER_CNT
 	};
 
 private:
+	PILLAR_ORDER _order;
+
+	Niflheim::NIFLHEIM_SKILL _skill;
+	bool _isInit;
 	float* _niflheimX;
 	float* _niflheimY;
 	float _bossAngle;
 	float _bossDistance;
-	float _shootAngle;
+	float _spinSpeed;
+
+	float _wideAngle;
+	float _wideLeft;
+	float _wideRight;
+	float _wideTop;
+	float _wideBottom;
+	float _wideMoveX;
+	float _wideMoveY;
+
+	POINT _movePoint;
 
 public:
 	NiflheimPillar(float x, float y);
@@ -33,7 +55,12 @@ public:
 	void animation();
 	void initAnimation();
 
+	void settingOrder();
+
 	void setPosAddress(float* x, float* y) { _niflheimX = x; _niflheimY = y; }
+	inline void setSkill(Niflheim::NIFLHEIM_SKILL skill) { _skill = skill; }
+	inline float getAngle() { return _bossAngle; }
+	inline int getImgAngle() { return _imgAngle; }
 
 };
 

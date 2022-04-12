@@ -3,14 +3,6 @@
 // =========
 // # Utils #
 // =========
-#define DEG_TO_RAD		0.017453f
-#define PI				3.141592653f
-#define PI_2			6.283185308f
-
-#define FLOAT_EPSILON	0.001f
-
-#define FLOAT_TO_INT(f1)	static_cast<int>(f1+EPSILON)
-#define FLOAT_EQUAL(f1, f2)	(fabs(f1-f2) <=FLOAT_EPSILON)
 
 namespace MY_UTIL
 {
@@ -18,6 +10,7 @@ namespace MY_UTIL
 	float GetAngle(float startX, float startY, float endX, float endY);
 	int GetAngleDeg(float startX, float startY, float endX, float endY);
 	int radToDeg(float angle);
+	float degToRad(int angle);
 
 	bool MouseInRect(RECT& rc);
 

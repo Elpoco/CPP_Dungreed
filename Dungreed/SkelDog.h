@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+
 class SkelDog : public Enemy
 {
 private:

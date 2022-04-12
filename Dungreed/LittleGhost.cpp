@@ -20,7 +20,9 @@ HRESULT LittleGhost::init()
 
 	_name = "²¿¸¶ À¯·É";
 	_scanScale = { 15,15 };
-	_moveSpeed = UnitSet::Enemy::LittleGhost::MOVE_SPEED;
+	_moveSpeed = LittleGhostSet::MOVE_SPEED;
+
+	settingHp(UnitSet::Enemy::LittleGhost::HP);
 
 	return S_OK;
 }

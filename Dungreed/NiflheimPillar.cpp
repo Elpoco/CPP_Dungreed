@@ -1,10 +1,11 @@
 #include "Stdafx.h"
 #include "NiflheimPillar.h"
 
-#include "Bullet.h"
-
 NiflheimPillar::NiflheimPillar(float x, float y)
-	: _shootAngle(0.0f)
+	: _skill(Niflheim::NIFLHEIM_SKILL::NONE)
+	, _spinSpeed(0.01f)
+	, _isInit(false)
+	, _wideAngle(0)
 {
 	_x = x;
 	_y = y;
@@ -23,6 +24,8 @@ HRESULT NiflheimPillar::init()
 	this->initAnimation();
 
 	_isFlying = true;
+
+	settingHp(UnitSet::Enemy::NiflheimPillar::HP);
 	
 	_bossAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY);
 	_bossDistance = GetDistance(_x, _y, *_niflheimX, *_niflheimY);
@@ -42,22 +45,10 @@ void NiflheimPillar::update()
 	Enemy::updateRect();
 	this->animation();
 
-	if (KEYMANAGER->isStayKeyDown(VK_RBUTTON))
-	{
-		OBJECTMANAGER->addObject(
-			ObjectEnum::TYPE::ENEMY_OBJ,
-			new Bullet(
-				ImageName::Enemy::Niflheim::bullet,
-				_x,
-				_y,
-				_shootAngle,
-				4.0f,
-				1.0f,
-				ImageName::Enemy::Belial::bulletEffect
-			)
-		);
-		_shootAngle += PI / 32;
-	}
+	_wideLeft = *_niflheimX - 300;
+	_wideRight = *_niflheimX + 300;
+	_wideTop = *_niflheimY - 250;
+	_wideBottom = *_niflheimY + 250;
 }
 
 void NiflheimPillar::render(HDC hdc)
@@ -68,25 +59,119 @@ void NiflheimPillar::render(HDC hdc)
 
 void NiflheimPillar::move()
 {
-	_x = cosf(_bossAngle) * _bossDistance + *_niflheimX;
-	_y = sinf(_bossAngle) * _bossDistance + *_niflheimY;
+	if (!_isInit) return;
+
+	switch (_skill)
+	{
+	case Niflheim::NIFLHEIM_SKILL::NONE:
+	case Niflheim::NIFLHEIM_SKILL::AROUND:
+		if (_skill == Niflheim::NIFLHEIM_SKILL::NONE)
+		{
+			_spinSpeed = NiflheimPillarSet::IDLE_SPEED;
+			_wideAngle = 0.0f;
+
+			this->settingOrder();
+		}
+		else
+		{
+			_spinSpeed = NiflheimPillarSet::AROUND_SPEED;
+		}
+
+		_x = cosf(_bossAngle) * _bossDistance + *_niflheimX;
+		_y = sinf(_bossAngle) * _bossDistance + *_niflheimY;
+		_imgAngle = GetAngleDeg(_x, _y, *_niflheimX, *_niflheimY) + 90;
+		_bossAngle -= _spinSpeed;
+		break;
+	case Niflheim::NIFLHEIM_SKILL::WIDE:
+	case Niflheim::NIFLHEIM_SKILL::WIDE_LINE:
+	case Niflheim::NIFLHEIM_SKILL::LINE_UP:
+		_spinSpeed = 0.0f;
+		//if(abs(_movePoint.x - _x) < 100)
+			_imgAngle += 1;
+
+		switch (_order)
+		{
+		case NiflheimPillar::LT:
+			if (_skill == Niflheim::NIFLHEIM_SKILL::LINE_UP)
+				_movePoint = PointMake(_wideRight, _wideTop + 50);
+			else
+				_movePoint = PointMake(_wideRight, _wideBottom);
+			break;
+		case NiflheimPillar::RT:
+			if (_skill == Niflheim::NIFLHEIM_SKILL::LINE_UP)
+				_movePoint = PointMake(_wideLeft, _wideTop + 50);
+			else
+				_movePoint = PointMake(_wideLeft, _wideBottom);
+			break;
+		case NiflheimPillar::LB:
+			if (_skill == Niflheim::NIFLHEIM_SKILL::LINE_UP)
+				_movePoint = PointMake(_wideRight - 200, _wideTop + 50);
+			else
+				_movePoint = PointMake(_wideRight, _wideTop);
+			break;
+		case NiflheimPillar::RB:
+			if (_skill == Niflheim::NIFLHEIM_SKILL::LINE_UP)
+				_movePoint = PointMake(_wideLeft + 200, _wideTop + 50);
+			else
+				_movePoint = PointMake(_wideLeft, _wideTop);
+			break;
+		default:
+			break;
+		}
+
+		if(!_wideAngle)
+			_wideAngle = GetAngle(_x, _y, _movePoint.x, _movePoint.y);
+
+		_x += cosf(_wideAngle) * (abs(_movePoint.x - _x) / 10);
+		_y -= sinf(_wideAngle) * (abs(_movePoint.y - _y) / 10);
+		break;
+	case Niflheim::NIFLHEIM_SKILL::FULL_ATTACK:
+		_spinSpeed = 0.0f;
+		break;
+	default:
+		break;
+	}
 }
 
 void NiflheimPillar::animation()
 {
-	if (_frameInfo.x >= 12)
+	if (_frameInfo.x >= 11)
 	{
 		_frameInfo.startFrameX = 12;
 		_frameInfo.tick = 15;
-		_imgAngle = GetAngleDeg(_x, _y, *_niflheimX, *_niflheimY) + 90;
-		_bossAngle -= 0.01f;
-		_rotateCenter = PointMake(_x, _y);
+		_isInit = true;
 	}
+	else
+	{
+		_imgAngle = GetAngleDeg(_x, _y, *_niflheimX, *_niflheimY) + 90;
+	}
+	_rotateCenter = PointMake(_x, _y);
 }
+
 void NiflheimPillar::initAnimation()
 {
 	_vImages.push_back(GPIMAGEMANAGER->findImage(ImageName::Enemy::Niflheim::pillar));
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
 	_frameInfo.maxFrameX = _vImages[0]->getMaxFrameX();
+}
+
+void NiflheimPillar::settingOrder()
+{
+	if (_x <= *_niflheimX && _y <= *_niflheimY) // LT
+	{
+		_order = LT;
+	}
+	else if (_x >= *_niflheimX && _y <= *_niflheimY) // RT
+	{
+		_order = RT;
+	}
+	else if (_x <= *_niflheimX && _y >= *_niflheimY) // LB
+	{
+		_order = LB;
+	}
+	else if(_x > *_niflheimX && _y > *_niflheimY) // RB
+	{
+		_order = RB;
+	}
 }

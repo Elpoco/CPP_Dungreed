@@ -47,6 +47,7 @@ namespace ImageName
 			constexpr char* attack  = NIFLHEIM"Attack";
 			constexpr char* pillar  = NIFLHEIM"Pillar";
 			constexpr char* bullet  = NIFLHEIM"Bullet";
+			constexpr char* bulletFX  = NIFLHEIM"BulletFX";
 		}
 	}
 

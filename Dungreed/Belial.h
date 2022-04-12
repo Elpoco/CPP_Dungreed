@@ -1,10 +1,13 @@
 #pragma once
 #include "Enemy.h"
 
-constexpr int	BULLET_CNT	= 20;
-constexpr int	SWORD_CNT	= 6;
-constexpr int	LASER_CNT	= 15;
-constexpr float SKILL_TIME	= 2.0f;
+namespace BelialSet
+{
+	constexpr float SKILL_TIME	= 2.0f;
+	constexpr int	BULLET_CNT	= 20;
+	constexpr int	SWORD_CNT	= 6;
+	constexpr int	LASER_CNT	= 15;
+}
 
 class Belial : public Enemy
 {
@@ -69,8 +72,8 @@ private:
 
 	BELIAL_SKILL	_skill;
 	BELIAL_SKILL	_lastSkill;
-	BYTE			_skillTick;
-	BYTE			_skillActCnt;
+	int				_skillTick;
+	int 			_skillActCnt;
 	bool			_skillAuto;
 	float			_skillCooldown;
 

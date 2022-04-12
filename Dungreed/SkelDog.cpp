@@ -22,6 +22,7 @@ HRESULT SkelDog::init()
 	_scanScale = { 15,6 };
 	_isAutoLeft = false;
 	_jumpSpeed /= 2;
+
 	settingHp(UnitSet::Enemy::SkelDog::HP);
 
 	return S_OK;

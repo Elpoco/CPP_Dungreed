@@ -39,22 +39,16 @@
 // # Setting #
 // ===========
 
+#define PI   3.141592653f
+#define PI_2 6.283185308f
+
+#define R	0
+#define L	1
+#define RL  2
+
 #define TILE_RES_SIZE		16
 #define TILE_SCALE			3
 #define TILE_SIZE			(TILE_RES_SIZE * TILE_SCALE)
 
 #define ENEMY_HP_BAR_W		60
 #define ENEMY_HP_BAR_H		15
-
-#define R	0
-#define L	1
-#define RL  2
-
-#define TILE_BLOCK			0x0001
-
-#define TILE_PLAYER			0x0100
-
-#define TILE_AIR			0x0101
-
-//터레인 비트
-//백버퍼 막기는 전처리기 콜백 주기

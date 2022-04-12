@@ -62,7 +62,7 @@ void Belial::update()
 	switch (_skill)
 	{
 	case Belial::BELIAL_SKILL::NONE:
-		if (_skillAuto && _skillCooldown + SKILL_TIME < TIMEMANAGER->getWorldTime())
+		if (_skillAuto && _skillCooldown + BelialSet::SKILL_TIME < TIMEMANAGER->getWorldTime())
 		{
 			while (_skill == BELIAL_SKILL::NONE || _lastSkill == _skill)
 			{
@@ -224,7 +224,7 @@ void Belial::shootingBullet()
 	
 	_shootAngle += PI / 32 * _shootDir;
 
-	if (++_skillActCnt > BULLET_CNT)
+	if (++_skillActCnt > BelialSet::BULLET_CNT)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;
@@ -312,7 +312,7 @@ void Belial::laser()
 
 			int headWidth = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::laserHeadL)->getFrameWidth();
 			int laserInterval = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::laserBody)->getFrameWidth();
-			for (int i = 0; i < LASER_CNT; i++)
+			for (int i = 0; i < BelialSet::LASER_CNT; i++)
 			{
 				OBJECTMANAGER->addObject(
 					ObjectEnum::TYPE::EFFECT,
