@@ -86,15 +86,16 @@ HRESULT SceneManager::changeScene(string sceneName)
 
 	if (find->second == _currentScene) return S_OK;
 
+	string preName = _currentSceneName;
+	_currentSceneName = sceneName;
 	if (SUCCEEDED(find->second->init()))
 	{
 		if(_currentScene) _currentScene->release();
 
 		_currentScene = find->second;
-		_currentSceneName = sceneName;
 
 		return S_OK;
 	}
-
+	_currentSceneName = preName;
 	return E_FAIL;
 }

@@ -49,17 +49,8 @@
     <Filter Include="API FrameWork\13. Json">
       <UniqueIdentifier>{44fe4207-fedd-40e1-a5ed-c9c60c6cfc2d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\14 .UI">
-      <UniqueIdentifier>{84928863-93f7-429b-b64f-ebb5f3ce260d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\02. Object">
       <UniqueIdentifier>{edff070e-76ee-4020-8943-96230d727fd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\02. Object\Unit">
-      <UniqueIdentifier>{fcfb8975-00ba-40e0-846b-93b7d8b379e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Player">
-      <UniqueIdentifier>{2e57d9be-c75f-4fca-8fa4-04fb92afcebe}</UniqueIdentifier>
     </Filter>
     <Filter Include="MainGame\01. Scene">
       <UniqueIdentifier>{52aca5fe-bae4-4b56-b875-34aecfec2038}</UniqueIdentifier>
@@ -73,47 +64,56 @@
     <Filter Include="MainGame\01. Scene\Test">
       <UniqueIdentifier>{8239d58c-9c48-4977-b305-898c7aae269f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Item">
-      <UniqueIdentifier>{a567b791-cce3-45b1-92ff-361e5d6a83ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\01. Scene\MapTool\TileManager">
       <UniqueIdentifier>{4a2e862f-1d40-4c56-923d-3c24bbe9541a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Enemy">
-      <UniqueIdentifier>{2682263a-073d-4ed9-ad59-c202ad36ccd3}</UniqueIdentifier>
     </Filter>
     <Filter Include="MainGame\01. Scene\Town">
       <UniqueIdentifier>{c13acad6-ea91-40bf-9763-fe4ab3061f57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Effect">
-      <UniqueIdentifier>{11bb3507-a854-4795-880f-a9e500bea6cc}</UniqueIdentifier>
+    <Filter Include="MainGame\02. Object\01. Unit">
+      <UniqueIdentifier>{fcfb8975-00ba-40e0-846b-93b7d8b379e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Item\Sword">
-      <UniqueIdentifier>{d8ced728-9dfc-413d-9352-ac1cbd783ae6}</UniqueIdentifier>
+    <Filter Include="MainGame\02. Object\01. Unit\Player">
+      <UniqueIdentifier>{2e57d9be-c75f-4fca-8fa4-04fb92afcebe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\PrgressBar">
-      <UniqueIdentifier>{30c21a14-4b8d-4223-b544-16664221318d}</UniqueIdentifier>
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy">
+      <UniqueIdentifier>{2682263a-073d-4ed9-ad59-c202ad36ccd3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Enemy\Boss">
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Boss">
       <UniqueIdentifier>{af0d09da-aa1d-4843-8593-d3c7455b302d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Enemy\Boss\Belial">
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Boss\Belial">
       <UniqueIdentifier>{8ca91f78-9931-453e-923f-7f93015ed6cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Enemy\Monster">
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Boss\Niflheim">
+      <UniqueIdentifier>{b094975f-a90d-425f-9352-aa45af8d1835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster">
       <UniqueIdentifier>{7e4b7fe6-9d92-41a6-a1c5-5530788b4d0d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Enemy\Monster\SkelDog">
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\SkelDog">
       <UniqueIdentifier>{bbf4c483-2573-46b3-a748-571616648327}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Enemy\Monster\LittleGhost">
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\LittleGhost">
       <UniqueIdentifier>{755de569-0a98-4610-9c9b-a021c8099349}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Bullet">
+    <Filter Include="MainGame\02. Object\02. PrgressBar">
+      <UniqueIdentifier>{30c21a14-4b8d-4223-b544-16664221318d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\03. Bullet">
       <UniqueIdentifier>{8389dcba-6434-4057-bfe8-2c3ff0b5f49d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\Unit\Enemy\Boss\Niflheim">
-      <UniqueIdentifier>{b094975f-a90d-425f-9352-aa45af8d1835}</UniqueIdentifier>
+    <Filter Include="MainGame\02. Object\04. Effect">
+      <UniqueIdentifier>{11bb3507-a854-4795-880f-a9e500bea6cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\05. UI">
+      <UniqueIdentifier>{949eb890-809b-4a7a-8b04-657e37ae81ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\06. Item">
+      <UniqueIdentifier>{a567b791-cce3-45b1-92ff-361e5d6a83ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\06. Item\Sword">
+      <UniqueIdentifier>{d8ced728-9dfc-413d-9352-ac1cbd783ae6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -166,10 +166,10 @@
       <Filter>MainGame\02. Object</Filter>
     </ClCompile>
     <ClCompile Include="Unit.cpp">
-      <Filter>MainGame\02. Object\Unit</Filter>
+      <Filter>MainGame\02. Object\01. Unit</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>MainGame\02. Object\Unit\Player</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Player</Filter>
     </ClCompile>
     <ClCompile Include="PixelCollider.cpp">
       <Filter>API FrameWork\12. Collider\PixelCollider</Filter>
@@ -182,12 +182,6 @@
     </ClCompile>
     <ClCompile Include="ImageLoader.cpp">
       <Filter>API FrameWork\08. Image</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>API FrameWork\14 .UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UIManager.cpp">
-      <Filter>API FrameWork\14 .UI</Filter>
     </ClCompile>
     <ClCompile Include="MapToolScene.cpp">
       <Filter>MainGame\01. Scene\MapTool</Filter>
@@ -220,43 +214,46 @@
       <Filter>API FrameWork\08. Image</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
-      <Filter>MainGame\02. Object\Item</Filter>
+      <Filter>MainGame\02. Object\06. Item</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>MainGame\02. Object\Unit\Enemy</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="SkelDog.cpp">
-      <Filter>MainGame\02. Object\Unit\Enemy\Monster\SkelDog</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\SkelDog</Filter>
     </ClCompile>
     <ClCompile Include="TownScene.cpp">
       <Filter>MainGame\01. Scene\Town</Filter>
     </ClCompile>
     <ClCompile Include="LittleGhost.cpp">
-      <Filter>MainGame\02. Object\Unit\Enemy\Monster\LittleGhost</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\LittleGhost</Filter>
     </ClCompile>
     <ClCompile Include="Effect.cpp">
-      <Filter>MainGame\02. Object\Effect</Filter>
+      <Filter>MainGame\02. Object\04. Effect</Filter>
     </ClCompile>
     <ClCompile Include="Sword.cpp">
-      <Filter>MainGame\02. Object\Item\Sword</Filter>
+      <Filter>MainGame\02. Object\06. Item\Sword</Filter>
     </ClCompile>
     <ClCompile Include="EnemyHpBar.cpp">
-      <Filter>MainGame\02. Object\PrgressBar</Filter>
+      <Filter>MainGame\02. Object\02. PrgressBar</Filter>
     </ClCompile>
     <ClCompile Include="Belial.cpp">
-      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Belial</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>MainGame\02. Object\Bullet</Filter>
+      <Filter>MainGame\02. Object\03. Bullet</Filter>
     </ClCompile>
     <ClCompile Include="BelialSword.cpp">
-      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Belial</Filter>
     </ClCompile>
     <ClCompile Include="Niflheim.cpp">
-      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Niflheim</Filter>
     </ClCompile>
     <ClCompile Include="NiflheimPillar.cpp">
-      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Niflheim</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>MainGame\02. Object\05. UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -312,10 +309,10 @@
       <Filter>MainGame\02. Object</Filter>
     </ClInclude>
     <ClInclude Include="Unit.h">
-      <Filter>MainGame\02. Object\Unit</Filter>
+      <Filter>MainGame\02. Object\01. Unit</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>MainGame\02. Object\Unit\Player</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Player</Filter>
     </ClInclude>
     <ClInclude Include="PixelCollider.h">
       <Filter>API FrameWork\12. Collider\PixelCollider</Filter>
@@ -328,12 +325,6 @@
     </ClInclude>
     <ClInclude Include="ImageLoader.h">
       <Filter>API FrameWork\08. Image</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>API FrameWork\14 .UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UIManager.h">
-      <Filter>API FrameWork\14 .UI</Filter>
     </ClInclude>
     <ClInclude Include="MapToolScene.h">
       <Filter>MainGame\01. Scene\MapTool</Filter>
@@ -381,46 +372,49 @@
       <Filter>API FrameWork\02. Config</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
-      <Filter>MainGame\02. Object\Item</Filter>
+      <Filter>MainGame\02. Object\06. Item</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>MainGame\02. Object\Unit\Enemy</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="SkelDog.h">
-      <Filter>MainGame\02. Object\Unit\Enemy\Monster\SkelDog</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\SkelDog</Filter>
     </ClInclude>
     <ClInclude Include="TownScene.h">
       <Filter>MainGame\01. Scene\Town</Filter>
     </ClInclude>
     <ClInclude Include="LittleGhost.h">
-      <Filter>MainGame\02. Object\Unit\Enemy\Monster\LittleGhost</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\LittleGhost</Filter>
     </ClInclude>
     <ClInclude Include="Effect.h">
-      <Filter>MainGame\02. Object\Effect</Filter>
+      <Filter>MainGame\02. Object\04. Effect</Filter>
     </ClInclude>
     <ClInclude Include="Sword.h">
-      <Filter>MainGame\02. Object\Item\Sword</Filter>
+      <Filter>MainGame\02. Object\06. Item\Sword</Filter>
     </ClInclude>
     <ClInclude Include="EnemyHpBar.h">
-      <Filter>MainGame\02. Object\PrgressBar</Filter>
+      <Filter>MainGame\02. Object\02. PrgressBar</Filter>
     </ClInclude>
     <ClInclude Include="Belial.h">
-      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Belial</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>MainGame\02. Object\Bullet</Filter>
+      <Filter>MainGame\02. Object\03. Bullet</Filter>
     </ClInclude>
     <ClInclude Include="BelialSword.h">
-      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Belial</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Belial</Filter>
     </ClInclude>
     <ClInclude Include="Niflheim.h">
-      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Niflheim</Filter>
     </ClInclude>
     <ClInclude Include="NiflheimPillar.h">
-      <Filter>MainGame\02. Object\Unit\Enemy\Boss\Niflheim</Filter>
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Niflheim</Filter>
     </ClInclude>
     <ClInclude Include="ImageBase.h">
       <Filter>API FrameWork\08. Image</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>MainGame\02. Object\05. UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

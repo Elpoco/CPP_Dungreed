@@ -43,7 +43,6 @@ void MapToolScene::release()
 void MapToolScene::update()
 {
 	TILEMANAGER->update();
-	CAMERAMANAGER->update();
 
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::UP)))	 _camera->setY(_camera->getY() - CAMERA_SPPED);
 	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::DOWN)))  _camera->setY(_camera->getY() + CAMERA_SPPED);

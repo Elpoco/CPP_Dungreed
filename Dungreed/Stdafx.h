@@ -70,7 +70,6 @@ using namespace MY_UTIL;
 
 #include "ObjectManager.h"
 #include "CameraManager.h"
-#include "UIManager.h"
 #include "FileManager.h"
 #include "TileManager.h"
 #include "MessageBoxManager.h"

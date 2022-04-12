@@ -2,6 +2,7 @@
 #include "ObjectManager.h"
 
 #include "Object.h"
+#include "UI.h"
 
 using namespace ObjectEnum;
 
@@ -69,7 +70,19 @@ void ObjectManager::render(HDC hdc)
 	{
 		for (Object* obj : pairObject.second)
 		{
-			obj->render(hdc);
+			if (pairObject.first == ObjectEnum::TYPE::UI ||
+				pairObject.first == ObjectEnum::TYPE::FIXED_UI)
+			{
+				UI* ui = dynamic_cast<UI*>(obj);
+				if (ui->getSceneName() == SCENEMANAGER->getCurrentSceneName())
+				{
+					ui->render(hdc);
+				}
+			}
+			else
+			{
+				obj->render(hdc);
+			}
 		}
 	}
 }

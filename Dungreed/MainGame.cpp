@@ -42,6 +42,12 @@ void MainGame::update(void)
 	GameNode::update();
 	SCENEMANAGER->update();
 
+	OBJECTMANAGER->update();
+
+	COLLISIONMANAGER->update();
+
+	CAMERAMANAGER->update();
+
 	if (KEYMANAGER->isOnceKeyDown(VK_F1)) _isDebug = !_isDebug;
 }
 
@@ -54,13 +60,17 @@ void MainGame::render(void)
 
 	SCENEMANAGER->render();
 
+	OBJECTMANAGER->render(getMemDC());
+
+	COLLISIONMANAGER->render(getMemDC());
+
 	TIMEMANAGER->render(getMemDC());
 
 	// ÇöÀç ¾À ÀÌ¸§
 	if(_isDebug)
 		TextOut(getMemDC(),
 			0, WINSIZE_Y-20, 
-			SCENEMANAGER->getCurrentSceneName().c_str(), 
+			SCENEMANAGER->getCurrentSceneName().c_str(),
 			SCENEMANAGER->getCurrentSceneName().length()
 		);
 		

@@ -227,7 +227,7 @@ void Belial::shootingBullet()
 	
 	_shootAngle += PI / 32 * _shootDir;
 
-	if (++_skillActCnt > BULLET_CNT)
+	if (++_skillActCnt >= BULLET_CNT)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;
@@ -256,7 +256,7 @@ void Belial::throwSword()
 		)
 	);
 
-	if (++_skillActCnt > 5)
+	if (++_skillActCnt >= SWORD_CNT)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;

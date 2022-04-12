@@ -62,10 +62,11 @@ namespace ObjectEnum
 		ENEMY,
 		ENEMY_OBJ,
 		ITEM,
+		UI,
 		PLAYER,
 		PLAYER_OBJ,
 		EFFECT,
-		FIX_UI,
+		FIXED_UI,
 		TYPE_CNT
 	};
 }

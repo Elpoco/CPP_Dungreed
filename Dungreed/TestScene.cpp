@@ -25,12 +25,6 @@ void TestScene::release()
 
 void TestScene::update()
 {
-	OBJECTMANAGER->update();
-
-	COLLISIONMANAGER->update();
-
-	CAMERAMANAGER->update();
-
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new SkelDog(100, 800));
@@ -51,8 +45,4 @@ void TestScene::render()
 	IMAGEMANAGER->render(ImageName::background, getMemDC());
 
 	TILEMANAGER->render(getMemDC());
-
-	OBJECTMANAGER->render(getMemDC());
-
-	COLLISIONMANAGER->render(getMemDC());
 }

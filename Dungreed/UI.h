@@ -1,26 +1,23 @@
 #pragma once
-#include "GameNode.h"
+#include "Object.h"
 
-class UI : public GameNode
+class UI : public Object
 {
+private:
+	string _sceneName;
+	ImageBase* _img;
+	bool _isFixed;
+
 public:
-	UI();
+	UI(string imgName, int x, int y, bool fixed);
 	~UI();
 
-	HRESULT init();
-	HRESULT init(string imageName, RECT rc);
-	void release();
-	void update();
-	void render();
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
 
-	RECT getRect() { return _rc; }
-
-private:
-	float _x;
-	float _y;
-	RECT _rc;
-
-	Image* _image;
+	inline string getSceneName() { return _sceneName; }
 
 };
 

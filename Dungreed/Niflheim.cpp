@@ -323,7 +323,7 @@ void Niflheim::moveAndFire()
 		}
 	}
 
-	if (++_skillActCnt > bulletCnt)
+	if (++_skillActCnt >= bulletCnt)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;

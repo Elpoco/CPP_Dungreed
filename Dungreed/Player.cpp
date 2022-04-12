@@ -155,8 +155,7 @@ void Player::animation()
 	{
 		if (_frameInfo.cnt == 0)
 		{
-			if (_imgAlpha < 255) _imgAlpha = 255;
-			else _imgAlpha = HIT_ALPHA;
+			_imgAlpha = _imgAlpha == 255 ? HIT_ALPHA : 255;
 		}
 
 		if (_hitTime + HIT_TIME < TIMEMANAGER->getWorldTime())

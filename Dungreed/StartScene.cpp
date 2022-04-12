@@ -17,10 +17,7 @@ HRESULT StartScene::init()
 
 	_logo = RectMakeCenter(CENTER_X, CENTER_Y, 468, 255);
 
-	UI* ui = new UI;
-	//ui->init(ImageName::logo, RectMakeCenter(CENTER_X, CENTER_Y, 468, 255));
-	//UIMANAGER->addUI(ui);
-
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::FIXED_UI, new UI(ImageName::logo, CENTER_X, CENTER_Y, true));
 
 	return S_OK;
 }
