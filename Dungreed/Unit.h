@@ -54,6 +54,7 @@ public:
 	void animation();
 
 	void checkCollision();
+	virtual void pushObject(float x, float y) override {}
 	void pushObject(ColliderEnum::DIRECTION dir, float x, float y);
 	bool getCollision(ColliderEnum::DIRECTION dir) { return _isCollision[dir]; }
 	void setCollision(ColliderEnum::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }

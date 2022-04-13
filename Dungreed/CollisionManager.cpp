@@ -222,7 +222,7 @@ void CollisionManager::collisionTile()
 				if (tile.type == MapToolEnum::TYPE::BLOCK)
 				{
 					obj->stopObject();
-					obj->pushObject(0, -2000);
+					obj->pushObject(0, -10);
 				}
 			}
 			break;

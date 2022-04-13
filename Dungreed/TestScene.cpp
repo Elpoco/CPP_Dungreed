@@ -6,7 +6,6 @@ HRESULT TestScene::init()
 	OBJECTMANAGER->addUnit(Code::Unit::PLAYER, CENTER_X, 500);
 	TILEMANAGER->loadMap();
 
-	OBJECTMANAGER->addDropItem(0, 0);
 
 	return S_OK;
 }
@@ -29,6 +28,11 @@ void TestScene::update()
 	{
 		OBJECTMANAGER->addUnit(Code::Unit::NIFLEHEIM, 1000, 500);
 
+	}
+	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
+	{
+
+		OBJECTMANAGER->addDropItem(0, 0);
 	}
 }
 
