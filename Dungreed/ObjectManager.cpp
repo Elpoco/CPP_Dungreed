@@ -164,5 +164,5 @@ void ObjectManager::addMoveImageFont(float x, float y, int num, int dir)
 
 void ObjectManager::addDropItem(float x, float y)
 {
-	addObject(ObjectEnum::TYPE::ITEM_DROP, new DropItem());
+	addObject(ObjectEnum::TYPE::ITEM_DROP, new DropItem(x,y));
 }

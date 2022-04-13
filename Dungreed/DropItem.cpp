@@ -1,10 +1,12 @@
 #include "Stdafx.h"
 #include "DropItem.h"
 
-DropItem::DropItem()
+DropItem::DropItem(float x, float y)
 	: _isCollision(false)
 	, _dropSpeed(0.0f)
 {
+	_x = x;
+	_y = y;
 }
 
 DropItem::~DropItem()

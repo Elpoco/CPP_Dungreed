@@ -29,10 +29,12 @@ void TestScene::update()
 		OBJECTMANAGER->addUnit(Code::Unit::NIFLEHEIM, 1000, 500);
 
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
+	if (KEYMANAGER->isStayKeyDown(VK_RBUTTON))
 	{
-
-		OBJECTMANAGER->addDropItem(0, 0);
+		OBJECTMANAGER->addDropItem(
+			CAMERAMANAGER->calAbsX(_ptMouse.x),
+			CAMERAMANAGER->calAbsY(_ptMouse.y)
+		);
 	}
 }
 

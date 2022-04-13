@@ -11,7 +11,7 @@ private:
 	float _dropSpeed;
 
 public:
-	DropItem();
+	DropItem(float x, float y);
 	virtual ~DropItem();
 
 	virtual HRESULT init() override;
