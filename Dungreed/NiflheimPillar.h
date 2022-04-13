@@ -52,7 +52,7 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
-	virtual void hitAttack(int dmg) override;
+	virtual void hitAttack(int dmg, int dir) override;
 
 	void move();
 	void animation();

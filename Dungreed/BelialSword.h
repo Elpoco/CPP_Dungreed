@@ -20,6 +20,9 @@ private:
 	float _initTime;
 	bool _isShoot;
 	bool _isMoving;
+	bool _isCollision;
+
+	RECT _rcRender;
 
 public:
 	BelialSword(float x, float y, POINT* ptPlayer);

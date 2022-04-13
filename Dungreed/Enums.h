@@ -61,8 +61,8 @@ namespace ObjectEnum
 		NPC,
 		ENEMY,
 		ENEMY_OBJ,
+		ITEM_DROP,
 		ITEM,
-	//	UI_BACK,
 		PLAYER,
 		PLAYER_OBJ,
 		EFFECT,
@@ -70,5 +70,19 @@ namespace ObjectEnum
 		UI,
 		UI_FRONT,
 		TYPE_CNT
+	};
+}
+
+namespace Code
+{
+	enum class Unit
+	{
+		PLAYER,
+		SKEL_DOG,
+		LITTLE_GHOST,
+		BELIAL,
+		NIFLEHEIM,
+
+		UNIT_CNT
 	};
 }

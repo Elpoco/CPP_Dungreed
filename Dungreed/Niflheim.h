@@ -3,7 +3,7 @@
 
 class NiflheimPillar;
 
-namespace NifleheimSet
+namespace NiflheimSet
 {
 	constexpr float SKILL_TIME  = 2.0f;
 	constexpr int PILLAR_CNT	= 4;
@@ -35,7 +35,7 @@ private:
 	friend class NiflheimPillar;
 
 private:
-	NiflheimPillar* _pillar[NifleheimSet::PILLAR_CNT];
+	NiflheimPillar* _pillar[NiflheimSet::PILLAR_CNT];
 	bool _onInitPillar;
 
 	NIFLHEIM_SKILL  _skill;
@@ -58,7 +58,7 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual void deleteEffect() override;
-	virtual void hitAttack(int dmg) override;
+	virtual void hitAttack(int dmg, int dir) override;
 
 	void move();
 	void animation();

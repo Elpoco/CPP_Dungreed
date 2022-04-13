@@ -2,8 +2,6 @@
 #include "Enemy.h"
 
 #include "EnemyHpBar.h"
-#include "Effect.h"
-#include "ImageNumber.h"
 
 Enemy::Enemy()
 	: _isAutoLeft(true)
@@ -17,6 +15,8 @@ Enemy::Enemy()
 	, _isPlayerScan(FALSE)
 	, _isDead(FALSE)
 	, _isAttack(false)
+	, _moveHpBarX(0.0f)
+	, _moveHpBarY(0.0f)
 {
 }
 
@@ -48,7 +48,7 @@ void Enemy::update()
 	this->move();
 	this->animation();
 	_rcScan = RectMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
-	_hpBar->update(_x, _rc.bottom + ENEMY_HP_BAR_H, _hp / _maxHp);
+	_hpBar->update(_x + _moveHpBarX, _rc.bottom + ENEMY_HP_BAR_H + _moveHpBarY, _hp / _maxHp);
 }
 
 void Enemy::render(HDC hdc)
@@ -57,13 +57,12 @@ void Enemy::render(HDC hdc)
 	{
 		_startSpawn = true;
 
-		OBJECTMANAGER->addObject(
-			ObjectEnum::TYPE::EFFECT_BACK,
-			new Effect(
-				ImageName::Enemy::enemySpawn,
-				_x,
-				_y
-			)
+		OBJECTMANAGER->addEffect(
+			ImageName::Enemy::enemySpawn,
+			_x,
+			_y,
+			255,
+			ObjectEnum::TYPE::EFFECT_BACK
 		);
 
 		doneSpawn();
@@ -79,13 +78,10 @@ void Enemy::render(HDC hdc)
 
 void Enemy::deleteEffect()
 {
-	OBJECTMANAGER->addObject(
-		ObjectEnum::TYPE::EFFECT,
-		new Effect(
-			ImageName::Enemy::enemyDieSmall,
-			_x,
-			_y
-		)
+	OBJECTMANAGER->addEffect(
+		ImageName::Enemy::enemyDieSmall,
+		_x,
+		_y
 	);
 }
 
@@ -103,11 +99,11 @@ void Enemy::animation()
 
 }
 
-void Enemy::hitAttack(int dmg)
+void Enemy::hitAttack(int dmg, int dir)
 {
 	_hp -= dmg;
 
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI, new ImageNumber(_rc.left, _rc.top, dmg));
+	OBJECTMANAGER->addMoveImageFont(_x, _rc.top, dmg, dir);
 
 	if (_hp < 1)
 	{

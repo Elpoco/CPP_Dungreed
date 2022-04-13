@@ -2,10 +2,8 @@
 #include "Niflheim.h"
 
 #include "NiflheimPillar.h"
-#include "Bullet.h"
-#include "Effect.h"
 
-using namespace NifleheimSet;
+using namespace NiflheimSet;
 
 Niflheim::Niflheim(float x, float y)
 	: _onInitPillar(false)
@@ -130,23 +128,21 @@ void Niflheim::render(HDC hdc)
 
 void Niflheim::deleteEffect()
 {
-	OBJECTMANAGER->addObject(
-		ObjectEnum::TYPE::EFFECT,
-		new Effect(
-			ImageName::Enemy::enemyDie,
-			_x,
-			_y
-		)
+	OBJECTMANAGER->addEffect(
+		ImageName::Enemy::enemyDie,
+		_x,
+		_y
 	);
 }
 
-void Niflheim::hitAttack(int dmg)
+void Niflheim::hitAttack(int dmg, int dir)
 {
 	for (int i = 0; i < PILLAR_CNT; i++)
 	{
 		if (_pillar[i]) return;
 	}
 	_hp -= dmg;
+	OBJECTMANAGER->addMoveImageFont(_x, _rc.top, dmg, dir);
 	if (_hp < 1)
 	{
 		_isLive = FALSE;
@@ -202,25 +198,16 @@ void Niflheim::attackAnimation()
 
 void Niflheim::shootBullet(float x, float y, float angle)
 {
-	OBJECTMANAGER->addObject(
-		ObjectEnum::TYPE::EFFECT,
-		new Effect(
-			ImageName::Enemy::Niflheim::bulletFX,
-			x, y
-		)
-	);
+	OBJECTMANAGER->addEffect(ImageName::Enemy::Niflheim::bulletFX, x, y);
 
-	OBJECTMANAGER->addObject(
-		ObjectEnum::TYPE::ENEMY_OBJ,
-		new Bullet(
-			ImageName::Enemy::Niflheim::bullet,
-			x,
-			y,
-			angle,
-			3.5f,
-			1.0f,
-			ImageName::Enemy::Niflheim::bulletFX
-		)
+	OBJECTMANAGER->addBullet(
+		ImageName::Enemy::Niflheim::bullet,
+		x,
+		y,
+		angle,
+		3.5f,
+		1.0f,
+		ImageName::Enemy::Niflheim::bulletFX
 	);
 }
 

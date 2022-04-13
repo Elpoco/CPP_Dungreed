@@ -1,8 +1,6 @@
 #include "Stdafx.h"
 #include "Player.h"
 
-#include "Effect.h"
-
 using namespace PlayerSet;
 
 Player::Player()
@@ -58,9 +56,11 @@ void Player::render(HDC hdc)
 	CAMERAMANAGER->render(hdc, _weapon, _rcWeapon.left, _rcWeapon.top, _angleWeapon, PointMake(_mainHandX, _y + 20));
 }
 
-void Player::hitAttack(int dmg)
+void Player::hitAttack(int dmg, int dir)
 {
 	if (_hitTime + HIT_TIME > TIMEMANAGER->getWorldTime()) return;
+
+	OBJECTMANAGER->addMoveImageFont(_x, _rc.top, dmg, dir);
 
 	_hitTime = TIMEMANAGER->getWorldTime();
 	_isHit = true;
@@ -111,18 +111,13 @@ void Player::move()
 		float effectX = cosf(angle) * 30 + _x;
 		float effectY = -sinf(angle) * 30 + _y;
 
-		OBJECTMANAGER->addObject(
-			ObjectEnum::TYPE::EFFECT, 
-			new Effect(
+		_rcAttack = OBJECTMANAGER->addEffect(
 				ImageName::Effect::Weapon::effectBasic,
 				effectX,
 				effectY,
 				angle / PI * 180,
 				PointMake(effectX, effectY)
-			)
 		);
-
-		_rcAttack = RectMakeCenter(effectX, effectY, 100, 100);
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
@@ -153,13 +148,13 @@ void Player::animation()
 	{
 		if (_frameInfo.cnt == 0)
 		{
-			_imgAlpha = _imgAlpha == 255 ? HIT_ALPHA : 255;
+			_imgAlpha = _imgAlpha == 0 ? HIT_ALPHA : 0;
 		}
 
 		if (_hitTime + HIT_TIME < TIMEMANAGER->getWorldTime())
 		{
 			_isHit = false;
-			_imgAlpha = 255;
+			_imgAlpha = 0;
 		}
 	}
 

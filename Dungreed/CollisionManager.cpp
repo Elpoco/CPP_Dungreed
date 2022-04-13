@@ -97,6 +97,7 @@ void CollisionManager::renderEnemy(HDC hdc, Object* obj)
 	// 스캔박스
 	CAMERAMANAGER->printRectangle(hdc, enemy->getScanRect(),
 		(enemy->getPlayerScan() ? Color::Gold : Color::Aqua));
+	CAMERAMANAGER->printRectangle(hdc, enemy->getAtkRect(), Color::Red);
 }
 
 void CollisionManager::renderBullet(HDC hdc, Object* obj)
@@ -214,6 +215,17 @@ void CollisionManager::collisionTile()
 				}
 			}
 			break;
+		case ObjectEnum::TYPE::ITEM_DROP:
+			for (Object* obj : pairObject.second)
+			{
+				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getRect().bottom);
+				if (tile.type == MapToolEnum::TYPE::BLOCK)
+				{
+					obj->stopObject();
+					obj->pushObject(0, -2000);
+				}
+			}
+			break;
 		default:
 			break;
 		}
@@ -232,8 +244,9 @@ void CollisionManager::collisionPlayerEnemy()
 			Enemy* enemy = dynamic_cast<Enemy*>(obj);
 
 			RECT tmp;
-			RECT playerHitBox = player->getRect();
 			RECT enemyScanBox = enemy->getScanRect();
+			RECT playerHitBox = player->getRect();
+			RECT enemyAtkBox = enemy->getAtkRect();
 
 			RECT enemyHitBox = enemy->getRect();
 			RECT playerAtkBox = player->getAtkRect();
@@ -254,9 +267,15 @@ void CollisionManager::collisionPlayerEnemy()
 			}
 			// 스캔 끝
 
+			// 플레이어 공격
 			if (IntersectRect(&tmp, &playerAtkBox, &enemyHitBox))
 			{
-				enemy->hitAttack(2);
+				enemy->hitAttack(2, enemy->getX() > player->getX());
+			}
+			// 적 공격
+			if (IntersectRect(&tmp, &playerHitBox, &enemyAtkBox))
+			{
+				player->hitAttack(1, player->getX() > enemy->getX());
 			}
 		}
 	}
@@ -280,7 +299,7 @@ void CollisionManager::collisionShooting()
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{
 				obj->collisionObject();
-				player->hitAttack(0);
+				player->hitAttack(1, player->getX() > obj->getX());
 			}
 		}
 	}

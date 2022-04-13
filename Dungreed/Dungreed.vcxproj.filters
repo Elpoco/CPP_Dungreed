@@ -270,8 +270,14 @@
     <ClCompile Include="Cursor.cpp">
       <Filter>MainGame\02. Object\05. UI\Cursor</Filter>
     </ClCompile>
-    <ClCompile Include="ImageNumber.cpp">
+    <ClCompile Include="ImageFont.cpp">
       <Filter>MainGame\02. Object\05. UI\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicFont.cpp">
+      <Filter>MainGame\02. Object\05. UI\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="DropItem.cpp">
+      <Filter>MainGame\02. Object\06. Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -440,8 +446,14 @@
     <ClInclude Include="Cursor.h">
       <Filter>MainGame\02. Object\05. UI\Cursor</Filter>
     </ClInclude>
-    <ClInclude Include="ImageNumber.h">
+    <ClInclude Include="ImageFont.h">
       <Filter>MainGame\02. Object\05. UI\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicFont.h">
+      <Filter>MainGame\02. Object\05. UI\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="DropItem.h">
+      <Filter>MainGame\02. Object\06. Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

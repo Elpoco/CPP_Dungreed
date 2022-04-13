@@ -1,8 +1,6 @@
 #include "Stdafx.h"
 #include "Bullet.h"
 
-#include "Effect.h"
-
 Bullet::Bullet(string imgName, float x, float y, float angle, float speed
 	, float damage, string destroyImgName, float distance)
 	: _imgName(imgName)
@@ -123,13 +121,10 @@ void Bullet::deleteEffect()
 {
 	if (_destroyImgName != "")
 	{
-		OBJECTMANAGER->addObject(
-			ObjectEnum::TYPE::EFFECT,
-			new Effect(
-				_destroyImgName,
-				_x,
-				_y
-			)
+		OBJECTMANAGER->addEffect(
+			_destroyImgName,
+			_x,
+			_y
 		);
 	}
 }

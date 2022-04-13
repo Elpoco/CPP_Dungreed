@@ -1,8 +1,6 @@
 #include "Stdafx.h"
 #include "BelialSword.h"
 
-#include "Effect.h"
-
 using namespace BelialSwordSet;
 
 BelialSword::BelialSword(float x, float y, POINT* ptPlayer)
@@ -13,6 +11,7 @@ BelialSword::BelialSword(float x, float y, POINT* ptPlayer)
 	, _degree(0)
 	, _isShoot(false)
 	, _isMoving(true)
+	, _isCollision(false)
 {
 	_x = x;
 	_y = y;
@@ -31,14 +30,7 @@ HRESULT BelialSword::init()
 	_img = GPIMAGEMANAGER->findImage(ImageName::Enemy::Belial::sword);
 	_initTime = TIMEMANAGER->getWorldTime();
 
-	OBJECTMANAGER->addObject(
-		ObjectEnum::TYPE::EFFECT,
-		new Effect(
-			ImageName::Enemy::Belial::swordEffect,
-			_x,
-			_y
-		)
-	);
+	OBJECTMANAGER->addEffect(ImageName::Enemy::Belial::swordEffect, _x, _y);
 
 	return S_OK;
 }
@@ -52,7 +44,10 @@ void BelialSword::update()
 {
 	Object::update();
 	this->move();
-	_rc = RectMakeCenter(_x, _y, _img->getWidth(), _img->getHeight());
+	if (!_isCollision)
+		_rc = RectMakeCenter(_x, _y, _img->getWidth(), _img->getHeight());
+
+	_rcRender = RectMakeCenter(_x, _y, _img->getWidth(), _img->getHeight());
 
 	if (_initTime + SWORD_LIFE_TIME < TIMEMANAGER->getWorldTime())
 		Object::deleteObject();
@@ -61,7 +56,7 @@ void BelialSword::update()
 void BelialSword::render(HDC hdc)
 {
 	Object::render(hdc);
-	CAMERAMANAGER->render(hdc, _img, _rc.left, _rc.top, _degree, { 0,0 });
+	CAMERAMANAGER->render(hdc, _img, _rcRender.left, _rcRender.top, _degree, { 0,0 });
 	if (_isDebug)
 	{
 		CAMERAMANAGER->printRectangle(hdc, _rc, Color::Red);
@@ -70,19 +65,14 @@ void BelialSword::render(HDC hdc)
 
 void BelialSword::deleteEffect()
 {
-	OBJECTMANAGER->addObject(
-		ObjectEnum::TYPE::EFFECT,
-		new Effect(
-			ImageName::Enemy::Belial::swordEffect,
-			_x,
-			_y
-		)
-	);
+	OBJECTMANAGER->addEffect(ImageName::Enemy::Belial::swordEffect, _x, _y);
 }
 
 void BelialSword::collisionObject()
 {
 	//Object::deleteObject();
+	_isCollision = true;
+	_rc = { 0,0,0,0 };
 }
 
 void BelialSword::move()
@@ -101,6 +91,6 @@ void BelialSword::move()
 	else
 	{
 		_angle = GetAngle(_x, _y, _ptPlayer->x, _ptPlayer->y);
-		_degree = _angle / PI * 180 + 90; 
+		_degree = _angle / PI * 180 + 90;
 	}
 }

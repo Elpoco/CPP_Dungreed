@@ -21,13 +21,14 @@ private:
 public:
 	Item();
 	Item(string name);
-	~Item();
+	virtual ~Item();
 
-	HRESULT init();
+	virtual HRESULT init() override;
 	HRESULT init(string name);
-	void release();
-	void update();
-	void render(HDC hdc);
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
+
 	
 };
 

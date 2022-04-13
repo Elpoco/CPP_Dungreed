@@ -24,30 +24,30 @@ namespace ImageName
 
 		namespace Belial
 		{
-#define BELIAL "Belial"
-			constexpr char* idle		 = BELIAL"Idle";
-			constexpr char* attack		 = BELIAL"Attack";
-			constexpr char* back		 = BELIAL"Back";
-			constexpr char* particle	 = BELIAL"Particle";
-			constexpr char* bullet		 = BELIAL"Bullet";
-			constexpr char* bulletEffect = BELIAL"BulletEffect";
-			constexpr char* hand		 = BELIAL"Hand";
-			constexpr char* handAttack   = BELIAL"HandAttack";
-			constexpr char* sword		 = BELIAL"Sword";
-			constexpr char* swordEffect  = BELIAL"SwordEffect";
-			constexpr char* laserHeadL	 = BELIAL"LaserHeadL";
-			constexpr char* laserHeadR	 = BELIAL"LaserHeadR";
-			constexpr char* laserBody	 = BELIAL"LaserBody";
+#define BELIAL_NM "Belial"
+			constexpr char* idle		 = BELIAL_NM"Idle";
+			constexpr char* attack		 = BELIAL_NM"Attack";
+			constexpr char* back		 = BELIAL_NM"Back";
+			constexpr char* particle	 = BELIAL_NM"Particle";
+			constexpr char* bullet		 = BELIAL_NM"Bullet";
+			constexpr char* bulletEffect = BELIAL_NM"BulletEffect";
+			constexpr char* hand		 = BELIAL_NM"Hand";
+			constexpr char* handAttack   = BELIAL_NM"HandAttack";
+			constexpr char* sword		 = BELIAL_NM"Sword";
+			constexpr char* swordEffect  = BELIAL_NM"SwordEffect";
+			constexpr char* laserHeadL	 = BELIAL_NM"LaserHeadL";
+			constexpr char* laserHeadR	 = BELIAL_NM"LaserHeadR";
+			constexpr char* laserBody	 = BELIAL_NM"LaserBody";
 		}
 
 		namespace Niflheim
 		{
-#define NIFLHEIM "Niflheim"
-			constexpr char* idle	 = NIFLHEIM"Idle";
-			constexpr char* attack   = NIFLHEIM"Attack";
-			constexpr char* pillar   = NIFLHEIM"Pillar";
-			constexpr char* bullet   = NIFLHEIM"Bullet";
-			constexpr char* bulletFX = NIFLHEIM"BulletFX";
+#define NIFLHEIM_NM "Niflheim"
+			constexpr char* idle	 = NIFLHEIM_NM"Idle";
+			constexpr char* attack   = NIFLHEIM_NM"Attack";
+			constexpr char* pillar   = NIFLHEIM_NM"Pillar";
+			constexpr char* bullet   = NIFLHEIM_NM"Bullet";
+			constexpr char* bulletFX = NIFLHEIM_NM"BulletFX";
 		}
 	}
 
@@ -73,6 +73,7 @@ namespace ImageName
 		namespace Font
 		{
 			constexpr char* damage = "FontDamage";
+			constexpr char* gold = "FontGold";
 		}
 	}
 
@@ -89,9 +90,6 @@ namespace ImageName
 		constexpr char* townBgDay = "TownBgDay";
 		constexpr char* townLayerDay = "TownLayerDay";
 	}
-	
-	constexpr char* pixelTest = "PixelTest";
-	constexpr char* testTile = "TestTile";
 
 	constexpr char* mapTile = "MapTile";
 	constexpr char* mapToolTile = "MapToolTile";
@@ -104,6 +102,11 @@ namespace ImageName
 		namespace Weapon
 		{
 			constexpr char* basicShotSword = "BasicShotSword";
+		}
+
+		namespace Gold
+		{
+			constexpr char* coin = "GoldCoin";
 		}
 	}
 

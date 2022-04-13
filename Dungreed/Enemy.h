@@ -22,6 +22,8 @@ protected:
 	bool	_isAttack;
 
 	EnemyHpBar* _hpBar;
+	float _moveHpBarX;
+	float _moveHpBarY;
 
 public:
 	Enemy();
@@ -37,7 +39,7 @@ public:
 	void move();
 	void animation();
 
-	virtual void hitAttack(int dmg) override;
+	virtual void hitAttack(int dmg, int dir) override;
 
 	void scanPlayer(POINT ptPlayer, RECT rcPlayer);
 	inline RECT getScanRect() { return _rcScan; }

@@ -1,8 +1,6 @@
 #include "Stdafx.h"
 #include "Belial.h"
 
-#include "Bullet.h"
-#include "Effect.h"
 #include "BelialSword.h"
 
 using namespace BelialSet;
@@ -40,6 +38,9 @@ HRESULT Belial::init()
 	_scanScale = { 4,3 };
 
 	settingHp(UnitSet::Enemy::Belial::HP);
+
+	_moveHpBarX = 23;
+	_moveHpBarY = 50;
 
 	return S_OK;
 }
@@ -109,14 +110,7 @@ void Belial::render(HDC hdc)
 
 void Belial::deleteEffect()
 {
-	OBJECTMANAGER->addObject(
-		ObjectEnum::TYPE::EFFECT,
-		new Effect(
-			ImageName::Enemy::enemyDie,
-			_x,
-			_y
-		)
-	);
+	OBJECTMANAGER->addEffect(ImageName::Enemy::enemyDie, _x, _y);
 }
 
 void Belial::move()
@@ -134,14 +128,12 @@ void Belial::animation()
 		bool checkFrame = _backFrameInfo.maxFrameX < _backFrameInfo.x;
 		if (checkFrame) _backFrameInfo.x = 0;
 
-		OBJECTMANAGER->addObject(
-			ObjectEnum::TYPE::EFFECT_BACK,
-			new Effect(
-				ImageName::Enemy::Belial::particle,
-				RND->getFromIntTo(_rcBack.left + 5, _rcBack.right - 5),
-				RND->getFromIntTo(_rcBack.top + 5, _rcBack.bottom - 5),
-				50
-			)
+		OBJECTMANAGER->addEffect(
+			ImageName::Enemy::Belial::particle,
+			RND->getFromIntTo(_rcBack.left + 3, _rcBack.right - 3),
+			RND->getFromIntTo(_rcBack.top + 3, _rcBack.bottom - 3),
+			50,
+			ObjectEnum::TYPE::EFFECT_BACK
 		);
 	}
 
@@ -211,17 +203,14 @@ void Belial::shootingBullet()
 	for (int i = 0; i < 4; i++)
 	{
 		_shootAngle += PI / 2 * i;
-		OBJECTMANAGER->addObject(
-			ObjectEnum::TYPE::ENEMY_OBJ,
-			new Bullet(
-				ImageName::Enemy::Belial::bullet,
-				_x + 23,
-				_y + 55,
-				_shootAngle,
-				4.0f,
-				1.0f,
-				ImageName::Enemy::Belial::bulletEffect
-			)
+		OBJECTMANAGER->addBullet(
+			ImageName::Enemy::Belial::bullet,
+			_x + 23,
+			_y + 55,
+			_shootAngle,
+			4.0f,
+			1.0f,
+			ImageName::Enemy::Belial::bulletEffect
 		);
 	}
 	
@@ -268,6 +257,7 @@ void Belial::throwSword()
 
 void Belial::laser()
 {
+	_rcAttack = { 0,0,0,0 };
 	// 두손다 레이저를 안쏘면 랜덤으로 한손을 정한다
 	if (_hand[R].laserState == BELIAL_LASER_STATE::NONE &&
 		_hand[L].laserState == BELIAL_LASER_STATE::NONE)
@@ -304,28 +294,33 @@ void Belial::laser()
 			string imgName = _laserDir ? ImageName::Enemy::Belial::laserHeadL : ImageName::Enemy::Belial::laserHeadR;
 			int direction = _laserDir ? 1 : -1;
 
-			OBJECTMANAGER->addObject(
-				ObjectEnum::TYPE::EFFECT,
-				new Effect(
-					imgName,
-					_hand[_laserDir].x + 30 * direction,
-					_hand[_laserDir].y + 20
-				)
+			RECT rc1;
+			RECT rc2;
+
+			rc1 = OBJECTMANAGER->addEffect(
+				imgName,
+				_hand[_laserDir].x + 30 * direction,
+				_hand[_laserDir].y + 20
 			);
 
 			int headWidth = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::laserHeadL)->getFrameWidth();
 			int laserInterval = IMAGEMANAGER->findImage(ImageName::Enemy::Belial::laserBody)->getFrameWidth();
 			for (int i = 0; i < LASER_CNT; i++)
 			{
-				OBJECTMANAGER->addObject(
-					ObjectEnum::TYPE::EFFECT,
-					new Effect(
-						ImageName::Enemy::Belial::laserBody,
-						_hand[_laserDir].x + (30 + headWidth + laserInterval * i) * direction,
-						_hand[_laserDir].y + 18
-					)
+				rc2 = OBJECTMANAGER->addEffect(
+					ImageName::Enemy::Belial::laserBody,
+					_hand[_laserDir].x + (30 + headWidth + laserInterval * i) * direction,
+					_hand[_laserDir].y + 18
 				);
 			}
+
+			// 오른쪽손은 레이저가 반대라 렉트 크기도 반대
+			if (rc1.left > rc2.left) swapValue(rc1, rc2);
+
+			_rcAttack.left = rc1.left;
+			_rcAttack.top = rc1.top;
+			_rcAttack.right = rc2.right;
+			_rcAttack.bottom = rc2.bottom;
 		}
 		break;
 	case BELIAL_LASER_STATE::SHOOTING:

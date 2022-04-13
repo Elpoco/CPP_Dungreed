@@ -15,7 +15,7 @@ Unit::Unit()
 	, _isFlying(false)
 	, _isHit(false)
 	, _hitTime(0.0f)
-	, _imgAlpha(255)
+	, _imgAlpha(0)
 	, _moveSpeed(UnitSet::MOVE_SPEED)
 	, _jumpSpeed(UnitSet::JUMP_SPEED)
 	, _gravity(0.0f)
@@ -74,7 +74,7 @@ void Unit::render(HDC hdc)
 		}
 		else
 		{
-			if (_imgAlpha < 255)
+			if (_imgAlpha > 0)
 			{
 				CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y, _imgAlpha);
 			}

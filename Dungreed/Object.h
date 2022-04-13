@@ -30,6 +30,7 @@ public:
 	inline void deleteObject() { _isLive = FALSE; }
 
 	virtual void collisionObject() { deleteObject(); }
+	virtual void pushObject(float x, float y) { _x + x; _y + y; }
 	virtual void stopObject() {}
 };
 

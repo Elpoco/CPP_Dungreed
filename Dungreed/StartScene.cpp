@@ -1,7 +1,6 @@
 #include "Stdafx.h"
 #include "StartScene.h"
 
-#include "Button.h"
 #include "Cursor.h"
 
 void clickStart();
@@ -20,16 +19,10 @@ HRESULT StartScene::init()
 {
 	_loop1 = _loop2 = 0.0f;
 
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI, new UI(ImageName::UI::logo, CENTER_X, CENTER_Y - 150, TRUE));
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::BUTTON, 
-		new Button(ImageName::UI::Button::startOff, CENTER_X, CENTER_Y + 100, TRUE, clickStart, ImageName::UI::Button::startOn)
-	);
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::BUTTON,
-		new Button(ImageName::UI::Button::mapToolOff, CENTER_X, CENTER_Y + 170, TRUE, clickMapTool, ImageName::UI::Button::mapToolOn)
-	);
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::BUTTON,
-		new Button(ImageName::UI::Button::quitOff, CENTER_X, CENTER_Y + 240, TRUE, clickQuit, ImageName::UI::Button::quitOn)
-	);
+	OBJECTMANAGER->addUI(ImageName::UI::logo, CENTER_X, CENTER_Y - 150, TRUE);
+	OBJECTMANAGER->addButton(ImageName::UI::Button::startOff, CENTER_X, CENTER_Y + 100, TRUE, clickStart, ImageName::UI::Button::startOn);
+	OBJECTMANAGER->addButton(ImageName::UI::Button::mapToolOff, CENTER_X, CENTER_Y + 170, TRUE, clickMapTool, ImageName::UI::Button::mapToolOn);
+	OBJECTMANAGER->addButton(ImageName::UI::Button::quitOff, CENTER_X, CENTER_Y + 240, TRUE, clickQuit, ImageName::UI::Button::quitOn);
 
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI_FRONT, new Cursor());
 	ShowCursor(false);
