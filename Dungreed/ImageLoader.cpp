@@ -85,17 +85,29 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::mapToolTile, PATH_IMAGE"MapTool/MapTile.bmp", 1024 * MapToolSet::TOOL_TILE_SCALE, 512 * MapToolSet::TOOL_TILE_SCALE, 64, 32, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::mapPixel, PATH_IMAGE"MapTool/MapPixel.bmp", 48 * TILE_SCALE, 32 * TILE_SCALE, true, ColorSet::MAGENTA);
 
-	// =========
-	// # Start #
-	// =========
-	IMAGEMANAGER->addImage(ImageName::logo, PATH_IMAGE"StartScene/Logo.bmp", 0, 0, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::cloud1, PATH_IMAGE"StartScene/Cloud1.bmp", 0, WINSIZE_Y, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::cloud2, PATH_IMAGE"StartScene/Cloud2.bmp", 0, WINSIZE_Y, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::background, PATH_IMAGE"StartScene/Background.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
 
 	// ==============
 	// # Background #
 	// ==============
+	IMAGEMANAGER->addImage(ImageName::Background::startCloud1, PATH_IMAGE"StartScene/Cloud1.bmp", 0, WINSIZE_Y, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Background::startCloud2, PATH_IMAGE"StartScene/Cloud2.bmp", 0, WINSIZE_Y, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Background::bgSky, PATH_IMAGE"StartScene/Background.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
+
+	// ======
+	// # UI #
+	// ======
+#pragma region UI
+	IMAGEMANAGER->addImage(ImageName::UI::logo, PATH_IMAGE"StartScene/Logo.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Button::startOff, PATH_IMAGE"UI/Buttons/GameStartOff.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Button::startOn, PATH_IMAGE"UI/Buttons/GameStartOn.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Button::mapToolOff, PATH_IMAGE"UI/Buttons/MapToolOff.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Button::mapToolOn, PATH_IMAGE"UI/Buttons/MapToolOn.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Button::quitOff, PATH_IMAGE"UI/Buttons/QuitOff.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Button::quitOn, PATH_IMAGE"UI/Buttons/QuitOn.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Cursor::cursor, PATH_IMAGE"UI/Cursor/BasicCursor.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::damage, PATH_IMAGE"UI/Font/DamageFont.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
+#pragma endregion
+
 
 	// Town
 	IMAGEMANAGER->addImage(ImageName::floor, PATH_IMAGE"Town/Floor.bmp", 0, 0, true, ColorSet::MAGENTA);

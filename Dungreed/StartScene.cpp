@@ -1,7 +1,12 @@
 #include "Stdafx.h"
 #include "StartScene.h"
 
-#include "UI.h"
+#include "Button.h"
+#include "Cursor.h"
+
+void clickStart();
+void clickMapTool();
+void clickQuit();
 
 StartScene::StartScene()
 {
@@ -15,9 +20,19 @@ HRESULT StartScene::init()
 {
 	_loop1 = _loop2 = 0.0f;
 
-	_logo = RectMakeCenter(CENTER_X, CENTER_Y, 468, 255);
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI, new UI(ImageName::UI::logo, CENTER_X, CENTER_Y - 150, TRUE));
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::BUTTON, 
+		new Button(ImageName::UI::Button::startOff, CENTER_X, CENTER_Y + 100, TRUE, clickStart, ImageName::UI::Button::startOn)
+	);
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::BUTTON,
+		new Button(ImageName::UI::Button::mapToolOff, CENTER_X, CENTER_Y + 170, TRUE, clickMapTool, ImageName::UI::Button::mapToolOn)
+	);
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::BUTTON,
+		new Button(ImageName::UI::Button::quitOff, CENTER_X, CENTER_Y + 240, TRUE, clickQuit, ImageName::UI::Button::quitOn)
+	);
 
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::FIXED_UI, new UI(ImageName::logo, CENTER_X, CENTER_Y, true));
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI_FRONT, new Cursor());
+	ShowCursor(false);
 
 	return S_OK;
 }
@@ -28,15 +43,6 @@ void StartScene::release()
 
 void StartScene::update()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
-		SCENEMANAGER->changeScene(SceneName::testScene);
-
-	if (KEYMANAGER->isOnceKeyDown('M'))
-		SCENEMANAGER->changeScene(SceneName::mapToolScene);
-
-	if (KEYMANAGER->isOnceKeyDown('T'))
-		SCENEMANAGER->changeScene(SceneName::townScene);
-
 	_loop1 += 0.1f;
 	_loop2 += 0.7f;
 }
@@ -44,9 +50,23 @@ void StartScene::update()
 void StartScene::render()
 {
 	RECT rc = { 0, 0, WINSIZE_X, WINSIZE_Y };
-	IMAGEMANAGER->render("Background", getMemDC());
-	IMAGEMANAGER->loopRender("Cloud1", getMemDC(), &rc, _loop1, 0);
-	IMAGEMANAGER->loopRender("Cloud2", getMemDC(), &rc, _loop2, 0);
+	IMAGEMANAGER->render(ImageName::Background::bgSky, getMemDC());
+	IMAGEMANAGER->loopRender(ImageName::Background::startCloud1, getMemDC(), &rc, _loop1, 0);
+	IMAGEMANAGER->loopRender(ImageName::Background::startCloud2, getMemDC(), &rc, _loop2, 0);
 
-	IMAGEMANAGER->render("Logo", getMemDC(), _logo.left, _logo.top - 100);
+}
+
+void clickStart()
+{
+	SCENEMANAGER->changeScene(SceneName::testScene);
+}
+
+void clickMapTool()
+{
+	SCENEMANAGER->changeScene(SceneName::mapToolScene);
+}
+
+void clickQuit()
+{
+	PostMessage(_hWnd, WM_DESTROY, 0, 0);
 }

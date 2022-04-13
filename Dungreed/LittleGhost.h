@@ -17,7 +17,7 @@ private:
 
 public:
 	LittleGhost(float x, float y);
-	~LittleGhost();
+	virtual ~LittleGhost();
 
 	virtual HRESULT init() override;
 	virtual void release() override;

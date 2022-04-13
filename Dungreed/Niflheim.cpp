@@ -217,7 +217,7 @@ void Niflheim::shootBullet(float x, float y, float angle)
 			x,
 			y,
 			angle,
-			3.0f,
+			3.5f,
 			1.0f,
 			ImageName::Enemy::Niflheim::bulletFX
 		)

@@ -50,7 +50,7 @@ private:
 
 public:
 	Niflheim(float x, float y);
-	~Niflheim();
+	virtual ~Niflheim();
 
 	virtual HRESULT init() override;
 	virtual void release() override;

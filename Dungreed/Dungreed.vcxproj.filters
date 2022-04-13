@@ -115,6 +115,15 @@
     <Filter Include="MainGame\02. Object\06. Item\Sword">
       <UniqueIdentifier>{d8ced728-9dfc-413d-9352-ac1cbd783ae6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\05. UI\Button">
+      <UniqueIdentifier>{dba12a34-0c63-4b70-a1e4-ab515715319c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\05. UI\Cursor">
+      <UniqueIdentifier>{71a1ce05-ce4a-442e-8d57-e733010c391b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\05. UI\Font">
+      <UniqueIdentifier>{b7248ecd-ddb0-4a6c-9535-c025e8f3be4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -254,6 +263,15 @@
     </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>MainGame\02. Object\05. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>MainGame\02. Object\05. UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>MainGame\02. Object\05. UI\Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageNumber.cpp">
+      <Filter>MainGame\02. Object\05. UI\Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +433,15 @@
     </ClInclude>
     <ClInclude Include="UI.h">
       <Filter>MainGame\02. Object\05. UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>MainGame\02. Object\05. UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>MainGame\02. Object\05. UI\Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageNumber.h">
+      <Filter>MainGame\02. Object\05. UI\Font</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

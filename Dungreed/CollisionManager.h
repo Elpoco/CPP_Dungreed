@@ -21,19 +21,20 @@ public:
 
 	void setObject(ObjectManager::mapObjects* mObjects) { _mObjects = mObjects; }
 
-	// 플레이어 충돌 정보 렌더
+	// 타입별 렌더
 	void renderPlayer(HDC hdc, Object* obj);
 	void renderEnemy(HDC hdc, Object* obj);
 	void renderBullet(HDC hdc, Object* obj);
+	void renderUI(HDC hdc, Object* obj);
 
 	// 타일 충돌
-	void tileCollision();
-
-	// 플레이어와 몬스터 충돌 관리
-	void playerEnemyCollision();
-
-	// 투사체 충돌 관리
-	void shootingCollision();
+	void collisionTile();
+	// 플레이어와 몬스터 충돌
+	void collisionPlayerEnemy();
+	// 투사체 충돌
+	void collisionShooting();
+	// 버튼 충돌
+	void collisionButton();
 
 };
 

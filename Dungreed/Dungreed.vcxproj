@@ -150,11 +150,13 @@
     <ClCompile Include="Belial.cpp" />
     <ClCompile Include="BelialSword.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="ImageNumber.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="ImageGp.cpp" />
@@ -167,6 +169,7 @@
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="LittleGhost.cpp" />
     <ClCompile Include="MessageBoxManager.cpp" />
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Niflheim.cpp" />
     <ClCompile Include="NiflheimPillar.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -201,6 +204,7 @@
     <ClInclude Include="Belial.h" />
     <ClInclude Include="BelialSword.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Config.h" />
@@ -209,6 +213,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="ImageNumber.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameNode.h" />
     <ClInclude Include="ImageBase.h" />
@@ -222,6 +227,7 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="LittleGhost.h" />
     <ClInclude Include="MessageBoxManager.h" />
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="Niflheim.h" />
     <ClInclude Include="NiflheimPillar.h" />
     <ClInclude Include="ObjectManager.h" />

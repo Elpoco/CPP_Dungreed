@@ -35,14 +35,14 @@ void TestScene::update()
 	}
 	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown(VK_F2))
 	{
-		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new Niflheim(1700, 600));
+		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, new Niflheim(1000, 500));
 
 	}
 }
 
 void TestScene::render()
 {
-	IMAGEMANAGER->render(ImageName::background, getMemDC());
+	IMAGEMANAGER->render(ImageName::Background::bgSky, getMemDC());
 
 	TILEMANAGER->render(getMemDC());
 }

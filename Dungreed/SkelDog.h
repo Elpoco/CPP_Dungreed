@@ -17,7 +17,7 @@ private:
 
 public:
 	SkelDog(float x, float y);
-	~SkelDog();
+	virtual ~SkelDog();
 
 	virtual HRESULT init() override;
 	virtual void release() override;

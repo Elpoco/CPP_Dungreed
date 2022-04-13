@@ -23,7 +23,7 @@ private:
 
 public:
 	BelialSword(float x, float y, POINT* ptPlayer);
-	~BelialSword();
+	virtual ~BelialSword();
 
 	virtual HRESULT init() override;
 	virtual void release() override;

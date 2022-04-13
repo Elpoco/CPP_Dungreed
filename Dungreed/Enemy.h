@@ -25,7 +25,7 @@ protected:
 
 public:
 	Enemy();
-	~Enemy();
+	virtual ~Enemy();
 
 	virtual HRESULT init() override;
 	virtual void release() override;

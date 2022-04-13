@@ -67,12 +67,17 @@ void MainGame::render(void)
 	TIMEMANAGER->render(getMemDC());
 
 	// 현재 씬 이름
-	if(_isDebug)
+	if (_isDebug)
+	{
 		TextOut(getMemDC(),
 			0, WINSIZE_Y-20, 
 			SCENEMANAGER->getCurrentSceneName().c_str(),
 			SCENEMANAGER->getCurrentSceneName().length()
 		);
+		char str[128];
+		wsprintf(str, "F1 디버그 모드");
+		TextOut(getMemDC(), 0, WINSIZE_Y - 40, str, strlen(str));
+	}
 		
 	this->getBackBuffer()->render(getHDC());
 }

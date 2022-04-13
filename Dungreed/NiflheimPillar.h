@@ -45,7 +45,7 @@ private:
 
 public:
 	NiflheimPillar(float x, float y);
-	~NiflheimPillar();
+	virtual ~NiflheimPillar();
 
 	virtual HRESULT init() override;
 	virtual void release() override;

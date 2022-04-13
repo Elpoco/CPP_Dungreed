@@ -4,21 +4,21 @@ namespace ImageName
 	namespace Player
 	{
 		constexpr char* idle = "PlayerIdle";
-		constexpr char* run = "PlayerRun";
+		constexpr char* run  = "PlayerRun";
 		constexpr char* jump = "PlayerJump";
-		constexpr char* die = "PlayerDie";
+		constexpr char* die  = "PlayerDie";
 		constexpr char* hand = "PlayerHand";
 	}
 
 	namespace Enemy
 	{
-		constexpr char* enemySpawn = "EnemySpawn";
-		constexpr char* enemyDie = "EnemyDie";
+		constexpr char* enemySpawn	  = "EnemySpawn";
+		constexpr char* enemyDie	  = "EnemyDie";
 		constexpr char* enemyDieSmall = "EnemyDieSmall";
 
 		constexpr char* dogIdle = "DogIdle";
-		constexpr char* dogRun = "DogRun";
-		constexpr char* dogDie = "DogDie";
+		constexpr char* dogRun  = "DogRun";
+		constexpr char* dogDie  = "DogDie";
 		
 		constexpr char* littleGhostIdle = "littleGhostIdle";
 
@@ -43,12 +43,44 @@ namespace ImageName
 		namespace Niflheim
 		{
 #define NIFLHEIM "Niflheim"
-			constexpr char* idle	= NIFLHEIM"Idle";
-			constexpr char* attack  = NIFLHEIM"Attack";
-			constexpr char* pillar  = NIFLHEIM"Pillar";
-			constexpr char* bullet  = NIFLHEIM"Bullet";
-			constexpr char* bulletFX  = NIFLHEIM"BulletFX";
+			constexpr char* idle	 = NIFLHEIM"Idle";
+			constexpr char* attack   = NIFLHEIM"Attack";
+			constexpr char* pillar   = NIFLHEIM"Pillar";
+			constexpr char* bullet   = NIFLHEIM"Bullet";
+			constexpr char* bulletFX = NIFLHEIM"BulletFX";
 		}
+	}
+
+	namespace UI
+	{
+		constexpr char* logo = "StartSceneLogo";
+
+		namespace Button
+		{
+			constexpr char* startOff = "BtnGameStartOff";
+			constexpr char* startOn = "BtnGameStartOn";
+			constexpr char* mapToolOff = "BtnMapToolOff";
+			constexpr char* mapToolOn = "BtnMapToolOn";
+			constexpr char* quitOff = "BtnQuitOff";
+			constexpr char* quitOn = "BtnQuitOn";
+		}
+
+		namespace Cursor
+		{
+			constexpr char* cursor = "Cursor";
+		}
+
+		namespace Font
+		{
+			constexpr char* damage = "FontDamage";
+		}
+	}
+
+	namespace Background
+	{
+		constexpr char* startCloud1 = "BgStartCloud1";
+		constexpr char* startCloud2 = "BgStartCloud2";
+		constexpr char* bgSky = "BgSky";
 	}
 
 	namespace Town
@@ -64,11 +96,6 @@ namespace ImageName
 	constexpr char* mapTile = "MapTile";
 	constexpr char* mapToolTile = "MapToolTile";
 	constexpr char* mapPixel = "MapPixel";
-
-	constexpr char* logo = "Logo";
-	constexpr char* cloud1 = "Cloud1";
-	constexpr char* cloud2 = "Cloud2";
-	constexpr char* background = "Background";
 
 	constexpr char* floor = "Floor";
 

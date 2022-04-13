@@ -56,8 +56,6 @@ void Player::render(HDC hdc)
 	CAMERAMANAGER->printRectangle(hdc, RectMakeCenter(_mainHandX, _y + 20, 5, 5));
 
 	CAMERAMANAGER->render(hdc, _weapon, _rcWeapon.left, _rcWeapon.top, _angleWeapon, PointMake(_mainHandX, _y + 20));
-
-	//GPIMAGEMANAGER->frameRender(ImageName::Effect::Weapon::effectBasic, hdc, CENTER_X, CENTER_Y, 0, 0);
 }
 
 void Player::hitAttack(int dmg)

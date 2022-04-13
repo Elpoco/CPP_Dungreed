@@ -5,6 +5,7 @@
 #include "Unit.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "Button.h"
 
 CollisionManager::CollisionManager()
 {
@@ -25,9 +26,10 @@ void CollisionManager::release()
 
 void CollisionManager::update()
 {
-	this->tileCollision();
-	this->playerEnemyCollision();
-	this->shootingCollision();
+	collisionTile();
+	collisionPlayerEnemy();
+	collisionShooting();
+	collisionButton();
 }
 
 void CollisionManager::render(HDC hdc)
@@ -48,6 +50,11 @@ void CollisionManager::render(HDC hdc)
 					break;
 				case ObjectEnum::TYPE::ENEMY_OBJ:
 					renderBullet(hdc, obj);
+					break;
+				case ObjectEnum::TYPE::UI_FRONT:
+				case ObjectEnum::TYPE::UI:
+				case ObjectEnum::TYPE::BUTTON:
+					renderUI(hdc, obj);
 					break;
 				default:
 					break;
@@ -97,7 +104,22 @@ void CollisionManager::renderBullet(HDC hdc, Object* obj)
 	CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Red);
 }
 
-void CollisionManager::tileCollision()
+void CollisionManager::renderUI(HDC hdc, Object* obj)
+{
+	UI* ui = dynamic_cast<UI*>(obj);
+	if (!ui->isShow()) return;
+
+	if (ui->isFixed())
+	{
+		PrintRectangleColor(hdc, obj->getRect(), Color::Blue);
+	}
+	else
+	{
+		CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Blue);
+	}
+}
+
+void CollisionManager::collisionTile()
 {
 	for (auto pairObject : *_mObjects)
 	{
@@ -198,7 +220,7 @@ void CollisionManager::tileCollision()
 	}
 }
 
-void CollisionManager::playerEnemyCollision()
+void CollisionManager::collisionPlayerEnemy()
 {
 	auto pairPlayer = _mObjects->find(ObjectEnum::TYPE::PLAYER);
 	auto pairEnemy = _mObjects->find(ObjectEnum::TYPE::ENEMY);
@@ -240,7 +262,7 @@ void CollisionManager::playerEnemyCollision()
 	}
 }
 
-void CollisionManager::shootingCollision()
+void CollisionManager::collisionShooting()
 {
 	auto pairPlayer = _mObjects->find(ObjectEnum::TYPE::PLAYER);
 	auto pairEnemyObj = _mObjects->find(ObjectEnum::TYPE::ENEMY_OBJ);
@@ -259,6 +281,31 @@ void CollisionManager::shootingCollision()
 			{
 				obj->collisionObject();
 				player->hitAttack(0);
+			}
+		}
+	}
+}
+
+void CollisionManager::collisionButton()
+{
+	auto pairButton = _mObjects->find(ObjectEnum::TYPE::BUTTON);
+
+	for (Object* objButton : pairButton->second)
+	{
+		Button* btn = dynamic_cast<Button*>(objButton);
+
+		if (!btn->isShow()) continue;
+		
+		RECT rcBtn = btn->getRect();
+
+		btn->setOff();
+
+		if (PtInRect(&rcBtn, _ptMouse))
+		{
+			btn->setOn();
+			if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
+			{
+				btn->onClick();
 			}
 		}
 	}

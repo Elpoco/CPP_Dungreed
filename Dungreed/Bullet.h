@@ -19,7 +19,7 @@ private:
 public:
 	Bullet(string imgName, float x, float y, float angle, float speed, 
 		float damage = 0.0f, string destroyImgName = "", float distance = 1500);
-	~Bullet();
+	virtual ~Bullet();
 
 	virtual HRESULT init() override;
 	virtual void release() override;

@@ -86,7 +86,7 @@ private:
 
 public:
 	Belial(float x, float y);
-	~Belial();
+	virtual ~Belial();
 
 	virtual HRESULT init() override;
 	virtual void release() override;

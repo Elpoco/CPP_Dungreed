@@ -3,6 +3,7 @@
 
 #include "EnemyHpBar.h"
 #include "Effect.h"
+#include "ImageNumber.h"
 
 Enemy::Enemy()
 	: _isAutoLeft(true)
@@ -105,6 +106,9 @@ void Enemy::animation()
 void Enemy::hitAttack(int dmg)
 {
 	_hp -= dmg;
+
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI, new ImageNumber(_rc.left, _rc.top, dmg));
+
 	if (_hp < 1)
 	{
 		_isLive = FALSE;

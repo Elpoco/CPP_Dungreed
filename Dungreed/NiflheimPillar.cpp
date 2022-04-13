@@ -50,8 +50,8 @@ void NiflheimPillar::update()
 
 	_wideLeft = *_niflheimX - 300;
 	_wideRight = *_niflheimX + 300;
-	_wideTop = *_niflheimY - 250;
-	_wideBottom = *_niflheimY + 250;
+	_wideTop = 200; // *_niflheimY - 400;
+	_wideBottom = 700; //*_niflheimY + 100;
 }
 
 void NiflheimPillar::render(HDC hdc)
@@ -174,19 +174,19 @@ void NiflheimPillar::initAnimation()
 
 void NiflheimPillar::settingOrder()
 {
-	if (_x <= *_niflheimX && _y <= *_niflheimY) // LT
+	if (_x <= *_niflheimX && _y <= *_niflheimY)
 	{
 		_order = LT;
 	}
-	else if (_x >= *_niflheimX && _y <= *_niflheimY) // RT
+	else if (_x > *_niflheimX && _y <= *_niflheimY)
 	{
 		_order = RT;
 	}
-	else if (_x < *_niflheimX && _y > *_niflheimY) // LB
+	else if (_x <= *_niflheimX && _y >= *_niflheimY)
 	{
 		_order = LB;
 	}
-	else if(_x > *_niflheimX && _y > *_niflheimY) // RB
+	else if(_x >= *_niflheimX && _y > *_niflheimY)
 	{
 		_order = RB;
 	}
