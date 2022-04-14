@@ -55,9 +55,6 @@ using namespace std;
 #include "String.h"
 #include "Config.h"
 
-#include "Utils.h"
-using namespace MY_UTIL;
-
 #include "RandomFuntion.h"
 #include "KeyManager.h"
 #include "ImageManager.h"
@@ -69,13 +66,15 @@ using namespace MY_UTIL;
 #include "SoundManager.h"
 #include "JsonSaveLoader.h"
 
-#include "ObjectManager.h"
 #include "CameraManager.h"
+#include "ObjectManager.h"
 #include "FileManager.h"
 #include "TileManager.h"
 #include "MessageBoxManager.h"
 #include "CollisionManager.h"
 
+#include "Utils.h"
+using namespace MY_UTIL;
 
 // =======================
 // # ΩÃ±€≈Ê¿ª ¿Ã∞˜ø° √ﬂ∞° #
@@ -92,7 +91,6 @@ using namespace MY_UTIL;
 #define JSONDATAMANAGER		JsonSaveLoader::getSingleton()
 #define OBJECTMANAGER		ObjectManager::getSingleton()
 #define CAMERAMANAGER		CameraManager::getSingleton()
-#define UIMANAGER			UIManager::getSingleton()
 #define FILEMANAGER			FileManager::getSingleton()
 #define TILEMANAGER			TileManager::getSingleton()
 #define MSGBOXMANAGER		MessageBoxManager::getSingleton()

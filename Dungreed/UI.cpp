@@ -6,7 +6,6 @@ UI::UI()
 	, _isFixed(FALSE)
 	, _isShow(TRUE)
 {
-	_sceneName = SCENEMANAGER->getCurrentSceneName();
 }
 
 UI::UI(string imgName, int x, int y, BOOL fixed, BOOL show)
@@ -22,7 +21,9 @@ UI::UI(string imgName, int x, int y, BOOL fixed, BOOL show)
 
 	_x = x;
 	_y = y;
-	_rc = RectMakeCenter(_x, _y, _img->getWidth(), _img->getHeight());
+	_width = _img->getWidth();
+	_height = _img->getHeight();
+	_rc = RectMakeCenter(_x, _y, _width, _height);
 }
 
 UI::~UI()
@@ -49,7 +50,7 @@ void UI::update()
 
 	if (!_isFixed && _img)
 	{
-		_rc = RectMakeCenter(_x, _y, _img->getWidth(), _img->getHeight());
+		_rc = RectMakeCenter(_x, _y, _width, _height);
 	}
 }
 
@@ -66,3 +67,16 @@ void UI::render(HDC hdc)
 		CAMERAMANAGER->render(hdc, _img, _rc.left, _rc.top);
 	}
 }
+
+void UI::setX(float x)
+{
+	_x = x;
+	_rc = RectMakeCenter(_x, _y, _width, _height);
+}
+
+void UI::setY(float y)
+{
+	_y = y;
+	_rc = RectMakeCenter(_x, _y, _width, _height);
+}
+

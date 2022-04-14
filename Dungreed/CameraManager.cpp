@@ -119,10 +119,20 @@ void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int f
 	img->frameRender(hdc, x - _x, y - _y, frameX, frameY, angle, rotateCenter);
 }
 
-void CameraManager::followCamera(Object * object)
+void CameraManager::followCamera(Object* object)
 {
 	_object = object;
 	_isFollow = true;
 	//_x = _object->getX() - CENTER_X;
 	//_y = _object->getY() - CENTER_Y;
+}
+
+POINT CameraManager::calRelPt(POINT pt)
+{
+	return PointMake(pt.x - _x, pt.y - _y);
+}
+
+POINT CameraManager::calAbsPt(POINT pt)
+{
+	return PointMake(pt.x + _x, pt.y + _y);
 }

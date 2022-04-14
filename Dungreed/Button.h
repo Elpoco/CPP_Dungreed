@@ -1,19 +1,16 @@
 #pragma once
 #include "UI.h"
 
-typedef void(*CALLBACK_FUNC)();
-
 class Button : public UI
 {
 private:
-	ImageBase* _imgOn;
+	FRAME_INFO _frameInfo;
+	CALLBACK_FUNC _callback;
 	BOOL _isHoverImg;
 	BOOL _isOn;
 
-	CALLBACK_FUNC _callback;
-
 public:
-	Button(string imgName, int x, int y, BOOL fixed = TRUE, CALLBACK_FUNC cb = nullptr, string imgNameOn = "");
+	Button(string imgName, int x = 0, int y = 0, BOOL fixed = TRUE, CALLBACK_FUNC cb = nullptr);
 	virtual ~Button();
 
 	virtual HRESULT init() override;

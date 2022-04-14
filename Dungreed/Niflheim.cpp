@@ -61,14 +61,14 @@ void Niflheim::update()
 	Unit::updateRect();
 	this->animation();
 
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('0')) _skillAuto = !_skillAuto;
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('1')) _skill = NIFLHEIM_SKILL::AROUND;
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('2')) _skill = NIFLHEIM_SKILL::WIDE;
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('3')) _skill = NIFLHEIM_SKILL::WIDE_LINE;
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('4')) _skill = NIFLHEIM_SKILL::LINE_UP;
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('5')) _skill = NIFLHEIM_SKILL::FULL_ATTACK;
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('6')) _onInitPillar = true;
-	if (KEYMANAGER->isStayKeyDown('B') && KEYMANAGER->isOnceKeyDown('9')) _isLive = FALSE;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('0')) _skillAuto = !_skillAuto;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('1')) _skill = NIFLHEIM_SKILL::AROUND;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('2')) _skill = NIFLHEIM_SKILL::WIDE;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('3')) _skill = NIFLHEIM_SKILL::WIDE_LINE;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('4')) _skill = NIFLHEIM_SKILL::LINE_UP;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('5')) _skill = NIFLHEIM_SKILL::FULL_ATTACK;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('6')) _onInitPillar = true;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('9')) _isLive = FALSE;
 
 	switch (_skill)
 	{
@@ -129,7 +129,7 @@ void Niflheim::render(HDC hdc)
 void Niflheim::deleteEffect()
 {
 	OBJECTMANAGER->addEffect(
-		ImageName::Enemy::enemyDie,
+		ImageName::Enemy::die,
 		_x,
 		_y
 	);
@@ -151,10 +151,7 @@ void Niflheim::hitAttack(int dmg, int dir)
 
 void Niflheim::move()
 {
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT)) _x -= 2;
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += 2;
-	if (KEYMANAGER->isStayKeyDown(VK_UP)) _y -= 2;
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _y += 2;
+
 }
 
 void Niflheim::animation()
@@ -170,8 +167,8 @@ void Niflheim::animation()
 
 void Niflheim::initAnimation()
 {
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::Niflheim::idle));
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::Niflheim::attack));
+	_vImages.push_back(FindImage(ImageName::Enemy::Niflheim::idle));
+	_vImages.push_back(FindImage(ImageName::Enemy::Niflheim::attack));
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();

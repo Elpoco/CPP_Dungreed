@@ -167,7 +167,7 @@ void NiflheimPillar::animation()
 
 void NiflheimPillar::initAnimation()
 {
-	_vImages.push_back(GPIMAGEMANAGER->findImage(ImageName::Enemy::Niflheim::pillar));
+	_vImages.push_back(FindImage(ImageName::Enemy::Niflheim::pillar));
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
 	_frameInfo.maxFrameX = _vImages[0]->getMaxFrameX();

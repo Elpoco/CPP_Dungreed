@@ -49,8 +49,8 @@ public:
 	inline float calAbsX(float x) { return x + _x; }
 	inline float calAbsY(float y) { return y + _y; }
 	inline RECT calRelRc(RECT rc) { return { (long)(rc.left - _x), (long)(rc.top - _y), (long)(rc.right - _x), (long)(rc.bottom - _y) }; }
-	inline POINT calRelPt(POINT pt) { return PointMake(pt.x - _x, pt.y - _y);}
-	inline POINT calAbsPt(POINT pt) { return PointMake(pt.x + _x, pt.y + _y); }
+	POINT calRelPt(POINT pt);
+	POINT calAbsPt(POINT pt);
 
 };
 

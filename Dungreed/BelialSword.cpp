@@ -27,7 +27,7 @@ HRESULT BelialSword::init()
 {
 	Object::init();
 
-	_img = GPIMAGEMANAGER->findImage(ImageName::Enemy::Belial::sword);
+	_img = FindImage(ImageName::Enemy::Belial::sword);
 	_initTime = TIMEMANAGER->getWorldTime();
 
 	OBJECTMANAGER->addEffect(ImageName::Enemy::Belial::swordEffect, _x, _y);

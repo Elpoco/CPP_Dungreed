@@ -58,10 +58,10 @@ void Enemy::render(HDC hdc)
 		_startSpawn = true;
 
 		OBJECTMANAGER->addEffect(
-			ImageName::Enemy::enemySpawn,
+			ImageName::Enemy::sapwn,
 			_x,
 			_y,
-			255,
+			0,
 			ObjectEnum::TYPE::EFFECT_BACK
 		);
 
@@ -79,7 +79,7 @@ void Enemy::render(HDC hdc)
 void Enemy::deleteEffect()
 {
 	OBJECTMANAGER->addEffect(
-		ImageName::Enemy::enemyDieSmall,
+		ImageName::Enemy::dieSmall,
 		_x,
 		_y
 	);

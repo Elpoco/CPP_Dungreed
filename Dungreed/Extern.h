@@ -5,3 +5,5 @@ extern HWND			_hWnd;
 extern POINT		_ptMouse;
 extern bool			_isDebug;
 extern float		_sound;
+
+typedef void(*CALLBACK_FUNC)();

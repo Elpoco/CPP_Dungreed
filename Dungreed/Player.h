@@ -20,7 +20,7 @@ private:
 	};
 
 private:
-	ImageGp* _weapon;
+	ImageBase* _weapon;
 	int _mainHandX;
 	RECT _rcWeapon;
 	int _angleWeapon;

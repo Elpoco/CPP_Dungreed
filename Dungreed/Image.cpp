@@ -93,7 +93,13 @@ HRESULT Image::init(const char* fileName, int width, int height, BOOL isTrans, C
 	_imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width * scale, height * scale, LR_LOADFROMFILE);
 	_imageInfo->hOBit = (HBITMAP)SelectObject(_imageInfo->hMemDC, _imageInfo->hBit);
 	_imageInfo->width = width * scale;
-	_imageInfo->height = height * scale;
+	_imageInfo->height = height * scale; 
+	_imageInfo->currentFrameX = 0;
+	_imageInfo->currentFrameY = 0;
+	_imageInfo->maxFrameX = 1;
+	_imageInfo->maxFrameY = 1;
+	_imageInfo->frameWidth = width;
+	_imageInfo->frameHeight = height;
 	
 	int len = strlen(fileName);
 	

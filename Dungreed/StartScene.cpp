@@ -20,9 +20,9 @@ HRESULT StartScene::init()
 	_loop1 = _loop2 = 0.0f;
 
 	OBJECTMANAGER->addUI(ImageName::UI::logo, CENTER_X, CENTER_Y - 150, TRUE);
-	OBJECTMANAGER->addButton(ImageName::UI::Button::startOff, CENTER_X, CENTER_Y + 100, TRUE, clickStart, ImageName::UI::Button::startOn);
-	OBJECTMANAGER->addButton(ImageName::UI::Button::mapToolOff, CENTER_X, CENTER_Y + 170, TRUE, clickMapTool, ImageName::UI::Button::mapToolOn);
-	OBJECTMANAGER->addButton(ImageName::UI::Button::quitOff, CENTER_X, CENTER_Y + 240, TRUE, clickQuit, ImageName::UI::Button::quitOn);
+	OBJECTMANAGER->addButton(ImageName::UI::Button::gameStart, CENTER_X, CENTER_Y + 100, TRUE, clickStart);
+	OBJECTMANAGER->addButton(ImageName::UI::Button::mapTool, CENTER_X, CENTER_Y + 170, TRUE, clickMapTool);
+	OBJECTMANAGER->addButton(ImageName::UI::Button::quit, CENTER_X, CENTER_Y + 240, TRUE, clickQuit);
 
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI_FRONT, new Cursor());
 	ShowCursor(false);

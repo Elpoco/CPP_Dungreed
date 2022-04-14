@@ -142,14 +142,24 @@ RECT ObjectManager::addEffect(string imgName, float x, float y, int angle, POINT
 	return effect->getRect();
 }
 
+void ObjectManager::addUI(Object* obj)
+{
+	addObject(ObjectEnum::TYPE::UI, dynamic_cast<UI*>(obj));
+}
+
 void ObjectManager::addUI(string imgName, int x, int y, BOOL fixed, BOOL show)
 {
 	addObject(ObjectEnum::TYPE::UI, new UI(imgName, x, y, fixed, show));
 }
 
-void ObjectManager::addButton(string imgName, int x, int y, BOOL fixed, CALLBACK_FUNC cb, string imgNameOn)
+void ObjectManager::addButton(Object* obj)
 {
-	addObject(ObjectEnum::TYPE::BUTTON, new Button(imgName, x, y, fixed, cb, imgNameOn));
+	addObject(ObjectEnum::TYPE::BUTTON, obj);
+}
+
+void ObjectManager::addButton(string imgName, int x, int y, BOOL fixed, CALLBACK_FUNC cb)
+{
+	addObject(ObjectEnum::TYPE::BUTTON, new Button(imgName, x, y, fixed, cb));
 }
 
 void ObjectManager::addImageFont(float x, float y, int num, BOOL fixed)

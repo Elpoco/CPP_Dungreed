@@ -18,7 +18,7 @@ DynamicFont::~DynamicFont()
 HRESULT DynamicFont::init()
 {
 	ImageFont::init();
-	_img = IMAGEMANAGER->findImage(ImageName::UI::Font::damage);
+	_img = FindImage(ImageName::UI::Font::damage);
 
 	_initTime = TIMEMANAGER->getWorldTime();
 

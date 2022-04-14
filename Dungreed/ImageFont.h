@@ -3,7 +3,7 @@
 class ImageFont : public UI
 {
 protected:
-	Image* _img;
+	ImageBase* _img;
 	int _num;
 
 public:

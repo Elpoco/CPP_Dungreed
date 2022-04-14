@@ -79,6 +79,11 @@ void SkelDog::move()
 	{
 		_isAttack = false;
 	}
+	_rcAttack = { 0,0,0,0 };
+	if (_isAttack)
+	{
+		_rcAttack = _rc;
+	}
 }
 
 void SkelDog::animation()
@@ -87,9 +92,9 @@ void SkelDog::animation()
 
 void SkelDog::initAnimation()
 {
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::dogIdle));
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::dogRun));
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::dogDie));
+	_vImages.push_back(FindImage(ImageName::Enemy::dogIdle));
+	_vImages.push_back(FindImage(ImageName::Enemy::dogRun));
+	_vImages.push_back(FindImage(ImageName::Enemy::dogDie));
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();

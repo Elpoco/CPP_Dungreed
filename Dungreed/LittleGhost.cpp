@@ -61,7 +61,7 @@ void LittleGhost::animation()
 
 void LittleGhost::initAnimation()
 {
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Enemy::littleGhostIdle));
+	_vImages.push_back(FindImage(ImageName::Enemy::littleGhostIdle));
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();

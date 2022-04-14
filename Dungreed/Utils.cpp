@@ -10,6 +10,32 @@ using Gdiplus::Color;
 
 namespace MY_UTIL
 {
+	BOOL IsOnceKeyDown(int key)
+	{
+		return KEYMANAGER->isOnceKeyDown(key);
+	}
+	BOOL IsOnceKeyUp(int key)
+	{
+		return KEYMANAGER->isOnceKeyUp(key);
+	}
+	BOOL IsStayKeyDown(int key)
+	{
+		return KEYMANAGER->isStayKeyDown(key);
+	}
+	BOOL IsToggleKey(int key)
+	{
+		return KEYMANAGER->isToggleKey(key);
+	}
+
+	ImageBase* FindImage(string imgName)
+	{
+		ImageBase* img = IMAGEMANAGER->findImage(imgName);
+
+		if (img) return img;
+
+		return GPIMAGEMANAGER->findImage(imgName);
+	}
+
 	float GetDistance(float startX, float startY, float endX, float endY)
 	{
 		float x = endX - startX;

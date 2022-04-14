@@ -12,9 +12,9 @@ namespace ImageName
 
 	namespace Enemy
 	{
-		constexpr char* enemySpawn	  = "EnemySpawn";
-		constexpr char* enemyDie	  = "EnemyDie";
-		constexpr char* enemyDieSmall = "EnemyDieSmall";
+		constexpr char* sapwn	 = "ENEMY_spawn";
+		constexpr char* die		 = "ENEMY_die";
+		constexpr char* dieSmall = "ENEMY_dieSmall";
 
 		constexpr char* dogIdle = "DogIdle";
 		constexpr char* dogRun  = "DogRun";
@@ -53,16 +53,13 @@ namespace ImageName
 
 	namespace UI
 	{
-		constexpr char* logo = "StartSceneLogo";
+		constexpr char* logo = "UI_logo";
 
 		namespace Button
 		{
-			constexpr char* startOff = "BtnGameStartOff";
-			constexpr char* startOn = "BtnGameStartOn";
-			constexpr char* mapToolOff = "BtnMapToolOff";
-			constexpr char* mapToolOn = "BtnMapToolOn";
-			constexpr char* quitOff = "BtnQuitOff";
-			constexpr char* quitOn = "BtnQuitOn";
+			constexpr char* gameStart = "BUTTON gameStart";
+			constexpr char* mapTool = "BUTTON mapTool";
+			constexpr char* quit = "BUTTON quit";
 		}
 
 		namespace Cursor
@@ -71,9 +68,16 @@ namespace ImageName
 		}
 
 		namespace Font
-		{
+		{	
 			constexpr char* damage = "FontDamage";
 			constexpr char* gold = "FontGold";
+		}
+
+		namespace Inventory
+		{
+			constexpr char* base = "INVENTORY base";
+			constexpr char* btn = "INVENTORY btn";
+			constexpr char* Cell = "INVENTORY Cell";
 		}
 	}
 

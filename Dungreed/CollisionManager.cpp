@@ -331,9 +331,10 @@ void CollisionManager::collisionButton()
 		if (PtInRect(&rcBtn, _ptMouse))
 		{
 			btn->setOn();
-			if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
+			if (IsOnceKeyUp(KEY::CLICK_L))
 			{
 				btn->onClick();
+				return;
 			}
 		}
 	}

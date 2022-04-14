@@ -10,7 +10,7 @@ namespace BelialSwordSet
 class BelialSword : public Object
 {
 private:
-	ImageGp* _img;
+	ImageBase* _img;
 	float _startX;
 	float _startY;
 	float _angle;

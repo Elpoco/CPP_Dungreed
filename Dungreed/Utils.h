@@ -6,6 +6,13 @@
 
 namespace MY_UTIL
 {
+	BOOL IsOnceKeyDown(int key);
+	BOOL IsOnceKeyUp(int key);
+	BOOL IsStayKeyDown(int key);
+	BOOL IsToggleKey(int key);
+
+	ImageBase* FindImage(string imgName);
+
 	float GetDistance(float startX, float startY, float endX, float endY);
 	float GetAngle(float startX, float startY, float endX, float endY);
 	int GetAngleDeg(float startX, float startY, float endX, float endY);

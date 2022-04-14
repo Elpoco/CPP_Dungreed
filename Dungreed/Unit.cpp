@@ -61,29 +61,22 @@ void Unit::render(HDC hdc)
 		CAMERAMANAGER->printPoint(hdc, _rc.left, _rc.top, _x, _y, "x: %d, y: %d");
 	}
 
-	if (_vImages[_imgCurrent]->getMaxFrameX() == 0 &&
-		_vImages[_imgCurrent]->getMaxFrameY() == 0)
+	if (_imgAngle)
 	{
-		CAMERAMANAGER->render(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top);
+		CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y, _imgAngle, _rotateCenter);
 	}
 	else
 	{
-		if (_imgAngle)
+		if (_imgAlpha > 0)
 		{
-			CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y, _imgAngle, _rotateCenter);
+			CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y, _imgAlpha);
 		}
 		else
 		{
-			if (_imgAlpha > 0)
-			{
-				CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y, _imgAlpha);
-			}
-			else
-			{
-				CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y);
-			}
+			CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y);
 		}
 	}
+	
 }
 
 void Unit::move()

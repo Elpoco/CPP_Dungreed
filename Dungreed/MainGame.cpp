@@ -60,9 +60,9 @@ void MainGame::render(void)
 
 	SCENEMANAGER->render();
 
-	OBJECTMANAGER->render(getMemDC());
-
 	COLLISIONMANAGER->render(getMemDC());
+
+	OBJECTMANAGER->render(getMemDC());
 
 	TIMEMANAGER->render(getMemDC());
 

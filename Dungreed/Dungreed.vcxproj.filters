@@ -127,11 +127,11 @@
     <Filter Include="API FrameWork\09. Sound">
       <UniqueIdentifier>{1ae1ac97-dbfe-4109-aafe-88839b2c178f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\07 Box">
-      <UniqueIdentifier>{3878eea0-e6c6-4ad6-bc71-4ae046ba3d06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\03. Inventory">
       <UniqueIdentifier>{c25b084b-9acb-4007-bedd-5d06fc723d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\07. Box">
+      <UniqueIdentifier>{3878eea0-e6c6-4ad6-bc71-4ae046ba3d06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -289,7 +289,7 @@
       <Filter>API FrameWork\09. Sound</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">
-      <Filter>MainGame\02. Object\07 Box</Filter>
+      <Filter>MainGame\02. Object\07. Box</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>MainGame\03. Inventory</Filter>
@@ -474,7 +474,7 @@
       <Filter>API FrameWork\09. Sound</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
-      <Filter>MainGame\02. Object\07 Box</Filter>
+      <Filter>MainGame\02. Object\07. Box</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>MainGame\03. Inventory</Filter>

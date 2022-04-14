@@ -28,11 +28,12 @@ HRESULT Player::init()
 
 	CAMERAMANAGER->followCamera(this);
 
-	_weapon = GPIMAGEMANAGER->findImage(ImageName::Item::Weapon::basicShotSword);
+	_weapon = FindImage(ImageName::Item::Weapon::basicShotSword);
 	_mainHandX = 15;
 	_atkCnt = 0;
 
 	_inventory = new Inventory();
+	OBJECTMANAGER->addUI(_inventory);
 
 	return S_OK;
 }
@@ -40,6 +41,7 @@ HRESULT Player::init()
 void Player::release()
 {
 	Unit::release();
+	_inventory->release();
 }
 
 void Player::update()
@@ -49,6 +51,7 @@ void Player::update()
 	Unit::updateRect();
 	this->animation();
 	this->settingWeapon();
+	_inventory->update();
 }
 
 void Player::render(HDC hdc)
@@ -58,6 +61,8 @@ void Player::render(HDC hdc)
 	CAMERAMANAGER->printRectangle(hdc, RectMakeCenter(_mainHandX, _y + 20, 5, 5));
 
 	CAMERAMANAGER->render(hdc, _weapon, _rcWeapon.left, _rcWeapon.top, _angleWeapon, PointMake(_mainHandX, _y + 20));
+
+	_inventory->render(hdc);
 }
 
 void Player::hitAttack(int dmg, int dir)
@@ -75,26 +80,26 @@ void Player::move()
 {
 	_state = PLAYER_MOTION::IDLE;
 
-	if (KEYMANAGER->isStayKeyDown(KEY::LEFT))	this->moveLeft();
-	if (KEYMANAGER->isStayKeyDown(KEY::RIGHT))	this->moveRight();
-	if (KEYMANAGER->isOnceKeyUp(KEY::LEFT))		_state = PLAYER_MOTION::IDLE;
-	if (KEYMANAGER->isOnceKeyUp(KEY::RIGHT))	_state = PLAYER_MOTION::IDLE;
+	if (IsStayKeyDown(KEY::LEFT))	this->moveLeft();
+	if (IsStayKeyDown(KEY::RIGHT))	this->moveRight();
+	if (IsOnceKeyUp(KEY::LEFT))		_state = PLAYER_MOTION::IDLE;
+	if (IsOnceKeyUp(KEY::RIGHT))	_state = PLAYER_MOTION::IDLE;
 
-	if (KEYMANAGER->isStayKeyDown(KEY::DOWN))
+	if (IsStayKeyDown(KEY::DOWN))
 	{
 		//_y += _moveSpeed;
 	}
-	if (KEYMANAGER->isStayKeyDown(KEY::UP))
+	if (IsStayKeyDown(KEY::UP))
 	{
 		//_y -= _moveSpeed;
 	}
 
 
-	if (KEYMANAGER->isOnceKeyDown(KEY::UP) ||
-		KEYMANAGER->isOnceKeyDown(KEY::SPACE))  Unit::jump();
+	if (IsOnceKeyDown(KEY::UP) ||
+		IsOnceKeyDown(KEY::SPACE))  Unit::jump();
 
 	_rcAttack = { 0,0,0,0 };
-	if (KEYMANAGER->isOnceKeyDown(KEY::CLICK_L))
+	if (IsOnceKeyDown(KEY::CLICK_L))
 	{
 		if (_atkCnt == 0) _atkCnt = 1;
 		else _atkCnt = 0;
@@ -113,7 +118,7 @@ void Player::move()
 		);
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(KEY::CLICK_R))
+	if (IsOnceKeyDown(KEY::CLICK_R))
 	{
 
 	}
@@ -155,9 +160,9 @@ void Player::animation()
 
 void Player::initAnimation()
 {
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::idle));
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::run));
-	_vImages.push_back(IMAGEMANAGER->findImage(ImageName::Player::jump));
+	_vImages.push_back(FindImage(ImageName::Player::idle));
+	_vImages.push_back(FindImage(ImageName::Player::run));
+	_vImages.push_back(FindImage(ImageName::Player::jump));
 
 	_imgWidth = _vImages[0]->getFrameWidth() - _rcResize;
 	_imgHeight = _vImages[0]->getFrameHeight();

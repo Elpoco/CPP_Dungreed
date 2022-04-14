@@ -68,7 +68,7 @@ private:
 private:
 	FRAME_INFO	_backFrameInfo;
 	RECT		_rcBack;
-	Image*		_imgBack;
+	ImageBase*		_imgBack;
 
 	BELIAL_SKILL	_skill;
 	BELIAL_SKILL	_lastSkill;
@@ -80,7 +80,7 @@ private:
 	float _shootAngle;
 	int	  _shootDir;
 
-	Image*		_imgHand[STATE_CNT];
+	ImageBase*		_imgHand[STATE_CNT];
 	BELIAL_HAND _hand[RL];
 	int			_laserDir;
 

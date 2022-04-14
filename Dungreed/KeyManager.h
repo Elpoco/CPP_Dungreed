@@ -6,22 +6,16 @@
 class KeyManager : public SingletonBase <KeyManager>
 {
 private:
-	//BOOL _keyUp[KEY_MAX];
-	//BOOL _keyDown[KEY_MAX];
 	bitset<KEY_MAX> _keyUp;
 	bitset<KEY_MAX> _keyDown;
 
 public:
 	HRESULT init(void);
 
-	// 키가 한번만 눌렸는지
-	bool isOnceKeyDown(int key);
-	// 한번 누르고 띄었는지
-	bool isOnceKeyUp(int key);
-	// 키가 계속 눌려 있는지
-	bool isStayKeyDown(int key);
-	// 토글키
-	bool isToggleKey(int key);
+	BOOL isOnceKeyDown(int key);
+	BOOL isOnceKeyUp(int key);
+	BOOL isStayKeyDown(int key);
+	BOOL isToggleKey(int key);
 
 	bitset<KEY_MAX> getKeyUp(void) { return _keyUp; }
 	bitset<KEY_MAX> getKeyDown(void) { return _keyDown; }

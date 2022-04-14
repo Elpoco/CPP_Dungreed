@@ -21,8 +21,8 @@ public:
 
 	inline float getX() { return _x; }
 	inline float getY() { return _y; }
-	inline void setX(float x) { _x = x; }
-	inline void setY(float y) { _y = y; }
+	virtual inline void setX(float x) { _x = x; }
+	virtual inline void setY(float y) { _y = y; }
 	inline POINT getPt() { return PointMake(_x,_y); }
 
 	inline RECT getRect() { return _rc; }

@@ -1,23 +1,33 @@
 #include "Stdafx.h"
 #include "Button.h"
 
-Button::Button(string imgName, int x, int y, BOOL fixed, CALLBACK_FUNC cb, string imgNameOn)
-	: UI(imgName, x, y, fixed)
-	, _isHoverImg(false)
+Button::Button(string imgName, int x, int y, BOOL fixed, CALLBACK_FUNC cb)
+	: _isHoverImg(false)
 	, _isOn(false)
 	, _callback(cb)
 {
-	if (imgNameOn != "")
-	{
-		_imgOn = IMAGEMANAGER->findImage(imgNameOn);
+	_img = FindImage(imgName);
 
-		if (!_imgOn)
-		{
-			_imgOn = GPIMAGEMANAGER->findImage(imgNameOn);
-		}
+	_x = x;
+	_y = y;
+	_isFixed = TRUE;
+
+	_frameInfo.maxFrameX = _img->getMaxFrameX();
+	_frameInfo.maxFrameY = _img->getMaxFrameY();
+
+	if (_frameInfo.maxFrameX > 1 || _frameInfo.maxFrameY > 1)
+	{
+		_width = _img->getFrameWidth();
+		_height = _img->getFrameHeight();
+		_frameInfo.isFrame = true;
+	}
+	else
+	{
+		_width = _img->getWidth();
+		_height = _img->getHeight();
 	}
 
-	if (_imgOn) _isHoverImg = TRUE;
+	_rc = RectMakeCenter(_x, _y, _width, _height);
 }
 
 Button::~Button()
@@ -45,19 +55,5 @@ void Button::render(HDC hdc)
 {
 	if (!_isShow) return;
 
-	if (_isHoverImg && _isOn)
-	{
-		if (_isFixed)
-		{
-			_imgOn->render(hdc, _rc.left, _rc.top);
-		}
-		else
-		{
-			CAMERAMANAGER->render(hdc, _imgOn, _rc.left, _rc.top);
-		}
-	}
-	else
-	{
-		UI::render(hdc);
-	}
+	_img->frameRender(hdc, _rc.left, _rc.top, 0, _isOn);
 }

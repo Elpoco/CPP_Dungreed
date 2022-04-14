@@ -79,8 +79,8 @@ namespace ObjectEnum
 		PLAYER,
 		PLAYER_OBJ,
 		EFFECT,
-		BUTTON,
 		UI,
+		BUTTON,
 		UI_FRONT,
 		TYPE_CNT
 	};
