@@ -220,7 +220,7 @@ void CollisionManager::collisionTile()
 				if (tile.type == MapToolEnum::TYPE::BLOCK)
 				{
 					obj->stopObject();
-					obj->collisionObject();
+					obj->collisionObject(0);
 				}
 			}
 			break;
@@ -307,7 +307,7 @@ void CollisionManager::collisionShooting()
 
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{
-				obj->collisionObject();
+				obj->collisionObject(player->getX() > obj->getX());
 				player->hitAttack(1, player->getX() > obj->getX());
 			}
 		}
@@ -360,7 +360,7 @@ void CollisionManager::collisionItem()
 
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{
-				obj->collisionObject();
+				obj->collisionObject(player->getX() > obj->getX());
 			}
 		}
 	}

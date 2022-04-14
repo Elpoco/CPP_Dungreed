@@ -5,23 +5,12 @@ Item::Item()
 {
 }
 
-Item::Item(string name)
-{
-	this->init(name);
-}
-
 Item::~Item()
 {
 }
 
 HRESULT Item::init()
 {
-	return S_OK;
-}
-
-HRESULT Item::init(string name)
-{
-	_img = GPIMAGEMANAGER->findImage(name);
 	return S_OK;
 }
 

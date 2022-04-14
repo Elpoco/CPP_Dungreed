@@ -112,6 +112,7 @@ void ImageLoader::loadImages()
 	// # Item #
 	// ========
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword_rotate.png");
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::basicShotSwordDrop, PATH_ITEM"Weapon/BasicShortSword_drop.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::coin, PATH_ITEM"Gold/Coin.bmp", 0, 0, 8, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::bullion, PATH_ITEM"Gold/Bullion.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
 

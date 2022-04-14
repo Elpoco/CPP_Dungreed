@@ -8,7 +8,7 @@ HINSTANCE _hInstance;
 HWND _hWnd;
 POINT _ptMouse = { 0,0 };
 bool _isDebug;
-float _sound = 0.3f;
+float _sound = 0.1f;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 

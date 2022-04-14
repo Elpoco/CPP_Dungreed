@@ -297,6 +297,9 @@
     <ClCompile Include="SoundLoader.cpp">
       <Filter>API FrameWork\09. Sound</Filter>
     </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>MainGame\02. Object\06. Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -484,6 +487,9 @@
     </ClInclude>
     <ClInclude Include="Extern.h">
       <Filter>API FrameWork\02. Config</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>MainGame\02. Object\06. Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

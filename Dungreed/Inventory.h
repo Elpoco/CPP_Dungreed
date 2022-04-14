@@ -4,14 +4,20 @@
 class Item;
 class Button;
 
+namespace InventorySet
+{
+	constexpr int CELL_CNT = 15;
+}
+
 class Inventory : public UI
 {
 private:
-	vector<Item*> _vItems;
-	bool _isOpen;
-	UI* _invenBase;
-	Button* _btnClose;
+	Item* _vItems[InventorySet::CELL_CNT];
 	vector<UI*> _vUI;
+	BOOL _isOpen;
+
+	RECT _rcClose;
+	RECT _rcCell[InventorySet::CELL_CNT];
 
 public:
 	Inventory();

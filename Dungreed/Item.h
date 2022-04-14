@@ -7,28 +7,26 @@ protected:
 	enum class ITEM_TYPE
 	{
 		NONE,
-		SWORD
+		WEAPON,
+		ARMOR,
 	};
 
 private:
 	string _name;
 	ITEM_TYPE _type;
-
-	ImageGp* _img;
-
-	int _isEquit;
+	ImageBase* _img;
+	Code::Item _itemCode;
 
 public:
 	Item();
-	Item(string name);
 	virtual ~Item();
 
 	virtual HRESULT init() override;
-	HRESULT init(string name);
 	virtual void release() override;
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
+	virtual RECT attack() { return { 0,0,0,0 }; }
 	
 };
 

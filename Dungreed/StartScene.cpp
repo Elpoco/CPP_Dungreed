@@ -49,8 +49,6 @@ void StartScene::render()
 	IMAGEMANAGER->render(ImageName::Background::bgSky, getMemDC());
 	IMAGEMANAGER->loopRender(ImageName::Background::startCloud1, getMemDC(), &rc, _loop1, 0);
 	IMAGEMANAGER->loopRender(ImageName::Background::startCloud2, getMemDC(), &rc, _loop2, 0);
-
-	PrintRectangle(getMemDC(), 100, 100, 50, 50);
 }
 
 void clickStart()

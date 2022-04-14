@@ -26,5 +26,7 @@ void SoundLoader::loadSounds()
 	// # Item #
 	// ========
 	SOUNDMANAGER->addSound(SoundName::title, PATH_SOUND"Title.wav", true, true);
-	SOUNDMANAGER->addSound(SoundName::Item::collecting, PATH_SOUND"EC_Collect.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::invenOpen, PATH_SOUND"Inventory_open.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::getCoin, PATH_SOUND"Get_Coin.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::getItem, PATH_SOUND"Get_Item.wav", false, false);
 }

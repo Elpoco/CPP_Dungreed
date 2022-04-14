@@ -103,5 +103,9 @@ namespace Code
 	{
 		COIN,
 		BULLION,
+
+		// ¹«±â
+		SHOT_SWORD,
+		GREAT_SWORD,
 	};
 }

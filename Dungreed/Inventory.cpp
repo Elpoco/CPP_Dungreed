@@ -4,7 +4,7 @@
 #include "Item.h"
 #include "Button.h"
 
-void closeInven();
+using namespace InventorySet;
 
 Inventory::Inventory()
 	: _isOpen(FALSE)
@@ -19,8 +19,6 @@ HRESULT Inventory::init()
 {
 	settingUI();
 
-
-
 	return S_OK;
 }
 
@@ -30,52 +28,55 @@ void Inventory::release()
 
 void Inventory::update()
 {
-
 	if (IsOnceKeyDown(KEY::INVENTORY))
 	{
 		toggleInventory();
+	}
 
-		if (_isOpen)
+	if (IsOnceKeyUp(KEY::CLICK_L))
+	{
+		if (MouseInRect(_rcClose) && _isOpen)
 		{
-			_invenBase->show();
-		}
-		else
-		{
-			_invenBase->hide();
+			toggleInventory();
 		}
 	}
 }
 
 void Inventory::render(HDC hdc)
 {
-	if (!_isOpen) return;
-	_invenBase->render(hdc);
 }
 
 void Inventory::settingUI()
 {
-	_invenBase = new UI(ImageName::UI::Inventory::base);
-	_invenBase->setX(WINSIZE_X - _invenBase->getWidth() / 2);
-	_invenBase->setY(CENTER_Y);
+	UI* invenBase = new UI(ImageName::UI::Inventory::base);
+	invenBase->setX(WINSIZE_X - invenBase->getWidth() / 2);
+	invenBase->setY(CENTER_Y);
+	_vUI.push_back(invenBase);
+	OBJECTMANAGER->addUI(invenBase);
 
-	_btnClose = new Button(ImageName::UI::Inventory::btn);
-	_btnClose->setX(_invenBase->getRect().left - _btnClose->getWidth() / 2);
-	_btnClose->setY(CENTER_Y);
-	_btnClose->setCallback(closeInven);
-	_btnClose->hide();
-	_vUI.push_back(_btnClose);
-	OBJECTMANAGER->addButton(_btnClose);
+	Button* btnClose = new Button(ImageName::UI::Inventory::btn);
+	btnClose->setX(invenBase->getRect().left - btnClose->getWidth() / 2);
+	btnClose->setY(CENTER_Y - 220);
+	_rcClose = btnClose->getRect();
+	_vUI.push_back(btnClose);
+	OBJECTMANAGER->addButton(btnClose);
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < CELL_CNT; i++)
 	{
+		int x = i % 5;
+		int y = i / 5;
 		Button* btn = new Button(ImageName::UI::Inventory::Cell);
-		btn->setX(60 + _invenBase->getRect().left + i * 66);
-		btn->setY(25 + CENTER_Y);
-		btn->hide();
+		btn->setX(61 + invenBase->getRect().left + x * 65);
+		btn->setY(25 + CENTER_Y + y * 65);
+		_rcCell[i] = btn->getRect();
 		_vUI.push_back(btn);
 		OBJECTMANAGER->addButton(btn);
 	}
 
+	for (auto ui : _vUI)
+	{
+		ui->hide();
+	}
 }
 
 void Inventory::toggleInventory()
@@ -83,6 +84,7 @@ void Inventory::toggleInventory()
 	_isOpen = !_isOpen;
 	if (_isOpen)
 	{
+		SOUNDMANAGER->play(SoundName::invenOpen, _sound);
 		for (auto ui : _vUI)
 		{
 			ui->show();
@@ -95,9 +97,4 @@ void Inventory::toggleInventory()
 			ui->hide();
 		}
 	}
-}
-
-void closeInven()
-{
-	//Inventory::_isOpen = false;
 }

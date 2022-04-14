@@ -129,7 +129,7 @@ void Bullet::deleteEffect()
 	}
 }
 
-void Bullet::collisionObject()
+void Bullet::collisionObject(int dir)
 {
 	Object::deleteObject();
 }

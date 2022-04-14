@@ -18,13 +18,18 @@ HRESULT DropItem::init()
 {
 	Object::init();
 
-	this->findCodeImage();
+	_imgName = ITEMMANAGER->findCodeImage(_itemCode);
 
 	_img = IMAGEMANAGER->findImage(_imgName);
 	_frameInfo.maxFrameX = _img->getMaxFrameX();
 	_frameInfo.maxFrameY = _img->getMaxFrameY();
 	_frameInfo.width = _img->getFrameWidth();
 	_frameInfo.height = _img->getFrameHeight();
+
+	if (_frameInfo.maxFrameX > 1)
+	{
+		_frameInfo.isFrame = true;
+	}
 
 	_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
 
@@ -50,9 +55,21 @@ void DropItem::render(HDC hdc)
 	CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 }
 
-void DropItem::collisionObject()
+void DropItem::collisionObject(int dir)
 {
-	SOUNDMANAGER->play(SoundName::Item::collecting, _sound);
+	if (_itemCode <= Code::Item::BULLION)
+	{
+		if(_itemCode == Code::Item::BULLION)
+			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 100, dir);
+		else
+			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 10, dir);
+		
+		SOUNDMANAGER->play(SoundName::Item::getCoin, _sound);
+	}
+	else
+	{
+		SOUNDMANAGER->play(SoundName::Item::getItem, _sound);
+	}
 	Object::deleteObject();
 }
 
@@ -88,26 +105,13 @@ void DropItem::move()
 
 void DropItem::animation()
 {
+	if (!_frameInfo.isFrame) return;
+
 	_frameInfo.cnt++;
 	if (_frameInfo.cnt > _frameInfo.maxFrameX)
 	{
 		_frameInfo.cnt = 0;
 		_frameInfo.x++;
 		if (_frameInfo.x > _frameInfo.maxFrameX) _frameInfo.x = 0;
-	}
-}
-
-void DropItem::findCodeImage()
-{
-	switch (_itemCode)
-	{
-	case Code::Item::COIN:
-		_imgName = ImageName::Item::Gold::coin;
-		break;
-	case Code::Item::BULLION:
-		_imgName = ImageName::Item::Gold::bullion;
-		break;
-	default:
-		break;
 	}
 }

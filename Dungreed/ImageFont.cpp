@@ -17,12 +17,24 @@ HRESULT ImageFont::init()
 {
 	UI::init();
 
+	string tmp = to_string(_num);
+	_arrLen = tmp.length();
+	_arrNum = new int[_arrLen];
+
+	for (int i = _arrLen -1; i >= 0; i--)
+	{
+		_arrNum[i] = _num % 10;
+		_num /= 10;
+	}
+	// 골드 먹는거 숫자 자리 작업중..
+
 	return S_OK;
 }
 
 void ImageFont::release()
 {
 	UI::release();
+	SAFE_DELETE_ARRAY(_arrNum);
 }
 
 void ImageFont::update()

@@ -27,7 +27,7 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual void deleteEffect() override;
-	virtual void collisionObject() override;
+	virtual void collisionObject(int dir) override;
 
 	void move();
 	void animation();

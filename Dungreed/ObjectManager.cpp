@@ -10,7 +10,6 @@
 
 #include "Bullet.h"
 #include "Effect.h"
-#include "DropItem.h"
 
 #include "Player.h"
 #include "SkelDog.h"
@@ -167,12 +166,12 @@ void ObjectManager::addImageFont(float x, float y, int num, BOOL fixed)
 	addObject(ObjectEnum::TYPE::UI, new ImageFont(x, y, num, fixed));
 }
 
-void ObjectManager::addDynamicImageFont(float x, float y, int num, int dir)
+void ObjectManager::addDynamicImageFont(float x, float y, int num, int dir, int type)
 {
-	addObject(ObjectEnum::TYPE::UI, new DynamicFont(x, y, num, dir));
+	addObject(ObjectEnum::TYPE::UI, new DynamicFont(x, y, num, dir, type));
 }
 
-void ObjectManager::addDropItem(Code::Item code, float x, float y)
+void ObjectManager::addDropItem(Object* obj)
 {
-	addObject(ObjectEnum::TYPE::ITEM_DROP, new DropItem(code, x, y));
+	addObject(ObjectEnum::TYPE::ITEM_DROP, obj);
 }

@@ -29,7 +29,7 @@ public:
 	inline BOOL isLive() { return _isLive; }
 	inline void deleteObject() { _isLive = FALSE; }
 
-	virtual void collisionObject() { deleteObject(); }
+	virtual void collisionObject(int dir) { deleteObject(); }
 	virtual void pushObject(float x, float y) { _x += x; _y += y; }
 	virtual void pushObject(DIRECTION dir, float distance) {}
 	virtual void stopObject() {}

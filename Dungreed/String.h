@@ -105,7 +105,8 @@ namespace ImageName
 	{
 		namespace Weapon
 		{
-			constexpr char* basicShotSword = "BasicShotSword";
+			constexpr char* basicShotSword = "WEAPON BasicShotSword";
+			constexpr char* basicShotSwordDrop = "WEAPON BasicShotSwordDrop";
 		}
 
 		namespace Gold
@@ -131,11 +132,13 @@ namespace ImageName
 
 namespace SoundName
 {
-	constexpr char* title = "SOUND_title";
+	constexpr char* title = "SOUND title";
+	constexpr char* invenOpen = "SOUND invenOpen";
 
 	namespace Item
 	{
-		constexpr char* collecting = "SOUND_collecting";
+		constexpr char* getCoin = "SOUND getCoin";
+		constexpr char* getItem = "SOUND getItem";
 	}
 }
 

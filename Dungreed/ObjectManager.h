@@ -31,8 +31,8 @@ public:
 	void addButton(Object* obj);
 	void addButton(string imgName, int x, int y, BOOL fixed = TRUE, CALLBACK_FUNC cb = nullptr);
 	void addImageFont(float x, float y, int num, BOOL fixed = TRUE);
-	void addDynamicImageFont(float x, float y, int num, int dir);
-	void addDropItem(Code::Item code, float x, float y);
+	void addDynamicImageFont(float x, float y, int num, int dir, int type = 0);
+	void addDropItem(Object* obj);
 
 };
 

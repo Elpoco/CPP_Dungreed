@@ -9,13 +9,16 @@ namespace DynamicFontSet
 class DynamicFont : public ImageFont
 {
 private:
-	float _initTime;
-	BYTE _alpha;
-	float _down;
-	int _dir;
+	ImageBase* _imgGold;
+
+	BYTE	_alpha;
+	float	_initTime;
+	float	_down;
+	int		_dir;
+	int		_type; // 0 데미지, 1 골드
 
 public:
-	DynamicFont(float x, float y, int num, int dir);
+	DynamicFont(float x, float y, int num, int dir, int type);
 	virtual ~DynamicFont();
 
 	virtual HRESULT init() override;
