@@ -34,9 +34,6 @@
     <Filter Include="API FrameWork\08. Image">
       <UniqueIdentifier>{6745354d-98f6-4b27-9b21-b2fd11800d6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\09. Animation">
-      <UniqueIdentifier>{ed41234d-b8d3-425f-ba25-474130a4bbb7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="API FrameWork\10. Timer">
       <UniqueIdentifier>{1ab14265-be7d-4bfe-8268-5e6e9f96fef3}</UniqueIdentifier>
     </Filter>
@@ -124,10 +121,22 @@
     <Filter Include="MainGame\02. Object\05. UI\Font">
       <UniqueIdentifier>{b7248ecd-ddb0-4a6c-9535-c025e8f3be4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="API FrameWork\14. Animation">
+      <UniqueIdentifier>{ed41234d-b8d3-425f-ba25-474130a4bbb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\09. Sound">
+      <UniqueIdentifier>{1ae1ac97-dbfe-4109-aafe-88839b2c178f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\07 Box">
+      <UniqueIdentifier>{3878eea0-e6c6-4ad6-bc71-4ae046ba3d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\03. Inventory">
+      <UniqueIdentifier>{c25b084b-9acb-4007-bedd-5d06fc723d1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
-      <Filter>API FrameWork\09. Animation</Filter>
+      <Filter>API FrameWork\14. Animation</Filter>
     </ClCompile>
     <ClCompile Include="FontManager.cpp">
       <Filter>API FrameWork\06. Manager</Filter>
@@ -149,9 +158,6 @@
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
       <Filter>MainGame</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="Stdafx.cpp">
       <Filter>API FrameWork\01. Stdafx</Filter>
@@ -279,10 +285,22 @@
     <ClCompile Include="DropItem.cpp">
       <Filter>MainGame\02. Object\06. Item</Filter>
     </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>API FrameWork\09. Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>MainGame\02. Object\07 Box</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>MainGame\03. Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundLoader.cpp">
+      <Filter>API FrameWork\09. Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
-      <Filter>API FrameWork\09. Animation</Filter>
+      <Filter>API FrameWork\14. Animation</Filter>
     </ClInclude>
     <ClInclude Include="FontManager.h">
       <Filter>API FrameWork\06. Manager</Filter>
@@ -310,9 +328,6 @@
     </ClInclude>
     <ClInclude Include="SingletonBase.h">
       <Filter>API FrameWork\03. DesignPattern\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="Stdafx.h">
       <Filter>API FrameWork\01. Stdafx</Filter>
@@ -454,6 +469,21 @@
     </ClInclude>
     <ClInclude Include="DropItem.h">
       <Filter>MainGame\02. Object\06. Item</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>API FrameWork\09. Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>MainGame\02. Object\07 Box</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>MainGame\03. Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundLoader.h">
+      <Filter>API FrameWork\09. Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern.h">
+      <Filter>API FrameWork\02. Config</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

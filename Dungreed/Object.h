@@ -31,6 +31,7 @@ public:
 
 	virtual void collisionObject() { deleteObject(); }
 	virtual void pushObject(float x, float y) { _x += x; _y += y; }
+	virtual void pushObject(DIRECTION dir, float distance) {}
 	virtual void stopObject() {}
 };
 

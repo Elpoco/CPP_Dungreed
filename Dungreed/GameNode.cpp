@@ -23,7 +23,7 @@ HRESULT GameNode::init(bool managerInit)
 		TIMEMANAGER		->init();
 		TEXTDATAMANAGER	->init();
 		SOUNDMANAGER	->init();
-		JSONDATAMANAGER	->init();
+		//JSONDATAMANAGER	->init();
 		OBJECTMANAGER	->init();
 		CAMERAMANAGER	->init();
 		TIMEMANAGER		->init();
@@ -33,6 +33,7 @@ HRESULT GameNode::init(bool managerInit)
 		SCENEMANAGER	->init();
 		COLLISIONMANAGER->init();
 		GPIMAGEMANAGER	->init();
+
 	}
 
 	return S_OK;
@@ -64,8 +65,8 @@ void GameNode::release(void)
 		SOUNDMANAGER->release();
 		SOUNDMANAGER->releaseSingleton();
 
-		JSONDATAMANAGER->release();
-		JSONDATAMANAGER->releaseSingleton();
+		//JSONDATAMANAGER->release();
+		//JSONDATAMANAGER->releaseSingleton();
 
 		OBJECTMANAGER->release();
 		OBJECTMANAGER->releaseSingleton();

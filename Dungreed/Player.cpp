@@ -1,6 +1,8 @@
 #include "Stdafx.h"
 #include "Player.h"
 
+#include "Inventory.h"
+
 using namespace PlayerSet;
 
 Player::Player()
@@ -29,6 +31,8 @@ HRESULT Player::init()
 	_weapon = GPIMAGEMANAGER->findImage(ImageName::Item::Weapon::basicShotSword);
 	_mainHandX = 15;
 	_atkCnt = 0;
+
+	_inventory = new Inventory();
 
 	return S_OK;
 }
@@ -60,7 +64,7 @@ void Player::hitAttack(int dmg, int dir)
 {
 	if (_hitTime + HIT_TIME > TIMEMANAGER->getWorldTime()) return;
 
-	OBJECTMANAGER->addMoveImageFont(_x, _rc.top, dmg, dir);
+	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
 
 	_hitTime = TIMEMANAGER->getWorldTime();
 	_isHit = true;
@@ -73,35 +77,24 @@ void Player::move()
 
 	if (KEYMANAGER->isStayKeyDown(KEY::LEFT))	this->moveLeft();
 	if (KEYMANAGER->isStayKeyDown(KEY::RIGHT))	this->moveRight();
+	if (KEYMANAGER->isOnceKeyUp(KEY::LEFT))		_state = PLAYER_MOTION::IDLE;
+	if (KEYMANAGER->isOnceKeyUp(KEY::RIGHT))	_state = PLAYER_MOTION::IDLE;
 
 	if (KEYMANAGER->isStayKeyDown(KEY::DOWN))
 	{
 		//_y += _moveSpeed;
 	}
-
 	if (KEYMANAGER->isStayKeyDown(KEY::UP))
 	{
 		//_y -= _moveSpeed;
 	}
 
-	if (KEYMANAGER->isOnceKeyUp(KEY::LEFT))
-	{
-		_state = PLAYER_MOTION::IDLE;
-	}
-
-	if (KEYMANAGER->isOnceKeyUp(KEY::RIGHT))
-	{
-		_state = PLAYER_MOTION::IDLE;
-	}
 
 	if (KEYMANAGER->isOnceKeyDown(KEY::UP) ||
-		KEYMANAGER->isOnceKeyDown(VK_SPACE))
-	{
-		Unit::jump();
-	}
+		KEYMANAGER->isOnceKeyDown(KEY::SPACE))  Unit::jump();
 
 	_rcAttack = { 0,0,0,0 };
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	if (KEYMANAGER->isOnceKeyDown(KEY::CLICK_L))
 	{
 		if (_atkCnt == 0) _atkCnt = 1;
 		else _atkCnt = 0;
@@ -120,7 +113,7 @@ void Player::move()
 		);
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_RBUTTON))
+	if (KEYMANAGER->isOnceKeyDown(KEY::CLICK_R))
 	{
 
 	}

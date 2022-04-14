@@ -26,15 +26,18 @@ public:
 	void renderEnemy(HDC hdc, Object* obj);
 	void renderBullet(HDC hdc, Object* obj);
 	void renderUI(HDC hdc, Object* obj);
+	void renderItem(HDC hdc, Object* obj);
 
 	// 타일 충돌
 	void collisionTile();
-	// 플레이어와 몬스터 충돌
+	// 플레이어 몬스터 충돌
 	void collisionPlayerEnemy();
 	// 투사체 충돌
 	void collisionShooting();
 	// 버튼 충돌
 	void collisionButton();
+	// 아이템 플레이어 충돌
+	void collisionItem();
 
 };
 

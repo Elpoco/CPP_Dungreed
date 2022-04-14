@@ -5,7 +5,20 @@ enum KEY
 	LEFT  =	'A',
 	UP	  =	'W',
 	RIGHT = 'D',
-	DOWN  =	'S'
+	DOWN  =	'S',
+
+	UP_ARROW = VK_UP,
+	DOWN_ARROW = VK_DOWN,
+	LEFT_ARROW = VK_LEFT,
+	RIGHT_ARROW = VK_DOWN,
+
+	SPACE = VK_SPACE,
+
+	CLICK_L = VK_LBUTTON,
+	CLICK_R = VK_RBUTTON,
+
+	// 플레이어
+	INVENTORY = 'V',
 };
 
 namespace MapToolEnum
@@ -84,5 +97,11 @@ namespace Code
 		NIFLEHEIM,
 
 		UNIT_CNT
+	};
+
+	enum class Item
+	{
+		COIN,
+		BULLION,
 	};
 }

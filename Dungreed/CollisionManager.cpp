@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Button.h"
+#include "DropItem.h"
 
 CollisionManager::CollisionManager()
 {
@@ -30,6 +31,7 @@ void CollisionManager::update()
 	collisionPlayerEnemy();
 	collisionShooting();
 	collisionButton();
+	collisionItem();
 }
 
 void CollisionManager::render(HDC hdc)
@@ -56,6 +58,8 @@ void CollisionManager::render(HDC hdc)
 				case ObjectEnum::TYPE::BUTTON:
 					renderUI(hdc, obj);
 					break;
+				case ObjectEnum::TYPE::ITEM_DROP:
+					renderItem(hdc, obj);
 				default:
 					break;
 				}
@@ -118,6 +122,11 @@ void CollisionManager::renderUI(HDC hdc, Object* obj)
 	{
 		CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Blue);
 	}
+}
+
+void CollisionManager::renderItem(HDC hdc, Object* obj)
+{
+	CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::YellowGreen);
 }
 
 void CollisionManager::collisionTile()
@@ -222,7 +231,7 @@ void CollisionManager::collisionTile()
 				if (tile.type == MapToolEnum::TYPE::BLOCK)
 				{
 					obj->stopObject();
-					obj->pushObject(0, -10);
+					obj->pushObject(DIRECTION::BOTTOM, tile.rc.top);
 				}
 			}
 			break;
@@ -325,6 +334,32 @@ void CollisionManager::collisionButton()
 			if (KEYMANAGER->isOnceKeyUp(VK_LBUTTON))
 			{
 				btn->onClick();
+			}
+		}
+	}
+}
+
+void CollisionManager::collisionItem()
+{
+	auto pairPlayer = _mObjects->find(ObjectEnum::TYPE::PLAYER);
+	auto pairItemObj = _mObjects->find(ObjectEnum::TYPE::ITEM_DROP);
+
+	for (Object* objPlayer : pairPlayer->second)
+	{
+		Player* player = dynamic_cast<Player*>(objPlayer);
+
+		for (Object* obj : pairItemObj->second)
+		{
+			DropItem* item = dynamic_cast<DropItem*>(obj);
+			Code::Item code = item->getCode();
+
+			RECT tmp;
+			RECT rcPlayer = player->getRect();
+			RECT rcObj = obj->getRect();
+
+			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
+			{
+				obj->collisionObject();
 			}
 		}
 	}

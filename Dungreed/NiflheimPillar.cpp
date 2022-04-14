@@ -62,7 +62,7 @@ void NiflheimPillar::render(HDC hdc)
 
 void NiflheimPillar::hitAttack(int dmg, int dir)
 {
-	OBJECTMANAGER->addMoveImageFont(_x, _rc.top, dmg, dir);
+	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
 	_hp -= dmg;
 	if (_hp < 1)
 	{

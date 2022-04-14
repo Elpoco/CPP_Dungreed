@@ -20,14 +20,6 @@ void ImageLoader::release()
 {
 }
 
-void ImageLoader::update()
-{
-}
-
-void ImageLoader::render()
-{
-}
-
 void ImageLoader::loadImages()
 {
 	// ==========
@@ -115,10 +107,17 @@ void ImageLoader::loadImages()
 	// # Item #
 	// ========
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword_rotate.png");
-	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::coin, PATH_ITEM"Gold/GoldCoin.bmp", 0, 0, 8, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::coin, PATH_ITEM"Gold/Coin.bmp", 0, 0, 8, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::bullion, PATH_ITEM"Gold/Bullion.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
 
 	// ==========
 	// # Effect #
 	// ==========
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::effectBasic, PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
+
+	// ==========
+	// # Object #
+	// ==========
+	IMAGEMANAGER->addImage(ImageName::Object::box, PATH_IMAGE"Object/Box.bmp", 0, 0, true, ColorSet::MAGENTA);
+
 }

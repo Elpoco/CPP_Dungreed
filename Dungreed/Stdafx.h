@@ -9,7 +9,7 @@
 //! 라이브러리
 #pragma comment(lib, "Winmm.lib")
 #pragma comment(lib, "msimg32.lib")
-#pragma comment(lib, "lib/FMOD/fmodex_vc")
+#pragma comment(lib, "lib/FMOD/fmod_vc.lib")
 #pragma comment(lib, "Jsoncpp/lib_json/json_vc71_libmtd.lib")
 
 //!외부 헤더 파일
@@ -50,6 +50,7 @@ using namespace std;
 // =================================
 #include "Define.h"
 #include "Enums.h"
+#include "Extern.h"
 #include "Structs.h"
 #include "String.h"
 #include "Config.h"
@@ -97,13 +98,3 @@ using namespace MY_UTIL;
 #define MSGBOXMANAGER		MessageBoxManager::getSingleton()
 #define COLLISIONMANAGER	CollisionManager::getSingleton()
 #define GPIMAGEMANAGER		ImageGpManager::getSingleton()
-
-// =============
-// # 전역 변수 #
-// =============
-extern HINSTANCE	_hInstance;
-extern HWND			_hWnd;
-extern POINT		_ptMouse;
-extern bool			_isDebug;
-
-typedef function<void()> callback;

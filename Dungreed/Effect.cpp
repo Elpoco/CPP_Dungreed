@@ -4,7 +4,6 @@
 Effect::Effect(string imgName, float x, float y, BYTE alpha)
 	: _img(nullptr)
 	, _gpImg(nullptr)
-	, _callback(nullptr)
 	, _imgName(imgName)
 	, _alpha(alpha)
 	, _angle(0.0f)
@@ -19,7 +18,6 @@ Effect::Effect(string imgName, float x, float y, BYTE alpha)
 Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter)
 	: _img(nullptr)
 	, _gpImg(nullptr)
-	, _callback(nullptr)
 	, _imgName(imgName)
 	, _alpha(0)
 	, _angle(angle)
@@ -152,6 +150,5 @@ void Effect::animation()
 
 void Effect::deleteEffect()
 {
-	if (_callback) _callback();
 	_isLive = FALSE;
 }

@@ -1,17 +1,19 @@
 #pragma once
 #include "Object.h"
 
-
 class DropItem : public Object
 {
 private:
 	ImageBase* _img;
+	string _imgName;
 	FRAME_INFO _frameInfo;
-	bool _isCollision;
+	bool _isStop;
 	float _dropSpeed;
 
+	Code::Item _itemCode;
+
 public:
-	DropItem(float x, float y);
+	DropItem(Code::Item code, float x, float y);
 	virtual ~DropItem();
 
 	virtual HRESULT init() override;
@@ -19,10 +21,15 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
-	virtual void stopObject() override { _isCollision = true; }
+	virtual void collisionObject() override;
+	virtual void pushObject(DIRECTION dir, float distance) override;
+	virtual void stopObject() override { _isStop = true; }
 
 	void move();
 	void animation();
+
+	void findCodeImage();
+	Code::Item getCode() { return _itemCode; }
 
 };
 

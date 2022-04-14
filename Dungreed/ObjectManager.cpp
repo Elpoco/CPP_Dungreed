@@ -157,12 +157,12 @@ void ObjectManager::addImageFont(float x, float y, int num, BOOL fixed)
 	addObject(ObjectEnum::TYPE::UI, new ImageFont(x, y, num, fixed));
 }
 
-void ObjectManager::addMoveImageFont(float x, float y, int num, int dir)
+void ObjectManager::addDynamicImageFont(float x, float y, int num, int dir)
 {
 	addObject(ObjectEnum::TYPE::UI, new DynamicFont(x, y, num, dir));
 }
 
-void ObjectManager::addDropItem(float x, float y)
+void ObjectManager::addDropItem(Code::Item code, float x, float y)
 {
-	addObject(ObjectEnum::TYPE::ITEM_DROP, new DropItem(x,y));
+	addObject(ObjectEnum::TYPE::ITEM_DROP, new DropItem(code, x, y));
 }

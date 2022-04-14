@@ -27,11 +27,14 @@ HRESULT StartScene::init()
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI_FRONT, new Cursor());
 	ShowCursor(false);
 
+	SOUNDMANAGER->play(SoundName::title, _sound);
+
 	return S_OK;
 }
 
 void StartScene::release()
 {
+	SOUNDMANAGER->stop(SoundName::title);
 }
 
 void StartScene::update()
@@ -47,6 +50,7 @@ void StartScene::render()
 	IMAGEMANAGER->loopRender(ImageName::Background::startCloud1, getMemDC(), &rc, _loop1, 0);
 	IMAGEMANAGER->loopRender(ImageName::Background::startCloud2, getMemDC(), &rc, _loop2, 0);
 
+	PrintRectangle(getMemDC(), 100, 100, 50, 50);
 }
 
 void clickStart()

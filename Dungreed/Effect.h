@@ -16,8 +16,6 @@ protected:
 	int _angle;
 	POINT _rotateCenter;
 
-	callback _callback;
-
 public:
 	Effect(string imgName, float x, float y, BYTE alpha = 0);
 	Effect(string imgName, float x, float y, int angle, POINT rotateCenter);
@@ -31,8 +29,6 @@ public:
 	void animation();
 
 	void deleteEffect();
-
-	void setCallback(callback callback) { _callback = callback; }
 
 };
 

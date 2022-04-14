@@ -1,6 +1,8 @@
 #pragma once
 #include "Unit.h"
 
+class Inventory;
+
 namespace PlayerSet
 {
 	constexpr float HIT_TIME = 2.0f;
@@ -23,6 +25,8 @@ private:
 	RECT _rcWeapon;
 	int _angleWeapon;
 	int _atkCnt;		// 첫번째 공격인지 두번째 공격인지
+
+	Inventory* _inventory;
 
 public:
 	Player();

@@ -3,11 +3,11 @@ namespace ImageName
 {
 	namespace Player
 	{
-		constexpr char* idle = "PlayerIdle";
-		constexpr char* run  = "PlayerRun";
-		constexpr char* jump = "PlayerJump";
-		constexpr char* die  = "PlayerDie";
-		constexpr char* hand = "PlayerHand";
+		constexpr char* idle = "PLAYER_idle";
+		constexpr char* run  = "PLAYER_run";
+		constexpr char* jump = "PLAYER_jump";
+		constexpr char* die  = "PLAYER_die";
+		constexpr char* hand = "PLAYER_hand";
 	}
 
 	namespace Enemy
@@ -107,6 +107,7 @@ namespace ImageName
 		namespace Gold
 		{
 			constexpr char* coin = "GoldCoin";
+			constexpr char* bullion = "Bullion";
 		}
 	}
 
@@ -116,6 +117,21 @@ namespace ImageName
 		{
 			constexpr char* effectBasic = "EffectBasic";
 		}
+	}
+
+	namespace Object
+	{
+		constexpr char* box = "OBJECT_box";
+	}
+}
+
+namespace SoundName
+{
+	constexpr char* title = "SOUND_title";
+
+	namespace Item
+	{
+		constexpr char* collecting = "SOUND_collecting";
 	}
 }
 

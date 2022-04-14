@@ -31,8 +31,8 @@ public:
 	void addUI(string imgName, int x, int y, BOOL fixed, BOOL show = TRUE);
 	void addButton(string imgName, int x, int y, BOOL fixed = TRUE, CALLBACK_FUNC cb = nullptr, string imgNameOn = "");
 	void addImageFont(float x, float y, int num, BOOL fixed = TRUE);
-	void addMoveImageFont(float x, float y, int num, int dir);
-	void addDropItem(float x, float y);
+	void addDynamicImageFont(float x, float y, int num, int dir);
+	void addDropItem(Code::Item code, float x, float y);
 
 };
 

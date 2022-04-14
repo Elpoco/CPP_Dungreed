@@ -103,7 +103,7 @@ void Enemy::hitAttack(int dmg, int dir)
 {
 	_hp -= dmg;
 
-	OBJECTMANAGER->addMoveImageFont(_x, _rc.top, dmg, dir);
+	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
 
 	if (_hp < 1)
 	{

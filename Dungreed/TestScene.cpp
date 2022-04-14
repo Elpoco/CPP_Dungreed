@@ -32,6 +32,7 @@ void TestScene::update()
 	if (KEYMANAGER->isStayKeyDown(VK_RBUTTON))
 	{
 		OBJECTMANAGER->addDropItem(
+			Code::Item::BULLION,
 			CAMERAMANAGER->calAbsX(_ptMouse.x),
 			CAMERAMANAGER->calAbsY(_ptMouse.y)
 		);
