@@ -34,6 +34,8 @@ HRESULT GameNode::init(bool managerInit)
 		COLLISIONMANAGER->init();
 		GPIMAGEMANAGER	->init();
 		ITEMMANAGER		->init();
+		UIMANAGER		->init();
+		DBMANAGER		->init();
 	}
 
 	return S_OK;
@@ -91,6 +93,12 @@ void GameNode::release(void)
 
 		ITEMMANAGER->release();
 		ITEMMANAGER->releaseSingleton();
+
+		UIMANAGER->release();
+		UIMANAGER->releaseSingleton();
+
+		DBMANAGER->release();
+		DBMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);

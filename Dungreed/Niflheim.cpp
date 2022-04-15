@@ -31,11 +31,11 @@ HRESULT Niflheim::init()
 	this->initAnimation();
 	Unit::updateRect();
 
-	_name = "니플헤임";
+	_info = DBMANAGER->getInfo(Code::UNIT::NIFLEHEIM);
 	_isFlying = true;
 	_scanScale = { 10,10 };
 
-	settingHp(UnitSet::Enemy::Niflheim::HP);
+	settingHp(_info.hp);
 
 	this->initPillar();
 

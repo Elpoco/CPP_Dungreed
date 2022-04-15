@@ -2,8 +2,7 @@
 #include "Unit.h"
 
 Unit::Unit()
-	: _name("")
-	, _rcAttack({ 0,0,0,0 })
+	: _rcAttack({ 0,0,0,0 })
 	, _state(0)
 	, _imgCurrent(0)
 	, _imgWidth(0.0f)

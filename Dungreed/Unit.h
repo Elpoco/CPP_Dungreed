@@ -9,7 +9,6 @@ class Unit : public Object
 {
 protected:
 	FRAME_INFO _frameInfo;
-	string	_name;
 	RECT	_rcAttack;
 	int	_state;
 

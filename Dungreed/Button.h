@@ -4,7 +4,6 @@
 class Button : public UI
 {
 private:
-	FRAME_INFO _frameInfo;
 	CALLBACK_FUNC _callback;
 	BOOL _isHoverImg;
 	BOOL _isOn;

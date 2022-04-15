@@ -1,7 +1,9 @@
 #include "Stdafx.h"
 #include "StartScene.h"
 
-#include "Cursor.h"
+#include "UI.h"
+
+using namespace StartSceneSet;
 
 void clickStart();
 void clickMapTool();
@@ -19,13 +21,17 @@ HRESULT StartScene::init()
 {
 	_loop1 = _loop2 = 0.0f;
 
-	OBJECTMANAGER->addUI(ImageName::UI::logo, CENTER_X, CENTER_Y - 150, TRUE);
+	for (int i = 0; i < BIRD_CNT; i++)
+	{
+		_bird[i] = new UI(ImageName::UI::bird, -50 - i * 70, 100 + i * 20);
+
+		OBJECTMANAGER->addUI(_bird[i]);
+	}
+
+	OBJECTMANAGER->addUI(ImageName::UI::logo, CENTER_X, CENTER_Y - 150);
 	OBJECTMANAGER->addButton(ImageName::UI::Button::gameStart, CENTER_X, CENTER_Y + 100, TRUE, clickStart);
 	OBJECTMANAGER->addButton(ImageName::UI::Button::mapTool, CENTER_X, CENTER_Y + 170, TRUE, clickMapTool);
 	OBJECTMANAGER->addButton(ImageName::UI::Button::quit, CENTER_X, CENTER_Y + 240, TRUE, clickQuit);
-
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI_FRONT, new Cursor());
-	ShowCursor(false);
 
 	SOUNDMANAGER->play(SoundName::title, _sound);
 
@@ -41,6 +47,16 @@ void StartScene::update()
 {
 	_loop1 += 0.1f;
 	_loop2 += 0.7f;
+
+	for (int i = 0; i < BIRD_CNT; i++)
+	{
+		_bird[i]->setX(_bird[i]->getX() + 1);
+
+		if (_bird[i]->getX() > WINSIZE_X + 50)
+		{
+			_bird[i]->setX(-150);
+		}
+	}
 }
 
 void StartScene::render()
@@ -53,11 +69,13 @@ void StartScene::render()
 
 void clickStart()
 {
+	UIMANAGER->setCursor(UIEnum::CURSOR_TYPE::TARGET);
 	SCENEMANAGER->changeScene(SceneName::testScene);
 }
 
 void clickMapTool()
 {
+	UIMANAGER->setCursor(UIEnum::CURSOR_TYPE::NONE);
 	SCENEMANAGER->changeScene(SceneName::mapToolScene);
 }
 

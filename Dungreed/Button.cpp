@@ -2,32 +2,11 @@
 #include "Button.h"
 
 Button::Button(string imgName, int x, int y, BOOL fixed, CALLBACK_FUNC cb)
-	: _isHoverImg(false)
+	: UI(imgName, x, y, fixed)
+	, _isHoverImg(false)
 	, _isOn(false)
 	, _callback(cb)
 {
-	_img = FindImage(imgName);
-
-	_x = x;
-	_y = y;
-	_isFixed = TRUE;
-
-	_frameInfo.maxFrameX = _img->getMaxFrameX();
-	_frameInfo.maxFrameY = _img->getMaxFrameY();
-
-	if (_frameInfo.maxFrameX > 1 || _frameInfo.maxFrameY > 1)
-	{
-		_width = _img->getFrameWidth();
-		_height = _img->getFrameHeight();
-		_frameInfo.isFrame = true;
-	}
-	else
-	{
-		_width = _img->getWidth();
-		_height = _img->getHeight();
-	}
-
-	_rc = RectMakeCenter(_x, _y, _width, _height);
 }
 
 Button::~Button()

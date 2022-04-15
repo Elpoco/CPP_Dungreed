@@ -32,5 +32,7 @@ public:
 
 	void toggleInventory();
 
+	BOOL isOpen() { return _isOpen; }
+
 };
 

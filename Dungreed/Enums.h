@@ -88,18 +88,28 @@ namespace ObjectEnum
 
 namespace Code
 {
-	enum class UNIT
+	enum UNIT
 	{
 		PLAYER,
 		SKEL_DOG,
 		LITTLE_GHOST,
 		BELIAL,
 		NIFLEHEIM,
+		NIFLEHEIM_PILLAR,
 
 		UNIT_CNT
 	};
 
-	enum class ITEM
+	enum ITEM_TYPE
+	{
+		GOLD,
+		WEAPON,
+		ARMOR,
+
+		ITEM_TYPE_CNT
+	};
+
+	enum ITEM
 	{
 		COIN,
 		BULLION,
@@ -107,6 +117,8 @@ namespace Code
 		// ¹«±â
 		SHOT_SWORD,
 		GREAT_SWORD,
+
+		ITEM_CNT
 	};
 }
 
@@ -119,5 +131,15 @@ namespace ImageFontEnum
 		GOLD,
 
 		FONT_CNT
+	};
+}
+
+namespace UIEnum
+{
+	enum CURSOR_TYPE
+	{
+		NONE,
+		NORMAL,
+		TARGET
 	};
 }

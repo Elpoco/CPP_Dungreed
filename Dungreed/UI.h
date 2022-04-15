@@ -5,6 +5,7 @@ class UI : public Object
 {
 protected:
 	ImageBase* _img;
+	FRAME_INFO _frameInfo;
 	string _sceneName;
 	BOOL _isFixed; // TRUE 절대좌표 랜더, FALSE 상대좌표 랜더
 	BOOL _isShow;
@@ -23,6 +24,8 @@ public:
 
 	virtual void setX(float x) override;
 	virtual void setY(float y) override;
+	
+	void animation();
 
 	inline BOOL isFixed() {	return _isFixed; }
 	inline BOOL isShow() { return _isShow; }

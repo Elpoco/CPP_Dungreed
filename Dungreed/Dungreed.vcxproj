@@ -154,6 +154,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="DataBaseManager.cpp" />
     <ClCompile Include="DropItem.cpp" />
     <ClCompile Include="DynamicFont.cpp" />
     <ClCompile Include="Effect.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TownScene.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -217,11 +219,13 @@
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="DataBaseManager.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="DropItem.h" />
     <ClInclude Include="DynamicFont.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyData.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="FileManager.h" />
@@ -236,6 +240,7 @@
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemData.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="JsonSaveLoader.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -271,6 +276,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TownScene.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>

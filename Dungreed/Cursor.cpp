@@ -2,7 +2,7 @@
 #include "Cursor.h"
 
 Cursor::Cursor()
-	: _cursorCurrent(CURSOR_CURRENT::NONE)
+	: _cursorCurrent(UIEnum::CURSOR_TYPE::NORMAL)
 {
 	_isFixed = TRUE; // 절대좌표로 하기위해
 }
@@ -15,7 +15,9 @@ HRESULT Cursor::init()
 {
 	UI::init();
 
+	_vCursor.push_back({ IMAGEMANAGER->findImage(ImageName::none), false });
 	_vCursor.push_back({ IMAGEMANAGER->findImage(ImageName::UI::Cursor::cursor), false });
+	_vCursor.push_back({ IMAGEMANAGER->findImage(ImageName::UI::Cursor::attack), true });
 
 	return S_OK;
 }

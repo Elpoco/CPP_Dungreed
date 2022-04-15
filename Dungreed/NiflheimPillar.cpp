@@ -26,9 +26,10 @@ HRESULT NiflheimPillar::init()
 	Enemy::init();
 	this->initAnimation();
 
+	_info = DBMANAGER->getInfo(Code::UNIT::NIFLEHEIM_PILLAR);
 	_isFlying = true;
 
-	settingHp(UnitSet::Enemy::NiflheimPillar::HP);
+	settingHp(_info.hp);
 	
 	_bossAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY);
 	_bossDistance = GetDistance(_x, _y, *_niflheimX, *_niflheimY);

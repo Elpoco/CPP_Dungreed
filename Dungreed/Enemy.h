@@ -6,6 +6,8 @@ class EnemyHpBar;
 class Enemy : public Unit
 {
 protected:
+	ENEMY_INFO _info;
+
 	bool	_isAutoLeft;	// 플레이어 위치에 따라 자동으로 변경할지
 	float	_hp;
 	float	_maxHp;

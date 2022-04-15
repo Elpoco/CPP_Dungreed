@@ -56,3 +56,33 @@ typedef struct tagFrameInfo
 		height = 0;
 	}
 } FRAME_INFO;
+
+typedef struct tagEnemyInfo
+{
+	string name;
+	int hp;
+
+	tagEnemyInfo() {}
+
+	tagEnemyInfo(string name, int hp)
+	{
+		this->name = name;
+		this->hp = hp;
+	}
+} ENEMY_INFO;
+
+typedef struct tagItemInfo
+{
+	string name;
+	Code::ITEM_TYPE type;
+	int point;
+
+	tagItemInfo() {}
+
+	tagItemInfo(string name, Code::ITEM_TYPE type, int point)
+	{
+		this->name = name;
+		this->type = type;
+		this->point = point;
+	}
+} ITEM_INFO;

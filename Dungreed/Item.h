@@ -18,7 +18,7 @@ private:
 	Code::ITEM _itemCode;
 
 public:
-	Item();
+	Item(Code::ITEM itemCode);
 	virtual ~Item();
 
 	virtual HRESULT init() override;

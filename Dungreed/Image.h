@@ -44,8 +44,8 @@ public:
 			height = 0;
 			currentFrameX = 0;
 			currentFrameY = 0;
-			maxFrameX = 0;
-			maxFrameY = 0;
+			maxFrameX = 1;
+			maxFrameY = 1;
 			frameWidth = 0;
 			frameHeight = 0;
 			loadType = LOAD_RESOURCE;

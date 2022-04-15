@@ -133,6 +133,9 @@
     <Filter Include="MainGame\02. Object\07. Box">
       <UniqueIdentifier>{3878eea0-e6c6-4ad6-bc71-4ae046ba3d06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\04. DB">
+      <UniqueIdentifier>{88713822-0b1b-4b22-a8ba-4b279048fcd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -299,6 +302,12 @@
     </ClCompile>
     <ClCompile Include="ItemManager.cpp">
       <Filter>MainGame\02. Object\06. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>MainGame\02. Object\05. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBaseManager.cpp">
+      <Filter>MainGame\04. DB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +499,18 @@
     </ClInclude>
     <ClInclude Include="ItemManager.h">
       <Filter>MainGame\02. Object\06. Item</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>MainGame\02. Object\05. UI</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBaseManager.h">
+      <Filter>MainGame\04. DB</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyData.h">
+      <Filter>MainGame\04. DB</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
+      <Filter>MainGame\04. DB</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

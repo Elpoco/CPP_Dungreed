@@ -18,11 +18,11 @@ HRESULT LittleGhost::init()
 
 	_isFlying = true;
 
-	_name = "²¿¸¶ À¯·É";
+	_info = DBMANAGER->getInfo(Code::UNIT::LITTLE_GHOST);
 	_scanScale = { 15,15 };
 	_moveSpeed = LittleGhostSet::MOVE_SPEED;
 
-	settingHp(UnitSet::Enemy::LittleGhost::HP);
+	settingHp(_info.hp);
 
 	return S_OK;
 }

@@ -10,15 +10,9 @@ private:
 		bool isCenter;
 	} CURSOR_INFO;
 
-	enum CURSOR_CURRENT
-	{
-		NONE,
-		TARGET
-	};
-
 private:
 	vector<tagCursorInfo> _vCursor;
-	CURSOR_CURRENT _cursorCurrent;
+	UIEnum::CURSOR_TYPE _cursorCurrent;
 
 public:
 	Cursor();
@@ -29,7 +23,7 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
-	void setCursor(CURSOR_CURRENT cursorType) { _cursorCurrent = cursorType; }
+	void setCursor(UIEnum::CURSOR_TYPE cursorType) { _cursorCurrent = cursorType; }
 
 };
 

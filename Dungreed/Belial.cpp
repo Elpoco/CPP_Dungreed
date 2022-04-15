@@ -33,11 +33,11 @@ HRESULT Belial::init()
 	this->initAnimation();
 	Unit::updateRect();
 
-	_name = "º§¸®¾Ë";
+	_info = DBMANAGER->getInfo(Code::UNIT::BELIAL);
 	_isFlying = true;
 	_scanScale = { 4,3 };
 
-	settingHp(UnitSet::Enemy::Belial::HP);
+	settingHp(_info.hp);
 
 	_moveHpBarX = 23;
 	_moveHpBarY = 50;

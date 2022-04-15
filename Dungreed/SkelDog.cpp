@@ -18,12 +18,13 @@ HRESULT SkelDog::init()
 	Enemy::init();
 	this->initAnimation();
 
-	_name = "½ºÄÌ¸®µ¶";
+	_info = DBMANAGER->getInfo(Code::UNIT::SKEL_DOG);
+
 	_scanScale = { 15,6 };
 	_isAutoLeft = false;
 	_jumpSpeed /= 2;
 
-	settingHp(UnitSet::Enemy::SkelDog::HP);
+	settingHp(_info.hp);
 
 	return S_OK;
 }

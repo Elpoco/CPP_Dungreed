@@ -73,6 +73,8 @@ using namespace std;
 #include "MessageBoxManager.h"
 #include "CollisionManager.h"
 #include "ItemManager.h"
+#include "UIManager.h"
+#include "DataBaseManager.h"
 
 #include "Utils.h"
 using namespace MY_UTIL;
@@ -98,3 +100,5 @@ using namespace MY_UTIL;
 #define COLLISIONMANAGER	CollisionManager::getSingleton()
 #define GPIMAGEMANAGER		ImageGpManager::getSingleton()
 #define ITEMMANAGER			ItemManager::getSingleton()
+#define UIMANAGER			UIManager::getSingleton()
+#define DBMANAGER			DataBaseManager::getSingleton()

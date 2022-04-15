@@ -27,7 +27,7 @@ public:
 	RECT addEffect(string imgName, float x, float y, BYTE alpha = 0, ObjectEnum::TYPE type = ObjectEnum::TYPE::EFFECT);
 	RECT addEffect(string imgName, float x, float y, int angle, POINT rotateCenter);
 	void addUI(Object* obj);
-	void addUI(string imgName, int x, int y, BOOL fixed, BOOL show = TRUE);
+	void addUI(string imgName, int x, int y, BOOL fixed = TRUE, BOOL show = TRUE);
 	void addButton(Object* obj);
 	void addButton(string imgName, int x, int y, BOOL fixed = TRUE, CALLBACK_FUNC cb = nullptr);
 	void addImageFont(float x, float y, int num);

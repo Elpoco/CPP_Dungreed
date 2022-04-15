@@ -21,8 +21,22 @@ UI::UI(string imgName, int x, int y, BOOL fixed, BOOL show)
 
 	_x = x;
 	_y = y;
-	_width = _img->getWidth();
-	_height = _img->getHeight();
+
+	_frameInfo.maxFrameX = _img->getMaxFrameX();
+	_frameInfo.maxFrameY = _img->getMaxFrameY();
+
+	if (_frameInfo.maxFrameX > 1 || _frameInfo.maxFrameY > 1)
+	{
+		_width = _img->getFrameWidth();
+		_height = _img->getFrameHeight();
+		_frameInfo.isFrame = true;
+	}
+	else
+	{
+		_width = _img->getWidth();
+		_height = _img->getHeight();
+	}
+
 	_rc = RectMakeCenter(_x, _y, _width, _height);
 }
 
@@ -52,6 +66,8 @@ void UI::update()
 	{
 		_rc = RectMakeCenter(_x, _y, _width, _height);
 	}
+
+	this->animation();
 }
 
 void UI::render(HDC hdc)
@@ -60,11 +76,11 @@ void UI::render(HDC hdc)
 
 	if (_isFixed)
 	{
-		_img->render(hdc, _rc.left, _rc.top);
+		_img->frameRender(hdc, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 	}
 	else
 	{
-		CAMERAMANAGER->render(hdc, _img, _rc.left, _rc.top);
+		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 	}
 }
 
@@ -78,5 +94,18 @@ void UI::setY(float y)
 {
 	_y = y;
 	_rc = RectMakeCenter(_x, _y, _width, _height);
+}
+
+void UI::animation()
+{
+	if (!_frameInfo.isFrame) return;
+
+	_frameInfo.cnt++;
+	if (_frameInfo.cnt > _frameInfo.tick)
+	{
+		_frameInfo.cnt = 0;
+		_frameInfo.x++;
+		if (_frameInfo.x > _frameInfo.maxFrameX) _frameInfo.x = 0;
+	}
 }
 

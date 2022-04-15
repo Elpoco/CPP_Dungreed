@@ -22,6 +22,8 @@ void ImageLoader::release()
 
 void ImageLoader::loadImages()
 {
+	IMAGEMANAGER->addImage(ImageName::none, PATH_IMAGE"None.bmp", 0, 0, true, ColorSet::MAGENTA);
+	
 	// ==========
 	// # Player #
 	// ==========
@@ -86,12 +88,14 @@ void ImageLoader::loadImages()
 	// ======
 #pragma region UI
 	IMAGEMANAGER->addImage(ImageName::UI::logo, PATH_IMAGE"UI/Logo.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::bird, PATH_IMAGE"UI/Bird.bmp", 0, 0, 8, 1, true, ColorSet::MAGENTA);
 	// 버튼
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Button::gameStart, PATH_IMAGE"UI/Buttons/GameStart.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Button::mapTool, PATH_IMAGE"UI/Buttons/MapTool.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Button::quit, PATH_IMAGE"UI/Buttons/Quit.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	// 커서
 	IMAGEMANAGER->addImage(ImageName::UI::Cursor::cursor, PATH_IMAGE"UI/Cursor/BasicCursor.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Cursor::attack, PATH_IMAGE"UI/Cursor/ShootingCursor.bmp", 0, 0, true, ColorSet::MAGENTA);
 	// 이미지 폰트
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::damage, PATH_IMAGE"UI/Font/DamageFont.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::gold, PATH_IMAGE"UI/Font/GoldFont.bmp", 165, 26, 11, 1, true, ColorSet::MAGENTA);

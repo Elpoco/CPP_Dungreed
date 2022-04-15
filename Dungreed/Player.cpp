@@ -50,7 +50,6 @@ void Player::update()
 	this->move();
 	Unit::updateRect();
 	this->animation();
-	this->settingWeapon();
 	_inventory->update();
 }
 
@@ -78,6 +77,7 @@ void Player::hitAttack(int dmg, int dir)
 
 void Player::move()
 {
+	if (_inventory->isOpen()) return;
 	_state = PLAYER_MOTION::IDLE;
 
 	if (IsStayKeyDown(KEY::LEFT))	this->moveLeft();
@@ -93,7 +93,6 @@ void Player::move()
 	{
 		//_y -= _moveSpeed;
 	}
-
 
 	if (IsOnceKeyDown(KEY::UP) ||
 		IsOnceKeyDown(KEY::SPACE))  Unit::jump();
@@ -127,21 +126,25 @@ void Player::move()
 	{
 		_state = PLAYER_MOTION::JUMP;
 	}
-}
 
-void Player::animation()
-{
+	// 캐릭터 좌우
 	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
 	{
 		_isLeft = true;
 		_mainHandX = _x - 15;
 	}
-	else 
-	{ 
-		_isLeft = false; 
+	else
+	{
+		_isLeft = false;
 		_mainHandX = _x + 15;
 	}
 
+	// 무기 각도
+	this->settingWeapon();
+}
+
+void Player::animation()
+{
 	if (_isHit)
 	{
 		if (_frameInfo.cnt == 0)

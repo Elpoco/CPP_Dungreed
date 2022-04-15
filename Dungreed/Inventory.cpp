@@ -19,6 +19,11 @@ HRESULT Inventory::init()
 {
 	settingUI();
 
+	for (int i=0; i<CELL_CNT; i++)
+	{
+		//_vItems[i] = new Item();
+	}
+
 	return S_OK;
 }
 
@@ -44,6 +49,7 @@ void Inventory::update()
 
 void Inventory::render(HDC hdc)
 {
+	if (!_isOpen) return;
 }
 
 void Inventory::settingUI()
@@ -84,6 +90,7 @@ void Inventory::toggleInventory()
 	_isOpen = !_isOpen;
 	if (_isOpen)
 	{
+		UIMANAGER->setCursor(UIEnum::CURSOR_TYPE::NORMAL);
 		SOUNDMANAGER->play(SoundName::invenOpen, _sound);
 		for (auto ui : _vUI)
 		{
@@ -92,6 +99,7 @@ void Inventory::toggleInventory()
 	}
 	else
 	{
+		UIMANAGER->setCursor(UIEnum::CURSOR_TYPE::TARGET);
 		for (auto ui : _vUI)
 		{
 			ui->hide();

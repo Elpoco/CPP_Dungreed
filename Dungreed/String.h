@@ -1,6 +1,8 @@
 #pragma once
 namespace ImageName
 {
+	constexpr char* none = "IMG none";
+
 	namespace Player
 	{
 		constexpr char* idle = "PLAYER_idle";
@@ -53,7 +55,8 @@ namespace ImageName
 
 	namespace UI
 	{
-		constexpr char* logo = "UI_logo";
+		constexpr char* logo = "UI logo";
+		constexpr char* bird = "UI bird";
 
 		namespace Button
 		{
@@ -64,7 +67,8 @@ namespace ImageName
 
 		namespace Cursor
 		{
-			constexpr char* cursor = "Cursor";
+			constexpr char* cursor = "CURSOR Cursor";
+			constexpr char* attack = "CURSOR attack";
 		}
 
 		namespace Font

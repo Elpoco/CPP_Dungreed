@@ -29,13 +29,4 @@ namespace UnitSet
 	constexpr float MOVE_SPEED = 3.0f;
 	constexpr float JUMP_SPEED = 8.0f;
 	constexpr float GRAVITY = 0.1f;
-
-	namespace Enemy
-	{
-		namespace SkelDog { constexpr int HP = 10; }
-		namespace LittleGhost { constexpr int HP = 2; }
-		namespace Belial { constexpr int HP = 20; }
-		namespace Niflheim { constexpr int HP = 20; }
-		namespace NiflheimPillar { constexpr int HP = 10; }
-	}
 }
