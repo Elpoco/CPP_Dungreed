@@ -1,7 +1,9 @@
 #include "Stdafx.h"
 #include "ItemManager.h"
 
+#include "Item.h"
 #include "DropItem.h"
+#include "Sword.h"
 
 ItemManager::ItemManager()
 {
@@ -28,25 +30,43 @@ void ItemManager::render(HDC hdc)
 {
 }
 
-string ItemManager::findCodeImage(Code::ITEM code)
+Item* ItemManager::getItem(Code::ITEM code)
 {
-	string res;
+	Item* item;
+		item = new Sword(code);
+	switch (code)
+	{
+	case Code::ITEM::SHOT_SWORD:
+		break;
+	case Code::ITEM::GREAT_SWORD:
+		break;
+	case Code::ITEM::ITEM_CNT:
+		break;
+	default:
+		break;
+	}
+	return item;
+}
+
+ImageBase* ItemManager::findCodeImage(Code::ITEM code)
+{
+	string imgName;
 	switch (code)
 	{
 	case Code::ITEM::COIN:
-		res = ImageName::Item::Gold::coin;
+		imgName = ImageName::Item::Gold::coin;
 		break;
 	case Code::ITEM::BULLION:
-		res = ImageName::Item::Gold::bullion;
+		imgName = ImageName::Item::Gold::bullion;
 		break;
 	case Code::ITEM::SHOT_SWORD:
-		res = ImageName::Item::Weapon::basicShotSwordDrop;
+		imgName = ImageName::Item::Weapon::basicShotSword;
 		break;
 	default:
-		res = "";
+		imgName = "";
 		break;
 	}
-	return res;
+	return FindImage(imgName);
 }
 
 void ItemManager::dropItem(Code::ITEM code, float x, float y)

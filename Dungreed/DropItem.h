@@ -4,13 +4,11 @@
 class DropItem : public Object
 {
 private:
-	ImageBase* _img;
-	string _imgName;
-	FRAME_INFO _frameInfo;
-	bool _isStop;
-	float _dropSpeed;
-
-	Code::ITEM _itemCode;
+	Code::ITEM	_itemCode;
+	FRAME_INFO	_frameInfo;
+	ImageBase*	_img;
+	float		_dropSpeed;
+	bool		_isStop;
 
 public:
 	DropItem(Code::ITEM code, float x, float y);

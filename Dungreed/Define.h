@@ -3,15 +3,15 @@
 // ==========
 // # Window #
 // ==========
-#define WINNAME				(LPSTR)(TEXT("Dungreed"))
+#define WINNAME	  	(LPSTR)(TEXT("Dungreed"))
 
-#define WINSTART_X			100
-#define WINSTART_Y			100
-#define WINSIZE_X			1280
-#define WINSIZE_Y			800
-#define WINSTYLE			WS_CAPTION | WS_SYSMENU
-#define CENTER_X		(WINSIZE_X / 2)
-#define CENTER_Y		(WINSIZE_Y / 2)
+#define WINSTART_X	100
+#define WINSTART_Y	100
+#define WINSIZE_X 	1280
+#define WINSIZE_Y 	800
+#define WINSTYLE  	WS_CAPTION | WS_SYSMENU
+#define CENTER_X  	(WINSIZE_X / 2)
+#define CENTER_Y  	(WINSIZE_Y / 2)
 
 // ==============
 // # 매크로 함수 #

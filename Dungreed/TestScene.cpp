@@ -31,7 +31,8 @@ void TestScene::update()
 	if (IsOnceKeyDown(VK_RBUTTON))
 	{
 		ITEMMANAGER->dropItem(
-			(Code::ITEM)RND->getInt(3),
+			//(Code::ITEM)RND->getInt(3),
+			(Code::ITEM)2,
 			CAMERAMANAGER->calAbsX(_ptMouse.x),
 			CAMERAMANAGER->calAbsY(_ptMouse.y)
 		);

@@ -95,7 +95,7 @@ void CameraManager::render(HDC hdc, ImageBase* img, float x, float y, int angle,
 	img->render(hdc, x - _x, y - _y, angle, rotateCenter);
 }
 
-void CameraManager::frameRender(HDC hdc, ImageBase * img, float x, float y, int frameX, int frameY)
+void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY)
 {
 	if (this->checkObjectInCamera(x, y, img->getFrameWidth(), img->getFrameHeight())) return;
 

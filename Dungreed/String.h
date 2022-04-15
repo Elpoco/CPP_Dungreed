@@ -110,7 +110,6 @@ namespace ImageName
 		namespace Weapon
 		{
 			constexpr char* basicShotSword = "WEAPON BasicShotSword";
-			constexpr char* basicShotSwordDrop = "WEAPON BasicShotSwordDrop";
 		}
 
 		namespace Gold

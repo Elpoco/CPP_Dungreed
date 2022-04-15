@@ -22,11 +22,11 @@ protected:
 	float _imgHeight;
 	bool _isStopAnimation;
 
-	bool _isLeft;
-	bool _isJump;
-	bool _isFall;
-	bool _isFlying;
-	bool _isHit;
+	BOOL _isLeft;
+	BOOL _isJump;
+	BOOL _isFall;
+	BOOL _isFlying;
+	BOOL _isHit;
 	float _hitTime;
 
 	float _moveSpeed;

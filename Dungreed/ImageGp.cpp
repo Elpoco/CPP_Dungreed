@@ -33,8 +33,10 @@ HRESULT ImageGp::init(HDC hdc, const WCHAR* fileName, float scaleW, float scaleH
 	_imageInfo = new GP_IMAGE_INFO;
 	_imageInfo->width = _img->GetWidth();
 	_imageInfo->height = _img->GetHeight();
-	_imageInfo->scaleW = scaleW;
-	_imageInfo->scaleH = scaleH;
+	_imageInfo->maxFrameX = 1;
+	_imageInfo->maxFrameY = 1;
+	_imageInfo->frameWidth = _imageInfo->width;
+	_imageInfo->frameHeight = _imageInfo->height;
 
 	return S_OK;
 }
@@ -82,6 +84,9 @@ void ImageGp::render(HDC hdc, float x, float y, int angle, POINT rotateCenter)
 	_graphics->SetTransform(&matrix);
 
 	_graphics->DrawImage(_img, x, y);
+
+	Matrix release;
+	_graphics->SetTransform(&release);
 }
 
 void ImageGp::frameRender(HDC hdc, float x, float y, int frameX, int frameY)
@@ -115,4 +120,7 @@ void ImageGp::frameRender(HDC hdc, float x, float y, int frameX, int frameY, int
 		_imageInfo->frameHeight,
 		Unit::UnitPixel
 	);
+
+	Matrix release;
+	_graphics->SetTransform(&release);
 }

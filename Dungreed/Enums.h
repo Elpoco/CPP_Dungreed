@@ -70,25 +70,27 @@ namespace ObjectEnum
 {
 	enum class TYPE
 	{
+		// 밑으로 갈수록 랜더를 나중에 함
 		EFFECT_BACK,
 		NPC,
 		ENEMY,
 		ENEMY_OBJ,
 		ITEM_DROP,
-		ITEM,
 		PLAYER,
+		ITEM,
 		PLAYER_OBJ,
 		EFFECT,
 		UI,
 		BUTTON,
 		UI_FRONT,
+
 		TYPE_CNT
 	};
 }
 
 namespace Code
 {
-	enum UNIT
+	enum class UNIT
 	{
 		PLAYER,
 		SKEL_DOG,
@@ -100,7 +102,7 @@ namespace Code
 		UNIT_CNT
 	};
 
-	enum ITEM_TYPE
+	enum class ITEM_TYPE
 	{
 		GOLD,
 		WEAPON,
@@ -109,7 +111,7 @@ namespace Code
 		ITEM_TYPE_CNT
 	};
 
-	enum ITEM
+	enum class ITEM
 	{
 		COIN,
 		BULLION,

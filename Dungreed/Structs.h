@@ -59,13 +59,14 @@ typedef struct tagFrameInfo
 
 typedef struct tagEnemyInfo
 {
+	Code::UNIT code;
 	string name;
 	int hp;
 
 	tagEnemyInfo() {}
-
-	tagEnemyInfo(string name, int hp)
+	tagEnemyInfo(Code::UNIT code, string name, int hp)
 	{
+		this->code = code;
 		this->name = name;
 		this->hp = hp;
 	}
@@ -73,16 +74,19 @@ typedef struct tagEnemyInfo
 
 typedef struct tagItemInfo
 {
-	string name;
 	Code::ITEM_TYPE type;
+	Code::ITEM code;
+	string name;
 	int point;
+	int maxPoint;
 
 	tagItemInfo() {}
-
-	tagItemInfo(string name, Code::ITEM_TYPE type, int point)
+	tagItemInfo(Code::ITEM_TYPE type, Code::ITEM code, string name, int point, int maxPoint = 0)
 	{
-		this->name = name;
 		this->type = type;
+		this->code = code;
+		this->name = name;
 		this->point = point;
+		this->maxPoint = maxPoint;
 	}
 } ITEM_INFO;

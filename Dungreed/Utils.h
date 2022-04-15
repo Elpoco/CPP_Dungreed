@@ -3,6 +3,7 @@
 // =========
 // # Utils #
 // =========
+#define TO_INT(n) static_cast<int>(n)
 
 namespace MY_UTIL
 {
@@ -15,9 +16,10 @@ namespace MY_UTIL
 
 	float GetDistance(float startX, float startY, float endX, float endY);
 	float GetAngle(float startX, float startY, float endX, float endY);
+	float GetAngle(POINT startPt, POINT endPt);
 	int GetAngleDeg(float startX, float startY, float endX, float endY);
-	int radToDeg(float angle);
-	float degToRad(int angle);
+	int RadToDeg(float angle);
+	float DegToRad(int angle);
 
 	bool MouseInRect(RECT& rc);
 
@@ -88,20 +90,11 @@ namespace MY_UTIL
 
 	void PrintPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format = "%d, %d");
 
-	// ============
-	// # template #
-	// ============
 	template<typename T>
 	void swapValue(T& a, T& b)
 	{
 		T temp = a;
 		a = b;
 		b = temp;
-	}
-
-	template<typename T>
-	int castingToInt(T num)
-	{
-		return static_cast<int>(num);
 	}
 }

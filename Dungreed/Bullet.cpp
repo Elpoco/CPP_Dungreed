@@ -108,11 +108,11 @@ void Bullet::render(HDC hdc)
 	{
 		if (_frameInfo.isFrame)
 		{
-			CAMERAMANAGER->frameRender(hdc, _gpImg, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, radToDeg(_angle), PointMake(_x, _y));
+			CAMERAMANAGER->frameRender(hdc, _gpImg, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, RadToDeg(_angle), PointMake(_x, _y));
 		}
 		else
 		{
-			CAMERAMANAGER->render(hdc, _gpImg, _rc.left, _rc.top, radToDeg(_angle) + 90, PointMake(_x,_y));
+			CAMERAMANAGER->render(hdc, _gpImg, _rc.left, _rc.top, RadToDeg(_angle) + 90, PointMake(_x,_y));
 		}
 	}
 }

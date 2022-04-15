@@ -4,18 +4,15 @@
 class Item : public Object
 {
 protected:
-	enum class ITEM_TYPE
-	{
-		NONE,
-		WEAPON,
-		ARMOR,
-	};
-
-private:
-	string _name;
-	ITEM_TYPE _type;
+	ITEM_INFO _info;
 	ImageBase* _img;
-	Code::ITEM _itemCode;
+	FRAME_INFO _frameInfo;
+
+	BOOL _isEquip;
+	int _angle;
+
+	POINT* _ptHand;
+	BOOL* _isLeft;
 
 public:
 	Item(Code::ITEM itemCode);
@@ -27,6 +24,12 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual RECT attack() { return { 0,0,0,0 }; }
+
+	void equip() { _isEquip = TRUE; }
+	void unequip() { _isEquip = FALSE; }
+
+	void setPos(POINT* pt) { _ptHand = pt; }
+	void setIsLeft(BOOL* isLeft) { _isLeft = isLeft; }
 	
 };
 

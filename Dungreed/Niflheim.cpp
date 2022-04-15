@@ -303,7 +303,7 @@ void Niflheim::moveAndFire()
 			float x = _pillar[i]->getX();
 			float y = _pillar[i]->getY();
 			int angle = _pillar[i]->getImgAngle();
-			this->shootBullet(x, y, degToRad(angle));
+			this->shootBullet(x, y, DegToRad(angle));
 		}
 	}
 

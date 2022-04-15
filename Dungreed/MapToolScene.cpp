@@ -44,17 +44,12 @@ void MapToolScene::update()
 {
 	TILEMANAGER->update();
 
-	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::UP)))	 _camera->setY(_camera->getY() - CAMERA_SPPED);
-	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::DOWN)))  _camera->setY(_camera->getY() + CAMERA_SPPED);
-	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::LEFT)))  _camera->setX(_camera->getX() - CAMERA_SPPED);
-	if (KEYMANAGER->isStayKeyDown(castingToInt(KEY::RIGHT))) _camera->setX(_camera->getX() + CAMERA_SPPED);
+	if (IsStayKeyDown(KEY::UP))	 _camera->setY(_camera->getY() - CAMERA_SPPED);
+	if (IsStayKeyDown(KEY::DOWN))  _camera->setY(_camera->getY() + CAMERA_SPPED);
+	if (IsStayKeyDown(KEY::LEFT))  _camera->setX(_camera->getX() - CAMERA_SPPED);
+	if (IsStayKeyDown(KEY::RIGHT)) _camera->setX(_camera->getX() + CAMERA_SPPED);
 
-	//if (KEYMANAGER->isStayKeyDown(VK_UP))	 _y -= CAMERA_SPPED;
-	//if (KEYMANAGER->isStayKeyDown(VK_DOWN))  _y += CAMERA_SPPED;
-	//if (KEYMANAGER->isStayKeyDown(VK_LEFT))  _x -= CAMERA_SPPED;
-	//if (KEYMANAGER->isStayKeyDown(VK_RIGHT)) _x += CAMERA_SPPED;
-
-	if (KEYMANAGER->isOnceKeyDown(VK_LBUTTON))
+	if (IsOnceKeyDown(VK_LBUTTON))
 	{
 		_startCursor = _ptMouse;
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "Unit.h"
 
+class Item;
 class Inventory;
 
 namespace PlayerSet
@@ -20,11 +21,9 @@ private:
 	};
 
 private:
-	ImageBase* _weapon;
+	POINT _hand;
+	Item* _item;
 	int _mainHandX;
-	RECT _rcWeapon;
-	int _angleWeapon;
-	int _atkCnt;		// 첫번째 공격인지 두번째 공격인지
 
 	Inventory* _inventory;
 

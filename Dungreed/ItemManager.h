@@ -1,6 +1,8 @@
 #pragma once
 #include "SingletonBase.h"
 
+class Item;
+
 class ItemManager : public SingletonBase<ItemManager>
 {
 
@@ -13,7 +15,9 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	string findCodeImage(Code::ITEM code);
+	Item* getItem(Code::ITEM code);
+
+	ImageBase* findCodeImage(Code::ITEM code);
 
 	void dropItem(Code::ITEM code, float x, float y);
 

@@ -56,17 +56,22 @@ namespace MY_UTIL
 		return angle;
 	}
 
+	float GetAngle(POINT startPt, POINT endPt)
+	{
+		return GetAngle(startPt.x, startPt.y, endPt.x, endPt.y);
+	}
+
 	int GetAngleDeg(float startX, float startY, float endX, float endY)
 	{
 		return GetAngle(startX, startY, endX, endY) / PI * 180;
 	}
 
-	int radToDeg(float angle)
+	int RadToDeg(float angle)
 	{
 		return angle / PI * 180;
 	}
 
-	float degToRad(int angle)
+	float DegToRad(int angle)
 	{
 		return angle * PI / 180;
 	}

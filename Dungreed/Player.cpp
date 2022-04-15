@@ -1,6 +1,7 @@
 #include "Stdafx.h"
 #include "Player.h"
 
+#include "Item.h"
 #include "Inventory.h"
 
 using namespace PlayerSet;
@@ -28,9 +29,13 @@ HRESULT Player::init()
 
 	CAMERAMANAGER->followCamera(this);
 
-	_weapon = FindImage(ImageName::Item::Weapon::basicShotSword);
+	_item = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+	_item->setPos(&_hand);
+	_item->setIsLeft(&_isLeft);
+	_item->equip();
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ITEM, _item);
+
 	_mainHandX = 15;
-	_atkCnt = 0;
 
 	_inventory = new Inventory();
 	OBJECTMANAGER->addUI(_inventory);
@@ -58,8 +63,6 @@ void Player::render(HDC hdc)
 	Unit::render(hdc);
 
 	CAMERAMANAGER->printRectangle(hdc, RectMakeCenter(_mainHandX, _y + 20, 5, 5));
-
-	CAMERAMANAGER->render(hdc, _weapon, _rcWeapon.left, _rcWeapon.top, _angleWeapon, PointMake(_mainHandX, _y + 20));
 
 	_inventory->render(hdc);
 }
@@ -100,21 +103,7 @@ void Player::move()
 	_rcAttack = { 0,0,0,0 };
 	if (IsOnceKeyDown(KEY::CLICK_L))
 	{
-		if (_atkCnt == 0) _atkCnt = 1;
-		else _atkCnt = 0;
-
-		float angle = GetAngle(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.x, _ptMouse.y);
-
-		float effectX = cosf(angle) * 30 + _x;
-		float effectY = -sinf(angle) * 30 + _y;
-
-		_rcAttack = OBJECTMANAGER->addEffect(
-				ImageName::Effect::Weapon::effectBasic,
-				effectX,
-				effectY,
-				angle / PI * 180,
-				PointMake(effectX, effectY)
-		);
+		_rcAttack = _item->attack();
 	}
 
 	if (IsOnceKeyDown(KEY::CLICK_R))
@@ -131,16 +120,15 @@ void Player::move()
 	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
 	{
 		_isLeft = true;
-		_mainHandX = _x - 15;
+		_mainHandX = _x - 20;
 	}
 	else
 	{
 		_isLeft = false;
-		_mainHandX = _x + 15;
+		_mainHandX = _x + 20;
 	}
 
-	// 무기 각도
-	this->settingWeapon();
+	_hand = PointMake(_mainHandX, _y + 20);
 }
 
 void Player::animation()
@@ -183,33 +171,4 @@ void Player::moveRight()
 	_state = PLAYER_MOTION::RUN;
 	if (!_isCollision[ColliderEnum::DIRECTION::RIGHT])
 		_x += _moveSpeed;
-}
-
-void Player::settingWeapon()
-{
-	_rcWeapon = RectMakeCenter(_mainHandX, _y + 20, _weapon->getWidth(), _weapon->getHeight());
-	_angleWeapon = GetAngleDeg(CAMERAMANAGER->calRelX(_x), CAMERAMANAGER->calRelY(_y), _ptMouse.x, _ptMouse.y);
-
-	if (_isLeft)
-	{
-		if (_atkCnt == 0)
-		{
-			_angleWeapon -= 80;
-		}
-		else
-		{
-			_angleWeapon -= 190;
-		}
-	}
-	else
-	{
-		if (_atkCnt == 0)
-		{
-			_angleWeapon += 80;
-		}
-		else
-		{
-			_angleWeapon += 190;
-		}
-	}
 }
