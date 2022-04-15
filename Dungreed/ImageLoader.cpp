@@ -94,7 +94,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::Cursor::cursor, PATH_IMAGE"UI/Cursor/BasicCursor.bmp", 0, 0, true, ColorSet::MAGENTA);
 	// 이미지 폰트
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::damage, PATH_IMAGE"UI/Font/DamageFont.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::gold, PATH_IMAGE"UI/Font/GoldFont.bmp", 0, 0, 11, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::gold, PATH_IMAGE"UI/Font/GoldFont.bmp", 165, 26, 11, 1, true, ColorSet::MAGENTA);
 	// 인벤토리
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::base, PATH_IMAGE"UI/Inventory/InventoryBase.bmp");
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Inventory::btn, PATH_IMAGE"UI/Inventory/InventoryExit.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);

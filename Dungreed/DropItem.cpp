@@ -1,7 +1,7 @@
 #include "Stdafx.h"
 #include "DropItem.h"
 
-DropItem::DropItem(Code::Item code, float x, float y)
+DropItem::DropItem(Code::ITEM code, float x, float y)
 	: _itemCode(code)
 	, _isStop(false)
 	, _dropSpeed(0.0f)
@@ -57,12 +57,12 @@ void DropItem::render(HDC hdc)
 
 void DropItem::collisionObject(int dir)
 {
-	if (_itemCode <= Code::Item::BULLION)
+	if (_itemCode <= Code::ITEM::BULLION)
 	{
-		if(_itemCode == Code::Item::BULLION)
-			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 100, dir);
+		if(_itemCode == Code::ITEM::BULLION)
+			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 100, dir, ImageFontEnum::FONT_TYPE::GOLD);
 		else
-			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 10, dir);
+			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 10, dir, ImageFontEnum::FONT_TYPE::GOLD);
 		
 		SOUNDMANAGER->play(SoundName::Item::getCoin, _sound);
 	}

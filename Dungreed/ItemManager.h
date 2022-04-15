@@ -13,9 +13,9 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	string findCodeImage(Code::Item code);
+	string findCodeImage(Code::ITEM code);
 
-	void dropItem(Code::Item code, float x, float y);
+	void dropItem(Code::ITEM code, float x, float y);
 
 };
 

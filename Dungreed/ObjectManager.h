@@ -22,7 +22,7 @@ public:
 	void render(HDC hdc);
 
 	void addObject(ObjectEnum::TYPE type, Object* object);
-	void addUnit(Code::Unit code, float x, float y);
+	void addUnit(Code::UNIT code, float x, float y);
 	void addBullet(string imgName, float x, float y, float angle, float speed, float damage = 0.0f, string destroyImgName = "", float distance = 1500);
 	RECT addEffect(string imgName, float x, float y, BYTE alpha = 0, ObjectEnum::TYPE type = ObjectEnum::TYPE::EFFECT);
 	RECT addEffect(string imgName, float x, float y, int angle, POINT rotateCenter);
@@ -30,8 +30,8 @@ public:
 	void addUI(string imgName, int x, int y, BOOL fixed, BOOL show = TRUE);
 	void addButton(Object* obj);
 	void addButton(string imgName, int x, int y, BOOL fixed = TRUE, CALLBACK_FUNC cb = nullptr);
-	void addImageFont(float x, float y, int num, BOOL fixed = TRUE);
-	void addDynamicImageFont(float x, float y, int num, int dir, int type = 0);
+	void addImageFont(float x, float y, int num);
+	void addDynamicImageFont(float x, float y, int num, int dir, ImageFontEnum::FONT_TYPE type = ImageFontEnum::FONT_TYPE::DAMAGE);
 	void addDropItem(Object* obj);
 
 };

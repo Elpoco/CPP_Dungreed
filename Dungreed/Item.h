@@ -15,7 +15,7 @@ private:
 	string _name;
 	ITEM_TYPE _type;
 	ImageBase* _img;
-	Code::Item _itemCode;
+	Code::ITEM _itemCode;
 
 public:
 	Item();

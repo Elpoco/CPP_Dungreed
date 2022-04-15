@@ -23,7 +23,7 @@ enum KEY
 
 namespace MapToolEnum
 {
-	enum class TYPE : unsigned char
+	enum class TYPE
 	{
 		NONE,
 		BLOCK,
@@ -33,13 +33,13 @@ namespace MapToolEnum
 		WALLPAPER
 	};
 
-	enum class TERRAIN : unsigned char
+	enum class TERRAIN
 	{
 		TR_NONE,
 		TR_WALL
 	};
 
-	enum class MAP_OBJECT : unsigned char
+	enum class MAP_OBJECT
 	{
 		MO_NONE,
 		MO_BLOCK,
@@ -88,7 +88,7 @@ namespace ObjectEnum
 
 namespace Code
 {
-	enum class Unit
+	enum class UNIT
 	{
 		PLAYER,
 		SKEL_DOG,
@@ -99,7 +99,7 @@ namespace Code
 		UNIT_CNT
 	};
 
-	enum class Item
+	enum class ITEM
 	{
 		COIN,
 		BULLION,
@@ -107,5 +107,17 @@ namespace Code
 		// ¹«±â
 		SHOT_SWORD,
 		GREAT_SWORD,
+	};
+}
+
+namespace ImageFontEnum
+{
+	enum class FONT_TYPE
+	{
+		NORMAL,
+		DAMAGE,
+		GOLD,
+
+		FONT_CNT
 	};
 }

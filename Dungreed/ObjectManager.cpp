@@ -94,26 +94,26 @@ void ObjectManager::addObject(ObjectEnum::TYPE type, Object* object)
 	_mObjects.find(type)->second.push_back(object);
 }
 
-void ObjectManager::addUnit(Code::Unit code, float x, float y)
+void ObjectManager::addUnit(Code::UNIT code, float x, float y)
 {
 	switch (code)
 	{
-	case Code::Unit::PLAYER:
+	case Code::UNIT::PLAYER:
 		addObject(ObjectEnum::TYPE::PLAYER, new Player(x, y));
 		break;
-	case Code::Unit::SKEL_DOG:
+	case Code::UNIT::SKEL_DOG:
 		addObject(ObjectEnum::TYPE::ENEMY, new SkelDog(x, y));
 		break;
-	case Code::Unit::LITTLE_GHOST:
+	case Code::UNIT::LITTLE_GHOST:
 		addObject(ObjectEnum::TYPE::ENEMY, new LittleGhost(x, y));
 		break;
-	case Code::Unit::BELIAL:
+	case Code::UNIT::BELIAL:
 		addObject(ObjectEnum::TYPE::ENEMY, new Belial(x, y));
 		break;
-	case Code::Unit::NIFLEHEIM:
+	case Code::UNIT::NIFLEHEIM:
 		addObject(ObjectEnum::TYPE::ENEMY, new Niflheim(x, y));
 		break;
-	case Code::Unit::UNIT_CNT:
+	case Code::UNIT::UNIT_CNT:
 		break;
 	default:
 		break;
@@ -161,12 +161,12 @@ void ObjectManager::addButton(string imgName, int x, int y, BOOL fixed, CALLBACK
 	addObject(ObjectEnum::TYPE::BUTTON, new Button(imgName, x, y, fixed, cb));
 }
 
-void ObjectManager::addImageFont(float x, float y, int num, BOOL fixed)
+void ObjectManager::addImageFont(float x, float y, int num)
 {
-	addObject(ObjectEnum::TYPE::UI, new ImageFont(x, y, num, fixed));
+	addObject(ObjectEnum::TYPE::UI, new ImageFont(x, y, num));
 }
 
-void ObjectManager::addDynamicImageFont(float x, float y, int num, int dir, int type)
+void ObjectManager::addDynamicImageFont(float x, float y, int num, int dir, ImageFontEnum::FONT_TYPE type)
 {
 	addObject(ObjectEnum::TYPE::UI, new DynamicFont(x, y, num, dir, type));
 }

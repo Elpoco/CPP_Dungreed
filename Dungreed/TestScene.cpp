@@ -3,7 +3,7 @@
 
 HRESULT TestScene::init()
 {
-	OBJECTMANAGER->addUnit(Code::Unit::PLAYER, CENTER_X, 500);
+	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, CENTER_X, 500);
 	TILEMANAGER->loadMap();
 
 	return S_OK;
@@ -17,21 +17,21 @@ void TestScene::update()
 {
 	if (IsOnceKeyDown('Z'))
 	{
-		OBJECTMANAGER->addUnit(Code::Unit::SKEL_DOG, 100, 800);
+		OBJECTMANAGER->addUnit(Code::UNIT::SKEL_DOG, 100, 800);
 	}
 	if (IsStayKeyDown('B') && IsOnceKeyDown(VK_F1))
 	{
-		OBJECTMANAGER->addUnit(Code::Unit::BELIAL, 1000, 550);
+		OBJECTMANAGER->addUnit(Code::UNIT::BELIAL, 1000, 550);
 	}
 	if (IsStayKeyDown('B') && IsOnceKeyDown(VK_F2))
 	{
-		OBJECTMANAGER->addUnit(Code::Unit::NIFLEHEIM, 1000, 500);
+		OBJECTMANAGER->addUnit(Code::UNIT::NIFLEHEIM, 1000, 500);
 
 	}
 	if (IsOnceKeyDown(VK_RBUTTON))
 	{
 		ITEMMANAGER->dropItem(
-			(Code::Item)RND->getInt(3),
+			(Code::ITEM)RND->getInt(3),
 			CAMERAMANAGER->calAbsX(_ptMouse.x),
 			CAMERAMANAGER->calAbsY(_ptMouse.y)
 		);

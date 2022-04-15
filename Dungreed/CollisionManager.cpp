@@ -352,7 +352,7 @@ void CollisionManager::collisionItem()
 		for (Object* obj : pairItemObj->second)
 		{
 			DropItem* item = dynamic_cast<DropItem*>(obj);
-			Code::Item code = item->getCode();
+			Code::ITEM code = item->getCode();
 
 			RECT tmp;
 			RECT rcPlayer = player->getRect();

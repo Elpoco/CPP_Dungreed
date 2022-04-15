@@ -10,10 +10,10 @@ private:
 	bool _isStop;
 	float _dropSpeed;
 
-	Code::Item _itemCode;
+	Code::ITEM _itemCode;
 
 public:
-	DropItem(Code::Item code, float x, float y);
+	DropItem(Code::ITEM code, float x, float y);
 	virtual ~DropItem();
 
 	virtual HRESULT init() override;
@@ -28,7 +28,7 @@ public:
 	void move();
 	void animation();
 
-	Code::Item getCode() { return _itemCode; }
+	Code::ITEM getCode() { return _itemCode; }
 
 };
 

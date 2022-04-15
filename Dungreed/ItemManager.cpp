@@ -28,18 +28,18 @@ void ItemManager::render(HDC hdc)
 {
 }
 
-string ItemManager::findCodeImage(Code::Item code)
+string ItemManager::findCodeImage(Code::ITEM code)
 {
 	string res;
 	switch (code)
 	{
-	case Code::Item::COIN:
+	case Code::ITEM::COIN:
 		res = ImageName::Item::Gold::coin;
 		break;
-	case Code::Item::BULLION:
+	case Code::ITEM::BULLION:
 		res = ImageName::Item::Gold::bullion;
 		break;
-	case Code::Item::SHOT_SWORD:
+	case Code::ITEM::SHOT_SWORD:
 		res = ImageName::Item::Weapon::basicShotSwordDrop;
 		break;
 	default:
@@ -49,7 +49,7 @@ string ItemManager::findCodeImage(Code::Item code)
 	return res;
 }
 
-void ItemManager::dropItem(Code::Item code, float x, float y)
+void ItemManager::dropItem(Code::ITEM code, float x, float y)
 {
 	OBJECTMANAGER->addDropItem(new DropItem(code, x, y));
 }

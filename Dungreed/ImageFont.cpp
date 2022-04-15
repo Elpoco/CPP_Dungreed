@@ -1,12 +1,16 @@
 #include "Stdafx.h"
 #include "ImageFont.h"
 
-ImageFont::ImageFont(float x, float y, int num, BOOL fixed)
+using namespace ImageFontEnum;
+
+ImageFont::ImageFont(float x, float y, int num, FONT_TYPE type)
 	: _num(num)
+	, _type(type)
+	, _alpha(0)
 {
 	_x = x;
 	_y = y;
-	_isFixed = fixed;
+	_isFixed = TRUE;
 }
 
 ImageFont::~ImageFont()
@@ -26,7 +30,8 @@ HRESULT ImageFont::init()
 		_arrNum[i] = _num % 10;
 		_num /= 10;
 	}
-	// 골드 먹는거 숫자 자리 작업중..
+
+	this->settingImage(_type);
 
 	return S_OK;
 }
@@ -43,12 +48,51 @@ void ImageFont::update()
 
 void ImageFont::render(HDC hdc)
 {
-	if (_isFixed)
+	for (int i = 0; i < _arrLen; i++)
 	{
-		_img->frameRender(hdc, _x, _y, _num, 0);
+		switch (_type)
+		{
+		case ImageFontEnum::FONT_TYPE::DAMAGE:
+			CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _num, 0, _alpha);
+			break;
+		case ImageFontEnum::FONT_TYPE::GOLD:
+			CAMERAMANAGER->frameRender(hdc, _img, _x + i * _imgWidth, _y, _arrNum[i], 0, _alpha);
+			if (i == _arrLen - 1)
+			{
+				CAMERAMANAGER->frameRender(hdc, _img, _x + (i+1) * _imgWidth, _y, 10, 0, _alpha);
+			}
+			break;
+		case ImageFontEnum::FONT_TYPE::NORMAL:
+		default:
+
+			if (_isFixed)
+			{
+				_img->frameRender(hdc, _x, _y, _num, 0);
+			}
+			else
+			{
+				CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _num, 0);
+			}
+			break;
+		}
 	}
-	else
+}
+
+void ImageFont::settingImage(FONT_TYPE type)
+{
+	switch (type)
 	{
-		CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _num, 0);
+	case ImageFontEnum::FONT_TYPE::DAMAGE:
+		_img = FindImage(ImageName::UI::Font::damage);
+		break;
+	case ImageFontEnum::FONT_TYPE::GOLD:
+		_img = FindImage(ImageName::UI::Font::gold);
+		break;
+	case ImageFontEnum::FONT_TYPE::NORMAL:
+	default:
+		_img = FindImage(ImageName::UI::Font::damage);
+		break;
 	}
+	_imgWidth = _img->getFrameWidth();
+	_imgHeight = _img->getFrameHeight();
 }
