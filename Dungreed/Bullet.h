@@ -4,21 +4,22 @@ class Bullet : public Object
 {
 private:
 	FRAME_INFO	_frameInfo;
+	ImageBase*	_img;
 	string		_imgName; 
 	string		_destroyImgName;
-	Image*		_img;
-	ImageGp*	_gpImg;
 
 	float _startX;
 	float _startY;
 	float _angle;
 	float _speed;
-	float _damage;
 	float _distance;
+	int   _damage;
+
+	BOOL _isGP;
 
 public:
 	Bullet(string imgName, float x, float y, float angle, float speed, 
-		float damage = 0.0f, string destroyImgName = "", float distance = 1500);
+		int damage, string destroyImgName = "", float distance = 1500);
 	virtual ~Bullet();
 
 	virtual HRESULT init() override;
@@ -27,7 +28,9 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual void deleteEffect() override;
-	virtual void collisionObject(int dir) override;
+	virtual void collisionObject() override;
+
+	virtual int getDmg() override { return _damage; }
 
 	void move();
 	void animation();

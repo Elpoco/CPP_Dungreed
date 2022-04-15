@@ -5,19 +5,16 @@ UI::UI()
 	: _img(nullptr)
 	, _isFixed(FALSE)
 	, _isShow(TRUE)
+	, _free(FALSE)
 {
 }
 
 UI::UI(string imgName, int x, int y, BOOL fixed, BOOL show)
 	: _isFixed(fixed)
 	, _isShow(show)
+	, _free(FALSE)
 {
-	_img = IMAGEMANAGER->findImage(imgName);
-
-	if (!_img)
-	{
-		_img = GPIMAGEMANAGER->findImage(imgName);
-	}
+	_img = FindImage(imgName);
 
 	_x = x;
 	_y = y;
@@ -25,7 +22,7 @@ UI::UI(string imgName, int x, int y, BOOL fixed, BOOL show)
 	_frameInfo.maxFrameX = _img->getMaxFrameX();
 	_frameInfo.maxFrameY = _img->getMaxFrameY();
 
-	if (_frameInfo.maxFrameX > 1 || _frameInfo.maxFrameY > 1)
+	if (_frameInfo.maxFrameX > 0 || _frameInfo.maxFrameY > 0)
 	{
 		_width = _img->getFrameWidth();
 		_height = _img->getFrameHeight();
@@ -56,7 +53,7 @@ void UI::release()
 
 void UI::update()
 {
-	if (_sceneName != SCENEMANAGER->getCurrentSceneName())
+	if (!_free && _sceneName != SCENEMANAGER->getCurrentSceneName())
 	{
 		_isLive = FALSE;
 		return;
@@ -76,7 +73,8 @@ void UI::render(HDC hdc)
 
 	if (_isFixed)
 	{
-		_img->frameRender(hdc, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
+		if (_alpha > 0) _img->frameAlphaRender(hdc, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, _alpha);
+		else _img->frameRender(hdc, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 	}
 	else
 	{

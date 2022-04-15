@@ -96,8 +96,8 @@ HRESULT Image::init(const char* fileName, int width, int height, BOOL isTrans, C
 	_imageInfo->height = height * scale; 
 	_imageInfo->currentFrameX = 0;
 	_imageInfo->currentFrameY = 0;
-	_imageInfo->maxFrameX = 1;
-	_imageInfo->maxFrameY = 1;
+	_imageInfo->maxFrameX = 0;
+	_imageInfo->maxFrameY = 0;
 	_imageInfo->frameWidth = width;
 	_imageInfo->frameHeight = height;
 	
@@ -175,7 +175,7 @@ HRESULT Image::init(const char* fileName, int width, int height, int maxFrameX, 
 	_imageInfo->currentFrameX = 0;
 	_imageInfo->currentFrameY = 0;
 	_imageInfo->maxFrameX = maxFrameX - 1;
-	_imageInfo->maxFrameY = maxFrameY;
+	_imageInfo->maxFrameY = maxFrameY - 1;
 	_imageInfo->frameWidth = width / maxFrameX;
 	_imageInfo->frameHeight = height / maxFrameY;
 

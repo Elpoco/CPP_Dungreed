@@ -5,7 +5,6 @@ using namespace DynamicFontSet;
 
 DynamicFont::DynamicFont(float x, float y, int num, int dir, ImageFontEnum::FONT_TYPE type)
 	: ImageFont(x, y, num)
-	, _alpha(0)
 	, _down(0.0f)
 	, _dir(dir)
 {

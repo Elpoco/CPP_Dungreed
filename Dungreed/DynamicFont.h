@@ -9,7 +9,6 @@ namespace DynamicFontSet
 class DynamicFont : public ImageFont
 {
 private:
-	BYTE	_alpha;
 	float	_initTime;
 	float	_down;
 	int		_dir;

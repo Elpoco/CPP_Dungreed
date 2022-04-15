@@ -103,7 +103,6 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::base, PATH_IMAGE"UI/Inventory/InventoryBase.bmp");
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Inventory::btn, PATH_IMAGE"UI/Inventory/InventoryExit.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Inventory::Cell, PATH_IMAGE"UI/Inventory/Cell.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
-
 #pragma endregion
 
 	// Town
@@ -115,9 +114,13 @@ void ImageLoader::loadImages()
 	// ========
 	// # Item #
 	// ========
-	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword.png");
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::coin, PATH_ITEM"Gold/Coin.bmp", 0, 0, 8, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::bullion, PATH_ITEM"Gold/Bullion.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword.png");
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::basicShotSwordInven, PATH_ITEM"Weapon/BasicShortSword_inven.bmp", 0, 0, true, ColorSet::MAGENTA);
+//	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt.png");
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt_Drop.png", 1,2);
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::coltInven, PATH_ITEM"Weapon/Colt_inven.bmp", 0, 0, true, ColorSet::MAGENTA);
 
 	// ==========
 	// # Effect #

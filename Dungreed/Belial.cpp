@@ -157,8 +157,8 @@ void Belial::initAnimation()
 	_vImages.push_back(FindImage(ImageName::Enemy::Belial::attack));
 
 	_imgBack = FindImage(ImageName::Enemy::Belial::back);
-	_backFrameInfo.maxFrameX = _imgBack->getMaxFrameX();
 	_rcBack = RectMakeCenter(_x + 23, _y + 60, _imgBack->getFrameWidth(), _imgBack->getFrameHeight());
+	_backFrameInfo.maxFrameX = _imgBack->getMaxFrameX();
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
@@ -194,7 +194,7 @@ void Belial::shootingBullet()
 		_frameInfo.startFrameX = 5;
 		_state = ATTACK;
 		_imgWidth = _vImages[_state]->getFrameWidth();
-		_imgHeight = _vImages[_state]->getFrameHeight()+30;
+		_imgHeight = _vImages[_state]->getFrameHeight() + 30;
 	}
 
 	if (_skillTick++ < 20) return;
@@ -204,12 +204,13 @@ void Belial::shootingBullet()
 	{
 		_shootAngle += PI / 2 * i;
 		OBJECTMANAGER->addBullet(
+			ObjectEnum::TYPE::ENEMY_OBJ,
 			ImageName::Enemy::Belial::bullet,
 			_x + 23,
 			_y + 55,
 			_shootAngle,
-			4.0f,
-			1.0f,
+			BULLET_SPEED,
+			BULLET_DMG,
 			ImageName::Enemy::Belial::bulletEffect
 		);
 	}

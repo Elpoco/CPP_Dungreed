@@ -82,6 +82,7 @@ namespace ObjectEnum
 		EFFECT,
 		UI,
 		BUTTON,
+		ITEM_FRONT,
 		UI_FRONT,
 
 		TYPE_CNT
@@ -119,6 +120,7 @@ namespace Code
 		// ¹«±â
 		SHOT_SWORD,
 		GREAT_SWORD,
+		COLT,
 
 		ITEM_CNT
 	};

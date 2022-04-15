@@ -88,7 +88,7 @@ void ObjectManager::render(HDC hdc)
 	}
 }
 
-void ObjectManager::addObject(ObjectEnum::TYPE type, Object* object)
+void ObjectManager::addObject(TYPE type, Object* object)
 {
 	object->init();
 	_mObjects.find(type)->second.push_back(object);
@@ -99,19 +99,19 @@ void ObjectManager::addUnit(Code::UNIT code, float x, float y)
 	switch (code)
 	{
 	case Code::UNIT::PLAYER:
-		addObject(ObjectEnum::TYPE::PLAYER, new Player(x, y));
+		addObject(TYPE::PLAYER, new Player(x, y));
 		break;
 	case Code::UNIT::SKEL_DOG:
-		addObject(ObjectEnum::TYPE::ENEMY, new SkelDog(x, y));
+		addObject(TYPE::ENEMY, new SkelDog(x, y));
 		break;
 	case Code::UNIT::LITTLE_GHOST:
-		addObject(ObjectEnum::TYPE::ENEMY, new LittleGhost(x, y));
+		addObject(TYPE::ENEMY, new LittleGhost(x, y));
 		break;
 	case Code::UNIT::BELIAL:
-		addObject(ObjectEnum::TYPE::ENEMY, new Belial(x, y));
+		addObject(TYPE::ENEMY, new Belial(x, y));
 		break;
 	case Code::UNIT::NIFLEHEIM:
-		addObject(ObjectEnum::TYPE::ENEMY, new Niflheim(x, y));
+		addObject(TYPE::ENEMY, new Niflheim(x, y));
 		break;
 	case Code::UNIT::UNIT_CNT:
 		break;
@@ -120,12 +120,12 @@ void ObjectManager::addUnit(Code::UNIT code, float x, float y)
 	}
 }
 
-void ObjectManager::addBullet(string imgName, float x, float y, float angle, float speed, float damage, string destroyImgName, float distance)
+void ObjectManager::addBullet(TYPE type, string imgName, float x, float y, float angle, float speed, int damage, string destroyImgName, float distance)
 {
-	addObject(ObjectEnum::TYPE::ENEMY_OBJ, new Bullet(imgName, x, y, angle, speed, damage, destroyImgName));
+	addObject(type, new Bullet(imgName, x, y, angle, speed, damage, destroyImgName));
 }
 
-RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, ObjectEnum::TYPE type)
+RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, TYPE type)
 {
 	Effect* effect = new Effect(imgName, x, y, alpha);
 	addObject(type, effect);
@@ -136,42 +136,47 @@ RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, Obje
 RECT ObjectManager::addEffect(string imgName, float x, float y, int angle, POINT rotateCenter)
 {
 	Effect* effect = new Effect(imgName, x, y, angle, rotateCenter);
-	addObject(ObjectEnum::TYPE::EFFECT, effect);
+	addObject(TYPE::EFFECT, effect);
 
 	return effect->getRect();
 }
 
 void ObjectManager::addUI(Object* obj)
 {
-	addObject(ObjectEnum::TYPE::UI, dynamic_cast<UI*>(obj));
+	addObject(TYPE::UI, obj);
 }
 
 void ObjectManager::addUI(string imgName, int x, int y, BOOL fixed, BOOL show)
 {
-	addObject(ObjectEnum::TYPE::UI, new UI(imgName, x, y, fixed, show));
+	addObject(TYPE::UI, new UI(imgName, x, y, fixed, show));
 }
 
 void ObjectManager::addButton(Object* obj)
 {
-	addObject(ObjectEnum::TYPE::BUTTON, obj);
+	addObject(TYPE::BUTTON, obj);
 }
 
 void ObjectManager::addButton(string imgName, int x, int y, BOOL fixed, CALLBACK_FUNC cb)
 {
-	addObject(ObjectEnum::TYPE::BUTTON, new Button(imgName, x, y, fixed, cb));
+	addObject(TYPE::BUTTON, new Button(imgName, x, y, fixed, cb));
 }
 
 void ObjectManager::addImageFont(float x, float y, int num)
 {
-	addObject(ObjectEnum::TYPE::UI, new ImageFont(x, y, num));
+	addObject(TYPE::UI, new ImageFont(x, y, num));
 }
 
 void ObjectManager::addDynamicImageFont(float x, float y, int num, int dir, ImageFontEnum::FONT_TYPE type)
 {
-	addObject(ObjectEnum::TYPE::UI, new DynamicFont(x, y, num, dir, type));
+	addObject(TYPE::UI, new DynamicFont(x, y, num, dir, type));
+}
+
+void ObjectManager::addItem(Object * obj)
+{
+	addObject(TYPE::ITEM, obj);
 }
 
 void ObjectManager::addDropItem(Object* obj)
 {
-	addObject(ObjectEnum::TYPE::ITEM_DROP, obj);
+	addObject(TYPE::ITEM_DROP, obj);
 }

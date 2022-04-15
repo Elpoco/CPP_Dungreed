@@ -37,12 +37,6 @@
     <Filter Include="API FrameWork\10. Timer">
       <UniqueIdentifier>{1ab14265-be7d-4bfe-8268-5e6e9f96fef3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="API FrameWork\12. Collider">
-      <UniqueIdentifier>{7423818a-c6a4-4d2f-980a-d7cbfdedf660}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="API FrameWork\12. Collider\PixelCollider">
-      <UniqueIdentifier>{41e39f3a-a2b5-4bae-b9eb-ed103a41e44a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="API FrameWork\13. Json">
       <UniqueIdentifier>{44fe4207-fedd-40e1-a5ed-c9c60c6cfc2d}</UniqueIdentifier>
     </Filter>
@@ -136,6 +130,15 @@
     <Filter Include="MainGame\04. DB">
       <UniqueIdentifier>{88713822-0b1b-4b22-a8ba-4b279048fcd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="API FrameWork\12. Collision">
+      <UniqueIdentifier>{7423818a-c6a4-4d2f-980a-d7cbfdedf660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API FrameWork\12. Collision\PixelCollider">
+      <UniqueIdentifier>{41e39f3a-a2b5-4bae-b9eb-ed103a41e44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\06. Item\Gun">
+      <UniqueIdentifier>{77c992eb-6b61-4237-9096-3e42e110af05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -190,7 +193,7 @@
       <Filter>MainGame\02. Object\01. Unit\Player</Filter>
     </ClCompile>
     <ClCompile Include="PixelCollider.cpp">
-      <Filter>API FrameWork\12. Collider\PixelCollider</Filter>
+      <Filter>API FrameWork\12. Collision\PixelCollider</Filter>
     </ClCompile>
     <ClCompile Include="CameraManager.cpp">
       <Filter>API FrameWork\07. Camera</Filter>
@@ -220,7 +223,7 @@
       <Filter>API FrameWork\06. Manager</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
-      <Filter>API FrameWork\12. Collider</Filter>
+      <Filter>API FrameWork\12. Collision</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>MainGame\02. Object</Filter>
@@ -309,6 +312,9 @@
     <ClCompile Include="DataBaseManager.cpp">
       <Filter>MainGame\04. DB</Filter>
     </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>MainGame\02. Object\06. Item\Gun</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -366,7 +372,7 @@
       <Filter>MainGame\02. Object\01. Unit\Player</Filter>
     </ClInclude>
     <ClInclude Include="PixelCollider.h">
-      <Filter>API FrameWork\12. Collider\PixelCollider</Filter>
+      <Filter>API FrameWork\12. Collision\PixelCollider</Filter>
     </ClInclude>
     <ClInclude Include="CameraManager.h">
       <Filter>API FrameWork\07. Camera</Filter>
@@ -402,7 +408,7 @@
       <Filter>API FrameWork\06. Manager</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
-      <Filter>API FrameWork\12. Collider</Filter>
+      <Filter>API FrameWork\12. Collision</Filter>
     </ClInclude>
     <ClInclude Include="String.h">
       <Filter>API FrameWork\02. Config</Filter>
@@ -511,6 +517,9 @@
     </ClInclude>
     <ClInclude Include="ItemData.h">
       <Filter>MainGame\04. DB</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>MainGame\02. Object\06. Item\Gun</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

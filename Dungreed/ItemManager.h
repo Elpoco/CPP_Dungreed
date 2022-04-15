@@ -17,9 +17,10 @@ public:
 
 	Item* getItem(Code::ITEM code);
 
-	ImageBase* findCodeImage(Code::ITEM code);
+	ImageBase** findCodeImage(Code::ITEM code);
 
 	void dropItem(Code::ITEM code, float x, float y);
+	void getItemEffect(Code::ITEM code, int x, int y, R_L dir);
 
 };
 

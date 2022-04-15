@@ -7,8 +7,7 @@ private:
 	FRAME_INFO _frameInfo;
 
 protected:
-	Image* _img;
-	ImageGp* _gpImg;
+	ImageBase* _img;
 	string _imgName;
 
 	BYTE _alpha;

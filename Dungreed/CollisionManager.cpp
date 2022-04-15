@@ -214,13 +214,14 @@ void CollisionManager::collisionTile()
 		// # 투사체 충돌 #
 		// ==============
 		case ObjectEnum::TYPE::ENEMY_OBJ:
+		case ObjectEnum::TYPE::PLAYER_OBJ:
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getY());
 				if (tile.type == MapToolEnum::TYPE::BLOCK)
 				{
 					obj->stopObject();
-					obj->collisionObject(0);
+					obj->collisionObject();
 				}
 			}
 			break;
@@ -279,12 +280,12 @@ void CollisionManager::collisionPlayerEnemy()
 			// 플레이어 공격
 			if (IntersectRect(&tmp, &playerAtkBox, &enemyHitBox))
 			{
-				enemy->hitAttack(2, enemy->getX() > player->getX());
+				enemy->hitAttack(enemy->getDmg(), enemy->getX() > player->getX());
 			}
 			// 적 공격
 			if (IntersectRect(&tmp, &playerHitBox, &enemyAtkBox))
 			{
-				player->hitAttack(1, player->getX() > enemy->getX());
+				player->hitAttack(enemy->getDmg(), player->getX() > enemy->getX());
 			}
 		}
 	}
@@ -294,7 +295,10 @@ void CollisionManager::collisionShooting()
 {
 	auto pairPlayer = _mObjects->find(ObjectEnum::TYPE::PLAYER);
 	auto pairEnemyObj = _mObjects->find(ObjectEnum::TYPE::ENEMY_OBJ);
+	auto pairEnemy = _mObjects->find(ObjectEnum::TYPE::ENEMY);
+	auto pairPlayerObj = _mObjects->find(ObjectEnum::TYPE::PLAYER_OBJ);
 
+	// 플레이어가 몬스터 총알에 맞기
 	for (Object* objPlayer : pairPlayer->second)
 	{
 		Player* player = dynamic_cast<Player*>(objPlayer);
@@ -307,8 +311,27 @@ void CollisionManager::collisionShooting()
 
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{
-				obj->collisionObject(player->getX() > obj->getX());
-				player->hitAttack(1, player->getX() > obj->getX());
+				obj->collisionObject();
+				player->hitAttack(obj->getDmg(), player->getX() > obj->getX());
+			}
+		}
+	}
+
+	// 몬스터가 플레이어 총알에 맞기
+	for (Object* objEnemy : pairEnemy->second)
+	{
+		Enemy* enemy = dynamic_cast<Enemy*>(objEnemy);
+
+		for (Object* obj : pairPlayerObj->second)
+		{
+			RECT tmp;
+			RECT rcEnemy = enemy->getRect();
+			RECT rcObj = obj->getRect();
+			
+			if (IntersectRect(&tmp, &rcEnemy, &rcObj))
+			{
+				obj->collisionObject();
+				enemy->hitAttack(obj->getDmg(), enemy->getX() > obj->getX());
 			}
 		}
 	}
@@ -360,7 +383,9 @@ void CollisionManager::collisionItem()
 
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{
-				obj->collisionObject(player->getX() > obj->getX());
+				player->getItem(code);
+				obj->collisionObject();
+				ITEMMANAGER->getItemEffect(code, obj->getX(), rcObj.top, player->getX() > obj->getX());
 			}
 		}
 	}

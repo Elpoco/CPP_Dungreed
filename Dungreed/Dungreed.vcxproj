@@ -160,6 +160,7 @@
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="ImageFont.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameNode.cpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="ImageFont.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameNode.h" />

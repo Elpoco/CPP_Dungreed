@@ -105,16 +105,11 @@ void Unit::animation()
 		_frameInfo.cnt = 0;
 		_frameInfo.x++;
 
-		bool checkFrame = _vImages[_imgCurrent]->getMaxFrameX() < _frameInfo.x;
-		if (checkFrame) _frameInfo.x = _frameInfo.startFrameX;
+		if (_frameInfo.x > _vImages[_imgCurrent]->getMaxFrameX())_frameInfo.x = _frameInfo.startFrameX;
 	}
 
-	if (_isLeft && _vImages[_imgCurrent]->getMaxFrameY() > 1)
-	{
-		_frameInfo.y = L;
-	}
-	else 
-		_frameInfo.y = R;
+	if (_isLeft && _vImages[_imgCurrent]->getMaxFrameY() > 0) _frameInfo.y = L;	
+	else _frameInfo.y = R;
 }
 
 void Unit::checkCollision()
@@ -141,11 +136,6 @@ void Unit::checkCollision()
 	{
 		_isFall = true;
 	}
-
-	//if (_isCollision[ColliderEnum::DIRECTION::LTOP])
-	//{
-	//	if (_isJump) _isJump = false;
-	//}
 }
 
 void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)

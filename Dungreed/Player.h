@@ -21,11 +21,11 @@ private:
 	};
 
 private:
+	Inventory* _inventory;
+
 	POINT _hand;
 	Item* _item;
 	int _mainHandX;
-
-	Inventory* _inventory;
 
 public:
 	Player();
@@ -45,8 +45,11 @@ public:
 
 	void moveLeft();
 	void moveRight();
+	void setIdle();
+	void attack();
+	void dash();
 
-	void settingWeapon();
+	void getItem(Code::ITEM code);
 
 };
 

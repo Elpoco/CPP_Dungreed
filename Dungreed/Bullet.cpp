@@ -2,7 +2,7 @@
 #include "Bullet.h"
 
 Bullet::Bullet(string imgName, float x, float y, float angle, float speed
-	, float damage, string destroyImgName, float distance)
+	, int damage, string destroyImgName, float distance)
 	: _imgName(imgName)
 	, _startX(x)
 	, _startY(y)
@@ -11,6 +11,7 @@ Bullet::Bullet(string imgName, float x, float y, float angle, float speed
 	, _damage(damage)
 	, _distance(distance)
 	, _destroyImgName(destroyImgName)
+	, _isGP(FALSE)
 {
 	_x = x;
 	_y = y;
@@ -26,47 +27,23 @@ HRESULT Bullet::init()
 {
 	Object::init();
 
-	_gpImg = GPIMAGEMANAGER->findImage(_imgName);
+	_img = FindImage(_imgName);
 
-	if (_gpImg)
-	{
-		_frameInfo.maxFrameX = _gpImg->getMaxFrameX();
-		_frameInfo.maxFrameY = _gpImg->getMaxFrameY();
-	}
-	else
-	{
-		_img = IMAGEMANAGER->findImage(_imgName);
-		_frameInfo.maxFrameX = _img->getMaxFrameX();
-		_frameInfo.maxFrameY = _img->getMaxFrameY();
-	}
+	if (GPIMAGEMANAGER->findImage(_imgName)) _isGP = TRUE;
 
-	// 프레임 이미지인지 확인
-	if (_frameInfo.maxFrameX > 0 && _frameInfo.maxFrameY > 0)
+	_frameInfo.maxFrameX = _img->getMaxFrameX();
+	_frameInfo.maxFrameY = _img->getMaxFrameY();
+
+	if (_frameInfo.maxFrameX > 0 || _frameInfo.maxFrameY > 0)
 	{
 		_frameInfo.isFrame = true;
-		if (_gpImg)
-		{
-			_frameInfo.width = _gpImg->getFrameWidth();
-			_frameInfo.height = _gpImg->getFrameHeight();
-		}
-		else
-		{
-			_frameInfo.width = _img->getFrameWidth();
-			_frameInfo.height = _img->getFrameHeight();
-		}
+		_frameInfo.width = _img->getFrameWidth();
+		_frameInfo.height = _img->getFrameHeight();
 	}
 	else
 	{
-		if (_gpImg)
-		{
-			_frameInfo.width = _gpImg->getWidth();
-			_frameInfo.height = _gpImg->getHeight();
-		}
-		else
-		{
-			_frameInfo.width = _img->getWidth();
-			_frameInfo.height = _img->getHeight();
-		}
+		_frameInfo.width = _img->getWidth();
+		_frameInfo.height = _img->getHeight();
 	}
 
 	return S_OK;
@@ -80,40 +57,25 @@ void Bullet::release()
 void Bullet::update()
 {
 	Object::update();
+	if (_frameInfo.isFrame) this->animation();
+
 	this->move();
 
 	_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
 
-	this->animation();
-
-	
 }
 
 void Bullet::render(HDC hdc)
 {
 	Object::render(hdc);
 
-	if (_img)
+	if (_isGP)
 	{
-		if (_frameInfo.isFrame)
-		{
-			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
-		}
-		else
-		{
-			CAMERAMANAGER->render(hdc, _img, _rc.left, _rc.top);
-		}
+		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, RadToDeg(_angle) + 90, PointMake(_x, _y));
 	}
 	else
 	{
-		if (_frameInfo.isFrame)
-		{
-			CAMERAMANAGER->frameRender(hdc, _gpImg, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, RadToDeg(_angle), PointMake(_x, _y));
-		}
-		else
-		{
-			CAMERAMANAGER->render(hdc, _gpImg, _rc.left, _rc.top, RadToDeg(_angle) + 90, PointMake(_x,_y));
-		}
+		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 	}
 }
 
@@ -129,7 +91,7 @@ void Bullet::deleteEffect()
 	}
 }
 
-void Bullet::collisionObject(int dir)
+void Bullet::collisionObject()
 {
 	Object::deleteObject();
 }

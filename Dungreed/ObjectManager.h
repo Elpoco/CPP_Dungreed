@@ -23,7 +23,7 @@ public:
 
 	void addObject(ObjectEnum::TYPE type, Object* object);
 	void addUnit(Code::UNIT code, float x, float y);
-	void addBullet(string imgName, float x, float y, float angle, float speed, float damage = 0.0f, string destroyImgName = "", float distance = 1500);
+	void addBullet(ObjectEnum::TYPE type, string imgName, float x, float y, float angle, float speed, int damage = 1, string destroyImgName = "", float distance = 1500);
 	RECT addEffect(string imgName, float x, float y, BYTE alpha = 0, ObjectEnum::TYPE type = ObjectEnum::TYPE::EFFECT);
 	RECT addEffect(string imgName, float x, float y, int angle, POINT rotateCenter);
 	void addUI(Object* obj);
@@ -32,6 +32,7 @@ public:
 	void addButton(string imgName, int x, int y, BOOL fixed = TRUE, CALLBACK_FUNC cb = nullptr);
 	void addImageFont(float x, float y, int num);
 	void addDynamicImageFont(float x, float y, int num, int dir, ImageFontEnum::FONT_TYPE type = ImageFontEnum::FONT_TYPE::DAMAGE);
+	void addItem(Object* obj);
 	void addDropItem(Object* obj);
 
 };

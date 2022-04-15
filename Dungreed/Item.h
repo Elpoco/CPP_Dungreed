@@ -6,6 +6,7 @@ class Item : public Object
 protected:
 	ITEM_INFO _info;
 	ImageBase* _img;
+	ImageBase* _imgInven;
 	FRAME_INFO _frameInfo;
 
 	BOOL _isEquip;

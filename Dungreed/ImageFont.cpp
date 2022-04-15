@@ -53,13 +53,13 @@ void ImageFont::render(HDC hdc)
 		switch (_type)
 		{
 		case ImageFontEnum::FONT_TYPE::DAMAGE:
-			CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _num, 0, _alpha);
+			CAMERAMANAGER->frameRender(hdc, _img, _x + i * _imgWidth, _y, _arrNum[i], 0, _alpha);
 			break;
 		case ImageFontEnum::FONT_TYPE::GOLD:
-			CAMERAMANAGER->frameRender(hdc, _img, _x + i * _imgWidth, _y, _arrNum[i], 0, _alpha);
+			CAMERAMANAGER->frameRender(hdc, _img, _x + i * (_imgWidth - 3), _y, _arrNum[i], 0, _alpha);
 			if (i == _arrLen - 1)
 			{
-				CAMERAMANAGER->frameRender(hdc, _img, _x + (i+1) * _imgWidth, _y, 10, 0, _alpha);
+				CAMERAMANAGER->frameRender(hdc, _img, _x + (i + 1) * (_imgWidth - 3), _y, 10, 0, _alpha);
 			}
 			break;
 		case ImageFontEnum::FONT_TYPE::NORMAL:

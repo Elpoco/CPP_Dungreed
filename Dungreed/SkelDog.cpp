@@ -80,6 +80,7 @@ void SkelDog::move()
 	{
 		_isAttack = false;
 	}
+
 	_rcAttack = { 0,0,0,0 };
 	if (_isAttack)
 	{

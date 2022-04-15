@@ -17,6 +17,8 @@ MapToolScene::~MapToolScene()
 
 HRESULT MapToolScene::init()
 {
+	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::NONE);
+
 	_camera = new Object;
 	CAMERAMANAGER->followCamera(_camera);
 	CAMERAMANAGER->unlockCamera();

@@ -128,11 +128,7 @@ void Niflheim::render(HDC hdc)
 
 void Niflheim::deleteEffect()
 {
-	OBJECTMANAGER->addEffect(
-		ImageName::Enemy::die,
-		_x,
-		_y
-	);
+	OBJECTMANAGER->addEffect(ImageName::Enemy::die, _x, _y);
 }
 
 void Niflheim::hitAttack(int dmg, int dir)
@@ -198,12 +194,13 @@ void Niflheim::shootBullet(float x, float y, float angle)
 	OBJECTMANAGER->addEffect(ImageName::Enemy::Niflheim::bulletFX, x, y);
 
 	OBJECTMANAGER->addBullet(
+		ObjectEnum::TYPE::ENEMY_OBJ,
 		ImageName::Enemy::Niflheim::bullet,
 		x,
 		y,
 		angle,
-		3.5f,
-		1.0f,
+		BULLET_SPEED,
+		BULLET_DMG,
 		ImageName::Enemy::Niflheim::bulletFX
 	);
 }

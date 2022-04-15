@@ -27,6 +27,10 @@ void Sword::update()
 {
 	Item::update();
 	
+	if (!_isEquip) return;
+
+	if (UIMANAGER->onInventory()) return;
+
 	if (_isFirst)
 	{
 		if (*_isLeft) _angle -= 90;
@@ -34,8 +38,8 @@ void Sword::update()
 	}
 	else
 	{
-		if (*_isLeft) _angle -= 210;
-		else _angle += 210;
+		if (*_isLeft) _angle -= 230;
+		else _angle += 230;
 	}
 }
 
@@ -51,6 +55,8 @@ RECT Sword::attack()
 	float effectAngle = GetAngle(CAMERAMANAGER->calRelPt(*_ptHand), _ptMouse);
 	float effectX = cosf(effectAngle) * 30 + _ptHand->x;
 	float effectY = -sinf(effectAngle) * 30 + _ptHand->y;
+
+	SOUNDMANAGER->play(SoundName::Item::Weapon::swing2, _sound);
 
 	return OBJECTMANAGER->addEffect(
 		ImageName::Effect::Weapon::effectBasic,

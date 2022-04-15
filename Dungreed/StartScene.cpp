@@ -69,13 +69,11 @@ void StartScene::render()
 
 void clickStart()
 {
-	UIMANAGER->setCursor(UIEnum::CURSOR_TYPE::TARGET);
 	SCENEMANAGER->changeScene(SceneName::testScene);
 }
 
 void clickMapTool()
 {
-	UIMANAGER->setCursor(UIEnum::CURSOR_TYPE::NONE);
 	SCENEMANAGER->changeScene(SceneName::mapToolScene);
 }
 

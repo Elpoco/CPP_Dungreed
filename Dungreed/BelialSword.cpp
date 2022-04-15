@@ -68,7 +68,7 @@ void BelialSword::deleteEffect()
 	OBJECTMANAGER->addEffect(ImageName::Enemy::Belial::swordEffect, _x, _y);
 }
 
-void BelialSword::collisionObject(int dir)
+void BelialSword::collisionObject()
 {
 	_isCollision = true;
 	_rc = { 0,0,0,0 };

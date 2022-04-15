@@ -11,6 +11,8 @@ protected:
 	BOOL _isShow;
 	int _width;
 	int _height;
+	BYTE _alpha;
+	BOOL _free; // scene넘어갈때 삭제 안함
 
 public:
 	UI();
@@ -29,11 +31,14 @@ public:
 
 	inline BOOL isFixed() {	return _isFixed; }
 	inline BOOL isShow() { return _isShow; }
+	inline void setFree() { _free = TRUE; }
 
 	inline void show() { _isShow = TRUE; }
 	inline void hide() { _isShow = FALSE; }
 
 	inline int getWidth() { return _width; }
 	inline int getHeight() { return _height; }
+
+	inline void setAlpha(BYTE alpha) { _alpha = alpha; }
 };
 

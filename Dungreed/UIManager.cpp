@@ -1,7 +1,9 @@
 #include "Stdafx.h"
 #include "UIManager.h"
 
+#include "UI.h"
 #include "Cursor.h"
+#include "Inventory.h"
 
 UIManager::UIManager()
 {
@@ -15,6 +17,7 @@ HRESULT UIManager::init()
 {
 	_cursor = new Cursor;
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI_FRONT, _cursor);
+	ShowCursor(false);
 
 	return S_OK;
 }
@@ -31,7 +34,7 @@ void UIManager::render(HDC hdc)
 {
 }
 
-void UIManager::setCursor(UIEnum::CURSOR_TYPE cursorType)
+void UIManager::setCursorType(UIEnum::CURSOR_TYPE cursorType)
 {
 	switch (cursorType)
 	{
@@ -49,3 +52,9 @@ void UIManager::setCursor(UIEnum::CURSOR_TYPE cursorType)
 	}
 	_cursor->setCursor(cursorType);
 }
+
+BOOL UIManager::onInventory()
+{
+	return _inventory->isOpen();
+}
+

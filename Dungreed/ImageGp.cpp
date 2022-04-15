@@ -33,8 +33,8 @@ HRESULT ImageGp::init(HDC hdc, const WCHAR* fileName, float scaleW, float scaleH
 	_imageInfo = new GP_IMAGE_INFO;
 	_imageInfo->width = _img->GetWidth();
 	_imageInfo->height = _img->GetHeight();
-	_imageInfo->maxFrameX = 1;
-	_imageInfo->maxFrameY = 1;
+	_imageInfo->maxFrameX = 0;
+	_imageInfo->maxFrameY = 0;
 	_imageInfo->frameWidth = _imageInfo->width;
 	_imageInfo->frameHeight = _imageInfo->height;
 
@@ -55,7 +55,7 @@ HRESULT ImageGp::init(HDC memDc, const WCHAR* fileName, int maxFrameX, int maxFr
 	_imageInfo->width = _img->GetWidth();
 	_imageInfo->height = _img->GetHeight();
 	_imageInfo->maxFrameX = maxFrameX - 1;
-	_imageInfo->maxFrameY = maxFrameY;
+	_imageInfo->maxFrameY = maxFrameY - 1;
 	_imageInfo->frameWidth = _imageInfo->width / maxFrameX;
 	_imageInfo->frameHeight = _imageInfo->height / maxFrameY;
 

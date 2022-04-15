@@ -18,7 +18,7 @@ HRESULT DropItem::init()
 {
 	Object::init();
 
-	_img = ITEMMANAGER->findCodeImage(_itemCode);
+	_img = ITEMMANAGER->findCodeImage(_itemCode)[0];
 
 	_frameInfo.maxFrameX = _img->getMaxFrameX();
 	_frameInfo.maxFrameY = _img->getMaxFrameY();
@@ -54,21 +54,8 @@ void DropItem::render(HDC hdc)
 	CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 }
 
-void DropItem::collisionObject(int dir)
+void DropItem::collisionObject()
 {
-	if (_itemCode <= Code::ITEM::BULLION)
-	{
-		if(_itemCode == Code::ITEM::BULLION)
-			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 100, dir, ImageFontEnum::FONT_TYPE::GOLD);
-		else
-			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 10, dir, ImageFontEnum::FONT_TYPE::GOLD);
-		
-		SOUNDMANAGER->play(SoundName::Item::getCoin, _sound);
-	}
-	else
-	{
-		SOUNDMANAGER->play(SoundName::Item::getItem, _sound);
-	}
 	Object::deleteObject();
 }
 

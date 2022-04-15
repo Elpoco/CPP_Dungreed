@@ -19,7 +19,8 @@ public:
 		_info[TO_INT(Code::ITEM::BULLION)]	= { Code::ITEM_TYPE::GOLD, Code::ITEM::BULLION, "±Ýµ¢¾î¸®", 100 };
 
 		// ¹«±â
-		_info[TO_INT(Code::ITEM::SHOT_SWORD)] = { Code::ITEM_TYPE::WEAPON, Code::ITEM::SHOT_SWORD, "¼ô¼Òµå", 8, 10 };
+		_info[TO_INT(Code::ITEM::SHOT_SWORD)]	= { Code::ITEM_TYPE::WEAPON, Code::ITEM::SHOT_SWORD, "¼ô¼Òµå", 8, 10 };
+		_info[TO_INT(Code::ITEM::COLT)]			= { Code::ITEM_TYPE::WEAPON, Code::ITEM::COLT, "´õ ÄÝÆ®", 3, 5 };
 	}
 	~ItemData() {}
 

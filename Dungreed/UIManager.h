@@ -1,12 +1,15 @@
 #pragma once
 #include "SingletonBase.h"
 
+class UI;
 class Cursor;
+class Inventory;
 
 class UIManager : public SingletonBase<UIManager>
 {
 private:
 	Cursor* _cursor;
+	Inventory* _inventory;
 
 public:
 	UIManager();
@@ -17,7 +20,10 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	void setCursor(UIEnum::CURSOR_TYPE cursorType);
+	void setCursorType(UIEnum::CURSOR_TYPE cursorType);
+
+	void setInventory(Inventory* inventory) { _inventory = inventory; }
+	BOOL onInventory();
 
 };
 

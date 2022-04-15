@@ -13,7 +13,9 @@ Item::~Item()
 
 HRESULT Item::init()
 {
-	_img = ITEMMANAGER->findCodeImage(_info.code);
+
+	_img = ITEMMANAGER->findCodeImage(_info.code)[0];
+	_imgInven = ITEMMANAGER->findCodeImage(_info.code)[1];
 	_frameInfo.width = _img->getFrameWidth();
 	_frameInfo.height = _img->getFrameHeight();
 
@@ -28,12 +30,15 @@ void Item::update()
 {
 	if (_isEquip)
 	{
-		_angle = GetAngleDeg(
-			CAMERAMANAGER->calRelX(_ptHand->x), 
-			CAMERAMANAGER->calRelY(_ptHand->y),
-			_ptMouse.x,
-			_ptMouse.y
-		);
+		if (!UIMANAGER->onInventory())
+		{
+			_angle = GetAngleDeg(
+				CAMERAMANAGER->calRelX(_ptHand->x), 
+				CAMERAMANAGER->calRelY(_ptHand->y),
+				_ptMouse.x,
+				_ptMouse.y
+			);
+		}
 
 		_rc = RectMake(
 			_ptHand->x, 
@@ -44,7 +49,7 @@ void Item::update()
 	}
 	else
 	{
-		_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
+		_rc = RectMakeCenter(_x, _y, _imgInven->getWidth(), _imgInven->getHeight());
 	}
 }
 
@@ -52,10 +57,11 @@ void Item::render(HDC hdc)
 {
 	if (_isEquip)
 	{
-		CAMERAMANAGER->render(hdc, _img, _rc.left, _rc.top, _angle, *_ptHand);
+		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, 0, _frameInfo.y, _angle, *_ptHand);
 	}
 	else
 	{
-		_img->render(hdc, _rc.left, _rc.top);
+		if (!UIMANAGER->onInventory()) return;
+		_imgInven->render(hdc, _rc.left, _rc.top);
 	}
 }

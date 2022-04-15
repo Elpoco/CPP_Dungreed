@@ -3,10 +3,13 @@
 
 namespace BelialSet
 {
-	constexpr float SKILL_TIME	= 2.0f;
-	constexpr int	BULLET_CNT	= 20;
-	constexpr int	SWORD_CNT	= 6;
-	constexpr int	LASER_CNT	= 15;
+	constexpr float SKILL_TIME	  = 2.0f;
+	constexpr float	BULLET_SPEED  = 4.0f;
+	constexpr int	BULLET_DMG    = 3;
+	constexpr int	BULLET_CNT	  = 20;
+	constexpr int	SWORD_CNT	  = 6;
+	constexpr int	LASER_CNT	  = 15;
+
 }
 
 class Belial : public Enemy

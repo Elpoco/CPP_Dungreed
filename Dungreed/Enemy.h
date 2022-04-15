@@ -42,6 +42,7 @@ public:
 	void animation();
 
 	virtual void hitAttack(int dmg, int dir) override;
+	virtual int getDmg() override { return _info.dmg; }
 
 	void scanPlayer(POINT ptPlayer, RECT rcPlayer);
 	inline RECT getScanRect() { return _rcScan; }

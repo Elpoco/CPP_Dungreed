@@ -17,7 +17,6 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render(HDC hdc);
-	virtual void deleteEffect() {}
 
 	inline float getX() { return _x; }
 	inline float getY() { return _y; }
@@ -29,9 +28,12 @@ public:
 	inline BOOL isLive() { return _isLive; }
 	inline void deleteObject() { _isLive = FALSE; }
 
-	virtual void collisionObject(int dir) { deleteObject(); }
+	virtual void collisionObject() { deleteObject(); }
 	virtual void pushObject(float x, float y) { _x += x; _y += y; }
 	virtual void pushObject(DIRECTION dir, float distance) {}
 	virtual void stopObject() {}
+
+	virtual void deleteEffect() {}
+	virtual int getDmg() { return 1; }
 };
 
