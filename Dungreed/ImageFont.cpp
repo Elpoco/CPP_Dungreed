@@ -83,14 +83,14 @@ void ImageFont::settingImage(FONT_TYPE type)
 	switch (type)
 	{
 	case ImageFontEnum::FONT_TYPE::DAMAGE:
-		_img = FindImage(ImageName::UI::Font::damage);
+		_img = FindImage(ImageName::UI::Font::Damage);
 		break;
 	case ImageFontEnum::FONT_TYPE::GOLD:
-		_img = FindImage(ImageName::UI::Font::gold);
+		_img = FindImage(ImageName::UI::Font::Gold);
 		break;
 	case ImageFontEnum::FONT_TYPE::NORMAL:
 	default:
-		_img = FindImage(ImageName::UI::Font::damage);
+		_img = FindImage(ImageName::UI::Font::Damage);
 		break;
 	}
 	_imgWidth = _img->getFrameWidth();

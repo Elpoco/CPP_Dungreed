@@ -50,10 +50,9 @@ Item* ItemManager::getItem(Code::ITEM code)
 	return item;
 }
 
-ImageBase** ItemManager::findCodeImage(Code::ITEM code)
+ImageBase* ItemManager::findCodeImage(Code::ITEM code)
 {
 	string imgName;
-	string imgNameInven;
 	switch (code)
 	{
 	case Code::ITEM::COIN:
@@ -64,21 +63,16 @@ ImageBase** ItemManager::findCodeImage(Code::ITEM code)
 		break;
 	case Code::ITEM::SHOT_SWORD:
 		imgName = ImageName::Item::Weapon::basicShotSword;
-		imgNameInven = ImageName::Item::Weapon::basicShotSwordInven;
 		break;
 	case Code::ITEM::COLT:
 		imgName = ImageName::Item::Weapon::colt;
-		imgNameInven = ImageName::Item::Weapon::coltInven;
 		break;
 	default:
 		imgName = "";
 		break;
 	}
 
-	ImageBase* arrImg[2];
-	arrImg[0] = FindImage(imgName);
-	arrImg[1] = FindImage(imgNameInven);
-	return arrImg;
+	return FindImage(imgName);
 }
 
 void ItemManager::dropItem(Code::ITEM code, float x, float y)

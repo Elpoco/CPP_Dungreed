@@ -66,6 +66,11 @@ void MainGame::render(void)
 
 	TIMEMANAGER->render(getMemDC());
 
+	if (IsOnceKeyDown(VK_MBUTTON))
+	{
+		cout << "ManeGame.cpp : " << _ptMouse.x << ", " << _ptMouse.y << endl;
+	}
+
 	// ÇöÀç ¾À ÀÌ¸§
 	if (_isDebug)
 	{

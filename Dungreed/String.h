@@ -74,15 +74,20 @@ namespace ImageName
 
 		namespace Font
 		{	
-			constexpr char* damage = "FontDamage";
-			constexpr char* gold = "FontGold";
+			constexpr char* Damage = "FontDamage";
+			constexpr char* Gold = "FontGold";
 		}
 
 		namespace Inventory
 		{
-			constexpr char* base = "INVENTORY base";
-			constexpr char* btn = "INVENTORY btn";
+			constexpr char* Base = "INVENTORY Base";
+			constexpr char* on = "INVENTORY on";
+			constexpr char* equipBase = "INVENTORY equipBase";
+			constexpr char* exitBtn = "INVENTORY exitBtn";
 			constexpr char* Cell = "INVENTORY Cell";
+			constexpr char* Accessory = "INVENTORY Accessory";
+			constexpr char* EquipSlot1On = "INVENTORY EquipSlot1On";
+			constexpr char* EquipSlot2On = "INVENTORY EquipSlot2On";
 		}
 	}
 
@@ -111,9 +116,7 @@ namespace ImageName
 		namespace Weapon
 		{
 			constexpr char* basicShotSword = "WEAPON BasicShotSword";
-			constexpr char* basicShotSwordInven = "WEAPON BasicShotSwordInven";
 			constexpr char* colt = "WEAPON Colt";
-			constexpr char* coltInven = "WEAPON ColtInven";
 			constexpr char* bullet02 = "WEAPON bullet02";
 		}
 
@@ -144,6 +147,7 @@ namespace SoundName
 {
 	constexpr char* title = "SOUND title";
 	constexpr char* invenOpen = "SOUND invenOpen";
+	constexpr char* swapEquip = "SOUND swapEquip";
 
 	namespace Item
 	{

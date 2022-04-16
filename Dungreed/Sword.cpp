@@ -33,8 +33,8 @@ void Sword::update()
 
 	if (_isFirst)
 	{
-		if (ITEMMANAGER->getPlayerIsLeft()) _degree -= 90;
-		else _degree += 90;
+		if (ITEMMANAGER->getPlayerIsLeft()) _degree -= 60;
+		else _degree += 60;
 	}
 	else
 	{

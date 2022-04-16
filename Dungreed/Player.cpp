@@ -176,7 +176,18 @@ void Player::setIdle()
 
 void Player::attack()
 {
-	_rcAttack = _inventory->getEquipItem()->attack();
+	if (_inventory->getEquipItem())
+	{
+		_rcAttack = _inventory->getEquipItem()->attack();
+	}
+	else
+	{
+		if (_isDebug)
+		{
+			// 디버그모드 공격 (무기 안들어야함)
+			_rcAttack = RectMakeCenter(_hand.x, _hand.y, WINSIZE_X * 2, WINSIZE_Y * 2);
+		}
+	}
 }
 
 void Player::dash()

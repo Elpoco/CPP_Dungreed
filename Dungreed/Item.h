@@ -6,7 +6,6 @@ class Item : public Object
 protected:
 	ITEM_INFO _info;
 	ImageBase* _img;
-	ImageBase* _imgInven;
 	FRAME_INFO _frameInfo;
 
 	BOOL _isEquip;
@@ -27,6 +26,8 @@ public:
 
 	void equip() { _isEquip = TRUE; }
 	void unequip() { _isEquip = FALSE; }
+
+	ImageBase* getImage() { return _img; }
 
 };
 

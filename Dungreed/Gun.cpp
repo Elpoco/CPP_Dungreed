@@ -16,6 +16,8 @@ HRESULT Gun::init()
 
 	_bulletCnt = _info.etc;
 
+	this->settingShootingPoint();
+
 	return S_OK;
 }
 

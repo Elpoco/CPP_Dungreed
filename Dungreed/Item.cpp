@@ -15,8 +15,7 @@ Item::~Item()
 HRESULT Item::init()
 {
 
-	_img = ITEMMANAGER->findCodeImage(_info.code)[0];
-	_imgInven = ITEMMANAGER->findCodeImage(_info.code)[1];
+	_img = ITEMMANAGER->findCodeImage(_info.code);
 	_frameInfo.width = _img->getFrameWidth();
 	_frameInfo.height = _img->getFrameHeight();
 
@@ -50,7 +49,7 @@ void Item::update()
 	}
 	else
 	{
-		_rc = RectMakeCenter(_x, _y, _imgInven->getWidth(), _imgInven->getHeight());
+		_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
 	}
 }
 
@@ -72,6 +71,6 @@ void Item::render(HDC hdc)
 	else
 	{
 		if (!UIMANAGER->onInventory()) return;
-		_imgInven->render(hdc, _rc.left, _rc.top);
+		_img->frameRender(hdc, _rc.left, _rc.top, 0, 0);
 	}
 }

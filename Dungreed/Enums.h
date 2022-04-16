@@ -72,7 +72,6 @@ namespace ObjectEnum
 {
 	enum class TYPE
 	{
-		// 밑으로 갈수록 랜더를 나중에 함
 		EFFECT_BACK,
 		NPC,
 		ENEMY,
