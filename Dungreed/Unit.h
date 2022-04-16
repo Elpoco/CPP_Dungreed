@@ -64,6 +64,7 @@ public:
 	bool isJump() { return _isJump; }
 
 	virtual void hitAttack(int dmg, int dir) {}
+	virtual int getDmg() override { return 1; }
 
 	inline void setFrameX(int frameX) { _frameInfo.x = frameX; }
 	inline void setFrameY(int frameY) { _frameInfo.y = frameY; }

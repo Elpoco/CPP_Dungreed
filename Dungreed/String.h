@@ -113,6 +113,7 @@ namespace ImageName
 			constexpr char* basicShotSwordInven = "WEAPON BasicShotSwordInven";
 			constexpr char* colt = "WEAPON Colt";
 			constexpr char* coltInven = "WEAPON ColtInven";
+			constexpr char* bullet02 = "WEAPON bullet02";
 		}
 
 		namespace Gold
@@ -149,6 +150,7 @@ namespace SoundName
 		namespace Weapon
 		{
 			constexpr char* swing2 = "SOUND swing0";
+			constexpr char* Gun = "SOUND Gun";
 		}
 	}
 }

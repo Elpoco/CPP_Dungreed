@@ -105,7 +105,7 @@ void NiflheimPillar::move()
 		if (//_skill == Niflheim::NIFLHEIM_SKILL::LINE_UP &&
 			abs(_movePoint.x - _x) > 100) _imgAngle = 120;
 
-		_imgAngle += 1;
+		++_imgAngle;
 
 		switch (_order)
 		{

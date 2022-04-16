@@ -14,6 +14,8 @@ HRESULT Gun::init()
 {
 	Item::init();
 
+	_bulletCnt = _info.etc;
+
 	return S_OK;
 }
 
@@ -42,14 +44,16 @@ RECT Gun::attack()
 {
 	OBJECTMANAGER->addEffect(ImageName::Enemy::Niflheim::bulletFX, _ptHand->x, _ptHand->y);
 
+	SOUNDMANAGER->play(SoundName::Item::Weapon::Gun, _sound);
+
 	OBJECTMANAGER->addBullet(
 		ObjectEnum::TYPE::PLAYER_OBJ,
-		ImageName::Enemy::Niflheim::bullet,
+		ImageName::Item::Weapon::bullet02,
 		_ptHand->x,
 		_ptHand->y,
 		GetAngle(CAMERAMANAGER->calRelPt(*_ptHand), _ptMouse),
-		4,
-		2,
+		5.0f,
+		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
 		ImageName::Enemy::Niflheim::bulletFX
 	);
 	return { 0,0,0,0 };

@@ -38,6 +38,7 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual void hitAttack(int dmg, int dir) override;
+	virtual int getDmg() override { return 3; }
 
 	void move();
 	void animation();

@@ -27,7 +27,14 @@ HRESULT Inventory::init()
 			_arrItems[i] = NULL;
 			continue;
 		}
-		_arrItems[i] = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+		if (i < 5)
+		{
+			_arrItems[i] = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+		}
+		else
+		{
+			_arrItems[i] = ITEMMANAGER->getItem(Code::ITEM::COLT);
+		}
 		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ITEM_FRONT, _arrItems[i]);
 	}
 

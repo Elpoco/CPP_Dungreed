@@ -82,6 +82,7 @@ namespace MY_UTIL
 	// ========================
 	// # Print[ POINT, RECT ] #
 	// ========================
+	static Gdiplus::Graphics* _graphics;
 	void PrintRectangle(HDC hdc, float x, float y, int width, int height);
 	void PrintRectangle(HDC hdc, RECT rc);
 	void PrintRectangleColor(HDC hdc, RECT rc, Color penColor = Color::Black, bool isFill = false, Color fillColor = Color::White);

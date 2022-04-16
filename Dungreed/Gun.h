@@ -1,7 +1,11 @@
 #pragma once
 #include "Item.h"
+
 class Gun : public Item
 {
+private:
+	int _bulletCnt;
+
 public:
 	Gun(Code::ITEM code);
 	virtual ~Gun();

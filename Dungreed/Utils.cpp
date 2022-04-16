@@ -96,7 +96,7 @@ namespace MY_UTIL
 
 	void PrintRectangleColor(HDC hdc, RECT rc, Color penColor, bool isFill, Color fillColor)
 	{
-		Graphics graphics(hdc);
+		if (!_graphics) _graphics = new Graphics(hdc);
 
 		RectF rcf = RectToRectF(rc);
 
@@ -104,13 +104,13 @@ namespace MY_UTIL
 		{
 			SolidBrush brush(fillColor);
 
-			graphics.FillRectangle(&brush, rcf);
+			_graphics->FillRectangle(&brush, rcf);
 		}
 		else
 		{
 			Pen pen(penColor);
 
-			graphics.DrawRectangle(&pen, rcf);
+			_graphics->DrawRectangle(&pen, rcf);
 		}
 	}
 

@@ -32,7 +32,6 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Player::run, PATH_UNIT"Player/PlayerRun.bmp", 0, 0, 8, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Player::jump, PATH_UNIT"Player/PlayerJump.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Player::die, PATH_UNIT"Player/PlayerDie.bmp", 0, 0, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::Player::hand, PATH_UNIT"Player/Hand.bmp");
 #pragma endregion
 
 	// =========
@@ -73,15 +72,15 @@ void ImageLoader::loadImages()
 	// MapTool
 	IMAGEMANAGER->addFrameImage(ImageName::mapTile, PATH_IMAGE"MapTool/MapTile.bmp", 1024 * TILE_SCALE, 512 * TILE_SCALE, 64, 32, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::mapToolTile, PATH_IMAGE"MapTool/MapTile.bmp", 1024 * MapToolSet::TOOL_TILE_SCALE, 512 * MapToolSet::TOOL_TILE_SCALE, 64, 32, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::mapPixel, PATH_IMAGE"MapTool/MapPixel.bmp", 48 * TILE_SCALE, 32 * TILE_SCALE, true, ColorSet::MAGENTA);
-
 
 	// ==============
 	// # Background #
 	// ==============
+#pragma region Background
 	IMAGEMANAGER->addImage(ImageName::Background::startCloud1, PATH_IMAGE"Background/Cloud1.bmp", 0, WINSIZE_Y, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Background::startCloud2, PATH_IMAGE"Background/Cloud2.bmp", 0, WINSIZE_Y, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Background::bgSky, PATH_IMAGE"Background/Sky.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
+#pragma endregion
 
 	// ======
 	// # UI #
@@ -114,18 +113,28 @@ void ImageLoader::loadImages()
 	// ========
 	// # Item #
 	// ========
+#pragma region Item
+	// °ñµå
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::coin, PATH_ITEM"Gold/Coin.bmp", 0, 0, 8, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::bullion, PATH_ITEM"Gold/Bullion.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
+	// ¼ô¼Òµå
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword.png");
 	IMAGEMANAGER->addImage(ImageName::Item::Weapon::basicShotSwordInven, PATH_ITEM"Weapon/BasicShortSword_inven.bmp", 0, 0, true, ColorSet::MAGENTA);
-//	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt.png");
-	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt_Drop.png", 1,2);
+	// ´õ ÄÝÆ®
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt_Drop.png", 1, 2);
 	IMAGEMANAGER->addImage(ImageName::Item::Weapon::coltInven, PATH_ITEM"Weapon/Colt_inven.bmp", 0, 0, true, ColorSet::MAGENTA);
+	// ÃÑ¾Ë
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::bullet02, PATH_ITEM"Bullet/Bullet02.png");
+#pragma endregion
 
 	// ==========
 	// # Effect #
 	// ==========
+#pragma region Effect
+	// °Ë ÀÌÆåÆ®
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::effectBasic, PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
+#pragma endregion
+
 
 	// ==========
 	// # Object #

@@ -35,6 +35,7 @@ void SoundLoader::loadSounds()
 	// # Weapon #
 	// ==========
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::swing2, PATH_SOUND"swing2.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::Weapon::Gun, PATH_SOUND"Gun.wav", false, false);
 
 
 }

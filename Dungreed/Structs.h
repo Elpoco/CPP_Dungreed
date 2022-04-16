@@ -79,16 +79,22 @@ typedef struct tagItemInfo
 	Code::ITEM_TYPE type;
 	Code::ITEM code;
 	string name;
-	int point;
-	int maxPoint;
+	int minDmg;
+	int maxDmg;
+	float atkSpeed;
+	int def;
+	int etc;
 
 	tagItemInfo() {}
-	tagItemInfo(Code::ITEM_TYPE type, Code::ITEM code, string name, int point, int maxPoint = 0)
+	tagItemInfo(Code::ITEM_TYPE type, Code::ITEM code, string name, int minDmg, int maxDmg = 0, float atkSpeed = 1.0f, int def = 0, int etc = 0)
 	{
 		this->type = type;
 		this->code = code;
 		this->name = name;
-		this->point = point;
-		this->maxPoint = maxPoint;
+		this->minDmg = minDmg;
+		this->maxDmg = maxDmg;
+		this->atkSpeed = atkSpeed;
+		this->def = def;
+		this->etc = etc;
 	}
 } ITEM_INFO;
