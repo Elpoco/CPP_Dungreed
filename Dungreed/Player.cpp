@@ -7,10 +7,16 @@
 using namespace PlayerSet;
 
 Player::Player()
+	: _isDash(FALSE)
+	, _mainHandX(15)
+	, _dashMove(DASH_DISTANCE)
 {
 }
 
 Player::Player(float x, float y)
+	: _isDash(FALSE)
+	, _mainHandX(15)
+	, _dashMove(DASH_DISTANCE)
 {
 	_x = x;
 	_y = y;
@@ -28,15 +34,9 @@ HRESULT Player::init()
 
 	CAMERAMANAGER->followCamera(this);
 
-	//_item = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
-	_item = ITEMMANAGER->getItem(Code::ITEM::COLT);
-	_item->setBody(&_pos);
-	_item->setHand(&_hand);
-	_item->setIsLeft(&_isLeft);
-	_item->equip();
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ITEM, _item);
-
-	_mainHandX = 15;
+	ITEMMANAGER->setPlayerBody(&_body);
+	ITEMMANAGER->setPlayerHand(&_hand);
+	ITEMMANAGER->setPlayerLeft(&_isLeft);
 
 	_inventory = new Inventory;
 	OBJECTMANAGER->addUI(_inventory);
@@ -78,11 +78,27 @@ void Player::move()
 {
 	_state = PLAYER_MOTION::IDLE;
 	if (_isJump || _isFall) _state = PLAYER_MOTION::JUMP;
+	if (_isDash)
+	{
+		_state = PLAYER_MOTION::DASH;
+		if (_dashMove > 0)
+		{
+			_gravity = 0.0f;
+			_dashMove -= DASH_SPEED;
+			_x += cosf(_dashAngle) * DASH_SPEED;
+			_y -= sinf(_dashAngle) * DASH_SPEED;
+		}
+		else
+		{
+			_isDash = FALSE;
+			_dashMove = DASH_DISTANCE;
+		}
+	}
 
 	_rcAttack = { 0,0,0,0 };
 
 	_hand = PointMake(_mainHandX, _y + 5);
-	_pos = PointMake(_x, _y);
+	_body = PointMake(_x, _y);
 	
 	if (UIMANAGER->onInventory()) return;
 
@@ -92,6 +108,7 @@ void Player::move()
 	if (IsOnceKeyUp(KEY::RIGHT))	 this->setIdle();
 	if (IsStayKeyDown(KEY::CLICK_L)) this->attack();
 	if (IsOnceKeyDown(KEY::CLICK_R)) this->dash();
+
 	if (IsOnceKeyDown(KEY::UP) || IsOnceKeyDown(KEY::SPACE))  Unit::jump();
 
 	// Ä³¸¯ÅÍ ÁÂ¿ì
@@ -159,11 +176,15 @@ void Player::setIdle()
 
 void Player::attack()
 {
-	_rcAttack = _item->attack();
+	_rcAttack = _inventory->getEquipItem()->attack();
 }
 
 void Player::dash()
 {
+	_isDash = TRUE;
+	_dashAngle = GetAngle(PointMake(_x, _y), CAMERAMANAGER->calAbsPt(_ptMouse));
+	
+	OBJECTMANAGER->addEffect(ImageName::Player::runFX, _rc.left, _rc.bottom);
 }
 
 void Player::getItem(Code::ITEM code)

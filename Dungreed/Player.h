@@ -8,6 +8,8 @@ namespace PlayerSet
 {
 	constexpr float HIT_TIME = 2.0f;
 	constexpr BYTE HIT_ALPHA = 150;
+	constexpr float DASH_DISTANCE = 300;
+	constexpr int DASH_SPEED = 10;
 }
 
 class Player : public Unit
@@ -18,15 +20,18 @@ private:
 		IDLE,
 		RUN,
 		JUMP,
+		DASH = 2,
 	};
 
 private:
 	Inventory* _inventory;
 
-	POINT _pos;
+	POINT _body;
 	POINT _hand;
-	Item* _item;
+	BOOL _isDash;
 	int _mainHandX;
+	int _dashMove;
+	float _dashAngle;
 
 public:
 	Player();

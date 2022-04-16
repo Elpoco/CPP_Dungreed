@@ -30,7 +30,7 @@ void Gun::update()
 
 	if (!_isEquip) return;
 	_rc.left -= 10;
-	_frameInfo.y = *_isLeft;
+	_frameInfo.y = ITEMMANAGER->getPlayerIsLeft();
 
 
 	if (_bulletCnt <= 0)
@@ -80,9 +80,9 @@ RECT Gun::attack()
 void Gun::settingShootingPoint()
 {
 	// 총구 위치 구하기
-	_angle = GetAngle(CAMERAMANAGER->calRelPt(*_ptBody), _ptMouse);
-	_shootingX = _ptHand->x + cosf(_angle) * _frameInfo.width;
-	_shootingX += *_isLeft ? 12 : -12;
-	_shootingY = _ptHand->y - sinf(_angle) * _frameInfo.height - 8;
+	_angle = GetAngle(ITEMMANAGER->getPlayerBody(), CAMERAMANAGER->calAbsPt(_ptMouse));
+	_shootingX = ITEMMANAGER->getPlayerHand().x + cosf(_angle) * _frameInfo.width;
+	_shootingX += ITEMMANAGER->getPlayerIsLeft() ? 12 : -12;
+	_shootingY = ITEMMANAGER->getPlayerHand().y - sinf(_angle) * _frameInfo.height - 8;
 	_degree = RadToDeg(_angle);
 }

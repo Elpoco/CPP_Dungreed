@@ -34,16 +34,16 @@ void Item::update()
 		if (!UIMANAGER->onInventory())
 		{
 			_degree = GetAngleDeg(
-				CAMERAMANAGER->calRelX(_ptBody->x), 
-				CAMERAMANAGER->calRelY(_ptBody->y),
-				_ptMouse.x,
-				_ptMouse.y
+				ITEMMANAGER->getPlayerBody().x,
+				ITEMMANAGER->getPlayerBody().y,
+				CAMERAMANAGER->calAbsX(_ptMouse.x),
+				CAMERAMANAGER->calAbsX(_ptMouse.y)
 			);
 		}
 
 		_rc = RectMake(
-			_ptHand->x, 
-			_ptHand->y - _frameInfo.height / 2,
+			ITEMMANAGER->getPlayerHand().x,
+			ITEMMANAGER->getPlayerHand().y - _frameInfo.height / 2,
 			_frameInfo.width, 
 			_frameInfo.height
 		);
@@ -58,7 +58,16 @@ void Item::render(HDC hdc)
 {
 	if (_isEquip)
 	{
-		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, 0, _frameInfo.y, _degree, *_ptHand);
+		CAMERAMANAGER->frameRender(
+			hdc,
+			_img,
+			_rc.left, 
+			_rc.top, 
+			0,
+			_frameInfo.y,
+			_degree,
+			ITEMMANAGER->getPlayerHand()
+		);
 	}
 	else
 	{

@@ -27,15 +27,6 @@ void TestScene::update()
 	if (IsStayKeyDown('B') && IsOnceKeyDown(VK_F2))
 	{
 		OBJECTMANAGER->addUnit(Code::UNIT::NIFLEHEIM, 1000, 500);
-
-	}
-	if (IsOnceKeyDown(VK_RBUTTON))
-	{
-		ITEMMANAGER->dropItem(
-			(Code::ITEM)RND->getInt(3),
-			CAMERAMANAGER->calAbsX(_ptMouse.x),
-			CAMERAMANAGER->calAbsY(_ptMouse.y)
-		);
 	}
 }
 

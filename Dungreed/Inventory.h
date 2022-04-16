@@ -23,7 +23,7 @@ private:
 	POINT _ptCell[InventorySet::CELL_CNT];
 	RECT _rcCell[InventorySet::CELL_CNT];
 
-	int _equipIdx;
+	BOOL _equipIdx;
 	int _clickCell;
 
 public:
@@ -42,7 +42,10 @@ public:
 	void offClick();
 	void dragItem();
 
+	void changeEquip();
+
 	BOOL isOpen() { return _isOpen; }
+	Item* getEquipItem() { return _arrEquipWeapon[_equipIdx]; }
 
 };
 

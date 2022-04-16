@@ -121,14 +121,8 @@
     <Filter Include="API FrameWork\09. Sound">
       <UniqueIdentifier>{1ae1ac97-dbfe-4109-aafe-88839b2c178f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\03. Inventory">
-      <UniqueIdentifier>{c25b084b-9acb-4007-bedd-5d06fc723d1a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\02. Object\07. Box">
       <UniqueIdentifier>{3878eea0-e6c6-4ad6-bc71-4ae046ba3d06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\04. DB">
-      <UniqueIdentifier>{88713822-0b1b-4b22-a8ba-4b279048fcd2}</UniqueIdentifier>
     </Filter>
     <Filter Include="API FrameWork\12. Collision">
       <UniqueIdentifier>{7423818a-c6a4-4d2f-980a-d7cbfdedf660}</UniqueIdentifier>
@@ -138,6 +132,12 @@
     </Filter>
     <Filter Include="MainGame\02. Object\06. Item\Gun">
       <UniqueIdentifier>{77c992eb-6b61-4237-9096-3e42e110af05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\03. DB">
+      <UniqueIdentifier>{88713822-0b1b-4b22-a8ba-4b279048fcd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\05. UI\Inventory">
+      <UniqueIdentifier>{c25b084b-9acb-4007-bedd-5d06fc723d1a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -298,7 +298,7 @@
       <Filter>MainGame\02. Object\07. Box</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
-      <Filter>MainGame\03. Inventory</Filter>
+      <Filter>MainGame\02. Object\05. UI\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="SoundLoader.cpp">
       <Filter>API FrameWork\09. Sound</Filter>
@@ -310,7 +310,7 @@
       <Filter>MainGame\02. Object\05. UI</Filter>
     </ClCompile>
     <ClCompile Include="DataBaseManager.cpp">
-      <Filter>MainGame\04. DB</Filter>
+      <Filter>MainGame\03. DB</Filter>
     </ClCompile>
     <ClCompile Include="Gun.cpp">
       <Filter>MainGame\02. Object\06. Item\Gun</Filter>
@@ -495,7 +495,7 @@
       <Filter>MainGame\02. Object\07. Box</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
-      <Filter>MainGame\03. Inventory</Filter>
+      <Filter>MainGame\02. Object\05. UI\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="SoundLoader.h">
       <Filter>API FrameWork\09. Sound</Filter>
@@ -510,13 +510,13 @@
       <Filter>MainGame\02. Object\05. UI</Filter>
     </ClInclude>
     <ClInclude Include="DataBaseManager.h">
-      <Filter>MainGame\04. DB</Filter>
+      <Filter>MainGame\03. DB</Filter>
     </ClInclude>
     <ClInclude Include="EnemyData.h">
-      <Filter>MainGame\04. DB</Filter>
+      <Filter>MainGame\03. DB</Filter>
     </ClInclude>
     <ClInclude Include="ItemData.h">
-      <Filter>MainGame\04. DB</Filter>
+      <Filter>MainGame\03. DB</Filter>
     </ClInclude>
     <ClInclude Include="Gun.h">
       <Filter>MainGame\02. Object\06. Item\Gun</Filter>

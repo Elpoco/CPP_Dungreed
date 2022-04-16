@@ -2,10 +2,10 @@
 
 enum KEY
 {
-	LEFT  =	'A',
-	UP	  =	'W',
+	LEFT = 'A',
+	UP = 'W',
 	RIGHT = 'D',
-	DOWN  =	'S',
+	DOWN = 'S',
 
 	UP_ARROW = VK_UP,
 	DOWN_ARROW = VK_DOWN,
@@ -13,13 +13,14 @@ enum KEY
 	RIGHT_ARROW = VK_DOWN,
 
 	SPACE = VK_SPACE,
-	ESC	  = VK_ESCAPE,
+	ESC = VK_ESCAPE,
 
 	CLICK_L = VK_LBUTTON,
 	CLICK_R = VK_RBUTTON,
 
 	// 플레이어
 	INVENTORY = 'V',
+	CHANGE_EQUIP = 192,
 };
 
 namespace MapToolEnum

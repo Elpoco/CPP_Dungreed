@@ -39,6 +39,13 @@ HRESULT Inventory::init()
 		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ITEM_FRONT, _arrItems[i]);
 	}
 	sortItem();
+
+	_arrEquipWeapon[0] = ITEMMANAGER->getItem(Code::ITEM::COLT);
+	_arrEquipWeapon[1] = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+	_arrEquipWeapon[0]->equip();
+	OBJECTMANAGER->addItem(_arrEquipWeapon[0]);
+	OBJECTMANAGER->addItem(_arrEquipWeapon[1]);
+
 	return S_OK;
 }
 
@@ -48,13 +55,8 @@ void Inventory::release()
 
 void Inventory::update()
 {
-	if (IsOnceKeyDown(KEY::INVENTORY))
-	{
-		toggleInventory();
-	}
-
-	//if (_isOpen) this->sortItem();
-	//if (_clickCell > -1) this->dragItem();
+	if (IsOnceKeyDown(KEY::INVENTORY)) toggleInventory();
+	if (IsOnceKeyDown(KEY::CHANGE_EQUIP)) changeEquip();
 
 	if (!_isOpen) return;
 	if (IsOnceKeyDown(KEY::CLICK_L)) onClick();
@@ -184,4 +186,12 @@ void Inventory::dragItem()
 	if (!_arrItems[_clickCell]) return;
 	_arrItems[_clickCell]->setX(_ptMouse.x);
 	_arrItems[_clickCell]->setY(_ptMouse.y);
+}
+
+void Inventory::changeEquip()
+{
+	_arrEquipWeapon[_equipIdx]->unequip();
+	_equipIdx = !_equipIdx;
+	_arrEquipWeapon[_equipIdx]->equip();
+	_arrEquipWeapon[_equipIdx]->update();
 }

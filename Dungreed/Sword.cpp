@@ -33,12 +33,12 @@ void Sword::update()
 
 	if (_isFirst)
 	{
-		if (*_isLeft) _degree -= 90;
+		if (ITEMMANAGER->getPlayerIsLeft()) _degree -= 90;
 		else _degree += 90;
 	}
 	else
 	{
-		if (*_isLeft) _degree -= 230;
+		if (ITEMMANAGER->getPlayerIsLeft()) _degree -= 230;
 		else _degree += 230;
 	}
 }
@@ -55,9 +55,9 @@ RECT Sword::attack()
 
 	_isFirst = !_isFirst;
 
-	float effectAngle = GetAngle(CAMERAMANAGER->calRelPt(*_ptHand), _ptMouse);
-	float effectX = cosf(effectAngle) * 30 + _ptHand->x;
-	float effectY = -sinf(effectAngle) * 30 + _ptHand->y;
+	float effectAngle = GetAngle(ITEMMANAGER->getPlayerHand(), CAMERAMANAGER->calAbsPt(_ptMouse));
+	float effectX = cosf(effectAngle) * 30 + ITEMMANAGER->getPlayerHand().x;
+	float effectY = -sinf(effectAngle) * 30 + ITEMMANAGER->getPlayerHand().y;
 
 	SOUNDMANAGER->play(SoundName::Item::Weapon::swing2, _sound);
 

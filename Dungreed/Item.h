@@ -12,10 +12,6 @@ protected:
 	BOOL _isEquip;
 	int _degree;
 
-	POINT* _ptBody;
-	POINT* _ptHand;
-	BOOL* _isLeft;
-
 	float _lastAttack;
 
 public:
@@ -31,10 +27,6 @@ public:
 
 	void equip() { _isEquip = TRUE; }
 	void unequip() { _isEquip = FALSE; }
-
-	void setBody(POINT* pt) { _ptBody = pt; }
-	void setHand(POINT* pt) { _ptHand = pt; }
-	void setIsLeft(BOOL* isLeft) { _isLeft = isLeft; }
 
 };
 
