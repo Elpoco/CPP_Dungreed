@@ -32,7 +32,15 @@ void Gun::update()
 	_rc.left -= 10;
 	_frameInfo.y = *_isLeft;
 
+
+	if (_bulletCnt <= 0)
+	{
+		_lastAttack += 1.5f;
+		_bulletCnt = _info.etc;
+	}
+
 	if (UIMANAGER->onInventory()) return;
+	this->settingShootingPoint();
 }
 
 void Gun::render(HDC hdc)
@@ -42,22 +50,39 @@ void Gun::render(HDC hdc)
 
 RECT Gun::attack()
 {
-	if (_lastAttack + 1 - _info.atkSpeed > TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	if (_lastAttack + 0.9f - _info.atkSpeed > TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
 	_lastAttack = TIMEMANAGER->getWorldTime();
+	if (--_bulletCnt < 0) return { 0,0,0,0 };
 
-	OBJECTMANAGER->addEffect(ImageName::Enemy::Niflheim::bulletFX, _ptHand->x, _ptHand->y);
+	OBJECTMANAGER->addEffect(
+		ImageName::Effect::Weapon::shooting,
+		_shootingX,
+		_shootingY,
+		_degree,
+		PointMake(_shootingX,_shootingY)
+	);
 
 	SOUNDMANAGER->play(SoundName::Item::Weapon::Gun, _sound);
 
 	OBJECTMANAGER->addBullet(
 		ObjectEnum::TYPE::PLAYER_OBJ,
 		ImageName::Item::Weapon::bullet02,
-		_ptHand->x,
-		_ptHand->y,
-		GetAngle(CAMERAMANAGER->calRelPt(*_ptHand), _ptMouse),
+		_shootingX,
+		_shootingY,
+		_angle,
 		5.0f,
 		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
-		ImageName::Enemy::Niflheim::bulletFX
+		ImageName::Effect::Weapon::shootingHit
 	);
 	return { 0,0,0,0 };
+}
+
+void Gun::settingShootingPoint()
+{
+	// 총구 위치 구하기
+	_angle = GetAngle(CAMERAMANAGER->calRelPt(*_ptBody), _ptMouse);
+	_shootingX = _ptHand->x + cosf(_angle) * _frameInfo.width;
+	_shootingX += *_isLeft ? 12 : -12;
+	_shootingY = _ptHand->y - sinf(_angle) * _frameInfo.height - 8;
+	_degree = RadToDeg(_angle);
 }

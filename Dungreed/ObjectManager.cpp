@@ -84,6 +84,16 @@ void ObjectManager::render(HDC hdc)
 		for (Object* obj : pairObject.second)
 		{
 			obj->render(hdc);
+
+			if (_isDebug)
+			{
+				BOOL isPlayer = pairObject.first == ObjectEnum::TYPE::PLAYER;
+				BOOL isEnemy = pairObject.first == ObjectEnum::TYPE::ENEMY;
+				
+				if (!isPlayer && !isEnemy) continue;
+				CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Green);
+				CAMERAMANAGER->printPoint(hdc, obj->getRect().left, obj->getRect().top, obj->getX(), obj->getY(), "x: %d, y: %d");
+			}
 		}
 	}
 }

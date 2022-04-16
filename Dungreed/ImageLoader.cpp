@@ -131,8 +131,13 @@ void ImageLoader::loadImages()
 	// # Effect #
 	// ==========
 #pragma region Effect
+	// 플레이어 이펙트
+	IMAGEMANAGER->addFrameImage(ImageName::Player::runFX, PATH_UNIT"Player/RunEffect.bmp", 0, 0, 5, 2, true, ColorSet::MAGENTA);
+
 	// 검 이펙트
-	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::effectBasic, PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::basicSwing, PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shooting, PATH_ITEM"Effect/Shooting.png", 6, 1);
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shootingHit, PATH_ITEM"Effect/Shooting_hit.png", 6, 1);
 #pragma endregion
 
 

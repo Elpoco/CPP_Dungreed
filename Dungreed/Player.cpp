@@ -24,14 +24,14 @@ HRESULT Player::init()
 {
 	Unit::init();
 
-	_rcResize = 35;
 	this->initAnimation();
 
 	CAMERAMANAGER->followCamera(this);
 
-	_item = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
-	//_item = ITEMMANAGER->getItem(Code::ITEM::COLT);
-	_item->setPos(&_hand);
+	//_item = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+	_item = ITEMMANAGER->getItem(Code::ITEM::COLT);
+	_item->setBody(&_pos);
+	_item->setHand(&_hand);
 	_item->setIsLeft(&_isLeft);
 	_item->equip();
 	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ITEM, _item);
@@ -81,7 +81,8 @@ void Player::move()
 
 	_rcAttack = { 0,0,0,0 };
 
-	_hand = PointMake(_mainHandX, _y + 20);
+	_hand = PointMake(_mainHandX, _y + 5);
+	_pos = PointMake(_x, _y);
 	
 	if (UIMANAGER->onInventory()) return;
 
@@ -130,7 +131,7 @@ void Player::initAnimation()
 	_vImages.push_back(FindImage(ImageName::Player::run));
 	_vImages.push_back(FindImage(ImageName::Player::jump));
 
-	_imgWidth = _vImages[0]->getFrameWidth() - _rcResize;
+	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
 }
 
@@ -139,6 +140,7 @@ void Player::moveLeft()
 	_state = PLAYER_MOTION::RUN;
 
 	if (!_isCollision[ColliderEnum::DIRECTION::LEFT]) _x -= _moveSpeed;
+
 }
 
 void Player::moveRight()
@@ -146,6 +148,8 @@ void Player::moveRight()
 	_state = PLAYER_MOTION::RUN;
 
 	if (!_isCollision[ColliderEnum::DIRECTION::RIGHT]) _x += _moveSpeed;
+	//if(_frameInfo.cnt == 0)
+	//OBJECTMANAGER->addEffect(ImageName::Player::runFX, _rc.left, _rc.bottom);
 }
 
 void Player::setIdle()

@@ -10,8 +10,9 @@ protected:
 	FRAME_INFO _frameInfo;
 
 	BOOL _isEquip;
-	int _angle;
+	int _degree;
 
+	POINT* _ptBody;
 	POINT* _ptHand;
 	BOOL* _isLeft;
 
@@ -31,7 +32,8 @@ public:
 	void equip() { _isEquip = TRUE; }
 	void unequip() { _isEquip = FALSE; }
 
-	void setPos(POINT* pt) { _ptHand = pt; }
+	void setBody(POINT* pt) { _ptBody = pt; }
+	void setHand(POINT* pt) { _ptHand = pt; }
 	void setIsLeft(BOOL* isLeft) { _isLeft = isLeft; }
 
 };

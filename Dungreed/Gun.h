@@ -4,6 +4,9 @@
 class Gun : public Item
 {
 private:
+	float _shootingX;
+	float _shootingY;
+	float _angle;
 	int _bulletCnt;
 
 public:
@@ -16,5 +19,7 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual RECT attack() override;
+
+	void settingShootingPoint();
 };
 

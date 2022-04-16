@@ -23,6 +23,7 @@ private:
 private:
 	Inventory* _inventory;
 
+	POINT _pos;
 	POINT _hand;
 	Item* _item;
 	int _mainHandX;

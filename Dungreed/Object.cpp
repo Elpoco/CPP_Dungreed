@@ -2,8 +2,8 @@
 #include "Object.h"
 
 Object::Object() : 
-	_x(CENTER_X),
-	_y(CENTER_Y),
+	_x(-1),
+	_y(-1),
 	_rc({0,0,0,0}),
 	_isLive(TRUE)
 {

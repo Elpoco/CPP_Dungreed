@@ -7,11 +7,14 @@ class Button;
 namespace InventorySet
 {
 	constexpr int CELL_CNT = 15;
+	constexpr int CLICK_NONE = -1;
 }
 
 class Inventory : public UI
 {
 private:
+	Item* _arrEquipWeapon[2];
+	Item* _arrEquipArmor[2];
 	Item* _arrItems[InventorySet::CELL_CNT];
 	vector<UI*> _vUI;
 	BOOL _isOpen;
@@ -20,6 +23,7 @@ private:
 	POINT _ptCell[InventorySet::CELL_CNT];
 	RECT _rcCell[InventorySet::CELL_CNT];
 
+	int _equipIdx;
 	int _clickCell;
 
 public:
@@ -33,8 +37,9 @@ public:
 
 	void settingUI();
 	void toggleInventory();
-	void onClick();
 	void sortItem();
+	void onClick();
+	void offClick();
 	void dragItem();
 
 	BOOL isOpen() { return _isOpen; }

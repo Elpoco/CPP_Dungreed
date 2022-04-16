@@ -18,7 +18,6 @@ Unit::Unit()
 	, _moveSpeed(UnitSet::MOVE_SPEED)
 	, _jumpSpeed(UnitSet::JUMP_SPEED)
 	, _gravity(0.0f)
-	, _rcResize(0)
 	, _imgAngle(0)
 	, _rotateCenter({ 0,0 })
 {
@@ -62,17 +61,41 @@ void Unit::render(HDC hdc)
 
 	if (_imgAngle)
 	{
-		CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y, _imgAngle, _rotateCenter);
+		CAMERAMANAGER->frameRender(
+			hdc, 
+			_vImages[_imgCurrent],
+			_rc.left,
+			_rc.top, 
+			_frameInfo.x,
+			_frameInfo.y, 
+			_imgAngle,
+			_rotateCenter
+		);
 	}
 	else
 	{
 		if (_imgAlpha > 0)
 		{
-			CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y, _imgAlpha);
+			CAMERAMANAGER->frameRender(
+				hdc, 
+				_vImages[_imgCurrent],
+				_rc.left,
+				_rc.top,
+				_frameInfo.x,
+				_frameInfo.y,
+				_imgAlpha
+			);
 		}
 		else
 		{
-			CAMERAMANAGER->frameRender(hdc, _vImages[_imgCurrent], _rc.left - _rcResize / 2, _rc.top, _frameInfo.x, _frameInfo.y);
+			CAMERAMANAGER->frameRender(
+				hdc, 
+				_vImages[_imgCurrent],
+				_rc.left, 
+				_rc.top,
+				_frameInfo.x, 
+				_frameInfo.y
+			);
 		}
 	}
 	

@@ -5,18 +5,19 @@ namespace ImageName
 
 	namespace Player
 	{
-		constexpr char* idle = "PLAYER_idle";
-		constexpr char* run  = "PLAYER_run";
-		constexpr char* jump = "PLAYER_jump";
-		constexpr char* die  = "PLAYER_die";
-		constexpr char* hand = "PLAYER_hand";
+		constexpr char* idle = "PLAYER idle";
+		constexpr char* run  = "PLAYER run";
+		constexpr char* jump = "PLAYER jump";
+		constexpr char* die  = "PLAYER die";
+		constexpr char* hand = "PLAYER hand";
+		constexpr char* runFX = "PLAYER runFX";
 	}
 
 	namespace Enemy
 	{
-		constexpr char* sapwn	 = "ENEMY_spawn";
-		constexpr char* die		 = "ENEMY_die";
-		constexpr char* dieSmall = "ENEMY_dieSmall";
+		constexpr char* sapwn	 = "ENEMY spawn";
+		constexpr char* die		 = "ENEMY die";
+		constexpr char* dieSmall = "ENEMY dieSmall";
 
 		constexpr char* dogIdle = "DogIdle";
 		constexpr char* dogRun  = "DogRun";
@@ -127,7 +128,9 @@ namespace ImageName
 	{
 		namespace Weapon
 		{
-			constexpr char* effectBasic = "EffectBasic";
+			constexpr char* basicSwing = "EFFECT BasicSwing";
+			constexpr char* shooting = "EFFECT Shooting";
+			constexpr char* shootingHit = "EFFECT ShootingHit";
 		}
 	}
 

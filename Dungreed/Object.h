@@ -22,7 +22,7 @@ public:
 	inline float getY() { return _y; }
 	virtual inline void setX(float x) { _x = x; }
 	virtual inline void setY(float y) { _y = y; }
-	inline POINT getPt() { return PointMake(_x,_y); }
+	inline POINT getPt() { return PointMake(_x, _y); }
 
 	inline RECT getRect() { return _rc; }
 	inline BOOL isLive() { return _isLive; }

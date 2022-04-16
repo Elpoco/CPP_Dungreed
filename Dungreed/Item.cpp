@@ -2,7 +2,7 @@
 #include "Item.h"
 
 Item::Item(Code::ITEM itemCode)
-	: _angle(0)
+	: _degree(0)
 	, _lastAttack(0.0f)
 {
 	_info = DBMANAGER->getInfo(itemCode);
@@ -33,9 +33,9 @@ void Item::update()
 	{
 		if (!UIMANAGER->onInventory())
 		{
-			_angle = GetAngleDeg(
-				CAMERAMANAGER->calRelX(_ptHand->x), 
-				CAMERAMANAGER->calRelY(_ptHand->y),
+			_degree = GetAngleDeg(
+				CAMERAMANAGER->calRelX(_ptBody->x), 
+				CAMERAMANAGER->calRelY(_ptBody->y),
 				_ptMouse.x,
 				_ptMouse.y
 			);
@@ -58,7 +58,7 @@ void Item::render(HDC hdc)
 {
 	if (_isEquip)
 	{
-		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, 0, _frameInfo.y, _angle, *_ptHand);
+		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, 0, _frameInfo.y, _degree, *_ptHand);
 	}
 	else
 	{

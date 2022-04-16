@@ -83,11 +83,24 @@ void Bullet::deleteEffect()
 {
 	if (_destroyImgName != "")
 	{
-		OBJECTMANAGER->addEffect(
-			_destroyImgName,
-			_x,
-			_y
-		);
+		if (GPIMAGEMANAGER->findImage(_imgName))
+		{
+			OBJECTMANAGER->addEffect(
+				_destroyImgName,
+				_x,
+				_y,
+				RadToDeg(_angle),
+				PointMake(_x, _y)
+			);
+		}
+		else
+		{
+			OBJECTMANAGER->addEffect(
+				_destroyImgName,
+				_x,
+				_y
+			);
+		}
 	}
 }
 

@@ -8,7 +8,8 @@ using namespace InventorySet;
 
 Inventory::Inventory()
 	: _isOpen(FALSE)
-	, _clickCell(-1)
+	, _equipIdx(0)
+	, _clickCell(CLICK_NONE)
 {
 }
 
@@ -37,7 +38,7 @@ HRESULT Inventory::init()
 		}
 		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ITEM_FRONT, _arrItems[i]);
 	}
-
+	sortItem();
 	return S_OK;
 }
 
@@ -52,9 +53,14 @@ void Inventory::update()
 		toggleInventory();
 	}
 
-	if (_isOpen) this->onClick();
-	if (_isOpen) this->sortItem();
-	if (_clickCell > -1) this->dragItem();
+	//if (_isOpen) this->sortItem();
+	//if (_clickCell > -1) this->dragItem();
+
+	if (!_isOpen) return;
+	if (IsOnceKeyDown(KEY::CLICK_L)) onClick();
+	if (IsStayKeyDown(KEY::CLICK_L)) dragItem();
+	if (IsOnceKeyUp(KEY::CLICK_L))   offClick();
+	if (IsOnceKeyDown(KEY::ESC))     toggleInventory();
 }
 
 void Inventory::render(HDC hdc)
@@ -128,22 +134,38 @@ void Inventory::toggleInventory()
 
 void Inventory::onClick()
 {
-	if (!IsOnceKeyDown(KEY::CLICK_L)) return;
+	for (int i = 0; i < CELL_CNT; i++)
+	{
+		if (MouseInRect(_rcCell[i]))
+		{
+			_clickCell = i;
+		}
+	}
+}
 
-	if (MouseInRect(_rcClose)) toggleInventory();
+void Inventory::offClick()
+{
 
 	for (int i = 0; i < CELL_CNT; i++)
 	{
 		if (MouseInRect(_rcCell[i]))
 		{
-			//if (_arrItems[i])
-			//{
-			//	_arrItems[i] = _arrItems[_clickCell];
-			//}
-			_clickCell = i;
-			return;
+			if (_arrItems[i])
+			{
+				Item* temp = _arrItems[i];
+				_arrItems[i] = _arrItems[_clickCell];
+				_arrItems[_clickCell] = temp; 
+			}
+			else
+			{
+				_arrItems[i] = _arrItems[_clickCell];
+				_arrItems[_clickCell] = NULL;
+			}
 		}
 	}
+	sortItem();
+
+	if (MouseInRect(_rcClose)) toggleInventory();
 }
 
 void Inventory::sortItem()
@@ -151,7 +173,6 @@ void Inventory::sortItem()
 	for (int i = 0; i < CELL_CNT; i++)
 	{
 		if (!_arrItems[i]) continue;
-		if (_clickCell == i) continue;
 
 		_arrItems[i]->setX(_ptCell[i].x);
 		_arrItems[i]->setY(_ptCell[i].y);
@@ -160,11 +181,7 @@ void Inventory::sortItem()
 
 void Inventory::dragItem()
 {
-	if (!_arrItems[_clickCell])
-	{
-		_clickCell = -1;
-		return;
-	}
+	if (!_arrItems[_clickCell]) return;
 	_arrItems[_clickCell]->setX(_ptMouse.x);
 	_arrItems[_clickCell]->setY(_ptMouse.y);
 }

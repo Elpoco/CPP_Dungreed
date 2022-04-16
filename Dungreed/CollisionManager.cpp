@@ -87,21 +87,26 @@ void CollisionManager::renderPlayer(HDC hdc, Object* obj)
 	{
 		for (int x = startX; x <= endX; x++)
 		{
-			//CAMERAMANAGER->printRectangle(hdc, TILEMANAGER->getTile(y + x).rc, Color::AntiqueWhite);
+			CAMERAMANAGER->printRectangle(hdc, TILEMANAGER->getTile(y + x).rc, Color::AntiqueWhite);
 		}
 	}
-	// 타일충돌 랜더
 
+	// 공격 박스
 	CAMERAMANAGER->printRectangle(hdc, player->getAtkRect(), Color::Red);
 }
 
 void CollisionManager::renderEnemy(HDC hdc, Object* obj)
 {
 	Enemy* enemy = dynamic_cast<Enemy*>(obj);
-	//if (!enemy->isSpawn()) continue;
+
 	// 스캔박스
-	CAMERAMANAGER->printRectangle(hdc, enemy->getScanRect(),
-		(enemy->getPlayerScan() ? Color::Gold : Color::Aqua));
+	CAMERAMANAGER->printRectangle(
+		hdc, 
+		enemy->getScanRect(),
+		(enemy->getPlayerScan() ? Color::Gold : Color::Aqua)
+	);
+
+	// 공격 박스
 	CAMERAMANAGER->printRectangle(hdc, enemy->getAtkRect(), Color::Red);
 }
 
@@ -226,6 +231,9 @@ void CollisionManager::collisionTile()
 				}
 			}
 			break;
+		// ==============
+		// # 아이템 충돌 #
+		// ==============
 		case ObjectEnum::TYPE::ITEM_DROP:
 			for (Object* obj : pairObject.second)
 			{

@@ -33,13 +33,13 @@ void Sword::update()
 
 	if (_isFirst)
 	{
-		if (*_isLeft) _angle -= 90;
-		else _angle += 90;
+		if (*_isLeft) _degree -= 90;
+		else _degree += 90;
 	}
 	else
 	{
-		if (*_isLeft) _angle -= 230;
-		else _angle += 230;
+		if (*_isLeft) _degree -= 230;
+		else _degree += 230;
 	}
 }
 
@@ -50,7 +50,7 @@ void Sword::render(HDC hdc)
 
 RECT Sword::attack()
 {
-	if (_lastAttack + 1 - _info.atkSpeed > TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	if (_lastAttack + 0.9f - _info.atkSpeed > TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
 	_lastAttack = TIMEMANAGER->getWorldTime();
 
 	_isFirst = !_isFirst;
@@ -62,7 +62,7 @@ RECT Sword::attack()
 	SOUNDMANAGER->play(SoundName::Item::Weapon::swing2, _sound);
 
 	return OBJECTMANAGER->addEffect(
-		ImageName::Effect::Weapon::effectBasic,
+		ImageName::Effect::Weapon::basicSwing,
 		effectX,
 		effectY,
 		RadToDeg(effectAngle),
