@@ -3,6 +3,7 @@
 
 Item::Item(Code::ITEM itemCode)
 	: _angle(0)
+	, _lastAttack(0.0f)
 {
 	_info = DBMANAGER->getInfo(itemCode);
 }

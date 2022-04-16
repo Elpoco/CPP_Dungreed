@@ -29,8 +29,8 @@ HRESULT Player::init()
 
 	CAMERAMANAGER->followCamera(this);
 
-	//_item = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
-	_item = ITEMMANAGER->getItem(Code::ITEM::COLT);
+	_item = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+	//_item = ITEMMANAGER->getItem(Code::ITEM::COLT);
 	_item->setPos(&_hand);
 	_item->setIsLeft(&_isLeft);
 	_item->equip();
@@ -89,7 +89,7 @@ void Player::move()
 	if (IsStayKeyDown(KEY::RIGHT))	 this->moveRight();
 	if (IsOnceKeyUp(KEY::LEFT))		 this->setIdle();
 	if (IsOnceKeyUp(KEY::RIGHT))	 this->setIdle();
-	if (IsOnceKeyDown(KEY::CLICK_L)) this->attack();
+	if (IsStayKeyDown(KEY::CLICK_L)) this->attack();
 	if (IsOnceKeyDown(KEY::CLICK_R)) this->dash();
 	if (IsOnceKeyDown(KEY::UP) || IsOnceKeyDown(KEY::SPACE))  Unit::jump();
 

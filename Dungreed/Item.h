@@ -15,6 +15,8 @@ protected:
 	POINT* _ptHand;
 	BOOL* _isLeft;
 
+	float _lastAttack;
+
 public:
 	Item(Code::ITEM itemCode);
 	virtual ~Item();
@@ -31,6 +33,6 @@ public:
 
 	void setPos(POINT* pt) { _ptHand = pt; }
 	void setIsLeft(BOOL* isLeft) { _isLeft = isLeft; }
-	
+
 };
 

@@ -51,6 +51,7 @@ void CollisionManager::render(HDC hdc)
 					renderEnemy(hdc, obj);
 					break;
 				case ObjectEnum::TYPE::ENEMY_OBJ:
+				case ObjectEnum::TYPE::PLAYER_OBJ:
 					renderBullet(hdc, obj);
 					break;
 				case ObjectEnum::TYPE::UI_FRONT:

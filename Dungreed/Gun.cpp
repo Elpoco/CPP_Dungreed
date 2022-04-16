@@ -42,6 +42,9 @@ void Gun::render(HDC hdc)
 
 RECT Gun::attack()
 {
+	if (_lastAttack + 1 - _info.atkSpeed > TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	_lastAttack = TIMEMANAGER->getWorldTime();
+
 	OBJECTMANAGER->addEffect(ImageName::Enemy::Niflheim::bulletFX, _ptHand->x, _ptHand->y);
 
 	SOUNDMANAGER->play(SoundName::Item::Weapon::Gun, _sound);

@@ -50,6 +50,9 @@ void Sword::render(HDC hdc)
 
 RECT Sword::attack()
 {
+	if (_lastAttack + 1 - _info.atkSpeed > TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	_lastAttack = TIMEMANAGER->getWorldTime();
+
 	_isFirst = !_isFirst;
 
 	float effectAngle = GetAngle(CAMERAMANAGER->calRelPt(*_ptHand), _ptMouse);
