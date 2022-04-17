@@ -181,6 +181,7 @@ namespace SoundName
 		constexpr char* getItem		= "SOUND ITEM getItem";
 		constexpr char* Equip		= "SOUND ITEM Equip";
 		constexpr char* PickUpItem	= "SOUND ITEM PickUpItem";
+		constexpr char* Reload2		= "SOUND Reload2";
 
 		namespace Weapon
 		{

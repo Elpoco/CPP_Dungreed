@@ -266,15 +266,17 @@ void Inventory::offClick()
 			else
 			{
 				_arrItems[i] = _arrItems[_clickCell];
-				_arrItems[_clickCell] = NULL;
 				if (i < EQUIP_CNT)
 				{
+					if(_clickCell < EQUIP_CNT) _arrItems[_clickCell]->unequip();
+
 					if (_equipIdx == i)
 					{
 						_arrItems[i]->equip();
 						_arrItems[i]->update();
 					}
 				}
+				_arrItems[_clickCell] = NULL;
 			}
 			break;
 		}
@@ -396,7 +398,7 @@ void Inventory::renderInventoryItem(HDC hdc)
 
 BOOL Inventory::pickUpItem(Code::ITEM code)
 {
-	for (int i = INVEN_0; i < INVEN_CNT; i++)
+	for (int i = 0; i < INVEN_CNT; i++)
 	{
 		if (!_arrItems[i])
 		{

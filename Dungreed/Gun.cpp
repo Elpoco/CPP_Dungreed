@@ -37,8 +37,9 @@ void Gun::update()
 
 	if (_bulletCnt <= 0)
 	{
-		_lastAttack += 1.5f;
+		_lastAttack += 1.0f;
 		_bulletCnt = _info.etc;
+		SOUNDMANAGER->play(SoundName::Item::Reload2, _sound);
 	}
 
 	if (UIMANAGER->onInventory()) return;

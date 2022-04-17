@@ -51,8 +51,8 @@ void NiflheimPillar::update()
 
 	_wideLeft = *_niflheimX - 300;
 	_wideRight = *_niflheimX + 300;
-	_wideTop = 1700; // *_niflheimY - 400;
-	_wideBottom = 1200; //*_niflheimY + 100;
+	_wideTop = *_niflheimY - 300;
+	_wideBottom = *_niflheimY + 100;
 }
 
 void NiflheimPillar::render(HDC hdc)

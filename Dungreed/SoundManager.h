@@ -10,7 +10,7 @@ enum SOUNDKIND
 };
 
 constexpr auto soundBuffer = 15;
-constexpr auto extraSoundChannel = 5;
+constexpr auto extraSoundChannel = 10;
 constexpr auto totalSoundChannel = soundBuffer + extraSoundChannel;
 
 using namespace FMOD;
@@ -37,9 +37,6 @@ public:
 	HRESULT init(void);
 	void release(void);
 	void update(void);
-
-	void setUp(char* fileName, int soundKind, bool background, bool loop);
-	void play(int soundKind, float volume);
 
 	void addSound(string keyName, string soundName, bool background, bool loop);
 

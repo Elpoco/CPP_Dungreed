@@ -38,6 +38,8 @@ HRESULT Niflheim::init()
 	settingHp(_info.hp);
 
 	this->initPillar();
+
+	SOUNDMANAGER->stop(SoundName::dungeon);
 	SOUNDMANAGER->stop(SoundName::belialBG);
 	SOUNDMANAGER->play(SoundName::Enemy::niflheim_start, _sound);
 	SOUNDMANAGER->play(SoundName::niflheimBG, _sound);

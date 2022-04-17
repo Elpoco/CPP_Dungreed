@@ -131,6 +131,9 @@ void Player::move()
 		_isLeft = false;
 		_mainHandX = _x + 20;
 	}
+
+	if (_isJump || _isFall) _state = PLAYER_MOTION::JUMP;
+	if (_isDash) _state = PLAYER_MOTION::DASH;
 }
 
 void Player::animation()
@@ -210,5 +213,6 @@ void Player::dash()
 
 void Player::getItem(Code::ITEM code)
 {
-	_inventory->pickUpItem(code);
+	if(code == Code::ITEM::COLT)
+		_inventory->pickUpItem(code);
 }
