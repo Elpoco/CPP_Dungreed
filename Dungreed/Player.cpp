@@ -195,6 +195,7 @@ void Player::dash()
 	_isDash = TRUE;
 	_dashAngle = GetAngle(PointMake(_x, _y), CAMERAMANAGER->calAbsPt(_ptMouse));
 	
+	SOUNDMANAGER->play(SoundName::Player::dash, _sound);
 	OBJECTMANAGER->addEffect(ImageName::Player::runFX, _rc.left, _rc.bottom);
 }
 

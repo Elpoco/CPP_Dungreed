@@ -24,14 +24,14 @@ HRESULT Inventory::init()
 {
 	settingUI();
 
-	for (int i = 0; i < CELL_CNT; i++)
+	for (int i = INVEN_0; i < INVEN_CNT; i++)
 	{
-		if (i > 10)
+		if (i > INVEN_5)
 		{
 			_arrItems[i] = NULL;
 			continue;
 		}
-		if (i < 5)
+		if (i < INVEN_3)
 		{
 			_arrItems[i] = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
 		}
@@ -137,57 +137,46 @@ void Inventory::settingUI()
 
 		int x = _equipSlot[i]->getX();
 		int y = _equipSlot[i]->getY() + 9;
-		// 무기칸
-		_ptCell2[i] = PointMake(x - 33, y);
-		_ptCell2[1 + i * 2] = PointMake(x + 33, y);
-		// 렉트 포인트 작업 시작
-
-		_rcEquipSlot[WEAPON_0 + i * 2] = RectMakeCenter(
-			_ptEquipSlot[WEAPON_0 + i * 2].x,
-			_ptEquipSlot[WEAPON_0 + i * 2].y,
-			57,
-			57
-		);
-		_rcEquipSlot[ARMOR_0 + i * 2] = RectMakeCenter(
-			_ptEquipSlot[ARMOR_0 + i * 2].x,
-			_ptEquipSlot[ARMOR_0 + i * 2].y,
-			57,
-			57
-		);
+		
+		// 장착 무기
+		_ptInven[i] = PointMake(x - 33, y);
+		// 장착 방어구
+		_ptInven[2 + i] = PointMake(x + 33, y);
 	}
 
 	// 악세칸
-	for (int i = 0; i < ACC_CNT; i++)
+	for (int i = ACC_0; i < ACC_CNT; i++)
 	{
 		int x = baseX - 86;
 		int y = baseY - 62;
-		_ptAcc[i].x = x + i * 61;
-		_ptAcc[i].y = y;
-		_rcAcc[i] = RectMakeCenter(
-			_ptAcc[i].x,
-			_ptAcc[i].y,
-			57,
-			57
-		);
+		_ptInven[i] = PointMake(x + (i - ACC_0) * 61, y);
 	}
 
 	// 장비칸
-	for (int i = 0; i < CELL_CNT; i++)
+	for (int i = INVEN_0; i < INVEN_CNT; i++)
 	{
-		Button* cell = new Button(ImageName::UI::Inventory::Cell);
-		int x = i % 5;
-		int y = i / 5;
+		UI* inven = new UI(ImageName::UI::Inventory::Cell);
+		int x = (i - INVEN_0) % 5;
+		int y = (i - INVEN_0) / 5;
 
-		_ptCell[i].x = 61 + invenBase->getRect().left + x * 65;
-		_ptCell[i].y = 25 + CENTER_Y + y * 65;
+		_ptInven[i].x = 61 + invenBase->getRect().left + x * 65;
+		_ptInven[i].y = 25 + CENTER_Y + y * 65;
 
-		cell->setX(_ptCell[i].x);
-		cell->setY(_ptCell[i].y);
+		inven->setX(_ptInven[i].x);
+		inven->setY(_ptInven[i].y);
 
-		_rcCell[i] = cell->getRect();
+		_vUI.push_back(inven);
+		OBJECTMANAGER->addUI(inven);
+	}
 
-		_vUI.push_back(cell);
-		OBJECTMANAGER->addButton(cell);
+	for (int i = 0; i < INVEN_CNT; i++)
+	{
+		_rcInven[i] = RectMakeCenter(
+			_ptInven[i].x,
+			_ptInven[i].y,
+			57,
+			57
+		);
 	}
 
 	for (auto ui : _vUI)
@@ -210,6 +199,7 @@ void Inventory::settingUI()
 
 	// 마우스 오버 테두리
 	_imgHover = FindImage(ImageName::UI::Inventory::on);
+	_imgInvenHover = FindImage(ImageName::UI::Inventory::Cell_On);
 }
 
 void Inventory::toggleInventory()
@@ -221,7 +211,7 @@ void Inventory::toggleInventory()
 		SOUNDMANAGER->play(SoundName::invenOpen, _sound);
 		for (auto ui : _vUI)
 		{
-			ui->show();
+			if (ui) ui->show();
 		}
 		_equipSlot[_equipIdx]->show();
 	}
@@ -231,7 +221,7 @@ void Inventory::toggleInventory()
 		_clickCell = CLICK_NONE;
 		for (auto ui : _vUI)
 		{
-			ui->hide();
+			if(ui) ui->hide();
 		}
 		_equipSlot[_equipIdx]->hide();
 	}
@@ -239,9 +229,9 @@ void Inventory::toggleInventory()
 
 void Inventory::onClick()
 {
-	for (int i = 0; i < CELL_CNT; i++)
+	for (int i = 0; i < INVEN_CNT; i++)
 	{
-		if (MouseInRect(_rcCell[i]))
+		if (MouseInRect(_rcInven[i]))
 		{
 			_clickCell = i;
 			if(_arrItems[i]) SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
@@ -251,47 +241,47 @@ void Inventory::onClick()
 
 void Inventory::offClick()
 {
-	for (int i = 0; i < CELL_CNT; i++)
+	for (int i = 0; i < INVEN_CNT; i++)
 	{
-		if (MouseInRect(_rcCell[i]))
+		if (MouseInRect(_rcInven[i]))
 		{
 			if(_arrItems[_clickCell]) SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
-
+	
+			// 놓을때 아이템이 있는경우
 			if (_arrItems[i])
 			{
-				Item* temp = _arrItems[i];
+				Item* preItem = _arrItems[i];
 				_arrItems[i] = _arrItems[_clickCell];
-				_arrItems[_clickCell] = temp; 
+				_arrItems[_clickCell] = preItem;
+				if (i < EQUIP_CNT) // 장착 칸일경우
+				{
+					preItem->unequip();
+					if (_equipIdx == i)
+					{
+						_arrItems[i]->equip();
+						_arrItems[i]->update();
+					}
+				}
 			}
 			else
 			{
 				_arrItems[i] = _arrItems[_clickCell];
 				_arrItems[_clickCell] = NULL;
+				if (i < EQUIP_CNT)
+				{
+					if (_equipIdx == i)
+					{
+						_arrItems[i]->equip();
+						_arrItems[i]->update();
+					}
+				}
 			}
 			break;
 		}
 	}
-
-	for (int i = 0; i < SLOT_CNT; i++)
-	{
-		if (MouseInRect(_rcEquipSlot[i]))
-		{
-			if (_arrEquipItem[i])
-			{
-
-			}
-			else
-			{
-				SOUNDMANAGER->play(SoundName::Item::Equip, _sound);
-				_arrEquipItem[i] = _arrItems[_clickCell];
-				_arrItems[_clickCell] = NULL;
-			}
-			break;
-		}
-	}
-
+	
 	sortItem();
-
+	
 	_clickCell = CLICK_NONE;
 
 	if (MouseInRect(_rcClose)) toggleInventory();
@@ -299,12 +289,12 @@ void Inventory::offClick()
 
 void Inventory::sortItem()
 {
-	for (int i = 0; i < CELL_CNT; i++)
+	for (int i = 0; i < INVEN_CNT; i++)
 	{
 		if (!_arrItems[i]) continue;
-
-		_arrItems[i]->setX(_ptCell[i].x);
-		_arrItems[i]->setY(_ptCell[i].y);
+	
+		_arrItems[i]->setX(_ptInven[i].x);
+		_arrItems[i]->setY(_ptInven[i].y);
 	}
 }
 
@@ -318,21 +308,12 @@ void Inventory::dragItem()
 void Inventory::hoverSlot()
 {
 	_isHover = FALSE;
-	for (int i = 0; i < SLOT_CNT; i++)
+	for (int i = 0; i < INVEN_CNT; i++)
 	{
-		if (MouseInRect(_rcEquipSlot[i]))
+		if (MouseInRect(_rcInven[i]))
 		{
 			_isHover = TRUE;
-			_rcHover = _rcEquipSlot[i];
-			return;
-		}
-	}
-	for (int i = 0; i < ACC_CNT; i++)
-	{
-		if (MouseInRect(_rcAcc[i]))
-		{
-			_isHover = TRUE;
-			_rcHover = _rcAcc[i];
+			_rcHover = _rcInven[i];
 			return;
 		}
 	}
@@ -343,29 +324,29 @@ void Inventory::swapEquip()
 	SOUNDMANAGER->play(SoundName::swapEquip, _sound);
 	_isSawp = TRUE;
 
-	if (_arrEquipItem[_equipIdx])
+	if (_arrItems[_equipIdx])
 	{
-		_arrEquipItem[_equipIdx]->unequip();
+		_arrItems[_equipIdx]->unequip();
 	}
 	_equipSlot[_equipIdx]->hide();
-
+	
 	_equipIdx = !_equipIdx;
-
-	if (_arrEquipItem[_equipIdx])
+	
+	if (_arrItems[_equipIdx])
 	{
-		_arrEquipItem[_equipIdx]->equip();
-		_arrEquipItem[_equipIdx]->update();
+		_arrItems[_equipIdx]->equip();
+		_arrItems[_equipIdx]->update();
 	}
-
+	
 	if (!_isOpen) return;
 	_equipSlot[_equipIdx]->show();
 }
 
 void Inventory::renderEquipBase(HDC hdc)
 {
-	if (!_arrEquipItem[_equipIdx]) return;
-
-	ImageBase* img = _arrEquipItem[_equipIdx]->getImage();
+	if (!_arrItems[_equipIdx]) return;
+	
+	ImageBase* img = _arrItems[_equipIdx]->getImage();
 	
 	img->frameRender(
 		hdc,
@@ -379,23 +360,36 @@ void Inventory::renderEquipBase(HDC hdc)
 void Inventory::renderInventoryItem(HDC hdc)
 {
 	ImageBase* img;
-
-	for (int i = 0; i < 2; i++)
+	
+	for (int i = 0; i < INVEN_CNT; i++)
 	{
-		int idx = i * 2;
 		int equip = _equipIdx == i ? 1 : 0; // 장착중인 장비는 살짝 올라감
 
-		if (_arrEquipItem[i])
+		if (_arrItems[i])
 		{
-			img = _arrEquipItem[i]->getImage();
-			img->frameRender(
-				hdc,
-				_ptEquipSlot[idx].x - img->getFrameWidth() / 2,
-				_ptEquipSlot[idx].y - img->getFrameHeight() / 2 - equip,
-				0,
-				0
-			);
+			img = _arrItems[i]->getImage();
+			if (!img) continue;
+
+			if (_clickCell == i)
+			{
+				img->frameRender(
+					hdc,
+					_ptMouse.x - img->getFrameWidth() / 2,
+					_ptMouse.y - img->getFrameHeight() / 2,
+					0,
+					0
+				);
+			}
+			else
+			{
+				img->frameRender(
+					hdc,
+					_ptInven[i].x - img->getFrameWidth() / 2,
+					_ptInven[i].y - img->getFrameHeight() / 2 - equip,
+					0,
+					0
+				);
+			}
 		}
-		
 	}
 }

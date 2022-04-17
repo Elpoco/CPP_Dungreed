@@ -85,6 +85,7 @@ namespace ImageName
 			constexpr char* equipBase = "INVENTORY equipBase";
 			constexpr char* exitBtn = "INVENTORY exitBtn";
 			constexpr char* Cell = "INVENTORY Cell";
+			constexpr char* Cell_On = "INVENTORY Cell_On";
 			constexpr char* Accessory = "INVENTORY Accessory";
 			constexpr char* EquipSlot1On = "INVENTORY EquipSlot1On";
 			constexpr char* EquipSlot2On = "INVENTORY EquipSlot2On";
@@ -149,12 +150,17 @@ namespace SoundName
 	constexpr char* invenOpen = "SOUND invenOpen";
 	constexpr char* swapEquip = "SOUND swapEquip";
 
+	namespace Player
+	{
+		constexpr char* dash = "SOUND PLAYER dash";
+	}
+
 	namespace Item
 	{
-		constexpr char* getCoin = "SOUND getCoin";
-		constexpr char* getItem = "SOUND getItem";
-		constexpr char* Equip = "SOUND Equip";
-		constexpr char* PickUpItem = "SOUND PickUpItem";
+		constexpr char* getCoin		= "SOUND ITEM getCoin";
+		constexpr char* getItem		= "SOUND ITEM getItem";
+		constexpr char* Equip		= "SOUND ITEM Equip";
+		constexpr char* PickUpItem	= "SOUND ITEM PickUpItem";
 
 		namespace Weapon
 		{

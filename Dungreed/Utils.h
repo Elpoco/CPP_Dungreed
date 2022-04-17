@@ -23,6 +23,14 @@ namespace MY_UTIL
 
 	bool MouseInRect(RECT& rc);
 
+	// =======
+	// # LOG #
+	// =======
+	inline void LogPos(char* name, float x, float y)
+	{
+		cout << name << "__x: " << x << ", y:" << y << endl;
+	}
+
 	// ===============
 	// # POINT, RECT #
 	// ===============

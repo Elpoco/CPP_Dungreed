@@ -23,6 +23,12 @@ void SoundLoader::release()
 void SoundLoader::loadSounds()
 {
 	SOUNDMANAGER->addSound(SoundName::title, PATH_SOUND"Title.wav", true, true);
+
+	// ==========
+	// # Player #
+	// ==========
+	SOUNDMANAGER->addSound(SoundName::Player::dash, PATH_SOUND"Dash.wav", false, false);
+
 	// ========
 	// # Item #
 	// ========

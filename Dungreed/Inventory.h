@@ -14,19 +14,21 @@ class Inventory : public UI
 private:
 	enum SLOT_POINT
 	{
-		WEAPON_0,
-		WEAPON_1,
-		ARMOR_0,
-		ARMOR_1,
+		WEAPON_0, WEAPON_1,
+		ARMOR_0, ARMOR_1,
+		EQUIP_CNT,
 
-		ACC_0,
-		ACC_1,
-		ACC_2,
-		ACC_3,
+		ACC_0 = 4,
+		ACC_1, ACC_2, ACC_3,
+		ACC_CNT,
 
-		CELL_,
-
-		CELL_CNT = 23
+		INVEN_0 = 8,
+		INVEN_1, INVEN_2, INVEN_3,
+		INVEN_4, INVEN_5, INVEN_6, 
+		INVEN_7, INVEN_8, INVEN_9,
+		INVEN_10, INVEN_11, INVEN_12,
+		INVEN_13, INVEN_14,
+		INVEN_CNT
 	};
 
 private:
@@ -46,14 +48,15 @@ private:
 	UI* _equipSlot[2];
 
 	// 인벤토리
-	Item* _arrItems[CELL_CNT]; // 인벤토리에 들고있는 아이템
-	POINT _ptCell2[CELL_CNT];
-	RECT _rcCell2[CELL_CNT];
+	Item* _arrItems[INVEN_CNT];  // 인벤토리 아이템
+	POINT _ptInven[INVEN_CNT];   // UI 중심
+	RECT _rcInven[INVEN_CNT];    // UI RECT
 	BOOL _equipIdx;				// 착용 인덱스 0 or 1
 	int _clickCell;
 
 	// 마우스 오버시 테투리
 	ImageBase* _imgHover;
+	ImageBase* _imgInvenHover;
 	BOOL _isHover;
 	RECT _rcHover;
 

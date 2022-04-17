@@ -47,10 +47,6 @@ void Item::update()
 			_frameInfo.height
 		);
 	}
-	else
-	{
-		_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
-	}
 }
 
 void Item::render(HDC hdc)
@@ -67,10 +63,5 @@ void Item::render(HDC hdc)
 			_degree,
 			ITEMMANAGER->getPlayerHand()
 		);
-	}
-	else
-	{
-		if (!UIMANAGER->onInventory()) return;
-		_img->frameRender(hdc, _rc.left, _rc.top, 0, 0);
 	}
 }
