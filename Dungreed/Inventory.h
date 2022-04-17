@@ -83,6 +83,7 @@ public:
 
 	BOOL isOpen() { return _isOpen; }
 	Item* getEquipItem() { return _arrItems[_equipIdx]; }
+	BOOL pickUpItem(Code::ITEM code);
 
 };
 

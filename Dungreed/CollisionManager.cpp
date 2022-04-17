@@ -175,19 +175,21 @@ void CollisionManager::collisionTile()
 						TILE tile = TILEMANAGER->getTile(y + x);
 						switch (tile.type)
 						{
-						case MapToolEnum::TYPE::DIG_R:
+						case MapToolEnum::OBJECT::BLOCK_R:
+						case MapToolEnum::OBJECT::DOWN_R:
 							moveY = unit->getRect().right - tile.rc.left;
-
 							unit->setCollision(DIRECTION::BOTTOM, true);
+							if (moveY > TILE_SIZE) continue;
 							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY);
-							break;
-						case MapToolEnum::TYPE::DIG_L:
-							moveY = tile.rc.right - unit->getRect().left;
-
+							return;
+						case MapToolEnum::OBJECT::BLOCK_L:
+						case MapToolEnum::OBJECT::DOWN_L:
+							moveY = unit->getRect().left - tile.rc.right;
 							unit->setCollision(DIRECTION::BOTTOM, true);
-							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY);
-							break;
-						case MapToolEnum::TYPE::BLOCK:
+							if (abs(moveY) > TILE_SIZE) continue;
+							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom + moveY);
+							return;
+						case MapToolEnum::OBJECT::BLOCK:
 							if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top) 
 							{ // 왼쪽
 								unit->setCollision(DIRECTION::LEFT, true);
@@ -209,6 +211,12 @@ void CollisionManager::collisionTile()
 								unit->pushObject(DIRECTION::TOP, 0, tile.rc.bottom);
 							}
 							break;
+						case MapToolEnum::OBJECT::DOWN:
+							if (tile.y > rcObj.bottom)
+							{ // 바닥
+								unit->setCollision(DIRECTION::BOTTOM, true);
+								unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
+							}
 						default:
 							break;
 						}
@@ -224,7 +232,7 @@ void CollisionManager::collisionTile()
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getY());
-				if (tile.type == MapToolEnum::TYPE::BLOCK)
+				if (tile.type == MapToolEnum::OBJECT::BLOCK)
 				{
 					obj->stopObject();
 					obj->collisionObject();
@@ -238,7 +246,7 @@ void CollisionManager::collisionTile()
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getRect().bottom);
-				if (tile.type == MapToolEnum::TYPE::BLOCK)
+				if (tile.type == MapToolEnum::OBJECT::BLOCK)
 				{
 					obj->stopObject();
 					obj->pushObject(DIRECTION::BOTTOM, tile.rc.top);
@@ -289,7 +297,7 @@ void CollisionManager::collisionPlayerEnemy()
 			// 플레이어 공격
 			if (IntersectRect(&tmp, &playerAtkBox, &enemyHitBox))
 			{
-				enemy->hitAttack(enemy->getDmg(), enemy->getX() > player->getX());
+				enemy->hitAttack(player->getDmg(), enemy->getX() > player->getX());
 			}
 			// 적 공격
 			if (IntersectRect(&tmp, &playerHitBox, &enemyAtkBox))

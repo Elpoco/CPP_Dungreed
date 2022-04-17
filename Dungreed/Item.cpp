@@ -6,6 +6,7 @@ Item::Item(Code::ITEM itemCode)
 	, _lastAttack(0.0f)
 {
 	_info = DBMANAGER->getInfo(itemCode);
+	_info;
 }
 
 Item::~Item()
@@ -16,6 +17,7 @@ HRESULT Item::init()
 {
 
 	_img = ITEMMANAGER->findCodeImage(_info.code);
+	if (!_img) return E_FAIL;
 	_frameInfo.width = _img->getFrameWidth();
 	_frameInfo.height = _img->getFrameHeight();
 

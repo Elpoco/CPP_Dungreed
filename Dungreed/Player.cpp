@@ -10,6 +10,7 @@ Player::Player()
 	: _isDash(FALSE)
 	, _mainHandX(15)
 	, _dashMove(DASH_DISTANCE)
+	, _isStop(FALSE)
 {
 }
 
@@ -17,6 +18,7 @@ Player::Player(float x, float y)
 	: _isDash(FALSE)
 	, _mainHandX(15)
 	, _dashMove(DASH_DISTANCE)
+	, _isStop(FALSE)
 {
 	_x = x;
 	_y = y;
@@ -60,6 +62,7 @@ void Player::update()
 
 void Player::render(HDC hdc)
 {
+	if (!_isRender) return;
 	Unit::render(hdc);
 }
 
@@ -72,6 +75,11 @@ void Player::hitAttack(int dmg, int dir)
 	_hitTime = TIMEMANAGER->getWorldTime();
 	_isHit = true;
 	_imgAlpha = HIT_ALPHA;
+}
+
+int Player::getDmg()
+{
+	return _inventory->getEquipItem()->getDmg();
 }
 
 void Player::move()
@@ -100,6 +108,7 @@ void Player::move()
 	_hand = PointMake(_mainHandX, _y + 5);
 	_body = PointMake(_x, _y);
 	
+	if (_isStop) return;
 	if (UIMANAGER->onInventory()) return;
 
 	if (IsStayKeyDown(KEY::LEFT))	 this->moveLeft();
@@ -201,5 +210,5 @@ void Player::dash()
 
 void Player::getItem(Code::ITEM code)
 {
-	
+	_inventory->pickUpItem(code);
 }

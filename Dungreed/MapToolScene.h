@@ -6,29 +6,45 @@ class Object;
 using namespace MapToolEnum;
 using namespace MapToolSet;
 
+namespace MapToolSceneSet
+{
+//	constexpr char* tempSaveFile = "testSave";
+//	constexpr char* tempSaveFile = "Town";
+	constexpr char* tempSaveFile = FileName::Dungeon;
+}
+
 class MapToolScene : public GameNode
 {
 private:
+
+
+private:
+	Object* _camera;
+
+	ImageBase* _imgObject;
+	ImageBase* _imgTile;
+	ImageBase* _imgTool;
+
 	RECT _rcTileWindow;
 	RECT _rcToolWindow;
+	RECT _rcObjectWindow;
+	RECT _rcTilePickWindow;
+
+	RECT _rcHoverTile;
+
+	int _objectIdx;
+
 	RECT _btnSave;
 	RECT _btnLoad;
 
-	RECT _rcSelectTile;
-	RECT _rcHoverTile;
-
 	POINT _curTile;			// 현재 타일
 	POINT _selectedTileCnt; // 선택된 타일 갯수
+	RECT _rcSelectTile;
 	POINT _startCursor;
 
 	bool _isDrag;
-
-	Object* _camera;
-	float _x; // 타일선택 카메라
-	float _y; // 타일선택 카메라
-
-	Image* _imgMap;
-	Image* _imgTile;
+	int _tilePickX;
+	int _tilePickY;
 
 public:
 	MapToolScene();
@@ -39,10 +55,14 @@ public:
 	void update();
 	void render();
 
+	void hoverTile();
+	void selectObjectTile();
+	void selectTile();
+
+	POINT getMousePointIdx();
+
 	void clickDrawTile();
 	void clickUndoTile();
-
-	void clickChangeTile();
 
 	void clickSave();
 	void clickLoad();

@@ -57,6 +57,8 @@ void Enemy::render(HDC hdc)
 	{
 		_startSpawn = true;
 
+		SOUNDMANAGER->play(SoundName::Enemy::SpawnEnemy, _sound);
+
 		OBJECTMANAGER->addEffect(
 			ImageName::Enemy::sapwn,
 			_x,
@@ -78,6 +80,8 @@ void Enemy::render(HDC hdc)
 
 void Enemy::deleteEffect()
 {
+	SOUNDMANAGER->play(SoundName::Enemy::MonsterDie, _sound);
+	ITEMMANAGER->dropItem(Code::ITEM::COIN, _x, _rc.top - 20);
 	OBJECTMANAGER->addEffect(
 		ImageName::Enemy::dieSmall,
 		_x,

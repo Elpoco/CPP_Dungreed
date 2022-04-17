@@ -25,6 +25,8 @@ HRESULT SceneManager::init()
 	SceneManager::_currentScene = nullptr;
 	SceneManager::_readyScene = nullptr;
 
+	_isChangeScene = FALSE;
+
 	return S_OK;
 }
 

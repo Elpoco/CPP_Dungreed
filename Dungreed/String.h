@@ -2,6 +2,7 @@
 namespace ImageName
 {
 	constexpr char* none = "IMG none";
+	constexpr char* ChangeScene = "IMG ChangeScene";
 
 	namespace Player
 	{
@@ -104,14 +105,17 @@ namespace ImageName
 		constexpr char* cloud = "TownCloud";
 		constexpr char* townBgDay = "TownBgDay";
 		constexpr char* townLayerDay = "TownLayerDay";
+		constexpr char* dungeonEat = "TOWN dungeonEat";
 	}
 
-	constexpr char* mapTile = "MapTile";
-	constexpr char* mapToolTile = "MapToolTile";
-	constexpr char* mapPixel = "MapPixel";
-
-	constexpr char* floor = "Floor";
-
+	namespace MapTool
+	{
+		constexpr char* mapTile = "MAPTOOL MapTile";
+		constexpr char* mapObject = "MAPTOOL Object";
+		constexpr char* mapToolObject = "MAPTOOL ToolObject";
+		constexpr char* mapToolTile = "MAPTOOL MapToolTile";
+	}
+	
 	namespace Item
 	{
 		namespace Weapon
@@ -147,12 +151,28 @@ namespace ImageName
 namespace SoundName
 {
 	constexpr char* title = "SOUND title";
+	constexpr char* town = "SOUND town";
+	constexpr char* dungeon = "SOUND dungeon";
+	constexpr char* belialBG = "SOUND belialBG";
+	constexpr char* niflheimBG = "SOUND 2.IceBoss";
+	constexpr char* dungeonEat = "SOUND dungeonEat";
+	constexpr char* dungeonEat2 = "SOUND dungeonEat2";
 	constexpr char* invenOpen = "SOUND invenOpen";
 	constexpr char* swapEquip = "SOUND swapEquip";
 
 	namespace Player
 	{
 		constexpr char* dash = "SOUND PLAYER dash";
+	}
+
+	namespace Enemy
+	{
+		constexpr char* SpawnEnemy = "SOUND ENEMY SpawnEnemy";
+		constexpr char* MonsterDie = "SOUND ENEMY MonsterDie";
+		constexpr char* Skeletonking = "SOUND ENEMY Skeletonking";
+		constexpr char* BelialBullet = "SOUND ENEMY BelialBullet";
+		constexpr char* niflheim_start = "SOUND ENEMY niflheim_start";
+		constexpr char* NiflheimBullet = "SOUND ENEMY NiflheimBullet";
 	}
 
 	namespace Item
@@ -175,7 +195,14 @@ namespace SceneName
 	constexpr char* testScene = "Test";
 	constexpr char* startScene = "Start";
 	constexpr char* mapToolScene = "MapTool";
-	constexpr char* townScene = "Town";
+	constexpr char* gameScene = "Game";
+}
+
+namespace FileName
+{
+	constexpr char* testSave = "testSave";
+	constexpr char* Town = "Town";
+	constexpr char* Dungeon = "Dungeon";
 }
 
 namespace String
@@ -188,6 +215,4 @@ namespace String
 	constexpr char* msgSaveFail = "Save failed";
 	constexpr char* msgLoadSuccess = "Load success";
 	constexpr char* msgLoadFail = "Load failed";
-
-	constexpr char* tempSaveFile = "testSave.dat";
 }

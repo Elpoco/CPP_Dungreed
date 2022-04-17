@@ -19,6 +19,8 @@ private:
 
 	string _currentSceneName;
 
+	BOOL _isChangeScene;
+
 public:
 	HRESULT init();
 	void release();
@@ -33,6 +35,8 @@ public:
 	friend DWORD CALLBACK loadingThread(LPVOID prc);
 
 	inline string getCurrentSceneName() { return _currentSceneName; }
+	inline void setChangeScene(BOOL isChange) { _isChangeScene = isChange; }
+	inline BOOL getChangeScene() { return _isChangeScene; }
 
 	SceneManager() {}
 	~SceneManager() {}

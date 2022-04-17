@@ -10,13 +10,17 @@ enum KEY
 	UP_ARROW = VK_UP,
 	DOWN_ARROW = VK_DOWN,
 	LEFT_ARROW = VK_LEFT,
-	RIGHT_ARROW = VK_DOWN,
+	RIGHT_ARROW = VK_RIGHT,
 
 	SPACE = VK_SPACE,
 	ESC = VK_ESCAPE,
 
 	CLICK_L = VK_LBUTTON,
 	CLICK_R = VK_RBUTTON,
+
+	F1 = VK_F1, F2 = VK_F2, F3 = VK_F3, F4 = VK_F4,
+	F5 = VK_F5, F6 = VK_F6, F7 = VK_F7, F8 = VK_F8,
+	F9 = VK_F9, F10 = VK_F10, F11 = VK_F11, F12 = VK_F12,
 
 	// 플레이어
 	INVENTORY = 'V',
@@ -25,29 +29,16 @@ enum KEY
 
 namespace MapToolEnum
 {
-	enum class TYPE
+	enum OBJECT
 	{
 		NONE,
 		BLOCK,
-		DIG_L,
-		DIG_R,
-		PLATFORM,
-		WALLPAPER
-	};
-
-	enum class TERRAIN
-	{
-		TR_NONE,
-		TR_WALL
-	};
-
-	enum class MAP_OBJECT
-	{
-		MO_NONE,
-		MO_BLOCK,
-		MO_DIG_L,
-		MO_DIG_R,
-		MO_PLATFORM
+		BLOCK_R, // 올라가는 방향
+		BLOCK_L,
+		DOWN,
+		DOWN_R,
+		DOWN_L,
+		OBJECT_CNT
 	};
 }
 
@@ -146,5 +137,14 @@ namespace UIEnum
 		NONE,
 		NORMAL,
 		TARGET
+	};
+}
+
+namespace LocationEnum
+{
+	enum class LOCATION
+	{
+		TOWN,
+		DUNGEON
 	};
 }

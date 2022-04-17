@@ -10,7 +10,6 @@ public:
 
 private:
 	mapObjects _mObjects;
-	vector<Object*> _vObjects;
 
 public:
 	ObjectManager();
@@ -34,6 +33,8 @@ public:
 	void addDynamicImageFont(float x, float y, int num, int dir, ImageFontEnum::FONT_TYPE type = ImageFontEnum::FONT_TYPE::DAMAGE);
 	void addItem(Object* obj);
 	void addDropItem(Object* obj);
+
+	Object* getPlayer() { return _mObjects.find(ObjectEnum::TYPE::PLAYER)->second[0]; }
 
 };
 

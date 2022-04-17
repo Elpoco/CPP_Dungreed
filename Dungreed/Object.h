@@ -8,6 +8,7 @@ protected:
 	RECT _rc;
 
 	BOOL _isLive;
+	BOOL _isRender;
 
 public:
 	Object();
@@ -32,8 +33,11 @@ public:
 	virtual void pushObject(float x, float y) { _x += x; _y += y; }
 	virtual void pushObject(DIRECTION dir, float distance) {}
 	virtual void stopObject() {}
+	virtual void resumeObject() {}
 
 	virtual void deleteEffect() {}
 	virtual int getDmg() { return 1; }
+
+	virtual void setRender(BOOL isRender) { _isRender = isRender; }
 };
 

@@ -33,6 +33,8 @@ private:
 	int _dashMove;
 	float _dashAngle;
 
+	BOOL _isStop;
+
 public:
 	Player();
 	Player(float x, float y);
@@ -44,7 +46,10 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual void hitAttack(int dmg, int dir) override;
-	virtual int getDmg() override { return 3; }
+	virtual int getDmg() override;
+
+	virtual void stopObject() override { _isStop = TRUE; }
+	virtual void resumeObject() override { _isStop = FALSE; }
 
 	void move();
 	void animation();

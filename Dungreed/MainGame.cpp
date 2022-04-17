@@ -6,7 +6,7 @@
 #include "TestScene.h"
 #include "StartScene.h"
 #include "MapToolScene.h"
-#include "TownScene.h"
+#include "GameScene.h"
 
 MainGame::MainGame()
 {
@@ -24,7 +24,7 @@ HRESULT MainGame::init(void)
 	SCENEMANAGER->addScene(SceneName::testScene, new TestScene);
 	SCENEMANAGER->addScene(SceneName::startScene, new StartScene);
 	SCENEMANAGER->addScene(SceneName::mapToolScene, new MapToolScene);
-	SCENEMANAGER->addScene(SceneName::townScene, new TownScene);
+	SCENEMANAGER->addScene(SceneName::gameScene, new GameScene);
 	// ===================================================
 
 	SCENEMANAGER->changeScene(SceneName::startScene);
@@ -42,6 +42,8 @@ void MainGame::update(void)
 	GameNode::update();
 	SCENEMANAGER->update();
 
+	TILEMANAGER->update();
+
 	OBJECTMANAGER->update();
 
 	COLLISIONMANAGER->update();
@@ -58,17 +60,30 @@ void MainGame::render(void)
 
 	SetTextColor(getMemDC(), ColorSet::BLACK);
 
-	SCENEMANAGER->render();
 
-	OBJECTMANAGER->render(getMemDC());
+	if (SCENEMANAGER->getChangeScene())
+	{
+		IMAGEMANAGER->render(ImageName::ChangeScene, getMemDC());
+		RECT rc = RectMakeCenter(CENTER_X, CENTER_Y, 200, 50);
+		Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
+		char str[128];
+		wsprintf(str, "던전에 빨려 들어가는중...");
+		TextOut(getMemDC(), rc.left + 10, rc.top + 17, str, strlen(str));
+	}
+	else
+	{
+		SCENEMANAGER->render();
 
-	COLLISIONMANAGER->render(getMemDC());
+		OBJECTMANAGER->render(getMemDC());
+
+		COLLISIONMANAGER->render(getMemDC());
+	}
 
 	TIMEMANAGER->render(getMemDC());
 
 	if (IsOnceKeyDown(VK_MBUTTON))
 	{
-		cout << "ManeGame.cpp : " << _ptMouse.x << ", " << _ptMouse.y << endl;
+		cout << __FUNCTION__ << "__" << _ptMouse.x << ", " << _ptMouse.y << endl;
 	}
 
 	// 현재 씬 이름

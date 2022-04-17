@@ -69,7 +69,8 @@ void StartScene::render()
 
 void clickStart()
 {
-	SCENEMANAGER->changeScene(SceneName::testScene);
+	if(_isDebug) SCENEMANAGER->changeScene(SceneName::testScene);
+	else SCENEMANAGER->changeScene(SceneName::gameScene);
 }
 
 void clickMapTool()

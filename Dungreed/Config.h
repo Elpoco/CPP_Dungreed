@@ -2,16 +2,19 @@
 
 namespace MapToolSet
 {
-	constexpr int TILE_CNT_X = 100;
-	constexpr int TILE_CNT_Y = 20;
+	constexpr int TILE_CNT_X = 120;
+	constexpr int TILE_CNT_Y = 30;
 
 	constexpr int TOOL_TILE_SCALE = 2;
 	constexpr int TOOL_TILE_SIZE = TILE_RES_SIZE * TOOL_TILE_SCALE;
 
-	constexpr int TOOL_SIZE_X = TOOL_TILE_SIZE * 10;
+	constexpr int TOOL_SIZE_X = TOOL_TILE_SIZE * 8;
 	constexpr int TOOL_START_X = WINSIZE_X - TOOL_SIZE_X;
 
-	constexpr float CAMERA_SPPED = 10;
+	constexpr int TOTAL_TILE_X = TILE_CNT_X * TILE_SIZE;
+	constexpr int TOTAL_TILE_Y = TILE_CNT_Y * TILE_SIZE;
+
+	constexpr float CAMERA_SPPED = 10.0f;
 }
 
 namespace ColorSet

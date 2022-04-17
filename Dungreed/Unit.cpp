@@ -192,6 +192,7 @@ void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
 		if (y > 0) _y = y - _imgHeight / 2;
 		break;
 	}
+	Unit::updateRect();
 }
 
 void Unit::updateRect()

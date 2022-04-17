@@ -4,8 +4,11 @@
 class TileManager : public SingletonBase<TileManager>
 {
 private:
+	ImageBase* _imgObject;
 	Image* _imgTile;
 	TILE* _tiles;
+
+	BOOL _isShowObj;
 
 	int _renderWidth;
 	int _renderHeight;
@@ -22,11 +25,12 @@ public:
 	void update();
 	void render(HDC hdc);
 
+	void initTile();
+
 	void tileRender(HDC hdc, TILE tile);
 
 	void setRenderSize(int width, int height);
-	//void setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TERRAIN terrain, MapToolEnum::MAP_OBJECT object);
-	void setTileFrame(int idx, int frameX, int frameY, MapToolEnum::TYPE type);
+	void setTile(int idx, int frameX, int frameY, int type);
 
 	TILE getTile(int idx) { return _tiles[idx]; }
 	TILE getTile(float x, float y);
@@ -34,10 +38,12 @@ public:
 	POINT getTilePt(POINT pt);
 	int getTileIndex(float x, float y);
 	int getTileIndex(POINT pt);
-	//MapToolEnum::TILE_TYPE getTileType(PointF pt);
 
-	int saveMap(string str = String::tempSaveFile);
-	int loadMap(string str = String::tempSaveFile);
+	int saveMap(string str);
+	int loadMap(string str);
+
+	void setShowObj(BOOL isShow) { _isShowObj = isShow; }
+	BOOL getShowObj() { return _isShowObj; }
 
 };
 

@@ -49,17 +49,11 @@
     <Filter Include="MainGame\01. Scene\MapTool">
       <UniqueIdentifier>{e0663c24-937b-4348-b263-d58789da2f6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\01. Scene\Start">
-      <UniqueIdentifier>{cf471333-634a-4830-849e-a72c238ba66d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\01. Scene\Test">
       <UniqueIdentifier>{8239d58c-9c48-4977-b305-898c7aae269f}</UniqueIdentifier>
     </Filter>
     <Filter Include="MainGame\01. Scene\MapTool\TileManager">
       <UniqueIdentifier>{4a2e862f-1d40-4c56-923d-3c24bbe9541a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\01. Scene\Town">
-      <UniqueIdentifier>{c13acad6-ea91-40bf-9763-fe4ab3061f57}</UniqueIdentifier>
     </Filter>
     <Filter Include="MainGame\02. Object\01. Unit">
       <UniqueIdentifier>{fcfb8975-00ba-40e0-846b-93b7d8b379e5}</UniqueIdentifier>
@@ -138,6 +132,15 @@
     </Filter>
     <Filter Include="MainGame\02. Object\05. UI\Inventory">
       <UniqueIdentifier>{c25b084b-9acb-4007-bedd-5d06fc723d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\01. Scene\Game">
+      <UniqueIdentifier>{c13acad6-ea91-40bf-9763-fe4ab3061f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\01. Scene\Start">
+      <UniqueIdentifier>{cf471333-634a-4830-849e-a72c238ba66d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\08. NPC">
+      <UniqueIdentifier>{ec43b864-9dae-430e-bd66-7d3c3060b9c9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -243,9 +246,6 @@
     <ClCompile Include="SkelDog.cpp">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\SkelDog</Filter>
     </ClCompile>
-    <ClCompile Include="TownScene.cpp">
-      <Filter>MainGame\01. Scene\Town</Filter>
-    </ClCompile>
     <ClCompile Include="LittleGhost.cpp">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\LittleGhost</Filter>
     </ClCompile>
@@ -314,6 +314,12 @@
     </ClCompile>
     <ClCompile Include="Gun.cpp">
       <Filter>MainGame\02. Object\06. Item\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>MainGame\01. Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>MainGame\02. Object\08. NPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -437,9 +443,6 @@
     <ClInclude Include="SkelDog.h">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\SkelDog</Filter>
     </ClInclude>
-    <ClInclude Include="TownScene.h">
-      <Filter>MainGame\01. Scene\Town</Filter>
-    </ClInclude>
     <ClInclude Include="LittleGhost.h">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\LittleGhost</Filter>
     </ClInclude>
@@ -520,6 +523,12 @@
     </ClInclude>
     <ClInclude Include="Gun.h">
       <Filter>MainGame\02. Object\06. Item\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>MainGame\02. Object\08. NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>MainGame\01. Scene\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

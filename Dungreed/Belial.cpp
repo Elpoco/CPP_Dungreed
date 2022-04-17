@@ -10,7 +10,7 @@ Belial::Belial(float x, float y)
 	, _lastSkill(BELIAL_SKILL::NONE)
 	, _skillTick(0)
 	, _skillActCnt(0)
-	, _skillAuto(false)
+	, _skillAuto(TRUE)
 	, _skillCooldown(TIMEMANAGER->getWorldTime())
 	, _shootAngle(0.0f)
 	, _shootDir(1)
@@ -41,6 +41,11 @@ HRESULT Belial::init()
 
 	_moveHpBarX = 23;
 	_moveHpBarY = 50;
+
+	// 임시로 막기
+	SOUNDMANAGER->stop(SoundName::dungeon);
+	SOUNDMANAGER->play(SoundName::belialBG, _sound);
+	SOUNDMANAGER->play(SoundName::Enemy::Skeletonking, _sound);
 
 	return S_OK;
 }
@@ -214,6 +219,8 @@ void Belial::shootingBullet()
 			ImageName::Enemy::Belial::bulletEffect
 		);
 	}
+
+	SOUNDMANAGER->play(SoundName::Enemy::BelialBullet, _sound);
 	
 	_shootAngle += PI / 32 * _shootDir;
 

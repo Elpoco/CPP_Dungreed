@@ -4,9 +4,10 @@
 using namespace MapToolSet;
 using namespace MapToolEnum;
 
-TileManager::TileManager() :
-	_renderWidth(WINSIZE_X + TILE_SIZE),
-	_renderHeight(WINSIZE_Y + TILE_SIZE)
+TileManager::TileManager()
+	: _renderWidth(WINSIZE_X + TILE_SIZE)
+	, _renderHeight(WINSIZE_Y + TILE_SIZE)
+	, _isShowObj(FALSE)
 {
 }
 
@@ -16,25 +17,15 @@ TileManager::~TileManager()
 
 HRESULT TileManager::init()
 {
+	_imgObject = FindImage(ImageName::MapTool::mapObject);
+
 	_tileCntX = TILE_CNT_X;
 	_tileCntY = TILE_CNT_Y;
 	_tileTotalCnt = _tileCntX * _tileCntY;
 
-	_tiles = new TILE[_tileTotalCnt];
+	initTile();
 
-	for (float y = 0; y < _tileCntY; y++)
-	{
-		for (float x = 0; x < _tileCntX; x++)
-		{
-			int idx = y * _tileCntX + x;
-			_tiles[idx].x = x * TILE_SIZE + TILE_SIZE/2;
-			_tiles[idx].y = y * TILE_SIZE + TILE_SIZE/2;
-			_tiles[idx].pos = PointMake(x, y);
-			_tiles[idx].rc = RectMake(x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE);
-		}
-	}
-
-	_imgTile = IMAGEMANAGER->findImage(ImageName::mapTile);
+	_imgTile = IMAGEMANAGER->findImage(ImageName::MapTool::mapTile);
 
 	return S_OK;
 }
@@ -45,6 +36,7 @@ void TileManager::release()
 
 void TileManager::update()
 {
+	if (IsOnceKeyDown(KEY::F2)) _isShowObj = !_isShowObj;
 }
 
 void TileManager::render(HDC hdc)
@@ -65,22 +57,34 @@ void TileManager::render(HDC hdc)
 	}
 }
 
+void TileManager::initTile()
+{
+	SAFE_DELETE_ARRAY(_tiles);
+
+	_tiles = new TILE[_tileTotalCnt];
+
+	for (float y = 0; y < _tileCntY; y++)
+	{
+		for (float x = 0; x < _tileCntX; x++)
+		{
+			int idx = y * _tileCntX + x;
+			_tiles[idx].x = x * TILE_SIZE + TILE_SIZE / 2;
+			_tiles[idx].y = y * TILE_SIZE + TILE_SIZE / 2;
+			_tiles[idx].idx = PointMake(x, y);
+			_tiles[idx].rc = RectMake(x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE);
+		}
+	}
+}
+
 void TileManager::tileRender(HDC hdc, TILE tile)
 {
-	//if (tile.terrain == TERRAIN::TR_NONE &&
-	//	tile.object == MAP_OBJECT::MO_NONE)
-	if (tile.type == TYPE::NONE)
-	{
-		if (SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
-			CAMERAMANAGER->printRectangle(hdc, tile.rc.left, tile.rc.top, TILE_SIZE, TILE_SIZE);
-	}
-	else
-	{
-		CAMERAMANAGER->frameRender(hdc, _imgTile, tile.rc.left, tile.rc.top, tile.tileFrameX, tile.tileFrameY);
-	}
+	if(SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene)
+		CAMERAMANAGER->printRectangle(hdc, tile.rc.left, tile.rc.top, TILE_SIZE, TILE_SIZE);
+	CAMERAMANAGER->frameRender(hdc, _imgTile, tile.rc.left, tile.rc.top, tile.tileFrameX, tile.tileFrameY);
+	if(_isShowObj) CAMERAMANAGER->frameRender(hdc, _imgObject, tile.rc.left, tile.rc.top, tile.type, 0);
 
 	if (SCENEMANAGER->getCurrentSceneName() == SceneName::mapToolScene && _isDebug)
-		CAMERAMANAGER->printPoint(hdc, tile.rc.left, tile.rc.top, tile.pos.y, tile.pos.x);
+		CAMERAMANAGER->printPoint(hdc, tile.rc.left, tile.rc.top, tile.idx.y, tile.idx.x);
 }
 
 void TileManager::setRenderSize(int width, int height)
@@ -89,16 +93,13 @@ void TileManager::setRenderSize(int width, int height)
 	_renderHeight = height;
 }
 
-//void TileManager::setTileFrame(int idx, int frameX, int frameY, TERRAIN terrain, MAP_OBJECT object)
-void TileManager::setTileFrame(int idx, int frameX, int frameY, TYPE type)
+void TileManager::setTile(int idx, int frameX, int frameY, int type)
 {
 	if (idx > _tileCntX * _tileCntY - 1 || idx < 0) return;
 
 	_tiles[idx].tileFrameX = frameX;
 	_tiles[idx].tileFrameY = frameY;
 	_tiles[idx].type = type;
-	//_tiles[idx].terrain = terrain;
-	//_tiles[idx].object = object;
 }
 
 TILE TileManager::getTile(float x, float y)
@@ -117,7 +118,7 @@ POINT TileManager::getTilePt(POINT pt)
 {
 	int idx = getTileIndex(pt);
 
-	return _tiles[idx].pos;
+	return _tiles[idx].idx;
 }
 
 int TileManager::getTileIndex(float x, float y)
@@ -138,19 +139,13 @@ int TileManager::getTileIndex(POINT pt)
 	return idx;
 }
 
-//TILE_TYPE TileManager::getTileType(PointF pt)
-//{
-//	int idx = this->getTileIndex(pt);
-//
-//	return _tiles[idx].type;
-//}
-
 int TileManager::saveMap(string str)
 {
-	return FILEMANAGER->saveFile(PATH_DATA, str, _tiles, _tileTotalCnt * sizeof(TILE));
+	return FILEMANAGER->saveFile(PATH_DATA, str + ".dat", _tiles, _tileTotalCnt * sizeof(TILE));
 }
 
 int TileManager::loadMap(string str)
 {
-	return FILEMANAGER->loadFile(PATH_DATA, str, _tiles, _tileTotalCnt * sizeof(TILE));
+	initTile();
+	return FILEMANAGER->loadFile(PATH_DATA, str + ".dat", _tiles, _tileTotalCnt * sizeof(TILE));
 }

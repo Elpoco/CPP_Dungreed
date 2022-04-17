@@ -181,6 +181,7 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Niflheim.cpp" />
     <ClCompile Include="NiflheimPillar.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="EnemyHpBar.cpp" />
     <ClCompile Include="SkelDog.cpp" />
@@ -203,7 +204,7 @@
     <ClCompile Include="TextDataManager.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="TownScene.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="Unit.cpp" />
@@ -253,6 +254,7 @@
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Niflheim.h" />
     <ClInclude Include="NiflheimPillar.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="EnemyHpBar.h" />
     <ClInclude Include="SkelDog.h" />
@@ -276,7 +278,7 @@
     <ClInclude Include="TextDataManager.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
-    <ClInclude Include="TownScene.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="Unit.h" />

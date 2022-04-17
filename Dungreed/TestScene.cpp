@@ -5,7 +5,7 @@ HRESULT TestScene::init()
 {
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
 	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, CENTER_X, 500);
-	TILEMANAGER->loadMap();
+	TILEMANAGER->loadMap(FileName::testSave);
 
 	return S_OK;
 }

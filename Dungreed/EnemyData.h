@@ -8,8 +8,8 @@ private:
 public:
 	EnemyData()
 	{
-		_info[TO_INT(Code::UNIT::SKEL_DOG)]		= { Code::UNIT::SKEL_DOG, "스켈리독", 10, 1 };
-		_info[TO_INT(Code::UNIT::LITTLE_GHOST)]	= { Code::UNIT::LITTLE_GHOST, "꼬마유령", 2, 2 };
+		_info[TO_INT(Code::UNIT::SKEL_DOG)]		= { Code::UNIT::SKEL_DOG, "스켈리독", 17, 1 };
+		_info[TO_INT(Code::UNIT::LITTLE_GHOST)]	= { Code::UNIT::LITTLE_GHOST, "꼬마유령", 10, 2 };
 
 		// 보스
 		_info[TO_INT(Code::UNIT::BELIAL)]				= { Code::UNIT::BELIAL, "벨리알", 100 };

@@ -9,7 +9,7 @@ enum SOUNDKIND
 	SOUND_END
 };
 
-constexpr auto soundBuffer = 10;
+constexpr auto soundBuffer = 15;
 constexpr auto extraSoundChannel = 5;
 constexpr auto totalSoundChannel = soundBuffer + extraSoundChannel;
 

@@ -23,11 +23,27 @@ void SoundLoader::release()
 void SoundLoader::loadSounds()
 {
 	SOUNDMANAGER->addSound(SoundName::title, PATH_SOUND"Title.wav", true, true);
+	SOUNDMANAGER->addSound(SoundName::town, PATH_SOUND"BGM_Town.wav", true, true);
+	SOUNDMANAGER->addSound(SoundName::dungeon, PATH_SOUND"JailField.wav", true, true);
+	SOUNDMANAGER->addSound(SoundName::belialBG, PATH_SOUND"JailBoss.wav", true, true);
+	SOUNDMANAGER->addSound(SoundName::niflheimBG, PATH_SOUND"2.IceBoss.wav", true, true);
+	SOUNDMANAGER->addSound(SoundName::dungeonEat, PATH_SOUND"DungeonEat.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::dungeonEat2, PATH_SOUND"DungeonEat2.wav", false, false);
 
 	// ==========
 	// # Player #
 	// ==========
 	SOUNDMANAGER->addSound(SoundName::Player::dash, PATH_SOUND"Dash.wav", false, false);
+
+	// =========
+	// # Enemy #
+	// =========
+	SOUNDMANAGER->addSound(SoundName::Enemy::SpawnEnemy, PATH_SOUND"SpawnMonster.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::MonsterDie, PATH_SOUND"MonsterDie.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::Skeletonking, PATH_SOUND"Skeletonking.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::BelialBullet, PATH_SOUND"BelialBullet.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::niflheim_start, PATH_SOUND"niflheim_start.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::NiflheimBullet, PATH_SOUND"NiflheimBullet.wav", false, false);
 
 	// ========
 	// # Item #

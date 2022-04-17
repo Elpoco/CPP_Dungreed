@@ -11,7 +11,7 @@ Niflheim::Niflheim(float x, float y)
 	, _lastSkill(NIFLHEIM_SKILL::NONE)
 	, _skillTick(0)
 	, _skillActCnt(0)
-	, _skillAuto(false)
+	, _skillAuto(TRUE)
 	, _skillCooldown(TIMEMANAGER->getWorldTime())
 {
 	_startSpawn = TRUE;
@@ -38,6 +38,9 @@ HRESULT Niflheim::init()
 	settingHp(_info.hp);
 
 	this->initPillar();
+	SOUNDMANAGER->stop(SoundName::belialBG);
+	SOUNDMANAGER->play(SoundName::Enemy::niflheim_start, _sound);
+	SOUNDMANAGER->play(SoundName::niflheimBG, _sound);
 
 	return S_OK;
 }
@@ -192,7 +195,7 @@ void Niflheim::attackAnimation()
 void Niflheim::shootBullet(float x, float y, float angle)
 {
 	OBJECTMANAGER->addEffect(ImageName::Enemy::Niflheim::bulletFX, x, y);
-
+	
 	OBJECTMANAGER->addBullet(
 		ObjectEnum::TYPE::ENEMY_OBJ,
 		ImageName::Enemy::Niflheim::bullet,
@@ -203,6 +206,8 @@ void Niflheim::shootBullet(float x, float y, float angle)
 		BULLET_DMG,
 		ImageName::Enemy::Niflheim::bulletFX
 	);
+
+	SOUNDMANAGER->play(SoundName::Enemy::NiflheimBullet, _sound);
 }
 
 void Niflheim::turnAround()

@@ -1,11 +1,12 @@
 #include "Stdafx.h"
 #include "Object.h"
 
-Object::Object() : 
-	_x(-1),
-	_y(-1),
-	_rc({0,0,0,0}),
-	_isLive(TRUE)
+Object::Object()
+	: _x(-1)
+	, _y(-1)
+	, _rc({0,0,0,0})
+	, _isLive(TRUE)
+	, _isRender(TRUE)
 {
 }
 

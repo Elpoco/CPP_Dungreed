@@ -5,27 +5,21 @@ typedef struct tagTile
 	float x;
 	float y;
 	RECT rc;
-	POINT pos;		// ≈∏¿œ ¿Œµ¶Ω∫
+	POINT idx;		// ≈∏¿œ ¿Œµ¶Ω∫
 	int tileFrameX;
 	int tileFrameY;
 
-	MapToolEnum::TYPE type;
-
-	//MapToolEnum::TERRAIN	terrain;
-	//MapToolEnum::MAP_OBJECT object;
+	int type;
 
 	tagTile()
 	{
 		x = 0.0f;
 		y = 0.0f;
 		rc = { 0,0,0,0 };
-		pos = { 0,0 };
-		tileFrameX = 0;
-		tileFrameY = 0;
-		type = MapToolEnum::TYPE::NONE;
-
-		//terrain = MapToolEnum::TERRAIN::TR_NONE;
-		//object = MapToolEnum::MAP_OBJECT::MO_NONE;
+		idx = { 0,0 };
+		tileFrameX = -1;
+		tileFrameY = -1;
+		type = MapToolEnum::OBJECT::NONE;
 	}
 } TILE;
 

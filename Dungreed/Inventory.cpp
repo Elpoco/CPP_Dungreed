@@ -24,24 +24,24 @@ HRESULT Inventory::init()
 {
 	settingUI();
 
-	for (int i = INVEN_0; i < INVEN_CNT; i++)
-	{
-		if (i > INVEN_5)
-		{
-			_arrItems[i] = NULL;
-			continue;
-		}
-		if (i < INVEN_3)
-		{
-			_arrItems[i] = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
-		}
-		else
-		{
-			_arrItems[i] = ITEMMANAGER->getItem(Code::ITEM::COLT);
-		}
-		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ITEM_FRONT, _arrItems[i]);
-	}
-	sortItem();
+	//for (int i = INVEN_0; i < INVEN_CNT; i++)
+	//{
+	//	if (i > INVEN_5)
+	//	{
+	//		_arrItems[i] = NULL;
+	//		continue;
+	//	}
+	//	if (i < INVEN_3)
+	//	{
+	//		_arrItems[i] = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+	//	}
+	//	else
+	//	{
+	//		_arrItems[i] = ITEMMANAGER->getItem(Code::ITEM::COLT);
+	//	}
+	//	OBJECTMANAGER->addObject(ObjectEnum::TYPE::ITEM_FRONT, _arrItems[i]);
+	//}
+	//sortItem();
 
 	_arrItems[WEAPON_0] = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
 	_arrItems[WEAPON_0]->equip();
@@ -392,4 +392,18 @@ void Inventory::renderInventoryItem(HDC hdc)
 			}
 		}
 	}
+}
+
+BOOL Inventory::pickUpItem(Code::ITEM code)
+{
+	for (int i = INVEN_0; i < INVEN_CNT; i++)
+	{
+		if (!_arrItems[i])
+		{
+			_arrItems[i] = ITEMMANAGER->getItem(code);
+			OBJECTMANAGER->addItem(_arrItems[i]);
+			return TRUE;
+		}
+	}
+	return FALSE;
 }
