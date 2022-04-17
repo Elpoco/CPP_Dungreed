@@ -31,6 +31,8 @@ void SoundLoader::loadSounds()
 
 	SOUNDMANAGER->addSound(SoundName::Item::getCoin, PATH_SOUND"Get_Coin.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::getItem, PATH_SOUND"Get_Item.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::Equip, PATH_SOUND"Equip.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::PickUpItem, PATH_SOUND"PickUpItem.wav", false, false);
 
 	// ==========
 	// # Weapon #

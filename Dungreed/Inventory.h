@@ -7,8 +7,6 @@ class Button;
 namespace InventorySet
 {
 	constexpr int CLICK_NONE = -1;
-	constexpr int CELL_CNT = 15;
-	constexpr int ACC_CNT = 4;
 }
 
 class Inventory : public UI
@@ -17,11 +15,18 @@ private:
 	enum SLOT_POINT
 	{
 		WEAPON_0,
-		ARMOR_0,
 		WEAPON_1,
+		ARMOR_0,
 		ARMOR_1,
 
-		SLOT_CNT
+		ACC_0,
+		ACC_1,
+		ACC_2,
+		ACC_3,
+
+		CELL_,
+
+		CELL_CNT = 23
 	};
 
 private:
@@ -29,10 +34,6 @@ private:
 	BOOL _isOpen;
 	RECT _rcClose;
 
-	Item* _arrItems[InventorySet::CELL_CNT]; // 인벤토리에 들고있는 아이템
-	Item* _arrEquipWeapon[2];	// 착용 무기
-	Item* _arrEquipArmor[2];	// 착용 방어구
-	BOOL _equipIdx;				// 착용 인덱스 0 or 1
 
 	// 착용장비 (우측하단)
 	UI* _equipBase;
@@ -41,18 +42,15 @@ private:
 	BOOL _isSawp;  // TRUE일동안 박스 움직임
 	int _swapTick; // 움직이는거 체크
 
-	// 인벤토리
-	POINT _ptCell[InventorySet::CELL_CNT];
-	RECT _rcCell[InventorySet::CELL_CNT];
-	int _clickCell;
-
 	// 착용장비 (인벤토리)
 	UI* _equipSlot[2];
-	POINT _ptEquipSlot[SLOT_CNT];
-	RECT _rcEquipSlot[SLOT_CNT];
 
-	POINT _ptAcc[InventorySet::ACC_CNT];
-	RECT _rcAcc[InventorySet::ACC_CNT];
+	// 인벤토리
+	Item* _arrItems[CELL_CNT]; // 인벤토리에 들고있는 아이템
+	POINT _ptCell2[CELL_CNT];
+	RECT _rcCell2[CELL_CNT];
+	BOOL _equipIdx;				// 착용 인덱스 0 or 1
+	int _clickCell;
 
 	// 마우스 오버시 테투리
 	ImageBase* _imgHover;
@@ -81,7 +79,7 @@ public:
 	void renderInventoryItem(HDC hdc);
 
 	BOOL isOpen() { return _isOpen; }
-	Item* getEquipItem() { return _arrEquipWeapon[_equipIdx]; }
+	Item* getEquipItem() { return _arrItems[_equipIdx]; }
 
 };
 
