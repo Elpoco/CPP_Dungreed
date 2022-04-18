@@ -6,6 +6,11 @@ protected:
 	float _x;
 	float _y;
 	RECT _rc;
+	RECT _rcRender;
+	int _rcResizeW;
+	int _rcResizeH;
+	int _rcMoveX;
+	int _rcMoveY;
 
 	BOOL _isLive;
 	BOOL _isRender;

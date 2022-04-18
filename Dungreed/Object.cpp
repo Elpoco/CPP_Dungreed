@@ -5,8 +5,13 @@ Object::Object()
 	: _x(-1)
 	, _y(-1)
 	, _rc({0,0,0,0})
+	, _rcRender({0,0,0,0})
 	, _isLive(TRUE)
 	, _isRender(TRUE)
+	, _rcResizeW(0)
+	, _rcResizeH(0)
+	, _rcMoveX(0)
+	, _rcMoveY(0)
 {
 }
 

@@ -1,0 +1,720 @@
+﻿  Animation.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\animation.cpp(20): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\animation.cpp(21): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\animation.cpp(24): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\animation.cpp(25): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Belial.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.h(51): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(99): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(108): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(139): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(138): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(165): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(168): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(169): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(189): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(188): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(201): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(202): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(237): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(238): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(279): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(355): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belial.cpp(354): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BelialSword.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belialsword.cpp(48): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belialsword.cpp(50): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belialsword.cpp(59): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belialsword.cpp(92): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\belialsword.cpp(93): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Box.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Bullet.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\bullet.cpp(64): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\bullet.cpp(74): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\bullet.cpp(78): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Button.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\button.cpp(37): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CameraManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cameramanager.cpp(65): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cameramanager.cpp(75): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cameramanager.cpp(76): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cameramanager.cpp(92): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cameramanager.cpp(93): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cameramanager.cpp(116): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cameramanager.cpp(117): warning C4244: '-=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CollisionManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.h(51): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(79): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(82): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(160): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(161): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(180): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(187): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(196): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(201): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(206): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(211): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(218): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(250): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(254): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\collisionmanager.cpp(407): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  DataBaseManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  DropItem.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\dropitem.cpp(33): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\dropitem.cpp(48): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\dropitem.cpp(54): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  DynamicFont.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\dynamicfont.cpp(59): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Effect.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\effect.cpp(8): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\effect.cpp(38): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\effect.cpp(39): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\effect.cpp(57): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\effect.cpp(72): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\effect.cpp(81): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\effect.cpp(86): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\effect.cpp(88): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Enemy.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.h(51): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.cpp(84): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.cpp(110): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  FileManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Gun.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ImageFont.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  FontManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameNode.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ImageGp.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\imagegp.cpp(79): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\imagegp.cpp(80): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\imagegp.cpp(83): warning C4244: '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\imagegp.cpp(107): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\imagegp.cpp(108): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\imagegp.cpp(111): warning C4244: '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Image.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(93): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(95): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(96): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(323): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(334): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(513): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(525): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(549): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(555): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(568): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\image.cpp(579): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  컴파일하고 있습니다...
+  ImageGpManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ImageLoader.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ImageManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\imagemanager.cpp(154): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Inventory.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(100): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(108): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(109): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(113): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(114): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(121): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(132): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(141): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(145): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(152): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(153): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(156): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(158): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(164): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(165): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(166): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(179): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(180): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(190): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(189): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(300): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(301): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(308): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(309): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(382): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(381): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(392): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\inventory.cpp(391): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Item.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(40): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(41): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(39): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(38): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(49): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(48): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(47): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(46): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(62): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\item.cpp(61): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ItemManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\itemmanager.cpp(88): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\itemmanager.cpp(90): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  JsonSaveLoader.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  KeyManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  LittleGhost.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.h(51): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\littleghost.cpp(52): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\littleghost.cpp(66): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\littleghost.cpp(67): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MessageBoxManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Cursor.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cursor.cpp(40): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cursor.cpp(39): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cursor.cpp(38): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cursor.cpp(48): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cursor.cpp(47): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cursor.cpp(46): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\cursor.cpp(55): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Niflheim.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.h(51): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheimpillar.h(67): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheim.cpp(146): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheim.cpp(174): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheim.cpp(175): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheim.cpp(295): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheim.cpp(303): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  NiflheimPillar.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.h(51): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheimpillar.h(67): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheimpillar.cpp(66): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheimpillar.cpp(97): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheimpillar.cpp(141): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheimpillar.cpp(164): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheimpillar.cpp(172): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\niflheimpillar.cpp(173): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  NPC.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  ObjectManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.h(51): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\objectmanager.cpp(95): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\objectmanager.cpp(95): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  EnemyHpBar.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemyhpbar.cpp(24): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SkelDog.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\enemy.h(51): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\skeldog.cpp(101): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\skeldog.cpp(102): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SoundLoader.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Sword.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  TileManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\tilemanager.cpp(44): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\tilemanager.cpp(45): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\tilemanager.cpp(70): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\tilemanager.cpp(82): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\tilemanager.cpp(83): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\tilemanager.cpp(84): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\tilemanager.cpp(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  컴파일하고 있습니다...
+  StartScene.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\startscene.cpp(66): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\startscene.cpp(67): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MainGame.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MapToolScene.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(100): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(104): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(123): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(122): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(146): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(209): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(208): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(207): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(206): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(222): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(234): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\maptoolscene.cpp(233): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Object.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  PixelCollider.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\pixelcollider.cpp(46): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Player.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(12): warning C4244: '초기화 중': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(20): warning C4244: '초기화 중': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(73): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.h(11): warning C4244: '=': 'const float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(108): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(127): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(132): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(163): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(164): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(200): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\player.cpp(212): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SceneManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SoundManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Stdafx.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  TestScene.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  TextDataManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\textdatamanager.cpp(70): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+e:\project\cpp\dungreed\dungreed\textdatamanager.cpp(76): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+e:\project\cpp\dungreed\dungreed\textdatamanager.cpp(104): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+  TimeManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Timer.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameScene.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(69): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(85): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(84): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(83): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(118): warning C4838: 'double'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(118): warning C4244: '초기화 중': 'double'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(119): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(120): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(120): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(121): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\gamescene.cpp(190): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  UI.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\ui.cpp(19): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\ui.cpp(20): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\ui.cpp(37): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\ui.cpp(64): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\ui.cpp(76): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\ui.cpp(77): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\ui.cpp(81): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\ui.cpp(88): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\ui.cpp(94): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  UIManager.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Unit.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\unit.cpp(59): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\unit.cpp(59): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\unit.cpp(71): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\unit.cpp(68): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\unit.cpp(67): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\unit.cpp(83): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\unit.cpp(82): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\unit.cpp(95): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\unit.cpp(94): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Utils.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.cpp(49): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.cpp(54): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.cpp(59): warning C4244: 'return': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.cpp(77): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.cpp(107): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.cpp(112): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.cpp(119): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  WinMain.cpp
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(39): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(63): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4838: 'float'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+e:\project\cpp\dungreed\dungreed\utils.h(75): warning C4244: '초기화 중': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+e:\project\cpp\dungreed\dungreed\utils.h(87): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+json_vc71_libmtd.lib(json_value.obj) : error LNK2038: '_ITERATOR_DEBUG_LEVEL'에 대해 불일치가 검색되었습니다. '2' 값이 '0'(Animation.obj에 위치) 값과 일치하지 않습니다.
+json_vc71_libmtd.lib(json_value.obj) : error LNK2038: 'RuntimeLibrary'에 대해 불일치가 검색되었습니다. 'MDd_DynamicDebug' 값이 'MD_DynamicRelease'(Animation.obj에 위치) 값과 일치하지 않습니다.
+json_vc71_libmtd.lib(json_value.obj) : warning LNK4075: '/EDITANDCONTINUE'이(가) '/OPT:ICF' 사양으로 인해 무시됩니다.
+json_vc71_libmtd.lib(json_reader.obj) : error LNK2038: '_ITERATOR_DEBUG_LEVEL'에 대해 불일치가 검색되었습니다. '2' 값이 '0'(Animation.obj에 위치) 값과 일치하지 않습니다.
+json_vc71_libmtd.lib(json_reader.obj) : error LNK2038: 'RuntimeLibrary'에 대해 불일치가 검색되었습니다. 'MDd_DynamicDebug' 값이 'MD_DynamicRelease'(Animation.obj에 위치) 값과 일치하지 않습니다.
+json_vc71_libmtd.lib(json_writer.obj) : error LNK2038: '_ITERATOR_DEBUG_LEVEL'에 대해 불일치가 검색되었습니다. '2' 값이 '0'(Animation.obj에 위치) 값과 일치하지 않습니다.
+json_vc71_libmtd.lib(json_writer.obj) : error LNK2038: 'RuntimeLibrary'에 대해 불일치가 검색되었습니다. 'MDd_DynamicDebug' 값이 'MD_DynamicRelease'(Animation.obj에 위치) 값과 일치하지 않습니다.
+LINK : warning LNK4098: 'MSVCRTD' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
+json_vc71_libmtd.lib(json_value.obj) : error LNK2001: __imp___invalid_parameter 외부 기호를 확인할 수 없습니다.
+json_vc71_libmtd.lib(json_reader.obj) : error LNK2001: __imp___invalid_parameter 외부 기호를 확인할 수 없습니다.
+json_vc71_libmtd.lib(json_writer.obj) : error LNK2001: __imp___invalid_parameter 외부 기호를 확인할 수 없습니다.
+json_vc71_libmtd.lib(json_value.obj) : error LNK2001: __imp___CrtDbgReport 외부 기호를 확인할 수 없습니다.
+json_vc71_libmtd.lib(json_reader.obj) : error LNK2001: __imp___CrtDbgReport 외부 기호를 확인할 수 없습니다.
+json_vc71_libmtd.lib(json_writer.obj) : error LNK2001: __imp___CrtDbgReport 외부 기호를 확인할 수 없습니다.
+json_vc71_libmtd.lib(json_writer.obj) : error LNK2001: __imp___calloc_dbg 외부 기호를 확인할 수 없습니다.
+E:\Project\CPP\Dungreed\Release\Dungreed.exe : fatal error LNK1120: 3개의 확인할 수 없는 외부 참조입니다.

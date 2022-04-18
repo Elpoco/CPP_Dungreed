@@ -64,8 +64,8 @@ void Unit::render(HDC hdc)
 		CAMERAMANAGER->frameRender(
 			hdc, 
 			_vImages[_imgCurrent],
-			_rc.left,
-			_rc.top, 
+			_rcRender.left,
+			_rcRender.top,
 			_frameInfo.x,
 			_frameInfo.y, 
 			_imgAngle,
@@ -79,8 +79,8 @@ void Unit::render(HDC hdc)
 			CAMERAMANAGER->frameRender(
 				hdc, 
 				_vImages[_imgCurrent],
-				_rc.left,
-				_rc.top,
+				_rcRender.left,
+				_rcRender.top,
 				_frameInfo.x,
 				_frameInfo.y,
 				_imgAlpha
@@ -91,8 +91,8 @@ void Unit::render(HDC hdc)
 			CAMERAMANAGER->frameRender(
 				hdc, 
 				_vImages[_imgCurrent],
-				_rc.left, 
-				_rc.top,
+				_rcRender.left,
+				_rcRender.top,
 				_frameInfo.x, 
 				_frameInfo.y
 			);
@@ -198,6 +198,23 @@ void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
 void Unit::updateRect()
 {
 	_rc = RectMakeCenter(
+		_x,
+		_y,
+		_imgWidth,
+		_imgHeight
+	);
+
+	_rc.left += _rcResizeW;
+	_rc.right -= _rcResizeW;
+	_rc.top += _rcResizeH;
+	_rc.bottom -= _rcResizeH;
+
+	_rc.left += _rcMoveX;
+	_rc.right += _rcMoveX;
+	_rc.top += _rcMoveY;
+	_rc.bottom += _rcMoveY;
+
+	_rcRender = RectMakeCenter(
 		_x,
 		_y,
 		_imgWidth,

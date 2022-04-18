@@ -115,10 +115,10 @@ void GameScene::updateTown()
 void GameScene::renderTown(HDC hdc)
 {
 	IMAGEMANAGER->render(ImageName::Town::cloud, hdc);
-	RECT rc = { 0,WINSIZE_Y - _background->getHeight(), WINSIZE_X, WINSIZE_Y };
+	RECT rc = { 0,WINSIZE_Y - _background->getHeight() - (100 - (MapToolSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*0.7), WINSIZE_X, WINSIZE_Y };
 	_background->loopRender(hdc, &rc, CAMERAMANAGER->getAbsX() / 3, 0);
-	_rcLayer = RectMake(0, WINSIZE_Y - _layer->getHeight() - (100 - (MapToolSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))), WINSIZE_X, _layer->getHeight());
-	_layer->loopRender(hdc, &_rcLayer, CAMERAMANAGER->getAbsX(), 0);
+	rc = RectMake(0, WINSIZE_Y - _layer->getHeight() - (100 - (MapToolSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*1.2), WINSIZE_X, _layer->getHeight());
+	_layer->loopRender(hdc, &rc, CAMERAMANAGER->getAbsX()*0.8, 0);
 }
 
 void GameScene::loadDungeon()

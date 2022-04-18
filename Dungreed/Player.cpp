@@ -162,6 +162,8 @@ void Player::initAnimation()
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
+
+	_rcResizeW = 20;
 }
 
 void Player::moveLeft()
@@ -205,6 +207,7 @@ void Player::attack()
 void Player::dash()
 {
 	_isDash = TRUE;
+	_isJump = FALSE;
 	_dashAngle = GetAngle(PointMake(_x, _y), CAMERAMANAGER->calAbsPt(_ptMouse));
 	
 	SOUNDMANAGER->play(SoundName::Player::dash, _sound);

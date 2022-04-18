@@ -8,9 +8,10 @@
 class Unit : public Object
 {
 protected:
-	FRAME_INFO _frameInfo;
-	RECT	_rcAttack;
-	int	_state;
+	FRAME_INFO  _frameInfo;
+	int			_state;
+
+	RECT		_rcAttack;
 
 	// collision
 	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
@@ -60,7 +61,6 @@ public:
 	void updateRect();
 
 	void jump();
-	bool isJump() { return _isJump; }
 
 	virtual void hitAttack(int dmg, int dir) {}
 	virtual int getDmg() override { return 1; }
@@ -71,6 +71,8 @@ public:
 	inline float getWidth() { return _imgWidth; }
 	inline float getHeight() { return _imgHeight; }
 	inline RECT getAtkRect() { return _rcAttack; }
+	inline BOOL isJump() { return _isJump; }
+	inline BOOL isJumping() { return _isJump && _gravity < _jumpSpeed; }
 
 };
 

@@ -1,16 +1,8 @@
 #pragma once
 #include "SingletonBase.h"
 
-enum SOUNDKIND
-{
-	SOUND_BGM = 0,
-	SOUND_EFFEECT_1,
-	SOUND_EFFECT_2,
-	SOUND_END
-};
-
-constexpr auto soundBuffer = 15;
-constexpr auto extraSoundChannel = 10;
+constexpr auto soundBuffer = 10;
+constexpr auto extraSoundChannel = 5;
 constexpr auto totalSoundChannel = soundBuffer + extraSoundChannel;
 
 using namespace FMOD;

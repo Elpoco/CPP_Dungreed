@@ -103,6 +103,20 @@ void Inventory::render(HDC hdc)
 
 void Inventory::settingUI()
 {
+	// 우측하단 장착 장비
+	_equipBase = new UI(ImageName::UI::Inventory::equipBase);
+	_equipBase->setX(WINSIZE_X - _equipBase->getWidth() / 2 - 20);
+	_equipBase->setY(WINSIZE_Y - _equipBase->getHeight() / 2 - 10);
+	_rcEquipBase = _equipBase->getRect();
+
+	_equipBaseBack = new UI(ImageName::UI::Inventory::equipBase);
+	_equipBaseBack->setX(WINSIZE_X - _equipBaseBack->getWidth() / 2 - 10);
+	_equipBaseBack->setY(WINSIZE_Y - _equipBaseBack->getHeight() / 2 - 20);
+
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI, _equipBaseBack);
+	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI, _equipBase);
+
+	// 인벤토리 베이스
 	UI* invenBase = new UI(ImageName::UI::Inventory::Base);
 	invenBase->setX(WINSIZE_X - invenBase->getWidth() / 2);
 	invenBase->setY(CENTER_Y);
@@ -184,19 +198,6 @@ void Inventory::settingUI()
 		ui->hide();
 	}
 
-	// 우측하단 장착 장비
-	_equipBase = new UI(ImageName::UI::Inventory::equipBase);
-	_equipBase->setX(WINSIZE_X - _equipBase->getWidth() / 2 - 20);
-	_equipBase->setY(WINSIZE_Y - _equipBase->getHeight() / 2 - 10);
-	_rcEquipBase = _equipBase->getRect();
-
-	_equipBaseBack = new UI(ImageName::UI::Inventory::equipBase);
-	_equipBaseBack->setX(WINSIZE_X - _equipBaseBack->getWidth() / 2 - 10);
-	_equipBaseBack->setY(WINSIZE_Y - _equipBaseBack->getHeight() / 2 - 20);
-
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI, _equipBaseBack);
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI, _equipBase);
-
 	// 마우스 오버 테두리
 	_imgHover = FindImage(ImageName::UI::Inventory::on);
 	_imgInvenHover = FindImage(ImageName::UI::Inventory::Cell_On);
@@ -245,6 +246,7 @@ void Inventory::offClick()
 	{
 		if (MouseInRect(_rcInven[i]))
 		{
+			// 아이템이 있을때 사운드 발생
 			if(_arrItems[_clickCell]) SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
 	
 			// 놓을때 아이템이 있는경우

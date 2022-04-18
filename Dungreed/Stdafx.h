@@ -3,8 +3,11 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
+#ifdef _DEBUG
 //! 디버깅용 콘솔창
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
+#endif
+
 
 //! 라이브러리
 #pragma comment(lib, "Winmm.lib")
@@ -26,6 +29,7 @@
 #include <mmsystem.h>
 #include <mciapi.h>
 
+// gdi+
 #include <ole2.h>
 #include <gdiplus.h>
 #pragma comment (lib,"Gdiplus.lib")

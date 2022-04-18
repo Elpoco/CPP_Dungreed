@@ -175,18 +175,21 @@ void CollisionManager::collisionTile()
 						TILE tile = TILEMANAGER->getTile(y + x);
 						switch (tile.type)
 						{
-						case MapToolEnum::OBJECT::BLOCK_R:
 						case MapToolEnum::OBJECT::DOWN_R:
+							if (unit->isJumping())break;
+						case MapToolEnum::OBJECT::BLOCK_R:
 							moveY = unit->getRect().right - tile.rc.left;
+							cout << moveY << endl;
 							unit->setCollision(DIRECTION::BOTTOM, true);
 							if (moveY > TILE_SIZE) continue;
 							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY);
 							return;
-						case MapToolEnum::OBJECT::BLOCK_L:
 						case MapToolEnum::OBJECT::DOWN_L:
+							if (unit->isJumping())break;
+						case MapToolEnum::OBJECT::BLOCK_L:
 							moveY = unit->getRect().left - tile.rc.right;
 							unit->setCollision(DIRECTION::BOTTOM, true);
-							if (abs(moveY) > TILE_SIZE) continue;
+							//if (abs(moveY) > TILE_SIZE) continue;
 							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom + moveY);
 							return;
 						case MapToolEnum::OBJECT::BLOCK:
@@ -212,11 +215,14 @@ void CollisionManager::collisionTile()
 							}
 							break;
 						case MapToolEnum::OBJECT::DOWN:
+							if (unit->isJumping())break;
+
 							if (tile.y > rcObj.bottom)
 							{ // ¹Ù´Ú
 								unit->setCollision(DIRECTION::BOTTOM, true);
 								unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
 							}
+							break;
 						default:
 							break;
 						}
@@ -232,7 +238,9 @@ void CollisionManager::collisionTile()
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getY());
-				if (tile.type == MapToolEnum::OBJECT::BLOCK)
+				if (tile.type == MapToolEnum::OBJECT::BLOCK || 
+					tile.type == MapToolEnum::OBJECT::BLOCK_L ||
+					tile.type == MapToolEnum::OBJECT::BLOCK_R)
 				{
 					obj->stopObject();
 					obj->collisionObject();

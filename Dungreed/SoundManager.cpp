@@ -22,7 +22,7 @@ HRESULT SoundManager::init(void)
 	memset(_channel, 0, sizeof(Channel*) * (totalSoundChannel));
 
 	_soundLoader = new SoundLoader;
-	_soundLoader->init();
+	//_soundLoader->init();
 
 	return S_OK;
 }
