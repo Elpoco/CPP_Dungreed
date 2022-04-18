@@ -1,8 +1,8 @@
 #pragma once
 #include "SingletonBase.h"
 
-constexpr auto soundBuffer = 10;
-constexpr auto extraSoundChannel = 5;
+constexpr auto soundBuffer = 30;
+constexpr auto extraSoundChannel = 30;
 constexpr auto totalSoundChannel = soundBuffer + extraSoundChannel;
 
 using namespace FMOD;

@@ -178,11 +178,11 @@ void CollisionManager::collisionTile()
 						case MapToolEnum::OBJECT::DOWN_R:
 							if (unit->isJumping())break;
 						case MapToolEnum::OBJECT::BLOCK_R:
-							moveY = unit->getRect().right - tile.rc.left;
-							cout << moveY << endl;
+							moveY = tile.rc.right - unit->getRect().right;
 							unit->setCollision(DIRECTION::BOTTOM, true);
-							if (moveY > TILE_SIZE) continue;
-							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY);
+							if (moveY >= TILE_SIZE || moveY <= 0) continue;
+							cout << moveY << endl;
+							unit->pushObject(DIRECTION::NONE, 0, tile.rc.top + moveY);
 							return;
 						case MapToolEnum::OBJECT::DOWN_L:
 							if (unit->isJumping())break;

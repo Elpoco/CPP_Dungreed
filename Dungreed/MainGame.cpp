@@ -40,7 +40,10 @@ void MainGame::release(void)
 void MainGame::update(void)
 {
 	GameNode::update();
+
 	SCENEMANAGER->update();
+
+	SOUNDMANAGER->update();
 
 	TILEMANAGER->update();
 
