@@ -1,8 +1,10 @@
 #include "Stdafx.h"
 #include "ItemManager.h"
 
-#include "Item.h"
+#include "Inventory.h"
 #include "DropItem.h"
+#include "Item.h"
+
 #include "Sword.h"
 #include "Gun.h"
 
@@ -16,6 +18,8 @@ ItemManager::~ItemManager()
 
 HRESULT ItemManager::init()
 {
+	
+
 	return S_OK;
 }
 
@@ -27,11 +31,14 @@ void ItemManager::update()
 {
 }
 
-void ItemManager::render(HDC hdc)
+void ItemManager::inventoryInit()
 {
+	_inventory = new Inventory;
+	OBJECTMANAGER->addUI(_inventory);
+	UIMANAGER->setInventory(_inventory);
 }
 
-Item* ItemManager::getItem(Code::ITEM code)
+void ItemManager::getItem(Code::ITEM code)
 {
 	Item* item;
 	switch (code)
@@ -47,10 +54,11 @@ Item* ItemManager::getItem(Code::ITEM code)
 		item = new Sword(code);
 		break;
 	}
-	return item;
+
+	_inventory->addItem(item);
 }
 
-ImageBase* ItemManager::findCodeImage(Code::ITEM code)
+ImageBase* ItemManager::findImage(Code::ITEM code)
 {
 	string imgName;
 	switch (code)
@@ -80,7 +88,7 @@ void ItemManager::dropItem(Code::ITEM code, float x, float y)
 	OBJECTMANAGER->addDropItem(new DropItem(code, x, y));
 }
 
-void ItemManager::getItemEffect(Code::ITEM code, int x, int y, R_L dir)
+void ItemManager::playItemEffect(Code::ITEM code, int x, int y, R_L dir)
 {
 	if (code <= Code::ITEM::BULLION)
 	{
@@ -95,4 +103,9 @@ void ItemManager::getItemEffect(Code::ITEM code, int x, int y, R_L dir)
 	{
 		SOUNDMANAGER->play(SoundName::Item::getItem, _sound);
 	}
+}
+
+Item* ItemManager::getEquipItem()
+{
+	 return _inventory->getEquipItem(); 
 }

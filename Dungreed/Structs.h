@@ -19,7 +19,7 @@ typedef struct tagTile
 		idx = { 0,0 };
 		tileFrameX = -1;
 		tileFrameY = -1;
-		type = MapToolEnum::OBJECT::NONE;
+		type = MapToolEnum::MAP_OBJ::NONE;
 	}
 } TILE;
 

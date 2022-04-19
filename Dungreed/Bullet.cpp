@@ -83,7 +83,7 @@ void Bullet::deleteEffect()
 {
 	if (_destroyImgName != "")
 	{
-		if (GPIMAGEMANAGER->findImage(_imgName))
+		if (GPIMAGEMANAGER->findImage(_destroyImgName))
 		{
 			OBJECTMANAGER->addEffect(
 				_destroyImgName,

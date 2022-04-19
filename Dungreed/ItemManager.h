@@ -2,10 +2,13 @@
 #include "SingletonBase.h"
 
 class Item;
+class Inventory;
 
 class ItemManager : public SingletonBase<ItemManager>
 {
 private:
+	Inventory* _inventory;
+
 	POINT* _ptPlayerBody;
 	POINT* _ptPlayerHand;
 	BOOL* _isPlayerLeft;
@@ -17,14 +20,16 @@ public:
 	HRESULT init();
 	void release();
 	void update();
-	void render(HDC hdc);
 
-	Item* getItem(Code::ITEM code);
+	void inventoryInit();
 
-	ImageBase* findCodeImage(Code::ITEM code);
+	void getItem(Code::ITEM code);
+	Item* getEquipItem();
+
+	ImageBase* findImage(Code::ITEM code);
 
 	void dropItem(Code::ITEM code, float x, float y);
-	void getItemEffect(Code::ITEM code, int x, int y, R_L dir);
+	void playItemEffect(Code::ITEM code, int x, int y, R_L dir);
 
 	void setPlayerBody(POINT* pt) { _ptPlayerBody = pt; }
 	void setPlayerHand(POINT* pt) { _ptPlayerHand = pt; }

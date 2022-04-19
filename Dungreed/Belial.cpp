@@ -138,7 +138,7 @@ void Belial::animation()
 			RND->getFromIntTo(_rcBack.left + 3, _rcBack.right - 3),
 			RND->getFromIntTo(_rcBack.top + 3, _rcBack.bottom - 3),
 			50,
-			ObjectEnum::TYPE::EFFECT_BACK
+			ObjectEnum::OBJ_TYPE::EFFECT_BACK
 		);
 	}
 
@@ -209,7 +209,7 @@ void Belial::shootingBullet()
 	{
 		_shootAngle += PI / 2 * i;
 		OBJECTMANAGER->addBullet(
-			ObjectEnum::TYPE::ENEMY_OBJ,
+			ObjectEnum::OBJ_TYPE::ENEMY_OBJ,
 			ImageName::Enemy::Belial::bullet,
 			_x + 23,
 			_y + 55,
@@ -245,7 +245,7 @@ void Belial::throwSword()
 	_skillTick = 0;
 
 	OBJECTMANAGER->addObject(
-		ObjectEnum::TYPE::ENEMY_OBJ, 
+		ObjectEnum::OBJ_TYPE::ENEMY_OBJ, 
 		new BelialSword(
 			_x - 330 + _skillActCnt * 130,
 			_y - 300,

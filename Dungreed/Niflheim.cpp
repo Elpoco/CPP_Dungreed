@@ -184,7 +184,7 @@ void Niflheim::initPillar()
 		int intervalY = i / 2;
 		_pillar[i] = new NiflheimPillar(_x + 115 - 250 * intervalX, _y + 115 - 250 * intervalY);
 		_pillar[i]->setPosAddress(&_x, &_y);
-		OBJECTMANAGER->addObject(ObjectEnum::TYPE::ENEMY, _pillar[i]);
+		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::ENEMY, _pillar[i]);
 	}
 }
 
@@ -199,7 +199,7 @@ void Niflheim::shootBullet(float x, float y, float angle)
 	OBJECTMANAGER->addEffect(ImageName::Enemy::Niflheim::bulletFX, x, y);
 	
 	OBJECTMANAGER->addBullet(
-		ObjectEnum::TYPE::ENEMY_OBJ,
+		ObjectEnum::OBJ_TYPE::ENEMY_OBJ,
 		ImageName::Enemy::Niflheim::bullet,
 		x,
 		y,

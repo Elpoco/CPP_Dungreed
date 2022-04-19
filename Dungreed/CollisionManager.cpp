@@ -8,6 +8,10 @@
 #include "Button.h"
 #include "DropItem.h"
 
+using namespace ObjectEnum;
+using namespace MapToolEnum;
+using namespace MapToolSet;
+
 CollisionManager::CollisionManager()
 {
 }
@@ -44,22 +48,22 @@ void CollisionManager::render(HDC hdc)
 			{
 				switch (pairObject.first)
 				{
-				case ObjectEnum::TYPE::PLAYER:
+				case OBJ_TYPE::PLAYER:
 					renderPlayer(hdc, obj);
 					break;
-				case ObjectEnum::TYPE::ENEMY:
+				case OBJ_TYPE::ENEMY:
 					renderEnemy(hdc, obj);
 					break;
-				case ObjectEnum::TYPE::ENEMY_OBJ:
-				case ObjectEnum::TYPE::PLAYER_OBJ:
+				case OBJ_TYPE::ENEMY_OBJ:
+				case OBJ_TYPE::PLAYER_OBJ:
 					renderBullet(hdc, obj);
 					break;
-				case ObjectEnum::TYPE::UI_FRONT:
-				case ObjectEnum::TYPE::UI:
-				case ObjectEnum::TYPE::BUTTON:
+				case OBJ_TYPE::UI_FRONT:
+				case OBJ_TYPE::UI:
+				case OBJ_TYPE::BUTTON:
 					renderUI(hdc, obj);
 					break;
-				case ObjectEnum::TYPE::ITEM_DROP:
+				case OBJ_TYPE::ITEM_DROP:
 					renderItem(hdc, obj);
 				default:
 					break;
@@ -77,13 +81,13 @@ void CollisionManager::renderPlayer(HDC hdc, Object* obj)
 	RECT rcObj = player->getRect();
 
 	int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
-	int startX = start % MapToolSet::TILE_CNT_X;
+	int startX = start % TILE_CNT_X;
 	int startY = start - startX;
 	int end = TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
-	int endX = end % MapToolSet::TILE_CNT_X;
+	int endX = end % TILE_CNT_X;
 	int endY = end - endX;
 
-	for (int y = startY; y <= endY; y += MapToolSet::TILE_CNT_X)
+	for (int y = startY; y <= endY; y += TILE_CNT_X)
 	{
 		for (int x = startX; x <= endX; x++)
 		{
@@ -144,8 +148,8 @@ void CollisionManager::collisionTile()
 		// =============
 		// # 유닛 충돌 #
 		// =============
-		case ObjectEnum::TYPE::PLAYER:
-		case ObjectEnum::TYPE::ENEMY:
+		case OBJ_TYPE::PLAYER:
+		case OBJ_TYPE::ENEMY:
 			for (Object* obj : pairObject.second)
 			{
 				Unit* unit = dynamic_cast<Unit*>(obj);
@@ -160,39 +164,39 @@ void CollisionManager::collisionTile()
 				int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
 				int end	  =	TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
 				if (start < 0) return;
-				int startX = start % MapToolSet::TILE_CNT_X;
+				int startX = start % TILE_CNT_X;
 				int startY = start - startX;
-				int endX = end % MapToolSet::TILE_CNT_X;
+				int endX = end % TILE_CNT_X;
 				int endY = end - endX;
 
 				float moveX = 0.0f;
 				float moveY = 0.0f;
 
-				for (int y = startY; y <= endY; y += MapToolSet::TILE_CNT_X)
+				for (int y = startY; y <= endY; y += TILE_CNT_X)
 				{
 					for (int x = startX; x <= endX; x++)
 					{
 						TILE tile = TILEMANAGER->getTile(y + x);
 						switch (tile.type)
 						{
-						case MapToolEnum::OBJECT::DOWN_R:
+						case MAP_OBJ::DOWN_R:
 							if (unit->isJumping())break;
-						case MapToolEnum::OBJECT::BLOCK_R:
+						case MAP_OBJ::BLOCK_R:
 							moveY = tile.rc.right - unit->getRect().right;
 							unit->setCollision(DIRECTION::BOTTOM, true);
 							if (moveY >= TILE_SIZE || moveY <= 0) continue;
 							cout << moveY << endl;
 							unit->pushObject(DIRECTION::NONE, 0, tile.rc.top + moveY);
 							return;
-						case MapToolEnum::OBJECT::DOWN_L:
+						case MAP_OBJ::DOWN_L:
 							if (unit->isJumping())break;
-						case MapToolEnum::OBJECT::BLOCK_L:
+						case MAP_OBJ::BLOCK_L:
 							moveY = unit->getRect().left - tile.rc.right;
 							unit->setCollision(DIRECTION::BOTTOM, true);
 							//if (abs(moveY) > TILE_SIZE) continue;
 							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom + moveY);
 							return;
-						case MapToolEnum::OBJECT::BLOCK:
+						case MAP_OBJ::BLOCK:
 							if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top) 
 							{ // 왼쪽
 								unit->setCollision(DIRECTION::LEFT, true);
@@ -214,7 +218,7 @@ void CollisionManager::collisionTile()
 								unit->pushObject(DIRECTION::TOP, 0, tile.rc.bottom);
 							}
 							break;
-						case MapToolEnum::OBJECT::DOWN:
+						case MAP_OBJ::DOWN:
 							if (unit->isJumping())break;
 
 							if (tile.y > rcObj.bottom)
@@ -233,14 +237,14 @@ void CollisionManager::collisionTile()
 		// ==============
 		// # 투사체 충돌 #
 		// ==============
-		case ObjectEnum::TYPE::ENEMY_OBJ:
-		case ObjectEnum::TYPE::PLAYER_OBJ:
+		case OBJ_TYPE::ENEMY_OBJ:
+		case OBJ_TYPE::PLAYER_OBJ:
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getY());
-				if (tile.type == MapToolEnum::OBJECT::BLOCK || 
-					tile.type == MapToolEnum::OBJECT::BLOCK_L ||
-					tile.type == MapToolEnum::OBJECT::BLOCK_R)
+				if (tile.type == MAP_OBJ::BLOCK || 
+					tile.type == MAP_OBJ::BLOCK_L ||
+					tile.type == MAP_OBJ::BLOCK_R)
 				{
 					obj->stopObject();
 					obj->collisionObject();
@@ -250,11 +254,11 @@ void CollisionManager::collisionTile()
 		// ==============
 		// # 아이템 충돌 #
 		// ==============
-		case ObjectEnum::TYPE::ITEM_DROP:
+		case OBJ_TYPE::ITEM_DROP:
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getRect().bottom);
-				if (tile.type == MapToolEnum::OBJECT::BLOCK)
+				if (tile.type == MAP_OBJ::BLOCK)
 				{
 					obj->stopObject();
 					obj->pushObject(DIRECTION::BOTTOM, tile.rc.top);
@@ -269,8 +273,8 @@ void CollisionManager::collisionTile()
 
 void CollisionManager::collisionPlayerEnemy()
 {
-	auto pairPlayer = _mObjects->find(ObjectEnum::TYPE::PLAYER);
-	auto pairEnemy = _mObjects->find(ObjectEnum::TYPE::ENEMY);
+	auto pairPlayer = _mObjects->find(OBJ_TYPE::PLAYER);
+	auto pairEnemy = _mObjects->find(OBJ_TYPE::ENEMY);
 	for (Object* objPlayer : pairPlayer->second)
 	{
 		Player* player = dynamic_cast<Player*>(objPlayer);
@@ -318,10 +322,10 @@ void CollisionManager::collisionPlayerEnemy()
 
 void CollisionManager::collisionShooting()
 {
-	auto pairPlayer = _mObjects->find(ObjectEnum::TYPE::PLAYER);
-	auto pairEnemyObj = _mObjects->find(ObjectEnum::TYPE::ENEMY_OBJ);
-	auto pairEnemy = _mObjects->find(ObjectEnum::TYPE::ENEMY);
-	auto pairPlayerObj = _mObjects->find(ObjectEnum::TYPE::PLAYER_OBJ);
+	auto pairPlayer = _mObjects->find(OBJ_TYPE::PLAYER);
+	auto pairEnemyObj = _mObjects->find(OBJ_TYPE::ENEMY_OBJ);
+	auto pairEnemy = _mObjects->find(OBJ_TYPE::ENEMY);
+	auto pairPlayerObj = _mObjects->find(OBJ_TYPE::PLAYER_OBJ);
 
 	// 플레이어가 몬스터 총알에 맞기
 	for (Object* objPlayer : pairPlayer->second)
@@ -364,7 +368,7 @@ void CollisionManager::collisionShooting()
 
 void CollisionManager::collisionButton()
 {
-	auto pairButton = _mObjects->find(ObjectEnum::TYPE::BUTTON);
+	auto pairButton = _mObjects->find(OBJ_TYPE::BUTTON);
 
 	for (Object* objButton : pairButton->second)
 	{
@@ -390,8 +394,8 @@ void CollisionManager::collisionButton()
 
 void CollisionManager::collisionItem()
 {
-	auto pairPlayer = _mObjects->find(ObjectEnum::TYPE::PLAYER);
-	auto pairItemObj = _mObjects->find(ObjectEnum::TYPE::ITEM_DROP);
+	auto pairPlayer = _mObjects->find(OBJ_TYPE::PLAYER);
+	auto pairItemObj = _mObjects->find(OBJ_TYPE::ITEM_DROP);
 
 	for (Object* objPlayer : pairPlayer->second)
 	{
@@ -410,7 +414,7 @@ void CollisionManager::collisionItem()
 			{
 				player->getItem(code);
 				obj->collisionObject();
-				ITEMMANAGER->getItemEffect(code, obj->getX(), rcObj.top, player->getX() > obj->getX());
+				ITEMMANAGER->playItemEffect(code, obj->getX(), rcObj.top, player->getX() > obj->getX());
 			}
 		}
 	}

@@ -68,7 +68,7 @@ RECT Gun::attack()
 	SOUNDMANAGER->play(SoundName::Item::Weapon::Gun, _sound);
 
 	OBJECTMANAGER->addBullet(
-		ObjectEnum::TYPE::PLAYER_OBJ,
+		ObjectEnum::OBJ_TYPE::PLAYER_OBJ,
 		ImageName::Item::Weapon::bullet02,
 		_shootingX,
 		_shootingY,

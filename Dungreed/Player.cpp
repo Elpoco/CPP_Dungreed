@@ -2,7 +2,6 @@
 #include "Player.h"
 
 #include "Item.h"
-#include "Inventory.h"
 
 using namespace PlayerSet;
 
@@ -40,9 +39,14 @@ HRESULT Player::init()
 	ITEMMANAGER->setPlayerHand(&_hand);
 	ITEMMANAGER->setPlayerLeft(&_isLeft);
 
-	_inventory = new Inventory;
-	OBJECTMANAGER->addUI(_inventory);
-	UIMANAGER->setInventory(_inventory);
+	ITEMMANAGER->inventoryInit();
+	ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+	ITEMMANAGER->getItem(Code::ITEM::COLT);
+	ITEMMANAGER->getItem(Code::ITEM::COLT);
+	ITEMMANAGER->getItem(Code::ITEM::COLT);
+	ITEMMANAGER->getItem(Code::ITEM::COLT);
+	ITEMMANAGER->getItem(Code::ITEM::COLT);
+	ITEMMANAGER->getItem(Code::ITEM::COLT);
 
 	return S_OK;
 }
@@ -79,7 +83,8 @@ void Player::hitAttack(int dmg, int dir)
 
 int Player::getDmg()
 {
-	return _inventory->getEquipItem()->getDmg();
+	if (!ITEMMANAGER->getEquipItem()) return 1;
+	return ITEMMANAGER->getEquipItem()->getDmg();
 }
 
 void Player::move()
@@ -129,7 +134,7 @@ void Player::move()
 	else
 	{
 		_isLeft = false;
-		_mainHandX = _x + 20;
+		_mainHandX = _x + 19;
 	}
 
 	if (_isJump || _isFall) _state = PLAYER_MOTION::JUMP;
@@ -190,9 +195,9 @@ void Player::setIdle()
 
 void Player::attack()
 {
-	if (_inventory->getEquipItem())
+	if (ITEMMANAGER->getEquipItem())
 	{
-		_rcAttack = _inventory->getEquipItem()->attack();
+		_rcAttack = ITEMMANAGER->getEquipItem()->attack();
 	}
 	else
 	{
@@ -216,6 +221,6 @@ void Player::dash()
 
 void Player::getItem(Code::ITEM code)
 {
-	if(code == Code::ITEM::COLT)
-		_inventory->pickUpItem(code);
+	if (code > Code::ITEM::ITEM)
+		ITEMMANAGER->getItem(code);
 }

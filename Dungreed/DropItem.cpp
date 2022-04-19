@@ -18,7 +18,7 @@ HRESULT DropItem::init()
 {
 	Object::init();
 
-	_img = ITEMMANAGER->findCodeImage(_itemCode);
+	_img = ITEMMANAGER->findImage(_itemCode);
 
 	_frameInfo.maxFrameX = _img->getMaxFrameX();
 	_frameInfo.maxFrameY = _img->getMaxFrameY();

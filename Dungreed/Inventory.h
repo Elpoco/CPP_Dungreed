@@ -31,6 +31,13 @@ private:
 		INVEN_CNT
 	};
 
+	typedef struct tagSlotInfo
+	{
+		Item* item;
+		RECT rc;
+		POINT pt;
+	} SLOT_INFO;
+
 private:
 	vector<UI*> _vUI;
 	BOOL _isOpen;
@@ -48,9 +55,10 @@ private:
 	UI* _equipSlot[2];
 
 	// 인벤토리
-	Item* _arrItems[INVEN_CNT];  // 인벤토리 아이템
-	POINT _ptInven[INVEN_CNT];   // UI 중심
-	RECT _rcInven[INVEN_CNT];    // UI RECT
+	SLOT_INFO _arrSlot[INVEN_CNT];
+	//Item* _arrItems[INVEN_CNT];  // 인벤토리 아이템
+	//POINT _ptInven[INVEN_CNT];   // UI 중심
+	//RECT _rcInven[INVEN_CNT];    // UI RECT
 	BOOL _equipIdx;				// 착용 인덱스 0 or 1
 	int _clickCell;
 
@@ -71,19 +79,20 @@ public:
 
 	void settingUI();
 	void toggleInventory();
-	void sortItem();
+	// 마우스 관련 기능
 	void onClick();
 	void offClick();
-	void dragItem();
 	void hoverSlot();
+	void equipItem();
 
-	void swapEquip();
+	void swapEquipSlot();
 	void renderEquipBase(HDC hdc);
 	void renderInventoryItem(HDC hdc);
 
+	void addItem(Item* item);
+
 	BOOL isOpen() { return _isOpen; }
-	Item* getEquipItem() { return _arrItems[_equipIdx]; }
-	BOOL pickUpItem(Code::ITEM code);
+	Item* getEquipItem() { return _arrSlot[_equipIdx].item; }
 
 };
 

@@ -1,9 +1,6 @@
 #pragma once
 #include "Unit.h"
 
-class Item;
-class Inventory;
-
 namespace PlayerSet
 {
 	constexpr float HIT_TIME = 2.0f;
@@ -24,8 +21,6 @@ private:
 	};
 
 private:
-	Inventory* _inventory;
-
 	POINT _body;
 	POINT _hand;
 	BOOL _isDash;

@@ -16,7 +16,7 @@ Item::~Item()
 HRESULT Item::init()
 {
 
-	_img = ITEMMANAGER->findCodeImage(_info.code);
+	_img = ITEMMANAGER->findImage(_info.code);
 	if (!_img) return E_FAIL;
 	_frameInfo.width = _img->getFrameWidth();
 	_frameInfo.height = _img->getFrameHeight();
@@ -38,7 +38,7 @@ void Item::update()
 				ITEMMANAGER->getPlayerBody().x,
 				ITEMMANAGER->getPlayerBody().y,
 				CAMERAMANAGER->calAbsX(_ptMouse.x),
-				CAMERAMANAGER->calAbsX(_ptMouse.y)
+				CAMERAMANAGER->calAbsY(_ptMouse.y)
 			);
 		}
 
@@ -53,7 +53,7 @@ void Item::update()
 
 void Item::render(HDC hdc)
 {
-	if (_isEquip)
+	if (_isEquip && OBJECTMANAGER->getPlayer()->isRender())
 	{
 		CAMERAMANAGER->frameRender(
 			hdc,

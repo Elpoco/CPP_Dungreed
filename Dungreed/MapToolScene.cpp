@@ -168,7 +168,7 @@ void MapToolScene::clickUndoTile()
 {
 	int idx = TILEMANAGER->getTileIndex(CAMERAMANAGER->calAbsPt(_ptMouse));
 
-	TILEMANAGER->setTile(idx, -1, -1, OBJECT::NONE);
+	TILEMANAGER->setTile(idx, -1, -1, MAP_OBJ::NONE);
 }
 
 void MapToolScene::clickSave()

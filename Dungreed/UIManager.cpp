@@ -16,7 +16,7 @@ UIManager::~UIManager()
 HRESULT UIManager::init()
 {
 	_cursor = new Cursor;
-	OBJECTMANAGER->addObject(ObjectEnum::TYPE::UI_FRONT, _cursor);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _cursor);
 	ShowCursor(false);
 
 	return S_OK;

@@ -29,7 +29,7 @@ enum KEY
 
 namespace MapToolEnum
 {
-	enum OBJECT
+	enum MAP_OBJ
 	{
 		NONE,
 		BLOCK,
@@ -61,7 +61,7 @@ namespace ColliderEnum
 
 namespace ObjectEnum
 {
-	enum class TYPE
+	enum class OBJ_TYPE
 	{
 		EFFECT_BACK,
 		NPC,
@@ -109,6 +109,7 @@ namespace Code
 		COIN,
 		BULLION,
 
+		ITEM,
 		// ¹«±â
 		SHOT_SWORD,
 		GREAT_SWORD,

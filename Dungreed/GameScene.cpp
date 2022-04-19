@@ -163,7 +163,7 @@ void GameScene::loadDungeon()
 	_spawnInfo[6].unit = Code::UNIT::BELIAL;
 
 	_spawnInfo[7].rcScan = RectMakeCenter(4800, 1266, 300, 300);
-	_spawnInfo[7].ptSpawn = PointMake(5100, 1100);
+	_spawnInfo[7].ptSpawn = PointMake(5100, 1000);
 	_spawnInfo[7].unit = Code::UNIT::NIFLEHEIM;
 
 

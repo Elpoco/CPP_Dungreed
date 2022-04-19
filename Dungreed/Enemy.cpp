@@ -64,7 +64,7 @@ void Enemy::render(HDC hdc)
 			_x,
 			_y,
 			0,
-			ObjectEnum::TYPE::EFFECT_BACK
+			ObjectEnum::OBJ_TYPE::EFFECT_BACK
 		);
 
 		doneSpawn();

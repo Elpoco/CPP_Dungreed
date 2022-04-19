@@ -28,7 +28,8 @@ public:
 	void unequip() { _isEquip = FALSE; }
 
 	ImageBase* getImage() { return _img; }
-	virtual int getDmg() override { return RND->getFromIntTo(_info.minDmg, _info.maxDmg); }
+	inline virtual int getDmg() override { return RND->getFromIntTo(_info.minDmg, _info.maxDmg); }
+	inline Code::ITEM_TYPE getItemType() { return _info.type; }
 
 };
 

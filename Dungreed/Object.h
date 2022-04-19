@@ -44,5 +44,6 @@ public:
 	virtual int getDmg() { return 1; }
 
 	virtual void setRender(BOOL isRender) { _isRender = isRender; }
+	virtual BOOL isRender() { return _isRender; }
 };
 

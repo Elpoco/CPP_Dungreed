@@ -100,9 +100,6 @@
     <Filter Include="MainGame\02. Object\06. Item\Sword">
       <UniqueIdentifier>{d8ced728-9dfc-413d-9352-ac1cbd783ae6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\05. UI\Button">
-      <UniqueIdentifier>{dba12a34-0c63-4b70-a1e4-ab515715319c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\02. Object\05. UI\Cursor">
       <UniqueIdentifier>{71a1ce05-ce4a-442e-8d57-e733010c391b}</UniqueIdentifier>
     </Filter>
@@ -141,6 +138,9 @@
     </Filter>
     <Filter Include="MainGame\02. Object\08. NPC">
       <UniqueIdentifier>{ec43b864-9dae-430e-bd66-7d3c3060b9c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\05. UI\Button">
+      <UniqueIdentifier>{dba12a34-0c63-4b70-a1e4-ab515715319c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

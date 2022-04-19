@@ -29,9 +29,9 @@ ObjectManager::~ObjectManager()
 
 HRESULT ObjectManager::init()
 {
-	for (int i = 0; i < (int)TYPE::TYPE_CNT; i++)
+	for (int i = 0; i < (int)OBJ_TYPE::TYPE_CNT; i++)
 	{
-		_mObjects.insert(make_pair((TYPE)i, vector<Object*>()));
+		_mObjects.insert(make_pair((OBJ_TYPE)i, vector<Object*>()));
 	}
 
 	COLLISIONMANAGER->setObject(&_mObjects);
@@ -87,8 +87,8 @@ void ObjectManager::render(HDC hdc)
 
 			if (_isDebug)
 			{
-				BOOL isPlayer = pairObject.first == ObjectEnum::TYPE::PLAYER;
-				BOOL isEnemy = pairObject.first == ObjectEnum::TYPE::ENEMY;
+				BOOL isPlayer = pairObject.first == ObjectEnum::OBJ_TYPE::PLAYER;
+				BOOL isEnemy = pairObject.first == ObjectEnum::OBJ_TYPE::ENEMY;
 				
 				if (!isPlayer && !isEnemy) continue;
 				CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Green);
@@ -98,7 +98,7 @@ void ObjectManager::render(HDC hdc)
 	}
 }
 
-void ObjectManager::addObject(TYPE type, Object* object)
+void ObjectManager::addObject(OBJ_TYPE type, Object* object)
 {
 	object->init();
 	_mObjects.find(type)->second.push_back(object);
@@ -109,19 +109,19 @@ void ObjectManager::addUnit(Code::UNIT code, float x, float y)
 	switch (code)
 	{
 	case Code::UNIT::PLAYER:
-		addObject(TYPE::PLAYER, new Player(x, y));
+		addObject(OBJ_TYPE::PLAYER, new Player(x, y));
 		break;
 	case Code::UNIT::SKEL_DOG:
-		addObject(TYPE::ENEMY, new SkelDog(x, y));
+		addObject(OBJ_TYPE::ENEMY, new SkelDog(x, y));
 		break;
 	case Code::UNIT::LITTLE_GHOST:
-		addObject(TYPE::ENEMY, new LittleGhost(x, y));
+		addObject(OBJ_TYPE::ENEMY, new LittleGhost(x, y));
 		break;
 	case Code::UNIT::BELIAL:
-		addObject(TYPE::ENEMY, new Belial(x, y));
+		addObject(OBJ_TYPE::ENEMY, new Belial(x, y));
 		break;
 	case Code::UNIT::NIFLEHEIM:
-		addObject(TYPE::ENEMY, new Niflheim(x, y));
+		addObject(OBJ_TYPE::ENEMY, new Niflheim(x, y));
 		break;
 	case Code::UNIT::UNIT_CNT:
 		break;
@@ -130,12 +130,12 @@ void ObjectManager::addUnit(Code::UNIT code, float x, float y)
 	}
 }
 
-void ObjectManager::addBullet(TYPE type, string imgName, float x, float y, float angle, float speed, int damage, string destroyImgName, float distance)
+void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage, string destroyImgName, float distance)
 {
 	addObject(type, new Bullet(imgName, x, y, angle, speed, damage, destroyImgName));
 }
 
-RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, TYPE type)
+RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, OBJ_TYPE type)
 {
 	Effect* effect = new Effect(imgName, x, y, alpha);
 	addObject(type, effect);
@@ -146,47 +146,47 @@ RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, TYPE
 RECT ObjectManager::addEffect(string imgName, float x, float y, int angle, POINT rotateCenter)
 {
 	Effect* effect = new Effect(imgName, x, y, angle, rotateCenter);
-	addObject(TYPE::EFFECT, effect);
+	addObject(OBJ_TYPE::EFFECT, effect);
 
 	return effect->getRect();
 }
 
 void ObjectManager::addUI(Object* obj)
 {
-	addObject(TYPE::UI, obj);
+	addObject(OBJ_TYPE::UI, obj);
 }
 
 void ObjectManager::addUI(string imgName, int x, int y, BOOL fixed, BOOL show)
 {
-	addObject(TYPE::UI, new UI(imgName, x, y, fixed, show));
+	addObject(OBJ_TYPE::UI, new UI(imgName, x, y, fixed, show));
 }
 
 void ObjectManager::addButton(Object* obj)
 {
-	addObject(TYPE::BUTTON, obj);
+	addObject(OBJ_TYPE::BUTTON, obj);
 }
 
 void ObjectManager::addButton(string imgName, int x, int y, BOOL fixed, CALLBACK_FUNC cb)
 {
-	addObject(TYPE::BUTTON, new Button(imgName, x, y, fixed, cb));
+	addObject(OBJ_TYPE::BUTTON, new Button(imgName, x, y, fixed, cb));
 }
 
 void ObjectManager::addImageFont(float x, float y, int num)
 {
-	addObject(TYPE::UI, new ImageFont(x, y, num));
+	addObject(OBJ_TYPE::UI, new ImageFont(x, y, num));
 }
 
 void ObjectManager::addDynamicImageFont(float x, float y, int num, int dir, ImageFontEnum::FONT_TYPE type)
 {
-	addObject(TYPE::UI, new DynamicFont(x, y, num, dir, type));
+	addObject(OBJ_TYPE::UI, new DynamicFont(x, y, num, dir, type));
 }
 
 void ObjectManager::addItem(Object * obj)
 {
-	addObject(TYPE::ITEM, obj);
+	addObject(OBJ_TYPE::ITEM, obj);
 }
 
 void ObjectManager::addDropItem(Object* obj)
 {
-	addObject(TYPE::ITEM_DROP, obj);
+	addObject(OBJ_TYPE::ITEM_DROP, obj);
 }
