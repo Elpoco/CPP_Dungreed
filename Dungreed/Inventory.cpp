@@ -253,7 +253,7 @@ void Inventory::offClick()
 					// ÀÏ´Ü ³¢´ø°Å ÇØÁ¦
 					_arrSlot[WEAPON_0].item->unequip();
 					_arrSlot[WEAPON_1].item->unequip();
-					//preItem->unequip();
+					preItem->unequip();
 
 					// ÀåÂø ½½·Ô ¾ÆÀÌÅÛ ÀåÂø
 					_arrSlot[_equipIdx].item->equip();

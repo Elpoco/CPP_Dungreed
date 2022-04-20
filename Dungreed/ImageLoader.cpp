@@ -23,7 +23,7 @@ void ImageLoader::release()
 void ImageLoader::loadImages()
 {
 	IMAGEMANAGER->addImage(ImageName::none, PATH_IMAGE"None.bmp", 0, 0, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::ChangeScene, PATH_IMAGE"ChangeScene.bmp", WINSIZE_X, WINSIZE_Y);
+	IMAGEMANAGER->addImage(ImageName::ChangeScene, PATH_IMAGE"ScreenCover.bmp", WINSIZE_X, WINSIZE_Y);
 	
 	// ==========
 	// # Player #

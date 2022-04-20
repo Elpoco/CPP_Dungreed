@@ -42,6 +42,8 @@ HRESULT MapToolScene::init()
 
 	this->settingSelectTileRect();
 
+	SOUNDMANAGER->play(SoundName::niflheimBG, _sound);
+
 	return S_OK;
 }
 

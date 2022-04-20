@@ -50,10 +50,6 @@ namespace ColliderEnum
 		TOP,
 		RIGHT,
 		BOTTOM,
-		LT,
-		RT,
-		LB,
-		RB,
 		DIR_CNT,
 		NONE
 	};

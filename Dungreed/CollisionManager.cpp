@@ -42,7 +42,7 @@ void CollisionManager::render(HDC hdc)
 {
 	if (_isDebug)
 	{
-		for(auto pairObject : *_mObjects)
+		for (auto pairObject : *_mObjects)
 		{
 			for (Object* obj : pairObject.second)
 			{
@@ -105,7 +105,7 @@ void CollisionManager::renderEnemy(HDC hdc, Object* obj)
 
 	// 스캔박스
 	CAMERAMANAGER->printRectangle(
-		hdc, 
+		hdc,
 		enemy->getScanRect(),
 		(enemy->getPlayerScan() ? Color::Gold : Color::Aqua)
 	);
@@ -145,9 +145,9 @@ void CollisionManager::collisionTile()
 	{
 		switch (pairObject.first)
 		{
-		// =============
-		// # 유닛 충돌 #
-		// =============
+			// =============
+			// # 유닛 충돌 #
+			// =============
 		case OBJ_TYPE::PLAYER:
 		case OBJ_TYPE::ENEMY:
 			for (Object* obj : pairObject.second)
@@ -162,7 +162,7 @@ void CollisionManager::collisionTile()
 				RECT rcObj = unit->getRect();
 
 				int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
-				int end	  =	TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
+				int end = TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
 				if (start < 0) return;
 				int startX = start % TILE_CNT_X;
 				int startY = start - startX;
@@ -182,23 +182,23 @@ void CollisionManager::collisionTile()
 						{
 						case MAP_OBJ::DOWN_R:
 							if (unit->isJumping())break;
-						case MAP_OBJ::BLOCK_R:
+						case MAP_OBJ::BLOCK_R: // 오른쪽으로 올라감
 							moveY = tile.rc.right - unit->getRect().right;
 							unit->setCollision(DIRECTION::BOTTOM, true);
 							if (moveY >= TILE_SIZE || moveY <= 0) continue;
-							unit->pushObject(DIRECTION::NONE, 0, tile.rc.top + moveY + 1);
+							cout << moveY << endl;
+							unit->pushObject(DIRECTION::NONE, 0, tile.rc.top + moveY+1);
 							continue;
 						case MAP_OBJ::DOWN_L:
 							if (unit->isJumping())break;
-						case MAP_OBJ::BLOCK_L:
-							moveY = unit->getRect().left - tile.rc.left;
-							cout << moveY << endl;
+						case MAP_OBJ::BLOCK_L: // 왼쪽으로 올라감
+							moveY = unit->getRect().left - tile.rc.right;
 							unit->setCollision(DIRECTION::BOTTOM, true);
 							if (moveY >= TILE_SIZE) continue;
 							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom + moveY);
 							continue;
 						case MAP_OBJ::BLOCK:
-							if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top) 
+							if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
 							{ // 왼쪽
 								unit->setCollision(DIRECTION::LEFT, true);
 								unit->pushObject(DIRECTION::LEFT, tile.rc.right, 0);
@@ -234,24 +234,26 @@ void CollisionManager::collisionTile()
 				}
 			}
 			break;
-		// ==============
-		// # 투사체 충돌 #
-		// ==============
+			// ==============
+			// # 투사체 충돌 #
+			// ==============
 		case OBJ_TYPE::ENEMY_OBJ:
 		case OBJ_TYPE::PLAYER_OBJ:
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getY());
-				if (tile.type == MAP_OBJ::BLOCK)
+				if (tile.type == MAP_OBJ::BLOCK   ||
+					tile.type == MAP_OBJ::BLOCK_L ||
+					tile.type == MAP_OBJ::BLOCK_R)
 				{
 					obj->stopObject();
 					obj->collisionObject();
 				}
 			}
 			break;
-		// ==============
-		// # 아이템 충돌 #
-		// ==============
+			// ==============
+			// # 아이템 충돌 #
+			// ==============
 		case OBJ_TYPE::ITEM_DROP:
 			for (Object* obj : pairObject.second)
 			{
@@ -354,7 +356,7 @@ void CollisionManager::collisionShooting()
 			RECT tmp;
 			RECT rcEnemy = enemy->getRect();
 			RECT rcObj = obj->getRect();
-			
+
 			if (IntersectRect(&tmp, &rcEnemy, &rcObj))
 			{
 				obj->collisionObject();
@@ -373,7 +375,7 @@ void CollisionManager::collisionButton()
 		Button* btn = dynamic_cast<Button*>(objButton);
 
 		if (!btn->isShow()) continue;
-		
+
 		RECT rcBtn = btn->getRect();
 
 		btn->setOff();
