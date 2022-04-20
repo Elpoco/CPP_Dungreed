@@ -6,16 +6,14 @@
 using namespace PlayerSet;
 
 Player::Player()
-	: _isDash(FALSE)
-	, _mainHandX(15)
+	: _mainHandX(15)
 	, _dashMove(DASH_DISTANCE)
 	, _isStop(FALSE)
 {
 }
 
 Player::Player(float x, float y)
-	: _isDash(FALSE)
-	, _mainHandX(15)
+	: _mainHandX(15)
 	, _dashMove(DASH_DISTANCE)
 	, _isStop(FALSE)
 {

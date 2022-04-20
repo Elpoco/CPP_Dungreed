@@ -172,11 +172,12 @@ void CollisionManager::collisionTile()
 				float moveX = 0.0f;
 				float moveY = 0.0f;
 
-				for (int y = startY; y <= endY; y += TILE_CNT_X)
+				for (int y = endY; y >= startY; y -= TILE_CNT_X)
 				{
-					for (int x = startX; x <= endX; x++)
+					for (int x = endX; x >= startX; x--)
 					{
 						TILE tile = TILEMANAGER->getTile(y + x);
+
 						switch (tile.type)
 						{
 						case MAP_OBJ::DOWN_R:
@@ -185,17 +186,17 @@ void CollisionManager::collisionTile()
 							moveY = tile.rc.right - unit->getRect().right;
 							unit->setCollision(DIRECTION::BOTTOM, true);
 							if (moveY >= TILE_SIZE || moveY <= 0) continue;
-							cout << moveY << endl;
-							unit->pushObject(DIRECTION::NONE, 0, tile.rc.top + moveY);
-							return;
+							unit->pushObject(DIRECTION::NONE, 0, tile.rc.top + moveY + 1);
+							continue;
 						case MAP_OBJ::DOWN_L:
 							if (unit->isJumping())break;
 						case MAP_OBJ::BLOCK_L:
-							moveY = unit->getRect().left - tile.rc.right;
+							moveY = unit->getRect().left - tile.rc.left;
+							cout << moveY << endl;
 							unit->setCollision(DIRECTION::BOTTOM, true);
-							//if (abs(moveY) > TILE_SIZE) continue;
+							if (moveY >= TILE_SIZE) continue;
 							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom + moveY);
-							return;
+							continue;
 						case MAP_OBJ::BLOCK:
 							if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top) 
 							{ // ¿ÞÂÊ
@@ -220,7 +221,6 @@ void CollisionManager::collisionTile()
 							break;
 						case MAP_OBJ::DOWN:
 							if (unit->isJumping())break;
-
 							if (tile.y > rcObj.bottom)
 							{ // ¹Ù´Ú
 								unit->setCollision(DIRECTION::BOTTOM, true);
@@ -242,9 +242,7 @@ void CollisionManager::collisionTile()
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getY());
-				if (tile.type == MAP_OBJ::BLOCK || 
-					tile.type == MAP_OBJ::BLOCK_L ||
-					tile.type == MAP_OBJ::BLOCK_R)
+				if (tile.type == MAP_OBJ::BLOCK)
 				{
 					obj->stopObject();
 					obj->collisionObject();

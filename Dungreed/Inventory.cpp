@@ -24,10 +24,6 @@ HRESULT Inventory::init()
 {
 	settingUI();
 
-	//_arrItems[WEAPON_0] = ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
-	//_arrItems[WEAPON_0]->equip();
-	//OBJECTMANAGER->addItem(_arrItems[WEAPON_0]);
-
 	return S_OK;
 }
 
@@ -65,7 +61,7 @@ void Inventory::update()
 
 	if (IsOnceKeyDown(KEY::CLICK_L)) onClick();
 	if (IsOnceKeyUp(KEY::CLICK_L))   offClick();
-	if (IsOnceKeyUp(KEY::CLICK_R))	 equipItem();
+	if (IsOnceKeyUp(KEY::CLICK_R))	 equipClick();
 	if (IsOnceKeyDown(KEY::ESC))     toggleInventory();
 }
 
@@ -163,6 +159,7 @@ void Inventory::settingUI()
 		OBJECTMANAGER->addUI(inven);
 	}
 
+	// 인벤 칸들 위치 렉트
 	for (int i = 0; i < INVEN_CNT; i++)
 	{
 		_arrSlot[i].rc = RectMakeCenter(
@@ -208,21 +205,32 @@ void Inventory::toggleInventory()
 	}
 }
 
-void Inventory::onClick()
+int Inventory::checkCell()
 {
+	// 마우스가 올라가있는 칸의 인덱스 구하기
+	int idx = CLICK_NONE;
+
 	for (int i = 0; i < INVEN_CNT; i++)
 	{
-		if (MouseInRect(_arrSlot[i].rc))
-		{
-			if (_arrSlot[i].item == NULL)
-			{
-				_clickCell = CLICK_NONE;
-				return;
-			}
-			_clickCell = i;
-			if(_arrSlot[i].item) SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
-		}
+		if (MouseInRect(_arrSlot[i].rc)) 
+			idx = i;
 	}
+
+	return idx;
+}
+
+void Inventory::onClick()
+{
+	_clickCell = checkCell();
+
+	// 아이템이 없으면 클릭 없애기
+	if (!_arrSlot[_clickCell].item)
+	{
+		_clickCell = CLICK_NONE;
+		return;
+	}
+	
+	SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
 }
 
 void Inventory::offClick()
@@ -233,46 +241,40 @@ void Inventory::offClick()
 	{
 		if (MouseInRect(_arrSlot[i].rc))
 		{
-			/*switch (_arrItems[_clickCell]->getItemType())
-			{
-			case Code::ITEM_TYPE::WEAPON:
-				continue;
-				break;
-			default:
-				break;
-			}*/
-			// 아이템이 있을때 사운드 발생
-			if(_arrSlot[_clickCell].item) SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
-	
 			// 놓을때 아이템이 있는경우
 			if (_arrSlot[i].item)
 			{
+				SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
 				Item* preItem = _arrSlot[i].item;
 				_arrSlot[i].item = _arrSlot[_clickCell].item;
 				_arrSlot[_clickCell].item = preItem;
-				if (i < EQUIP_CNT) // 장착 칸일경우
+				if (i < WEAPON_CNT) // 장착 칸일경우
 				{
-					preItem->unequip();
-					if (_equipIdx == i) // 장착한 상태면
-					{
-						_arrSlot[i].item->equip();
-						_arrSlot[i].item->update();
-					}
+					// 일단 끼던거 해제
+					_arrSlot[WEAPON_0].item->unequip();
+					_arrSlot[WEAPON_1].item->unequip();
+					//preItem->unequip();
+
+					// 장착 슬롯 아이템 장착
+					_arrSlot[_equipIdx].item->equip();
 				}
 			}
 			else
 			{
-				_arrSlot[i].item = _arrSlot[_clickCell].item;
-				if (i < EQUIP_CNT)
-				{
-					if(_clickCell < EQUIP_CNT) _arrSlot[_clickCell].item->unequip();
+				if (i < EQUIP_CNT && !checkType(i, _arrSlot[_clickCell].item)) break;
 
-					if (_equipIdx == i)
-					{
-						_arrSlot[i].item->equip();
-						_arrSlot[i].item->update();
-					}
+				_arrSlot[i].item = _arrSlot[_clickCell].item;
+
+				if (i < ACC_CNT)
+				{
+					SOUNDMANAGER->play(SoundName::Item::Equip, _sound);
+
+					if(_clickCell < WEAPON_CNT) _arrSlot[_clickCell].item->unequip();
+
+					if (_equipIdx == i) _arrSlot[i].item->equip();
 				}
+				else SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
+				
 				_arrSlot[_clickCell].item = NULL;
 			}
 			break;
@@ -298,8 +300,67 @@ void Inventory::hoverSlot()
 	}
 }
 
-void Inventory::equipItem()
+void Inventory::equipClick()
 {
+	_clickCell = checkCell();
+	if (_clickCell == CLICK_NONE) return;
+	if (!_arrSlot[_clickCell].item) return;
+
+	switch (_clickCell)
+	{
+	case Inventory::WEAPON_0: case Inventory::WEAPON_1:
+	case Inventory::ARMOR_0: case Inventory::ARMOR_1:
+	case Inventory::ACC_0: case Inventory::ACC_1:
+	case Inventory::ACC_2: case Inventory::ACC_3:
+		// 해제
+		for (int i = INVEN_0; i < INVEN_CNT; i++)
+		{
+			if (_arrSlot[i].item) continue;
+
+			SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
+			_arrSlot[i].item = _arrSlot[_clickCell].item;
+			_arrSlot[_clickCell].item = NULL;
+			_arrSlot[i].item->unequip();
+			break;
+		}
+		break;
+	default:
+		// 장착
+		for (int i = WEAPON_0; i < ACC_CNT; i++)
+		{
+			if (_arrSlot[i].item) continue;
+			if (!checkType(i, _arrSlot[_clickCell].item)) continue;
+			SOUNDMANAGER->play(SoundName::Item::Equip, _sound);
+			_arrSlot[i].item = _arrSlot[_clickCell].item;
+			_arrSlot[_clickCell].item = NULL;
+			if(i == _equipIdx) _arrSlot[i].item->equip();
+			break;
+		}
+		break;
+	}
+
+	_clickCell = CLICK_NONE;
+}
+
+BOOL Inventory::checkType(int cellIdx, Item* item)
+{
+	BOOL res = FALSE;
+
+	switch (item->getItemType())
+	{
+	case Code::ITEM_TYPE::WEAPON:
+		res = cellIdx == WEAPON_0 || cellIdx == WEAPON_1;
+		break;
+	case Code::ITEM_TYPE::ARMOR:
+		res = cellIdx == ARMOR_0 || cellIdx == ARMOR_1;
+		break;
+	case Code::ITEM_TYPE::ACCESSORY:
+		res = ACC_0 <= cellIdx && cellIdx <= ACC_3;
+		break;
+	default:
+		break;
+	}
+	return res;
 }
 
 void Inventory::swapEquipSlot()
@@ -318,7 +379,6 @@ void Inventory::swapEquipSlot()
 	if (_arrSlot[_equipIdx].item)
 	{
 		_arrSlot[_equipIdx].item->equip();
-		_arrSlot[_equipIdx].item->update();
 	}
 	
 	if (!_isOpen) return;
@@ -353,11 +413,12 @@ void Inventory::renderInventoryItem(HDC hdc)
 			img = _arrSlot[i].item->getImage();
 			if (!img) continue;
 
-			//if (_clickCell == i)
-			//{
-			//	continue;
-			//}
-			//else
+			// 선택한 아이템은 여기서 랜더 안함
+			if (_clickCell == i)
+			{
+				continue;
+			}
+			else
 			{
 				img->frameRender(
 					hdc,
@@ -371,7 +432,8 @@ void Inventory::renderInventoryItem(HDC hdc)
 	}
 	
 	// 클릭한 아이템이 맨 위에 랜더 되게
-	if (_clickCell != CLICK_NONE)
+	if (_clickCell != CLICK_NONE &&
+		_arrSlot[_clickCell].item)
 	{
 		img = _arrSlot[_clickCell].item->getImage();
 		img->frameRender(
@@ -390,6 +452,7 @@ void Inventory::addItem(Item* item)
 	{
 		// 아이템이 있으면 넘어감
 		if (_arrSlot[i].item) continue;
+		if (i < EQUIP_CNT && !checkType(i, item)) continue;
 
 		_arrSlot[i].item = item;
 		OBJECTMANAGER->addItem(_arrSlot[i].item);

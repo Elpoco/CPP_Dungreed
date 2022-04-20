@@ -100,6 +100,7 @@ namespace Code
 		GOLD,
 		WEAPON,
 		ARMOR,
+		ACCESSORY,
 
 		ITEM_TYPE_CNT
 	};

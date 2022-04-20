@@ -27,6 +27,7 @@ protected:
 	BOOL _isJump;
 	BOOL _isFall;
 	BOOL _isFlying;
+	BOOL _isDash;
 	BOOL _isHit;
 	float _hitTime;
 
@@ -37,6 +38,7 @@ protected:
 	float _imgAngle;
 	BYTE _imgAlpha;
 	POINT _rotateCenter;
+
 
 public:
 	Unit();
@@ -72,7 +74,7 @@ public:
 	inline float getHeight() { return _imgHeight; }
 	inline RECT getAtkRect() { return _rcAttack; }
 	inline BOOL isJump() { return _isJump; }
-	inline BOOL isJumping() { return _isJump && _gravity < _jumpSpeed; }
+	inline BOOL isJumping() { return _isJump && _gravity < _jumpSpeed || _isDash; }
 
 };
 

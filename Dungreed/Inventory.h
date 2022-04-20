@@ -12,15 +12,16 @@ namespace InventorySet
 class Inventory : public UI
 {
 private:
-	enum SLOT_POINT
+	enum INVENTORY_ENUM
 	{
 		WEAPON_0, WEAPON_1,
 		ARMOR_0, ARMOR_1,
-		EQUIP_CNT,
+		WEAPON_CNT = 2,
 
 		ACC_0 = 4,
 		ACC_1, ACC_2, ACC_3,
 		ACC_CNT,
+		EQUIP_CNT = 8,
 
 		INVEN_0 = 8,
 		INVEN_1, INVEN_2, INVEN_3,
@@ -56,9 +57,6 @@ private:
 
 	// 인벤토리
 	SLOT_INFO _arrSlot[INVEN_CNT];
-	//Item* _arrItems[INVEN_CNT];  // 인벤토리 아이템
-	//POINT _ptInven[INVEN_CNT];   // UI 중심
-	//RECT _rcInven[INVEN_CNT];    // UI RECT
 	BOOL _equipIdx;				// 착용 인덱스 0 or 1
 	int _clickCell;
 
@@ -80,10 +78,13 @@ public:
 	void settingUI();
 	void toggleInventory();
 	// 마우스 관련 기능
+	int checkCell();
 	void onClick();
 	void offClick();
 	void hoverSlot();
-	void equipItem();
+	void equipClick();
+	// 아이템 타입 비교
+	BOOL checkType(int cellIdx, Item* item);
 
 	void swapEquipSlot();
 	void renderEquipBase(HDC hdc);

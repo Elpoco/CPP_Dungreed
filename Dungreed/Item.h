@@ -24,7 +24,9 @@ public:
 
 	virtual RECT attack() { return { 0,0,0,0 }; }
 
-	void equip() { _isEquip = TRUE; }
+	void updateDegree();
+
+	void equip() { _isEquip = TRUE; _degree = 90; }
 	void unequip() { _isEquip = FALSE; }
 
 	ImageBase* getImage() { return _img; }

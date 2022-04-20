@@ -8,11 +8,12 @@ Unit::Unit()
 	, _imgWidth(0.0f)
 	, _imgHeight(0.0f)
 	, _isStopAnimation(false)
-	, _isLeft(false)
-	, _isJump(false)
-	, _isFall(true)
-	, _isFlying(false)
-	, _isHit(false)
+	, _isLeft(FALSE)
+	, _isJump(FALSE)
+	, _isFall(TRUE)
+	, _isFlying(FALSE)
+	, _isHit(FALSE)
+	, _isDash(FALSE)
 	, _hitTime(0.0f)
 	, _imgAlpha(0)
 	, _moveSpeed(UnitSet::MOVE_SPEED)
@@ -109,10 +110,7 @@ void Unit::move()
 		_gravity += UnitSet::GRAVITY;
 	}
 	
-	if (_isJump)
-	{
-		_y -= _jumpSpeed;
-	}
+	if (_isJump) _y -= _jumpSpeed;
 }
 
 void Unit::animation()
@@ -138,12 +136,6 @@ void Unit::animation()
 void Unit::checkCollision()
 {
 	if (_isCollision[ColliderEnum::DIRECTION::BOTTOM])
-	{
-		_isFall = false;
-		_isJump = false;
-		_gravity = 0.0f;
-	}
-	else if (_isCollision[ColliderEnum::DIRECTION::RB])
 	{
 		_isFall = false;
 		_isJump = false;
@@ -177,22 +169,11 @@ void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
 	case ColliderEnum::BOTTOM:
 		_y = y - _imgHeight / 2;
 		break;
-	case ColliderEnum::LT:
-		break;
-	case ColliderEnum::RT:
-		break;
-	case ColliderEnum::LB:
-		break;
-	case ColliderEnum::RB:
-		break;
-	case ColliderEnum::DIR_CNT:
-		break;
 	default:
 		if (x > 0) _x = x - _imgWidth / 2;
 		if (y > 0) _y = y - _imgHeight / 2;
 		break;
 	}
-	Unit::updateRect();
 }
 
 void Unit::updateRect()

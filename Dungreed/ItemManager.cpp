@@ -27,10 +27,6 @@ void ItemManager::release()
 {
 }
 
-void ItemManager::update()
-{
-}
-
 void ItemManager::inventoryInit()
 {
 	_inventory = new Inventory;
