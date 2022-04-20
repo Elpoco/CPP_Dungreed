@@ -10,8 +10,8 @@
 #define WINSIZE_X 	1280
 #define WINSIZE_Y 	720
 #define WINSTYLE  	WS_CAPTION | WS_SYSMENU
-#define CENTER_X  	(WINSIZE_X / 2)
-#define CENTER_Y  	(WINSIZE_Y / 2)
+#define CENTER_X  	(WINSIZE_X * 0.5f)
+#define CENTER_Y  	(WINSIZE_Y * 0.5f)
 
 // ==============
 // # 매크로 함수 #
@@ -39,7 +39,7 @@
 // # Setting #
 // ===========
 
-#define SOUND_DEFAULT 1.0f
+#define SOUND_DEFAULT 0.1f
 
 #define PI   3.141592653f
 #define PI_2 6.283185308f

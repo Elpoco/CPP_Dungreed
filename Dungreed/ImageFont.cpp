@@ -25,10 +25,10 @@ HRESULT ImageFont::init()
 	_arrLen = tmp.length();
 	_arrNum = new int[_arrLen];
 
-	for (int i = _arrLen -1; i >= 0; i--)
+	for (int i = _arrLen -1; i >= 0; --i)
 	{
 		_arrNum[i] = _num % 10;
-		_num /= 10;
+		_num *= 0.1f;
 	}
 
 	this->settingImage(_type);

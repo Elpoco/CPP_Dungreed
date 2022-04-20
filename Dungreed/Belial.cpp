@@ -207,7 +207,7 @@ void Belial::shootingBullet()
 
 	for (int i = 0; i < 4; i++)
 	{
-		_shootAngle += PI / 2 * i;
+		_shootAngle += PI * 0.5f * i;
 		OBJECTMANAGER->addBullet(
 			ObjectEnum::OBJ_TYPE::ENEMY_OBJ,
 			ImageName::Enemy::Belial::bullet,

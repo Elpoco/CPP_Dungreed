@@ -1,6 +1,8 @@
 #include "Stdafx.h"
 #include "Gun.h"
 
+#include "Effect.h"
+
 Gun::Gun(Code::ITEM code)
 	: Item(code)
 {
@@ -57,15 +59,14 @@ RECT Gun::attack()
 	_lastAttack = TIMEMANAGER->getWorldTime();
 	if (--_bulletCnt < 0) return { 0,0,0,0 };
 
-	OBJECTMANAGER->addEffect(
-		ImageName::Effect::Weapon::shooting,
+	Effect* effect = new Effect(ImageName::Effect::Weapon::shooting,
 		_shootingX,
 		_shootingY,
 		_degree,
-		PointMake(_shootingX,_shootingY)
+		PointMake(_shootingX, _shootingY)
 	);
-
-	SOUNDMANAGER->play(SoundName::Item::Weapon::Gun, _sound);
+	effect->setFollowing(&_shootingX, &_shootingY, &_degree);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::EFFECT, effect);
 
 	OBJECTMANAGER->addBullet(
 		ObjectEnum::OBJ_TYPE::PLAYER_OBJ,
@@ -77,6 +78,9 @@ RECT Gun::attack()
 		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
 		ImageName::Effect::Weapon::shootingHit
 	);
+
+	SOUNDMANAGER->play(SoundName::Item::Weapon::Gun, _sound);
+
 	return { 0,0,0,0 };
 }
 

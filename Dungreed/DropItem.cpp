@@ -64,16 +64,16 @@ void DropItem::pushObject(DIRECTION dir, float distance)
 	switch (dir)
 	{
 	case ColliderEnum::LEFT:
-		_x = distance + _frameInfo.width / 2;
+		_x = distance + _frameInfo.width * 0.5f;
 		break;
 	case ColliderEnum::TOP:
-		_y = distance + _frameInfo.height / 2;
+		_y = distance + _frameInfo.height * 0.5f;
 		break;
 	case ColliderEnum::RIGHT:
-		_x = distance - _frameInfo.width / 2;
+		_x = distance - _frameInfo.width * 0.5f;
 		break;
 	case ColliderEnum::BOTTOM:
-		_y = distance - _frameInfo.height / 2;
+		_y = distance - _frameInfo.height * 0.5f;
 		break;
 	default:
 		break;

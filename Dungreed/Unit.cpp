@@ -158,20 +158,20 @@ void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
 	switch (dir)
 	{
 	case ColliderEnum::LEFT:
-		_x = x + _imgWidth / 2;
+		_x = x + _imgWidth * 0.5f;
 		break;
 	case ColliderEnum::RIGHT:
-		_x = x - _imgWidth / 2;
+		_x = x - _imgWidth * 0.5f;
 		break;
 	case ColliderEnum::TOP:
-		_y = y + _imgHeight / 2;
+		_y = y + _imgHeight * 0.5f;
 		break;
 	case ColliderEnum::BOTTOM:
-		_y = y - _imgHeight / 2;
+		_y = y - _imgHeight * 0.5f;
 		break;
 	default:
-		if (x > 0) _x = x - _imgWidth / 2;
-		if (y > 0) _y = y - _imgHeight / 2;
+		if (x > 0) _x = x - _imgWidth * 0.5f;
+		if (y > 0) _y = y - _imgHeight * 0.5f + 1;
 		break;
 	}
 }

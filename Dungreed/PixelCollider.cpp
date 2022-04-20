@@ -30,7 +30,7 @@ void PixelCollider::update(void)
 			(r == 0 && g == 255 && b == 255))
 		{
 			//_unit->setCollision(true);
-			//_unit->setY(i - (_unit->getRect().GetBottom() - _unit->getRect().GetTop()) / 2);
+			//_unit->setY(i - (_unit->getRect().GetBottom() - _unit->getRect().GetTop()) * 0.5f);
 			break;
 		}
 		else {

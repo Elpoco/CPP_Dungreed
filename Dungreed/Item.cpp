@@ -34,7 +34,7 @@ void Item::update()
 		
 		_rc = RectMake(
 			ITEMMANAGER->getPlayerHand().x,
-			ITEMMANAGER->getPlayerHand().y - _frameInfo.height / 2,
+			ITEMMANAGER->getPlayerHand().y - _frameInfo.height * 0.5f,
 			_frameInfo.width, 
 			_frameInfo.height
 		);

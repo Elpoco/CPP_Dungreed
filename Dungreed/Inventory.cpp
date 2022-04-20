@@ -81,20 +81,20 @@ void Inventory::settingUI()
 {
 	// 우측하단 장착 장비
 	_equipBase = new UI(ImageName::UI::Inventory::equipBase);
-	_equipBase->setX(WINSIZE_X - _equipBase->getWidth() / 2 - 20);
-	_equipBase->setY(WINSIZE_Y - _equipBase->getHeight() / 2 - 10);
+	_equipBase->setX(WINSIZE_X - _equipBase->getWidth() * 0.5f - 20);
+	_equipBase->setY(WINSIZE_Y - _equipBase->getHeight() * 0.5f - 10);
 	_rcEquipBase = _equipBase->getRect();
 
 	_equipBaseBack = new UI(ImageName::UI::Inventory::equipBase);
-	_equipBaseBack->setX(WINSIZE_X - _equipBaseBack->getWidth() / 2 - 10);
-	_equipBaseBack->setY(WINSIZE_Y - _equipBaseBack->getHeight() / 2 - 20);
+	_equipBaseBack->setX(WINSIZE_X - _equipBaseBack->getWidth() * 0.5f - 10);
+	_equipBaseBack->setY(WINSIZE_Y - _equipBaseBack->getHeight() * 0.5f - 20);
 
 	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI, _equipBaseBack);
 	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI, _equipBase);
 
 	// 인벤토리 베이스
 	UI* invenBase = new UI(ImageName::UI::Inventory::Base);
-	invenBase->setX(WINSIZE_X - invenBase->getWidth() / 2);
+	invenBase->setX(WINSIZE_X - invenBase->getWidth() * 0.5f);
 	invenBase->setY(CENTER_Y);
 	_vUI.push_back(invenBase);
 	OBJECTMANAGER->addUI(invenBase);
@@ -105,7 +105,7 @@ void Inventory::settingUI()
 
 	// 닫기 버튼
 	Button* btnClose = new Button(ImageName::UI::Inventory::exitBtn);
-	btnClose->setX(rcbase.left - btnClose->getWidth() / 2);
+	btnClose->setX(rcbase.left - btnClose->getWidth() * 0.5f);
 	btnClose->setY(CENTER_Y - 220);
 	_rcClose = btnClose->getRect();
 	_vUI.push_back(btnClose);
@@ -235,6 +235,8 @@ void Inventory::onClick()
 
 void Inventory::offClick()
 {
+	if (MouseInRect(_rcClose)) toggleInventory();
+
 	if (_clickCell == CLICK_NONE) return;
 
 	for (int i = 0; i < INVEN_CNT; i++)
@@ -282,8 +284,6 @@ void Inventory::offClick()
 	}
 	
 	_clickCell = CLICK_NONE;
-
-	if (MouseInRect(_rcClose)) toggleInventory();
 }
 
 void Inventory::hoverSlot()
@@ -393,8 +393,8 @@ void Inventory::renderEquipBase(HDC hdc)
 	
 	img->frameRender(
 		hdc,
-		_equipBase->getX() - img->getFrameWidth() / 2,
-		_equipBase->getY() - img->getFrameHeight() / 2,
+		_equipBase->getX() - img->getFrameWidth() * 0.5f,
+		_equipBase->getY() - img->getFrameHeight() * 0.5f,
 		0, 
 		0
 	);
@@ -422,8 +422,8 @@ void Inventory::renderInventoryItem(HDC hdc)
 			{
 				img->frameRender(
 					hdc,
-					_arrSlot[i].pt.x - img->getFrameWidth() / 2,
-					_arrSlot[i].pt.y - img->getFrameHeight() / 2 - equip,
+					_arrSlot[i].pt.x - img->getFrameWidth() * 0.5f,
+					_arrSlot[i].pt.y - img->getFrameHeight() * 0.5f - equip,
 					0,
 					0
 				);
@@ -438,8 +438,8 @@ void Inventory::renderInventoryItem(HDC hdc)
 		img = _arrSlot[_clickCell].item->getImage();
 		img->frameRender(
 			hdc,
-			_ptMouse.x - img->getFrameWidth() / 2,
-			_ptMouse.y - img->getFrameHeight() / 2,
+			_ptMouse.x - img->getFrameWidth() * 0.5f,
+			_ptMouse.y - img->getFrameHeight() * 0.5f,
 			0,
 			0
 		);

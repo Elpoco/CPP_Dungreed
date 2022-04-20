@@ -3,7 +3,9 @@
 // =========
 // # Utils #
 // =========
-#define TO_INT(n) static_cast<int>(n)
+#define EPSILON		0.001f
+#define TO_INT(n)			static_cast<int>(n)
+#define FLOAT_TO_INT(f1)	static_cast<int>(f1+EPSILON)
 
 namespace MY_UTIL
 {
@@ -72,13 +74,13 @@ namespace MY_UTIL
 
 	inline RECT RectMakeCenter(float x, float y, float width, float height)
 	{
-		RECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
+		RECT rc = { x - width * 0.5f, y - height * 0.5f, x + width * 0.5f, y + height * 0.5f };
 		return rc;
 	}
 
 	inline Gdiplus::RectF RectFMakeCenter(float x, float y, float width, float height)
 	{
-		Gdiplus::RectF rc = { x - width / 2, y - height / 2, width, height };
+		Gdiplus::RectF rc = { x - width * 0.5f, y - height * 0.5f, width, height };
 		return rc;
 	}
 

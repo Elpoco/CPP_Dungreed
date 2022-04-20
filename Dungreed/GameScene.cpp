@@ -18,7 +18,7 @@ GameScene::~GameScene()
 HRESULT GameScene::init()
 {
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
-	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, MapToolSet::TOTAL_TILE_X / 2, MapToolSet::TOTAL_TILE_Y / 2);
+	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, MapToolSet::TOTAL_TILE_X * 0.5f, MapToolSet::TOTAL_TILE_Y * 0.5f);
 
 	// Town
 	TILEMANAGER->loadMap(FileName::Town);
@@ -80,7 +80,7 @@ void GameScene::updateTown()
 		SOUNDMANAGER->play(SoundName::dungeonEat2, _sound);
 		_rcEnter = RectMakeCenter(
 			OBJECTMANAGER->getPlayer()->getX(),
-			rcPlayer.bottom - _enterFrame.height / 2,
+			rcPlayer.bottom - _enterFrame.height * 0.5f,
 			_enterFrame.width,
 			_enterFrame.height
 		);

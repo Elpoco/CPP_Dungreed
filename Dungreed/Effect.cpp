@@ -5,8 +5,9 @@ Effect::Effect(string imgName, float x, float y, BYTE alpha)
 	: _img(nullptr)
 	, _imgName(imgName)
 	, _alpha(alpha)
-	, _angle(0.0f)
+	, _degree(0.0f)
 	, _rotateCenter({ 0,0 })
+	, _isFollow(FALSE)
 {
 	_x = x;
 	_y = y;
@@ -18,8 +19,9 @@ Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter)
 	: _img(nullptr)
 	, _imgName(imgName)
 	, _alpha(0)
-	, _angle(angle)
+	, _degree(angle)
 	, _rotateCenter(rotateCenter)
+	, _isFollow(FALSE)
 {
 	_x = x; 
 	_y = y;
@@ -69,16 +71,34 @@ void Effect::update()
 	Object::update();
 	if (_frameInfo.isFrame) this->animation();
 
-	_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
+	if (_isFollow) 
+		_rc = RectMakeCenter(*_followX, *_followY, _frameInfo.width, _frameInfo.height);
+	else _rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
 }
 
 void Effect::render(HDC hdc)
 {
 	Object::render(hdc);
 
-	if (_angle)
+	if (_degree)
 	{
-		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, _angle, _rotateCenter);
+		if (_isFollow)
+		{
+			CAMERAMANAGER->frameRender(
+				hdc,
+				_img,
+				_rc.left, 
+				_rc.top,
+				_frameInfo.x,
+				_frameInfo.y, 
+				*_followDegree,
+				PointMake(*_followX, *_followY)
+			);
+		}
+		else
+		{
+			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, _degree, _rotateCenter);
+		}
 	}
 	else
 	{

@@ -94,6 +94,7 @@ void Player::move()
 		_state = PLAYER_MOTION::DASH;
 		if (_dashMove > 0)
 		{
+			if (_isJump) _dashMove = 0;
 			_gravity = 0.0f;
 			_dashMove -= DASH_SPEED;
 			_x += cosf(_dashAngle) * DASH_SPEED;

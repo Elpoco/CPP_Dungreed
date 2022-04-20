@@ -181,22 +181,23 @@ void CollisionManager::collisionTile()
 						switch (tile.type)
 						{
 						case MAP_OBJ::DOWN_R:
-							if (unit->isJumping())break;
+							if (unit->isJumping()) break;
 						case MAP_OBJ::BLOCK_R: // 오른쪽으로 올라감
-							moveY = tile.rc.right - unit->getRect().right;
+							moveY = rcObj.right - tile.rc.left;
 							unit->setCollision(DIRECTION::BOTTOM, true);
 							if (moveY >= TILE_SIZE || moveY <= 0) continue;
-							cout << moveY << endl;
-							unit->pushObject(DIRECTION::NONE, 0, tile.rc.top + moveY+1);
+							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY + 2);
 							continue;
+
 						case MAP_OBJ::DOWN_L:
-							if (unit->isJumping())break;
+							if (unit->isJumping()) break;
 						case MAP_OBJ::BLOCK_L: // 왼쪽으로 올라감
-							moveY = unit->getRect().left - tile.rc.right;
+							moveY = tile.rc.right - rcObj.left;
 							unit->setCollision(DIRECTION::BOTTOM, true);
-							if (moveY >= TILE_SIZE) continue;
-							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom + moveY);
+							if (moveY >= TILE_SIZE || moveY <= 0) continue;
+							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY + 2);
 							continue;
+
 						case MAP_OBJ::BLOCK:
 							if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
 							{ // 왼쪽
@@ -219,6 +220,7 @@ void CollisionManager::collisionTile()
 								unit->pushObject(DIRECTION::TOP, 0, tile.rc.bottom);
 							}
 							break;
+
 						case MAP_OBJ::DOWN:
 							if (unit->isJumping())break;
 							if (tile.y > rcObj.bottom)

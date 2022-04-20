@@ -6,7 +6,7 @@ namespace PlayerSet
 	constexpr float HIT_TIME = 2.0f;
 	constexpr BYTE HIT_ALPHA = 150;
 	constexpr float DASH_DISTANCE = 300;
-	constexpr int DASH_SPEED = 8;
+	constexpr float DASH_SPEED = 8.0f;
 }
 
 class Player : public Unit

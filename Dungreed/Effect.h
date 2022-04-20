@@ -12,8 +12,13 @@ protected:
 
 	BYTE _alpha;
 
-	int _angle;
+	int _degree;
 	POINT _rotateCenter;
+
+	BOOL	_isFollow;
+	float*	_followX;
+	float*	_followY;
+	int*	_followDegree;
 
 public:
 	Effect(string imgName, float x, float y, BYTE alpha = 0);
@@ -27,7 +32,15 @@ public:
 
 	void animation();
 
-	void deleteEffect();
+	virtual void deleteEffect() override;
+	
+	void setFollowing(float* x, float* y, int* degree)
+	{
+		_isFollow = TRUE;
+		_followX = x;
+		_followY = y;
+		_followDegree = degree;
+	}
 
 };
 

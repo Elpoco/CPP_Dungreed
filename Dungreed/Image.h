@@ -106,8 +106,8 @@ public:
 	inline void setY(float y) { _imageInfo->y = y; }
 
 	inline void setCenter(float x, float y) {
-		_imageInfo->x = x - (_imageInfo->width / 2);
-		_imageInfo->y = y - (_imageInfo->height / 2);
+		_imageInfo->x = x - (_imageInfo->width * 0.5f);
+		_imageInfo->y = y - (_imageInfo->height * 0.5f);
 	}
 
 	virtual inline int getWidth(void) override { return _imageInfo->width; }

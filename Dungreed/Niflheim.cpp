@@ -181,7 +181,7 @@ void Niflheim::initPillar()
 	{
 		if (_pillar[i]) continue;
 		int intervalX = i % 2;
-		int intervalY = i / 2;
+		int intervalY = i * 0.5f;
 		_pillar[i] = new NiflheimPillar(_x + 115 - 250 * intervalX, _y + 115 - 250 * intervalY);
 		_pillar[i]->setPosAddress(&_x, &_y);
 		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::ENEMY, _pillar[i]);
