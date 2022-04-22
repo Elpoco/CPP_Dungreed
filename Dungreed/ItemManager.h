@@ -20,7 +20,7 @@ public:
 	HRESULT init();
 	void release();
 
-	void inventoryInit();
+	void setInventory(Inventory* inventory) { _inventory = inventory; }
 
 	void getItem(Code::ITEM code);
 	Item* getEquipItem();

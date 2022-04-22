@@ -9,8 +9,8 @@ protected:
 	ENEMY_INFO _info;
 
 	bool	_isAutoLeft;	// 플레이어 위치에 따라 자동으로 변경할지
-	float	_hp;
-	float	_maxHp;
+	int		_curHp;
+	int		_maxHp;
 	BOOL	_startSpawn;
 	BOOL	_isSpawn;
 
@@ -48,7 +48,7 @@ public:
 	inline RECT getScanRect() { return _rcScan; }
 	inline int getPlayerScan() { return _isPlayerScan; }
 
-	inline void settingHp(int hp) { _maxHp = _hp = hp; }
+	inline void settingHp(int hp) { _maxHp = _curHp = hp; }
 	inline BOOL isSpawn() { return _isSpawn; }
 
 	inline void doneSpawn() { _isSpawn = TRUE; }

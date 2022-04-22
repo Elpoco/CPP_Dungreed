@@ -104,15 +104,21 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Damage, PATH_IMAGE"UI/Font/DamageFont.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Gold, PATH_IMAGE"UI/Font/GoldFont.bmp", 165, 26, 11, 1, true, ColorSet::MAGENTA);
 	// ÀÎº¥Åä¸®
-	IMAGEMANAGER->addImage(ImageName::UI::Inventory::Base, PATH_IMAGE"UI/Inventory/InventoryBase.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::on, PATH_IMAGE"UI/Inventory/on.bmp", 0, 0, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::UI::Inventory::equipBase, PATH_IMAGE"UI/Inventory/EquippedWeaponBase.bmp", 0, 0, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::UI::Inventory::EquipSlot1On, PATH_IMAGE"UI/Inventory/EquipSlot1On.bmp", 0, 0, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::UI::Inventory::EquipSlot2On, PATH_IMAGE"UI/Inventory/EquipSlot2On.bmp", 0, 0, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addImage(ImageName::UI::Inventory::Accessory, PATH_IMAGE"UI/Inventory/Accessory.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Inventory::Base, PATH_IMAGE"UI/Inventory/InventoryBase.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::Cell, PATH_IMAGE"UI/Inventory/Cell.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::Cell_On, PATH_IMAGE"UI/Inventory/Cell_On.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Inventory::equipBase, PATH_IMAGE"UI/Inventory/EquippedWeaponBase.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Inventory::Accessory, PATH_IMAGE"UI/Inventory/Accessory.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Inventory::EquipSlot1On, PATH_IMAGE"UI/Inventory/EquipSlot1On.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Inventory::EquipSlot2On, PATH_IMAGE"UI/Inventory/EquipSlot2On.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Inventory::exitBtn, PATH_IMAGE"UI/Inventory/InventoryExit.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
+	// ÇÃ·¹ÀÌ¾î HP Bar
+	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::Back, PATH_IMAGE"UI/PlayerHP/PlayerLifeBack.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::Base, PATH_IMAGE"UI/PlayerHP/PlayerLifeBase.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::LifeBar, PATH_IMAGE"UI/PlayerHP/LifeBar.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::PlayerHpBar::LifeWave, PATH_IMAGE"UI/PlayerHP/LifeWave.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
+
 #pragma endregion
 
 	// Town
@@ -145,6 +151,7 @@ void ImageLoader::loadImages()
 
 	// °Ë ÀÌÆåÆ®
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::basicSwing, PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
+	// ÃÑ ÀÌÆåÆ®
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shooting, PATH_ITEM"Effect/Shooting.png", 6, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shootingHit, PATH_ITEM"Effect/Shooting_hit.png", 6, 1);
 #pragma endregion

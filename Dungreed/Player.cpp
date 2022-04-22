@@ -33,11 +33,15 @@ HRESULT Player::init()
 
 	CAMERAMANAGER->followCamera(this);
 
+	_maxHp = _curHp = DEFAULT_HP;
+
+	UIMANAGER->initInventory();
+	UIMANAGER->initPlayerHpBar();
+
 	ITEMMANAGER->setPlayerBody(&_body);
 	ITEMMANAGER->setPlayerHand(&_hand);
 	ITEMMANAGER->setPlayerLeft(&_isLeft);
 
-	ITEMMANAGER->inventoryInit();
 	ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
 	ITEMMANAGER->getItem(Code::ITEM::COLT);
 	ITEMMANAGER->getItem(Code::ITEM::COLT);
@@ -89,23 +93,6 @@ void Player::move()
 {
 	_state = PLAYER_MOTION::IDLE;
 	if (_isJump || _isFall) _state = PLAYER_MOTION::JUMP;
-	if (_isDash)
-	{
-		_state = PLAYER_MOTION::DASH;
-		if (_dashMove > 0)
-		{
-			if (_isJump) _dashMove = 0;
-			_gravity = 0.0f;
-			_dashMove -= DASH_SPEED;
-			_x += cosf(_dashAngle) * DASH_SPEED;
-			_y -= sinf(_dashAngle) * DASH_SPEED;
-		}
-		else
-		{
-			_isDash = FALSE;
-			_dashMove = DASH_DISTANCE;
-		}
-	}
 
 	_rcAttack = { 0,0,0,0 };
 
@@ -113,6 +100,7 @@ void Player::move()
 	_body = PointMake(_x, _y);
 	
 	if (_isStop) return;
+	if (IsOnceKeyDown(KEY::INVENTORY)) UIMANAGER->toggleInventory();
 	if (UIMANAGER->onInventory()) return;
 
 	if (IsStayKeyDown(KEY::LEFT))	 this->moveLeft();
@@ -136,6 +124,24 @@ void Player::move()
 		_mainHandX = _x + 19;
 	}
 
+	if (_isDash)
+	{
+		_state = PLAYER_MOTION::DASH;
+		if (_dashMove > 0)
+		{
+			if (_isJump) _dashMove = 0;
+			_gravity = 0.0f;
+			_dashMove -= DASH_SPEED;
+			_x += cosf(_dashAngle) * DASH_SPEED;
+			_y -= sinf(_dashAngle) * DASH_SPEED;
+		}
+		else
+		{
+			_isDash = FALSE;
+			_dashMove = DASH_DISTANCE;
+		}
+	}
+
 	if (_isJump || _isFall) _state = PLAYER_MOTION::JUMP;
 	if (_isDash) _state = PLAYER_MOTION::DASH;
 }
@@ -146,13 +152,13 @@ void Player::animation()
 	{
 		if (_frameInfo.cnt == 0)
 		{
-			_imgAlpha = _imgAlpha == 0 ? HIT_ALPHA : 0;
+			_imgAlpha = _imgAlpha == 255 ? HIT_ALPHA : 255;
 		}
 
 		if (_hitTime + HIT_TIME < TIMEMANAGER->getWorldTime())
 		{
 			_isHit = false;
-			_imgAlpha = 0;
+			_imgAlpha = 255;
 		}
 	}
 

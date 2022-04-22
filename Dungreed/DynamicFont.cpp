@@ -43,9 +43,9 @@ void DynamicFont::render(HDC hdc)
 
 void DynamicFont::move()
 {
-	if (_alpha + 2 < 255)
+	if (_alpha - 2 >= 0)
 	{
-		_alpha += 2;
+		_alpha -= 2;
 	}
 	else
 	{

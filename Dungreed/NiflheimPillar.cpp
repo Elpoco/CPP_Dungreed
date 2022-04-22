@@ -64,8 +64,8 @@ void NiflheimPillar::render(HDC hdc)
 void NiflheimPillar::hitAttack(int dmg, int dir)
 {
 	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
-	_hp -= dmg;
-	if (_hp < 1)
+	_curHp -= dmg;
+	if (_curHp < 1)
 	{
 		_isDestory = true;
 	}

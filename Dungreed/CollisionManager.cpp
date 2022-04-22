@@ -87,6 +87,8 @@ void CollisionManager::renderPlayer(HDC hdc, Object* obj)
 	int endX = end % TILE_CNT_X;
 	int endY = end - endX;
 
+	if (endX == 0) endX = startX;
+
 	for (int y = startY; y <= endY; y += TILE_CNT_X)
 	{
 		for (int x = startX; x <= endX; x++)
@@ -141,106 +143,23 @@ void CollisionManager::renderItem(HDC hdc, Object* obj)
 
 void CollisionManager::collisionTile()
 {
+	// 타일과 오브젝트 충돌 관리
 	for (auto pairObject : *_mObjects)
 	{
 		switch (pairObject.first)
 		{
+		case OBJ_TYPE::PLAYER:
+		case OBJ_TYPE::ENEMY:
 			// =============
 			// # 유닛 충돌 #
 			// =============
-		case OBJ_TYPE::PLAYER:
-		case OBJ_TYPE::ENEMY:
-			for (Object* obj : pairObject.second)
-			{
-				Unit* unit = dynamic_cast<Unit*>(obj);
-
-				for (int i = 0; i < DIRECTION::DIR_CNT; i++)
-				{
-					unit->setCollision((DIRECTION)i, false);
-				}
-
-				RECT rcObj = unit->getRect();
-
-				int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
-				int end = TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
-				if (start < 0) return;
-				int startX = start % TILE_CNT_X;
-				int startY = start - startX;
-				int endX = end % TILE_CNT_X;
-				int endY = end - endX;
-
-				float moveX = 0.0f;
-				float moveY = 0.0f;
-
-				for (int y = endY; y >= startY; y -= TILE_CNT_X)
-				{
-					for (int x = endX; x >= startX; x--)
-					{
-						TILE tile = TILEMANAGER->getTile(y + x);
-
-						switch (tile.type)
-						{
-						case MAP_OBJ::DOWN_R:
-							if (unit->isJumping()) break;
-						case MAP_OBJ::BLOCK_R: // 오른쪽으로 올라감
-							moveY = rcObj.right - tile.rc.left;
-							unit->setCollision(DIRECTION::BOTTOM, true);
-							if (moveY >= TILE_SIZE || moveY <= 0) continue;
-							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY + 2);
-							continue;
-
-						case MAP_OBJ::DOWN_L:
-							if (unit->isJumping()) break;
-						case MAP_OBJ::BLOCK_L: // 왼쪽으로 올라감
-							moveY = tile.rc.right - rcObj.left;
-							unit->setCollision(DIRECTION::BOTTOM, true);
-							if (moveY >= TILE_SIZE || moveY <= 0) continue;
-							unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY + 2);
-							continue;
-
-						case MAP_OBJ::BLOCK:
-							if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
-							{ // 왼쪽
-								unit->setCollision(DIRECTION::LEFT, true);
-								unit->pushObject(DIRECTION::LEFT, tile.rc.right, 0);
-							}
-							else if (tile.x > unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
-							{ // 오른쪽
-								unit->setCollision(DIRECTION::RIGHT, true);
-								unit->pushObject(DIRECTION::RIGHT, tile.rc.left, 0);
-							}
-							else if (tile.y > rcObj.bottom)
-							{ // 바닥
-								unit->setCollision(DIRECTION::BOTTOM, true);
-								unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
-							}
-							else
-							{ // 천장
-								unit->setCollision(DIRECTION::TOP, true);
-								unit->pushObject(DIRECTION::TOP, 0, tile.rc.bottom);
-							}
-							break;
-
-						case MAP_OBJ::DOWN:
-							if (unit->isJumping())break;
-							if (tile.y > rcObj.bottom)
-							{ // 바닥
-								unit->setCollision(DIRECTION::BOTTOM, true);
-								unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
-							}
-							break;
-						default:
-							break;
-						}
-					}
-				}
-			}
+			unitTileCollision(pairObject.second);
 			break;
+		case OBJ_TYPE::ENEMY_OBJ:
+		case OBJ_TYPE::PLAYER_OBJ:
 			// ==============
 			// # 투사체 충돌 #
 			// ==============
-		case OBJ_TYPE::ENEMY_OBJ:
-		case OBJ_TYPE::PLAYER_OBJ:
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getY());
@@ -253,10 +172,10 @@ void CollisionManager::collisionTile()
 				}
 			}
 			break;
+		case OBJ_TYPE::ITEM_DROP:
 			// ==============
 			// # 아이템 충돌 #
 			// ==============
-		case OBJ_TYPE::ITEM_DROP:
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getRect().bottom);
@@ -269,6 +188,101 @@ void CollisionManager::collisionTile()
 			break;
 		default:
 			break;
+		}
+	}
+}
+
+void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
+{
+	for (Object* obj : vObjects)
+	{
+		Unit* unit = dynamic_cast<Unit*>(obj);
+		RECT rcObj = unit->getRect();
+
+		if(rcObj.left <= 0) unit->pushObject(DIRECTION::LEFT, 0, 0);
+		if (rcObj.right >= MapToolSet::TOTAL_TILE_X) unit->pushObject(DIRECTION::RIGHT, MapToolSet::TOTAL_TILE_X, 0);
+
+		for (int i = 0; i < DIRECTION::DIR_CNT; i++)
+		{
+			unit->setCollision((DIRECTION)i, false);
+		}
+
+		int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
+		int end = TILEMANAGER->getTileIndex(rcObj.right, rcObj.bottom);
+		if (start < 0) return;
+		int startX = start % TILE_CNT_X;
+		int startY = start - startX;
+		int endX = end % TILE_CNT_X;
+		int endY = end - endX;
+
+		if (endX == 0) endX = startX;
+
+		float moveX = 0.0f;
+		float moveY = 0.0f;
+
+		for (int y = endY; y >= startY; y -= TILE_CNT_X)
+		{
+			for (int x = endX; x >= startX; x--)
+			{
+				TILE tile = TILEMANAGER->getTile(y + x);
+
+				switch (tile.type)
+				{
+				case MAP_OBJ::DOWN_R:	case MAP_OBJ::DOWN_L:
+					// 내려갈수있는 타일은 대쉬로 통과 가능
+					if (unit->isDash()) break;
+				case MAP_OBJ::BLOCK_R:	case MAP_OBJ::BLOCK_L:
+					// 점프중일땐 대각선타일 충돌 넘어감
+					if (unit->isJumping()) break;
+
+					if (tile.type == DOWN_R || tile.type == BLOCK_R)
+						moveY = rcObj.right - tile.rc.left;
+					else
+						moveY = tile.rc.right - rcObj.left;
+
+					if (moveY >= TILE_SIZE || moveY <= 0) continue;
+
+					unit->setCollision(DIRECTION::BOTTOM, true);
+					unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY + 2);
+					continue;
+
+				case MAP_OBJ::BLOCK:
+					if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
+					{ // 왼쪽
+						unit->setCollision(DIRECTION::LEFT, true);
+						unit->pushObject(DIRECTION::LEFT, tile.rc.right, 0);
+					}
+					else if (tile.x > unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
+					{ // 오른쪽
+						unit->setCollision(DIRECTION::RIGHT, true);
+						unit->pushObject(DIRECTION::RIGHT, tile.rc.left, 0);
+					}
+					else if (tile.y > rcObj.bottom)
+					{ // 바닥
+						unit->setCollision(DIRECTION::BOTTOM, true);
+						unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
+					}
+					else
+					{ // 천장
+						unit->setCollision(DIRECTION::TOP, true);
+						unit->pushObject(DIRECTION::TOP, 0, tile.rc.bottom);
+					}
+					break;
+
+				case MAP_OBJ::DOWN:
+					if (unit->isJumping()) break;
+					if (unit->isDash()) break;
+
+					if (tile.y > rcObj.bottom)
+					{ // 바닥
+						unit->setCollision(DIRECTION::BOTTOM, true);
+						unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
+					}
+					break;
+				default:
+					break;
+				}
+			}
 		}
 	}
 }

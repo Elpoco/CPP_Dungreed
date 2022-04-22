@@ -80,18 +80,16 @@ public:
 
 	void render(HDC hdc);
 	virtual void render(HDC hdc, float destX, float destY) override;
-	void render(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight);
+	virtual void render(HDC hdc, float destX, float destY, int sourX, int sourY, int sourWidth, int sourHeight) override;
 
 	void alphaRender(HDC hdc, BYTE alpha);
 	void alphaRender(HDC hdc, int destX, int destY, BYTE alpha);
-	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
 
 	void frameRender(HDC hdc, int destX, int destY);
 	virtual void frameRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY) override;
 	virtual void frameAlphaRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY, BYTE alpha) override;
 
 	void loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
-	void loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
 
 	void aniRender(HDC hdc, int destX, int destY, Animation* ani);
 

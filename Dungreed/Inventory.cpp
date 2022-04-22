@@ -33,7 +33,6 @@ void Inventory::release()
 
 void Inventory::update()
 {
-	if (IsOnceKeyDown(KEY::INVENTORY)) toggleInventory();
 	if (IsOnceKeyDown(KEY::CHANGE_EQUIP)) swapEquipSlot();
 
 	if (_isSawp)
@@ -62,7 +61,6 @@ void Inventory::update()
 	if (IsOnceKeyDown(KEY::CLICK_L)) onClick();
 	if (IsOnceKeyUp(KEY::CLICK_L))   offClick();
 	if (IsOnceKeyUp(KEY::CLICK_R))	 equipClick();
-	if (IsOnceKeyDown(KEY::ESC))     toggleInventory();
 }
 
 void Inventory::render(HDC hdc)
@@ -243,42 +241,42 @@ void Inventory::offClick()
 	{
 		if (MouseInRect(_arrSlot[i].rc))
 		{
+			// ÀÏ´Ü ³¢´ø°Å ÇØÁ¦
+			if (_arrSlot[WEAPON_0].item) _arrSlot[WEAPON_0].item->unequip();
+			if (_arrSlot[WEAPON_1].item) _arrSlot[WEAPON_1].item->unequip();
+
 			// ³õÀ»¶§ ¾ÆÀÌÅÛÀÌ ÀÖ´Â°æ¿ì
 			if (_arrSlot[i].item)
 			{
 				SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
+
 				Item* preItem = _arrSlot[i].item;
 				_arrSlot[i].item = _arrSlot[_clickCell].item;
 				_arrSlot[_clickCell].item = preItem;
-				if (i < WEAPON_CNT) // ÀåÂø Ä­ÀÏ°æ¿ì
-				{
-					// ÀÏ´Ü ³¢´ø°Å ÇØÁ¦
-					_arrSlot[WEAPON_0].item->unequip();
-					_arrSlot[WEAPON_1].item->unequip();
-					preItem->unequip();
 
-					// ÀåÂø ½½·Ô ¾ÆÀÌÅÛ ÀåÂø
-					_arrSlot[_equipIdx].item->equip();
-				}
+				if(i < WEAPON_CNT) preItem->unequip();
 			}
 			else
 			{
-				if (i < EQUIP_CNT && !checkType(i, _arrSlot[_clickCell].item)) break;
-
-				_arrSlot[i].item = _arrSlot[_clickCell].item;
-
-				if (i < ACC_CNT)
+				// ÀåÂøÄ­ÀÏ °æ¿ì
+				if (i < EQUIP_CNT)
 				{
-					SOUNDMANAGER->play(SoundName::Item::Equip, _sound);
-
-					if(_clickCell < WEAPON_CNT) _arrSlot[_clickCell].item->unequip();
-
-					if (_equipIdx == i) _arrSlot[i].item->equip();
+					if (checkType(i, _arrSlot[_clickCell].item))
+					{
+						SOUNDMANAGER->play(SoundName::Item::Equip, _sound);
+						_arrSlot[i].item = _arrSlot[_clickCell].item;
+					}
 				}
-				else SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
-				
+				else
+				{
+					SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
+					_arrSlot[i].item = _arrSlot[_clickCell].item;
+				}
 				_arrSlot[_clickCell].item = NULL;
 			}
+
+			// ÀåÂø ½½·Ô ¾ÆÀÌÅÛ ÀåÂø
+			if (_arrSlot[_equipIdx].item) _arrSlot[_equipIdx].item->equip();
 			break;
 		}
 	}

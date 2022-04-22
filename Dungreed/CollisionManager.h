@@ -30,6 +30,7 @@ public:
 
 	// 타일 충돌
 	void collisionTile();
+	void unitTileCollision(ObjectManager::vObjects vObjects);
 	// 플레이어 몬스터 충돌
 	void collisionPlayerEnemy();
 	// 투사체 충돌

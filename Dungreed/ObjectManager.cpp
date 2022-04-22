@@ -31,7 +31,7 @@ HRESULT ObjectManager::init()
 {
 	for (int i = 0; i < (int)OBJ_TYPE::TYPE_CNT; i++)
 	{
-		_mObjects.insert(make_pair((OBJ_TYPE)i, vector<Object*>()));
+		_mObjects.insert(make_pair((OBJ_TYPE)i, vObjects()));
 	}
 
 	COLLISIONMANAGER->setObject(&_mObjects);
@@ -92,7 +92,14 @@ void ObjectManager::render(HDC hdc)
 				
 				if (!isPlayer && !isEnemy) continue;
 				CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Green);
-				CAMERAMANAGER->printPoint(hdc, obj->getRect().left, obj->getRect().top, obj->getX(), obj->getY(), "x: %d, y: %d");
+				CAMERAMANAGER->printPoint(
+					hdc, 
+					obj->getRect().left, 
+					obj->getRect().top, 
+					obj->getX(), 
+					obj->getY(), 
+					"x: %d, y: %d"
+				);
 			}
 		}
 	}

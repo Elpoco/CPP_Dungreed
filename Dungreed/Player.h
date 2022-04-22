@@ -3,10 +3,13 @@
 
 namespace PlayerSet
 {
-	constexpr float HIT_TIME = 2.0f;
-	constexpr BYTE HIT_ALPHA = 150;
-	constexpr float DASH_DISTANCE = 300;
-	constexpr float DASH_SPEED = 8.0f;
+	constexpr float HIT_TIME	= 2.0f;
+	constexpr BYTE  HIT_ALPHA	= 150;
+
+	constexpr float DASH_DISTANCE	= 300;
+	constexpr float DASH_SPEED		= 8.0f;
+
+	constexpr int	DEFAULT_HP = 50;
 }
 
 class Player : public Unit
@@ -21,13 +24,17 @@ private:
 	};
 
 private:
-	POINT _body;
-	POINT _hand;
-	int _mainHandX;
-	int _dashMove;
-	float _dashAngle;
-
 	BOOL _isStop;
+
+	POINT	_body;
+	POINT	_hand;
+	int		_mainHandX;
+
+	int		_dashMove;
+	float	_dashAngle;
+
+	int _maxHp;
+	int _curHp;
 
 public:
 	Player();

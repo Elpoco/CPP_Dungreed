@@ -6,7 +6,7 @@ using namespace ImageFontEnum;
 ImageFont::ImageFont(float x, float y, int num, FONT_TYPE type)
 	: _num(num)
 	, _type(type)
-	, _alpha(0)
+	, _alpha(255)
 {
 	_x = x;
 	_y = y;

@@ -142,9 +142,9 @@ void Niflheim::hitAttack(int dmg, int dir)
 	{
 		if (_pillar[i]) return;
 	}
-	_hp -= dmg;
+	_curHp -= dmg;
 	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
-	if (_hp < 1)
+	if (_curHp < 1)
 	{
 		_isLive = FALSE;
 	}

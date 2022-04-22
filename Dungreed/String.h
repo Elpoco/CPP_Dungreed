@@ -91,6 +91,14 @@ namespace ImageName
 			constexpr char* EquipSlot1On = "INVENTORY EquipSlot1On";
 			constexpr char* EquipSlot2On = "INVENTORY EquipSlot2On";
 		}
+
+		namespace PlayerHpBar
+		{
+			constexpr char* Base = "PLAYERHPBAR Base";
+			constexpr char* Back = "PLAYERHPBAR Back";
+			constexpr char* LifeBar = "PLAYERHPBAR LifeBar";
+			constexpr char* LifeWave = "PLAYERHPBAR LifeWave";
+		}
 	}
 
 	namespace Background

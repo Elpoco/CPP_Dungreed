@@ -5,7 +5,7 @@
 
 Enemy::Enemy()
 	: _isAutoLeft(true)
-	, _hp(1)
+	, _curHp(1)
 	, _maxHp(1)
 	, _startSpawn(FALSE)
 	, _isSpawn(FALSE)
@@ -48,7 +48,7 @@ void Enemy::update()
 	this->move();
 	this->animation();
 	_rcScan = RectMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
-	_hpBar->update(_x + _moveHpBarX, _rc.bottom + ENEMY_HP_BAR_H + _moveHpBarY, _hp / _maxHp);
+	_hpBar->update(_x + _moveHpBarX, _rc.bottom + ENEMY_HP_BAR_H + _moveHpBarY, _curHp / _maxHp);
 }
 
 void Enemy::render(HDC hdc)
@@ -74,7 +74,7 @@ void Enemy::render(HDC hdc)
 
 	Unit::render(hdc);
 
-	if(_maxHp != _hp)
+	if(_maxHp != _curHp)
 		_hpBar->render(hdc);
 }
 
@@ -105,11 +105,11 @@ void Enemy::animation()
 
 void Enemy::hitAttack(int dmg, int dir)
 {
-	_hp -= dmg;
+	_curHp -= dmg;
 
 	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
 
-	if (_hp < 1)
+	if (_curHp < 1)
 	{
 		_isLive = FALSE;
 	}

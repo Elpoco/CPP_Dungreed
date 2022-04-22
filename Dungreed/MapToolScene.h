@@ -25,12 +25,12 @@ private:
 	ImageBase* _imgTile;
 	ImageBase* _imgTool;
 
-	RECT _rcTileWindow;
-	RECT _rcToolWindow;
-	RECT _rcObjectWindow;
-	RECT _rcTilePickWindow;
+	RECT _rcTileWindow;		// 타일 그리는 윈도우
+	RECT _rcToolWindow;		// 도구 윈도우
+	RECT _rcObjectWindow;	// 타일 타입
+	RECT _rcTilePickWindow; // 타일 그림
 
-	RECT _rcHoverTile;
+	RECT _rcHoverTile;      // 마우스 올릴때 표시되는 파란렉트
 
 	int _objectIdx;
 
@@ -39,8 +39,8 @@ private:
 
 	POINT _curTile;			// 현재 타일
 	POINT _selectedTileCnt; // 선택된 타일 갯수
-	RECT _rcSelectTile;
-	POINT _startCursor;
+	POINT _startCursor;     // 여러타일 드래그할때 시작 포인트
+	RECT  _rcSelectTile;	// 선택한 타일 빨간렉트
 
 	bool _isDrag;
 	int _tilePickX;
@@ -71,6 +71,5 @@ public:
 	void calSelectTile();
 	void settingSelectTileRect();
 	void drawSelectTile(HDC hdc);
-	void settingHoverTile();
 };
 

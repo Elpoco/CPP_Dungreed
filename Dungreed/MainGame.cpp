@@ -53,7 +53,7 @@ void MainGame::update(void)
 
 	CAMERAMANAGER->update();
 
-	if (KEYMANAGER->isOnceKeyDown(VK_F1)) _isDebug = !_isDebug;
+	if (IsOnceKeyDown(KEY::F1)) _isDebug = !_isDebug;
 }
 
 void MainGame::render(void)

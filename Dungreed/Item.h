@@ -26,7 +26,7 @@ public:
 
 	void updateDegree();
 
-	void equip() { _isEquip = TRUE; _degree = 90; }
+	void equip() { _isEquip = TRUE; }
 	void unequip() { _isEquip = FALSE; }
 
 	ImageBase* getImage() { return _img; }

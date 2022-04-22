@@ -9,7 +9,7 @@ class UIManager : public SingletonBase<UIManager>
 {
 private:
 	Cursor* _cursor;
-	Inventory* _inventory;
+	Inventory* _inventory;	
 
 public:
 	UIManager();
@@ -22,8 +22,11 @@ public:
 
 	void setCursorType(UIEnum::CURSOR_TYPE cursorType);
 
-	void setInventory(Inventory* inventory) { _inventory = inventory; }
+	void initInventory();
 	BOOL onInventory();
+	void toggleInventory();
+
+	void initPlayerHpBar();
 
 };
 

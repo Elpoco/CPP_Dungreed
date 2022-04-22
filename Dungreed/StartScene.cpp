@@ -32,7 +32,7 @@ HRESULT StartScene::init()
 	OBJECTMANAGER->addButton(ImageName::UI::Button::gameStart, CENTER_X, CENTER_Y + 100, TRUE, clickStart);
 	OBJECTMANAGER->addButton(ImageName::UI::Button::mapTool, CENTER_X, CENTER_Y + 170, TRUE, clickMapTool);
 	OBJECTMANAGER->addButton(ImageName::UI::Button::quit, CENTER_X, CENTER_Y + 240, TRUE, clickQuit);
-
+	
 	SOUNDMANAGER->play(SoundName::title, _sound);
 
 	return S_OK;

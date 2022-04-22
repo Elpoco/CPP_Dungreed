@@ -179,12 +179,6 @@ void ImageManager::alphaRender(string strKey, HDC hdc, int destX, int destY, BYT
 	if (img) img->alphaRender(hdc, destX, destY, alpha);
 }
 
-void ImageManager::alphaRender(string strKey, HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha)
-{
-	Image* img = findImage(strKey);
-	if (img) img->alphaRender(hdc, destX, destY, sourX, sourY, sourWidth, sourHeight, alpha);
-}
-
 // ================
 // ## ÇÁ·¹ÀÓ ·»´õ ##
 // ================
@@ -204,12 +198,6 @@ void ImageManager::loopRender(string strKey, HDC hdc, const LPRECT drawArea, int
 {
 	Image* img = findImage(strKey);
 	if (img) img->loopRender(hdc, drawArea, offsetX, offsetY);
-}
-
-void ImageManager::loopAlphaRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha)
-{
-	Image* img = findImage(strKey);
-	if (img) img->loopAlphaRender(hdc, drawArea, offsetX, offsetY, alpha);
 }
 
 void ImageManager::errorMsg(IM_ERROR_CODE code, string str)

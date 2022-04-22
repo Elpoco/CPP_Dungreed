@@ -15,7 +15,7 @@ Unit::Unit()
 	, _isHit(FALSE)
 	, _isDash(FALSE)
 	, _hitTime(0.0f)
-	, _imgAlpha(0)
+	, _imgAlpha(255)
 	, _moveSpeed(UnitSet::MOVE_SPEED)
 	, _jumpSpeed(UnitSet::JUMP_SPEED)
 	, _gravity(0.0f)
@@ -75,7 +75,7 @@ void Unit::render(HDC hdc)
 	}
 	else
 	{
-		if (_imgAlpha > 0)
+		if (_imgAlpha < 255)
 		{
 			CAMERAMANAGER->frameRender(
 				hdc, 
@@ -158,10 +158,10 @@ void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
 	switch (dir)
 	{
 	case ColliderEnum::LEFT:
-		_x = x + _imgWidth * 0.5f;
+		_x = x + _imgWidth * 0.5f - _rcResizeW;
 		break;
 	case ColliderEnum::RIGHT:
-		_x = x - _imgWidth * 0.5f;
+		_x = x - _imgWidth * 0.5f + _rcResizeW;
 		break;
 	case ColliderEnum::TOP:
 		_y = y + _imgHeight * 0.5f;

@@ -56,7 +56,7 @@ void MapToolScene::update()
 {
 	TILEMANAGER->update();
 
-	if(MouseInRect(_rcToolWindow)) hoverTile();
+	if (MouseInRect(_rcToolWindow)) hoverTile();
 
 	if (IsStayKeyDown(KEY::UP))	   _camera->setY(_camera->getY() - CAMERA_SPPED);
 	if (IsStayKeyDown(KEY::DOWN))  _camera->setY(_camera->getY() + CAMERA_SPPED);
@@ -88,9 +88,8 @@ void MapToolScene::update()
 		}
 	}
 
-	if (IsStayKeyDown(VK_RBUTTON) && MouseInRect(_rcTileWindow)) clickUndoTile();
+	if (IsStayKeyDown(KEY::CLICK_R) && MouseInRect(_rcTileWindow)) clickUndoTile();
 	
-	if(MouseInRect(_rcToolWindow)) settingHoverTile();
 }
 
 void MapToolScene::render()
@@ -224,17 +223,4 @@ void MapToolScene::drawSelectTile(HDC hdc)
 	PrintPoint(getMemDC(), _rcSelectTile.left, _rcSelectTile.top, _selectedTileCnt.y, _selectedTileCnt.x);
 
 	SetTextColor(getMemDC(), ColorSet::BLACK);
-}
-
-void MapToolScene::settingHoverTile()
-{
-	int x = (_ptMouse.x - TOOL_START_X) / TOOL_TILE_SIZE;
-	int y = (_ptMouse.y) / TOOL_TILE_SIZE;
-
-	_rcHoverTile = RectMake(
-		x * TOOL_TILE_SIZE + TOOL_START_X,
-		y * TOOL_TILE_SIZE,
-		TOOL_TILE_SIZE,
-		TOOL_TILE_SIZE
-	);
 }

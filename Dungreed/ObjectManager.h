@@ -6,7 +6,8 @@ class Object;
 class ObjectManager : public SingletonBase<ObjectManager>
 {	
 public:
-	typedef map<ObjectEnum::OBJ_TYPE, vector<Object*>> mapObjects;
+	typedef vector<Object*> vObjects;
+	typedef map<ObjectEnum::OBJ_TYPE, vObjects> mapObjects;
 
 private:
 	mapObjects _mObjects;

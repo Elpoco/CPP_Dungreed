@@ -27,13 +27,6 @@ void ItemManager::release()
 {
 }
 
-void ItemManager::inventoryInit()
-{
-	_inventory = new Inventory;
-	OBJECTMANAGER->addUI(_inventory);
-	UIMANAGER->setInventory(_inventory);
-}
-
 void ItemManager::getItem(Code::ITEM code)
 {
 	Item* item;

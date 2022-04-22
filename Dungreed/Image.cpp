@@ -335,7 +335,7 @@ void Image::render(HDC hdc, float destX, float destY)
 	}
 }
 
-void Image::render(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight)
+void Image::render(HDC hdc, float destX, float destY, int sourX, int sourY, int sourWidth, int sourHeight)
 {
 	if (_isTrans) {
 		GdiTransparentBlt(
@@ -467,11 +467,6 @@ void Image::alphaRender(HDC hdc, int destX, int destY, BYTE alpha)
 	}
 }
 
-void Image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha)
-{
-	
-}
-
 void Image::frameRender(HDC hdc, int destX, int destY)
 {
 	if (_isTrans) {
@@ -535,7 +530,7 @@ void Image::frameAlphaRender(HDC hdc, float destX, float destY, int currentFrame
 
 	if (currentFrameX > _imageInfo->maxFrameX) _imageInfo->currentFrameX = _imageInfo->maxFrameX;
 	if (currentFrameY > _imageInfo->maxFrameY) _imageInfo->currentFrameY = _imageInfo->maxFrameY;
-
+	
 	if (!_blendImage) initForAlphaBlend();
 	_blendFunc.SourceConstantAlpha = alpha;
 
@@ -551,8 +546,8 @@ void Image::frameAlphaRender(HDC hdc, float destX, float destY, int currentFrame
 		);
 
 		GdiTransparentBlt(
-			hdc,
-			destX, destY,
+			_blendImage->hMemDC,
+			0, 0,
 			_imageInfo->frameWidth,
 			_imageInfo->frameHeight,
 			_imageInfo->hMemDC,
@@ -563,7 +558,7 @@ void Image::frameAlphaRender(HDC hdc, float destX, float destY, int currentFrame
 			_transColor
 		);
 
-		AlphaBlend(
+		GdiAlphaBlend(
 			hdc,
 			destX, destY,
 			_imageInfo->frameWidth,
@@ -576,9 +571,17 @@ void Image::frameAlphaRender(HDC hdc, float destX, float destY, int currentFrame
 		);
 	}
 	else {
-		BitBlt(hdc, destX, destY, _imageInfo->frameWidth, _imageInfo->frameHeight, _imageInfo->hMemDC,
-			_imageInfo->currentFrameX * _imageInfo->frameWidth,
-			_imageInfo->currentFrameY * _imageInfo->frameHeight, SRCCOPY);
+		GdiAlphaBlend(
+			hdc,
+			destX, destY,
+			_imageInfo->frameWidth,
+			_imageInfo->frameHeight,
+			_imageInfo->hMemDC,
+			0, 0,
+			_imageInfo->frameWidth,
+			_imageInfo->frameHeight,
+			_blendFunc
+		);
 	}
 }
 
@@ -627,10 +630,6 @@ void Image::loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY)
 			render(hdc, rcDest.left, rcDest.top, rcSour.left, rcSour.top, sourWidth, sourHeight);
 		}
 	}
-}
-
-void Image::loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha)
-{
 }
 
 void Image::aniRender(HDC hdc, int destX, int destY, Animation * ani)

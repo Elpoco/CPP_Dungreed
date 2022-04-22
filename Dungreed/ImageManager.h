@@ -41,13 +41,11 @@ public:
 
 	void alphaRender(string strKey, HDC hdc, BYTE alpha);
 	void alphaRender(string strKey, HDC hdc, int destX, int destY, BYTE alpha);
-	void alphaRender(string strKey, HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
 
 	void frameRender(string strKey, HDC hdc, int destX, int destY);
 	void frameRender(string strKey, HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY);
 
 	void loopRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY);
-	void loopAlphaRender(string strKey, HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha);
 
 	static void errorMsg(IM_ERROR_CODE code, string str);
 

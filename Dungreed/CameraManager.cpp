@@ -105,7 +105,7 @@ void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int f
 void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, BYTE alpha)
 {
 	if (this->checkObjectInCamera(x, y, img->getFrameWidth(), img->getFrameHeight())) return;
-	
+
 	img->frameAlphaRender(hdc, x - _x, y - _y, frameX, frameY, alpha);
 }
 

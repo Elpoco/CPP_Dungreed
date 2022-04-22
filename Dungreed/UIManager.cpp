@@ -4,6 +4,7 @@
 #include "UI.h"
 #include "Cursor.h"
 #include "Inventory.h"
+#include "PlayerHpBar.h"
 
 UIManager::UIManager()
 {
@@ -53,8 +54,25 @@ void UIManager::setCursorType(UIEnum::CURSOR_TYPE cursorType)
 	_cursor->setCursor(cursorType);
 }
 
+void UIManager::initInventory()
+{
+	_inventory = new Inventory;
+	OBJECTMANAGER->addUI(_inventory);
+	ITEMMANAGER->setInventory(_inventory);
+}
+
 BOOL UIManager::onInventory()
 {
 	return _inventory->isOpen();
+}
+
+void UIManager::toggleInventory()
+{
+	_inventory->toggleInventory();
+}
+
+void UIManager::initPlayerHpBar()
+{
+	OBJECTMANAGER->addUI(new PlayerHpBar);
 }
 

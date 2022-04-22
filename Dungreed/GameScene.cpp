@@ -127,7 +127,6 @@ void GameScene::loadDungeon()
 	TILEMANAGER->loadMap(FileName::Dungeon);
 	// 플레이어 셋팅
 	OBJECTMANAGER->getPlayer()->setX(CENTER_X);
-	OBJECTMANAGER->getPlayer()->resumeObject();
 	OBJECTMANAGER->getPlayer()->setRender(TRUE);
 	// 음악 재생
 	SOUNDMANAGER->play(SoundName::dungeon, _sound);
@@ -174,6 +173,8 @@ void GameScene::loadDungeon()
 
 	// 로딩완료
 	SCENEMANAGER->setChangeScene(FALSE);
+	// 플레이어 다시 움직이게
+	OBJECTMANAGER->getPlayer()->resumeObject();
 }
 
 void GameScene::updateDungeon()

@@ -68,12 +68,12 @@ private:
 
 public:
 	Inventory();
-	~Inventory();
+	virtual ~Inventory();
 
-	HRESULT init();
-	void release();
-	void update();
-	void render(HDC hdc);
+	virtual HRESULT init() override;
+	virtual void release() override;
+	virtual void update() override;
+	virtual void render(HDC hdc) override;
 
 	void settingUI();
 	void toggleInventory();

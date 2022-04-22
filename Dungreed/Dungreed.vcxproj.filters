@@ -142,6 +142,9 @@
     <Filter Include="MainGame\02. Object\05. UI\Button">
       <UniqueIdentifier>{dba12a34-0c63-4b70-a1e4-ab515715319c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\05. UI\PlayerHpBar">
+      <UniqueIdentifier>{0d385edd-e7a7-46cd-bfe8-4da83d92b366}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -320,6 +323,9 @@
     </ClCompile>
     <ClCompile Include="NPC.cpp">
       <Filter>MainGame\02. Object\08. NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpBar.cpp">
+      <Filter>MainGame\02. Object\05. UI\PlayerHpBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -529,6 +535,9 @@
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>MainGame\01. Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpBar.h">
+      <Filter>MainGame\02. Object\05. UI\PlayerHpBar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
