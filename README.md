@@ -1,4 +1,6 @@
 # CPP_Dungreed
+좌클릭 공격 <br>
+우클릭 대시 <br>
 WASD 이동 <br>
 V 인벤토리 <br>
 ~ 무기 교체 <br>
