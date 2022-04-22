@@ -82,9 +82,6 @@
     <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\LittleGhost">
       <UniqueIdentifier>{755de569-0a98-4610-9c9b-a021c8099349}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\02. PrgressBar">
-      <UniqueIdentifier>{30c21a14-4b8d-4223-b544-16664221318d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\02. Object\03. Bullet">
       <UniqueIdentifier>{8389dcba-6434-4057-bfe8-2c3ff0b5f49d}</UniqueIdentifier>
     </Filter>
@@ -142,8 +139,8 @@
     <Filter Include="MainGame\02. Object\05. UI\Button">
       <UniqueIdentifier>{dba12a34-0c63-4b70-a1e4-ab515715319c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\05. UI\PlayerHpBar">
-      <UniqueIdentifier>{0d385edd-e7a7-46cd-bfe8-4da83d92b366}</UniqueIdentifier>
+    <Filter Include="MainGame\02. Object\05. UI\HpBar">
+      <UniqueIdentifier>{30c21a14-4b8d-4223-b544-16664221318d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +256,7 @@
       <Filter>MainGame\02. Object\06. Item\Sword</Filter>
     </ClCompile>
     <ClCompile Include="EnemyHpBar.cpp">
-      <Filter>MainGame\02. Object\02. PrgressBar</Filter>
+      <Filter>MainGame\02. Object\05. UI\HpBar</Filter>
     </ClCompile>
     <ClCompile Include="Belial.cpp">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Belial</Filter>
@@ -325,7 +322,7 @@
       <Filter>MainGame\02. Object\08. NPC</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHpBar.cpp">
-      <Filter>MainGame\02. Object\05. UI\PlayerHpBar</Filter>
+      <Filter>MainGame\02. Object\05. UI\HpBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -459,7 +456,7 @@
       <Filter>MainGame\02. Object\06. Item\Sword</Filter>
     </ClInclude>
     <ClInclude Include="EnemyHpBar.h">
-      <Filter>MainGame\02. Object\02. PrgressBar</Filter>
+      <Filter>MainGame\02. Object\05. UI\HpBar</Filter>
     </ClInclude>
     <ClInclude Include="Belial.h">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Belial</Filter>
@@ -537,7 +534,7 @@
       <Filter>MainGame\01. Scene\Game</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHpBar.h">
-      <Filter>MainGame\02. Object\05. UI\PlayerHpBar</Filter>
+      <Filter>MainGame\02. Object\05. UI\HpBar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

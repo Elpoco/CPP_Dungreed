@@ -71,8 +71,8 @@ void UIManager::toggleInventory()
 	_inventory->toggleInventory();
 }
 
-void UIManager::initPlayerHpBar()
+void UIManager::initPlayerHpBar(int* maxHp, int* curHp)
 {
-	OBJECTMANAGER->addUI(new PlayerHpBar);
+	OBJECTMANAGER->addUI(new PlayerHpBar(maxHp, curHp));
 }
 

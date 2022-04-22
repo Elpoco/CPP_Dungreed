@@ -26,7 +26,7 @@ public:
 	BOOL onInventory();
 	void toggleInventory();
 
-	void initPlayerHpBar();
+	void initPlayerHpBar(int* maxHp, int* curHp);
 
 };
 

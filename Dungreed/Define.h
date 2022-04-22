@@ -52,5 +52,3 @@
 #define TILE_SCALE			3
 #define TILE_SIZE			(TILE_RES_SIZE * TILE_SCALE)
 
-#define ENEMY_HP_BAR_W		60
-#define ENEMY_HP_BAR_H		15

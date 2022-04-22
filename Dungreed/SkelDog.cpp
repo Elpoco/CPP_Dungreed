@@ -15,8 +15,8 @@ SkelDog::~SkelDog()
 
 HRESULT SkelDog::init()
 {
-	Enemy::init();
 	this->initAnimation();
+	Enemy::init();
 
 	_info = DBMANAGER->getInfo(Code::UNIT::SKEL_DOG);
 

@@ -23,8 +23,8 @@ NiflheimPillar::~NiflheimPillar()
 
 HRESULT NiflheimPillar::init()
 {
-	Enemy::init();
 	this->initAnimation();
+	Enemy::init();
 
 	_info = DBMANAGER->getInfo(Code::UNIT::NIFLEHEIM_PILLAR);
 	_isFlying = true;

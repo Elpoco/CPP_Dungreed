@@ -13,8 +13,8 @@ LittleGhost::~LittleGhost()
 
 HRESULT LittleGhost::init()
 {
-	Enemy::init();
 	this->initAnimation();
+	Enemy::init();
 
 	_isFlying = true;
 

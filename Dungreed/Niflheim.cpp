@@ -27,8 +27,8 @@ Niflheim::~Niflheim()
 
 HRESULT Niflheim::init()
 {
-	Enemy::init();
 	this->initAnimation();
+	Enemy::init();
 	Unit::updateRect();
 
 	_info = DBMANAGER->getInfo(Code::UNIT::NIFLEHEIM);

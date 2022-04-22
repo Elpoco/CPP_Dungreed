@@ -38,10 +38,12 @@ void SoundLoader::loadSounds()
 	// # Player #
 	// ==========
 	SOUNDMANAGER->addSound(SoundName::Player::dash, PATH_SOUND"Dash.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Player::hit, PATH_SOUND"Hit_Player.wav", false, false);
 
 	// =========
 	// # Enemy #
 	// =========
+	SOUNDMANAGER->addSound(SoundName::Enemy::hit, PATH_SOUND"Hit_Monster.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Enemy::SpawnEnemy, PATH_SOUND"SpawnMonster.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Enemy::MonsterDie, PATH_SOUND"MonsterDie.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Enemy::Skeletonking, PATH_SOUND"Skeletonking.wav", false, false);

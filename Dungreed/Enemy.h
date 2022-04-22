@@ -1,16 +1,14 @@
 #pragma once
 #include "Unit.h"
 
-class EnemyHpBar;
-
 class Enemy : public Unit
 {
 protected:
 	ENEMY_INFO _info;
 
 	bool	_isAutoLeft;	// 플레이어 위치에 따라 자동으로 변경할지
-	int		_curHp;
 	int		_maxHp;
+	int		_curHp;
 	BOOL	_startSpawn;
 	BOOL	_isSpawn;
 
@@ -23,7 +21,6 @@ protected:
 	int		_isDead;
 	bool	_isAttack;
 
-	EnemyHpBar* _hpBar;
 	float _moveHpBarX;
 	float _moveHpBarY;
 

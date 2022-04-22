@@ -5,8 +5,8 @@ namespace PlayerHpBarSet
 {
 	constexpr int baseX = 10;
 	constexpr int baseY = 10;
-	constexpr int hpStartX = 88;
-	constexpr int hpStartY = 12;
+	constexpr int hpSourX = 88;
+	constexpr int hpSourY = 12;
 }
 
 class PlayerHpBar : public UI
@@ -16,11 +16,18 @@ private:
 	ImageBase* _back;
 	ImageBase* _hpBar;
 	ImageBase* _hpWave;
-
 	FRAME_INFO _waveFrame;
 
+	int _hpMaxWidth;
+	int _hpWidth;
+	int _hpStartX;
+	int _hpStartY;
+
+	float* _maxHp;
+	float* _curHp;
+
 public:
-	PlayerHpBar();
+	PlayerHpBar(int* maxHp, int* curHp);
 	virtual ~PlayerHpBar();
 
 	virtual HRESULT init() override;

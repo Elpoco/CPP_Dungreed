@@ -171,10 +171,12 @@ namespace SoundName
 	namespace Player
 	{
 		constexpr char* dash = "SOUND PLAYER dash";
+		constexpr char* hit = "SOUND PLAYER hit";
 	}
 
 	namespace Enemy
 	{
+		constexpr char* hit = "SOUND ENEMY hit";
 		constexpr char* SpawnEnemy = "SOUND ENEMY SpawnEnemy";
 		constexpr char* MonsterDie = "SOUND ENEMY MonsterDie";
 		constexpr char* Skeletonking = "SOUND ENEMY Skeletonking";

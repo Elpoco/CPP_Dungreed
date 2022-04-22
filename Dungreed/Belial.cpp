@@ -29,8 +29,8 @@ Belial::~Belial()
 
 HRESULT Belial::init()
 {
-	Enemy::init();
 	this->initAnimation();
+	Enemy::init();
 	Unit::updateRect();
 
 	_info = DBMANAGER->getInfo(Code::UNIT::BELIAL);

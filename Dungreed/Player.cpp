@@ -36,7 +36,7 @@ HRESULT Player::init()
 	_maxHp = _curHp = DEFAULT_HP;
 
 	UIMANAGER->initInventory();
-	UIMANAGER->initPlayerHpBar();
+	UIMANAGER->initPlayerHpBar(&_maxHp, &_curHp);
 
 	ITEMMANAGER->setPlayerBody(&_body);
 	ITEMMANAGER->setPlayerHand(&_hand);
@@ -75,12 +75,13 @@ void Player::render(HDC hdc)
 void Player::hitAttack(int dmg, int dir)
 {
 	if (_hitTime + HIT_TIME > TIMEMANAGER->getWorldTime()) return;
-
-	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
-
 	_hitTime = TIMEMANAGER->getWorldTime();
 	_isHit = true;
 	_imgAlpha = HIT_ALPHA;
+	_curHp -= dmg;
+
+	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
+	SOUNDMANAGER->play(SoundName::Player::hit, _sound);
 }
 
 int Player::getDmg()

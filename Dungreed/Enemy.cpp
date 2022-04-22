@@ -27,8 +27,11 @@ Enemy::~Enemy()
 HRESULT Enemy::init()
 {
 	Unit::init();
-	_hpBar = new EnemyHpBar;
-	_hpBar->init();
+
+	EnemyHpBar* hpBar = new EnemyHpBar(&_x, &_y, &_maxHp, &_curHp);
+	hpBar->settingY(_imgHeight * 0.5f);
+
+	OBJECTMANAGER->addUI(hpBar);
 
 	return S_OK;
 }
@@ -36,8 +39,6 @@ HRESULT Enemy::init()
 void Enemy::release()
 {
 	Unit::release();
-	_hpBar->release();
-	SAFE_DELETE(_hpBar);
 }
 
 void Enemy::update()
@@ -48,7 +49,6 @@ void Enemy::update()
 	this->move();
 	this->animation();
 	_rcScan = RectMakeCenter(_x, _y, _imgWidth * _scanScale.x, _imgHeight * _scanScale.y);
-	_hpBar->update(_x + _moveHpBarX, _rc.bottom + ENEMY_HP_BAR_H + _moveHpBarY, _curHp / _maxHp);
 }
 
 void Enemy::render(HDC hdc)
@@ -73,9 +73,6 @@ void Enemy::render(HDC hdc)
 	if (!_isSpawn) return;
 
 	Unit::render(hdc);
-
-	if(_maxHp != _curHp)
-		_hpBar->render(hdc);
 }
 
 void Enemy::deleteEffect()
@@ -108,7 +105,7 @@ void Enemy::hitAttack(int dmg, int dir)
 	_curHp -= dmg;
 
 	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
-
+	SOUNDMANAGER->play(SoundName::Enemy::hit, _sound);
 	if (_curHp < 1)
 	{
 		_isLive = FALSE;
