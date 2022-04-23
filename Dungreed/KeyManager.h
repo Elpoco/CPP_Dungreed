@@ -9,6 +9,9 @@ private:
 	bitset<KEY_MAX> _keyUp;
 	bitset<KEY_MAX> _keyDown;
 
+	BOOL _isTyping;
+	char _str[256] = "";
+
 public:
 	HRESULT init(void);
 
@@ -22,6 +25,11 @@ public:
 
 	void setKeyDown(int key, bool state) { _keyDown.set(key, state); }
 	void setKeyUp(int key, bool state) { _keyUp.set(key, state); }
+
+	void typing(char ch);
+	char* getTypingStr() { return _str; }
+	void setTyping(BOOL isTyping) { _isTyping = isTyping; }
+	BOOL isTyping() { return _isTyping; }
 
 	KeyManager() {}
 	~KeyManager() {}

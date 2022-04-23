@@ -39,9 +39,13 @@ private:
 	POINT _startCursor;     // 여러타일 드래그할때 시작 포인트
 	RECT  _rcSelectTile;	// 선택한 타일 빨간렉트
 
-	bool _isDrag;
+	// 타일 프레임 위치
 	int _tilePickX;
 	int _tilePickY;
+
+	// 맵 저장
+	BOOL _isTyping;
+	char* _mapName;
 
 public:
 	MapToolScene();

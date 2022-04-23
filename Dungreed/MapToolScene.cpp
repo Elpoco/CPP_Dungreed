@@ -45,7 +45,7 @@ HRESULT MapToolScene::init()
 	this->settingSelectTileRect();
 
 	SOUNDMANAGER->play(SoundName::niflheimBG, _sound);
-
+	KEYMANAGER->setTyping(TRUE);
 	return S_OK;
 }
 
@@ -57,6 +57,8 @@ void MapToolScene::release()
 void MapToolScene::update()
 {
 	TILEMANAGER->update();
+
+	if (KEYMANAGER->isTyping()) return;
 
 	if (MouseInRect(_rcToolWindow)) hoverTile();
 
@@ -115,6 +117,10 @@ void MapToolScene::render()
 	wsprintf(str, String::btnLoad);
 	PrintRectangle(getMemDC(), _btnLoad);
 	TextOut(getMemDC(), _btnLoad.left, _btnLoad.top, str, strlen(str));
+
+	char* temp = KEYMANAGER->getTypingStr();
+	FONTMANAGER->drawString(getMemDC(), CENTER_X, CENTER_Y, 20, 0, temp);
+	//TextOut(getMemDC(), _btnSave.left + 50, _btnSave.top, temp, strlen(temp));
 }
 
 void MapToolScene::hoverTile()

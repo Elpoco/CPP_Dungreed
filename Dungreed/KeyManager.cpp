@@ -3,11 +3,14 @@
 
 HRESULT KeyManager::init(void)
 {
+	_isTyping = FALSE;
+
 	for (int i = 0; i < KEY_MAX; i++)
 	{
 		this->setKeyDown(i, false);
 		this->setKeyUp(i, false);
 	}
+
 	return S_OK;
 }
 
@@ -53,4 +56,17 @@ BOOL KeyManager::isToggleKey(int key)
 {
 	if (GetKeyState(key) & 0x0001) return TRUE;
 	return FALSE;
+}
+
+void KeyManager::typing(char ch)
+{
+	int len = strlen(_str);
+	if (ch == 8)
+	{
+		if(len > 0) _str[len - 1] = 0;
+	}
+	else
+	{
+		_str[len] = ch;
+	}
 }
