@@ -3,7 +3,9 @@
 
 #include "Object.h"
 
+using namespace TileSet;
 using namespace MapToolSceneSet;
+using namespace MapToolEnum;
 
 MapToolScene::MapToolScene() 
 	: _objectIdx(1)

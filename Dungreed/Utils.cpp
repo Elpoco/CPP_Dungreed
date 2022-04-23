@@ -118,4 +118,9 @@ namespace MY_UTIL
 		wsprintf(str, format, ptX, ptY);
 		TextOut(hdc, x, y, str, strlen(str));
 	}
+
+	void exitGame()
+	{
+		PostMessage(_hWnd, WM_DESTROY, 0, 0);
+	}
 }

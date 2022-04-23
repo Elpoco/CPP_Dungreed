@@ -7,9 +7,20 @@ ImageFont::ImageFont(float x, float y, int num, FONT_TYPE type)
 	: _num(num)
 	, _type(type)
 	, _alpha(255)
+	, _str("")
 {
 	_x = x;
 	_y = y;
+	_isFixed = TRUE;
+}
+
+ImageFont::ImageFont(float x, float y, char* str)
+	: _alpha(255)
+	, _type(FONT_TYPE::NORMAL)
+{
+	_x = x;
+	_y = y;
+	_str = str;
 	_isFixed = TRUE;
 }
 
@@ -21,17 +32,12 @@ HRESULT ImageFont::init()
 {
 	UI::init();
 
-	string tmp = to_string(_num);
-	_arrLen = tmp.length();
-	_arrNum = new int[_arrLen];
-
-	for (int i = _arrLen -1; i >= 0; --i)
-	{
-		_arrNum[i] = _num % 10;
-		_num *= 0.1f;
-	}
+	if (_str == "") initNumber();
+	else initString();
+	
 
 	this->settingImage(_type);
+	_rc = RectMakeCenter(_x, _y, _imgWidth * _arrLen, _imgHeight);
 
 	return S_OK;
 }
@@ -53,28 +59,92 @@ void ImageFont::render(HDC hdc)
 		switch (_type)
 		{
 		case ImageFontEnum::FONT_TYPE::DAMAGE:
-			CAMERAMANAGER->frameRender(hdc, _img, _x + i * _imgWidth, _y, _arrNum[i], 0, _alpha);
+			CAMERAMANAGER->frameRender(hdc, _img, _rc.left + i * _imgWidth, _rc.top, _arrNum[i], 0, _alpha);
 			break;
+
 		case ImageFontEnum::FONT_TYPE::GOLD:
-			CAMERAMANAGER->frameRender(hdc, _img, _x + i * (_imgWidth - 3), _y, _arrNum[i], 0, _alpha);
+			CAMERAMANAGER->frameRender(hdc, _img, _rc.left + i * (_imgWidth - 3), _rc.top, _arrNum[i], 0, _alpha);
 			if (i == _arrLen - 1)
 			{
-				CAMERAMANAGER->frameRender(hdc, _img, _x + (i + 1) * (_imgWidth - 3), _y, 10, 0, _alpha);
+				CAMERAMANAGER->frameRender(hdc, _img, _rc.left + (i + 1) * (_imgWidth - 3), _rc.top, 10, 0, _alpha);
 			}
 			break;
+
 		case ImageFontEnum::FONT_TYPE::NORMAL:
 		default:
-
 			if (_isFixed)
 			{
-				_img->frameRender(hdc, _x, _y, _num, 0);
+				if (_arrNum[i] >= '0' && _arrNum[i] <= '9')
+				{
+					_img->frameRender(hdc, _rc.left + i * _imgWidth, _rc.top, _arrNum[i] - '0', FONT_KIND::NUM);
+				}
+				else if (_arrNum[i] >= 'a' && _arrNum[i] <= 'z')
+				{
+					_img->frameRender(hdc, _rc.left + i * _imgWidth, _rc.top, _arrNum[i] - 'a', FONT_KIND::ENG_SM);
+				}
+				else if (_arrNum[i] >= 'A' && _arrNum[i] <= 'Z')
+				{
+					_img->frameRender(hdc, _rc.left + i * _imgWidth, _rc.top, _arrNum[i] - 'A', FONT_KIND::ENG);
+				}
+				else if (_arrNum[i] >= '!' && _arrNum[i] <= '/')
+				{
+					_img->frameRender(hdc, _rc.left + i * _imgWidth, _rc.top, _arrNum[i] - '!', FONT_KIND::SPC_CHAR);
+				}
+				else
+				{
+					_img->frameRender(hdc, _rc.left + i * _imgWidth, _rc.top, _arrNum[i], FONT_KIND::NUM);
+				}
 			}
 			else
 			{
-				CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _num, 0);
+				if (_arrNum[i] >= '0' && _arrNum[i] <= '9')
+				{
+					CAMERAMANAGER->frameRender(hdc, _img, _rc.left + i * _imgWidth, _rc.top, _arrNum[i] - '0', FONT_KIND::NUM);
+				}
+				else if (_arrNum[i] >= 'a' && _arrNum[i] <= 'z')
+				{
+					CAMERAMANAGER->frameRender(hdc, _img, _rc.left + i * _imgWidth, _rc.top, _arrNum[i] - 'a', FONT_KIND::ENG_SM);
+				}
+				else if (_arrNum[i] >= 'A' && _arrNum[i] <= 'Z')
+				{
+					CAMERAMANAGER->frameRender(hdc, _img, _rc.left + i * _imgWidth, _rc.top, _arrNum[i] - 'A', FONT_KIND::ENG);
+				}
+				else if (_arrNum[i] >= '!' && _arrNum[i] <= '/')
+				{
+					CAMERAMANAGER->frameRender(hdc, _img, _rc.left + i * _imgWidth, _rc.top, _arrNum[i] - '!', FONT_KIND::SPC_CHAR);
+				}
+				else
+				{
+					CAMERAMANAGER->frameRender(hdc, _img, _rc.left + i * _imgWidth, _rc.top, _arrNum[i], FONT_KIND::NUM);
+				}
 			}
 			break;
 		}
+	}
+}
+
+void ImageFont::initNumber()
+{
+	string tmp = to_string(_num);
+	_arrLen = tmp.length();
+	_arrNum = new int[_arrLen];
+
+	for (int i = _arrLen - 1; i >= 0; --i)
+	{
+		_arrNum[i] = _num % 10;
+		_num *= 0.1f;
+	}
+}
+
+void ImageFont::initString()
+{
+	string tmp = _str;
+	_arrLen = tmp.length();
+	_arrNum = new int[_arrLen];
+
+	for (int i = 0; i < _arrLen; i++)
+	{
+		_arrNum[i] = _str[i];
 	}
 }
 
@@ -90,9 +160,15 @@ void ImageFont::settingImage(FONT_TYPE type)
 		break;
 	case ImageFontEnum::FONT_TYPE::NORMAL:
 	default:
-		_img = FindImage(ImageName::UI::Font::Damage);
+		_img = FindImage(ImageName::UI::Font::Normal);
 		break;
 	}
 	_imgWidth = _img->getFrameWidth();
 	_imgHeight = _img->getFrameHeight();
+}
+
+void ImageFont::setNumber(int num)
+{
+	_num = num;
+	initNumber();
 }

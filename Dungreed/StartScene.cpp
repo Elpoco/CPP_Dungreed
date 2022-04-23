@@ -34,7 +34,7 @@ HRESULT StartScene::init()
 	OBJECTMANAGER->addButton(ImageName::UI::Button::quit, CENTER_X, CENTER_Y + 240, TRUE, clickQuit);
 	
 	SOUNDMANAGER->play(SoundName::title, _sound);
-
+	AddFontResource(PATH_FONT"AaCassiopeia.ttf");
 	return S_OK;
 }
 
@@ -57,6 +57,8 @@ void StartScene::update()
 			_bird[i]->setX(-150);
 		}
 	}
+
+	if(IsOnceKeyDown(KEY::ESC)) exitGame();
 }
 
 void StartScene::render()
@@ -80,5 +82,5 @@ void clickMapTool()
 
 void clickQuit()
 {
-	PostMessage(_hWnd, WM_DESTROY, 0, 0);
+	exitGame();
 }

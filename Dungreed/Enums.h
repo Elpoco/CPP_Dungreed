@@ -126,6 +126,16 @@ namespace ImageFontEnum
 
 		FONT_CNT
 	};
+
+	enum FONT_KIND
+	{
+		NUM,
+		ENG_SM,
+		ENG,
+		SPC_CHAR,
+
+		KIND_CNT
+	};
 }
 
 namespace UIEnum

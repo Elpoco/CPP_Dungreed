@@ -3,7 +3,7 @@
 // =========
 // # Utils #
 // =========
-#define EPSILON		0.001f
+#define EPSILON				0.001f
 #define TO_INT(n)			static_cast<int>(n)
 #define FLOAT_TO_INT(f1)	static_cast<int>(f1+EPSILON)
 
@@ -100,6 +100,8 @@ namespace MY_UTIL
 	void PrintRectangleByPoint(HDC hdc, POINT pt, float width, float height, Color penColor = Color::Black, bool isFill = false, Color fillColor = Color::White);
 
 	void PrintPoint(HDC hdc, float x, float y, int ptX, int ptY, char* format = "%d, %d");
+
+	void exitGame();
 
 	template<typename T>
 	void swapValue(T& a, T& b)

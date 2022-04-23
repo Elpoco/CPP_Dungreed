@@ -77,23 +77,6 @@ void ItemManager::dropItem(Code::ITEM code, float x, float y)
 	OBJECTMANAGER->addDropItem(new DropItem(code, x, y));
 }
 
-void ItemManager::playItemEffect(Code::ITEM code, int x, int y, R_L dir)
-{
-	if (code <= Code::ITEM::BULLION)
-	{
-		if (code == Code::ITEM::BULLION)
-			OBJECTMANAGER->addDynamicImageFont(x, y, 100, dir, ImageFontEnum::FONT_TYPE::GOLD);
-		else
-			OBJECTMANAGER->addDynamicImageFont(x, y, 10, dir, ImageFontEnum::FONT_TYPE::GOLD);
-	
-		SOUNDMANAGER->play(SoundName::Item::getCoin, _sound);
-	}
-	else
-	{
-		SOUNDMANAGER->play(SoundName::Item::getItem, _sound);
-	}
-}
-
 Item* ItemManager::getEquipItem()
 {
 	 return _inventory->getEquipItem(); 

@@ -25,9 +25,10 @@
 // =============
 #define PATH_RESOURCE	"Resources/"
 
+#define PATH_DATA		PATH_RESOURCE"Data/"
+#define PATH_FONT		PATH_RESOURCE"Font/"
 #define PATH_IMAGE		PATH_RESOURCE"Images/"
 #define PATH_SOUND		PATH_RESOURCE"Sounds/"
-#define PATH_DATA		PATH_RESOURCE"Data/"
 
 #define PATH_BACKGROUND	PATH_IMAGE"Background/"
 #define PATH_OBJECT		PATH_IMAGE"Object/"
@@ -50,5 +51,7 @@
 
 #define TILE_RES_SIZE		16
 #define TILE_SCALE			3
+#define TOOL_TILE_SCALE		2
 #define TILE_SIZE			(TILE_RES_SIZE * TILE_SCALE)
+#define TOOL_TILE_SIZE		(TILE_RES_SIZE * TOOL_TILE_SCALE)
 

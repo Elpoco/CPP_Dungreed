@@ -74,9 +74,9 @@ void ImageLoader::loadImages()
 	// # MapTool #
 	// ===========
 	IMAGEMANAGER->addFrameImage(ImageName::MapTool::mapTile, PATH_IMAGE"MapTool/MapTile.bmp", 512 * TILE_SCALE, 512 * TILE_SCALE, 32, 32, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::MapTool::mapToolTile, PATH_IMAGE"MapTool/MapTile.bmp", 512 * MapToolSet::TOOL_TILE_SCALE, 512 * MapToolSet::TOOL_TILE_SCALE, 4, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::MapTool::mapToolTile, PATH_IMAGE"MapTool/MapTile.bmp", 512 * TOOL_TILE_SCALE, 512 * TOOL_TILE_SCALE, 4, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::MapTool::mapObject, PATH_IMAGE"MapTool/Object.bmp", 128 * TILE_SCALE, 16 * TILE_SCALE, 8, 1, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::MapTool::mapToolObject, PATH_IMAGE"MapTool/Object.bmp", 128 * MapToolSet::TOOL_TILE_SCALE, 16 * MapToolSet::TOOL_TILE_SCALE, 8, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::MapTool::mapToolObject, PATH_IMAGE"MapTool/Object.bmp", 128 * TOOL_TILE_SCALE, 16 * TOOL_TILE_SCALE, 8, 1, true, ColorSet::MAGENTA);
 
 	// ==============
 	// # Background #
@@ -101,6 +101,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::Cursor::cursor, PATH_IMAGE"UI/Cursor/BasicCursor.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::Cursor::attack, PATH_IMAGE"UI/Cursor/ShootingCursor.bmp", 0, 0, true, ColorSet::MAGENTA);
 	// 이미지 폰트
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Normal, PATH_IMAGE"UI/Font/NormalFont.bmp", 182 * 3, 56 * 3, 26, 4, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Damage, PATH_IMAGE"UI/Font/DamageFont.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Gold, PATH_IMAGE"UI/Font/GoldFont.bmp", 165, 26, 11, 1, true, ColorSet::MAGENTA);
 	// 인벤토리
@@ -113,6 +114,9 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::EquipSlot1On, PATH_IMAGE"UI/Inventory/EquipSlot1On.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::EquipSlot2On, PATH_IMAGE"UI/Inventory/EquipSlot2On.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Inventory::exitBtn, PATH_IMAGE"UI/Inventory/InventoryExit.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
+	// 몬스터 HP Bar
+	IMAGEMANAGER->addImage(ImageName::UI::MonsterHpBar::back, PATH_IMAGE"UI/MonsterHp/MonsterHpBar.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::MonsterHpBar::gauge, PATH_IMAGE"UI/MonsterHp/MonsterLifeGauge.bmp", 0, 0, true, ColorSet::MAGENTA);
 	// 플레이어 HP Bar
 	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::Back, PATH_IMAGE"UI/PlayerHP/PlayerLifeBack.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::Base, PATH_IMAGE"UI/PlayerHP/PlayerLifeBase.bmp", 0, 0, true, ColorSet::MAGENTA);

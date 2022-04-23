@@ -10,7 +10,7 @@
 
 using namespace ObjectEnum;
 using namespace MapToolEnum;
-using namespace MapToolSet;
+using namespace TileSet;
 
 CollisionManager::CollisionManager()
 {
@@ -200,7 +200,7 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 		RECT rcObj = unit->getRect();
 
 		if(rcObj.left <= 0) unit->pushObject(DIRECTION::LEFT, 0, 0);
-		if (rcObj.right >= MapToolSet::TOTAL_TILE_X) unit->pushObject(DIRECTION::RIGHT, MapToolSet::TOTAL_TILE_X, 0);
+		if (rcObj.right >= TileSet::TOTAL_TILE_X) unit->pushObject(DIRECTION::RIGHT, TileSet::TOTAL_TILE_X, 0);
 
 		for (int i = 0; i < DIRECTION::DIR_CNT; i++)
 		{
@@ -424,13 +424,13 @@ void CollisionManager::collisionItem()
 
 			RECT tmp;
 			RECT rcPlayer = player->getRect();
-			RECT rcObj = obj->getRect();
+			RECT rcObj = item->getRect();
 
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{
 				player->getItem(code);
-				obj->collisionObject();
-				ITEMMANAGER->playItemEffect(code, obj->getX(), rcObj.top, player->getX() > obj->getX());
+				item->collisionObject();
+				item->pickUpPlayer(player->getX() > item->getX());
 			}
 		}
 	}

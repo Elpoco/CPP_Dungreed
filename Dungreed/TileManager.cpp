@@ -1,7 +1,7 @@
 #include "Stdafx.h"
 #include "TileManager.h"
 
-using namespace MapToolSet;
+using namespace TileSet;
 using namespace MapToolEnum;
 
 TileManager::TileManager()

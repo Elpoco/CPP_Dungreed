@@ -26,6 +26,8 @@ public:
 	void move();
 	void animation();
 
+	void pickUpPlayer(R_L dir);
+
 	Code::ITEM getCode() { return _itemCode; }
 
 };

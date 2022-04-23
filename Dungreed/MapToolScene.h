@@ -3,11 +3,11 @@
 
 class Object;
 
-using namespace MapToolEnum;
-using namespace MapToolSet;
-
 namespace MapToolSceneSet
 {
+	constexpr int TOOL_SIZE_X = TOOL_TILE_SIZE * 8;
+	constexpr int TOOL_START_X = WINSIZE_X - TOOL_SIZE_X;
+	constexpr float CAMERA_SPPED = 10.0f;
 //	constexpr char* tempSaveFile = "testSave";
 //	constexpr char* tempSaveFile = "Town";
 	constexpr char* tempSaveFile = FileName::Dungeon;
@@ -15,9 +15,6 @@ namespace MapToolSceneSet
 
 class MapToolScene : public GameNode
 {
-private:
-
-
 private:
 	Object* _camera;
 

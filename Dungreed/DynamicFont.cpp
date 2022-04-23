@@ -58,4 +58,6 @@ void DynamicFont::move()
 
 	_y -= 1.3 + _down;
 	_down -= 0.02f;
+
+	_rc = RectMakeCenter(_x, _y, _imgWidth * _arrLen, _imgHeight);
 }

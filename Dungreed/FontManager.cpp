@@ -1,15 +1,7 @@
 #include "Stdafx.h"
 #include "FontManager.h"
 
-void FontManager::drawText(HDC hdc, int destX, int destY, char * fileName, char * fontName, int fontSizem, int fontWidth, char * printString, int length, COLORREF color)
-{
-}
-
-void FontManager::drawText(HDC hdc, int destX, int destY, char * fontName, int fontSize, int fontWidth, char * printString, int length, COLORREF color)
-{
-}
-
-void FontManager::drawText(HDC hdc, int destX, int destY, char * fontName, int fontSize, int fontWidth, LPCWSTR printString, int length, COLORREF color)
+void FontManager::drawText(HDC hdc, int destX, int destY, char* fontName, int fontSize, int fontWidth, LPCWSTR printString, int length, COLORREF color)
 {
 	SetBkMode(hdc, TRANSPARENT);
 
@@ -30,7 +22,12 @@ void FontManager::drawText(HDC hdc, int destX, int destY, char * fontName, int f
 	SetTextColor(hdc, oldColor);
 }
 
-void FontManager::drawText(HDC hdc, int destX, int destY, char * fontName, int fontSize, int fontWidth, LPCWSTR* printStringArr, int length, COLORREF color)
+void FontManager::drawNumber(HDC hdc, int destX, int destY, int fontSize, int fontWidth, LPCWSTR str, COLORREF color)
 {
-	int arraySize = sizeof(printStringArr) / sizeof(*printStringArr);
+	drawText(hdc, destX, destY, FontName::num, fontSize, fontWidth, str, wcslen(str), color);
+}
+
+void FontManager::drawString(HDC hdc, int destX, int destY, int fontSize, int fontWidth, LPCWSTR str, COLORREF color)
+{
+	drawText(hdc, destX, destY, FontName::text, fontSize, fontWidth, str, wcslen(str), color);
 }

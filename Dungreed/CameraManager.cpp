@@ -34,8 +34,8 @@ void CameraManager::update()
 
 		if (_isLock)
 		{
-			if (x >= CENTER_X && MapToolSet::TILE_CNT_X * TILE_SIZE - CENTER_X > x) _x = x - CENTER_X;
-			if (y >= CENTER_Y && MapToolSet::TILE_CNT_Y * TILE_SIZE - CENTER_Y > y) _y = y - CENTER_Y;
+			if (x >= CENTER_X && TileSet::TILE_CNT_X * TILE_SIZE - CENTER_X > x) _x = x - CENTER_X;
+			if (y >= CENTER_Y && TileSet::TILE_CNT_Y * TILE_SIZE - CENTER_Y > y) _y = y - CENTER_Y;
 		}
 		else
 		{
@@ -93,6 +93,13 @@ void CameraManager::render(HDC hdc, ImageBase* img, float x, float y, int angle,
 	if (rotateCenter.y != 0) rotateCenter.y -= _y;
 
 	img->render(hdc, x - _x, y - _y, angle, rotateCenter);
+}
+
+void CameraManager::render(HDC hdc, ImageBase * img, float x, float y, int sourX, int sourY, int sourWidth, int sourHeight)
+{
+	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;
+
+	img->render(hdc, x - _x, y - _y, sourX, sourY, sourWidth, sourHeight);
 }
 
 void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY)

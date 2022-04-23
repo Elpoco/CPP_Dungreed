@@ -18,7 +18,7 @@ GameScene::~GameScene()
 HRESULT GameScene::init()
 {
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
-	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, MapToolSet::TOTAL_TILE_X * 0.5f, MapToolSet::TOTAL_TILE_Y * 0.5f);
+	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, TileSet::TOTAL_TILE_X * 0.5f, TileSet::TOTAL_TILE_Y * 0.5f);
 
 	// Town
 	TILEMANAGER->loadMap(FileName::Town);
@@ -115,9 +115,9 @@ void GameScene::updateTown()
 void GameScene::renderTown(HDC hdc)
 {
 	IMAGEMANAGER->render(ImageName::Town::cloud, hdc);
-	RECT rc = { 0,WINSIZE_Y - _background->getHeight() - (100 - (MapToolSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*0.7), WINSIZE_X, WINSIZE_Y };
+	RECT rc = { 0,WINSIZE_Y - _background->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*0.7), WINSIZE_X, WINSIZE_Y };
 	_background->loopRender(hdc, &rc, CAMERAMANAGER->getAbsX() / 3, 0);
-	rc = RectMake(0, WINSIZE_Y - _layer->getHeight() - (100 - (MapToolSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*1.2), WINSIZE_X, _layer->getHeight());
+	rc = RectMake(0, WINSIZE_Y - _layer->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*1.2), WINSIZE_X, _layer->getHeight());
 	_layer->loopRender(hdc, &rc, CAMERAMANAGER->getAbsX()*0.8, 0);
 }
 

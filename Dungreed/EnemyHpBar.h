@@ -10,13 +10,17 @@ namespace EnemyHpBarSet
 class EnemyHpBar : public UI
 {
 private:
-	RECT _rcMaxHp;
-	RECT _rcCurHp;
-	float* _x;
-	float* _y;
-	float* _maxHp;
-	float* _curHp;
-	float _moveY;
+	ImageBase* _imgBack;
+	ImageBase* _imgGauge;
+	RECT	   _rcGauge;
+
+	float*	_x;
+	float*	_y;
+	float	_moveY;
+	int*	_maxHp;
+	int*	_curHp;
+	int		_hpMaxWidth;
+	int		_hpWidth;
 
 public:
 	EnemyHpBar(float* x, float* y, int* maxHp, int* curHp);

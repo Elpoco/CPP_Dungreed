@@ -101,3 +101,20 @@ void DropItem::animation()
 		if (_frameInfo.x > _frameInfo.maxFrameX) _frameInfo.x = 0;
 	}
 }
+
+void DropItem::pickUpPlayer(R_L dir)
+{
+	if (_itemCode <= Code::ITEM::BULLION)
+	{
+		if (_itemCode == Code::ITEM::BULLION)
+			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 100, dir, ImageFontEnum::FONT_TYPE::GOLD);
+		else
+			OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, 10, dir, ImageFontEnum::FONT_TYPE::GOLD);
+
+		SOUNDMANAGER->play(SoundName::Item::getCoin, _sound);
+	}
+	else
+	{
+		SOUNDMANAGER->play(SoundName::Item::getItem, _sound);
+	}
+}

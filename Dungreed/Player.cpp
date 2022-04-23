@@ -79,6 +79,7 @@ void Player::hitAttack(int dmg, int dir)
 	_isHit = true;
 	_imgAlpha = HIT_ALPHA;
 	_curHp -= dmg;
+	if (_curHp < 0) _curHp = 0;
 
 	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
 	SOUNDMANAGER->play(SoundName::Player::hit, _sound);

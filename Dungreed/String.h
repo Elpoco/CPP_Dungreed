@@ -75,8 +75,9 @@ namespace ImageName
 
 		namespace Font
 		{	
-			constexpr char* Damage = "FontDamage";
-			constexpr char* Gold = "FontGold";
+			constexpr char* Normal = "FONT Normal";
+			constexpr char* Damage = "FONT Damage";
+			constexpr char* Gold = "FONT Gold";
 		}
 
 		namespace Inventory
@@ -98,6 +99,12 @@ namespace ImageName
 			constexpr char* Back = "PLAYERHPBAR Back";
 			constexpr char* LifeBar = "PLAYERHPBAR LifeBar";
 			constexpr char* LifeWave = "PLAYERHPBAR LifeWave";
+		}
+
+		namespace MonsterHpBar
+		{
+			constexpr char* back = "MonsterHpBar back";
+			constexpr char* gauge = "MonsterHpBar gauge";
 		}
 	}
 
@@ -214,6 +221,12 @@ namespace FileName
 	constexpr char* testSave = "testSave";
 	constexpr char* Town = "Town";
 	constexpr char* Dungeon = "Dungeon";
+}
+
+namespace FontName
+{
+	constexpr char* num = "neoµÕ±Ù¸ð";
+	constexpr char* text = "AaCassiopeia";
 }
 
 namespace String
