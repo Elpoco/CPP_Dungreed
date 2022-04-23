@@ -17,6 +17,8 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
+	void setText(char* text);
+
 	inline void setOn() { _isOn = TRUE; }
 	inline void setOff() { _isOn = FALSE; }
 

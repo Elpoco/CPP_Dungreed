@@ -26,6 +26,11 @@ public:
 
 	virtual void setX(float x) override;
 	virtual void setY(float y) override;
+
+	void setLeft(float left);
+	void setTop(float top);
+	void setRight(float right);
+	void setBottom(float bottom);
 	
 	void animation();
 

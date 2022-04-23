@@ -36,3 +36,8 @@ void Button::render(HDC hdc)
 
 	_img->frameRender(hdc, _rc.left, _rc.top, 0, _isOn);
 }
+
+void Button::setText(char* text)
+{
+	OBJECTMANAGER->addImageFont(_x, _y, text);
+}

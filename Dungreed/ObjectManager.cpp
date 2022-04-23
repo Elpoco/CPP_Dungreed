@@ -183,6 +183,11 @@ void ObjectManager::addImageFont(float x, float y, int num)
 	addObject(OBJ_TYPE::UI, new ImageFont(x, y, num));
 }
 
+void ObjectManager::addImageFont(float x, float y, char* str, ImageFontEnum::FONT_SIZE size)
+{
+	addObject(OBJ_TYPE::UI_FRONT, new ImageFont(x, y, str, size));
+}
+
 void ObjectManager::addDynamicImageFont(float x, float y, int num, int dir, ImageFontEnum::FONT_TYPE type)
 {
 	addObject(OBJ_TYPE::UI, new DynamicFont(x, y, num, dir, type));

@@ -75,6 +75,7 @@ namespace ImageName
 
 		namespace Font
 		{	
+			constexpr char* Normal_s = "FONT Normal_s";
 			constexpr char* Normal = "FONT Normal";
 			constexpr char* Damage = "FONT Damage";
 			constexpr char* Gold = "FONT Gold";
@@ -129,6 +130,7 @@ namespace ImageName
 		constexpr char* mapObject = "MAPTOOL Object";
 		constexpr char* mapToolObject = "MAPTOOL ToolObject";
 		constexpr char* mapToolTile = "MAPTOOL MapToolTile";
+		constexpr char* button = "MAPTOOL button";
 	}
 	
 	namespace Item
@@ -235,6 +237,7 @@ namespace String
 
 	constexpr char* btnSave = "SAVE";
 	constexpr char* btnLoad = "LOAD";
+	constexpr char* btnQuit = "QUIT";
 	constexpr char* msgSaveSuccess = "Save success";
 	constexpr char* msgSaveFail = "Save failed";
 	constexpr char* msgLoadSuccess = "Load success";

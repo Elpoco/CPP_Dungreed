@@ -94,6 +94,30 @@ void UI::setY(float y)
 	_rc = RectMakeCenter(_x, _y, _width, _height);
 }
 
+void UI::setLeft(float left)
+{
+	_x = left + _width * 0.5f;
+	_rc = RectMakeCenter(_x, _y, _width, _height);
+}
+
+void UI::setTop(float top)
+{
+	_y = top + _height * 0.5f;
+	_rc = RectMakeCenter(_x, _y, _width, _height);
+}
+
+void UI::setRight(float right)
+{
+	_x = right - _width * 0.5f;
+	_rc = RectMakeCenter(_x, _y, _width, _height);
+}
+
+void UI::setBottom(float bottom)
+{
+	_y = bottom - _height * 0.5f;
+	_rc = RectMakeCenter(_x, _y, _width, _height);
+}
+
 void UI::animation()
 {
 	if (!_frameInfo.isFrame) return;

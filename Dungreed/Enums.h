@@ -136,6 +136,13 @@ namespace ImageFontEnum
 
 		KIND_CNT
 	};
+
+	enum class FONT_SIZE
+	{
+		SMALL,
+		MIDDLE,
+		LARGE
+	};
 }
 
 namespace UIEnum

@@ -34,7 +34,7 @@ HRESULT StartScene::init()
 	OBJECTMANAGER->addButton(ImageName::UI::Button::quit, CENTER_X, CENTER_Y + 240, TRUE, clickQuit);
 	
 	SOUNDMANAGER->play(SoundName::title, _sound);
-	AddFontResource(PATH_FONT"AaCassiopeia.ttf");
+
 	return S_OK;
 }
 

@@ -14,9 +14,10 @@ ImageFont::ImageFont(float x, float y, int num, FONT_TYPE type)
 	_isFixed = TRUE;
 }
 
-ImageFont::ImageFont(float x, float y, char* str)
+ImageFont::ImageFont(float x, float y, char* str, ImageFontEnum::FONT_SIZE size)
 	: _alpha(255)
 	, _type(FONT_TYPE::NORMAL)
+	, _size(size)
 {
 	_x = x;
 	_y = y;
@@ -35,8 +36,8 @@ HRESULT ImageFont::init()
 	if (_str == "") initNumber();
 	else initString();
 	
+	settingImage(_type);
 
-	this->settingImage(_type);
 	_rc = RectMakeCenter(_x, _y, _imgWidth * _arrLen, _imgHeight);
 
 	return S_OK;
@@ -150,19 +151,20 @@ void ImageFont::initString()
 
 void ImageFont::settingImage(FONT_TYPE type)
 {
-	switch (type)
+	if (type == FONT_TYPE::DAMAGE)
 	{
-	case ImageFontEnum::FONT_TYPE::DAMAGE:
 		_img = FindImage(ImageName::UI::Font::Damage);
-		break;
-	case ImageFontEnum::FONT_TYPE::GOLD:
-		_img = FindImage(ImageName::UI::Font::Gold);
-		break;
-	case ImageFontEnum::FONT_TYPE::NORMAL:
-	default:
-		_img = FindImage(ImageName::UI::Font::Normal);
-		break;
 	}
+	else if (type == FONT_TYPE::GOLD)
+	{
+		_img = FindImage(ImageName::UI::Font::Gold);
+	}
+	else
+	{
+		if (_size == FONT_SIZE::SMALL) _img = FindImage(ImageName::UI::Font::Normal_s);
+		else if (_size == FONT_SIZE::MIDDLE) _img = FindImage(ImageName::UI::Font::Normal);
+	}
+
 	_imgWidth = _img->getFrameWidth();
 	_imgHeight = _img->getFrameHeight();
 }
