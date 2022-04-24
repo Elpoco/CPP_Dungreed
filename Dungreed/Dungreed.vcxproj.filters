@@ -536,5 +536,8 @@
     <ClInclude Include="PlayerHpBar.h">
       <Filter>MainGame\02. Object\05. UI\HpBar</Filter>
     </ClInclude>
+    <ClInclude Include="MapData.h">
+      <Filter>MainGame\03. DB</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

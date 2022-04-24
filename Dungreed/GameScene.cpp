@@ -124,52 +124,18 @@ void GameScene::renderTown(HDC hdc)
 void GameScene::loadDungeon()
 {
 	// 맵 로드
-	TILEMANAGER->loadMap(FileName::Dungeon);
+	TILEMANAGER->loadMap(FileName::DungeonStart);
+	_curDungeon = TILEMANAGER->getCurrentMapCode();
+	_mapInfo = DBMANAGER->getInfo(_curDungeon);
 	// 플레이어 셋팅
-	OBJECTMANAGER->getPlayer()->setX(CENTER_X);
+	OBJECTMANAGER->getPlayer()->setX(300);
+	OBJECTMANAGER->getPlayer()->setY(470);
 	OBJECTMANAGER->getPlayer()->setRender(TRUE);
+	CAMERAMANAGER->cameraInitPos();
 	// 음악 재생
 	SOUNDMANAGER->play(SoundName::dungeon, _sound);
-
-	OBJECTMANAGER->addUnit(Code::UNIT::SKEL_DOG, 135, 1270);
-
-	_spawnInfo[0].rcScan = RectMakeCenter(1100, 1266, 300, 300);
-	_spawnInfo[0].ptSpawn = PointMake(1380, 900);
-	_spawnInfo[0].unit = Code::UNIT::LITTLE_GHOST;
-
-	_spawnInfo[1].rcScan = RectMakeCenter(1100, 1266, 300, 300);
-	_spawnInfo[1].ptSpawn = PointMake(1200, 900);
-	_spawnInfo[1].unit = Code::UNIT::LITTLE_GHOST;
-
-	_spawnInfo[2].rcScan = RectMakeCenter(1100, 1266, 300, 300);
-	_spawnInfo[2].ptSpawn = PointMake(900, 1150);
-	_spawnInfo[2].unit = Code::UNIT::LITTLE_GHOST;
-
-	_spawnInfo[3].rcScan = RectMakeCenter(2100, 1266, 300, 300);
-	_spawnInfo[3].ptSpawn = PointMake(2425, 1270);
-	_spawnInfo[3].unit = Code::UNIT::SKEL_DOG;
-
-	_spawnInfo[4].rcScan = RectMakeCenter(2100, 1266, 300, 300);
-	_spawnInfo[4].ptSpawn = PointMake(2625, 1270);
-	_spawnInfo[4].unit = Code::UNIT::SKEL_DOG;
-
-	_spawnInfo[5].rcScan = RectMakeCenter(2100, 1266, 300, 300);
-	_spawnInfo[5].ptSpawn = PointMake(2825, 1270);
-	_spawnInfo[5].unit = Code::UNIT::SKEL_DOG;
-
-	_spawnInfo[6].rcScan = RectMakeCenter(3850, 1266, 300, 300);
-	_spawnInfo[6].ptSpawn = PointMake(4200, 1000);
-	_spawnInfo[6].unit = Code::UNIT::BELIAL;
-
-	_spawnInfo[7].rcScan = RectMakeCenter(4800, 1266, 300, 300);
-	_spawnInfo[7].ptSpawn = PointMake(5100, 1000);
-	_spawnInfo[7].unit = Code::UNIT::NIFLEHEIM;
-
-
-	//3350 930 콜트
-	ITEMMANAGER->dropItem(Code::ITEM::COLT, 3350, 930);
-
-	_spawnCnt = 0;
+	// 던전 셋팅
+	settingDungeon();
 
 	// 로딩완료
 	SCENEMANAGER->setChangeScene(FALSE);
@@ -177,19 +143,11 @@ void GameScene::loadDungeon()
 	OBJECTMANAGER->getPlayer()->resumeObject();
 }
 
-void GameScene::updateDungeon()
+void GameScene::settingDungeon()
 {
-	RECT rcPlayer = OBJECTMANAGER->getPlayer()->getRect();
-	for (int i = 0; i < 30; i++)
-	{
-		RECT temp;
-		if (IntersectRect(&temp, &rcPlayer, &_spawnInfo[i].rcScan))
-		{
-			if (++_spawnCnt < 50) return;
-			_spawnCnt = 0;
-			_spawnInfo[i].rcScan = { 0,0,0,0 };
-			OBJECTMANAGER->addUnit(_spawnInfo[i].unit, _spawnInfo[i].ptSpawn.x, _spawnInfo[i].ptSpawn.y);
-			return;
-		}
-	}
+	OBJECTMANAGER->addUnit(
+		_mapInfo.arrSpawnInfo[0].unit,
+		_mapInfo.arrSpawnInfo[0].ptSpawn.x,
+		_mapInfo.arrSpawnInfo[0].ptSpawn.y
+	);
 }

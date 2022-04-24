@@ -32,6 +32,7 @@ HRESULT Player::init()
 	this->initAnimation();
 
 	CAMERAMANAGER->followCamera(this);
+	CAMERAMANAGER->lockCamera();
 
 	_maxHp = _curHp = DEFAULT_HP;
 
@@ -112,6 +113,7 @@ void Player::move()
 	if (IsStayKeyDown(KEY::CLICK_L)) this->attack();
 	if (IsOnceKeyDown(KEY::CLICK_R)) this->dash();
 
+	if (IsStayKeyDown(KEY::DOWN) && IsOnceKeyDown(KEY::SPACE)) Unit::downJump();
 	if (IsOnceKeyDown(KEY::UP) || IsOnceKeyDown(KEY::SPACE))  Unit::jump();
 
 	// Ä³¸¯ÅÍ ÁÂ¿ì
@@ -220,6 +222,7 @@ void Player::dash()
 {
 	_isDash = TRUE;
 	_isJump = FALSE;
+	_isDownJump = FALSE;
 	_dashAngle = GetAngle(PointMake(_x, _y), CAMERAMANAGER->calAbsPt(_ptMouse));
 	
 	SOUNDMANAGER->play(SoundName::Player::dash, _sound);

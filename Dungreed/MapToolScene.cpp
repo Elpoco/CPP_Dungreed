@@ -28,6 +28,7 @@ MapToolScene::~MapToolScene()
 HRESULT MapToolScene::init()
 {
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::NONE);
+	TILEMANAGER->initTile();
 
 	_camera = new Object;
 	_camera->setX(CENTER_X);
@@ -84,6 +85,7 @@ HRESULT MapToolScene::init()
 void MapToolScene::release()
 {
 	SAFE_DELETE(_camera);
+	KEYMANAGER->deleteStr();
 }
 
 void MapToolScene::update()
@@ -139,6 +141,7 @@ void MapToolScene::render()
 	_imgTool->frameRender(getMemDC(), _rcTilePickWindow.left, _rcTilePickWindow.top, _tilePickX, _tilePickY);
 	_imgObject->render(getMemDC(), _rcObjectWindow.left, _rcObjectWindow.top);
 	_imgTextBox->frameRender(getMemDC(), _rcTextBox.left, _rcTextBox.top, 0, _isTyping);
+
 	FONTMANAGER->drawString(
 		getMemDC(),
 		_rcTextBox.left + 10,

@@ -223,7 +223,7 @@ namespace FileName
 {
 	constexpr char* testSave = "testSave";
 	constexpr char* Town = "Town";
-	constexpr char* Dungeon = "Dungeon";
+	constexpr char* DungeonStart = "DungeonStart";
 }
 
 namespace FontName

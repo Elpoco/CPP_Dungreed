@@ -3,12 +3,14 @@
 
 #include "Object.h"
 
-CameraManager::CameraManager() :
-	_x(0.f),
-	_y(0.f),
-	_object(nullptr),
-	_isFollow(false),
-	_isLock(true)
+CameraManager::CameraManager()
+	: _x(0.f)
+	, _y(0.f)
+	, _object(nullptr)
+	, _isFollow(false)
+	, _isLock(true)
+	, _mapWidth(WINSIZE_X)
+	, _mapHeight(WINSIZE_Y)
 {
 }
 
@@ -34,8 +36,8 @@ void CameraManager::update()
 
 		if (_isLock)
 		{
-			if (x >= CENTER_X && TileSet::TILE_CNT_X * TILE_SIZE - CENTER_X > x) _x = x - CENTER_X;
-			if (y >= CENTER_Y && TileSet::TILE_CNT_Y * TILE_SIZE - CENTER_Y > y) _y = y - CENTER_Y;
+			if (x >= CENTER_X && _mapWidth - CENTER_X > x) _x = x - CENTER_X;
+			if (y >= CENTER_Y && _mapHeight - CENTER_Y > y) _y = y - CENTER_Y;
 		}
 		else
 		{
@@ -130,8 +132,18 @@ void CameraManager::followCamera(Object* object)
 {
 	_object = object;
 	_isFollow = true;
-	//_x = _object->getX() - CENTER_X;
-	//_y = _object->getY() - CENTER_Y;
+}
+
+void CameraManager::cameraInitPos()
+{
+	_x = 0;
+	_y = 0;
+}
+
+void CameraManager::updateMapSize()
+{
+	_mapWidth = TILEMANAGER->getCurrentMapTileWidth();
+	_mapHeight = TILEMANAGER->getCurrentMapTileHeight();
 }
 
 POINT CameraManager::calRelPt(POINT pt)

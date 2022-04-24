@@ -18,7 +18,7 @@ public:
 	}
 	~EnemyData() {}
 
-	ENEMY_INFO getInfo(Code::UNIT code) { return _info[(int)code]; }
+	ENEMY_INFO getInfo(Code::UNIT code) { return _info[TO_INT(code)]; }
 
 };
 

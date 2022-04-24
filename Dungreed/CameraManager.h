@@ -13,6 +13,9 @@ private:
 	bool _isFollow;
 	bool _isLock;
 
+	float _mapWidth;
+	float _mapHeight;
+
 public:
 	CameraManager();
 	~CameraManager();
@@ -37,6 +40,8 @@ public:
 	void frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter);
 
 	void followCamera(Object* object);
+	void cameraInitPos();
+	void updateMapSize();
 	inline void lockCamera() { _isLock = true; }
 	inline void unlockCamera() { _isLock = false; }
 	inline void startFollow() { _isFollow = true; }

@@ -114,6 +114,13 @@ namespace Code
 
 		ITEM_CNT
 	};
+
+	enum class MAP
+	{
+		DUNGEON_START,
+
+		MAP_CNT
+	};
 }
 
 namespace ImageFontEnum

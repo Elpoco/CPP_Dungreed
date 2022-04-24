@@ -10,11 +10,9 @@ private:
 
 	BOOL _isShowObj;
 
+	string _curMapName;
 	int _renderWidth;
 	int _renderHeight;
-	int _tileCntX;
-	int _tileCntY;
-	int _tileTotalCnt;
 
 public:
 	TileManager();
@@ -44,6 +42,10 @@ public:
 
 	void setShowObj(BOOL isShow) { _isShowObj = isShow; }
 	BOOL getShowObj() { return _isShowObj; }
+
+	float getCurrentMapTileWidth();
+	float getCurrentMapTileHeight();
+	Code::MAP getCurrentMapCode();
 
 };
 

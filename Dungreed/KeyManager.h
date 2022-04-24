@@ -27,9 +27,12 @@ public:
 	void setKeyUp(int key, bool state) { _keyUp.set(key, state); }
 
 	void typing(char ch);
-	char* getTypingStr() { return _str; }
-	void setTyping(BOOL isTyping) { _isTyping = isTyping; }
+
 	BOOL isTyping() { return _isTyping; }
+	void setTyping(BOOL isTyping) { _isTyping = isTyping; }
+
+	char* getTypingStr() { return _str; }
+	void deleteStr() { fill_n(_str, strlen(_str), 0); }
 
 	KeyManager() {}
 	~KeyManager() {}

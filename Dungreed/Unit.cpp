@@ -10,6 +10,7 @@ Unit::Unit()
 	, _isStopAnimation(false)
 	, _isLeft(FALSE)
 	, _isJump(FALSE)
+	, _isDownJump(FALSE)
 	, _isFall(TRUE)
 	, _isFlying(FALSE)
 	, _isHit(FALSE)
@@ -108,6 +109,7 @@ void Unit::move()
 	{
 		_y += _gravity;
 		_gravity += UnitSet::GRAVITY;
+		if (_gravity > 4.5f) _isDownJump = FALSE;
 	}
 	
 	if (_isJump) _y -= _jumpSpeed;
@@ -137,19 +139,20 @@ void Unit::checkCollision()
 {
 	if (_isCollision[ColliderEnum::DIRECTION::BOTTOM])
 	{
-		_isFall = false;
-		_isJump = false;
+		_isFall = FALSE;
+		_isJump = FALSE;
+		_isDownJump = FALSE;
 		_gravity = 0.0f;
 	}
 	else if (_isCollision[ColliderEnum::DIRECTION::TOP])
 	{
-		_isJump = false;
-		_isFall = true;
+		_isJump = FALSE;
+		_isFall = TRUE;
 		_gravity = 0.0f;
 	}
 	else
 	{
-		_isFall = true;
+		_isFall = TRUE;
 	}
 }
 
@@ -205,8 +208,17 @@ void Unit::updateRect()
 
 void Unit::jump()
 {
-	_isJump = true;
-	_isFall = true;
+	_isJump = TRUE;
+	_isDownJump = FALSE;
+	_isFall = TRUE;
 	_gravity = 0.0f;
 	_y -= _jumpSpeed;
+}
+
+void Unit::downJump()
+{
+	if (_isDownJump) return;
+	_isDownJump = TRUE;
+	_isFall = TRUE;
+	_gravity = 0.0f;
 }

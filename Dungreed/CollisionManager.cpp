@@ -231,6 +231,8 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 				case MAP_OBJ::DOWN_R:	case MAP_OBJ::DOWN_L:
 					// 내려갈수있는 타일은 대쉬로 통과 가능
 					if (unit->isDash()) break;
+					// 다운점프
+					if (unit->isDownJumping()) break;
 				case MAP_OBJ::BLOCK_R:	case MAP_OBJ::BLOCK_L:
 					// 점프중일땐 대각선타일 충돌 넘어감
 					if (unit->isJumping()) break;
@@ -271,6 +273,7 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 
 				case MAP_OBJ::DOWN:
 					if (unit->isJumping()) break;
+					if (unit->isDownJumping()) break;
 					if (unit->isDash()) break;
 
 					if (tile.y > rcObj.bottom)

@@ -25,6 +25,7 @@ protected:
 
 	BOOL _isLeft;
 	BOOL _isJump;
+	BOOL _isDownJump;
 	BOOL _isFall;
 	BOOL _isFlying;
 	BOOL _isDash;
@@ -63,6 +64,7 @@ public:
 	void updateRect();
 
 	void jump();
+	void downJump();
 
 	virtual void hitAttack(int dmg, int dir) {}
 	virtual int getDmg() override { return 1; }
@@ -75,6 +77,7 @@ public:
 	inline RECT getAtkRect() { return _rcAttack; }
 	inline BOOL isJump() { return _isJump; }
 	inline BOOL isJumping() { return _isJump && _gravity < _jumpSpeed; }
+	inline BOOL isDownJumping() { return _isDownJump; }
 	inline BOOL isDash() { return _isDash; }
 
 };

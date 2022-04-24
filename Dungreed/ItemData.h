@@ -24,7 +24,7 @@ public:
 	}
 	~ItemData() {}
 
-	ITEM_INFO getInfo(Code::ITEM code) { return _info[(int)code]; }
+	ITEM_INFO getInfo(Code::ITEM code) { return _info[TO_INT(code)]; }
 
 };
 

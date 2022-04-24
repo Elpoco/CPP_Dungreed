@@ -28,7 +28,8 @@ private:
 	BOOL _isEnter;
 
 	// Dungeon
-	tagSpawnInfo _spawnInfo[30];
+	Code::MAP _curDungeon;
+	MAP_INFO _mapInfo;
 	int _spawnCnt;
 
 public:
@@ -44,7 +45,7 @@ public:
 	void renderTown(HDC hdc);
 
 	void loadDungeon();
-	void updateDungeon();
+	void settingDungeon();
 
 };
 

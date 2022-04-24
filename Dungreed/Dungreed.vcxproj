@@ -251,6 +251,7 @@
     </ClInclude>
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="LittleGhost.h" />
+    <ClInclude Include="MapData.h" />
     <ClInclude Include="MessageBoxManager.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Niflheim.h" />

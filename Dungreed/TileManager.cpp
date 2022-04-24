@@ -19,10 +19,6 @@ HRESULT TileManager::init()
 {
 	_imgObject = FindImage(ImageName::MapTool::mapObject);
 
-	_tileCntX = TILE_CNT_X;
-	_tileCntY = TILE_CNT_Y;
-	_tileTotalCnt = _tileCntX * _tileCntY;
-
 	initTile();
 
 	_imgTile = IMAGEMANAGER->findImage(ImageName::MapTool::mapTile);
@@ -46,13 +42,13 @@ void TileManager::render(HDC hdc)
 
 	for (int y = cY; y <= cY + (_renderHeight / TILE_SIZE); y++)
 	{
-		if (y >= _tileCntY || y < 0) continue;
+		if (y >= TILE_CNT_Y || y < 0) continue;
 
 		for (int x = cX; x <= cX + (_renderWidth / TILE_SIZE); x++)
 		{
-			if (x >= _tileCntX || x < 0) continue;
+			if (x >= TILE_CNT_X || x < 0) continue;
 
-			this->tileRender(hdc, _tiles[y * _tileCntX + x]);
+			this->tileRender(hdc, _tiles[y * TILE_CNT_X + x]);
 		}
 	}
 }
@@ -61,13 +57,13 @@ void TileManager::initTile()
 {
 	SAFE_DELETE_ARRAY(_tiles);
 
-	_tiles = new TILE[_tileTotalCnt];
+	_tiles = new TILE[TOTAL_TILE_CNT];
 
-	for (float y = 0; y < _tileCntY; y++)
+	for (float y = 0; y < TILE_CNT_Y; y++)
 	{
-		for (float x = 0; x < _tileCntX; x++)
+		for (float x = 0; x < TILE_CNT_X; x++)
 		{
-			int idx = y * _tileCntX + x;
+			int idx = y * TILE_CNT_X + x;
 			_tiles[idx].x = x * TILE_SIZE + TILE_SIZE * 0.5f;
 			_tiles[idx].y = y * TILE_SIZE + TILE_SIZE * 0.5f;
 			_tiles[idx].idx = PointMake(x, y);
@@ -95,7 +91,7 @@ void TileManager::setRenderSize(int width, int height)
 
 void TileManager::setTile(int idx, int frameX, int frameY, int type)
 {
-	if (idx > _tileCntX * _tileCntY - 1 || idx < 0) return;
+	if (idx > TILE_CNT_X * TILE_CNT_Y - 1 || idx < 0) return;
 
 	_tiles[idx].tileFrameX = frameX;
 	_tiles[idx].tileFrameY = frameY;
@@ -132,7 +128,7 @@ int TileManager::getTileIndex(POINT pt)
 	int y = (pt.y) / TILE_SIZE;
 
 	int idx = TILE_CNT_X * y + x;
-	int maxTile = _tileCntX * _tileCntY;
+	int maxTile = TILE_CNT_X * TILE_CNT_Y;
 
 	if (idx >= maxTile || idx < 0) idx = -1;
 
@@ -141,11 +137,65 @@ int TileManager::getTileIndex(POINT pt)
 
 int TileManager::saveMap(string str)
 {
-	return FILEMANAGER->saveFile(PATH_DATA, str + ".dat", _tiles, _tileTotalCnt * sizeof(TILE));
+	return FILEMANAGER->saveFile(PATH_DATA, str + ".dat", _tiles, TOTAL_TILE_CNT * sizeof(TILE));
 }
 
 int TileManager::loadMap(string str)
 {
 	initTile();
-	return FILEMANAGER->loadFile(PATH_DATA, str + ".dat", _tiles, _tileTotalCnt * sizeof(TILE));
+	int res = FILEMANAGER->loadFile(PATH_DATA, str + ".dat", _tiles, TOTAL_TILE_CNT * sizeof(TILE));
+	CAMERAMANAGER->updateMapSize();
+	_curMapName = str;
+
+	return res;
+}
+
+float TileManager::getCurrentMapTileWidth()
+{
+	int tileCnt = 0;
+	for (int y = 0; y < TILE_CNT_Y; y++)
+	{
+		int tempCnt = 0;
+		for (int x = 0; x < TILE_CNT_X; x++)
+		{
+			if (_tiles[TILE_CNT_X * y + x].tileFrameX != -1)
+			{
+				tempCnt = x;
+			}
+		}
+		if (tempCnt > tileCnt) tileCnt = tempCnt;
+		if (tileCnt == TILE_CNT_X) break;
+	}
+
+	return tileCnt * TILE_SIZE;
+}
+
+float TileManager::getCurrentMapTileHeight()
+{
+	int tileCnt = 0;
+	for (int x = 0; x < TILE_CNT_X; x++)
+	{
+		int tempCnt = 0;
+		for (int y = 0; y < TILE_CNT_Y; y++)
+		{
+			if (_tiles[TILE_CNT_X * y + x].tileFrameX != -1)
+			{
+				tempCnt = y;
+			}
+		}
+		if (tempCnt > tileCnt) tileCnt = tempCnt;
+		if (tileCnt == TILE_CNT_Y) break;
+	}
+
+	return tileCnt * TILE_SIZE;
+}
+
+Code::MAP TileManager::getCurrentMapCode()
+{
+	Code::MAP map;
+	if (_curMapName == FileName::DungeonStart)
+	{
+		map = Code::MAP::DUNGEON_START;
+	}
+	return map;
 }

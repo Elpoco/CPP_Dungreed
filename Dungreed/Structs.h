@@ -80,7 +80,8 @@ typedef struct tagItemInfo
 	int etc;
 
 	tagItemInfo() {}
-	tagItemInfo(Code::ITEM_TYPE type, Code::ITEM code, string name, int minDmg, int maxDmg = 0, float atkSpeed = 1.0f, int def = 0, int etc = 0)
+	tagItemInfo(Code::ITEM_TYPE type, Code::ITEM code, string name, 
+		int minDmg, int maxDmg = 0, float atkSpeed = 1.0f, int def = 0, int etc = 0)
 	{
 		this->type = type;
 		this->code = code;
@@ -92,3 +93,17 @@ typedef struct tagItemInfo
 		this->etc = etc;
 	}
 } ITEM_INFO;
+
+typedef struct tagSpawnInfo
+{
+	RECT rcScan;
+	POINT ptSpawn;
+	Code::UNIT unit;
+} SPAWN_INFO;
+
+typedef struct tagMapInfo
+{
+	SPAWN_INFO arrSpawnInfo[30];
+
+	tagMapInfo() {}
+} MAP_INFO;
