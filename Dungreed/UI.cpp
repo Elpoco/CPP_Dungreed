@@ -44,6 +44,7 @@ UI::~UI()
 HRESULT UI::init()
 {
 	_sceneName = SCENEMANAGER->getCurrentSceneName();
+
 	return S_OK;
 }
 

@@ -39,5 +39,6 @@ void Button::render(HDC hdc)
 
 void Button::setText(char* text)
 {
+	// setText는 위치를 정해주고 해야함
 	OBJECTMANAGER->addImageFont(_x, _y, text);
 }

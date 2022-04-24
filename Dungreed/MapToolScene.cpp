@@ -47,24 +47,34 @@ HRESULT MapToolScene::init()
 	_rcTilePickWindow = RectMake(TOOL_START_X, TOOL_TILE_SIZE, TOOL_SIZE_X, TOOL_TILE_SIZE + TOOL_TILE_SIZE*15);
 	_rcToolTileHover = RectMake(_rcObjectWindow.left, _rcObjectWindow.top, _rcTilePickWindow.right, _rcTilePickWindow.bottom);
 
-	Button* btnSave = new Button(ImageName::MapTool::button);
-	btnSave->setCallback(onClickSave);
-	btnSave->setText(String::btnSave);
-	btnSave->setBottom(WINSIZE_Y);
-	OBJECTMANAGER->addButton(btnSave);
+	Button* btnQuit = new Button(ImageName::MapTool::button);
+	btnQuit->setCallback(onClickQuit);
+	btnQuit->setBottom(WINSIZE_Y);
+	btnQuit->setRight(WINSIZE_X);
+	btnQuit->setText(String::btnQuit);
+	OBJECTMANAGER->addButton(btnQuit);
 
 	Button* btnLoad = new Button(ImageName::MapTool::button);
 	btnLoad->setCallback(onClickLoad);
-	btnLoad->setText(String::btnLoad);
 	btnLoad->setBottom(WINSIZE_Y);
+	btnLoad->setRight(btnQuit->getRect().left);
+	btnLoad->setText(String::btnLoad);
 	OBJECTMANAGER->addButton(btnLoad);
 
-	Button* btnQuit = new Button(ImageName::MapTool::button);
-	btnQuit->setCallback(onClickQuit);
-	btnQuit->setText(String::btnQuit);
-	btnLoad->setBottom(WINSIZE_Y);
+	Button* btnSave = new Button(ImageName::MapTool::button);
+	btnSave->setCallback(onClickSave);
+	btnSave->setBottom(WINSIZE_Y);
+	btnSave->setRight(btnLoad->getRect().left);
+	btnSave->setText(String::btnSave);
+	OBJECTMANAGER->addButton(btnSave);
 
-	OBJECTMANAGER->addButton(btnQuit);
+	_imgTextBox = FindImage(ImageName::MapTool::box);
+	_rcTextBox = RectMake(
+		btnSave->getRect().left, 
+		btnSave->getRect().top - 50, 
+		_imgTextBox->getWidth(), 
+		_imgTextBox->getFrameHeight()
+	);
 
 	SOUNDMANAGER->play(SoundName::niflheimBG, _sound);
 
@@ -99,8 +109,11 @@ void MapToolScene::update()
 	{
 		_startCursor = _ptMouse;
 
+		if (_isTyping) endTyping();
+
 		if (MouseInRect(_rcObjectWindow)) selectObjectTile();
 		else if (MouseInRect(_rcTilePickWindow)) selectTile();
+		else if (MouseInRect(_rcTextBox)) typing();
 	}
 
 	if (IsStayKeyDown(KEY::CLICK_L))
@@ -124,10 +137,18 @@ void MapToolScene::render()
 	PrintRectangle(getMemDC(), _rcToolWindow);
 
 	_imgTool->frameRender(getMemDC(), _rcTilePickWindow.left, _rcTilePickWindow.top, _tilePickX, _tilePickY);
-
-	this->drawSelectTile(getMemDC());
-
 	_imgObject->render(getMemDC(), _rcObjectWindow.left, _rcObjectWindow.top);
+	_imgTextBox->frameRender(getMemDC(), _rcTextBox.left, _rcTextBox.top, 0, _isTyping);
+	FONTMANAGER->drawString(
+		getMemDC(),
+		_rcTextBox.left + 10,
+		_rcTextBox.top + 7,
+		30, 0,
+		KEYMANAGER->getTypingStr(),
+		ColorSet::WHITE
+	);
+
+	drawSelectTile(getMemDC());
 }
 
 void MapToolScene::hoverTile()
@@ -224,9 +245,24 @@ void MapToolScene::drawSelectTile(HDC hdc)
 	SetTextColor(getMemDC(), ColorSet::BLACK);
 }
 
+void MapToolScene::typing()
+{
+	_isTyping = TRUE;
+	KEYMANAGER->setTyping(TRUE);
+}
+
+void MapToolScene::endTyping()
+{
+	_isTyping = FALSE;
+	KEYMANAGER->setTyping(FALSE);
+}
+
 void onClickSave()
 {
-	if (TILEMANAGER->saveMap(tempSaveFile))
+	char* fileName = KEYMANAGER->getTypingStr();
+	if (strlen(fileName) < 1) fileName = tempSaveFile;
+	
+	if (TILEMANAGER->saveMap(fileName))
 	{
 		MSGBOXMANAGER->showMessage(String::msgSaveSuccess);
 	}
@@ -238,7 +274,10 @@ void onClickSave()
 
 void onClickLoad()
 {
-	if (TILEMANAGER->loadMap(tempSaveFile))
+	char* fileName = KEYMANAGER->getTypingStr();
+	if (strlen(fileName) < 1) fileName = tempSaveFile;
+
+	if (TILEMANAGER->loadMap(fileName))
 	{
 		MSGBOXMANAGER->showMessage(String::msgLoadSuccess);
 	}

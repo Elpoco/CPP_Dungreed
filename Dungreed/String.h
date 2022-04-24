@@ -131,6 +131,7 @@ namespace ImageName
 		constexpr char* mapToolObject = "MAPTOOL ToolObject";
 		constexpr char* mapToolTile = "MAPTOOL MapToolTile";
 		constexpr char* button = "MAPTOOL button";
+		constexpr char* box = "MAPTOOL box";
 	}
 	
 	namespace Item

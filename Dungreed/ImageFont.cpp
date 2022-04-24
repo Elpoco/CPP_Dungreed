@@ -8,6 +8,7 @@ ImageFont::ImageFont(float x, float y, int num, FONT_TYPE type)
 	, _type(type)
 	, _alpha(255)
 	, _str("")
+	, _size(ImageFontEnum::FONT_SIZE::MIDDLE)
 {
 	_x = x;
 	_y = y;
@@ -51,6 +52,7 @@ void ImageFont::release()
 
 void ImageFont::update()
 {
+	UI::update();
 }
 
 void ImageFont::render(HDC hdc)
@@ -161,8 +163,10 @@ void ImageFont::settingImage(FONT_TYPE type)
 	}
 	else
 	{
-		if (_size == FONT_SIZE::SMALL) _img = FindImage(ImageName::UI::Font::Normal_s);
-		else if (_size == FONT_SIZE::MIDDLE) _img = FindImage(ImageName::UI::Font::Normal);
+		if (_size == FONT_SIZE::SMALL) 
+			_img = FindImage(ImageName::UI::Font::Normal_s);
+		else if (_size == FONT_SIZE::MIDDLE)
+			_img = FindImage(ImageName::UI::Font::Normal);
 	}
 
 	_imgWidth = _img->getFrameWidth();

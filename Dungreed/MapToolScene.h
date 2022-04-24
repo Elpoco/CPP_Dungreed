@@ -28,7 +28,6 @@ private:
 
 	RECT _rcHoverTile;      // 마우스 올릴때 표시되는 파란렉트
 
-
 	POINT _curTile;			// 현재 타일
 	POINT _selectedTileCnt; // 선택된 타일 갯수
 	POINT _startCursor;     // 여러타일 드래그할때 시작 포인트
@@ -40,9 +39,9 @@ private:
 	int _tilePickY;
 
 	// 맵 저장
-	RECT _rcMapName;
+	ImageBase* _imgTextBox;
+	RECT _rcTextBox;
 	BOOL _isTyping;
-	char* _mapName;
 
 public:
 	MapToolScene();
@@ -66,5 +65,8 @@ public:
 	void calSelectTile();
 	void settingSelectTileRect();
 	void drawSelectTile(HDC hdc);
+
+	void typing();
+	void endTyping();
 };
 
