@@ -4,7 +4,7 @@
 DropItem::DropItem(Code::ITEM code, float x, float y)
 	: _itemCode(code)
 	, _isStop(false)
-	, _dropSpeed(0.0f)
+	, _dropSpeed(-2.5f)
 {
 	_x = x;
 	_y = y;
@@ -59,20 +59,20 @@ void DropItem::collisionObject()
 	Object::deleteObject();
 }
 
-void DropItem::pushObject(DIRECTION dir, float distance)
+void DropItem::pushObject(DIR dir, float distance)
 {
 	switch (dir)
 	{
-	case ColliderEnum::LEFT:
+	case Direction::LEFT:
 		_x = distance + _frameInfo.width * 0.5f;
 		break;
-	case ColliderEnum::TOP:
+	case Direction::TOP:
 		_y = distance + _frameInfo.height * 0.5f;
 		break;
-	case ColliderEnum::RIGHT:
+	case Direction::RIGHT:
 		_x = distance - _frameInfo.width * 0.5f;
 		break;
-	case ColliderEnum::BOTTOM:
+	case Direction::BOTTOM:
 		_y = distance - _frameInfo.height * 0.5f;
 		break;
 	default:

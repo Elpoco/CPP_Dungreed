@@ -47,7 +47,7 @@ void GameScene::update()
 		updateTown();
 		break;
 	case LocationEnum::LOCATION::DUNGEON:
-		updateDungeon();
+
 		break;
 	default:
 		break;
@@ -64,8 +64,8 @@ void GameScene::render()
 	default:
 		break;
 	}
-	
 	TILEMANAGER->render(getMemDC());
+
 	if (_isEnter) CAMERAMANAGER->frameRender(getMemDC(), _imgEnter, _rcEnter.left, _rcEnter.top, _enterFrame.x, 0);
 }
 
@@ -150,4 +150,12 @@ void GameScene::settingDungeon()
 		_mapInfo.arrSpawnInfo[0].ptSpawn.x,
 		_mapInfo.arrSpawnInfo[0].ptSpawn.y
 	);
+
+	for (int i = 0; i < DIR::DIR_CNT; i++)
+	{
+		if (_mapInfo.door[i].isOn)
+		{
+			OBJECTMANAGER->addDoor((DIR)i, _mapInfo.door[i].tileX, _mapInfo.door[i].tileY);
+		}
+	}
 }

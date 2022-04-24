@@ -184,7 +184,7 @@ void Player::moveLeft()
 {
 	_state = PLAYER_MOTION::RUN;
 
-	if (!_isCollision[ColliderEnum::DIRECTION::LEFT]) _x -= _moveSpeed;
+	if (!_isCollision[Direction::DIR::LEFT]) _x -= _moveSpeed;
 
 }
 
@@ -192,7 +192,7 @@ void Player::moveRight()
 {
 	_state = PLAYER_MOTION::RUN;
 
-	if (!_isCollision[ColliderEnum::DIRECTION::RIGHT]) _x += _moveSpeed;
+	if (!_isCollision[Direction::DIR::RIGHT]) _x += _moveSpeed;
 	//if(_frameInfo.cnt == 0)
 	//OBJECTMANAGER->addEffect(ImageName::Player::runFX, _rc.left, _rc.bottom);
 }

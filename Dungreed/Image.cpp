@@ -411,7 +411,7 @@ void Image::alphaRender(HDC hdc, BYTE alpha)
 	}
 }
 
-void Image::alphaRender(HDC hdc, int destX, int destY, BYTE alpha)
+void Image::alphaRender(HDC hdc, float destX, float destY, BYTE alpha)
 {
 	if (!_blendImage) initForAlphaBlend();
 

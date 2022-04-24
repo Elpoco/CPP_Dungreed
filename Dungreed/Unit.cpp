@@ -23,7 +23,7 @@ Unit::Unit()
 	, _imgAngle(0)
 	, _rotateCenter({ 0,0 })
 {
-	for (int i = 0; i < ColliderEnum::DIRECTION::DIR_CNT; i++)
+	for (int i = 0; i < Direction::DIR::DIR_CNT; i++)
 		_isCollision[i] = false;
 }
 
@@ -137,14 +137,14 @@ void Unit::animation()
 
 void Unit::checkCollision()
 {
-	if (_isCollision[ColliderEnum::DIRECTION::BOTTOM])
+	if (_isCollision[Direction::DIR::BOTTOM])
 	{
 		_isFall = FALSE;
 		_isJump = FALSE;
 		_isDownJump = FALSE;
 		_gravity = 0.0f;
 	}
-	else if (_isCollision[ColliderEnum::DIRECTION::TOP])
+	else if (_isCollision[Direction::DIR::TOP])
 	{
 		_isJump = FALSE;
 		_isFall = TRUE;
@@ -156,20 +156,20 @@ void Unit::checkCollision()
 	}
 }
 
-void Unit::pushObject(ColliderEnum::DIRECTION dir, float x, float y)
+void Unit::pushObject(Direction::DIR dir, float x, float y)
 {
 	switch (dir)
 	{
-	case ColliderEnum::LEFT:
+	case Direction::LEFT:
 		_x = x + _imgWidth * 0.5f - _rcResizeW;
 		break;
-	case ColliderEnum::RIGHT:
+	case Direction::RIGHT:
 		_x = x - _imgWidth * 0.5f + _rcResizeW;
 		break;
-	case ColliderEnum::TOP:
+	case Direction::TOP:
 		_y = y + _imgHeight * 0.5f;
 		break;
-	case ColliderEnum::BOTTOM:
+	case Direction::BOTTOM:
 		_y = y - _imgHeight * 0.5f;
 		break;
 	default:

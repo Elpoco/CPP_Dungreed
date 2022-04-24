@@ -43,6 +43,8 @@ public:
 	void setShowObj(BOOL isShow) { _isShowObj = isShow; }
 	BOOL getShowObj() { return _isShowObj; }
 
+	int getCurrentMapTileCntX();
+	int getCurrentMapTileCntY();
 	float getCurrentMapTileWidth();
 	float getCurrentMapTileHeight();
 	Code::MAP getCurrentMapCode();

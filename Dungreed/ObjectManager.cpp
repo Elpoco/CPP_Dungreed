@@ -17,6 +17,8 @@
 #include "Belial.h"
 #include "Niflheim.h"
 
+#include "Door.h"
+
 using namespace ObjectEnum;
 
 ObjectManager::ObjectManager()
@@ -201,4 +203,9 @@ void ObjectManager::addItem(Object * obj)
 void ObjectManager::addDropItem(Object* obj)
 {
 	addObject(OBJ_TYPE::ITEM_DROP, obj);
+}
+
+void ObjectManager::addDoor(Direction::DIR dir, int x, int y, BOOL isOpen)
+{
+	addObject(OBJ_TYPE::NPC, new Door(dir, x, y, isOpen));
 }

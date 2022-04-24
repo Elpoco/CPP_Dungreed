@@ -3,7 +3,7 @@
 
 class Object;
 
-using namespace ColliderEnum;
+using namespace Direction;
 
 class CollisionManager : public SingletonBase<CollisionManager>
 {

@@ -20,7 +20,7 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual void collisionObject() override;
-	virtual void pushObject(DIRECTION dir, float distance) override;
+	virtual void pushObject(DIR dir, float distance) override;
 	virtual void stopObject() override { _isStop = true; }
 
 	void move();

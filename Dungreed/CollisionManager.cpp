@@ -179,10 +179,11 @@ void CollisionManager::collisionTile()
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getRect().bottom);
-				if (tile.type == MAP_OBJ::BLOCK)
+				if (tile.type == MAP_OBJ::BLOCK ||
+					tile.type == MAP_OBJ::DOWN)
 				{
 					obj->stopObject();
-					obj->pushObject(DIRECTION::BOTTOM, tile.rc.top);
+					obj->pushObject(DIR::BOTTOM, tile.rc.top);
 				}
 			}
 			break;
@@ -199,12 +200,12 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 		Unit* unit = dynamic_cast<Unit*>(obj);
 		RECT rcObj = unit->getRect();
 
-		if(rcObj.left <= 0) unit->pushObject(DIRECTION::LEFT, 0, 0);
-		if (rcObj.right >= TileSet::TOTAL_TILE_X) unit->pushObject(DIRECTION::RIGHT, TileSet::TOTAL_TILE_X, 0);
+		if(rcObj.left <= 0) unit->pushObject(DIR::LEFT, 0, 0);
+		if (rcObj.right >= TileSet::TOTAL_TILE_X) unit->pushObject(DIR::RIGHT, TileSet::TOTAL_TILE_X, 0);
 
-		for (int i = 0; i < DIRECTION::DIR_CNT; i++)
+		for (int i = 0; i < DIR::DIR_CNT; i++)
 		{
-			unit->setCollision((DIRECTION)i, false);
+			unit->setCollision((DIR)i, false);
 		}
 
 		int start = TILEMANAGER->getTileIndex(rcObj.left, rcObj.top);
@@ -244,30 +245,30 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 
 					if (moveY >= TILE_SIZE || moveY <= 0) continue;
 
-					unit->setCollision(DIRECTION::BOTTOM, true);
-					unit->pushObject(DIRECTION::NONE, 0, tile.rc.bottom - moveY + 2);
+					unit->setCollision(DIR::BOTTOM, true);
+					unit->pushObject(DIR::NONE, 0, tile.rc.bottom - moveY + 2);
 					continue;
 
 				case MAP_OBJ::BLOCK:
 					if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
 					{ // ¿ÞÂÊ
-						unit->setCollision(DIRECTION::LEFT, true);
-						unit->pushObject(DIRECTION::LEFT, tile.rc.right, 0);
+						unit->setCollision(DIR::LEFT, true);
+						unit->pushObject(DIR::LEFT, tile.rc.right, 0);
 					}
 					else if (tile.x > unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
 					{ // ¿À¸¥ÂÊ
-						unit->setCollision(DIRECTION::RIGHT, true);
-						unit->pushObject(DIRECTION::RIGHT, tile.rc.left, 0);
+						unit->setCollision(DIR::RIGHT, true);
+						unit->pushObject(DIR::RIGHT, tile.rc.left, 0);
 					}
 					else if (tile.y > rcObj.bottom)
 					{ // ¹Ù´Ú
-						unit->setCollision(DIRECTION::BOTTOM, true);
-						unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
+						unit->setCollision(DIR::BOTTOM, true);
+						unit->pushObject(DIR::BOTTOM, 0, tile.rc.top);
 					}
 					else
 					{ // ÃµÀå
-						unit->setCollision(DIRECTION::TOP, true);
-						unit->pushObject(DIRECTION::TOP, 0, tile.rc.bottom);
+						unit->setCollision(DIR::TOP, true);
+						unit->pushObject(DIR::TOP, 0, tile.rc.bottom);
 					}
 					break;
 
@@ -278,8 +279,8 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 
 					if (tile.y > rcObj.bottom)
 					{ // ¹Ù´Ú
-						unit->setCollision(DIRECTION::BOTTOM, true);
-						unit->pushObject(DIRECTION::BOTTOM, 0, tile.rc.top);
+						unit->setCollision(DIR::BOTTOM, true);
+						unit->pushObject(DIR::BOTTOM, 0, tile.rc.top);
 					}
 					break;
 				default:

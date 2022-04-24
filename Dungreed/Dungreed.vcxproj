@@ -155,6 +155,7 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="DataBaseManager.cpp" />
+    <ClCompile Include="Door.cpp" />
     <ClCompile Include="DropItem.cpp" />
     <ClCompile Include="DynamicFont.cpp" />
     <ClCompile Include="Effect.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="DataBaseManager.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="Door.h" />
     <ClInclude Include="DropItem.h" />
     <ClInclude Include="DynamicFont.h" />
     <ClInclude Include="Effect.h" />

@@ -142,6 +142,9 @@
     <Filter Include="MainGame\02. Object\05. UI\HpBar">
       <UniqueIdentifier>{30c21a14-4b8d-4223-b544-16664221318d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\07. Door">
+      <UniqueIdentifier>{2505c112-187e-48ce-98dc-c30e242336b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -323,6 +326,9 @@
     </ClCompile>
     <ClCompile Include="PlayerHpBar.cpp">
       <Filter>MainGame\02. Object\05. UI\HpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>MainGame\02. Object\07. Door</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -538,6 +544,9 @@
     </ClInclude>
     <ClInclude Include="MapData.h">
       <Filter>MainGame\03. DB</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>MainGame\02. Object\07. Door</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

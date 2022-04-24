@@ -14,7 +14,7 @@ protected:
 	RECT		_rcAttack;
 
 	// collision
-	bool _isCollision[ColliderEnum::DIRECTION::DIR_CNT];
+	bool _isCollision[Direction::DIR::DIR_CNT];
 
 	// Image
 	vector<ImageBase*> _vImages;
@@ -57,9 +57,9 @@ public:
 
 	void checkCollision();
 	virtual void pushObject(float x, float y) override {}
-	void pushObject(ColliderEnum::DIRECTION dir, float x, float y);
-	bool getCollision(ColliderEnum::DIRECTION dir) { return _isCollision[dir]; }
-	void setCollision(ColliderEnum::DIRECTION dir, bool collision) { _isCollision[dir] = collision; }
+	void pushObject(Direction::DIR dir, float x, float y);
+	bool getCollision(Direction::DIR dir) { return _isCollision[dir]; }
+	void setCollision(Direction::DIR dir, bool collision) { _isCollision[dir] = collision; }
 
 	void updateRect();
 

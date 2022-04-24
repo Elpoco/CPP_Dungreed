@@ -69,5 +69,9 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::Gun, PATH_SOUND"Gun.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Reload2, PATH_SOUND"Reload2.wav", false, false);
 
+	// ===========
+	// # Dungeon #
+	// ===========
+	SOUNDMANAGER->addSound(SoundName::Dungeon::DoorMove, PATH_SOUND"Door_move.wav", false, false);
 
 }

@@ -150,7 +150,7 @@ int TileManager::loadMap(string str)
 	return res;
 }
 
-float TileManager::getCurrentMapTileWidth()
+int TileManager::getCurrentMapTileCntX()
 {
 	int tileCnt = 0;
 	for (int y = 0; y < TILE_CNT_Y; y++)
@@ -167,10 +167,10 @@ float TileManager::getCurrentMapTileWidth()
 		if (tileCnt == TILE_CNT_X) break;
 	}
 
-	return tileCnt * TILE_SIZE;
+	return tileCnt;
 }
 
-float TileManager::getCurrentMapTileHeight()
+int TileManager::getCurrentMapTileCntY()
 {
 	int tileCnt = 0;
 	for (int x = 0; x < TILE_CNT_X; x++)
@@ -187,7 +187,17 @@ float TileManager::getCurrentMapTileHeight()
 		if (tileCnt == TILE_CNT_Y) break;
 	}
 
-	return tileCnt * TILE_SIZE;
+	return tileCnt;
+}
+
+float TileManager::getCurrentMapTileWidth()
+{
+	return getCurrentMapTileCntX() * TILE_SIZE;
+}
+
+float TileManager::getCurrentMapTileHeight()
+{
+	return getCurrentMapTileCntY() * TILE_SIZE;
 }
 
 Code::MAP TileManager::getCurrentMapCode()

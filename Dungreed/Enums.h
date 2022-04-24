@@ -42,9 +42,9 @@ namespace MapToolEnum
 	};
 }
 
-namespace ColliderEnum
+namespace Direction
 {
-	enum DIRECTION
+	enum DIR
 	{
 		LEFT,
 		TOP,

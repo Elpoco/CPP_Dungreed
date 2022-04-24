@@ -33,6 +33,7 @@ typedef struct tagFrameInfo
 	int maxFrameX;
 	int maxFrameY;
 	int startFrameX;
+	int endFrameX;
 	int width;
 	int height;
 
@@ -46,6 +47,7 @@ typedef struct tagFrameInfo
 		maxFrameX = 0;
 		maxFrameY = 0;
 		startFrameX = 0;
+		endFrameX = 0;
 		width = 0;
 		height = 0;
 	}
@@ -101,8 +103,22 @@ typedef struct tagSpawnInfo
 	Code::UNIT unit;
 } SPAWN_INFO;
 
+typedef struct tagDoorInfo
+{
+	Direction::DIR dir;
+	BOOL isOn;
+	int tileX;
+	int tileY;
+
+	tagDoorInfo()
+	{
+		isOn = FALSE;
+	}
+} DOOR_INFO;
+
 typedef struct tagMapInfo
 {
+	DOOR_INFO door[Direction::DIR::DIR_CNT];
 	SPAWN_INFO arrSpawnInfo[30];
 
 	tagMapInfo() {}

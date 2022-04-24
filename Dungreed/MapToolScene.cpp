@@ -86,6 +86,7 @@ void MapToolScene::release()
 {
 	SAFE_DELETE(_camera);
 	KEYMANAGER->deleteStr();
+	SOUNDMANAGER->stop(SoundName::niflheimBG);
 }
 
 void MapToolScene::update()

@@ -164,6 +164,19 @@ namespace ImageName
 	{
 		constexpr char* box = "OBJECT_box";
 	}
+
+	namespace Dungeon
+	{
+		constexpr char* sqaure1 = "DUNGEON sqaure1";
+		constexpr char* sqaure2 = "DUNGEON sqaure2";
+		constexpr char* sqaure3 = "DUNGEON sqaure3";
+		constexpr char* sqaure4 = "DUNGEON sqaure4";
+		constexpr char* sqaure5 = "DUNGEON sqaure5";
+		constexpr char* doorUp = "DUNGEON doorUp";
+		constexpr char* Door = "DUNGEON Door";
+		constexpr char* DoorLeft = "DUNGEON DoorLeft";
+		constexpr char* DoorRight = "DUNGEON DoorRight";
+	}
 }
 
 namespace SoundName
@@ -208,6 +221,11 @@ namespace SoundName
 			constexpr char* swing2 = "SOUND swing0";
 			constexpr char* Gun = "SOUND Gun";
 		}
+	}
+
+	namespace Dungeon
+	{
+		constexpr char* DoorMove = "SOUND DUNGEON DoorMove";
 	}
 }
 

@@ -33,6 +33,7 @@ public:
 	int checkObjectInCamera(float x, float y, int width, int height);
 
 	void render(HDC hdc, ImageBase* img, float x, float y);
+	void render(HDC hdc, ImageBase* img, float x, float y, BYTE alpha);
 	void render(HDC hdc, ImageBase* img, float x, float y, int angle, POINT rotateCenter);
 	void render(HDC hdc, ImageBase* img, float x, float y, int sourX, int sourY, int sourWidth, int sourHeight);
 	void frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY);

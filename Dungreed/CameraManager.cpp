@@ -87,6 +87,13 @@ void CameraManager::render(HDC hdc, ImageBase* img, float x, float y)
 	img->render(hdc, x - _x, y - _y);
 }
 
+void CameraManager::render(HDC hdc, ImageBase* img, float x, float y, BYTE alpha)
+{
+	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;
+
+	img->alphaRender(hdc, x - _x, y - _y, alpha);
+}
+
 void CameraManager::render(HDC hdc, ImageBase* img, float x, float y, int angle, POINT rotateCenter)
 {
 	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;

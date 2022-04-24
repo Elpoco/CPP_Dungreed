@@ -6,6 +6,7 @@ public:
 	virtual void render(HDC hdc, float x, float y) {};
 	virtual void render(HDC hdc, float x, float y, int angle, POINT rotate) {};
 	virtual void render(HDC hdc, float x, float y, int sourX, int sourY, int sourWidth, int sourHeight) {};
+	virtual void alphaRender(HDC hdc, float x, float y, BYTE alpha) {};
 
 	virtual void frameRender(HDC hdc, float x, float y, int frameX, int frameY) {};
 	virtual void frameRender(HDC hdc, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter) {};
