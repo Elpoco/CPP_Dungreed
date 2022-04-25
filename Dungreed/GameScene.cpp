@@ -18,7 +18,6 @@ GameScene::~GameScene()
 HRESULT GameScene::init()
 {
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
-	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, TileSet::TOTAL_TILE_X * 0.5f, TileSet::TOTAL_TILE_Y * 0.5f);
 
 	// Town
 	TILEMANAGER->loadMap(FileName::Town);
@@ -31,6 +30,8 @@ HRESULT GameScene::init()
 	_enterFrame.maxFrameX = _imgEnter->getMaxFrameX();
 	_enterFrame.width = _imgEnter->getFrameWidth();
 	_enterFrame.height = _imgEnter->getFrameHeight();
+
+	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, TileSet::TOTAL_TILE_X * 0.5f, TileSet::TOTAL_TILE_Y * 0.5f);
 
 	return S_OK;
 }
@@ -126,6 +127,7 @@ void GameScene::loadDungeon()
 	// 맵 로드
 	TILEMANAGER->loadMap(FileName::DungeonStart);
 	MAPMANAGER->init();
+	UIMANAGER->updateMiniMap();
 
 	// 플레이어 셋팅
 	OBJECTMANAGER->getPlayer()->setX(300);

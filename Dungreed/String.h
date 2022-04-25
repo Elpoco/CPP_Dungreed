@@ -107,6 +107,12 @@ namespace ImageName
 			constexpr char* back = "MonsterHpBar back";
 			constexpr char* gauge = "MonsterHpBar gauge";
 		}
+
+		namespace MiniMap
+		{
+			constexpr char* MapPixel = "MINIMAP MapPixel";
+			constexpr char* PlayerPixel = "MINIMAP PlayerPixel";
+		}
 	}
 
 	namespace Background
@@ -177,6 +183,7 @@ namespace ImageName
 		constexpr char* DoorLeft = "DUNGEON DoorLeft";
 		constexpr char* DoorRight = "DUNGEON DoorRight";
 	}
+
 }
 
 namespace SoundName

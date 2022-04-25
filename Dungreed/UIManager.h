@@ -31,6 +31,7 @@ public:
 	void initPlayerHpBar(int* maxHp, int* curHp);
 
 	void initMiniMap();
+	void updateMiniMap();
 
 };
 

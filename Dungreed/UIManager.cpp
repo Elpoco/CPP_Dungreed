@@ -83,3 +83,8 @@ void UIManager::initMiniMap()
 	OBJECTMANAGER->addUI(_miniMap);
 }
 
+void UIManager::updateMiniMap()
+{
+	_miniMap->settingMiniMap();
+}
+

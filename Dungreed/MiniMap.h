@@ -1,12 +1,29 @@
 #pragma once
 #include "UI.h"
+
+namespace MiniMapSet
+{
+	constexpr int MAP_Y = 10;
+}
+
 class MiniMap : public UI
 {
 private:
-	float _mapWidth;
-	float _mapHeight;
+	struct tagMiniMap
+	{
+
+	};
+
+private:
+	ImageBase* _imgBlock;
+	ImageBase* _imgPlayer;
+	MapToolEnum::MAP_OBJ* _arrType;
+
 	int _tileCntX;
 	int _tileCntY;
+	int _miniMapX;
+
+	int _playerIdx;
 
 public:
 	MiniMap();
@@ -18,5 +35,6 @@ public:
 	virtual void render(HDC hdc) override;
 
 	void settingMiniMap();
+	void updatePlayerPosition();
 };
 

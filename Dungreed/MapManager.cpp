@@ -124,6 +124,10 @@ void MapManager::chageRoom(DIR dir)
 	}
 
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ITEM_DROP);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::PLAYER_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ENEMY_OBJ);
+
+	UIMANAGER->updateMiniMap();
 }
 
 void MapManager::openDoor()

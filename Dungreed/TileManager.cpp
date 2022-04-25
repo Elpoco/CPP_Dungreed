@@ -164,7 +164,7 @@ int TileManager::getCurrentMapTileCntX()
 			}
 		}
 		if (tempCnt > tileCnt) tileCnt = tempCnt;
-		if (tileCnt == TILE_CNT_X) break;
+		if (tileCnt == TILE_CNT_X - 1) break;
 	}
 
 	return tileCnt;
@@ -184,7 +184,7 @@ int TileManager::getCurrentMapTileCntY()
 			}
 		}
 		if (tempCnt > tileCnt) tileCnt = tempCnt;
-		if (tileCnt == TILE_CNT_Y) break;
+		if (tileCnt == TILE_CNT_Y - 1) break;
 	}
 
 	return tileCnt;

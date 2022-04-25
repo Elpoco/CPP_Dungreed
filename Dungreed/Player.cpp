@@ -36,9 +36,9 @@ HRESULT Player::init()
 
 	_maxHp = _curHp = DEFAULT_HP;
 
+	UIMANAGER->initMiniMap();
 	UIMANAGER->initInventory();
 	UIMANAGER->initPlayerHpBar(&_maxHp, &_curHp);
-	UIMANAGER->initMiniMap();
 
 	ITEMMANAGER->setPlayerBody(&_body);
 	ITEMMANAGER->setPlayerHand(&_hand);
