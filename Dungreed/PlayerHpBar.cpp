@@ -9,6 +9,7 @@ PlayerHpBar::PlayerHpBar(int* maxHp, int* curHp)
 	: _maxHp(maxHp)
 	, _curHp(curHp)
 {
+	_isFixed = TRUE;
 }
 
 PlayerHpBar::~PlayerHpBar()

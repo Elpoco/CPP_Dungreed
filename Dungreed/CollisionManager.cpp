@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Button.h"
 #include "DropItem.h"
+#include "NPC.h"
 
 using namespace ObjectEnum;
 using namespace MapToolEnum;
@@ -36,6 +37,7 @@ void CollisionManager::update()
 	collisionShooting();
 	collisionButton();
 	collisionItem();
+	collisionNpc();
 }
 
 void CollisionManager::render(HDC hdc)
@@ -65,6 +67,10 @@ void CollisionManager::render(HDC hdc)
 					break;
 				case OBJ_TYPE::ITEM_DROP:
 					renderItem(hdc, obj);
+					break;
+				case OBJ_TYPE::NPC:
+					renderNpc(hdc, obj);
+					break;
 				default:
 					break;
 				}
@@ -139,6 +145,11 @@ void CollisionManager::renderUI(HDC hdc, Object* obj)
 void CollisionManager::renderItem(HDC hdc, Object* obj)
 {
 	CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::YellowGreen);
+}
+
+void CollisionManager::renderNpc(HDC hdc, Object* obj)
+{
+	CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Snow);
 }
 
 void CollisionManager::collisionTile()
@@ -435,6 +446,31 @@ void CollisionManager::collisionItem()
 				player->getItem(code);
 				item->collisionObject();
 				item->pickUpPlayer(player->getX() > item->getX());
+			}
+		}
+	}
+}
+
+void CollisionManager::collisionNpc()
+{
+	auto pairPlayer = _mObjects->find(OBJ_TYPE::PLAYER);
+	auto pairNpc = _mObjects->find(OBJ_TYPE::NPC);
+
+	for (Object* objPlayer : pairPlayer->second)
+	{
+		Player* player = dynamic_cast<Player*>(objPlayer);
+
+		for (Object* obj : pairNpc->second)
+		{
+			NPC* npc = dynamic_cast<NPC*>(obj);
+
+			RECT tmp;
+			RECT rcPlayer = player->getRect();
+			RECT rcObj = npc->getRect();
+
+			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
+			{
+				npc->collisionObject();
 			}
 		}
 	}

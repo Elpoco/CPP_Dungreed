@@ -156,6 +156,27 @@ void Unit::checkCollision()
 	}
 }
 
+void Unit::pushObject(DIR dir, float distance)
+{
+	switch (dir)
+	{
+	case Direction::LEFT:
+		pushObject(dir, distance, 0);
+		break;
+	case Direction::RIGHT:
+		pushObject(dir, distance, 0);
+		break;
+	case Direction::TOP:
+		pushObject(dir, 0, distance);
+		break;
+	case Direction::BOTTOM:
+		pushObject(dir, 0, distance);
+		break;
+	default:
+		break;
+	}
+}
+
 void Unit::pushObject(Direction::DIR dir, float x, float y)
 {
 	switch (dir)

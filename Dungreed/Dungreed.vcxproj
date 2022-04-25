@@ -178,8 +178,10 @@
     </ClCompile>
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="LittleGhost.cpp" />
+    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MessageBoxManager.cpp" />
     <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="Niflheim.cpp" />
     <ClCompile Include="NiflheimPillar.cpp" />
     <ClCompile Include="NPC.cpp" />
@@ -254,8 +256,10 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="LittleGhost.h" />
     <ClInclude Include="MapData.h" />
+    <ClInclude Include="MapManager.h" />
     <ClInclude Include="MessageBoxManager.h" />
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="MiniMap.h" />
     <ClInclude Include="Niflheim.h" />
     <ClInclude Include="NiflheimPillar.h" />
     <ClInclude Include="NPC.h" />

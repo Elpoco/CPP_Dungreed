@@ -34,15 +34,15 @@ void CameraManager::update()
 		float x = _object->getX();
 		float y = _object->getY();
 
+		_x = x - CENTER_X;
+		_y = y - CENTER_Y;
+
 		if (_isLock)
 		{
-			if (x >= CENTER_X && _mapWidth - CENTER_X > x) _x = x - CENTER_X;
-			if (y >= CENTER_Y && _mapHeight - CENTER_Y > y) _y = y - CENTER_Y;
-		}
-		else
-		{
-			_x = x - CENTER_X;
-			_y = y - CENTER_Y;
+			if (_x < 0) _x = 0;
+			if (_y < 0) _y = 0;
+			if (_x > _mapWidth - WINSIZE_X) _x = _mapWidth - WINSIZE_X;
+			if (_y > _mapHeight - WINSIZE_Y) _y = _mapHeight - WINSIZE_Y;
 		}
 	}
 }
@@ -149,7 +149,7 @@ void CameraManager::cameraInitPos()
 
 void CameraManager::updateMapSize()
 {
-	_mapWidth = TILEMANAGER->getCurrentMapTileWidth();
+	_mapWidth = TILEMANAGER->getCurrentMapTileWidth() + TILE_SIZE;
 	_mapHeight = TILEMANAGER->getCurrentMapTileHeight();
 }
 

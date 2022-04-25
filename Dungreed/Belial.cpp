@@ -115,7 +115,8 @@ void Belial::render(HDC hdc)
 
 void Belial::deleteEffect()
 {
-	OBJECTMANAGER->addEffect(ImageName::Enemy::die, _x, _y);
+	OBJECTMANAGER->addEffect(ImageName::Enemy::die, _x, _y); 
+	MAPMANAGER->dieMonster();
 }
 
 void Belial::move()

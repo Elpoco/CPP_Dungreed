@@ -54,6 +54,12 @@ void MainGame::update(void)
 	CAMERAMANAGER->update();
 
 	if (IsOnceKeyDown(KEY::F1)) _isDebug = !_isDebug;
+
+	if (IsOnceKeyDown(VK_MBUTTON))
+	{
+		cout << __FUNCTION__ << "__" << _ptMouse.x << ", " << _ptMouse.y << endl;
+		cout << __FUNCTION__ << "__" << CAMERAMANAGER->calAbsX(_ptMouse.x) << ", " << CAMERAMANAGER->calAbsY(_ptMouse.y) << endl;
+	}
 }
 
 void MainGame::render(void)
@@ -83,11 +89,6 @@ void MainGame::render(void)
 	}
 
 	TIMEMANAGER->render(getMemDC());
-
-	if (IsOnceKeyDown(VK_MBUTTON))
-	{
-		cout << __FUNCTION__ << "__" << _ptMouse.x << ", " << _ptMouse.y << endl;
-	}
 
 	// ÇöÀç ¾À ÀÌ¸§
 	if (_isDebug)

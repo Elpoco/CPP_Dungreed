@@ -27,6 +27,7 @@ public:
 	void renderBullet(HDC hdc, Object* obj);
 	void renderUI(HDC hdc, Object* obj);
 	void renderItem(HDC hdc, Object* obj);
+	void renderNpc(HDC hdc, Object* obj);
 
 	// 타일 충돌
 	void collisionTile();
@@ -39,6 +40,8 @@ public:
 	void collisionButton();
 	// 아이템 플레이어 충돌
 	void collisionItem();
+	// NPC 플레이어 충돌
+	void collisionNpc();
 
 };
 

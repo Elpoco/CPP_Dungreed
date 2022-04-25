@@ -49,5 +49,9 @@ public:
 	float getCurrentMapTileHeight();
 	Code::MAP getCurrentMapCode();
 
+	void getDoorPos(POINT* ptDoor);
+
+	const TILE* getTiles() { return _tiles; }
+
 };
 

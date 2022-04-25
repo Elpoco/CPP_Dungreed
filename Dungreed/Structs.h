@@ -101,25 +101,26 @@ typedef struct tagSpawnInfo
 	RECT rcScan;
 	POINT ptSpawn;
 	Code::UNIT unit;
+
+	tagSpawnInfo()
+	{
+		unit = Code::UNIT::NONE;
+	}
 } SPAWN_INFO;
 
 typedef struct tagDoorInfo
 {
 	Direction::DIR dir;
-	BOOL isOn;
 	int tileX;
 	int tileY;
-
-	tagDoorInfo()
-	{
-		isOn = FALSE;
-	}
 } DOOR_INFO;
 
 typedef struct tagMapInfo
 {
 	DOOR_INFO door[Direction::DIR::DIR_CNT];
-	SPAWN_INFO arrSpawnInfo[30];
+	SPAWN_INFO arrSpawnInfo[UnitSet::MAX_SPAWN];
 
-	tagMapInfo() {}
+	tagMapInfo() 
+	{
+	}
 } MAP_INFO;

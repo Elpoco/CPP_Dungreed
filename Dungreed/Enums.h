@@ -88,7 +88,8 @@ namespace Code
 		NIFLEHEIM,
 		NIFLEHEIM_PILLAR,
 
-		UNIT_CNT
+		UNIT_CNT,
+		NONE
 	};
 
 	enum class ITEM_TYPE
@@ -118,6 +119,10 @@ namespace Code
 	enum class MAP
 	{
 		DUNGEON_START,
+		DUNGEON_01,
+		DUNGEON_02,
+
+		BELIAL,
 
 		MAP_CNT
 	};

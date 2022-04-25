@@ -205,7 +205,10 @@ void ObjectManager::addDropItem(Object* obj)
 	addObject(OBJ_TYPE::ITEM_DROP, obj);
 }
 
-void ObjectManager::addDoor(Direction::DIR dir, int x, int y, BOOL isOpen)
+void ObjectManager::clearObjects(ObjectEnum::OBJ_TYPE type)
 {
-	addObject(OBJ_TYPE::NPC, new Door(dir, x, y, isOpen));
+	for (auto& obj : _mObjects.find(type)->second)
+	{
+		obj->deleteObject();
+	}
 }

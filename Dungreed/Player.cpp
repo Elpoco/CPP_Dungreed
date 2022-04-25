@@ -38,6 +38,7 @@ HRESULT Player::init()
 
 	UIMANAGER->initInventory();
 	UIMANAGER->initPlayerHpBar(&_maxHp, &_curHp);
+	UIMANAGER->initMiniMap();
 
 	ITEMMANAGER->setPlayerBody(&_body);
 	ITEMMANAGER->setPlayerHand(&_hand);

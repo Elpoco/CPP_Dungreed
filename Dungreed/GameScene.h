@@ -27,11 +27,6 @@ private:
 	RECT _rcEnter;
 	BOOL _isEnter;
 
-	// Dungeon
-	Code::MAP _curDungeon;
-	MAP_INFO _mapInfo;
-	int _spawnCnt;
-
 public:
 	GameScene();
 	~GameScene();
@@ -45,7 +40,6 @@ public:
 	void renderTown(HDC hdc);
 
 	void loadDungeon();
-	void settingDungeon();
 
 };
 

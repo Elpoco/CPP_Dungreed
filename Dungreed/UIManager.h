@@ -4,12 +4,14 @@
 class UI;
 class Cursor;
 class Inventory;
+class MiniMap;
 
 class UIManager : public SingletonBase<UIManager>
 {
 private:
 	Cursor* _cursor;
 	Inventory* _inventory;	
+	MiniMap* _miniMap;
 
 public:
 	UIManager();
@@ -27,6 +29,8 @@ public:
 	void toggleInventory();
 
 	void initPlayerHpBar(int* maxHp, int* curHp);
+
+	void initMiniMap();
 
 };
 

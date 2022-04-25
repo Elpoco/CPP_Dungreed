@@ -39,7 +39,7 @@ public:
 	void addItem(Object* obj);
 	void addDropItem(Object* obj);
 
-	void addDoor(Direction::DIR dir, int x, int y, BOOL isOpen = FALSE);
+	void clearObjects(ObjectEnum::OBJ_TYPE type);
 
 	Object* getPlayer() { return _mObjects.find(ObjectEnum::OBJ_TYPE::PLAYER)->second[0]; }
 

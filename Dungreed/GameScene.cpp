@@ -47,7 +47,7 @@ void GameScene::update()
 		updateTown();
 		break;
 	case LocationEnum::LOCATION::DUNGEON:
-
+		MAPMANAGER->update();
 		break;
 	default:
 		break;
@@ -125,8 +125,8 @@ void GameScene::loadDungeon()
 {
 	// 맵 로드
 	TILEMANAGER->loadMap(FileName::DungeonStart);
-	_curDungeon = TILEMANAGER->getCurrentMapCode();
-	_mapInfo = DBMANAGER->getInfo(_curDungeon);
+	MAPMANAGER->init();
+
 	// 플레이어 셋팅
 	OBJECTMANAGER->getPlayer()->setX(300);
 	OBJECTMANAGER->getPlayer()->setY(470);
@@ -135,27 +135,10 @@ void GameScene::loadDungeon()
 	// 음악 재생
 	SOUNDMANAGER->play(SoundName::dungeon, _sound);
 	// 던전 셋팅
-	settingDungeon();
+	MAPMANAGER->settingDungeon();
 
 	// 로딩완료
 	SCENEMANAGER->setChangeScene(FALSE);
 	// 플레이어 다시 움직이게
 	OBJECTMANAGER->getPlayer()->resumeObject();
-}
-
-void GameScene::settingDungeon()
-{
-	OBJECTMANAGER->addUnit(
-		_mapInfo.arrSpawnInfo[0].unit,
-		_mapInfo.arrSpawnInfo[0].ptSpawn.x,
-		_mapInfo.arrSpawnInfo[0].ptSpawn.y
-	);
-
-	for (int i = 0; i < DIR::DIR_CNT; i++)
-	{
-		if (_mapInfo.door[i].isOn)
-		{
-			OBJECTMANAGER->addDoor((DIR)i, _mapInfo.door[i].tileX, _mapInfo.door[i].tileY);
-		}
-	}
 }

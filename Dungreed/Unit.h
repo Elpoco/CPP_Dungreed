@@ -57,6 +57,7 @@ public:
 
 	void checkCollision();
 	virtual void pushObject(float x, float y) override {}
+	virtual void pushObject(DIR dir, float distance) override;
 	void pushObject(Direction::DIR dir, float x, float y);
 	bool getCollision(Direction::DIR dir) { return _isCollision[dir]; }
 	void setCollision(Direction::DIR dir, bool collision) { _isCollision[dir] = collision; }

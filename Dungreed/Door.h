@@ -1,5 +1,5 @@
 #pragma once
-#include "Object.h"
+#include "NPC.h"
 
 namespace DoorSet
 {
@@ -10,7 +10,7 @@ namespace DoorSet
 	constexpr int PARTICLE_DIS = 50;
 }
 
-class Door : public Object
+class Door : public NPC
 {
 private:
 	enum class DOOR_STATE
@@ -60,9 +60,14 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
+	virtual void collisionObject() override;
+
 	void animation();
 
+	void setTileX(int tileX);
+	void setTileY(int tileY);
 	void openDoor();
+	void closeDoor();
 
 };
 

@@ -99,6 +99,9 @@ void GameNode::release(void)
 
 		DBMANAGER->release();
 		DBMANAGER->releaseSingleton();
+
+		MAPMANAGER->release();
+		MAPMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);

@@ -5,6 +5,7 @@
 #include "Cursor.h"
 #include "Inventory.h"
 #include "PlayerHpBar.h"
+#include "MiniMap.h"
 
 UIManager::UIManager()
 {
@@ -74,5 +75,11 @@ void UIManager::toggleInventory()
 void UIManager::initPlayerHpBar(int* maxHp, int* curHp)
 {
 	OBJECTMANAGER->addUI(new PlayerHpBar(maxHp, curHp));
+}
+
+void UIManager::initMiniMap()
+{
+	_miniMap = new MiniMap;
+	OBJECTMANAGER->addUI(_miniMap);
 }
 

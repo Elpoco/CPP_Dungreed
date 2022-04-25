@@ -85,6 +85,34 @@ void Door::render(HDC hdc)
 	}
 }
 
+void Door::collisionObject()
+{
+	if (_isOpen)
+	{
+		MAPMANAGER->chageRoom(_dir);
+	}
+	else
+	{
+		switch (_dir)
+		{
+		case Direction::LEFT:
+			OBJECTMANAGER->getPlayer()->pushObject(DIR::LEFT, _rc.right);
+			break;
+		case Direction::TOP:
+			OBJECTMANAGER->getPlayer()->pushObject(DIR::TOP, _rc.bottom);
+			break;
+		case Direction::RIGHT:
+			OBJECTMANAGER->getPlayer()->pushObject(DIR::RIGHT, _rc.left);
+			break;
+		case Direction::BOTTOM:
+			OBJECTMANAGER->getPlayer()->pushObject(DIR::BOTTOM, _rc.top);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
 void Door::animation()
 {
 	if (_isOpen) 
@@ -110,7 +138,6 @@ void Door::animation()
 			if (!_particle[i].isOn) continue;
 
 			_particle[i].alpha--;
-
 			if(_particle[i].dir == DIR::LEFT)		_particle[i].x += _particle[i].speed;
 			else if(_particle[i].dir == DIR::RIGHT) _particle[i].x -= _particle[i].speed;
 			else if(_particle[i].dir == DIR::TOP)	_particle[i].y += _particle[i].speed;
@@ -141,10 +168,36 @@ void Door::animation()
 	}
 }
 
+void Door::setTileX(int tileX)
+{
+	_x = tileX * TILE_SIZE;
+	_rc = RectMake(_x, _y, _frameInfo.width, _frameInfo.height);
+}
+
+void Door::setTileY(int tileY)
+{
+	_y = tileY * TILE_SIZE;
+	_rc = RectMake(_x, _y, _frameInfo.width, _frameInfo.height);
+}
+
 void Door::openDoor()
 {
 	_frameInfo.x = FRAME_IDLE_E;
 	_frameInfo.endFrameX = _frameInfo.maxFrameX;
 	_state = DOOR_STATE::OPEN;
+	SOUNDMANAGER->play(SoundName::Dungeon::DoorMove, _sound);
+}
+
+void Door::closeDoor()
+{
+	_frameInfo.x = 0;
+	_frameInfo.startFrameX = FRAME_IDLE_S;
+	_frameInfo.endFrameX = FRAME_IDLE_E;
+	_state = DOOR_STATE::IDLE;
+	_isOpen = FALSE;
+	for (int i = 0; i < PARTICLE_CNT; i++)
+	{
+		_particle[i].isOn = FALSE;
+	}
 	SOUNDMANAGER->play(SoundName::Dungeon::DoorMove, _sound);
 }

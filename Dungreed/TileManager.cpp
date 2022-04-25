@@ -207,5 +207,59 @@ Code::MAP TileManager::getCurrentMapCode()
 	{
 		map = Code::MAP::DUNGEON_START;
 	}
+	else if (_curMapName == FileName::Dungeon01)
+	{
+		map = Code::MAP::DUNGEON_01;
+	}
+	else if (_curMapName == FileName::Dungeon02)
+	{
+		map = Code::MAP::DUNGEON_02;
+	}
+	else if (_curMapName == FileName::Belial)
+	{
+		map = Code::MAP::BELIAL;
+	}
 	return map;
+}
+
+void TileManager::getDoorPos(POINT* ptDoor)
+{
+	int curTileX = getCurrentMapTileCntX();
+	int curTileY = getCurrentMapTileCntY();
+
+	for (int y = 0; y < curTileY; y++)
+	{
+		if (_tiles[TILE_CNT_X * y].type == MapToolEnum::MAP_OBJ::NONE)
+		{
+			ptDoor[DIR::LEFT] = { 0, y };
+			break;
+		}
+	}
+
+	for (int x = 0; x < curTileX; x++)
+	{
+		if (_tiles[x].type == MapToolEnum::MAP_OBJ::NONE)
+		{
+			ptDoor[DIR::TOP] = { x, 0 };
+			break;
+		}
+	}
+
+	for (int y = 0; y < curTileY; y++)
+	{
+		if (_tiles[TILE_CNT_X * y + curTileX].type == MapToolEnum::MAP_OBJ::NONE)
+		{
+			ptDoor[DIR::RIGHT] = { curTileX, y };
+			break;
+		}
+	}
+
+	for (int x = 0; x < curTileX; x++)
+	{
+		if (_tiles[TILE_CNT_X * curTileY + x].type == MapToolEnum::MAP_OBJ::NONE)
+		{
+			ptDoor[DIR::BOTTOM] = { x, curTileY - 1 };
+			break;
+		}
+	}
 }

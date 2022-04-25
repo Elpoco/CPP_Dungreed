@@ -53,11 +53,11 @@ using namespace std;
 // # 내가 만든 헤더파일을 이곳에 추가 #
 // =================================
 #include "Define.h"
+#include "Config.h"
 #include "Enums.h"
 #include "Extern.h"
 #include "Structs.h"
 #include "String.h"
-#include "Config.h"
 
 #include "RandomFuntion.h"
 #include "KeyManager.h"
@@ -79,6 +79,7 @@ using namespace std;
 #include "ItemManager.h"
 #include "UIManager.h"
 #include "DataBaseManager.h"
+#include "MapManager.h"
 
 #include "Utils.h"
 using namespace MY_UTIL;
@@ -106,3 +107,4 @@ using namespace MY_UTIL;
 #define ITEMMANAGER			ItemManager::getSingleton()
 #define UIMANAGER			UIManager::getSingleton()
 #define DBMANAGER			DataBaseManager::getSingleton()
+#define MAPMANAGER			MapManager::getSingleton()

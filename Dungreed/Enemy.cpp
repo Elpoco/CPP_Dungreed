@@ -77,8 +77,9 @@ void Enemy::render(HDC hdc)
 
 void Enemy::deleteEffect()
 {
-	SOUNDMANAGER->play(SoundName::Enemy::MonsterDie, _sound);
 	ITEMMANAGER->dropItem(Code::ITEM::COIN, _x, _rc.top - 20);
+	MAPMANAGER->dieMonster();
+	SOUNDMANAGER->play(SoundName::Enemy::MonsterDie, _sound);
 	OBJECTMANAGER->addEffect(
 		ImageName::Enemy::dieSmall,
 		_x,

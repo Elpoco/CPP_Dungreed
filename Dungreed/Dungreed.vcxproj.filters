@@ -133,17 +133,20 @@
     <Filter Include="MainGame\01. Scene\Start">
       <UniqueIdentifier>{cf471333-634a-4830-849e-a72c238ba66d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\08. NPC">
-      <UniqueIdentifier>{ec43b864-9dae-430e-bd66-7d3c3060b9c9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\02. Object\05. UI\Button">
       <UniqueIdentifier>{dba12a34-0c63-4b70-a1e4-ab515715319c}</UniqueIdentifier>
     </Filter>
     <Filter Include="MainGame\02. Object\05. UI\HpBar">
       <UniqueIdentifier>{30c21a14-4b8d-4223-b544-16664221318d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\07. Door">
+    <Filter Include="MainGame\02. Object\07. NPC">
+      <UniqueIdentifier>{ec43b864-9dae-430e-bd66-7d3c3060b9c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\07. NPC\Door">
       <UniqueIdentifier>{2505c112-187e-48ce-98dc-c30e242336b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\05. UI\MiniMap">
+      <UniqueIdentifier>{f391fbe2-27ab-4e0a-bbec-cc274664d689}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -322,13 +325,19 @@
       <Filter>MainGame\01. Scene\Game</Filter>
     </ClCompile>
     <ClCompile Include="NPC.cpp">
-      <Filter>MainGame\02. Object\08. NPC</Filter>
+      <Filter>MainGame\02. Object\07. NPC</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHpBar.cpp">
       <Filter>MainGame\02. Object\05. UI\HpBar</Filter>
     </ClCompile>
     <ClCompile Include="Door.cpp">
-      <Filter>MainGame\02. Object\07. Door</Filter>
+      <Filter>MainGame\02. Object\07. NPC\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>MainGame\01. Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMap.cpp">
+      <Filter>MainGame\02. Object\05. UI\MiniMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -534,7 +543,7 @@
       <Filter>MainGame\02. Object\06. Item\Gun</Filter>
     </ClInclude>
     <ClInclude Include="NPC.h">
-      <Filter>MainGame\02. Object\08. NPC</Filter>
+      <Filter>MainGame\02. Object\07. NPC</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>MainGame\01. Scene\Game</Filter>
@@ -546,7 +555,13 @@
       <Filter>MainGame\03. DB</Filter>
     </ClInclude>
     <ClInclude Include="Door.h">
-      <Filter>MainGame\02. Object\07. Door</Filter>
+      <Filter>MainGame\02. Object\07. NPC\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>MainGame\01. Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMap.h">
+      <Filter>MainGame\02. Object\05. UI\MiniMap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

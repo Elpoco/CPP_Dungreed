@@ -242,6 +242,9 @@ namespace FileName
 	constexpr char* testSave = "testSave";
 	constexpr char* Town = "Town";
 	constexpr char* DungeonStart = "DungeonStart";
+	constexpr char* Dungeon01 = "Dungeon01";
+	constexpr char* Dungeon02 = "Dungeon02";
+	constexpr char* Belial = "Belial";
 }
 
 namespace FontName

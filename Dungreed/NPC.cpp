@@ -25,3 +25,4 @@ void NPC::update()
 void NPC::render(HDC hdc)
 {
 }
+
