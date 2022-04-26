@@ -28,11 +28,6 @@ HRESULT Enemy::init()
 {
 	Unit::init();
 
-	EnemyHpBar* hpBar = new EnemyHpBar(&_x, &_y, &_maxHp, &_curHp);
-	hpBar->settingY(_imgHeight * 0.5f);
-
-	OBJECTMANAGER->addUI(hpBar);
-
 	return S_OK;
 }
 
@@ -111,6 +106,14 @@ void Enemy::hitAttack(int dmg, int dir)
 	{
 		_isLive = FALSE;
 	}
+}
+
+void Enemy::settingHpBar()
+{
+	EnemyHpBar* hpBar = new EnemyHpBar(&_x, &_y, &_maxHp, &_curHp);
+	hpBar->settingY(_imgHeight * 0.5f);
+
+	OBJECTMANAGER->addUI(hpBar);
 }
 
 void Enemy::scanPlayer(POINT ptPlayer, RECT rcPlayer)

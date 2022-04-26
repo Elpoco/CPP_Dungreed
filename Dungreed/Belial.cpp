@@ -36,14 +36,10 @@ HRESULT Belial::init()
 
 	_info = DBMANAGER->getInfo(Code::UNIT::BELIAL);
 	_isFlying = true;
-	_scanScale = { 4,3 };
+	_scanScale = { 7,3 };
 
 	settingHp(_info.hp);
 
-	_moveHpBarX = 23;
-	_moveHpBarY = 50;
-
-	// 임시로 막기
 	SOUNDMANAGER->stop(SoundName::dungeon);
 	SOUNDMANAGER->play(SoundName::belialBG, _sound);
 	SOUNDMANAGER->play(SoundName::Enemy::Skeletonking, _sound);

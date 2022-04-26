@@ -113,30 +113,35 @@ void ObjectManager::addObject(OBJ_TYPE type, Object* object)
 	_mObjects.find(type)->second.push_back(object);
 }
 
-void ObjectManager::addUnit(Code::UNIT code, float x, float y)
+void ObjectManager::addPlayer(float x, float y)
 {
+	addObject(OBJ_TYPE::PLAYER, new Player(x, y));
+}
+
+void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
+{
+	Enemy* enemy;
 	switch (code)
 	{
-	case Code::UNIT::PLAYER:
-		addObject(OBJ_TYPE::PLAYER, new Player(x, y));
-		break;
 	case Code::UNIT::SKEL_DOG:
-		addObject(OBJ_TYPE::ENEMY, new SkelDog(x, y));
+		enemy = new SkelDog(x, y);
 		break;
 	case Code::UNIT::LITTLE_GHOST:
-		addObject(OBJ_TYPE::ENEMY, new LittleGhost(x, y));
+		enemy = new LittleGhost(x, y);
 		break;
 	case Code::UNIT::BELIAL:
-		addObject(OBJ_TYPE::ENEMY, new Belial(x, y));
+		enemy = new Belial(x, y);
 		break;
 	case Code::UNIT::NIFLEHEIM:
-		addObject(OBJ_TYPE::ENEMY, new Niflheim(x, y));
+		enemy = new Niflheim(x, y);
 		break;
 	case Code::UNIT::UNIT_CNT:
 		break;
 	default:
 		break;
 	}
+	enemy->settingHpBar();
+	addObject(OBJ_TYPE::ENEMY, enemy);
 }
 
 void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage, string destroyImgName, float distance)

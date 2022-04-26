@@ -41,6 +41,8 @@ public:
 	virtual void hitAttack(int dmg, int dir) override;
 	virtual int getDmg() override { return _info.dmg; }
 
+	virtual void settingHpBar();
+
 	void scanPlayer(POINT ptPlayer, RECT rcPlayer);
 	inline RECT getScanRect() { return _rcScan; }
 	inline int getPlayerScan() { return _isPlayerScan; }
