@@ -100,6 +100,9 @@ namespace ImageName
 			constexpr char* Back = "PLAYERHPBAR Back";
 			constexpr char* LifeBar = "PLAYERHPBAR LifeBar";
 			constexpr char* LifeWave = "PLAYERHPBAR LifeWave";
+			constexpr char* DashStart = "PLAYERHPBAR DashStart";
+			constexpr char* DashEnd = "PLAYERHPBAR DashEnd";
+			constexpr char* DashCount = "PLAYERHPBAR DashCount";
 		}
 
 		namespace MonsterHpBar
@@ -112,6 +115,8 @@ namespace ImageName
 		{
 			constexpr char* MapPixel = "MINIMAP MapPixel";
 			constexpr char* PlayerPixel = "MINIMAP PlayerPixel";
+			constexpr char* EnemyPixel = "MINIMAP EnemyPixel";
+			constexpr char* DoorPixel = "MINIMAP DoorPixel";
 		}
 	}
 
@@ -182,6 +187,9 @@ namespace ImageName
 		constexpr char* Door = "DUNGEON Door";
 		constexpr char* DoorLeft = "DUNGEON DoorLeft";
 		constexpr char* DoorRight = "DUNGEON DoorRight";
+
+		constexpr char* bgLayer0 = "DUNGEON bgLayer0";
+		constexpr char* bgLayer1 = "DUNGEON bgLayer1";
 	}
 
 }
@@ -202,6 +210,7 @@ namespace SoundName
 	{
 		constexpr char* dash = "SOUND PLAYER dash";
 		constexpr char* hit = "SOUND PLAYER hit";
+		constexpr char* Jumping = "SOUND PLAYER Jumping";
 	}
 
 	namespace Enemy
@@ -252,6 +261,7 @@ namespace FileName
 	constexpr char* Dungeon01 = "Dungeon01";
 	constexpr char* Dungeon02 = "Dungeon02";
 	constexpr char* Belial = "Belial";
+	constexpr char* Niflheim = "Niflheim";
 }
 
 namespace FontName

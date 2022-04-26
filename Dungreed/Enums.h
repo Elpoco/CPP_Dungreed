@@ -123,6 +123,7 @@ namespace Code
 		DUNGEON_02,
 
 		BELIAL,
+		NIFLHEIM,
 
 		MAP_CNT
 	};

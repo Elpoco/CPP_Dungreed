@@ -34,5 +34,7 @@ public:
 
 	void dieMonster() { _unitCnt--; }
 
+	Code::MAP getCurMapCode() { return _mapCode; }
+
 };
 

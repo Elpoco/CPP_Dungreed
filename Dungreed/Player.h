@@ -61,6 +61,7 @@ public:
 	void setIdle();
 	void attack();
 	void dash();
+	void jump();
 
 	void getItem(Code::ITEM code);
 

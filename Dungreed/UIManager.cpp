@@ -88,3 +88,8 @@ void UIManager::updateMiniMap()
 	_miniMap->settingMiniMap();
 }
 
+void UIManager::enterDungeon()
+{
+	_miniMap->setDungeon(TRUE);
+}
+

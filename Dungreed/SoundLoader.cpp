@@ -39,6 +39,7 @@ void SoundLoader::loadSounds()
 	// ==========
 	SOUNDMANAGER->addSound(SoundName::Player::dash, PATH_SOUND"Dash.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Player::hit, PATH_SOUND"Hit_Player.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Player::Jumping, PATH_SOUND"Jumping.wav", false, false);
 
 	// =========
 	// # Enemy #

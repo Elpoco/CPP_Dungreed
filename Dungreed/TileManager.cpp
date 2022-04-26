@@ -219,6 +219,10 @@ Code::MAP TileManager::getCurrentMapCode()
 	{
 		map = Code::MAP::BELIAL;
 	}
+	else if (_curMapName == FileName::Niflheim)
+	{
+		map = Code::MAP::NIFLHEIM;
+	}
 	return map;
 }
 

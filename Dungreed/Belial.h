@@ -87,6 +87,8 @@ private:
 	BELIAL_HAND _hand[RL];
 	int			_laserDir;
 
+	int _dmg;
+
 public:
 	Belial(float x, float y);
 	virtual ~Belial();
@@ -97,6 +99,7 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual void deleteEffect() override;
+	virtual int getDmg() override { return _dmg; }
 
 	void move();
 	void animation();

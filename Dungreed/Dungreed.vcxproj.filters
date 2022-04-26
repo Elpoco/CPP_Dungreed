@@ -339,6 +339,9 @@
     <ClCompile Include="MiniMap.cpp">
       <Filter>MainGame\02. Object\05. UI\MiniMap</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>MainGame\02. Object\01. Unit\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -562,6 +565,9 @@
     </ClInclude>
     <ClInclude Include="MiniMap.h">
       <Filter>MainGame\02. Object\05. UI\MiniMap</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>MainGame\02. Object\01. Unit\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

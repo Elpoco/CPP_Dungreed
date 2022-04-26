@@ -80,6 +80,7 @@ using namespace std;
 #include "UIManager.h"
 #include "DataBaseManager.h"
 #include "MapManager.h"
+#include "PlayerManager.h"
 
 #include "Utils.h"
 using namespace MY_UTIL;
@@ -108,3 +109,4 @@ using namespace MY_UTIL;
 #define UIMANAGER			UIManager::getSingleton()
 #define DBMANAGER			DataBaseManager::getSingleton()
 #define MAPMANAGER			MapManager::getSingleton()
+#define PLAYERMANAGER		PlayerManager::getSingleton()

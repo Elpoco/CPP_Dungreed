@@ -32,6 +32,7 @@ public:
 
 	void initMiniMap();
 	void updateMiniMap();
+	void enterDungeon();
 
 };
 

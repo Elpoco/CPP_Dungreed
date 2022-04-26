@@ -16,10 +16,10 @@ class PlayerHpBar : public UI
 {
 private:
 	// 체력바
-	ImageBase* _base;
-	ImageBase* _back;
-	ImageBase* _hpBar;
-	ImageBase* _hpWave;
+	ImageBase* _imgBase;
+	ImageBase* _imgBack;
+	ImageBase* _imgHpBar;
+	ImageBase* _imgHpWave;
 	FRAME_INFO _waveFrame;
 
 	int _imgBaseWidth;
@@ -39,6 +39,15 @@ private:
 	ImageFont* _uiCurHp;
 	ImageFont* _uiSlash;
 
+	// 대시
+	ImageBase* _imgDashStart;
+	ImageBase* _imgDashEnd;
+	ImageBase* _imgDashCnt;
+	RECT _rcDash;
+	int _dashEndWidth;
+	int _dashCnt;
+	int _dashMaxCnt;
+
 public:
 	PlayerHpBar(int* maxHp, int* curHp);
 	virtual ~PlayerHpBar();
@@ -49,8 +58,12 @@ public:
 	virtual void render(HDC hdc) override;
 
 	void settingUI();
+	void settingDashUI();
 
 	void animation();
-	void updateHpUi();
+	void updateHpUI();
+
+	void renderHpBar(HDC hdc);
+	void renderDashBar(HDC hdc);
 
 };

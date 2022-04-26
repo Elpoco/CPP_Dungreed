@@ -40,6 +40,7 @@ public:
 	void renderTown(HDC hdc);
 
 	void loadDungeon();
+	void renderDungeon(HDC hdc);
 
 };
 

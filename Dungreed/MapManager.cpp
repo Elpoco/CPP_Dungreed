@@ -35,9 +35,6 @@ void MapManager::update()
 		_isClear = TRUE;
 		openDoor();
 	}
-
-	if (IsOnceKeyDown(KEY::DOWN_ARROW)) openDoor();
-	if(IsOnceKeyDown(KEY::UP_ARROW)) closeDoor();
 }
 
 void MapManager::render(HDC hdc)
@@ -108,7 +105,7 @@ void MapManager::chageRoom(DIR dir)
 		OBJECTMANAGER->getPlayer()->setY(_door[DIR::BOTTOM]->getY() - TILE_SIZE * 2);
 		break;
 	case Direction::RIGHT:
-		TILEMANAGER->loadMap(FileName::Dungeon02);
+		TILEMANAGER->loadMap(FileName::Niflheim);
 		settingDungeon();
 		OBJECTMANAGER->getPlayer()->setX(_door[DIR::LEFT]->getX() + TILE_SIZE * 2);
 		OBJECTMANAGER->getPlayer()->setY(_door[DIR::LEFT]->getY() + TILE_SIZE * 2);

@@ -34,4 +34,3 @@ public:
 	inline Code::ITEM_TYPE getItemType() { return _info.type; }
 
 };
-

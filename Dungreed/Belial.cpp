@@ -15,6 +15,7 @@ Belial::Belial(float x, float y)
 	, _shootAngle(0.0f)
 	, _shootDir(1)
 	, _laserDir(1)
+	, _dmg(1)
 {
 	_startSpawn = TRUE;
 	_isSpawn = TRUE;
@@ -136,9 +137,9 @@ void Belial::animation()
 
 		OBJECTMANAGER->addEffect(
 			ImageName::Enemy::Belial::particle,
-			RND->getFromIntTo(_rcBack.left + 3, _rcBack.right - 3),
-			RND->getFromIntTo(_rcBack.top + 3, _rcBack.bottom - 3),
-			50,
+			RND->getFromIntTo(_rcBack.left, _rcBack.right),
+			RND->getFromIntTo(_rcBack.top, _rcBack.bottom),
+			180,
 			ObjectEnum::OBJ_TYPE::EFFECT_BACK
 		);
 	}
@@ -330,6 +331,8 @@ void Belial::laser()
 			_rcAttack.top = rc1.top;
 			_rcAttack.right = rc2.right;
 			_rcAttack.bottom = rc2.bottom;
+			_dmg = 8;
+			
 		}
 		break;
 	case BELIAL_LASER_STATE::SHOOTING:

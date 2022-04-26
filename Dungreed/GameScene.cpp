@@ -63,6 +63,7 @@ void GameScene::render()
 		renderTown(getMemDC());
 		break;
 	default:
+		renderDungeon(getMemDC());
 		break;
 	}
 	TILEMANAGER->render(getMemDC());
@@ -124,10 +125,15 @@ void GameScene::renderTown(HDC hdc)
 
 void GameScene::loadDungeon()
 {
+	// bg setting
+	_layer = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer1);
+	_background = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer0);
+
 	// 맵 로드
 	TILEMANAGER->loadMap(FileName::DungeonStart);
 	MAPMANAGER->init();
 	UIMANAGER->updateMiniMap();
+	UIMANAGER->enterDungeon();
 
 	// 플레이어 셋팅
 	OBJECTMANAGER->getPlayer()->setX(300);
@@ -143,4 +149,11 @@ void GameScene::loadDungeon()
 	SCENEMANAGER->setChangeScene(FALSE);
 	// 플레이어 다시 움직이게
 	OBJECTMANAGER->getPlayer()->resumeObject();
+}
+
+void GameScene::renderDungeon(HDC hdc)
+{
+	_background->render(hdc);
+	RECT rc = RectMake(0, 0, WINSIZE_X, WINSIZE_Y);
+	_layer->loopRender(hdc, &rc, CAMERAMANAGER->getAbsX()*0.8, 0);
 }

@@ -188,6 +188,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="EnemyHpBar.cpp" />
     <ClCompile Include="PlayerHpBar.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SkelDog.cpp" />
     <ClCompile Include="SoundLoader.cpp" />
     <ClCompile Include="Sword.cpp" />
@@ -266,6 +267,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="EnemyHpBar.h" />
     <ClInclude Include="PlayerHpBar.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="SkelDog.h" />
     <ClInclude Include="SoundLoader.h" />
     <ClInclude Include="String.h" />

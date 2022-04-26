@@ -126,10 +126,15 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::Back, PATH_IMAGE"UI/PlayerHP/PlayerLifeBack.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::Base, PATH_IMAGE"UI/PlayerHP/PlayerLifeBase.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::LifeBar, PATH_IMAGE"UI/PlayerHP/LifeBar.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::DashStart, PATH_IMAGE"UI/PlayerHP/DashStart.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::DashEnd, PATH_IMAGE"UI/PlayerHP/DashEnd.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::DashCount, PATH_IMAGE"UI/PlayerHP/DashCount.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::PlayerHpBar::LifeWave, PATH_IMAGE"UI/PlayerHP/LifeWave.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
 	// ¹Ì´Ï¸Ê
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::MapPixel, PATH_IMAGE"UI/MiniMap/MiniMapPixel.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::PlayerPixel, PATH_IMAGE"UI/MiniMap/MiniMapPlayer.bmp");
+	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::EnemyPixel, PATH_IMAGE"UI/MiniMap/MiniMapEnemy.bmp");
+	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::DoorPixel, PATH_IMAGE"UI/MiniMap/MiniMapDoor.bmp");
 
 #pragma endregion
 
@@ -176,6 +181,8 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::Dungeon::sqaure3, PATH_IMAGE"Dungeon/Particle/SqaureParticle_3.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Dungeon::sqaure4, PATH_IMAGE"Dungeon/Particle/SqaureParticle_4.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Dungeon::sqaure5, PATH_IMAGE"Dungeon/Particle/SqaureParticle_5.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Dungeon::bgLayer0, PATH_IMAGE"Background/BGLayer_0.bmp", WINSIZE_X, WINSIZE_Y);
+	IMAGEMANAGER->addImage(ImageName::Dungeon::bgLayer1, PATH_IMAGE"Background/BGLayer_1.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::Door, PATH_IMAGE"Dungeon/Door/Door.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorLeft, PATH_IMAGE"Dungeon/Door/Door_Left.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorRight, PATH_IMAGE"Dungeon/Door/Door_Right.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);

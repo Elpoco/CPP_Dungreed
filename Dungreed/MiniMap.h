@@ -4,18 +4,16 @@
 class MiniMap : public UI
 {
 private:
-	struct tagMiniMap
-	{
-
-	};
-
-private:
 	ImageBase* _imgBlock;
 	ImageBase* _imgPlayer;
-	MapToolEnum::MAP_OBJ* _arrType;
+	ImageBase* _imgEnemy;
+	ImageBase* _imgDoor;
+	MapToolEnum::MAP_OBJ* _arrType; // 타일의 타입을 담을 배열
+	BOOL _isDungeon;
 
 	int _tileCntX;
 	int _tileCntY;
+
 	int _miniMapX;
 	int _miniMapY;
 	int _miniMapW;
@@ -23,6 +21,9 @@ private:
 
 	int _playerX;
 	int _playerY;
+	
+	ObjectManager::vObjects* _vObject;
+	vector<POINT> _vEnemyPt;
 
 public:
 	MiniMap();
@@ -35,5 +36,7 @@ public:
 
 	void settingMiniMap();
 	void updateUnitPosition();
+
+	void setDungeon(BOOL isDungeon) { _isDungeon = isDungeon; }
 };
 

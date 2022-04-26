@@ -27,14 +27,15 @@ Player::~Player()
 
 HRESULT Player::init()
 {
-	Unit::init();
-
 	this->initAnimation();
+	Unit::init();
 
 	CAMERAMANAGER->followCamera(this);
 	CAMERAMANAGER->lockCamera();
 
 	_maxHp = _curHp = DEFAULT_HP;
+
+	PLAYERMANAGER->init();
 
 	UIMANAGER->initMiniMap();
 	UIMANAGER->initInventory();
@@ -45,12 +46,6 @@ HRESULT Player::init()
 	ITEMMANAGER->setPlayerLeft(&_isLeft);
 
 	ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
-	ITEMMANAGER->getItem(Code::ITEM::COLT);
-	ITEMMANAGER->getItem(Code::ITEM::COLT);
-	ITEMMANAGER->getItem(Code::ITEM::COLT);
-	ITEMMANAGER->getItem(Code::ITEM::COLT);
-	ITEMMANAGER->getItem(Code::ITEM::COLT);
-	ITEMMANAGER->getItem(Code::ITEM::COLT);
 
 	return S_OK;
 }
@@ -58,6 +53,9 @@ HRESULT Player::init()
 void Player::release()
 {
 	Unit::release();
+
+	PLAYERMANAGER->release();
+	PLAYERMANAGER->releaseSingleton();
 }
 
 void Player::update()
@@ -66,6 +64,7 @@ void Player::update()
 	this->move();
 	Unit::updateRect();
 	this->animation();
+	PLAYERMANAGER->update();
 }
 
 void Player::render(HDC hdc)
@@ -115,7 +114,7 @@ void Player::move()
 	if (IsOnceKeyDown(KEY::CLICK_R)) this->dash();
 
 	if (IsStayKeyDown(KEY::DOWN) && IsOnceKeyDown(KEY::SPACE)) Unit::downJump();
-	if (IsOnceKeyDown(KEY::UP) || IsOnceKeyDown(KEY::SPACE))  Unit::jump();
+	if (IsOnceKeyDown(KEY::UP) || IsOnceKeyDown(KEY::SPACE))  this->jump();
 
 	// дЁ╦╞ем аб©Л
 	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
@@ -221,6 +220,10 @@ void Player::attack()
 
 void Player::dash()
 {
+	if (_isDash) return;
+	if (PLAYERMANAGER->canDash()) return;
+	PLAYERMANAGER->dash();
+
 	_isDash = TRUE;
 	_isJump = FALSE;
 	_isDownJump = FALSE;
@@ -228,6 +231,12 @@ void Player::dash()
 	
 	SOUNDMANAGER->play(SoundName::Player::dash, _sound);
 	OBJECTMANAGER->addEffect(ImageName::Player::runFX, _rc.left, _rc.bottom);
+}
+
+void Player::jump()
+{
+	SOUNDMANAGER->play(SoundName::Player::Jumping, _sound);
+	Unit::jump();
 }
 
 void Player::getItem(Code::ITEM code)
