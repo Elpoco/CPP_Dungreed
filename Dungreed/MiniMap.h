@@ -1,11 +1,6 @@
 #pragma once
 #include "UI.h"
 
-namespace MiniMapSet
-{
-	constexpr int MAP_Y = 10;
-}
-
 class MiniMap : public UI
 {
 private:
@@ -22,8 +17,12 @@ private:
 	int _tileCntX;
 	int _tileCntY;
 	int _miniMapX;
+	int _miniMapY;
+	int _miniMapW;
+	int _miniMapH;
 
-	int _playerIdx;
+	int _playerX;
+	int _playerY;
 
 public:
 	MiniMap();
@@ -35,6 +34,6 @@ public:
 	virtual void render(HDC hdc) override;
 
 	void settingMiniMap();
-	void updatePlayerPosition();
+	void updateUnitPosition();
 };
 

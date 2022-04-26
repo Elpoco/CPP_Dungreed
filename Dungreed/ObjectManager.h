@@ -42,6 +42,7 @@ public:
 	void clearObjects(ObjectEnum::OBJ_TYPE type);
 
 	Object* getPlayer() { return _mObjects.find(ObjectEnum::OBJ_TYPE::PLAYER)->second[0]; }
+	vObjects* getEnemy() { return &_mObjects.find(ObjectEnum::OBJ_TYPE::ENEMY)->second; }
 
 };
 

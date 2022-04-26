@@ -1,8 +1,6 @@
 #include "Stdafx.h"
 #include "MiniMap.h"
 
-using namespace MiniMapSet;
-
 MiniMap::MiniMap()
 {
 }
@@ -28,7 +26,7 @@ void MiniMap::release()
 
 void MiniMap::update()
 {
-	updatePlayerPosition();
+	updateUnitPosition();
 }
 
 void MiniMap::render(HDC hdc)
@@ -39,15 +37,12 @@ void MiniMap::render(HDC hdc)
 		{
 			if (_arrType[y * _tileCntX + x] != MapToolEnum::MAP_OBJ::NONE)
 			{
-				_imgBlock->render(hdc, _miniMapX + x * 5, MAP_Y + y * 5);
-			}
-			if (y * _tileCntX + x == _playerIdx)
-			{
-				_imgPlayer->render(hdc, _miniMapX + x * 5, MAP_Y + y * 5);
-
+				_imgBlock->render(hdc, _miniMapX + x * 5, _miniMapY + y * 5);
 			}
 		}
 	}
+	_imgPlayer->render(hdc, _miniMapX + _playerX * 5, _miniMapY + _playerY * 5);
+	//PrintRectangleColor(hdc, _miniMapX, _miniMapY, _miniMapW, _miniMapH);
 }
 
 void MiniMap::settingMiniMap()
@@ -55,6 +50,9 @@ void MiniMap::settingMiniMap()
 	_tileCntX = TILEMANAGER->getCurrentMapTileCntX();
 	_tileCntY = TILEMANAGER->getCurrentMapTileCntY();
 	_miniMapX = WINSIZE_X - (_tileCntX * 5) - 10;
+	_miniMapY = 10;
+	_miniMapW = _tileCntX * 5;
+	_miniMapH = _tileCntY * 5;
 
 	_arrType = new MapToolEnum::MAP_OBJ[_tileCntX * _tileCntY];
 
@@ -69,8 +67,9 @@ void MiniMap::settingMiniMap()
 	}
 }
 
-void MiniMap::updatePlayerPosition()
+void MiniMap::updateUnitPosition()
 {
 	POINT pos = OBJECTMANAGER->getPlayer()->getPt();
-	_playerIdx = TILEMANAGER->getTileIndex(pos);
+	_playerX = pos.x / TILE_SIZE;
+	_playerY = pos.y / TILE_SIZE;
 }
