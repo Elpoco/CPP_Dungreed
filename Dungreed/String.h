@@ -118,6 +118,16 @@ namespace ImageName
 			constexpr char* EnemyPixel = "MINIMAP EnemyPixel";
 			constexpr char* DoorPixel = "MINIMAP DoorPixel";
 		}
+
+		namespace Keyboard
+		{
+			constexpr char* F = "Keyboard F";
+		}
+
+		namespace Item
+		{
+			constexpr char* reloadBar = "UI ITEM reloadBar";
+		}
 	}
 
 	namespace Background
@@ -190,6 +200,9 @@ namespace ImageName
 
 		constexpr char* bgLayer0 = "DUNGEON bgLayer0";
 		constexpr char* bgLayer1 = "DUNGEON bgLayer1";
+
+		constexpr char* tresureNormal = "DUNGEON tresureNormal";
+		constexpr char* tresureBoss = "DUNGEON tresureBoss";
 	}
 
 }
@@ -242,6 +255,7 @@ namespace SoundName
 	namespace Dungeon
 	{
 		constexpr char* DoorMove = "SOUND DUNGEON DoorMove";
+		constexpr char* OpenTresure = "SOUND DUNGEON OpenTresure";
 	}
 }
 

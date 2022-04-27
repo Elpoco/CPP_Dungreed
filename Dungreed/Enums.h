@@ -18,9 +18,11 @@ enum KEY
 	CLICK_L = VK_LBUTTON,
 	CLICK_R = VK_RBUTTON,
 
+	// 키보드
 	F1 = VK_F1, F2 = VK_F2, F3 = VK_F3, F4 = VK_F4,
 	F5 = VK_F5, F6 = VK_F6, F7 = VK_F7, F8 = VK_F8,
 	F9 = VK_F9, F10 = VK_F10, F11 = VK_F11, F12 = VK_F12,
+	F = 'F', 
 
 	// 플레이어
 	INVENTORY = 'V',
@@ -61,10 +63,12 @@ namespace ObjectEnum
 	{
 		EFFECT_BACK,
 		NPC,
+		DUNGEON_OBJ,
+		DUNGEON,
 		ENEMY,
 		ENEMY_OBJ,
-		ITEM_DROP,
 		PLAYER,
+		ITEM_DROP,
 		ITEM,
 		PLAYER_OBJ,
 		EFFECT,
@@ -122,6 +126,7 @@ namespace Code
 		DUNGEON_01,
 		DUNGEON_02,
 
+		BOSS,
 		BELIAL,
 		NIFLHEIM,
 

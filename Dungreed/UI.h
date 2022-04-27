@@ -9,14 +9,14 @@ protected:
 	string _sceneName;
 	BOOL _isFixed; // TRUE 절대좌표 랜더, FALSE 상대좌표 랜더
 	BOOL _isShow;
+	BOOL _isFree; // scene넘어갈때 삭제 안함
 	int _width;
 	int _height;
 	BYTE _alpha;
-	BOOL _free; // scene넘어갈때 삭제 안함
 
 public:
 	UI();
-	UI(string imgName, int x = 0, int y = 0, BOOL fixed = TRUE, BOOL show = TRUE);
+	UI(string imgName, int x = 0, int y = 0, BOOL fixed = TRUE, BOOL show = TRUE, BOOL free = FALSE);
 	virtual ~UI();
 
 	virtual HRESULT init() override;
@@ -36,8 +36,9 @@ public:
 
 	inline BOOL isFixed() {	return _isFixed; }
 	inline BOOL isShow() { return _isShow; }
-	inline void setFree() { _free = TRUE; }
+	inline void setFree() { _isFree = TRUE; }
 
+	void show(float x, float y);
 	inline void show() { _isShow = TRUE; }
 	inline void hide() { _isShow = FALSE; }
 

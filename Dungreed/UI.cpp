@@ -5,14 +5,14 @@ UI::UI()
 	: _img(nullptr)
 	, _isFixed(FALSE)
 	, _isShow(TRUE)
-	, _free(FALSE)
+	, _isFree(FALSE)
 {
 }
 
-UI::UI(string imgName, int x, int y, BOOL fixed, BOOL show)
+UI::UI(string imgName, int x, int y, BOOL fixed, BOOL show, BOOL free)
 	: _isFixed(fixed)
 	, _isShow(show)
-	, _free(FALSE)
+	, _isFree(free)
 {
 	_img = FindImage(imgName);
 
@@ -54,7 +54,7 @@ void UI::release()
 
 void UI::update()
 {
-	if (!_free && _sceneName != SCENEMANAGER->getCurrentSceneName())
+	if (!_isFree && _sceneName != SCENEMANAGER->getCurrentSceneName())
 	{
 		_isLive = FALSE;
 		return;
@@ -130,5 +130,13 @@ void UI::animation()
 		_frameInfo.x++;
 		if (_frameInfo.x > _frameInfo.maxFrameX) _frameInfo.x = 0;
 	}
+}
+
+void UI::show(float x, float y)
+{
+	_isShow = TRUE;
+	_x = x; 
+	_y = y;
+	_rc = RectMakeCenter(_x, _y, _width, _height);
 }
 

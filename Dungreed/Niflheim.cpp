@@ -78,11 +78,22 @@ void Niflheim::update()
 	switch (_skill)
 	{
 	case Niflheim::NIFLHEIM_SKILL::NONE:
+
+		_checkPillar = false;
+
 		for (int i = 0; i < PILLAR_CNT; i++)
 		{
 			if (!_pillar[i]) continue;
 
 			_pillar[i]->setSkill(_skill);
+			_checkPillar = true;
+		}
+
+		if (!_checkPillar)
+		{
+			_skill = NIFLHEIM_SKILL::STUN;
+			_stunTime = TIMEMANAGER->getWorldTime();
+			break;
 		}
 
 		if (_skillAuto && _skillCooldown + SKILL_TIME < TIMEMANAGER->getWorldTime())
@@ -93,6 +104,7 @@ void Niflheim::update()
 			}
 			_lastSkill = _skill;
 		}
+
 		break;
 	case Niflheim::NIFLHEIM_SKILL::AROUND:
 		this->turnAround();
@@ -103,7 +115,15 @@ void Niflheim::update()
 	case Niflheim::NIFLHEIM_SKILL::FULL_ATTACK:
 		this->moveAndFire();
 		break;
-	case Niflheim::NIFLHEIM_SKILL::SKILL_CNT:
+	case Niflheim::NIFLHEIM_SKILL::TELEPORT:
+		this->teleport();
+		break;
+	case Niflheim::NIFLHEIM_SKILL::STUN:
+		if (_stunTime + 1.0f < TIMEMANAGER->getWorldTime())
+		{
+			_onInitPillar = true;
+			_skill = NIFLHEIM_SKILL::NONE;
+		}
 		break;
 	default:
 		break;
@@ -134,6 +154,7 @@ void Niflheim::render(HDC hdc)
 void Niflheim::deleteEffect()
 {
 	OBJECTMANAGER->addEffect(ImageName::Enemy::die, _x, _y);
+	MAPMANAGER->dieMonster();
 }
 
 void Niflheim::hitAttack(int dmg, int dir)
@@ -184,8 +205,10 @@ void Niflheim::initPillar()
 		int intervalY = i * 0.5f;
 		_pillar[i] = new NiflheimPillar(_x + 115 - 250 * intervalX, _y + 115 - 250 * intervalY);
 		_pillar[i]->setPosAddress(&_x, &_y);
+		_pillar[i]->settingOrder(i);
 		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::ENEMY, _pillar[i]);
 	}
+	_checkPillar = true;
 }
 
 void Niflheim::attackAnimation()
@@ -320,4 +343,14 @@ void Niflheim::moveAndFire()
 
 		_state = IDLE;
 	}
+}
+
+void Niflheim::teleport()
+{
+	OBJECTMANAGER->addEffect(ImageName::Enemy::dieSmall, _x, _y);
+	_skill = NIFLHEIM_SKILL::NONE;
+	_skillCooldown = TIMEMANAGER->getWorldTime();
+	_x = RND->getFromIntTo(400, 1050);
+	_y = RND->getFromIntTo(255, 480);
+	OBJECTMANAGER->addEffect(ImageName::Enemy::dieSmall, _x, _y);
 }

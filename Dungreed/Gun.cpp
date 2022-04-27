@@ -17,6 +17,7 @@ HRESULT Gun::init()
 	Item::init();
 
 	_bulletCnt = _info.etc;
+	_reloadTime = 1.0f;
 
 	this->settingShootingPoint();
 
@@ -39,8 +40,9 @@ void Gun::update()
 
 	if (_bulletCnt <= 0)
 	{
-		_lastAttack += 1.0f;
+		_lastAttack += _reloadTime;
 		_bulletCnt = _info.etc;
+		UIMANAGER->reloadUI(_reloadTime);
 		SOUNDMANAGER->play(SoundName::Item::Reload2, _sound);
 	}
 
@@ -73,7 +75,7 @@ RECT Gun::attack()
 		ImageName::Item::Weapon::bullet02,
 		_shootingX,
 		_shootingY,
-		_angle,
+		_angle + RND->getFloat(0.08f) - 0.04f,
 		5.0f,
 		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
 		ImageName::Effect::Weapon::shootingHit

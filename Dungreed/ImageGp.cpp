@@ -79,14 +79,13 @@ void ImageGp::render(HDC hdc, float x, float y, int angle, POINT rotateCenter)
 	if (rotateCenter.x == 0) rotateCenter.x = x + _imageInfo->width * 0.5f;
 	if (rotateCenter.y == 0) rotateCenter.y = y + _imageInfo->height * 0.5f;
 
-	Matrix matrix;
-	matrix.RotateAt(-angle, PointToPointF(rotateCenter));
-	_graphics->SetTransform(&matrix);
+	_graphics->TranslateTransform(rotateCenter.x, rotateCenter.y);
+	_graphics->RotateTransform(-angle);
+	_graphics->TranslateTransform(-rotateCenter.x, -rotateCenter.y);
 
 	_graphics->DrawImage(_img, x, y);
 
-	Matrix release;
-	_graphics->SetTransform(&release);
+	_graphics->ResetTransform();
 }
 
 void ImageGp::frameRender(HDC hdc, float x, float y, int frameX, int frameY)
@@ -107,9 +106,9 @@ void ImageGp::frameRender(HDC hdc, float x, float y, int frameX, int frameY, int
 	if (rotateCenter.x == 0) rotateCenter.x = x;
 	if (rotateCenter.y == 0) rotateCenter.y = y;
 
-	Matrix matrix;
-	matrix.RotateAt(-angle, PointToPointF(rotateCenter));
-	_graphics->SetTransform(&matrix);
+	_graphics->TranslateTransform(rotateCenter.x, rotateCenter.y);
+	_graphics->RotateTransform(-angle);
+	_graphics->TranslateTransform(-rotateCenter.x, -rotateCenter.y);
 
 	_graphics->DrawImage(
 		_img,
@@ -121,6 +120,5 @@ void ImageGp::frameRender(HDC hdc, float x, float y, int frameX, int frameY, int
 		Unit::UnitPixel
 	);
 
-	Matrix release;
-	_graphics->SetTransform(&release);
+	_graphics->ResetTransform();
 }

@@ -4,7 +4,7 @@
 namespace PlayerManagerSet
 {
 	constexpr int DEFAULT_DASH_CNT = 3;
-	constexpr float DEFAULT_DASH_TIME = 2.0f;
+	constexpr float DEFAULT_DASH_TIME = 1.5f;
 }
 
 class PlayerManager : public SingletonBase<PlayerManager>

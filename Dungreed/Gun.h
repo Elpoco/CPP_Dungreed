@@ -7,6 +7,7 @@ private:
 	float _shootingX;
 	float _shootingY;
 	float _angle;
+	float _reloadTime;
 	int _bulletCnt;
 
 public:

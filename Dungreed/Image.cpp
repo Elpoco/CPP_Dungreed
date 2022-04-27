@@ -636,3 +636,72 @@ void Image::aniRender(HDC hdc, int destX, int destY, Animation * ani)
 {
 	render(hdc, destX, destY, ani->getFramePos().x, ani->getFramePos().y, ani->getFrameWidth(), ani->getFrameHeight());
 }
+
+
+HRESULT Image::initForRotateImage()
+{
+	HDC hdc = GetDC(_hWnd);
+
+	int size;
+	(_imageInfo->width > _imageInfo->height ? size = _imageInfo->width : size = _imageInfo->height);
+	_rotateImage = new IMAGE_INFO;
+	_rotateImage->loadType = LOAD_EMPTY;
+	_rotateImage->hMemDC = CreateCompatibleDC(hdc);
+	_rotateImage->hBit = (HBITMAP)CreateCompatibleBitmap(hdc, size, size);
+	_rotateImage->hOBit = (HBITMAP)SelectObject(_rotateImage->hMemDC, _rotateImage->hBit);
+	_rotateImage->width = size;
+	_rotateImage->height = size;
+
+	ReleaseDC(_hWnd, hdc);
+
+	return S_OK;
+}
+
+void Image::rotateRender(HDC hdc, float destX, float destY, float angle)
+{
+	if (!_rotateImage) this->initForRotateImage();
+
+	POINT rPoint[3];
+	int dist = sqrt((_imageInfo->width / 2) * (_imageInfo->width / 2) + (_imageInfo->height / 2) * (_imageInfo->height / 2));
+	float baseAngle[3];
+	baseAngle[0] = M_PI - atanf(((float)_imageInfo->height / 2) / ((float)_imageInfo->width / 2));
+	baseAngle[1] = atanf(((float)_imageInfo->height / 2) / ((float)_imageInfo->width / 2));
+	baseAngle[2] = M_PI + atanf(((float)_imageInfo->height / 2) / ((float)_imageInfo->width / 2));
+
+	for (int i = 0; i < 3; ++i)
+	{
+		rPoint[i].x = (_rotateImage->width / 2 + cosf(baseAngle[i] + angle + PI / 2) * dist);
+		rPoint[i].y = (_rotateImage->height / 2 + -sinf(baseAngle[i] + angle + PI / 2) * dist);
+	}
+
+	if (_isTrans)
+	{
+		BitBlt(_rotateImage->hMemDC, 0, 0,
+			_rotateImage->width, _rotateImage->height,
+			hdc, 0, 0, BLACKNESS);
+
+		HBRUSH hBrush = CreateSolidBrush(_transColor);
+		HBRUSH oBrush = (HBRUSH)SelectObject(_rotateImage->hMemDC, hBrush);
+		ExtFloodFill(_rotateImage->hMemDC, 1, 1, RGB(0, 0, 0), FLOODFILLSURFACE);
+		DeleteObject(hBrush);
+
+		PlgBlt(_rotateImage->hMemDC, rPoint, _imageInfo->hMemDC,
+			0, 0, _imageInfo->width, _imageInfo->height, NULL, 0, 0);
+
+		GdiTransparentBlt(hdc,
+			destX - _rotateImage->width / 2,
+			destY - _rotateImage->height / 2,
+			_rotateImage->width,
+			_rotateImage->height,
+			_rotateImage->hMemDC,
+			0,
+			0,
+			_rotateImage->width,
+			_rotateImage->height,
+			_transColor);
+	}
+	else
+	{
+		PlgBlt(hdc, rPoint, _imageInfo->hMemDC, 0, 0, _imageInfo->width, _imageInfo->height, NULL, 0, 0);
+	}
+}

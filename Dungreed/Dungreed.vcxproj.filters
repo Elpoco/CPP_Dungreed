@@ -109,9 +109,6 @@
     <Filter Include="API FrameWork\09. Sound">
       <UniqueIdentifier>{1ae1ac97-dbfe-4109-aafe-88839b2c178f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\07. Box">
-      <UniqueIdentifier>{3878eea0-e6c6-4ad6-bc71-4ae046ba3d06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="API FrameWork\12. Collision">
       <UniqueIdentifier>{7423818a-c6a4-4d2f-980a-d7cbfdedf660}</UniqueIdentifier>
     </Filter>
@@ -142,11 +139,20 @@
     <Filter Include="MainGame\02. Object\07. NPC">
       <UniqueIdentifier>{ec43b864-9dae-430e-bd66-7d3c3060b9c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\07. NPC\Door">
-      <UniqueIdentifier>{2505c112-187e-48ce-98dc-c30e242336b4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\02. Object\05. UI\MiniMap">
       <UniqueIdentifier>{f391fbe2-27ab-4e0a-bbec-cc274664d689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\08. DungeonObj">
+      <UniqueIdentifier>{8931cb99-5b91-41de-a6f9-9ce2ef9123d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\08. DungeonObj\Door">
+      <UniqueIdentifier>{2505c112-187e-48ce-98dc-c30e242336b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\08. DungeonObj\Tresure">
+      <UniqueIdentifier>{cb7daaec-84e2-4ae8-bd79-233a381d9bd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\08. DungeonObj\Box">
+      <UniqueIdentifier>{3878eea0-e6c6-4ad6-bc71-4ae046ba3d06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -301,7 +307,7 @@
       <Filter>API FrameWork\09. Sound</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">
-      <Filter>MainGame\02. Object\07. Box</Filter>
+      <Filter>MainGame\02. Object\08. DungeonObj\Box</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>MainGame\02. Object\05. UI\Inventory</Filter>
@@ -331,7 +337,7 @@
       <Filter>MainGame\02. Object\05. UI\HpBar</Filter>
     </ClCompile>
     <ClCompile Include="Door.cpp">
-      <Filter>MainGame\02. Object\07. NPC\Door</Filter>
+      <Filter>MainGame\02. Object\08. DungeonObj\Door</Filter>
     </ClCompile>
     <ClCompile Include="MapManager.cpp">
       <Filter>MainGame\01. Scene\Game</Filter>
@@ -341,6 +347,9 @@
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
       <Filter>MainGame\02. Object\01. Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Tresure.cpp">
+      <Filter>MainGame\02. Object\08. DungeonObj\Tresure</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -482,9 +491,6 @@
     <ClInclude Include="Bullet.h">
       <Filter>MainGame\02. Object\03. Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="BelialSword.h">
-      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Belial</Filter>
-    </ClInclude>
     <ClInclude Include="Niflheim.h">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Niflheim</Filter>
     </ClInclude>
@@ -516,7 +522,7 @@
       <Filter>API FrameWork\09. Sound</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
-      <Filter>MainGame\02. Object\07. Box</Filter>
+      <Filter>MainGame\02. Object\08. DungeonObj\Box</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>MainGame\02. Object\05. UI\Inventory</Filter>
@@ -558,7 +564,7 @@
       <Filter>MainGame\03. DB</Filter>
     </ClInclude>
     <ClInclude Include="Door.h">
-      <Filter>MainGame\02. Object\07. NPC\Door</Filter>
+      <Filter>MainGame\02. Object\08. DungeonObj\Door</Filter>
     </ClInclude>
     <ClInclude Include="MapManager.h">
       <Filter>MainGame\01. Scene\Game</Filter>
@@ -568,6 +574,12 @@
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
       <Filter>MainGame\02. Object\01. Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialSword.h">
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Boss\Belial</Filter>
+    </ClInclude>
+    <ClInclude Include="Tresure.h">
+      <Filter>MainGame\02. Object\08. DungeonObj\Tresure</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

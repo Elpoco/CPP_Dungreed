@@ -39,6 +39,7 @@ public:
 	
 	void addItem(Object* obj);
 	void addDropItem(Object* obj);
+	void addTresure(float x, float y);
 
 	void clearObjects(ObjectEnum::OBJ_TYPE type);
 

@@ -72,9 +72,9 @@ ImageBase* ItemManager::findImage(Code::ITEM code)
 	return FindImage(imgName);
 }
 
-void ItemManager::dropItem(Code::ITEM code, float x, float y)
+void ItemManager::dropItem(Code::ITEM code, float x, float y, BOOL scatter)
 {
-	OBJECTMANAGER->addDropItem(new DropItem(code, x, y));
+	OBJECTMANAGER->addDropItem(new DropItem(code, x, y, scatter));
 }
 
 Item* ItemManager::getEquipItem()

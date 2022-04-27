@@ -194,10 +194,12 @@ void Unit::pushObject(Direction::DIR dir, float x, float y)
 		_y = y - _imgHeight * 0.5f;
 		break;
 	default:
+		dir = Direction::BOTTOM;
 		if (x > 0) _x = x - _imgWidth * 0.5f;
 		if (y > 0) _y = y - _imgHeight * 0.5f + 1;
 		break;
 	}
+	setCollision(dir, true);
 }
 
 void Unit::updateRect()

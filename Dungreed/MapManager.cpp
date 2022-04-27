@@ -18,7 +18,7 @@ HRESULT MapManager::init()
 	for (int i = 0; i < DIR::DIR_CNT; i++)
 	{
 		_door[i] = new Door((DIR)i, 0, 0);
-		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::NPC, _door[i]);
+		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::DUNGEON, _door[i]);
 	}
 
 	return S_OK;
@@ -30,11 +30,8 @@ void MapManager::release()
 
 void MapManager::update()
 {
-	if (!_isClear && _unitCnt == 0)
-	{
-		_isClear = TRUE;
-		openDoor();
-	}
+	checkMonster();
+
 }
 
 void MapManager::render(HDC hdc)
@@ -74,7 +71,7 @@ void MapManager::settingMonster()
 	{
 		if (_mapInfo.arrSpawnInfo[i].unit == Code::UNIT::NONE) break;
 		_unitCnt++;
-		OBJECTMANAGER->addUnit(
+		OBJECTMANAGER->addEnemy(
 			_mapInfo.arrSpawnInfo[i].unit,
 			_mapInfo.arrSpawnInfo[i].ptSpawn.x,
 			_mapInfo.arrSpawnInfo[i].ptSpawn.y
@@ -123,6 +120,9 @@ void MapManager::chageRoom(DIR dir)
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ITEM_DROP);
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::PLAYER_OBJ);
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ENEMY_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::DUNGEON_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::EFFECT);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::EFFECT_BACK);
 
 	UIMANAGER->updateMiniMap();
 }
@@ -140,5 +140,18 @@ void MapManager::closeDoor()
 	for (int i = 0; i < DIR::DIR_CNT; i++)
 	{
 		_door[i]->closeDoor();
+	}
+}
+
+void MapManager::checkMonster()
+{
+	if (!_isClear && _unitCnt == 0)
+	{
+		_isClear = TRUE;
+		openDoor();
+		if (_mapInfo.ptTresure.x != 0)
+		{
+			OBJECTMANAGER->addTresure(_mapInfo.ptTresure.x, _mapInfo.ptTresure.y);
+		}
 	}
 }

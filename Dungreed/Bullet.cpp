@@ -28,7 +28,7 @@ HRESULT Bullet::init()
 	Object::init();
 
 	_img = FindImage(_imgName);
-
+	
 	if (GPIMAGEMANAGER->findImage(_imgName)) _isGP = TRUE;
 
 	_frameInfo.maxFrameX = _img->getMaxFrameX();
@@ -75,7 +75,17 @@ void Bullet::render(HDC hdc)
 	}
 	else
 	{
-		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
+		if (_frameInfo.isFrame)
+		{
+			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
+		}
+		else
+		{
+			IMAGEMANAGER->findImage(_imgName)->rotateRender(hdc,
+				CAMERAMANAGER->calRelX(_x),
+				CAMERAMANAGER->calRelY(_y),
+				_angle);
+		}
 	}
 }
 

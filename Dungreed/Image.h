@@ -60,6 +60,7 @@ private:
 
 	BLENDFUNCTION	_blendFunc;
 	LPIMAGE_INFO	_blendImage;
+	LPIMAGE_INFO	_rotateImage;
 
 	void setSize(string fileName, int& width, int& height);
 
@@ -73,6 +74,9 @@ public:
 	HRESULT init(const char* fileName, float x, float y, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
 
 	HRESULT initForAlphaBlend();
+
+	HRESULT initForRotateImage();
+	void rotateRender(HDC hdc, float destX, float destY, float angle);
 
 	void setTransColor(BOOL isTrans, COLORREF transColopr);
 

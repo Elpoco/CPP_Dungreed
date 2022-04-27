@@ -28,6 +28,7 @@ public:
 	void renderUI(HDC hdc, Object* obj);
 	void renderItem(HDC hdc, Object* obj);
 	void renderNpc(HDC hdc, Object* obj);
+	void renderDungeonObj(HDC hdc, Object* obj);
 
 	// 타일 충돌
 	void collisionTile();
@@ -42,6 +43,8 @@ public:
 	void collisionItem();
 	// NPC 플레이어 충돌
 	void collisionNpc();
+	// 던전 오브젝트 충돌
+	void collisionDungeonObj();
 
 };
 

@@ -18,6 +18,7 @@
 #include "Niflheim.h"
 
 #include "Door.h"
+#include "Tresure.h"
 
 using namespace ObjectEnum;
 
@@ -120,7 +121,7 @@ void ObjectManager::addPlayer(float x, float y)
 
 void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 {
-	Enemy* enemy;
+	Enemy* enemy = new SkelDog(x, y);
 	switch (code)
 	{
 	case Code::UNIT::SKEL_DOG:
@@ -140,8 +141,8 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 	default:
 		break;
 	}
-	enemy->settingHpBar();
 	addObject(OBJ_TYPE::ENEMY, enemy);
+	enemy->settingHpBar();
 }
 
 void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage, string destroyImgName, float distance)
@@ -208,6 +209,11 @@ void ObjectManager::addItem(Object * obj)
 void ObjectManager::addDropItem(Object* obj)
 {
 	addObject(OBJ_TYPE::ITEM_DROP, obj);
+}
+
+void ObjectManager::addTresure(float x, float y)
+{
+	addObject(OBJ_TYPE::DUNGEON_OBJ, new Tresure(x, y));
 }
 
 void ObjectManager::clearObjects(ObjectEnum::OBJ_TYPE type)

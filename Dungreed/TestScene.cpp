@@ -4,8 +4,9 @@
 HRESULT TestScene::init()
 {
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
-	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, CENTER_X, 500);
+	OBJECTMANAGER->addPlayer(CENTER_X, 500);
 	TILEMANAGER->loadMap(FileName::testSave);
+	OBJECTMANAGER->addTresure(360, 1270);
 
 	return S_OK;
 }
@@ -18,15 +19,15 @@ void TestScene::update()
 {
 	if (IsOnceKeyDown('Z'))
 	{
-		OBJECTMANAGER->addUnit(Code::UNIT::SKEL_DOG, 100, 800);
+		OBJECTMANAGER->addEnemy(Code::UNIT::SKEL_DOG, 100, 800);
 	}
 	if (IsStayKeyDown('B') && IsOnceKeyDown(VK_F1))
 	{
-		OBJECTMANAGER->addUnit(Code::UNIT::BELIAL, 1000, 550);
+		OBJECTMANAGER->addEnemy(Code::UNIT::BELIAL, 1000, 550);
 	}
 	if (IsStayKeyDown('B') && IsOnceKeyDown(VK_F2))
 	{
-		OBJECTMANAGER->addUnit(Code::UNIT::NIFLEHEIM, 1000, 500);
+		OBJECTMANAGER->addEnemy(Code::UNIT::NIFLEHEIM, 1000, 500);
 	}
 }
 

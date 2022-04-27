@@ -150,7 +150,7 @@ void CameraManager::cameraInitPos()
 void CameraManager::updateMapSize()
 {
 	_mapWidth = TILEMANAGER->getCurrentMapTileWidth() + TILE_SIZE;
-	_mapHeight = TILEMANAGER->getCurrentMapTileHeight();
+	_mapHeight = TILEMANAGER->getCurrentMapTileHeight() + TILE_SIZE;
 }
 
 POINT CameraManager::calRelPt(POINT pt)

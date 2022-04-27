@@ -49,6 +49,7 @@ void MainGame::update(void)
 
 	OBJECTMANAGER->update();
 
+	UIMANAGER->update();
 	COLLISIONMANAGER->update();
 
 	CAMERAMANAGER->update();

@@ -170,10 +170,10 @@ void Belial::initAnimation()
 	_imgHand[BELIAL_HAND_STATE::LASER] = FindImage(ImageName::Enemy::Belial::handAttack);
 
 	_hand[R].isLeft = false;
-	_hand[R].x = _x + 450;
+	_hand[R].x = _x + 550;
 	_hand[R].y = _y + 100;
 	_hand[L].isLeft = true;
-	_hand[L].x = _x - 410;
+	_hand[L].x = _x - 510;
 	_hand[L].y = _y - 50;
 
 	for (int i = 0; i < RL; i++)

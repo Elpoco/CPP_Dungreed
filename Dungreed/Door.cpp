@@ -178,6 +178,10 @@ void Door::setTileY(int tileY)
 {
 	_y = tileY * TILE_SIZE;
 	_rc = RectMake(_x, _y, _frameInfo.width, _frameInfo.height);
+	for (int i = 0; i < PARTICLE_CNT; i++)
+	{
+		_particle[i].isOn = false;
+	}
 }
 
 void Door::openDoor()

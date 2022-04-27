@@ -31,6 +31,7 @@ public:
 	void chageRoom(DIR dir);
 	void openDoor();
 	void closeDoor();
+	void checkMonster();
 
 	void dieMonster() { _unitCnt--; }
 

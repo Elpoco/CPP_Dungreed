@@ -119,8 +119,10 @@ typedef struct tagMapInfo
 {
 	DOOR_INFO door[Direction::DIR::DIR_CNT];
 	SPAWN_INFO arrSpawnInfo[UnitSet::MAX_SPAWN];
+	POINT ptTresure;
 
 	tagMapInfo() 
 	{
+		ptTresure = { 0,0 };
 	}
 } MAP_INFO;

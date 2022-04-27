@@ -38,6 +38,7 @@ void CollisionManager::update()
 	collisionButton();
 	collisionItem();
 	collisionNpc();
+	collisionDungeonObj();
 }
 
 void CollisionManager::render(HDC hdc)
@@ -70,6 +71,10 @@ void CollisionManager::render(HDC hdc)
 					break;
 				case OBJ_TYPE::NPC:
 					renderNpc(hdc, obj);
+					break;
+				case OBJ_TYPE::DUNGEON:
+				case OBJ_TYPE::DUNGEON_OBJ:
+					renderDungeonObj(hdc, obj);
 					break;
 				default:
 					break;
@@ -148,6 +153,11 @@ void CollisionManager::renderItem(HDC hdc, Object* obj)
 }
 
 void CollisionManager::renderNpc(HDC hdc, Object* obj)
+{
+	CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Snow);
+}
+
+void CollisionManager::renderDungeonObj(HDC hdc, Object* obj)
 {
 	CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Snow);
 }
@@ -232,9 +242,11 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 		float moveX = 0.0f;
 		float moveY = 0.0f;
 
-		for (int y = endY; y >= startY; y -= TILE_CNT_X)
+		//for (int y = endY; y >= startY; y -= TILE_CNT_X)
+		for (int y = startY; y <= endY; y += TILE_CNT_X)
 		{
-			for (int x = endX; x >= startX; x--)
+			//for (int x = endX; x >= startX; x--)
+			for (int x = startX; x <= endX; x++)
 			{
 				TILE tile = TILEMANAGER->getTile(y + x);
 
@@ -249,36 +261,33 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 					// 점프중일땐 대각선타일 충돌 넘어감
 					if (unit->isJumping()) break;
 
-					if (tile.type == DOWN_R || tile.type == BLOCK_R)
+					if (tile.type == DOWN_R ||
+						tile.type == BLOCK_R)
 						moveY = rcObj.right - tile.rc.left;
-					else
+					else 
 						moveY = tile.rc.right - rcObj.left;
 
 					if (moveY >= TILE_SIZE || moveY <= 0) continue;
 
-					unit->setCollision(DIR::BOTTOM, true);
 					unit->pushObject(DIR::NONE, 0, tile.rc.bottom - moveY + 2);
-					continue;
+
+					return;
 
 				case MAP_OBJ::BLOCK:
 					if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
 					{ // 왼쪽
-						unit->setCollision(DIR::LEFT, true);
 						unit->pushObject(DIR::LEFT, tile.rc.right, 0);
 					}
 					else if (tile.x > unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
 					{ // 오른쪽
-						unit->setCollision(DIR::RIGHT, true);
 						unit->pushObject(DIR::RIGHT, tile.rc.left, 0);
 					}
 					else if (tile.y > rcObj.bottom)
 					{ // 바닥
-						unit->setCollision(DIR::BOTTOM, true);
 						unit->pushObject(DIR::BOTTOM, 0, tile.rc.top);
 					}
 					else
 					{ // 천장
-						unit->setCollision(DIR::TOP, true);
 						unit->pushObject(DIR::TOP, 0, tile.rc.bottom);
 					}
 					break;
@@ -290,7 +299,6 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 
 					if (tile.y > rcObj.bottom)
 					{ // 바닥
-						unit->setCollision(DIR::BOTTOM, true);
 						unit->pushObject(DIR::BOTTOM, 0, tile.rc.top);
 					}
 					break;
@@ -441,7 +449,7 @@ void CollisionManager::collisionItem()
 			RECT rcPlayer = player->getRect();
 			RECT rcObj = item->getRect();
 
-			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
+			if (IntersectRect(&tmp, &rcPlayer, &rcObj) && item->isStop())
 			{
 				player->getItem(code);
 				item->collisionObject();
@@ -471,6 +479,42 @@ void CollisionManager::collisionNpc()
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{
 				npc->collisionObject();
+			}
+		}
+	}
+}
+
+void CollisionManager::collisionDungeonObj()
+{
+	auto pairPlayer = _mObjects->find(OBJ_TYPE::PLAYER);
+	auto pairDungeon = _mObjects->find(OBJ_TYPE::DUNGEON);
+	auto pairDungeonObj = _mObjects->find(OBJ_TYPE::DUNGEON_OBJ);
+
+	for (Object* objPlayer : pairPlayer->second)
+	{
+		Player* player = dynamic_cast<Player*>(objPlayer);
+
+		for (Object* obj : pairDungeon->second)
+		{
+			RECT tmp;
+			RECT rcPlayer = player->getRect();
+			RECT rcObj = obj->getRect();
+
+			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
+			{
+				obj->collisionObject();
+			}
+		}
+
+		for (Object* obj : pairDungeonObj->second)
+		{
+			RECT tmp;
+			RECT rcPlayer = player->getRect();
+			RECT rcObj = obj->getRect();
+
+			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
+			{
+				obj->collisionObject();
 			}
 		}
 	}

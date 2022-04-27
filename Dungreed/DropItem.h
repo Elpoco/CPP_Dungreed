@@ -5,13 +5,15 @@ class DropItem : public Object
 {
 private:
 	Code::ITEM	_itemCode;
-	FRAME_INFO	_frameInfo;
 	ImageBase*	_img;
+	FRAME_INFO	_frameInfo;
+	BOOL		_isStop;
 	float		_dropSpeed;
-	bool		_isStop;
+	float		_gravity;
+	float		_scatterX;
 
 public:
-	DropItem(Code::ITEM code, float x, float y);
+	DropItem(Code::ITEM code, float x, float y, BOOL scatter = FALSE);
 	virtual ~DropItem();
 
 	virtual HRESULT init() override;
@@ -21,7 +23,8 @@ public:
 
 	virtual void collisionObject() override;
 	virtual void pushObject(DIR dir, float distance) override;
-	virtual void stopObject() override { _isStop = true; }
+	virtual void stopObject() override { _isStop = TRUE; }
+	BOOL isStop() { return _isStop; }
 
 	void move();
 	void animation();

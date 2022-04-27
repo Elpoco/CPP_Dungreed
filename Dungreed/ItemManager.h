@@ -27,7 +27,7 @@ public:
 
 	ImageBase* findImage(Code::ITEM code);
 
-	void dropItem(Code::ITEM code, float x, float y);
+	void dropItem(Code::ITEM code, float x, float y, BOOL scatter = FALSE);
 
 	void setPlayerBody(POINT* pt) { _ptPlayerBody = pt; }
 	void setPlayerHand(POINT* pt) { _ptPlayerHand = pt; }

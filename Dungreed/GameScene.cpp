@@ -31,7 +31,7 @@ HRESULT GameScene::init()
 	_enterFrame.width = _imgEnter->getFrameWidth();
 	_enterFrame.height = _imgEnter->getFrameHeight();
 
-	OBJECTMANAGER->addUnit(Code::UNIT::PLAYER, TileSet::TOTAL_TILE_X * 0.5f, TileSet::TOTAL_TILE_Y * 0.5f);
+	OBJECTMANAGER->addPlayer(TileSet::TOTAL_TILE_X * 0.5f, TileSet::TOTAL_TILE_Y * 0.5f);
 
 	return S_OK;
 }

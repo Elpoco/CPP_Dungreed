@@ -262,7 +262,7 @@ void TileManager::getDoorPos(POINT* ptDoor)
 	{
 		if (_tiles[TILE_CNT_X * curTileY + x].type == MapToolEnum::MAP_OBJ::NONE)
 		{
-			ptDoor[DIR::BOTTOM] = { x, curTileY - 1 };
+			ptDoor[DIR::BOTTOM] = { x, curTileY };
 			break;
 		}
 	}

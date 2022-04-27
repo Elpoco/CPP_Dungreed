@@ -63,10 +63,10 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Belial::swordEffect, PATH_UNIT"Enemy/Belial/SwordEffect.bmp", 0, 0, 3, 1, true, ColorSet::MAGENTA);
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Enemy::Belial::sword, PATH_UNIT"Enemy/Belial/SkellBossSword.png");
 	// 니플헤임
+	IMAGEMANAGER->addImage(ImageName::Enemy::Niflheim::bullet, PATH_UNIT"Enemy/Niflheim/IceBullet.bmp", 0,0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::idle, PATH_UNIT"Enemy/Niflheim/Idle.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::attack, PATH_UNIT"Enemy/Niflheim/Attack.bmp", 0, 0, 11, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::bulletFX, PATH_UNIT"Enemy/Niflheim/IceBulletFX.bmp", 0, 0, 3, 1, true, ColorSet::MAGENTA);
-	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Enemy::Niflheim::bullet, PATH_UNIT"Enemy/Niflheim/IceBullet.png");
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Enemy::Niflheim::pillar, PATH_UNIT"Enemy/Niflheim/Pillar.png", 20, 1);
 #pragma endregion
 
@@ -135,6 +135,12 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::PlayerPixel, PATH_IMAGE"UI/MiniMap/MiniMapPlayer.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::EnemyPixel, PATH_IMAGE"UI/MiniMap/MiniMapEnemy.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::DoorPixel, PATH_IMAGE"UI/MiniMap/MiniMapDoor.bmp");
+	// 키보드
+	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::F, PATH_IMAGE"UI/KeyBoard/Keyboard_F.bmp", 23, 25, true, ColorSet::MAGENTA);
+	// 재장전
+	IMAGEMANAGER->addImage(ImageName::UI::Item::reloadBar, PATH_IMAGE"UI/Item/ReloadBar.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Item::reloadBase, PATH_IMAGE"UI/Item/ReloadBase.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Item::reloadBase, PATH_IMAGE"UI/Item/ReloadEffect.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA);
 
 #pragma endregion
 
@@ -186,6 +192,8 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::Door, PATH_IMAGE"Dungeon/Door/Door.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorLeft, PATH_IMAGE"Dungeon/Door/Door_Left.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorRight, PATH_IMAGE"Dungeon/Door/Door_Right.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::tresureNormal, PATH_IMAGE"Dungeon/Tresure/Stash.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::tresureBoss, PATH_IMAGE"Dungeon/Tresure/YellowTresure.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 
 	// ==========
 	// # Object #

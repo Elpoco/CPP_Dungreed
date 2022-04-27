@@ -49,10 +49,10 @@ void NiflheimPillar::update()
 	Enemy::updateRect();
 	this->animation();
 
-	_wideLeft = *_niflheimX - 300;
-	_wideRight = *_niflheimX + 300;
-	_wideTop = *_niflheimY - 300;
-	_wideBottom = *_niflheimY + 100;
+	_wideLeft = 460;//*_niflheimX - 300;
+	_wideRight = 1030;// *_niflheimX + 300;
+	_wideTop = 185;//*_niflheimY - 300;
+	_wideBottom = 580;// *_niflheimY + 100;
 }
 
 void NiflheimPillar::render(HDC hdc)
@@ -71,6 +71,11 @@ void NiflheimPillar::hitAttack(int dmg, int dir)
 	}
 }
 
+void NiflheimPillar::deleteEffect()
+{
+	OBJECTMANAGER->addEffect(ImageName::Enemy::dieSmall, _x, _y);
+}
+
 void NiflheimPillar::move()
 {
 	if (!_isInit) return;
@@ -85,7 +90,6 @@ void NiflheimPillar::move()
 			_wideAngle = 0.0f;
 			_x = cosf(_bossAngle) * _bossDistance + *_niflheimX;
 			_y = sinf(_bossAngle) * _bossDistance + *_niflheimY;
-			this->settingOrder();
 		}
 		else
 		{
@@ -133,15 +137,17 @@ void NiflheimPillar::move()
 			else
 				_movePoint = PointMake(_wideLeft, _wideTop);
 			break;
-		default:
-			break;
 		}
 
-		if(!_wideAngle)
+		//if(!_wideAngle)
 			_wideAngle = GetAngle(_x, _y, _movePoint.x, _movePoint.y);
 
 		_x += cosf(_wideAngle) * (abs(_movePoint.x - _x) / 10);
-		_y -= sinf(_wideAngle) * (abs(_movePoint.y - _y) / 10);
+		//_y -= sinf(_wideAngle) * (abs(_movePoint.y - _y) / 5);
+		if (_y != _movePoint.y)
+		{
+			_y += (_movePoint.y - _y) / 3;
+		}
 		break;
 	case Niflheim::NIFLHEIM_SKILL::FULL_ATTACK:
 		_spinSpeed = 0.0f;
@@ -174,22 +180,8 @@ void NiflheimPillar::initAnimation()
 	_frameInfo.maxFrameX = _vImages[0]->getMaxFrameX();
 }
 
-void NiflheimPillar::settingOrder()
+void NiflheimPillar::settingOrder(int idx)
 {
-	if (_x <= *_niflheimX && _y <= *_niflheimY)
-	{
-		_order = LT;
-	}
-	else if (_x > *_niflheimX && _y <= *_niflheimY)
-	{
-		_order = RT;
-	}
-	else if (_x <= *_niflheimX && _y >= *_niflheimY)
-	{
-		_order = LB;
-	}
-	else if(_x >= *_niflheimX && _y > *_niflheimY)
-	{
-		_order = RB;
-	}
+	_order = (PILLAR_ORDER)idx;
 }
+

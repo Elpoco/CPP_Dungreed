@@ -74,5 +74,6 @@ void SoundLoader::loadSounds()
 	// # Dungeon #
 	// ===========
 	SOUNDMANAGER->addSound(SoundName::Dungeon::DoorMove, PATH_SOUND"Door_move.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Dungeon::OpenTresure, PATH_SOUND"open_tresure.wav", false, false);
 
 }

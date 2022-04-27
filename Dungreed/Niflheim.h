@@ -8,7 +8,7 @@ namespace NiflheimSet
 	constexpr float SKILL_TIME   = 2.0f;
 	constexpr float BULLET_SPEED = 3.5f;
 	constexpr int PILLAR_CNT	 = 4;
-	constexpr int BULLET_CNT	 = 30;
+	constexpr int BULLET_CNT	 = 20;
 	constexpr int BULLET_CNT_L	 = 19;
 	constexpr int BULLET_DMG	 = 6;
 }
@@ -31,7 +31,9 @@ private:
 		WIDE_LINE, // 네방향으로 가서 플레이어한테 직선형태
 		LINE_UP,	   // 중앙에 직선으로 모여서 나선형태
 		FULL_ATTACK,   // 모든기둥이 플레이어한테 연사
-		SKILL_CNT
+		TELEPORT,
+		SKILL_CNT,
+		STUN,
 	};
 
 	friend class NiflheimPillar;
@@ -39,6 +41,8 @@ private:
 private:
 	NiflheimPillar* _pillar[NiflheimSet::PILLAR_CNT];
 	bool _onInitPillar;
+	bool _checkPillar;
+	float _stunTime;
 
 	NIFLHEIM_SKILL  _skill;
 	NIFLHEIM_SKILL	_lastSkill;
@@ -71,5 +75,6 @@ public:
 	void shootBullet(float x, float y, float angle);
 	void turnAround();
 	void moveAndFire();
+	void teleport();
 };
 

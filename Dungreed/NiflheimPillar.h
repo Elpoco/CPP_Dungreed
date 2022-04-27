@@ -53,18 +53,18 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual void hitAttack(int dmg, int dir) override;
+	virtual void deleteEffect() override;
 
 	void move();
 	void animation();
 	void initAnimation();
 
 	bool isDestroy() { return _isDestory; }
-	void settingOrder();
+	void settingOrder(int idx);
 
 	void setPosAddress(float* x, float* y) { _niflheimX = x; _niflheimY = y; }
 	inline void setSkill(Niflheim::NIFLHEIM_SKILL skill) { _skill = skill; }
 	inline float getAngle() { return _bossAngle; }
 	inline int getImgAngle() { return _imgAngle; }
-
 };
 
