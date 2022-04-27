@@ -23,7 +23,7 @@ namespace ColorSet
 namespace UnitSet
 {
 	constexpr float MOVE_SPEED = 3.0f;
-	constexpr float JUMP_SPEED = 8.0f;
+	constexpr float JUMP_SPEED = 7.0f;
 	constexpr float GRAVITY = 0.1f;
 	constexpr int MAX_SPAWN = 30;
 }

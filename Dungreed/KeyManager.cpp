@@ -65,6 +65,10 @@ void KeyManager::typing(char ch)
 	{
 		if(len > 0) _str[len - 1] = 0;
 	}
+	else if (ch == 13)
+	{
+		_isTyping = FALSE;
+	}
 	else
 	{
 		_str[len] = ch;

@@ -67,6 +67,7 @@ void GameScene::render()
 		break;
 	}
 	TILEMANAGER->render(getMemDC());
+	MAPMANAGER->render(getMemDC());
 
 	if (_isEnter) CAMERAMANAGER->frameRender(getMemDC(), _imgEnter, _rcEnter.left, _rcEnter.top, _enterFrame.x, 0);
 }

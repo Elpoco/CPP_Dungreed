@@ -643,7 +643,7 @@ HRESULT Image::initForRotateImage()
 	HDC hdc = GetDC(_hWnd);
 
 	int size;
-	(_imageInfo->width > _imageInfo->height ? size = _imageInfo->width : size = _imageInfo->height);
+	(_imageInfo->frameWidth > _imageInfo->frameHeight ? size = _imageInfo->frameWidth : size = _imageInfo->frameHeight);
 	_rotateImage = new IMAGE_INFO;
 	_rotateImage->loadType = LOAD_EMPTY;
 	_rotateImage->hMemDC = CreateCompatibleDC(hdc);
@@ -657,21 +657,21 @@ HRESULT Image::initForRotateImage()
 	return S_OK;
 }
 
-void Image::rotateRender(HDC hdc, float destX, float destY, float angle)
+void Image::rotateRender(HDC hdc, float destX, float destY, int frameX, int frameY, float angle)
 {
 	if (!_rotateImage) this->initForRotateImage();
-
+	angle += PI / 2;
 	POINT rPoint[3];
-	int dist = sqrt((_imageInfo->width / 2) * (_imageInfo->width / 2) + (_imageInfo->height / 2) * (_imageInfo->height / 2));
+	int dist = sqrt((_imageInfo->frameWidth / 2) * (_imageInfo->frameWidth / 2) + (_imageInfo->frameHeight / 2) * (_imageInfo->frameHeight / 2));
 	float baseAngle[3];
-	baseAngle[0] = M_PI - atanf(((float)_imageInfo->height / 2) / ((float)_imageInfo->width / 2));
-	baseAngle[1] = atanf(((float)_imageInfo->height / 2) / ((float)_imageInfo->width / 2));
-	baseAngle[2] = M_PI + atanf(((float)_imageInfo->height / 2) / ((float)_imageInfo->width / 2));
+	baseAngle[0] = M_PI - atanf(((float)_imageInfo->frameHeight / 2) / ((float)_imageInfo->frameWidth / 2));
+	baseAngle[1] = atanf(((float)_imageInfo->frameHeight / 2) / ((float)_imageInfo->frameWidth / 2));
+	baseAngle[2] = M_PI + atanf(((float)_imageInfo->frameHeight / 2) / ((float)_imageInfo->frameWidth / 2));
 
 	for (int i = 0; i < 3; ++i)
 	{
-		rPoint[i].x = (_rotateImage->width / 2 + cosf(baseAngle[i] + angle + PI / 2) * dist);
-		rPoint[i].y = (_rotateImage->height / 2 + -sinf(baseAngle[i] + angle + PI / 2) * dist);
+		rPoint[i].x = (_rotateImage->width / 2 + cosf(baseAngle[i] + angle) * dist);
+		rPoint[i].y = (_rotateImage->height / 2 + -sinf(baseAngle[i] + angle) * dist);
 	}
 
 	if (_isTrans)
@@ -686,7 +686,9 @@ void Image::rotateRender(HDC hdc, float destX, float destY, float angle)
 		DeleteObject(hBrush);
 
 		PlgBlt(_rotateImage->hMemDC, rPoint, _imageInfo->hMemDC,
-			0, 0, _imageInfo->width, _imageInfo->height, NULL, 0, 0);
+			frameX * _imageInfo->frameWidth,
+			frameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, NULL, 0, 0);
 
 		GdiTransparentBlt(hdc,
 			destX - _rotateImage->width / 2,
@@ -702,6 +704,9 @@ void Image::rotateRender(HDC hdc, float destX, float destY, float angle)
 	}
 	else
 	{
-		PlgBlt(hdc, rPoint, _imageInfo->hMemDC, 0, 0, _imageInfo->width, _imageInfo->height, NULL, 0, 0);
+		PlgBlt(hdc, rPoint, _imageInfo->hMemDC,
+			frameX * _imageInfo->frameWidth,
+			frameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, NULL, 0, 0);
 	}
 }

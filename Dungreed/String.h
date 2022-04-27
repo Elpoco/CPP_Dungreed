@@ -12,6 +12,9 @@ namespace ImageName
 		constexpr char* die  = "PLAYER die";
 		constexpr char* hand = "PLAYER hand";
 		constexpr char* runFX = "PLAYER runFX";
+		constexpr char* runEffectR = "PLAYER runEffectR";
+		constexpr char* runEffectL = "PLAYER runEffectL";
+		constexpr char* jumpEffect = "PLAYER jumpEffect";
 	}
 
 	namespace Enemy
@@ -127,6 +130,8 @@ namespace ImageName
 		namespace Item
 		{
 			constexpr char* reloadBar = "UI ITEM reloadBar";
+			constexpr char* reloadBase = "UI ITEM reloadBase";
+			constexpr char* reloadEffect = "UI ITEM reloadEffect";
 		}
 	}
 
@@ -271,9 +276,13 @@ namespace FileName
 {
 	constexpr char* testSave = "testSave";
 	constexpr char* Town = "Town";
+
 	constexpr char* DungeonStart = "DungeonStart";
+	constexpr char* DungeonShop = "DungeonShop";
 	constexpr char* Dungeon01 = "Dungeon01";
 	constexpr char* Dungeon02 = "Dungeon02";
+	constexpr char* Dungeon03 = "Dungeon03";
+
 	constexpr char* Belial = "Belial";
 	constexpr char* Niflheim = "Niflheim";
 }

@@ -11,7 +11,7 @@ ImageLoader::~ImageLoader()
 
 HRESULT ImageLoader::init()
 {
-	this->loadImages();
+	loadImages();
 
 	return S_OK;
 }
@@ -32,6 +32,9 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Player::idle, PATH_UNIT"Player/PlayerIdle.bmp", 0, 0, 5, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Player::run, PATH_UNIT"Player/PlayerRun.bmp", 0, 0, 8, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Player::jump, PATH_UNIT"Player/PlayerJump.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Player::runEffectR, PATH_UNIT"Player/RunEffectR.bmp", 0, 0, 5, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Player::runEffectL, PATH_UNIT"Player/RunEffectL.bmp", 0, 0, 5, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Player::jumpEffect, PATH_UNIT"Player/JumpFX.bmp", 225, 50, 5, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Player::die, PATH_UNIT"Player/PlayerDie.bmp", 0, 0, true, ColorSet::MAGENTA);
 #pragma endregion
 
@@ -67,7 +70,8 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::idle, PATH_UNIT"Enemy/Niflheim/Idle.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::attack, PATH_UNIT"Enemy/Niflheim/Attack.bmp", 0, 0, 11, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::bulletFX, PATH_UNIT"Enemy/Niflheim/IceBulletFX.bmp", 0, 0, 3, 1, true, ColorSet::MAGENTA);
-	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Enemy::Niflheim::pillar, PATH_UNIT"Enemy/Niflheim/Pillar.png", 20, 1);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::pillar, PATH_UNIT"Enemy/Niflheim/Pillar.bmp", 0, 0, 20, 1, true, ColorSet::MAGENTA);
+	//GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Enemy::Niflheim::pillar, PATH_UNIT"Enemy/Niflheim/Pillar.png", 20, 1);
 #pragma endregion
 
 	// ===========
@@ -169,9 +173,6 @@ void ImageLoader::loadImages()
 	// # Effect #
 	// ==========
 #pragma region Effect
-	// «√∑π¿ÃæÓ ¿Ã∆Â∆Æ
-	IMAGEMANAGER->addFrameImage(ImageName::Player::runFX, PATH_UNIT"Player/RunEffect.bmp", 0, 0, 5, 2, true, ColorSet::MAGENTA);
-
 	// ∞À ¿Ã∆Â∆Æ
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::basicSwing, PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
 	// √— ¿Ã∆Â∆Æ

@@ -36,6 +36,8 @@ private:
 	int _maxHp;
 	int _curHp;
 
+	BOOL _isDust;
+
 public:
 	Player();
 	Player(float x, float y);
@@ -55,6 +57,7 @@ public:
 	void move();
 	void animation();
 	void initAnimation();
+	virtual void frameUpdateEvent();
 
 	void moveLeft();
 	void moveRight();

@@ -24,10 +24,10 @@ public:
 	void addObject(ObjectEnum::OBJ_TYPE type, Object* object);
 	void addPlayer(float x, float y);
 	void addEnemy(Code::UNIT code, float x, float y);
-
 	void addBullet(ObjectEnum::OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage = 1, string destroyImgName = "", float distance = 1500);
-	RECT addEffect(string imgName, float x, float y, BYTE alpha = 0, ObjectEnum::OBJ_TYPE type = ObjectEnum::OBJ_TYPE::EFFECT);
+	
 	RECT addEffect(string imgName, float x, float y, int angle, POINT rotateCenter);
+	RECT addEffect(string imgName, float x, float y, BYTE alpha = 0, ObjectEnum::OBJ_TYPE type = ObjectEnum::OBJ_TYPE::EFFECT);
 	
 	void addUI(Object* obj);
 	void addUI(string imgName, int x, int y, BOOL fixed = TRUE, BOOL show = TRUE);

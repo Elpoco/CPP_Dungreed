@@ -20,24 +20,6 @@ private:
 		OPEN,
 	};
 
-	struct tagParticle
-	{
-		Direction::DIR dir;
-		bool isOn;
-		int imgIdx;
-		float startX;
-		float startY;
-		float x;
-		float y;
-		float speed;
-		BYTE alpha;
-
-		tagParticle()
-		{
-			isOn = false;
-		}
-	};
-
 private:
 	ImageBase* _imgDoor;
 	FRAME_INFO _frameInfo;
@@ -49,7 +31,7 @@ private:
 	BOOL _isOpen;
 
 	ImageBase* _imgParticle[DoorSet::PARTICLE_IMG];
-	tagParticle _particle[DoorSet::PARTICLE_CNT];
+	PARTICLE _particle[DoorSet::PARTICLE_CNT];
 
 public:
 	Door(Direction::DIR dir, int tileX, int tileY, BOOL isOpen = FALSE);

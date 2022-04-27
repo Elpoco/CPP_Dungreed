@@ -181,12 +181,25 @@ void Player::initAnimation()
 	_rcResizeW = 20;
 }
 
+void Player::frameUpdateEvent()
+{
+	if (_state == PLAYER_MOTION::RUN && (_frameInfo.x == 1 || _frameInfo.x == 5))
+	{
+		_isDust = TRUE;
+	}
+}
+
 void Player::moveLeft()
 {
 	_state = PLAYER_MOTION::RUN;
 
 	if (!_isCollision[Direction::DIR::LEFT]) _x -= _moveSpeed;
 
+	if (_isDust)
+	{
+		_isDust = FALSE;
+		OBJECTMANAGER->addEffect(ImageName::Player::runEffectL, _rc.right, _rc.bottom - 24);
+	}
 }
 
 void Player::moveRight()
@@ -194,8 +207,12 @@ void Player::moveRight()
 	_state = PLAYER_MOTION::RUN;
 
 	if (!_isCollision[Direction::DIR::RIGHT]) _x += _moveSpeed;
-	//if(_frameInfo.cnt == 0)
-	//OBJECTMANAGER->addEffect(ImageName::Player::runFX, _rc.left, _rc.bottom);
+
+	if (_isDust)
+	{
+		_isDust = FALSE;
+		OBJECTMANAGER->addEffect(ImageName::Player::runEffectR, _rc.left, _rc.bottom - 24);
+	}
 }
 
 void Player::setIdle()
@@ -231,13 +248,13 @@ void Player::dash()
 	_dashAngle = GetAngle(PointMake(_x, _y), CAMERAMANAGER->calAbsPt(_ptMouse));
 	
 	SOUNDMANAGER->play(SoundName::Player::dash, _sound);
-	OBJECTMANAGER->addEffect(ImageName::Player::runFX, _rc.left, _rc.bottom);
 }
 
 void Player::jump()
 {
 	SOUNDMANAGER->play(SoundName::Player::Jumping, _sound);
 	Unit::jump();
+	OBJECTMANAGER->addEffect(ImageName::Player::jumpEffect, _x, _rc.bottom - 25);
 }
 
 void Player::getItem(Code::ITEM code)

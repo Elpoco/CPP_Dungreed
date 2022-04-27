@@ -54,6 +54,7 @@ public:
 
 	void move();
 	void animation();
+	virtual void frameUpdateEvent() {}
 
 	void checkCollision();
 	virtual void pushObject(float x, float y) override {}

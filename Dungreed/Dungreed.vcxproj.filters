@@ -264,9 +264,6 @@
     <ClCompile Include="Effect.cpp">
       <Filter>MainGame\02. Object\04. Effect</Filter>
     </ClCompile>
-    <ClCompile Include="Sword.cpp">
-      <Filter>MainGame\02. Object\06. Item\Sword</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyHpBar.cpp">
       <Filter>MainGame\02. Object\05. UI\HpBar</Filter>
     </ClCompile>
@@ -350,6 +347,9 @@
     </ClCompile>
     <ClCompile Include="Tresure.cpp">
       <Filter>MainGame\02. Object\08. DungeonObj\Tresure</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>MainGame\02. Object\06. Item\Sword</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

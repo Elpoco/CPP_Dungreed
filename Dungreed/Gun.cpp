@@ -57,7 +57,7 @@ void Gun::render(HDC hdc)
 
 RECT Gun::attack()
 {
-	if (_lastAttack + 0.9f - _info.atkSpeed > TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	if (_lastAttack + 1.0f / _info.atkSpeed >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
 	_lastAttack = TIMEMANAGER->getWorldTime();
 	if (--_bulletCnt < 0) return { 0,0,0,0 };
 

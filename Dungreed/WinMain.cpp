@@ -9,6 +9,7 @@ HWND _hWnd;
 POINT _ptMouse = { -50,-50 };
 bool _isDebug;
 float _sound = SOUND_DEFAULT;
+bool _isWindowFocus = true;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -80,17 +81,22 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	
 	while (true)
 	{
-		if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) 
+		if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 		{
 			if (message.message == WM_QUIT) break;
-			TranslateMessage(&message);
+			if (_isWindowFocus){
+				TranslateMessage(&message);
 			DispatchMessage(&message);
+		}
 		}
 		else 
 		{
-			TIMEMANAGER->update(60.0f);
-			_mg->update();
-			_mg->render();
+			if (_isWindowFocus)
+			{
+				TIMEMANAGER->update(60.0f);
+				_mg->update();
+				_mg->render();
+			}
 		}
 	}
 	

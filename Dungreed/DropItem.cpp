@@ -5,12 +5,14 @@ DropItem::DropItem(Code::ITEM code, float x, float y, BOOL scatter)
 	: _itemCode(code)
 	, _isStop(false)
 	, _dropSpeed(0)
-	, _gravity(-2.5f)
+	, _gravity(0)
 	, _scatterX(0)
 {
 	_x = x;
 	_y = y;
 	_dropSpeed = RND->getFromFloatTo(0.05f, 0.08f);
+	_gravity = RND->getFromFloatTo(2.0f, 3.5f) * -1;
+
 	if (scatter)
 	{
 		_scatterX = RND->getFloat(3.0f) - 1.5f;

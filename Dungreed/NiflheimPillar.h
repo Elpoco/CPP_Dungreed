@@ -6,7 +6,7 @@
 namespace NiflheimPillarSet
 {
 	constexpr float IDLE_SPEED		= 0.01f;
-	constexpr float AROUND_SPEED	= 0.03f;
+	constexpr float AROUND_SPEED	= 0.034f;
 }
 
 class NiflheimPillar : public Enemy
@@ -65,6 +65,6 @@ public:
 	void setPosAddress(float* x, float* y) { _niflheimX = x; _niflheimY = y; }
 	inline void setSkill(Niflheim::NIFLHEIM_SKILL skill) { _skill = skill; }
 	inline float getAngle() { return _bossAngle; }
-	inline int getImgAngle() { return _imgAngle; }
+	inline float getImgAngle() { return _imgAngle; }
 };
 

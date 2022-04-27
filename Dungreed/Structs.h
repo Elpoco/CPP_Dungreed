@@ -126,3 +126,22 @@ typedef struct tagMapInfo
 		ptTresure = { 0,0 };
 	}
 } MAP_INFO;
+
+typedef struct tagParticle
+{
+	Direction::DIR dir;
+	bool isOn;
+	int imgIdx;
+	float startX;
+	float startY;
+	float x;
+	float y;
+	float speed;
+	float angle;
+	BYTE alpha;
+
+	tagParticle()
+	{
+		isOn = false;
+	}
+} PARTICLE;

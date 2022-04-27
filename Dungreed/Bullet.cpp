@@ -84,6 +84,7 @@ void Bullet::render(HDC hdc)
 			IMAGEMANAGER->findImage(_imgName)->rotateRender(hdc,
 				CAMERAMANAGER->calRelX(_x),
 				CAMERAMANAGER->calRelY(_y),
+				_frameInfo.x, _frameInfo.y,
 				_angle);
 		}
 	}

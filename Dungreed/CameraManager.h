@@ -38,6 +38,7 @@ public:
 	void render(HDC hdc, ImageBase* img, float x, float y, int sourX, int sourY, int sourWidth, int sourHeight);
 	void frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY);
 	void frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, BYTE alpha);
+	void frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, float angle);
 	void frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter);
 
 	void followCamera(Object* object);

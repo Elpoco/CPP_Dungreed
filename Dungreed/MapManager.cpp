@@ -3,6 +3,8 @@
 
 #include "Door.h"
 
+using namespace MapManagerSet;
+
 MapManager::MapManager()
 	: _unitCnt(0)
 	, _isClear(FALSE)
@@ -21,6 +23,9 @@ HRESULT MapManager::init()
 		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::DUNGEON, _door[i]);
 	}
 
+	_imgParticle[0] = FindImage(ImageName::Dungeon::sqaure4);
+	_imgParticle[1] = FindImage(ImageName::Dungeon::sqaure5);
+
 	return S_OK;
 }
 
@@ -31,11 +36,12 @@ void MapManager::release()
 void MapManager::update()
 {
 	checkMonster();
-
+	makeParticle();
 }
 
 void MapManager::render(HDC hdc)
 {
+	renderParticle(hdc);
 }
 
 void MapManager::settingDungeon()
@@ -153,5 +159,59 @@ void MapManager::checkMonster()
 		{
 			OBJECTMANAGER->addTresure(_mapInfo.ptTresure.x, _mapInfo.ptTresure.y);
 		}
+	}
+}
+
+void MapManager::makeParticle()
+{
+	for (int i = 0; i < PARTICLE_CNT; i++)
+	{
+		if (_particle[i].isOn) continue;
+		_particle[i].isOn = true;
+		_particle[i].imgIdx = RND->getInt(PARTICLE_IMG);
+		_particle[i].dir = (DIR)0;
+		_particle[i].startX = RND->getFromIntTo(0, WINSIZE_X);
+		_particle[i].startY = RND->getFromIntTo(0, WINSIZE_Y);
+		_particle[i].startX = _particle[i].startX - _imgParticle[_particle[i].imgIdx]->getWidth() * 0.5f;
+		_particle[i].startY = _particle[i].startY - _imgParticle[_particle[i].imgIdx]->getHeight() * 0.5f;
+		_particle[i].x = _particle[i].startX;
+		_particle[i].y = _particle[i].startY;
+		_particle[i].speed = RND->getFromFloatTo(0.5f, 1.0f);
+		_particle[i].alpha = RND->getFromIntTo(100, 200);
+		break;
+	}
+
+	for (int i = 0; i < PARTICLE_CNT; i++)
+	{
+		if (!_particle[i].isOn) continue;
+
+		_particle[i].alpha--;
+		if (_particle[i].dir == DIR::LEFT)		_particle[i].x += _particle[i].speed;
+		else if (_particle[i].dir == DIR::RIGHT) _particle[i].x -= _particle[i].speed;
+		else if (_particle[i].dir == DIR::TOP)	_particle[i].y += _particle[i].speed;
+		else									_particle[i].y -= _particle[i].speed;
+
+		int distance = GetDistance(
+			_particle[i].startX,
+			_particle[i].startY,
+			_particle[i].x,
+			_particle[i].y
+		);
+		if (distance > 50) _particle[i].isOn = false;
+	}
+}
+
+void MapManager::renderParticle(HDC hdc)
+{
+	for (int i = 0; i < PARTICLE_CNT; i++)
+	{
+		if (!_particle[i].isOn) continue;
+		CAMERAMANAGER->render(
+			hdc,
+			_imgParticle[_particle[i].imgIdx],
+			_particle[i].x,
+			_particle[i].y,
+			_particle[i].alpha
+		);
 	}
 }

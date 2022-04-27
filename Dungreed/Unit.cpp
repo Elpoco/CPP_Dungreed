@@ -66,12 +66,11 @@ void Unit::render(HDC hdc)
 		CAMERAMANAGER->frameRender(
 			hdc, 
 			_vImages[_imgCurrent],
-			_rcRender.left,
-			_rcRender.top,
+			_x,
+			_y,
 			_frameInfo.x,
 			_frameInfo.y, 
-			_imgAngle,
-			_rotateCenter
+			_imgAngle
 		);
 	}
 	else
@@ -127,7 +126,7 @@ void Unit::animation()
 	{
 		_frameInfo.cnt = 0;
 		_frameInfo.x++;
-
+		frameUpdateEvent();
 		if (_frameInfo.x > _vImages[_imgCurrent]->getMaxFrameX())_frameInfo.x = _frameInfo.startFrameX;
 	}
 

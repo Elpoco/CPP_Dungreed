@@ -19,8 +19,8 @@ public:
 	ItemData()
 	{
 		// 무기
-		_info[TO_INT(Code::ITEM::SHOT_SWORD)]	= { Code::ITEM_TYPE::WEAPON, Code::ITEM::SHOT_SWORD, "숏소드", 8, 10, 0.303f };
-		_info[TO_INT(Code::ITEM::COLT)]			= { Code::ITEM_TYPE::WEAPON, Code::ITEM::COLT, "더 콜트", 3, 5, 0.833f, 1, 12 };
+		_info[TO_INT(Code::ITEM::SHOT_SWORD)]	= { Code::ITEM_TYPE::WEAPON, Code::ITEM::SHOT_SWORD, "숏소드", 8, 10, 3.03f };
+		_info[TO_INT(Code::ITEM::COLT)]			= { Code::ITEM_TYPE::WEAPON, Code::ITEM::COLT, "더 콜트", 3, 5, 8.33f, 1, 12 };
 	}
 	~ItemData() {}
 

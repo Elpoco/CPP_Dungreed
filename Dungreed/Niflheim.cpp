@@ -119,7 +119,7 @@ void Niflheim::update()
 		this->teleport();
 		break;
 	case Niflheim::NIFLHEIM_SKILL::STUN:
-		if (_stunTime + 1.0f < TIMEMANAGER->getWorldTime())
+		if (_stunTime + 1.5f < TIMEMANAGER->getWorldTime())
 		{
 			_onInitPillar = true;
 			_skill = NIFLHEIM_SKILL::NONE;
@@ -245,7 +245,7 @@ void Niflheim::turnAround()
 
 	if (_skillTick++ < _skillFirstTick) return;
 	_skillTick = 0;
-	_skillFirstTick = 15;
+	_skillFirstTick = 12;
 
 
 	for (int i = 0; i < PILLAR_CNT; i++)
@@ -329,8 +329,8 @@ void Niflheim::moveAndFire()
 		{
 			float x = _pillar[i]->getX();
 			float y = _pillar[i]->getY();
-			int angle = _pillar[i]->getImgAngle();
-			this->shootBullet(x, y, DegToRad(angle));
+			float angle = _pillar[i]->getImgAngle();
+			this->shootBullet(x, y, angle);
 		}
 	}
 
@@ -351,6 +351,6 @@ void Niflheim::teleport()
 	_skill = NIFLHEIM_SKILL::NONE;
 	_skillCooldown = TIMEMANAGER->getWorldTime();
 	_x = RND->getFromIntTo(400, 1050);
-	_y = RND->getFromIntTo(255, 480);
+	_y = RND->getFromIntTo(285, 480);
 	OBJECTMANAGER->addEffect(ImageName::Enemy::dieSmall, _x, _y);
 }

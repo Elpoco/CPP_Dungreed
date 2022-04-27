@@ -9,6 +9,7 @@ class GameNode
 private:
 	HDC _hdc;
 	bool _managerInit;
+	bool _windowFocus;
 
 public:
 	virtual HRESULT init();

@@ -58,7 +58,6 @@ void NiflheimPillar::update()
 void NiflheimPillar::render(HDC hdc)
 {
 	Enemy::render(hdc);
-
 }
 
 void NiflheimPillar::hitAttack(int dmg, int dir)
@@ -98,7 +97,7 @@ void NiflheimPillar::move()
 			_y = sinf(_bossAngle) * (_bossDistance - 50) + *_niflheimY;
 		}
 		
-		_imgAngle = GetAngleDeg(_x, _y, *_niflheimX, *_niflheimY) + 90;
+		_imgAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY);
 		_bossAngle -= _spinSpeed;
 		break;
 	case Niflheim::NIFLHEIM_SKILL::WIDE:
@@ -107,9 +106,9 @@ void NiflheimPillar::move()
 		_spinSpeed = 0.0f;
 
 		if (//_skill == Niflheim::NIFLHEIM_SKILL::LINE_UP &&
-			abs(_movePoint.x - _x) > 100) _imgAngle = 120;
+			abs(_movePoint.x - _x) > 100) _imgAngle = 2.0f;
 
-		++_imgAngle;
+		_imgAngle += 0.03f;
 
 		switch (_order)
 		{
@@ -167,7 +166,7 @@ void NiflheimPillar::animation()
 	}
 	else
 	{
-		_imgAngle = GetAngleDeg(_x, _y, *_niflheimX, *_niflheimY) + 90;
+		_imgAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY);
 	}
 	_rotateCenter = PointMake(_x, _y);
 }

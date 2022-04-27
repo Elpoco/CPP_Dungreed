@@ -3,8 +3,22 @@
 
 class Door;
 
+namespace MapManagerSet
+{
+	constexpr int PARTICLE_IMG = 2;
+	constexpr int PARTICLE_CNT = 100;
+}
+
 class MapManager : public SingletonBase<MapManager>
 {
+private:
+	enum class PARTICLE_STATE
+	{
+		NONE,
+		NORMAL,
+		SNOW
+	};
+
 private:
 	Code::MAP _mapCode;
 	MAP_INFO _mapInfo;
@@ -14,6 +28,9 @@ private:
 
 	BOOL _isClear;
 	int _unitCnt;
+
+	ImageBase* _imgParticle[MapManagerSet::PARTICLE_IMG];
+	PARTICLE _particle[MapManagerSet::PARTICLE_CNT];
 
 public:
 	MapManager();
@@ -32,6 +49,9 @@ public:
 	void openDoor();
 	void closeDoor();
 	void checkMonster();
+
+	void makeParticle();
+	void renderParticle(HDC hdc);
 
 	void dieMonster() { _unitCnt--; }
 

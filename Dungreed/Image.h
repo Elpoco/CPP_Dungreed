@@ -76,7 +76,7 @@ public:
 	HRESULT initForAlphaBlend();
 
 	HRESULT initForRotateImage();
-	void rotateRender(HDC hdc, float destX, float destY, float angle);
+	virtual void rotateRender(HDC hdc, float destX, float destY, int frameX, int frameY, float angle) override;
 
 	void setTransColor(BOOL isTrans, COLORREF transColopr);
 

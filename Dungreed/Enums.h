@@ -122,11 +122,13 @@ namespace Code
 
 	enum class MAP
 	{
-		DUNGEON_START,
-		DUNGEON_01,
-		DUNGEON_02,
+		DUNGEON_START, // T, R, B
+		DUNGEON_SHOP, // L, R
+		DUNGEON_01, // ALL
+		DUNGEON_02, // L, R
+		DUNGEON_03, // T, R, B
 
-		BOSS,
+		BOSS = 100,
 		BELIAL,
 		NIFLHEIM,
 

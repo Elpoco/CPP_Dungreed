@@ -119,6 +119,12 @@ LRESULT GameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 {
 	switch (iMessage)
 	{
+	case WM_SETFOCUS:
+		_isWindowFocus = true;
+		break;
+	case WM_KILLFOCUS:
+		_isWindowFocus = false;
+		break;
 	case WM_TIMER:
 		this->update();
 		break;
@@ -147,6 +153,6 @@ LRESULT GameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		PostQuitMessage(0);
 		return 0;
 	}
-
+	
 	return DefWindowProc(hWnd, iMessage, wParam, lParam);
 }
