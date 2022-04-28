@@ -202,7 +202,7 @@ void Belial::shootingBullet()
 		_imgHeight = _vImages[_state]->getFrameHeight() + 30;
 	}
 
-	if (_skillTick++ < 20) return;
+	if (_skillTick++ < 15 ) return;
 	_skillTick = 0;
 
 	for (int i = 0; i < 4; i++)
@@ -331,6 +331,7 @@ void Belial::laser()
 			_rcAttack.bottom = rc2.bottom;
 			_dmg = 8;
 			
+			SOUNDMANAGER->play(SoundName::Enemy::BelialLazer, _sound);
 		}
 		break;
 	case BELIAL_LASER_STATE::SHOOTING:

@@ -14,6 +14,8 @@
 #include "Player.h"
 #include "SkelDog.h"
 #include "LittleGhost.h"
+#include "Banshee.h"
+
 #include "Belial.h"
 #include "Niflheim.h"
 
@@ -121,7 +123,7 @@ void ObjectManager::addPlayer(float x, float y)
 
 void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 {
-	Enemy* enemy = new SkelDog(x, y);
+	Enemy* enemy;
 	switch (code)
 	{
 	case Code::UNIT::SKEL_DOG:
@@ -130,15 +132,17 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 	case Code::UNIT::LITTLE_GHOST:
 		enemy = new LittleGhost(x, y);
 		break;
+	case Code::UNIT::BANSHEE:
+		enemy = new Banshee(x, y);
+		break;
 	case Code::UNIT::BELIAL:
 		enemy = new Belial(x, y);
 		break;
 	case Code::UNIT::NIFLEHEIM:
 		enemy = new Niflheim(x, y);
 		break;
-	case Code::UNIT::UNIT_CNT:
-		break;
 	default:
+		enemy = new SkelDog(x, y);
 		break;
 	}
 	addObject(OBJ_TYPE::ENEMY, enemy);

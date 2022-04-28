@@ -15,6 +15,8 @@ namespace ImageName
 		constexpr char* runEffectR = "PLAYER runEffectR";
 		constexpr char* runEffectL = "PLAYER runEffectL";
 		constexpr char* jumpEffect = "PLAYER jumpEffect";
+		constexpr char* dashEffectR = "PLAYER dashEffectR";
+		constexpr char* dashEffectL = "PLAYER dashEffectL";
 	}
 
 	namespace Enemy
@@ -23,11 +25,16 @@ namespace ImageName
 		constexpr char* die		 = "ENEMY die";
 		constexpr char* dieSmall = "ENEMY dieSmall";
 
-		constexpr char* dogIdle = "DogIdle";
-		constexpr char* dogRun  = "DogRun";
-		constexpr char* dogDie  = "DogDie";
+		constexpr char* dogIdle = "ENEMY DogIdle";
+		constexpr char* dogRun  = "ENEMY DogRun";
+		constexpr char* dogDie  = "ENEMY DogDie";
 		
-		constexpr char* littleGhostIdle = "littleGhostIdle";
+		constexpr char* littleGhostIdle = "ENEMY littleGhostIdle";
+
+		constexpr char* BansheeIdle = "ENEMY BansheeIdle";
+		constexpr char* BansheeATK = "ENEMY BansheeATK";
+		constexpr char* BansheeBullet = "ENEMY BansheeBullet";
+		constexpr char* BansheeBulletFX = "ENEMY BansheeBulletFX";
 
 		namespace Belial
 		{
@@ -239,14 +246,22 @@ namespace SoundName
 		constexpr char* hit = "SOUND ENEMY hit";
 		constexpr char* SpawnEnemy = "SOUND ENEMY SpawnEnemy";
 		constexpr char* MonsterDie = "SOUND ENEMY MonsterDie";
+		// 몬스터
+		constexpr char* BansheeATK = "SOUND ENEMY Banshee_ATK";
+
+		// 보스
 		constexpr char* Skeletonking = "SOUND ENEMY Skeletonking";
 		constexpr char* BelialBullet = "SOUND ENEMY BelialBullet";
+		constexpr char* BelialLazer = "SOUND ENEMY BelialLazer";
+		constexpr char* BelialSword = "SOUND ENEMY BelialSword";
+		constexpr char* BelialSwordShoot = "SOUND ENEMY BelialSwordShoot";
 		constexpr char* niflheim_start = "SOUND ENEMY niflheim_start";
 		constexpr char* NiflheimBullet = "SOUND ENEMY NiflheimBullet";
 	}
 
 	namespace Item
 	{
+		constexpr char* coin		= "SOUND ITEM coin";
 		constexpr char* getCoin		= "SOUND ITEM getCoin";
 		constexpr char* getItem		= "SOUND ITEM getItem";
 		constexpr char* Equip		= "SOUND ITEM Equip";

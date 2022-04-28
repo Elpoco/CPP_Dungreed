@@ -36,6 +36,8 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Player::runEffectL, PATH_UNIT"Player/RunEffectL.bmp", 0, 0, 5, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Player::jumpEffect, PATH_UNIT"Player/JumpFX.bmp", 180, 40, 5, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Player::die, PATH_UNIT"Player/PlayerDie.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Player::dashEffectR, PATH_UNIT"Player/PlayerDashR.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Player::dashEffectL, PATH_UNIT"Player/PlayerDashL.bmp", 0, 0, true, ColorSet::MAGENTA);
 #pragma endregion
 
 	// =========
@@ -51,6 +53,12 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::dogDie, PATH_UNIT"Enemy/SkelDog/SkelDogDie.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	// 작은 유령
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::littleGhostIdle, PATH_UNIT"Enemy/LittleGhost/LittleGhost.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
+	// 밴시
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeIdle, PATH_UNIT"Enemy/Banshee/BansheeIdle.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeATK, PATH_UNIT"Enemy/Banshee/BansheeAttack.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeBullet, PATH_UNIT"Enemy/Banshee/BansheeBulletIdle.bmp", 0, 0, 3, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeBulletFX, PATH_UNIT"Enemy/Banshee/BansheeBulletHit.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
+
 	// 벨리알
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Belial::idle, PATH_UNIT"Enemy/Belial/SkellBossIdle.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Belial::back, PATH_UNIT"Enemy/Belial/SkellBossBack.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
@@ -71,7 +79,6 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::attack, PATH_UNIT"Enemy/Niflheim/Attack.bmp", 0, 0, 11, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::bulletFX, PATH_UNIT"Enemy/Niflheim/IceBulletFX.bmp", 0, 0, 3, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::pillar, PATH_UNIT"Enemy/Niflheim/Pillar.bmp", 0, 0, 20, 1, true, ColorSet::MAGENTA);
-	//GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Enemy::Niflheim::pillar, PATH_UNIT"Enemy/Niflheim/Pillar.png", 20, 1);
 #pragma endregion
 
 	// ===========

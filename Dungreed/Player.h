@@ -30,6 +30,7 @@ private:
 	POINT	_hand;
 	int		_mainHandX;
 
+	string	_dashImgName;
 	int		_dashMove;
 	float	_dashAngle;
 

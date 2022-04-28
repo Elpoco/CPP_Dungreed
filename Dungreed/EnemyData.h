@@ -8,8 +8,9 @@ private:
 public:
 	EnemyData()
 	{
-		_info[TO_INT(Code::UNIT::SKEL_DOG)]		= { Code::UNIT::SKEL_DOG, "½ºÄÌ¸®µ¶", 17, 1 };
-		_info[TO_INT(Code::UNIT::LITTLE_GHOST)]	= { Code::UNIT::LITTLE_GHOST, "²¿¸¶À¯·É", 10, 2 };
+		_info[TO_INT(Code::UNIT::SKEL_DOG)]		= { Code::UNIT::SKEL_DOG, "½ºÄÌ¸®µ¶", 20, 3 };
+		_info[TO_INT(Code::UNIT::LITTLE_GHOST)]	= { Code::UNIT::LITTLE_GHOST, "²¿¸¶À¯·É", 6, 3 };
+		_info[TO_INT(Code::UNIT::BANSHEE)]		= { Code::UNIT::BANSHEE, "¹ê½Ã", 40, 2, 2.0f };
 
 		// º¸½º
 		_info[TO_INT(Code::UNIT::BELIAL)]				= { Code::UNIT::BELIAL, "º§¸®¾Ë", 150 };

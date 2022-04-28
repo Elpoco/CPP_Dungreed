@@ -21,7 +21,7 @@ protected:
 	int*	_followDegree;
 
 public:
-	Effect(string imgName, float x, float y, BYTE alpha = 0);
+	Effect(string imgName, float x, float y, BYTE alpha = 255);
 	Effect(string imgName, float x, float y, int angle, POINT rotateCenter);
 	virtual ~Effect();
 	

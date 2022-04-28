@@ -6,7 +6,9 @@ HRESULT TestScene::init()
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
 	OBJECTMANAGER->addPlayer(CENTER_X, 500);
 	TILEMANAGER->loadMap(FileName::testSave);
+
 	OBJECTMANAGER->addTresure(360, 1270);
+	OBJECTMANAGER->addEnemy(Code::UNIT::BANSHEE, 100, 550);
 
 	return S_OK;
 }
@@ -19,7 +21,7 @@ void TestScene::update()
 {
 	if (IsOnceKeyDown('Z'))
 	{
-		OBJECTMANAGER->addEnemy(Code::UNIT::SKEL_DOG, 100, 800);
+		OBJECTMANAGER->addEnemy(Code::UNIT::SKEL_DOG, 500, 800);
 	}
 	if (IsStayKeyDown('B') && IsOnceKeyDown(VK_F1))
 	{

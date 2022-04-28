@@ -33,7 +33,7 @@ void PlayerManager::dash()
 void PlayerManager::chargeDash()
 {
 	if (_dashMaxCnt == _dashCnt) return;
-	if (_dashTime + _dashChargeTime < TIMEMANAGER->getWorldTime())
+	if (_dashTime + _dashChargeTime < TIMEMANAGER->getWorldTime() || _isDebug)
 	{
 		_dashTime = TIMEMANAGER->getWorldTime();
 		_dashCnt++;

@@ -70,6 +70,14 @@ void Effect::update()
 {
 	Object::update();
 	if (_frameInfo.isFrame) this->animation();
+	else
+	{
+		if (_alpha < 255)
+		{
+			_alpha -= 3;
+			if(_alpha < 10) this->deleteEffect();
+		}
+	}
 
 	if (_isFollow) 
 		_rc = RectMakeCenter(*_followX, *_followY, _frameInfo.width, _frameInfo.height);

@@ -134,6 +134,12 @@ void Player::move()
 		if (_dashMove > 0)
 		{
 			if (_isJump) _dashMove = 0;
+
+			if (_dashMove % 50 < DASH_SPEED)
+			{
+				OBJECTMANAGER->addEffect(_dashImgName, _x, _y, 180);
+			}
+
 			_gravity = 0.0f;
 			_dashMove -= DASH_SPEED;
 			_x += cosf(_dashAngle) * DASH_SPEED;
@@ -246,11 +252,22 @@ void Player::dash()
 	_isDownJump = FALSE;
 	_dashAngle = GetAngle(PointMake(_x, _y), CAMERAMANAGER->calAbsPt(_ptMouse));
 	
+	if (_isLeft)
+	{
+		_dashImgName = ImageName::Player::dashEffectL;
+	}
+	else
+	{
+		_dashImgName = ImageName::Player::dashEffectR;
+	}
+
 	SOUNDMANAGER->play(SoundName::Player::dash, _sound);
 }
 
 void Player::jump()
 {
+	if (_isJump && !_isDebug) return;
+
 	SOUNDMANAGER->play(SoundName::Player::Jumping, _sound);
 	Unit::jump();
 	OBJECTMANAGER->addEffect(ImageName::Player::jumpEffect, _x, _rc.bottom - 25);

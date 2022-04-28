@@ -86,8 +86,13 @@ namespace Code
 	enum class UNIT
 	{
 		PLAYER,
+
+		// 몬스터
 		SKEL_DOG,
 		LITTLE_GHOST,
+		BANSHEE,
+
+		// 보스
 		BELIAL,
 		NIFLEHEIM,
 		NIFLEHEIM_PILLAR,

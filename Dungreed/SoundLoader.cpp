@@ -48,8 +48,15 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Enemy::hit, PATH_SOUND"Hit_Monster.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Enemy::SpawnEnemy, PATH_SOUND"SpawnMonster.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Enemy::MonsterDie, PATH_SOUND"MonsterDie.wav", false, false);
+	// 몬스터
+	SOUNDMANAGER->addSound(SoundName::Enemy::BansheeATK, PATH_SOUND"Banshee_ATK.wav", false, false);
+
+	// 보스
 	SOUNDMANAGER->addSound(SoundName::Enemy::Skeletonking, PATH_SOUND"Skeletonking.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Enemy::BelialBullet, PATH_SOUND"BelialBullet.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::BelialLazer, PATH_SOUND"Belial_lazer.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::BelialSword, PATH_SOUND"Belial_sword.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::BelialSwordShoot, PATH_SOUND"Belial_sword_shoot.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Enemy::niflheim_start, PATH_SOUND"niflheim_start.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Enemy::NiflheimBullet, PATH_SOUND"NiflheimBullet.wav", false, false);
 
@@ -59,6 +66,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::invenOpen, PATH_SOUND"Inventory_open.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::swapEquip, PATH_SOUND"Swap_weapon.wav", false, false);
 
+	SOUNDMANAGER->addSound(SoundName::Item::coin, PATH_SOUND"coin.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Equip, PATH_SOUND"Equip.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::getCoin, PATH_SOUND"Get_Coin.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::getItem, PATH_SOUND"Get_Item.wav", false, false);

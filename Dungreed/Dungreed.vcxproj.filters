@@ -154,6 +154,9 @@
     <Filter Include="MainGame\02. Object\08. DungeonObj\Box">
       <UniqueIdentifier>{3878eea0-e6c6-4ad6-bc71-4ae046ba3d06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\Banshee">
+      <UniqueIdentifier>{96b93751-c4f2-42ab-929f-8b47dc91d609}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -350,6 +353,9 @@
     </ClCompile>
     <ClCompile Include="Sword.cpp">
       <Filter>MainGame\02. Object\06. Item\Sword</Filter>
+    </ClCompile>
+    <ClCompile Include="Banshee.cpp">
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Banshee</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -580,6 +586,9 @@
     </ClInclude>
     <ClInclude Include="Tresure.h">
       <Filter>MainGame\02. Object\08. DungeonObj\Tresure</Filter>
+    </ClInclude>
+    <ClInclude Include="Banshee.h">
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Banshee</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

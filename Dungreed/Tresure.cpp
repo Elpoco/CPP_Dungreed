@@ -60,6 +60,7 @@ void Tresure::collisionObject()
 	{
 		_isOpen = TRUE;
 		SOUNDMANAGER->play(SoundName::Dungeon::OpenTresure, _sound);
+		SOUNDMANAGER->play(SoundName::Item::coin, _sound);
 
 		for (int i = 0; i < 4; i++)
 		{

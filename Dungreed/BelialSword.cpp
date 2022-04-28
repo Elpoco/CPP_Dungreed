@@ -31,6 +31,7 @@ HRESULT BelialSword::init()
 	_initTime = TIMEMANAGER->getWorldTime();
 
 	OBJECTMANAGER->addEffect(ImageName::Enemy::Belial::swordEffect, _x, _y);
+	SOUNDMANAGER->play(SoundName::Enemy::BelialSword, _sound);
 
 	return S_OK;
 }
@@ -66,6 +67,7 @@ void BelialSword::render(HDC hdc)
 void BelialSword::deleteEffect()
 {
 	OBJECTMANAGER->addEffect(ImageName::Enemy::Belial::swordEffect, _x, _y);
+	SOUNDMANAGER->play(SoundName::Enemy::BelialSword, _sound);
 }
 
 void BelialSword::collisionObject()
@@ -80,6 +82,7 @@ void BelialSword::move()
 
 	if (_isShoot || _initTime + 3 < TIMEMANAGER->getWorldTime())
 	{
+		if(!_isShoot) SOUNDMANAGER->play(SoundName::Enemy::BelialSwordShoot, _sound);
 		_isShoot = true;
 		if (_isMoving)
 		{
