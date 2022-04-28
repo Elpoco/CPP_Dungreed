@@ -160,6 +160,9 @@
     <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\Bat">
       <UniqueIdentifier>{df1529ca-0651-4531-9e0a-dc6e4f1c36af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\Skel">
+      <UniqueIdentifier>{852c4eb2-db92-4268-b170-4cf24193ec73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -362,6 +365,9 @@
     </ClCompile>
     <ClCompile Include="Bat.cpp">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Bat</Filter>
+    </ClCompile>
+    <ClCompile Include="Skel.cpp">
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Skel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -598,6 +604,9 @@
     </ClInclude>
     <ClInclude Include="Bat.h">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Bat</Filter>
+    </ClInclude>
+    <ClInclude Include="Skel.h">
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Skel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

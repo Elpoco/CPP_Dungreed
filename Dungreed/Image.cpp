@@ -672,65 +672,50 @@ void Image::loopRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY)
 
 void Image::loopAlphaRender(HDC hdc, const LPRECT drawArea, int offsetX, int offsetY, BYTE alpha)
 {
-	//offset 값이 음수인 경우 보정하기
 	if (offsetX < 0) offsetX = _imageInfo->width + (offsetX % _imageInfo->width);
 	if (offsetY < 0) offsetY = _imageInfo->height + (offsetY % _imageInfo->height);
 
-	//그려지는 영역 세팅
 	RECT rcSour;
 	int sourWidth;
 	int sourHeight;
 
-	//그려지는 DC 영역 (화면크기)
 	RECT rcDest;
 
-	//그려야 할 전체 영역
 	int drawAreaX = drawArea->left;
 	int drawAreaY = drawArea->top;
 	int drawAreaW = drawArea->right - drawArea->left;
 	int drawAreaH = drawArea->bottom - drawArea->top;
 
-	//세로 루프영역
 	for (int y = 0; y < drawAreaH; y += sourHeight)
 	{
-		//소스 영역의 높이 계산
 		rcSour.top = (y + offsetY) % _imageInfo->height;
 		rcSour.bottom = _imageInfo->height;
 		sourHeight = rcSour.bottom - rcSour.top;
 
-		//소스 영역이 그리는 화면을 넘어갔다면(화면밖으로 나갔을때)
 		if (y + sourHeight > drawAreaH)
 		{
-			//넘어간 그림의 값만큼 바텀값을 올려준다
 			rcSour.bottom -= (y + sourHeight) - drawAreaH;
 			sourHeight = rcSour.bottom - rcSour.top;
 		}
 
-		//그려지는 영역
 		rcDest.top = y + drawAreaY;
 		rcDest.bottom = rcDest.top + sourHeight;
 
-		//가로 루프영역
 		for (int x = 0; x < drawAreaW; x += sourWidth)
 		{
-			//소스 영역의 높이 계산
 			rcSour.left = (x + offsetX) % _imageInfo->width;
 			rcSour.right = _imageInfo->width;
 			sourWidth = rcSour.right - rcSour.left;
 
-			//소스 영역이 그리는 화면을 넘어갔다면(화면밖으로 나갔을때)
 			if (x + sourWidth > drawAreaW)
 			{
-				//넘어간 그림의 값만큼 바텀값을 올려준다
 				rcSour.right -= (x + sourWidth) - drawAreaW;
 				sourWidth = rcSour.right - rcSour.left;
 			}
 
-			//그려지는 영역
 			rcDest.left = x + drawAreaX;
 			rcDest.right = rcDest.left + sourWidth;
 
-			//그려주자(알파렌더-이미지잘라서붙이기)
 			alphaRender(hdc, rcDest.left, rcDest.top, rcSour.left, rcSour.top, sourWidth, sourHeight, alpha);
 		}
 	}
@@ -764,7 +749,7 @@ HRESULT Image::initForRotateImage()
 void Image::rotateRender(HDC hdc, float destX, float destY, int frameX, int frameY, float angle)
 {
 	if (!_rotateImage) this->initForRotateImage();
-	angle += PI / 2;
+
 	POINT rPoint[3];
 	int dist = sqrt((_imageInfo->frameWidth / 2) * (_imageInfo->frameWidth / 2) + (_imageInfo->frameHeight / 2) * (_imageInfo->frameHeight / 2));
 	float baseAngle[3];

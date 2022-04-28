@@ -67,6 +67,10 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::RedGiantBatAttack, PATH_UNIT"Enemy/Bat/RedGiantBatAttack.bmp", 0, 0, 10, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BatBullet, PATH_UNIT"Enemy/Bat/BatBullet.bmp", 0, 0, 5, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BatBulletHit, PATH_UNIT"Enemy/Bat/BatBulletHit.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
+	// ½ºÄÌ·¹Åæ
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::SkelIdle, PATH_UNIT"Enemy/Skel/SkelIdle.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::SkelWalk, PATH_UNIT"Enemy/Skel/SkelWalk.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Enemy::SkelSword, PATH_UNIT"Enemy/Skel/SkelSword.bmp", 0, 0, true, ColorSet::MAGENTA);
 
 	// º§¸®¾Ë
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Belial::idle, PATH_UNIT"Enemy/Belial/SkellBossIdle.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);

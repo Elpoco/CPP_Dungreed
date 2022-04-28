@@ -16,6 +16,7 @@
 #include "LittleGhost.h"
 #include "Banshee.h"
 #include "Bat.h"
+#include "Skel.h"
 
 #include "Belial.h"
 #include "Niflheim.h"
@@ -138,6 +139,9 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 		break;
 	case Code::UNIT::GIANT_BAT:
 		enemy = new Bat(x, y);
+		break;
+	case Code::UNIT::SKEL:
+		enemy = new Skel(x, y);
 		break;
 
 	case Code::UNIT::BELIAL:

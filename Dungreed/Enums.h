@@ -94,6 +94,7 @@ namespace Code
 		BAT,
 		GIANT_BAT,
 		RED_GIANT_BAT,
+		SKEL,
 
 		// º¸½º
 		BELIAL,

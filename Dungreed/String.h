@@ -45,6 +45,14 @@ namespace ImageName
 		constexpr char* BatBullet = "ENEMY BatBullet";
 		constexpr char* BatBulletHit = "ENEMY BatBulletHit";
 
+		constexpr char* SkelIdle = "ENEMY SkelIdle";
+		constexpr char* SkelWalk = "ENEMY SkelWalk";
+		constexpr char* SkelSword = "ENEMY SkelSword";
+
+		constexpr char* BigWhiteSkelIdle = "ENEMY BigWhiteSkelIdle";
+		constexpr char* BigWhiteSkelMove = "ENEMY BigWhiteSkelMove";
+		constexpr char* BigWhiteSkelAttack = "ENEMY BigWhiteSkelAttack";
+
 		namespace Belial
 		{
 #define BELIAL_NM "Belial"
