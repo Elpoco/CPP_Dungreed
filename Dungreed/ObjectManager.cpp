@@ -15,6 +15,7 @@
 #include "SkelDog.h"
 #include "LittleGhost.h"
 #include "Banshee.h"
+#include "Bat.h"
 
 #include "Belial.h"
 #include "Niflheim.h"
@@ -135,12 +136,17 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 	case Code::UNIT::BANSHEE:
 		enemy = new Banshee(x, y);
 		break;
+	case Code::UNIT::GIANT_BAT:
+		enemy = new Bat(x, y);
+		break;
+
 	case Code::UNIT::BELIAL:
 		enemy = new Belial(x, y);
 		break;
 	case Code::UNIT::NIFLEHEIM:
 		enemy = new Niflheim(x, y);
 		break;
+
 	default:
 		enemy = new SkelDog(x, y);
 		break;
@@ -149,9 +155,9 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 	enemy->settingHpBar();
 }
 
-void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage, string destroyImgName, float distance)
+void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage, string destroyImgName, float distance, BOOL super)
 {
-	addObject(type, new Bullet(imgName, x, y, angle, speed, damage, destroyImgName));
+	addObject(type, new Bullet(imgName, x, y, angle, speed, damage, destroyImgName, distance, super));
 }
 
 RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, OBJ_TYPE type)

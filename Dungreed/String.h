@@ -36,6 +36,15 @@ namespace ImageName
 		constexpr char* BansheeBullet = "ENEMY BansheeBullet";
 		constexpr char* BansheeBulletFX = "ENEMY BansheeBulletFX";
 
+		constexpr char* BatIdle = "ENEMY BatIdle";
+		constexpr char* GiantBat = "ENEMY GiantBat";
+		constexpr char* RedGiantBat = "ENEMY RedGiantBat";
+		constexpr char* BatAttack = "ENEMY BatAttack";
+		constexpr char* GiantBatAttack = "ENEMY GiantBatAttack";
+		constexpr char* RedGiantBatAttack = "ENEMY RedGiantBatAttack";
+		constexpr char* BatBullet = "ENEMY BatBullet";
+		constexpr char* BatBulletHit = "ENEMY BatBulletHit";
+
 		namespace Belial
 		{
 #define BELIAL_NM "Belial"
@@ -62,6 +71,8 @@ namespace ImageName
 			constexpr char* pillar   = NIFLHEIM_NM"Pillar";
 			constexpr char* bullet   = NIFLHEIM_NM"Bullet";
 			constexpr char* bulletFX = NIFLHEIM_NM"BulletFX";
+			constexpr char* icicle = NIFLHEIM_NM"icicle";
+			constexpr char* icicleFX = NIFLHEIM_NM"icicleFX";
 		}
 	}
 
@@ -151,10 +162,27 @@ namespace ImageName
 
 	namespace Town
 	{
-		constexpr char* cloud = "TownCloud";
-		constexpr char* townBgDay = "TownBgDay";
-		constexpr char* townLayerDay = "TownLayerDay";
+		constexpr char* cloud = "TOWN Cloud";
+		constexpr char* townBgDay = "TOWN BgDay";
+		constexpr char* townLayerDay = "TOWN LayerDay";
 		constexpr char* dungeonEat = "TOWN dungeonEat";
+		constexpr char* BrokenTemple = "TOWN BrokenTemple";
+		constexpr char* DogHouse = "TOWN DogHouse";
+		constexpr char* DungeonSignL = "TOWN DungeonSignL";
+		constexpr char* DungeonSignR = "TOWN DungeonSignR";
+		constexpr char* Tree0 = "TOWN Tree0";
+		constexpr char* Tree1 = "TOWN Tree1";
+		constexpr char* Grass0 = "TOWN Grass0";
+		constexpr char* Grass1 = "TOWN Grass1";
+		constexpr char* Grass2 = "TOWN Grass2";
+		constexpr char* Shop = "TOWN Shop";
+		constexpr char* BrokenHouse0 = "TOWN BrokenHouse0";
+		constexpr char* BrokenHouse1 = "TOWN BrokenHouse1";
+		constexpr char* TrainingSchool = "TOWN TrainingSchool";
+		constexpr char* BlackSmith = "TOWN BlackSmith";
+		constexpr char* StreetLight_0 = "TOWN StreetLight_0";
+		constexpr char* StreetLight_1 = "TOWN StreetLight_1";
+		constexpr char* StreetLight_2 = "TOWN StreetLight_2";
 	}
 
 	namespace MapTool

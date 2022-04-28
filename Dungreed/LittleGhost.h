@@ -25,7 +25,6 @@ public:
 	virtual void render(HDC hdc) override;
 
 	void move();
-	void animation();
 	void initAnimation();
 
 };

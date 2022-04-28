@@ -6,28 +6,31 @@ class Object;
 class GameScene : public GameNode
 {
 private:
-	struct tagSpawnInfo
+	typedef struct tagTownDeco
 	{
-		RECT rcScan;
-		POINT ptSpawn;
-		Code::UNIT unit;
-	};
-
-	friend class MapManager;
+		ImageBase* img;
+		float x;
+		float y;
+	} TOWN_DECO;
 
 private:
 	LocationEnum::LOCATION _location;
 
 	// Town
-	Image* _layer;
-	Image* _background;
+	Image* _imgLayer;
+	Image* _imgBackground;
 	RECT _rcLayer;
 	RECT _rcBackground;
 	RECT _rcEntrance;
-	FRAME_INFO _enterFrame;
+
 	ImageBase* _imgEnter;
+	FRAME_INFO _enterFrame;
 	RECT _rcEnter;
 	BOOL _isEnter;
+
+	// 마을 장식
+	vector<TOWN_DECO> _vTownDeco;
+	int tempIdx = 1;
 
 public:
 	GameScene();
@@ -40,6 +43,7 @@ public:
 
 	void updateTown();
 	void renderTown(HDC hdc);
+	void renderBackTown(HDC hdc);
 
 	void loadDungeon();
 

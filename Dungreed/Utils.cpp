@@ -32,6 +32,11 @@ namespace MY_UTIL
 		return sqrt(x * x + y * y);
 	}
 
+	float GetDistance(POINT startPt, POINT endPt)
+	{
+		return GetDistance(startPt.x, startPt.y, endPt.x, endPt.y);
+	}
+
 	float GetAngle(float startX, float startY, float endX, float endY)
 	{
 		float x = endX - startX;

@@ -21,9 +21,31 @@ HRESULT GameScene::init()
 
 	// Town
 	TILEMANAGER->loadMap(FileName::Town);
-	_layer = IMAGEMANAGER->findImage(ImageName::Town::townLayerDay);
-	_background = IMAGEMANAGER->findImage(ImageName::Town::townBgDay);
+	_imgLayer = IMAGEMANAGER->findImage(ImageName::Town::townLayerDay);
+	_imgBackground = IMAGEMANAGER->findImage(ImageName::Town::townBgDay);
 	SOUNDMANAGER->play(SoundName::town, _sound);
+
+	_vTownDeco.push_back({ FindImage(ImageName::Town::BrokenTemple), 2590, 557 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::Tree0), 3944, 1112 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::Tree1), 1790, 1066 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::DogHouse), 1768, 1217 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::DungeonSignL), 2459, 1229 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::DungeonSignR), 3350, 1232 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::Grass0), 1619, 1265 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::Grass1), 871, 700 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::Grass2), 5474, 1219 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::Shop), 5050, 364 });
+	//_vTownDeco.push_back({ FindImage(ImageName::Town::BrokenHouse0), 5089, 601 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::BrokenHouse1), 193, 608 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::TrainingSchool), 11, 1064 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::BlackSmith), 5204, 905 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::StreetLight_0), 1302, 1124 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::StreetLight_0), 4109, 1124 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::StreetLight_1), 777, 578 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::StreetLight_1), 4920, 578 });
+	_vTownDeco.push_back({ FindImage(ImageName::Town::StreetLight_2),  5054, 1154 });
+	tempIdx = 9;
+
 	// 던전 입구
 	_rcEntrance = RectMakeCenter(2940, 1296, 750, 1);
 	_imgEnter = FindImage(ImageName::Town::dungeonEat);
@@ -57,17 +79,25 @@ void GameScene::update()
 
 void GameScene::render()
 {
-	switch (_location)
+	if (_location == LocationEnum::LOCATION::TOWN)
 	{
-	case LocationEnum::LOCATION::TOWN:
-		renderTown(getMemDC());
-		break;
-	default:
-		MAPMANAGER->backgoundRender(getMemDC());
-		break;
+		renderBackTown(getMemDC());
 	}
+	else
+	{
+		MAPMANAGER->backgoundRender(getMemDC());
+	}
+
 	TILEMANAGER->render(getMemDC());
-	MAPMANAGER->render(getMemDC());
+	
+	if (_location == LocationEnum::LOCATION::TOWN)
+	{
+		renderTown(getMemDC());
+	}
+	else
+	{
+		MAPMANAGER->render(getMemDC());
+	}
 
 	if (_isEnter) CAMERAMANAGER->frameRender(getMemDC(), _imgEnter, _rcEnter.left, _rcEnter.top, _enterFrame.x, 0);
 }
@@ -117,11 +147,27 @@ void GameScene::updateTown()
 
 void GameScene::renderTown(HDC hdc)
 {
+	for (auto deco : _vTownDeco)
+	{
+		CAMERAMANAGER->render(hdc, deco.img, deco.x, deco.y);
+	}
+
+	if (IsOnceKeyDown(KEY::DOWN_ARROW)) tempIdx++;
+	CAMERAMANAGER->render(
+		hdc, 
+		_vTownDeco[tempIdx].img,
+		CAMERAMANAGER->calAbsX(_ptMouse.x),
+		CAMERAMANAGER->calAbsY(_ptMouse.y)
+	);
+}
+
+void GameScene::renderBackTown(HDC hdc)
+{
 	IMAGEMANAGER->render(ImageName::Town::cloud, hdc);
-	_rcBackground = RectMake( 0,WINSIZE_Y - _background->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*0.7), WINSIZE_X, WINSIZE_Y );
-	_background->loopRender(hdc, &_rcBackground, CAMERAMANAGER->getAbsX() / 3, 0);
-	_rcLayer = RectMake(0, WINSIZE_Y - _layer->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*1.2), WINSIZE_X, _layer->getHeight());
-	_layer->loopRender(hdc, &_rcLayer, CAMERAMANAGER->getAbsX()*0.8, 0);
+	_rcBackground = RectMake(0, WINSIZE_Y - _imgBackground->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*0.7), WINSIZE_X, WINSIZE_Y);
+	_imgBackground->loopRender(hdc, &_rcBackground, CAMERAMANAGER->getAbsX() / 3, 0);
+	_rcLayer = RectMake(0, WINSIZE_Y - _imgLayer->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*1.2), WINSIZE_X, _imgLayer->getHeight());
+	_imgLayer->loopRender(hdc, &_rcLayer, CAMERAMANAGER->getAbsX()*0.8, 0);
 }
 
 void GameScene::loadDungeon()

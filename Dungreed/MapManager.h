@@ -24,11 +24,13 @@ private:
 	};
 
 private:
-	Code::MAP _arrMapCode[MapManagerSet::MAP_CNT];
+	Code::MAP	_arrMapCode[MapManagerSet::MAP_CNT];
+	BOOL		_arrClearMap[MapManagerSet::MAP_CNT];
+	int			_curLocation;
+
 	MAP_INFO _mapInfo;
-	float _mapWidth;
-	float _mapHeight;
-	int _curLocation;
+	float	 _mapWidth;
+	float	 _mapHeight;
 
 	Image* _layer;
 	Image* _background;

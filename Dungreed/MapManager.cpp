@@ -84,6 +84,7 @@ void MapManager::initMap()
 	for (int i = 0; i < (int)Code::MAP::MAP_CNT; i++)
 	{
 		_arrMapCode[i] = (Code::MAP)i;
+		_arrClearMap[i] = FALSE;
 	}
 
 	_curLocation = 4;
@@ -100,9 +101,16 @@ void MapManager::settingDungeon()
 	{
 		_isSnowMap = TRUE;
 		_layer = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer1);
-		_background = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer0);
 		SOUNDMANAGER->stop(SoundName::dungeon);
 		SOUNDMANAGER->play(SoundName::IceDungeon, _sound);
+	}
+
+	if (_isSnowMap &&  _arrMapCode[_curLocation] == Code::MAP::DUNGEON_08)
+	{
+		_isSnowMap = FALSE;
+		_layer = IMAGEMANAGER->findImage(ImageName::Dungeon::subBg);
+		SOUNDMANAGER->stop(SoundName::IceDungeon);
+		SOUNDMANAGER->play(SoundName::dungeon, _sound);
 	}
 
 	settingDoor();
@@ -215,6 +223,7 @@ void MapManager::checkMonster()
 	if (!_isClear && _unitCnt == 0)
 	{
 		_isClear = TRUE;
+		_arrClearMap[_curLocation] = TRUE;
 		openDoor();
 		if (_mapInfo.ptTresure.x != 0)
 		{

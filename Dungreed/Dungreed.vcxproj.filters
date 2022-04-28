@@ -157,6 +157,9 @@
     <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\Banshee">
       <UniqueIdentifier>{96b93751-c4f2-42ab-929f-8b47dc91d609}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\Bat">
+      <UniqueIdentifier>{df1529ca-0651-4531-9e0a-dc6e4f1c36af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -356,6 +359,9 @@
     </ClCompile>
     <ClCompile Include="Banshee.cpp">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Banshee</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Bat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -589,6 +595,9 @@
     </ClInclude>
     <ClInclude Include="Banshee.h">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Banshee</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Bat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

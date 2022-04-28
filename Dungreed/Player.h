@@ -3,7 +3,7 @@
 
 namespace PlayerSet
 {
-	constexpr float HIT_TIME	= 2.0f;
+	constexpr float HIT_TIME	= 1.5f;
 	constexpr BYTE  HIT_ALPHA	= 150;
 
 	constexpr float DASH_DISTANCE	= 250;

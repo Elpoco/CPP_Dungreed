@@ -91,6 +91,9 @@ namespace Code
 		SKEL_DOG,
 		LITTLE_GHOST,
 		BANSHEE,
+		BAT,
+		GIANT_BAT,
+		RED_GIANT_BAT,
 
 		// º¸½º
 		BELIAL,

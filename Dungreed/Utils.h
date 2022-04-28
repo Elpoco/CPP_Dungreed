@@ -17,6 +17,7 @@ namespace MY_UTIL
 	ImageBase* FindImage(string imgName);
 
 	float GetDistance(float startX, float startY, float endX, float endY);
+	float GetDistance(POINT startPt, POINT endPt);
 	float GetAngle(float startX, float startY, float endX, float endY);
 	float GetAngle(POINT startPt, POINT endPt);
 	int GetAngleDeg(float startX, float startY, float endX, float endY);

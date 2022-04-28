@@ -24,9 +24,19 @@ private:
 
 private:
 	Cursor* _cursor;
+
 	Inventory* _inventory;	
 	MiniMap* _miniMap;
+
 	map<KEY, tagKeyboard> _mKey;
+
+	BOOL _isShowReload;
+	UI* _uiReloadBar;
+	UI* _uiReloadBase;
+	float _reloadX;
+	float _reloadY;
+	float _reloadTime;
+	float _reloadStartTime;
 
 public:
 	UIManager();
@@ -38,7 +48,6 @@ public:
 	void render(HDC hdc);
 
 	void setCursorType(UIEnum::CURSOR_TYPE cursorType);
-	void reloadUI(float reloadTime);
 
 	void initInventory();
 	BOOL onInventory();
@@ -53,6 +62,10 @@ public:
 	void initKeyboard();
 	void showKeyboard(KEY key, float x, float top);
 	void updateKeyboard();
+
+	void initReload();
+	void updateReload();
+	void showReloadBar(float reloadTime);
 
 };
 

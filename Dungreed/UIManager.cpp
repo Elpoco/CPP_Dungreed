@@ -22,6 +22,7 @@ HRESULT UIManager::init()
 	ShowCursor(false);
 
 	initKeyboard();
+	initReload();
 
 	return S_OK;
 }
@@ -33,6 +34,7 @@ void UIManager::release()
 void UIManager::update()
 {
 	updateKeyboard();
+	updateReload();
 }
 
 void UIManager::render(HDC hdc)
@@ -56,10 +58,6 @@ void UIManager::setCursorType(UIEnum::CURSOR_TYPE cursorType)
 		break;
 	}
 	_cursor->setCursor(cursorType);
-}
-
-void UIManager::reloadUI(float reloadTime)
-{
 }
 
 void UIManager::initInventory()
@@ -129,5 +127,46 @@ void UIManager::updateKeyboard()
 			pair.second.key->hide();
 		}
 	}
+}
+
+void UIManager::initReload()
+{
+	_isShowReload = FALSE;
+
+	_uiReloadBar = new UI(ImageName::UI::Item::reloadBar, 0,0, FALSE, FALSE, TRUE);
+	_uiReloadBase = new UI(ImageName::UI::Item::reloadBase, 0, 0, FALSE, FALSE, TRUE);
+
+	OBJECTMANAGER->addUI(_uiReloadBar);
+	OBJECTMANAGER->addUI(_uiReloadBase);
+	//_imgReloadEffect = FindImage(ImageName::UI::Item::reloadEffect);
+}
+
+void UIManager::updateReload()
+{
+	if (!_isShowReload) return;
+
+	_reloadX = OBJECTMANAGER->getPlayer()->getX();
+	_reloadY = OBJECTMANAGER->getPlayer()->getY() - 45;
+	_uiReloadBase->setX(_reloadX);
+	_uiReloadBase->setY(_reloadY);
+	_uiReloadBar->setX(_reloadX - 32 + 63 * (TIMEMANAGER->getWorldTime() - _reloadStartTime));
+	_uiReloadBar->setY(_reloadY);
+
+	if (_reloadTime <= TIMEMANAGER->getWorldTime() - _reloadStartTime)
+	{
+		_isShowReload = FALSE;
+		_uiReloadBase->hide();
+		_uiReloadBar->hide();
+		OBJECTMANAGER->addEffect(ImageName::UI::Item::reloadEffect, _reloadX, _reloadY);
+	}
+}
+
+void UIManager::showReloadBar(float reloadTime)
+{
+	_reloadTime = reloadTime;
+	_reloadStartTime = TIMEMANAGER->getWorldTime();
+	_isShowReload = TRUE;
+	_uiReloadBase->show();
+	_uiReloadBar->show();
 }
 

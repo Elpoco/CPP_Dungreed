@@ -2,7 +2,7 @@
 #include "Bullet.h"
 
 Bullet::Bullet(string imgName, float x, float y, float angle, float speed
-	, int damage, string destroyImgName, float distance)
+	, int damage, string destroyImgName, float distance, BOOL super)
 	: _imgName(imgName)
 	, _startX(x)
 	, _startY(y)
@@ -12,6 +12,7 @@ Bullet::Bullet(string imgName, float x, float y, float angle, float speed
 	, _distance(distance)
 	, _destroyImgName(destroyImgName)
 	, _isGP(FALSE)
+	, _isSuper(super)
 {
 	_x = x;
 	_y = y;
@@ -113,6 +114,12 @@ void Bullet::deleteEffect()
 			);
 		}
 	}
+}
+
+void Bullet::stopObject()
+{
+	if (_isSuper) return;
+	Object::deleteObject();
 }
 
 void Bullet::collisionObject()

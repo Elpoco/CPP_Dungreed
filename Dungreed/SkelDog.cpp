@@ -39,7 +39,6 @@ void SkelDog::update()
 	Enemy::update();
 	this->move();
 	Unit::updateRect();
-	this->animation();
 }
 
 void SkelDog::render(HDC hdc)
@@ -86,10 +85,6 @@ void SkelDog::move()
 	{
 		_rcAttack = _rc;
 	}
-}
-
-void SkelDog::animation()
-{
 }
 
 void SkelDog::initAnimation()

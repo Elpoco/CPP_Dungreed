@@ -46,6 +46,7 @@ HRESULT Player::init()
 	ITEMMANAGER->setPlayerLeft(&_isLeft);
 
 	ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+	ITEMMANAGER->getItem(Code::ITEM::COLT);
 
 	return S_OK;
 }

@@ -38,7 +38,6 @@ void Banshee::update()
 	Enemy::update();
 	this->move();
 	Unit::updateRect();
-	this->animation();
 }
 
 void Banshee::render(HDC hdc)
@@ -54,10 +53,6 @@ void Banshee::move()
 	}
 }
 
-void Banshee::animation()
-{
-}
-
 void Banshee::initAnimation()
 {
 	_vImages.push_back(FindImage(ImageName::Enemy::BansheeIdle));
@@ -65,13 +60,18 @@ void Banshee::initAnimation()
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
+
+	_frameInfo.maxFrameX = _vImages[0]->getMaxFrameX();
+	_frameInfo.tick = 13;
 }
 
 void Banshee::attack()
 {
 	_attackTime = TIMEMANAGER->getWorldTime();
-	SOUNDMANAGER->play(SoundName::Enemy::BansheeATK, _sound);
 	_state = ATTACK;
+	_frameInfo.x = 0;
+
+	SOUNDMANAGER->play(SoundName::Enemy::BansheeATK, _sound);
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -83,7 +83,9 @@ void Banshee::attack()
 			PI * i * 0.25,
 			3.0f,
 			_info.dmg,
-			ImageName::Enemy::BansheeBulletFX
+			ImageName::Enemy::BansheeBulletFX,
+			1500,
+			TRUE
 		);
 	}
 }

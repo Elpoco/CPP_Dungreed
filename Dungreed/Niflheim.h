@@ -32,6 +32,7 @@ private:
 		LINE_UP,	   // 중앙에 직선으로 모여서 나선형태
 		FULL_ATTACK,   // 모든기둥이 플레이어한테 연사
 		TELEPORT,
+		ICICLE,
 		SKILL_CNT,
 		STUN,
 	};
@@ -55,6 +56,8 @@ private:
 	int _skillFirstTick;
 	POINT _ptLastPlayer;
 
+	float _bulletSound;
+
 public:
 	Niflheim(float x, float y);
 	virtual ~Niflheim();
@@ -77,5 +80,6 @@ public:
 	void turnAround();
 	void moveAndFire();
 	void teleport();
+	void icicle();
 };
 

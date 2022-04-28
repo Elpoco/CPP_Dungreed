@@ -42,7 +42,7 @@ void Gun::update()
 	{
 		_lastAttack += _reloadTime;
 		_bulletCnt = _info.etc;
-		UIMANAGER->reloadUI(_reloadTime);
+		UIMANAGER->showReloadBar(_reloadTime);
 		SOUNDMANAGER->play(SoundName::Item::Reload2, _sound);
 	}
 

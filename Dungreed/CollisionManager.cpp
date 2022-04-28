@@ -184,12 +184,13 @@ void CollisionManager::collisionTile()
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getY());
+
 				if (tile.type == MAP_OBJ::BLOCK   ||
 					tile.type == MAP_OBJ::BLOCK_L ||
 					tile.type == MAP_OBJ::BLOCK_R)
 				{
 					obj->stopObject();
-					obj->collisionObject();
+					//obj->collisionObject();
 				}
 			}
 			break;

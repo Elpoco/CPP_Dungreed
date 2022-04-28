@@ -44,6 +44,8 @@ HRESULT Niflheim::init()
 	SOUNDMANAGER->play(SoundName::niflheimBG, _sound);
 	SOUNDMANAGER->play(SoundName::Enemy::niflheim_start, _sound);
 
+	_bulletSound = TIMEMANAGER->getWorldTime();
+
 	return S_OK;
 }
 
@@ -73,7 +75,8 @@ void Niflheim::update()
 	if (IsStayKeyDown('B') && IsOnceKeyDown('4')) _skill = NIFLHEIM_SKILL::LINE_UP;
 	if (IsStayKeyDown('B') && IsOnceKeyDown('5')) _skill = NIFLHEIM_SKILL::FULL_ATTACK;
 	if (IsStayKeyDown('B') && IsOnceKeyDown('6')) _skill = NIFLHEIM_SKILL::TELEPORT;
-	if (IsStayKeyDown('B') && IsOnceKeyDown('7')) _onInitPillar = true;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('7')) _skill = NIFLHEIM_SKILL::ICICLE;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('8')) _onInitPillar = true;
 	if (IsStayKeyDown('B') && IsOnceKeyDown('9')) _isLive = FALSE;
 
 	switch (_skill)
@@ -125,6 +128,9 @@ void Niflheim::update()
 		break;
 	case Niflheim::NIFLHEIM_SKILL::TELEPORT:
 		this->teleport();
+		break;
+	case Niflheim::NIFLHEIM_SKILL::ICICLE:
+		this->icicle();
 		break;
 	case Niflheim::NIFLHEIM_SKILL::STUN:
 		if (_stunTime + 1.5f < TIMEMANAGER->getWorldTime())
@@ -242,7 +248,11 @@ void Niflheim::shootBullet(float x, float y, float angle)
 		ImageName::Enemy::Niflheim::bulletFX
 	);
 
-	SOUNDMANAGER->play(SoundName::Enemy::NiflheimBullet, _sound);
+	if (_bulletSound + TIMEMANAGER->getElapsedTime() < TIMEMANAGER->getWorldTime())
+	{
+		_bulletSound = TIMEMANAGER->getWorldTime();
+		SOUNDMANAGER->play(SoundName::Enemy::NiflheimBullet, _sound);
+	}
 }
 
 void Niflheim::turnAround()
@@ -273,7 +283,7 @@ void Niflheim::turnAround()
 		this->shootBullet(x, y, angle);
 	}
 
-	if (++_skillActCnt > BULLET_CNT)
+	if (++_skillActCnt > BULLET_CNT + 20)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;
@@ -373,4 +383,55 @@ void Niflheim::teleport()
 	_x = telX;
 	_y = telY;
 	OBJECTMANAGER->addEffect(ImageName::Enemy::dieSmall, _x, _y);
+}
+
+void Niflheim::icicle()
+{
+	if (_skillActCnt == 0 && _skillTick == 0)
+	{
+		this->attackAnimation();
+		_skillFirstTick = 50;
+	}
+
+	if (_skillTick++ < _skillFirstTick) return;
+	_skillTick = 0;
+	_skillFirstTick = 80;
+
+	if (_skillActCnt < 2)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			OBJECTMANAGER->addEffect(
+				ImageName::Enemy::Niflheim::icicleFX,
+				97 + 27 + i * 128 + _skillActCnt * 64,
+				97 + 40
+			);
+		}
+	}
+	else
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			OBJECTMANAGER->addBullet(
+				ObjectEnum::OBJ_TYPE::ENEMY_OBJ,
+				ImageName::Enemy::Niflheim::icicle,
+				97 + 27 + i * 128 + (_skillActCnt-2) * 64,
+				97 + 40,
+				-(PI / 2),
+				4.0f,
+				4,
+				ImageName::Enemy::Niflheim::bulletFX
+			);
+		}
+	}
+
+	if (++_skillActCnt >= 4)
+	{
+		_skillTick = 0;
+		_skillActCnt = 0;
+		_skill = NIFLHEIM_SKILL::NONE;
+		_skillCooldown = TIMEMANAGER->getWorldTime();
+
+		_state = IDLE;
+	}
 }

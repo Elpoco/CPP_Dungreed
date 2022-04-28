@@ -37,7 +37,6 @@ void LittleGhost::update()
 	Enemy::update();
 	this->move();
 	Unit::updateRect();
-	this->animation();
 }
 
 void LittleGhost::render(HDC hdc)
@@ -53,10 +52,6 @@ void LittleGhost::move()
 		_x += cosf(angle) * _moveSpeed;
 		_y -= sinf(angle) * _moveSpeed;
 	}
-}
-
-void LittleGhost::animation()
-{
 }
 
 void LittleGhost::initAnimation()

@@ -1,21 +1,39 @@
 #pragma once
 #include "Enemy.h"
 
-class Banshee : public Enemy
+namespace BatSet
+{
+	constexpr float BULLET_SPEED = 3.5f;
+}
+
+class Bat : public Enemy
 {
 private:
-	enum BANSHEE_MOTION
+	enum BAT_MOTION
 	{
 		IDLE,
 		ATTACK
 	};
 
+	enum class BAT_TYPE
+	{
+		NORMAL,
+		GIANT,
+		RED,
+
+		BAT_CNT
+	};
+
 private:
+	BAT_TYPE _batType;
 	float _attackTime;
+	float _angle;
+	float _shootTime;
+	float _distance;
 
 public:
-	Banshee(float x, float y);
-	virtual ~Banshee();
+	Bat(float x, float y);
+	virtual ~Bat();
 
 	virtual HRESULT init() override;
 	virtual void release() override;
@@ -29,4 +47,3 @@ public:
 	virtual void frameUpdateEvent() override;
 
 };
-

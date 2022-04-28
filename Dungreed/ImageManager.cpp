@@ -71,14 +71,14 @@ Image* ImageManager::addImage(string strKey, const char * fileName, float x, flo
 	return img;
 }
 
-Image* ImageManager::addFrameImage(string strKey, const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor)
+Image* ImageManager::addFrameImage(string strKey, const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor, float scale)
 {
 	Image* img = findImage(strKey);
 
 	if (img) return img;
 
 	img = new Image;
-	if (FAILED(img->init(fileName, width, height, maxFrameX, maxFrameY, isTrans, transColor))) {
+	if (FAILED(img->init(fileName, width, height, maxFrameX, maxFrameY, isTrans, transColor, scale))) {
 		SAFE_DELETE(img);
 		errorMsg(IM_ERROR_CODE::LOAD_FAILD, strKey);
 		return NULL;

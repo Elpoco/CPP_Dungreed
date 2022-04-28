@@ -84,16 +84,19 @@ HRESULT Image::init(const char* fileName, int width, int height, BOOL isTrans, C
 
 	if (width == 0 || height == 0) setSize(fileName, width, height);
 
+	width *= scale;
+	height *= scale;
+
 	HDC hdc = GetDC(_hWnd);
 
 	_imageInfo = new IMAGE_INFO;
 	_imageInfo->loadType = LOAD_FILE;
 	_imageInfo->resID = 0;
 	_imageInfo->hMemDC = CreateCompatibleDC(hdc);
-	_imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width * scale, height * scale, LR_LOADFROMFILE);
+	_imageInfo->hBit = (HBITMAP)LoadImage(_hInstance, fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
 	_imageInfo->hOBit = (HBITMAP)SelectObject(_imageInfo->hMemDC, _imageInfo->hBit);
-	_imageInfo->width = width * scale;
-	_imageInfo->height = height * scale; 
+	_imageInfo->width = width;
+	_imageInfo->height = height; 
 	_imageInfo->currentFrameX = 0;
 	_imageInfo->currentFrameY = 0;
 	_imageInfo->maxFrameX = 0;
@@ -156,11 +159,14 @@ HRESULT Image::init(const char* fileName, float x, float y, int width, int heigh
 	return S_OK;
 }
 
-HRESULT Image::init(const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor)
+HRESULT Image::init(const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans, COLORREF transColor, float scale)
 {
 	if (_imageInfo != NULL) this->release();
 
 	if (width == 0 || height == 0) setSize(fileName, width, height);
+
+	width *= scale;
+	height *= scale;
 
 	HDC hdc = GetDC(_hWnd);
 

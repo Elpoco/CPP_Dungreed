@@ -29,7 +29,7 @@ public:
 	Image* addImage(string strKey, int width, int height);
 	Image* addImage(string strKey, const char* fileName, int width = 0, int height = 0, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0), float scale = 1.0f);
 	Image* addImage(string strKey, const char* fileName, float x, float y, int width, int height, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
-	Image* addFrameImage(string strKey, const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0));
+	Image* addFrameImage(string strKey, const char* fileName, int width, int height, int maxFrameX, int maxFrameY, BOOL isTrans = FALSE, COLORREF transColor = RGB(0, 0, 0), float scale = 1.0f);
 
 	Image* findImage(string strKey);
 	bool deleteImage(string strKey);

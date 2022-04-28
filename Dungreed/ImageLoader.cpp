@@ -56,8 +56,17 @@ void ImageLoader::loadImages()
 	// 밴시
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeIdle, PATH_UNIT"Enemy/Banshee/BansheeIdle.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeATK, PATH_UNIT"Enemy/Banshee/BansheeAttack.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeBullet, PATH_UNIT"Enemy/Banshee/BansheeBulletIdle.bmp", 0, 0, 3, 1, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeBulletFX, PATH_UNIT"Enemy/Banshee/BansheeBulletHit.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeBullet, PATH_UNIT"Enemy/Banshee/BansheeBulletSprite.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BansheeBulletFX, PATH_UNIT"Enemy/Banshee/BansheeBulletBoomSprite.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA, 3.0f);
+	// 큰 박쥐
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BatIdle, PATH_UNIT"Enemy/Bat/BatIdle.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::GiantBat, PATH_UNIT"Enemy/Bat/GiantBat.bmp", 0, 0, 7, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::RedGiantBat, PATH_UNIT"Enemy/Bat/RedGiantBat.bmp", 0, 0, 7, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BatAttack, PATH_UNIT"Enemy/Bat/BatAttack.bmp", 0, 0, 10, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::GiantBatAttack, PATH_UNIT"Enemy/Bat/GiantBatAttack.bmp", 0, 0, 10, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::RedGiantBatAttack, PATH_UNIT"Enemy/Bat/RedGiantBatAttack.bmp", 0, 0, 10, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BatBullet, PATH_UNIT"Enemy/Bat/BatBullet.bmp", 0, 0, 5, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::BatBulletHit, PATH_UNIT"Enemy/Bat/BatBulletHit.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
 
 	// 벨리알
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Belial::idle, PATH_UNIT"Enemy/Belial/SkellBossIdle.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
@@ -75,10 +84,12 @@ void ImageLoader::loadImages()
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Enemy::Belial::sword, PATH_UNIT"Enemy/Belial/SkellBossSword.png");
 	// 니플헤임
 	IMAGEMANAGER->addImage(ImageName::Enemy::Niflheim::bullet, PATH_UNIT"Enemy/Niflheim/IceBullet.bmp", 0,0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Enemy::Niflheim::icicle, PATH_UNIT"Enemy/Niflheim/icicle.bmp", 0,0, true, ColorSet::MAGENTA, 2.0f);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::idle, PATH_UNIT"Enemy/Niflheim/Idle.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::attack, PATH_UNIT"Enemy/Niflheim/Attack.bmp", 0, 0, 11, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::bulletFX, PATH_UNIT"Enemy/Niflheim/IceBulletFX.bmp", 0, 0, 3, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::pillar, PATH_UNIT"Enemy/Niflheim/Pillar.bmp", 0, 0, 20, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Niflheim::icicleFX, PATH_UNIT"Enemy/Niflheim/icicle_init.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA, 2.0f);
 #pragma endregion
 
 	// ===========
@@ -151,7 +162,7 @@ void ImageLoader::loadImages()
 	// 재장전
 	IMAGEMANAGER->addImage(ImageName::UI::Item::reloadBar, PATH_IMAGE"UI/Item/ReloadBar.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::Item::reloadBase, PATH_IMAGE"UI/Item/ReloadBase.bmp", 0, 0, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::UI::Item::reloadBase, PATH_IMAGE"UI/Item/ReloadEffect.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Item::reloadEffect, PATH_IMAGE"UI/Item/ReloadEffect.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA);
 
 #pragma endregion
 
@@ -159,6 +170,23 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::Town::cloud, PATH_IMAGE"Town/Cloud.bmp", WINSIZE_X, WINSIZE_Y);
 	IMAGEMANAGER->addImage(ImageName::Town::townBgDay, PATH_IMAGE"Town/TownBG_Day.bmp", 0, 0, true, ColorSet::MAGENTA, 4.0f);
 	IMAGEMANAGER->addImage(ImageName::Town::townLayerDay, PATH_IMAGE"Town/TownLayer_Day.bmp", 0, 0, true, ColorSet::MAGENTA, 4.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::BrokenTemple, PATH_IMAGE"Town/BrokenTemple.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::DogHouse, PATH_IMAGE"Town/DogHouse.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::DungeonSignL, PATH_IMAGE"Town/DungeonSignL.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::DungeonSignR, PATH_IMAGE"Town/DungeonSignR.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::Tree0, PATH_IMAGE"Town/Tree0.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::Tree1, PATH_IMAGE"Town/Tree1.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::Grass0, PATH_IMAGE"Town/Grass0.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::Grass1, PATH_IMAGE"Town/Grass1.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::Grass2, PATH_IMAGE"Town/Grass2.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::Shop, PATH_IMAGE"Town/Shop.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Town::BrokenHouse0, PATH_IMAGE"Town/BrokenHouse0.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::BrokenHouse1, PATH_IMAGE"Town/BrokenHouse1.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::TrainingSchool, PATH_IMAGE"Town/TrainingSchool.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::BlackSmith, PATH_IMAGE"Town/BlackSmith.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::StreetLight_0, PATH_IMAGE"Town/StreetLight_0.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::StreetLight_1, PATH_IMAGE"Town/StreetLight_1.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Town::StreetLight_2, PATH_IMAGE"Town/StreetLight_2.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addFrameImage(ImageName::Town::dungeonEat, PATH_IMAGE"Town/DungeonEat.bmp", 0, 0, 28, 1, true, ColorSet::MAGENTA);
 
 	// ========

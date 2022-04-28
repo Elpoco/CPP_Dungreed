@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Banshee.cpp" />
+    <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Belial.cpp" />
     <ClCompile Include="BelialSword.cpp" />
     <ClCompile Include="Box.cpp" />
@@ -221,6 +222,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Banshee.h" />
+    <ClInclude Include="Bat.h" />
     <ClInclude Include="Belial.h" />
     <ClInclude Include="BelialSword.h" />
     <ClInclude Include="Box.h" />
