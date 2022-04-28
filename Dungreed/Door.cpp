@@ -129,7 +129,8 @@ void Door::animation()
 			_particle[i].startY = _particle[i].startY - _imgParticle[_particle[i].imgIdx]->getHeight() * 0.5f;
 			_particle[i].x = _particle[i].startX;
 			_particle[i].y = _particle[i].startY;
-			_particle[i].speed = RND->getFromFloatTo(0.5f, 1.0f);
+			_particle[i].speedX = RND->getFromFloatTo(0.5f, 1.0f);
+			_particle[i].speedY = RND->getFromFloatTo(0.5f, 1.0f);
 			_particle[i].alpha = RND->getFromIntTo(100, 200);
 			break;
 		}
@@ -138,10 +139,10 @@ void Door::animation()
 			if (!_particle[i].isOn) continue;
 
 			_particle[i].alpha--;
-			if(_particle[i].dir == DIR::LEFT)		_particle[i].x += _particle[i].speed;
-			else if(_particle[i].dir == DIR::RIGHT) _particle[i].x -= _particle[i].speed;
-			else if(_particle[i].dir == DIR::TOP)	_particle[i].y += _particle[i].speed;
-			else									_particle[i].y -= _particle[i].speed;
+			if(_particle[i].dir == DIR::LEFT)		_particle[i].x += _particle[i].speedX;
+			else if(_particle[i].dir == DIR::RIGHT) _particle[i].x -= _particle[i].speedX;
+			else if(_particle[i].dir == DIR::TOP)	_particle[i].y += _particle[i].speedY;
+			else									_particle[i].y -= _particle[i].speedY;
 
 			int distance = GetDistance(
 				_particle[i].startX,

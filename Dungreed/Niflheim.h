@@ -8,7 +8,7 @@ namespace NiflheimSet
 	constexpr float SKILL_TIME   = 2.0f;
 	constexpr float BULLET_SPEED = 3.5f;
 	constexpr int PILLAR_CNT	 = 4;
-	constexpr int BULLET_CNT	 = 20;
+	constexpr int BULLET_CNT	 = 30;
 	constexpr int BULLET_CNT_L	 = 19;
 	constexpr int BULLET_DMG	 = 6;
 }
@@ -47,7 +47,8 @@ private:
 	NIFLHEIM_SKILL  _skill;
 	NIFLHEIM_SKILL	_lastSkill;
 	int				_skillTick;
-	int 			_skillActCnt;
+	int				_skillCnt;	  // ½ºÅ³ È½¼ö
+	int 			_skillActCnt; // ½ºÅ³ ½ÇÇà È½¼ö
 	bool			_skillAuto;
 	float			_skillCooldown;
 

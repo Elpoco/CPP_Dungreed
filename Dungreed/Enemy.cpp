@@ -72,7 +72,11 @@ void Enemy::render(HDC hdc)
 
 void Enemy::deleteEffect()
 {
-	ITEMMANAGER->dropItem(Code::ITEM::COIN, _x, _rc.top - 20);
+	int coinCnt = RND->getInt(5);
+	for (int i = 0; i < coinCnt; i++)
+	{
+		ITEMMANAGER->dropItem(Code::ITEM::COIN, _x, _rc.top - 20, TRUE);
+	}
 	MAPMANAGER->dieMonster();
 	SOUNDMANAGER->play(SoundName::Enemy::MonsterDie, _sound);
 	OBJECTMANAGER->addEffect(

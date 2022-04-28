@@ -122,17 +122,40 @@ namespace Code
 
 	enum class MAP
 	{
-		DUNGEON_START, // T, R, B
-		DUNGEON_SHOP, // L, R
-		DUNGEON_01, // ALL
-		DUNGEON_02, // L, R
-		DUNGEON_03, // T, R, B
+		// 忙 成 忖
+		// 戍 托 扣
+		// 戌 扛 戎
+		// 弛 式
 
-		BOSS = 100,
-		BELIAL,
-		NIFLHEIM,
+		// 忙成式忖
+		DUNGEON_04, // 忙
+		DUNGEON_05, // 成
+		DUNGEON_SHOP, // 式
+		DUNGEON_06, // 忖
 
-		MAP_CNT
+		// 戍扛成戎
+		DUNGEON_START, // 戍
+		DUNGEON_01, // 扛
+		DUNGEON_02, // 成
+		DUNGEON_07, // 戎
+
+		// 戌成扛式
+		DUNGEON_03, // 戌
+		DUNGEON_08, // 成
+		DUNGEON_09, // 扛
+		BELIAL, // 式
+
+		// 式扛式式
+		DUNGEON_10, // 式
+		DUNGEON_11, // 扛
+		DUNGEON_FOOD, // 式
+		NIFLHEIM, // 式
+
+		// 忙成式忖
+		// 戍扛成戎
+		// 戌成扛式
+		// 式扛式式
+		MAP_CNT,
 	};
 }
 

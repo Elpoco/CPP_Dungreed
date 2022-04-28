@@ -13,6 +13,8 @@ private:
 		Code::UNIT unit;
 	};
 
+	friend class MapManager;
+
 private:
 	LocationEnum::LOCATION _location;
 
@@ -40,7 +42,6 @@ public:
 	void renderTown(HDC hdc);
 
 	void loadDungeon();
-	void renderDungeon(HDC hdc);
 
 };
 

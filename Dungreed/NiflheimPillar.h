@@ -6,7 +6,7 @@
 namespace NiflheimPillarSet
 {
 	constexpr float IDLE_SPEED		= 0.01f;
-	constexpr float AROUND_SPEED	= 0.034f;
+	constexpr float AROUND_SPEED	= 0.04f;
 }
 
 class NiflheimPillar : public Enemy

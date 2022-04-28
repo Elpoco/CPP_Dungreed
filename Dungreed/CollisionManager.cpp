@@ -242,10 +242,8 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 		float moveX = 0.0f;
 		float moveY = 0.0f;
 
-		//for (int y = endY; y >= startY; y -= TILE_CNT_X)
 		for (int y = startY; y <= endY; y += TILE_CNT_X)
 		{
-			//for (int x = endX; x >= startX; x--)
 			for (int x = startX; x <= endX; x++)
 			{
 				TILE tile = TILEMANAGER->getTile(y + x);
@@ -253,12 +251,11 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 				switch (tile.type)
 				{
 				case MAP_OBJ::DOWN_R:	case MAP_OBJ::DOWN_L:
-					// 내려갈수있는 타일은 대쉬로 통과 가능
 					if (unit->isDash()) break;
-					// 다운점프
 					if (unit->isDownJumping()) break;
+					if (unit->isFlying()) break;
+
 				case MAP_OBJ::BLOCK_R:	case MAP_OBJ::BLOCK_L:
-					// 점프중일땐 대각선타일 충돌 넘어감
 					if (unit->isJumping()) break;
 
 					if (tile.type == DOWN_R ||
@@ -296,6 +293,7 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 					if (unit->isJumping()) break;
 					if (unit->isDownJumping()) break;
 					if (unit->isDash()) break;
+					if (unit->isFlying()) break;
 
 					if (tile.y > rcObj.bottom)
 					{ // 바닥

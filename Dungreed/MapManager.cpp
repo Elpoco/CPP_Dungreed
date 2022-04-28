@@ -1,6 +1,7 @@
 #include "Stdafx.h"
 #include "MapManager.h"
 
+#include "GameScene.h"
 #include "Door.h"
 
 using namespace MapManagerSet;
@@ -8,6 +9,7 @@ using namespace MapManagerSet;
 MapManager::MapManager()
 	: _unitCnt(0)
 	, _isClear(FALSE)
+	, _isSnowMap(FALSE)
 {
 }
 
@@ -17,6 +19,8 @@ MapManager::~MapManager()
 
 HRESULT MapManager::init()
 {
+	initMap();
+
 	for (int i = 0; i < DIR::DIR_CNT; i++)
 	{
 		_door[i] = new Door((DIR)i, 0, 0);
@@ -25,6 +29,14 @@ HRESULT MapManager::init()
 
 	_imgParticle[0] = FindImage(ImageName::Dungeon::sqaure4);
 	_imgParticle[1] = FindImage(ImageName::Dungeon::sqaure5);
+
+	_imgSnow = IMAGEMANAGER->findImage(ImageName::Dungeon::Snow);
+	_snowX = 0.0f;
+	_snowY = 0.0f;
+	_rcSnow = RectMake(0, 0, WINSIZE_X, WINSIZE_Y);
+
+	_layer = IMAGEMANAGER->findImage(ImageName::Dungeon::subBg);
+	_background = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer0);
 
 	return S_OK;
 }
@@ -36,19 +48,63 @@ void MapManager::release()
 void MapManager::update()
 {
 	checkMonster();
-	makeParticle();
+	if (_isSnowMap)
+	{
+		updateSnow();
+	}
+	else
+	{
+		makeParticle();
+		updateParticle();
+	}
 }
 
 void MapManager::render(HDC hdc)
 {
-	renderParticle(hdc);
+	if (_isSnowMap)
+	{
+		renderSnow(hdc);
+	}
+	else
+	{
+		renderParticle(hdc);
+	}
+}
+
+void MapManager::backgoundRender(HDC hdc)
+{
+	_rcBackground = CAMERAMANAGER->calRelRc(RectMake(0, 0, _mapWidth, _mapHeight));
+	_background->loopRender(hdc, &_rcBackground, CAMERAMANAGER->getAbsX() * 0.3f, CAMERAMANAGER->getAbsY() * 0.3f);
+	_rcLayer = CAMERAMANAGER->calRelRc(RectMake(0, 0, _mapWidth, _mapHeight));
+	_layer->loopRender(hdc, &_rcLayer, CAMERAMANAGER->getAbsX() * 0.1f, CAMERAMANAGER->getAbsY() * 0.3f);
+}
+
+void MapManager::initMap()
+{
+	for (int i = 0; i < (int)Code::MAP::MAP_CNT; i++)
+	{
+		_arrMapCode[i] = (Code::MAP)i;
+	}
+
+	_curLocation = 4;
+	TILEMANAGER->loadMap(_arrMapCode[_curLocation]);
 }
 
 void MapManager::settingDungeon()
 {
-	_mapCode = TILEMANAGER->getCurrentMapCode();
-	_mapInfo = DBMANAGER->getInfo(_mapCode);
-	
+	_mapInfo = DBMANAGER->getInfo(_arrMapCode[_curLocation]);
+	_mapWidth = TILEMANAGER->getCurrentMapTileWidth() + TILE_SIZE;
+	_mapHeight = TILEMANAGER->getCurrentMapTileHeight() + TILE_SIZE;
+
+	if (!_isSnowMap && _arrMapCode[_curLocation] == Code::MAP::DUNGEON_11)
+	{
+		_isSnowMap = TRUE;
+		_layer = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer1);
+		_background = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer0);
+		SOUNDMANAGER->stop(SoundName::dungeon);
+		SOUNDMANAGER->play(SoundName::IceDungeon, _sound);
+	}
+
 	settingDoor();
 	settingMonster();
 }
@@ -96,32 +152,37 @@ void MapManager::chageRoom(DIR dir)
 	switch (dir)
 	{
 	case Direction::LEFT:
-		TILEMANAGER->loadMap(FileName::DungeonStart);
-		settingDungeon();
-		OBJECTMANAGER->getPlayer()->setX(_door[DIR::RIGHT]->getX() - TILE_SIZE * 2);
-		OBJECTMANAGER->getPlayer()->setY(_door[DIR::RIGHT]->getY() + TILE_SIZE * 2);
+		_curLocation--;
 		break;
 	case Direction::TOP:
-		TILEMANAGER->loadMap(FileName::Dungeon01);
-		settingDungeon();
-		OBJECTMANAGER->getPlayer()->setX(_door[DIR::BOTTOM]->getX() + TILE_SIZE * 2);
-		OBJECTMANAGER->getPlayer()->setY(_door[DIR::BOTTOM]->getY() - TILE_SIZE * 2);
+		_curLocation -= MAP_Y;
 		break;
 	case Direction::RIGHT:
-		TILEMANAGER->loadMap(FileName::Niflheim);
-		settingDungeon();
-		OBJECTMANAGER->getPlayer()->setX(_door[DIR::LEFT]->getX() + TILE_SIZE * 2);
-		OBJECTMANAGER->getPlayer()->setY(_door[DIR::LEFT]->getY() + TILE_SIZE * 2);
+		_curLocation++;
 		break;
 	case Direction::BOTTOM:
-		TILEMANAGER->loadMap(FileName::Belial);
-		settingDungeon();
-		OBJECTMANAGER->getPlayer()->setX(CENTER_X);
-		OBJECTMANAGER->getPlayer()->setY(CENTER_Y);
+		_curLocation += MAP_Y;
 		break;
 	default:
 		break;
 	}
+
+	TILEMANAGER->loadMap(_arrMapCode[_curLocation]);
+	settingDungeon();
+
+
+	int idx = dir;
+
+	if (idx < 2) idx += 2;
+	else idx -= 2;
+
+	int dirX = 1;
+	int dirY = 1;
+	if (dir == 0) dirX = -1;
+	if (dir == 1) dirY = -1;
+	
+	OBJECTMANAGER->getPlayer()->setX(_door[idx]->getX() + TILE_SIZE * 2 * dirX);
+	OBJECTMANAGER->getPlayer()->setY(_door[idx]->getY() + TILE_SIZE * 2 * dirY);
 
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ITEM_DROP);
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::PLAYER_OBJ);
@@ -169,27 +230,29 @@ void MapManager::makeParticle()
 		if (_particle[i].isOn) continue;
 		_particle[i].isOn = true;
 		_particle[i].imgIdx = RND->getInt(PARTICLE_IMG);
-		_particle[i].dir = (DIR)0;
-		_particle[i].startX = RND->getFromIntTo(0, WINSIZE_X);
-		_particle[i].startY = RND->getFromIntTo(0, WINSIZE_Y);
+		_particle[i].dir = (DIR)RND->getInt(DIR::DIR_CNT);
+		_particle[i].startX = RND->getFromIntTo(0, _mapWidth);
+		_particle[i].startY = RND->getFromIntTo(0, _mapHeight);
 		_particle[i].startX = _particle[i].startX - _imgParticle[_particle[i].imgIdx]->getWidth() * 0.5f;
 		_particle[i].startY = _particle[i].startY - _imgParticle[_particle[i].imgIdx]->getHeight() * 0.5f;
 		_particle[i].x = _particle[i].startX;
 		_particle[i].y = _particle[i].startY;
-		_particle[i].speed = RND->getFromFloatTo(0.5f, 1.0f);
+		_particle[i].speedX = RND->getFromFloatTo(0.3f, 0.7f) - 0.5f;
+		_particle[i].speedY = RND->getFromFloatTo(0.3f, 0.7f) - 0.5f;
 		_particle[i].alpha = RND->getFromIntTo(100, 200);
 		break;
 	}
+}
 
+void MapManager::updateParticle()
+{
 	for (int i = 0; i < PARTICLE_CNT; i++)
 	{
 		if (!_particle[i].isOn) continue;
 
 		_particle[i].alpha--;
-		if (_particle[i].dir == DIR::LEFT)		_particle[i].x += _particle[i].speed;
-		else if (_particle[i].dir == DIR::RIGHT) _particle[i].x -= _particle[i].speed;
-		else if (_particle[i].dir == DIR::TOP)	_particle[i].y += _particle[i].speed;
-		else									_particle[i].y -= _particle[i].speed;
+		_particle[i].x += _particle[i].speedX;
+		_particle[i].y += _particle[i].speedY;
 
 		int distance = GetDistance(
 			_particle[i].startX,
@@ -214,4 +277,22 @@ void MapManager::renderParticle(HDC hdc)
 			_particle[i].alpha
 		);
 	}
+}
+
+void MapManager::updateSnow()
+{
+	_snowX += 2.0f;
+	_snowY -= 5.0f;
+	_rcSnow = CAMERAMANAGER->calRelRc(
+		RectMake(
+			0, 0,
+			_mapWidth,
+			_mapHeight
+		)
+	);
+}
+
+void MapManager::renderSnow(HDC hdc)
+{
+	_imgSnow->loopAlphaRender(hdc, &_rcSnow, _snowX, _snowY, 170);
 }

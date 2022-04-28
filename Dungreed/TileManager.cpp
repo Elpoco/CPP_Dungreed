@@ -150,6 +150,71 @@ int TileManager::loadMap(string str)
 	return res;
 }
 
+int TileManager::loadMap(Code::MAP code)
+{
+	string str = FileName::testSave;
+	switch (code)
+	{
+	case Code::MAP::DUNGEON_START:
+		str = FileName::DungeonStart;
+		break;
+	case Code::MAP::DUNGEON_SHOP:
+		str = FileName::DungeonShop;
+		break;
+	case Code::MAP::DUNGEON_FOOD:
+		str = FileName::DungeonFood;
+		break;
+	case Code::MAP::DUNGEON_01:
+		str = FileName::Dungeon01;
+		break;
+	case Code::MAP::DUNGEON_02:
+		str = FileName::Dungeon02;
+		break;
+	case Code::MAP::DUNGEON_03:
+		str = FileName::Dungeon03;
+		break;
+	case Code::MAP::DUNGEON_04:
+		str = FileName::Dungeon04;
+		break;
+	case Code::MAP::DUNGEON_05:
+		str = FileName::Dungeon05;
+		break;
+	case Code::MAP::DUNGEON_06:
+		str = FileName::Dungeon06;
+		break;
+	case Code::MAP::DUNGEON_07:
+		str = FileName::Dungeon07;
+		break;
+	case Code::MAP::DUNGEON_08:
+		str = FileName::Dungeon08;
+		break;
+	case Code::MAP::DUNGEON_09:
+		str = FileName::Dungeon09;
+		break;
+	case Code::MAP::DUNGEON_10:
+		str = FileName::Dungeon10;
+		break;
+	case Code::MAP::DUNGEON_11:
+		str = FileName::Dungeon11;
+		break;
+	case Code::MAP::BELIAL:
+		str = FileName::Belial;
+		break;
+	case Code::MAP::NIFLHEIM:
+		str = FileName::Niflheim;
+		break;
+	default:
+		break;
+	}
+
+	initTile();
+	int res = FILEMANAGER->loadFile(PATH_DATA, str + ".dat", _tiles, TOTAL_TILE_CNT * sizeof(TILE));
+	CAMERAMANAGER->updateMapSize();
+	_curMapName = str;
+
+	return res;
+}
+
 int TileManager::getCurrentMapTileCntX()
 {
 	int tileCnt = 0;
@@ -198,32 +263,6 @@ float TileManager::getCurrentMapTileWidth()
 float TileManager::getCurrentMapTileHeight()
 {
 	return getCurrentMapTileCntY() * TILE_SIZE;
-}
-
-Code::MAP TileManager::getCurrentMapCode()
-{
-	Code::MAP map;
-	if (_curMapName == FileName::DungeonStart)
-	{
-		map = Code::MAP::DUNGEON_START;
-	}
-	else if (_curMapName == FileName::Dungeon01)
-	{
-		map = Code::MAP::DUNGEON_01;
-	}
-	else if (_curMapName == FileName::Dungeon02)
-	{
-		map = Code::MAP::DUNGEON_02;
-	}
-	else if (_curMapName == FileName::Belial)
-	{
-		map = Code::MAP::BELIAL;
-	}
-	else if (_curMapName == FileName::Niflheim)
-	{
-		map = Code::MAP::NIFLHEIM;
-	}
-	return map;
 }
 
 void TileManager::getDoorPos(POINT* ptDoor)

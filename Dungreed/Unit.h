@@ -81,6 +81,7 @@ public:
 	inline BOOL isJumping() { return _isJump && _gravity < _jumpSpeed; }
 	inline BOOL isDownJumping() { return _isDownJump; }
 	inline BOOL isDash() { return _isDash; }
+	inline BOOL isFlying() { return _isFlying; }
 
 };
 

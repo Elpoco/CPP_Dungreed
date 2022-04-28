@@ -112,6 +112,8 @@ void Belial::render(HDC hdc)
 
 void Belial::deleteEffect()
 {
+	SOUNDMANAGER->stop(SoundName::belialBG);
+	SOUNDMANAGER->play(SoundName::dungeon, _sound);
 	OBJECTMANAGER->addEffect(ImageName::Enemy::die, _x, _y); 
 	MAPMANAGER->dieMonster();
 }

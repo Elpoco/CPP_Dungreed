@@ -27,7 +27,7 @@ HRESULT NiflheimPillar::init()
 	Enemy::init();
 
 	_info = DBMANAGER->getInfo(Code::UNIT::NIFLEHEIM_PILLAR);
-	_isFlying = true;
+	_isFlying = TRUE;
 
 	settingHp(_info.hp);
 	
@@ -99,6 +99,10 @@ void NiflheimPillar::move()
 		
 		_imgAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY);
 		_bossAngle -= _spinSpeed;
+		if (_bossAngle > PI_2)
+		{
+			_bossAngle = 0.0f;
+		}
 		break;
 	case Niflheim::NIFLHEIM_SKILL::WIDE:
 	case Niflheim::NIFLHEIM_SKILL::WIDE_LINE:

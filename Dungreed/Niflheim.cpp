@@ -10,6 +10,7 @@ Niflheim::Niflheim(float x, float y)
 	, _skill(NIFLHEIM_SKILL::NONE)
 	, _lastSkill(NIFLHEIM_SKILL::NONE)
 	, _skillTick(0)
+	, _skillCnt(0)
 	, _skillActCnt(0)
 	, _skillAuto(TRUE)
 	, _skillCooldown(TIMEMANAGER->getWorldTime())
@@ -39,10 +40,9 @@ HRESULT Niflheim::init()
 
 	this->initPillar();
 
-	SOUNDMANAGER->stop(SoundName::dungeon);
-	SOUNDMANAGER->stop(SoundName::belialBG);
-	SOUNDMANAGER->play(SoundName::Enemy::niflheim_start, _sound);
+	SOUNDMANAGER->stop(SoundName::IceDungeon);
 	SOUNDMANAGER->play(SoundName::niflheimBG, _sound);
+	SOUNDMANAGER->play(SoundName::Enemy::niflheim_start, _sound);
 
 	return S_OK;
 }
@@ -72,7 +72,8 @@ void Niflheim::update()
 	if (IsStayKeyDown('B') && IsOnceKeyDown('3')) _skill = NIFLHEIM_SKILL::WIDE_LINE;
 	if (IsStayKeyDown('B') && IsOnceKeyDown('4')) _skill = NIFLHEIM_SKILL::LINE_UP;
 	if (IsStayKeyDown('B') && IsOnceKeyDown('5')) _skill = NIFLHEIM_SKILL::FULL_ATTACK;
-	if (IsStayKeyDown('B') && IsOnceKeyDown('6')) _onInitPillar = true;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('6')) _skill = NIFLHEIM_SKILL::TELEPORT;
+	if (IsStayKeyDown('B') && IsOnceKeyDown('7')) _onInitPillar = true;
 	if (IsStayKeyDown('B') && IsOnceKeyDown('9')) _isLive = FALSE;
 
 	switch (_skill)
@@ -98,11 +99,18 @@ void Niflheim::update()
 
 		if (_skillAuto && _skillCooldown + SKILL_TIME < TIMEMANAGER->getWorldTime())
 		{
+			if (_skillCnt > 4)
+			{
+				_skill = NIFLHEIM_SKILL::TELEPORT;
+				_skillCnt = 0;
+				break;
+			}
 			while (_skill == NIFLHEIM_SKILL::NONE || _lastSkill == _skill)
 			{
 				_skill = (NIFLHEIM_SKILL)RND->getInt((int)NIFLHEIM_SKILL::SKILL_CNT);
 			}
 			_lastSkill = _skill;
+			_skillCnt++;
 		}
 
 		break;
@@ -121,6 +129,7 @@ void Niflheim::update()
 	case Niflheim::NIFLHEIM_SKILL::STUN:
 		if (_stunTime + 1.5f < TIMEMANAGER->getWorldTime())
 		{
+			_skillCooldown = TIMEMANAGER->getWorldTime() - 2.0f;
 			_onInitPillar = true;
 			_skill = NIFLHEIM_SKILL::NONE;
 		}
@@ -143,7 +152,6 @@ void Niflheim::render(HDC hdc)
 {
 	Enemy::render(hdc);
 	
-	// 업데이트에서 하면 벡터 돌아가는중 에러남
 	if (_onInitPillar)
 	{
 		_onInitPillar = false;
@@ -153,6 +161,8 @@ void Niflheim::render(HDC hdc)
 
 void Niflheim::deleteEffect()
 {
+	SOUNDMANAGER->stop(SoundName::niflheimBG);
+	SOUNDMANAGER->play(SoundName::IceDungeon, _sound);
 	OBJECTMANAGER->addEffect(ImageName::Enemy::die, _x, _y);
 	MAPMANAGER->dieMonster();
 }
@@ -245,18 +255,21 @@ void Niflheim::turnAround()
 
 	if (_skillTick++ < _skillFirstTick) return;
 	_skillTick = 0;
-	_skillFirstTick = 12;
+	_skillFirstTick = 4;
 
 
 	for (int i = 0; i < PILLAR_CNT; i++)
 	{
 		if (!_pillar[i]) continue;
 
-		_pillar[i]->setSkill(_skill);
+		if (_skillActCnt == 0)
+		{
+			_pillar[i]->setSkill(_skill);
+			continue;
+		}
 		float x = _pillar[i]->getX();
 		float y = _pillar[i]->getY();
-		float angle = GetAngle(_x, _y, x, y);
-
+		float angle = _pillar[i]->getImgAngle() + PI;
 		this->shootBullet(x, y, angle);
 	}
 
@@ -347,10 +360,17 @@ void Niflheim::moveAndFire()
 
 void Niflheim::teleport()
 {
+	int telX = _x;
+	int telY = _y;
+	while (GetDistance(_x, _y, telX, telY) < 300)
+	{
+		telX = RND->getFromIntTo(400, 1050);
+		telY = RND->getFromIntTo(300, 480);
+	}
 	OBJECTMANAGER->addEffect(ImageName::Enemy::dieSmall, _x, _y);
 	_skill = NIFLHEIM_SKILL::NONE;
 	_skillCooldown = TIMEMANAGER->getWorldTime();
-	_x = RND->getFromIntTo(400, 1050);
-	_y = RND->getFromIntTo(285, 480);
+	_x = telX;
+	_y = telY;
 	OBJECTMANAGER->addEffect(ImageName::Enemy::dieSmall, _x, _y);
 }

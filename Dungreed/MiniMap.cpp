@@ -69,7 +69,7 @@ void MiniMap::render(HDC hdc)
 void MiniMap::settingMiniMap()
 {
 	_tileCntX = TILEMANAGER->getCurrentMapTileCntX();
-	_tileCntY = TILEMANAGER->getCurrentMapTileCntY();
+	_tileCntY = TILEMANAGER->getCurrentMapTileCntY() + 1;
 	_miniMapX = WINSIZE_X - (_tileCntX * 5) - 20;
 	_miniMapY = 20;
 	_miniMapW = _tileCntX * 5;

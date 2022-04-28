@@ -14,13 +14,15 @@ Tresure::~Tresure()
 
 HRESULT Tresure::init()
 {
-	if (MAPMANAGER->getCurMapCode() > Code::MAP::BOSS)
+	switch (MAPMANAGER->getCurMapCode())
 	{
+	case Code::MAP::BELIAL:
+	case Code::MAP::NIFLHEIM:
 		_img = FindImage(ImageName::Dungeon::tresureBoss);
-	}
-	else
-	{
+		break;
+	default:
 		_img = FindImage(ImageName::Dungeon::tresureNormal);
+		break;
 	}
 
 	_rc = RectMakeCenter(_x, _y, _img->getFrameWidth(), _img->getFrameHeight());

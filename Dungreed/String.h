@@ -205,6 +205,8 @@ namespace ImageName
 
 		constexpr char* bgLayer0 = "DUNGEON bgLayer0";
 		constexpr char* bgLayer1 = "DUNGEON bgLayer1";
+		constexpr char* Snow = "DUNGEON Snow";
+		constexpr char* subBg = "DUNGEON subBg";
 
 		constexpr char* tresureNormal = "DUNGEON tresureNormal";
 		constexpr char* tresureBoss = "DUNGEON tresureBoss";
@@ -218,6 +220,7 @@ namespace SoundName
 	constexpr char* town = "SOUND town";
 	constexpr char* dungeon = "SOUND dungeon";
 	constexpr char* belialBG = "SOUND belialBG";
+	constexpr char* IceDungeon = "SOUND IceDungeon";
 	constexpr char* niflheimBG = "SOUND 2.IceBoss";
 	constexpr char* dungeonEat = "SOUND dungeonEat";
 	constexpr char* dungeonEat2 = "SOUND dungeonEat2";
@@ -279,9 +282,18 @@ namespace FileName
 
 	constexpr char* DungeonStart = "DungeonStart";
 	constexpr char* DungeonShop = "DungeonShop";
+	constexpr char* DungeonFood = "DungeonFood";
 	constexpr char* Dungeon01 = "Dungeon01";
 	constexpr char* Dungeon02 = "Dungeon02";
 	constexpr char* Dungeon03 = "Dungeon03";
+	constexpr char* Dungeon04 = "Dungeon04";
+	constexpr char* Dungeon05 = "Dungeon05";
+	constexpr char* Dungeon06 = "Dungeon06";
+	constexpr char* Dungeon07 = "Dungeon07";
+	constexpr char* Dungeon08 = "Dungeon08";
+	constexpr char* Dungeon09 = "Dungeon09";
+	constexpr char* Dungeon10 = "Dungeon10";
+	constexpr char* Dungeon11 = "Dungeon11";
 
 	constexpr char* Belial = "Belial";
 	constexpr char* Niflheim = "Niflheim";

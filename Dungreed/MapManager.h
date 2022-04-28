@@ -5,8 +5,12 @@ class Door;
 
 namespace MapManagerSet
 {
+	constexpr int MAP_X = 4;
+	constexpr int MAP_Y = 4;
+	constexpr int MAP_CNT = MAP_X * MAP_Y;
+
 	constexpr int PARTICLE_IMG = 2;
-	constexpr int PARTICLE_CNT = 100;
+	constexpr int PARTICLE_CNT = 40;
 }
 
 class MapManager : public SingletonBase<MapManager>
@@ -20,8 +24,17 @@ private:
 	};
 
 private:
-	Code::MAP _mapCode;
+	Code::MAP _arrMapCode[MapManagerSet::MAP_CNT];
 	MAP_INFO _mapInfo;
+	float _mapWidth;
+	float _mapHeight;
+	int _curLocation;
+
+	Image* _layer;
+	Image* _background;
+	RECT _rcLayer;
+	RECT _rcBackground;
+	BOOL _isSnowMap;
 
 	Door* _door[DIR::DIR_CNT];
 	POINT _ptDoor[DIR::DIR_CNT];
@@ -32,6 +45,11 @@ private:
 	ImageBase* _imgParticle[MapManagerSet::PARTICLE_IMG];
 	PARTICLE _particle[MapManagerSet::PARTICLE_CNT];
 
+	Image* _imgSnow;
+	RECT _rcSnow;
+	float _snowX;
+	float _snowY;
+
 public:
 	MapManager();
 	~MapManager();
@@ -40,6 +58,9 @@ public:
 	void release();
 	void update();
 	void render(HDC hdc);
+	void backgoundRender(HDC hdc);
+
+	void initMap();
 
 	void settingDungeon();
 	void settingDoor();
@@ -51,11 +72,15 @@ public:
 	void checkMonster();
 
 	void makeParticle();
+	void updateParticle();
 	void renderParticle(HDC hdc);
+
+	void updateSnow();
+	void renderSnow(HDC hdc);
 
 	void dieMonster() { _unitCnt--; }
 
-	Code::MAP getCurMapCode() { return _mapCode; }
+	Code::MAP getCurMapCode() { return _arrMapCode[_curLocation]; }
 
 };
 

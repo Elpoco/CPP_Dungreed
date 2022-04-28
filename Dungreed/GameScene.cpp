@@ -63,7 +63,7 @@ void GameScene::render()
 		renderTown(getMemDC());
 		break;
 	default:
-		renderDungeon(getMemDC());
+		MAPMANAGER->backgoundRender(getMemDC());
 		break;
 	}
 	TILEMANAGER->render(getMemDC());
@@ -118,20 +118,15 @@ void GameScene::updateTown()
 void GameScene::renderTown(HDC hdc)
 {
 	IMAGEMANAGER->render(ImageName::Town::cloud, hdc);
-	RECT rc = { 0,WINSIZE_Y - _background->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*0.7), WINSIZE_X, WINSIZE_Y };
-	_background->loopRender(hdc, &rc, CAMERAMANAGER->getAbsX() / 3, 0);
-	rc = RectMake(0, WINSIZE_Y - _layer->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*1.2), WINSIZE_X, _layer->getHeight());
-	_layer->loopRender(hdc, &rc, CAMERAMANAGER->getAbsX()*0.8, 0);
+	_rcBackground = RectMake( 0,WINSIZE_Y - _background->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*0.7), WINSIZE_X, WINSIZE_Y );
+	_background->loopRender(hdc, &_rcBackground, CAMERAMANAGER->getAbsX() / 3, 0);
+	_rcLayer = RectMake(0, WINSIZE_Y - _layer->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*1.2), WINSIZE_X, _layer->getHeight());
+	_layer->loopRender(hdc, &_rcLayer, CAMERAMANAGER->getAbsX()*0.8, 0);
 }
 
 void GameScene::loadDungeon()
 {
-	// bg setting
-	_layer = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer1);
-	_background = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer0);
-
 	// 맵 로드
-	TILEMANAGER->loadMap(FileName::DungeonStart);
 	MAPMANAGER->init();
 	UIMANAGER->updateMiniMap();
 	UIMANAGER->enterDungeon();
@@ -150,11 +145,4 @@ void GameScene::loadDungeon()
 	SCENEMANAGER->setChangeScene(FALSE);
 	// 플레이어 다시 움직이게
 	OBJECTMANAGER->getPlayer()->resumeObject();
-}
-
-void GameScene::renderDungeon(HDC hdc)
-{
-	_background->render(hdc);
-	RECT rc = RectMake(0, 0, WINSIZE_X, WINSIZE_Y);
-	_layer->loopRender(hdc, &rc, CAMERAMANAGER->getAbsX()*0.8, 0);
 }

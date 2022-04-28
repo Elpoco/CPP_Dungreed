@@ -29,6 +29,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::town, PATH_SOUND"BGM_Town.wav", true, true);
 	SOUNDMANAGER->addSound(SoundName::dungeon, PATH_SOUND"JailField.wav", true, true);
 	SOUNDMANAGER->addSound(SoundName::belialBG, PATH_SOUND"JailBoss.wav", true, true);
+	SOUNDMANAGER->addSound(SoundName::IceDungeon, PATH_SOUND"2.IceField.wav", true, true);
 	SOUNDMANAGER->addSound(SoundName::niflheimBG, PATH_SOUND"2.IceBoss.wav", true, true);
 
 	SOUNDMANAGER->addSound(SoundName::dungeonEat, PATH_SOUND"DungeonEat.wav", false, false);

@@ -136,7 +136,8 @@ typedef struct tagParticle
 	float startY;
 	float x;
 	float y;
-	float speed;
+	float speedX;
+	float speedY;
 	float angle;
 	BYTE alpha;
 

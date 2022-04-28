@@ -39,6 +39,7 @@ public:
 
 	int saveMap(string str);
 	int loadMap(string str);
+	int loadMap(Code::MAP code);
 
 	void setShowObj(BOOL isShow) { _isShowObj = isShow; }
 	BOOL getShowObj() { return _isShowObj; }
@@ -47,7 +48,6 @@ public:
 	int getCurrentMapTileCntY();
 	float getCurrentMapTileWidth();
 	float getCurrentMapTileHeight();
-	Code::MAP getCurrentMapCode();
 
 	void getDoorPos(POINT* ptDoor);
 

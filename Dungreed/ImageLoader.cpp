@@ -34,7 +34,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Player::jump, PATH_UNIT"Player/PlayerJump.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Player::runEffectR, PATH_UNIT"Player/RunEffectR.bmp", 0, 0, 5, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Player::runEffectL, PATH_UNIT"Player/RunEffectL.bmp", 0, 0, 5, 1, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::Player::jumpEffect, PATH_UNIT"Player/JumpFX.bmp", 225, 50, 5, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Player::jumpEffect, PATH_UNIT"Player/JumpFX.bmp", 180, 40, 5, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Player::die, PATH_UNIT"Player/PlayerDie.bmp", 0, 0, true, ColorSet::MAGENTA);
 #pragma endregion
 
@@ -190,6 +190,8 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::Dungeon::sqaure5, PATH_IMAGE"Dungeon/Particle/SqaureParticle_5.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Dungeon::bgLayer0, PATH_IMAGE"Background/BGLayer_0.bmp", WINSIZE_X, WINSIZE_Y);
 	IMAGEMANAGER->addImage(ImageName::Dungeon::bgLayer1, PATH_IMAGE"Background/BGLayer_1.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Dungeon::Snow, PATH_IMAGE"Background/Snow.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Dungeon::subBg, PATH_IMAGE"Background/SubBG.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::Door, PATH_IMAGE"Dungeon/Door/Door.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorLeft, PATH_IMAGE"Dungeon/Door/Door_Left.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorRight, PATH_IMAGE"Dungeon/Door/Door_Right.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);

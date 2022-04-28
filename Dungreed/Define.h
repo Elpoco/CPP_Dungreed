@@ -39,7 +39,7 @@
 // ===========
 // # Setting #
 // ===========
-#define SOUND_DEFAULT 0.0f
+#define SOUND_DEFAULT 1.0f
 
 #define PI   3.141592653f
 #define PI_2 6.283185308f
