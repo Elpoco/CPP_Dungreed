@@ -44,7 +44,6 @@ HRESULT GameScene::init()
 	_vTownDeco.push_back({ FindImage(ImageName::Town::StreetLight_1), 777, 578 });
 	_vTownDeco.push_back({ FindImage(ImageName::Town::StreetLight_1), 4920, 578 });
 	_vTownDeco.push_back({ FindImage(ImageName::Town::StreetLight_2),  5054, 1154 });
-	tempIdx = 9;
 
 	// 던전 입구
 	_rcEntrance = RectMakeCenter(2940, 1296, 750, 1);
@@ -151,14 +150,6 @@ void GameScene::renderTown(HDC hdc)
 	{
 		CAMERAMANAGER->render(hdc, deco.img, deco.x, deco.y);
 	}
-
-	if (IsOnceKeyDown(KEY::DOWN_ARROW)) tempIdx++;
-	CAMERAMANAGER->render(
-		hdc, 
-		_vTownDeco[tempIdx].img,
-		CAMERAMANAGER->calAbsX(_ptMouse.x),
-		CAMERAMANAGER->calAbsY(_ptMouse.y)
-	);
 }
 
 void GameScene::renderBackTown(HDC hdc)
@@ -179,7 +170,7 @@ void GameScene::loadDungeon()
 
 	// 플레이어 셋팅
 	OBJECTMANAGER->getPlayer()->setX(300);
-	OBJECTMANAGER->getPlayer()->setY(470);
+	OBJECTMANAGER->getPlayer()->setY(593);
 	OBJECTMANAGER->getPlayer()->setRender(TRUE);
 	CAMERAMANAGER->cameraInitPos();
 	// 음악 재생

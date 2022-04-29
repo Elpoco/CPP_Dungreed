@@ -95,6 +95,7 @@ namespace Code
 		GIANT_BAT,
 		RED_GIANT_BAT,
 		SKEL,
+		SKEL_BOW,
 
 		// 보스
 		BELIAL,
@@ -122,9 +123,11 @@ namespace Code
 
 		ITEM,
 		// 무기
-		SHOT_SWORD,
-		GREAT_SWORD,
+		WEAPON_S,
+		SHOT_SWORD = 3,
+		BAMBOO_SWORD,
 		COLT,
+		WEAPON_CNT,
 
 		ITEM_CNT
 	};

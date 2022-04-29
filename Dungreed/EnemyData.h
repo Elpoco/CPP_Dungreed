@@ -15,6 +15,7 @@ public:
 		_info[TO_INT(Code::UNIT::GIANT_BAT)]	= { Code::UNIT::GIANT_BAT, "Å« ¹ÚÁã", 46, 6, 3.5f };
 		_info[TO_INT(Code::UNIT::RED_GIANT_BAT)]= { Code::UNIT::RED_GIANT_BAT, "Å« ºÓÀº ¹ÚÁã", 44, 6, 3.5f };
 		_info[TO_INT(Code::UNIT::SKEL)]			= { Code::UNIT::SKEL, "½ºÄÌ·¹Åæ", 37, 5, 2.5f };
+		_info[TO_INT(Code::UNIT::SKEL_BOW)]		= { Code::UNIT::SKEL_BOW, "½ºÄÌ·¹Åæ ±Ã¼ö", 30, 3, 2.5f };
 
 		// º¸½º
 		_info[TO_INT(Code::UNIT::BELIAL)]				= { Code::UNIT::BELIAL, "º§¸®¾Ë", 150 };

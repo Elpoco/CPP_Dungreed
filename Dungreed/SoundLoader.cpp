@@ -50,6 +50,11 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Enemy::MonsterDie, PATH_SOUND"MonsterDie.wav", false, false);
 	// 몬스터
 	SOUNDMANAGER->addSound(SoundName::Enemy::BansheeATK, PATH_SOUND"Banshee_ATK.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::Bat, PATH_SOUND"Bat.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::Bat_giant, PATH_SOUND"Bat_giant.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::Bat_red, PATH_SOUND"Bat_red.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::arrow_load, PATH_SOUND"arrow_load.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Enemy::arrow_shoot, PATH_SOUND"arrow_shoot.wav", false, false);
 
 	// 보스
 	SOUNDMANAGER->addSound(SoundName::Enemy::Skeletonking, PATH_SOUND"Skeletonking.wav", false, false);
@@ -65,6 +70,7 @@ void SoundLoader::loadSounds()
 	// ========
 	SOUNDMANAGER->addSound(SoundName::invenOpen, PATH_SOUND"Inventory_open.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::swapEquip, PATH_SOUND"Swap_weapon.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::FireBall, PATH_SOUND"FireBall.wav", false, false);
 
 	SOUNDMANAGER->addSound(SoundName::Item::coin, PATH_SOUND"coin.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Equip, PATH_SOUND"Equip.wav", false, false);
@@ -75,6 +81,8 @@ void SoundLoader::loadSounds()
 	// ==========
 	// # Weapon #
 	// ==========
+	SOUNDMANAGER->addSound(SoundName::Item::Weapon::swing0, PATH_SOUND"swing0.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::Weapon::swing1, PATH_SOUND"swing1.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::swing2, PATH_SOUND"swing2.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::Gun, PATH_SOUND"Gun.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Reload2, PATH_SOUND"Reload2.wav", false, false);
@@ -84,5 +92,6 @@ void SoundLoader::loadSounds()
 	// ===========
 	SOUNDMANAGER->addSound(SoundName::Dungeon::DoorMove, PATH_SOUND"Door_move.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Dungeon::OpenTresure, PATH_SOUND"open_tresure.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Dungeon::CloseSteelDoor, PATH_SOUND"CloseSteelDoor.wav", false, false);
 
 }

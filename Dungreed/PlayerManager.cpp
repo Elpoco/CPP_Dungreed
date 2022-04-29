@@ -3,6 +3,15 @@
 
 using namespace PlayerManagerSet;
 
+PlayerManager::PlayerManager() 
+	: _coin(0)
+{
+}
+
+PlayerManager::~PlayerManager()
+{
+}
+
 HRESULT PlayerManager::init()
 {
 	_dashMaxCnt = _dashCnt = DEFAULT_DASH_CNT;

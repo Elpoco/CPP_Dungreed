@@ -35,6 +35,14 @@ void UIManager::update()
 {
 	updateKeyboard();
 	updateReload();
+
+	if (IsOnceKeyDown(KEY::ESC))
+	{
+		if (_inventory->isOpen())
+		{
+			toggleInventory();
+		}
+	}
 }
 
 void UIManager::render(HDC hdc)

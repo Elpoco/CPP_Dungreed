@@ -46,6 +46,7 @@ HRESULT Player::init()
 	ITEMMANAGER->setPlayerLeft(&_isLeft);
 
 	ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
+	ITEMMANAGER->getItem(Code::ITEM::BAMBOO_SWORD);
 	ITEMMANAGER->getItem(Code::ITEM::COLT);
 
 	return S_OK;
@@ -138,7 +139,7 @@ void Player::move()
 
 			if (_dashMove % 50 < DASH_SPEED)
 			{
-				OBJECTMANAGER->addEffect(_dashImgName, _x, _y, 180);
+				OBJECTMANAGER->addEffect(_dashImgName, _x, _y, 180, ObjectEnum::OBJ_TYPE::EFFECT);
 			}
 
 			_gravity = 0.0f;
@@ -276,6 +277,16 @@ void Player::jump()
 
 void Player::getItem(Code::ITEM code)
 {
-	if (code > Code::ITEM::ITEM)
-		ITEMMANAGER->getItem(code);
+	if (code > Code::ITEM::ITEM) ITEMMANAGER->getItem(code);
+	else
+	{
+		if (code == Code::ITEM::COIN)
+		{
+			PLAYERMANAGER->addCoin(10);
+		}
+		else
+		{
+			PLAYERMANAGER->addCoin(100);
+		}
+	}
 }

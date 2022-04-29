@@ -30,7 +30,6 @@ private:
 
 	// 마을 장식
 	vector<TOWN_DECO> _vTownDeco;
-	int tempIdx = 1;
 
 public:
 	GameScene();

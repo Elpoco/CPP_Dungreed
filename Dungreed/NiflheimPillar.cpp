@@ -97,7 +97,7 @@ void NiflheimPillar::move()
 			_y = sinf(_bossAngle) * (_bossDistance - 50) + *_niflheimY;
 		}
 		
-		_imgAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY);
+		_imgAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY) + PI/2;
 		_bossAngle -= _spinSpeed;
 		if (_bossAngle > PI_2)
 		{
@@ -170,7 +170,7 @@ void NiflheimPillar::animation()
 	}
 	else
 	{
-		_imgAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY);
+		_imgAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY) + PI / 2;
 	}
 	_rotateCenter = PointMake(_x, _y);
 }

@@ -58,7 +58,7 @@ void MainGame::update(void)
 
 	if (IsOnceKeyDown(VK_MBUTTON))
 	{
-		cout << __FUNCTION__ << "__" << _ptMouse.x << ", " << _ptMouse.y << endl;
+		//cout << __FUNCTION__ << "__" << _ptMouse.x << ", " << _ptMouse.y << endl;
 		cout << __FUNCTION__ << "__" << CAMERAMANAGER->calAbsX(_ptMouse.x) << ", " << CAMERAMANAGER->calAbsY(_ptMouse.y) << endl;
 	}
 }

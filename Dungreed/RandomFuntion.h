@@ -43,4 +43,10 @@ public:
 		return (rnd * (toNum - fromNum) + fromNum);
 	}
 
+	template<typename T>
+	T getRndEnum(T start, T end)
+	{
+		return (T)getFromIntTo((int)start, (int)end - 1);
+	}
+
 };

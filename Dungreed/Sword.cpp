@@ -59,10 +59,23 @@ RECT Sword::attack()
 	float effectX = cosf(effectAngle) * 30 + ITEMMANAGER->getPlayerHand().x;
 	float effectY = -sinf(effectAngle) * 30 + ITEMMANAGER->getPlayerHand().y;
 
-	SOUNDMANAGER->play(SoundName::Item::Weapon::swing2, _sound);
+	string effectName = ImageName::Effect::Weapon::basicSwing;
+
+	switch (_info.code)
+	{
+	case Code::ITEM::SHOT_SWORD:
+		SOUNDMANAGER->play(SoundName::Item::Weapon::swing2, _sound);
+		break;
+	case Code::ITEM::BAMBOO_SWORD:
+		SOUNDMANAGER->play(SoundName::Item::Weapon::swing1, _sound);
+		effectName = ImageName::Effect::Weapon::BambooSwing;
+		break;
+	default:
+		break;
+	}
 
 	return OBJECTMANAGER->addEffect(
-		ImageName::Effect::Weapon::basicSwing,
+		effectName,
 		effectX,
 		effectY,
 		RadToDeg(effectAngle),

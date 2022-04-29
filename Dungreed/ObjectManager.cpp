@@ -137,11 +137,14 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 	case Code::UNIT::BANSHEE:
 		enemy = new Banshee(x, y);
 		break;
+	case Code::UNIT::BAT:
 	case Code::UNIT::GIANT_BAT:
-		enemy = new Bat(x, y);
+	case Code::UNIT::RED_GIANT_BAT:
+		enemy = new Bat(x, y, code);
 		break;
 	case Code::UNIT::SKEL:
-		enemy = new Skel(x, y);
+	case Code::UNIT::SKEL_BOW:
+		enemy = new Skel(x, y, code);
 		break;
 
 	case Code::UNIT::BELIAL:
@@ -159,15 +162,24 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 	enemy->settingHpBar();
 }
 
-void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage, string destroyImgName, float distance, BOOL super)
+void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage,
+	string destroyImgName, float distance, BOOL super, BOOL imgRotate)
 {
-	addObject(type, new Bullet(imgName, x, y, angle, speed, damage, destroyImgName, distance, super));
+	addObject(type, new Bullet(imgName, x, y, angle, speed, damage, destroyImgName, distance, super, imgRotate));
 }
 
 RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, OBJ_TYPE type)
 {
 	Effect* effect = new Effect(imgName, x, y, alpha);
 	addObject(type, effect);
+
+	return effect->getRect();
+}
+
+RECT ObjectManager::addEffect(string imgName, float x, float y, float angle)
+{
+	Effect* effect = new Effect(imgName, x, y, angle);
+	addObject(OBJ_TYPE::EFFECT, effect);
 
 	return effect->getRect();
 }

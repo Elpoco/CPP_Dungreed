@@ -48,6 +48,9 @@ namespace ImageName
 		constexpr char* SkelIdle = "ENEMY SkelIdle";
 		constexpr char* SkelWalk = "ENEMY SkelWalk";
 		constexpr char* SkelSword = "ENEMY SkelSword";
+		constexpr char* SkelBow = "ENEMY SkelBow";
+		constexpr char* SkelArrow = "ENEMY SkelArrow";
+		constexpr char* SkelArrowEffect = "ENEMY SkelArrowEffect";
 
 		constexpr char* BigWhiteSkelIdle = "ENEMY BigWhiteSkelIdle";
 		constexpr char* BigWhiteSkelMove = "ENEMY BigWhiteSkelMove";
@@ -208,6 +211,7 @@ namespace ImageName
 		namespace Weapon
 		{
 			constexpr char* basicShotSword = "WEAPON BasicShotSword";
+			constexpr char* BambooSword = "WEAPON BambooSword";
 			constexpr char* colt = "WEAPON Colt";
 			constexpr char* bullet02 = "WEAPON bullet02";
 		}
@@ -224,6 +228,7 @@ namespace ImageName
 		namespace Weapon
 		{
 			constexpr char* basicSwing = "EFFECT BasicSwing";
+			constexpr char* BambooSwing = "EFFECT BambooSwing";
 			constexpr char* shooting = "EFFECT Shooting";
 			constexpr char* shootingHit = "EFFECT ShootingHit";
 		}
@@ -242,6 +247,7 @@ namespace ImageName
 		constexpr char* sqaure4 = "DUNGEON sqaure4";
 		constexpr char* sqaure5 = "DUNGEON sqaure5";
 		constexpr char* doorUp = "DUNGEON doorUp";
+		constexpr char* StartDoor = "DUNGEON StartDoor";
 		constexpr char* Door = "DUNGEON Door";
 		constexpr char* DoorLeft = "DUNGEON DoorLeft";
 		constexpr char* DoorRight = "DUNGEON DoorRight";
@@ -251,8 +257,12 @@ namespace ImageName
 		constexpr char* Snow = "DUNGEON Snow";
 		constexpr char* subBg = "DUNGEON subBg";
 
-		constexpr char* tresureNormal = "DUNGEON tresureNormal";
-		constexpr char* tresureBoss = "DUNGEON tresureBoss";
+		constexpr char* BasicTresure = "DUNGEON BasicTresure";
+		constexpr char* BlueTresureClosed = "DUNGEON BlueTresureClosed";
+		constexpr char* BossTresureClosed = "DUNGEON BossTresureClosed";
+
+		constexpr char* DungeonInn = "DUNGEON DungeonInn";
+		constexpr char* InDungeonShop = "DUNGEON InDungeonShop";
 	}
 
 }
@@ -269,6 +279,7 @@ namespace SoundName
 	constexpr char* dungeonEat2 = "SOUND dungeonEat2";
 	constexpr char* invenOpen = "SOUND invenOpen";
 	constexpr char* swapEquip = "SOUND swapEquip";
+	constexpr char* FireBall = "SOUND FireBall";
 
 	namespace Player
 	{
@@ -284,6 +295,11 @@ namespace SoundName
 		constexpr char* MonsterDie = "SOUND ENEMY MonsterDie";
 		// 몬스터
 		constexpr char* BansheeATK = "SOUND ENEMY Banshee_ATK";
+		constexpr char* Bat = "SOUND ENEMY Bat";
+		constexpr char* Bat_giant = "SOUND ENEMY Bat_giant";
+		constexpr char* Bat_red = "SOUND ENEMY Bat_red";
+		constexpr char* arrow_load = "SOUND ENEMY arrow_load";
+		constexpr char* arrow_shoot = "SOUND ENEMY arrow_shoot";
 
 		// 보스
 		constexpr char* Skeletonking = "SOUND ENEMY Skeletonking";
@@ -306,7 +322,9 @@ namespace SoundName
 
 		namespace Weapon
 		{
-			constexpr char* swing2 = "SOUND swing0";
+			constexpr char* swing0 = "SOUND swing0";
+			constexpr char* swing1 = "SOUND swing1";
+			constexpr char* swing2 = "SOUND swing2";
 			constexpr char* Gun = "SOUND Gun";
 		}
 	}
@@ -315,6 +333,7 @@ namespace SoundName
 	{
 		constexpr char* DoorMove = "SOUND DUNGEON DoorMove";
 		constexpr char* OpenTresure = "SOUND DUNGEON OpenTresure";
+		constexpr char* CloseSteelDoor = "SOUND DUNGEON CloseSteelDoor";
 	}
 }
 

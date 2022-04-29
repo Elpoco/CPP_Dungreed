@@ -163,6 +163,9 @@
     <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\Skel">
       <UniqueIdentifier>{852c4eb2-db92-4268-b170-4cf24193ec73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\07. NPC\Shop">
+      <UniqueIdentifier>{80286c16-509b-49a3-9cb4-4afd526938a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -368,6 +371,9 @@
     </ClCompile>
     <ClCompile Include="Skel.cpp">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Skel</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopNPC.cpp">
+      <Filter>MainGame\02. Object\07. NPC\Shop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -607,6 +613,9 @@
     </ClInclude>
     <ClInclude Include="Skel.h">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Skel</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopNPC.h">
+      <Filter>MainGame\02. Object\07. NPC\Shop</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

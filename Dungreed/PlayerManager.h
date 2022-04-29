@@ -1,5 +1,6 @@
 #pragma once
 #include "SingletonBase.h"
+#pragma warning(disable:4996)
 
 namespace PlayerManagerSet
 {
@@ -14,8 +15,12 @@ private:
 	float _dashTime;
 	int _dashMaxCnt;
 	int _dashCnt;
+	int _coin;
 
 public:
+	PlayerManager();
+	~PlayerManager();
+
 	HRESULT init();
 	void release();
 	void update();
@@ -26,6 +31,17 @@ public:
 	BOOL canDash() { return _dashCnt < 1; }
 	int getDashCnt() { return _dashCnt; }
 	int getDashMaxCnt() { return _dashMaxCnt; }
+
+	void addCoin(int coin) { _coin += coin; }
+	char* getCoin()
+	{
+		string str = to_string(_coin);
+		int len = str.length();
+		char* arrChar;
+		arrChar = new char[len];
+		strcpy(arrChar, str.c_str());
+		return arrChar;
+	}
 
 };
 

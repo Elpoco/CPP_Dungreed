@@ -395,15 +395,15 @@ void Niflheim::icicle()
 
 	if (_skillTick++ < _skillFirstTick) return;
 	_skillTick = 0;
-	_skillFirstTick = 80;
+	_skillFirstTick = 85;
 
-	if (_skillActCnt < 2)
+	if (_skillActCnt % 2 == 0)
 	{
 		for (int i = 0; i < 10; i++)
 		{
 			OBJECTMANAGER->addEffect(
 				ImageName::Enemy::Niflheim::icicleFX,
-				97 + 27 + i * 128 + _skillActCnt * 64,
+				97 + 27 + i * 128 + (_skillActCnt/2) * 64,
 				97 + 40
 			);
 		}
@@ -415,12 +415,15 @@ void Niflheim::icicle()
 			OBJECTMANAGER->addBullet(
 				ObjectEnum::OBJ_TYPE::ENEMY_OBJ,
 				ImageName::Enemy::Niflheim::icicle,
-				97 + 27 + i * 128 + (_skillActCnt-2) * 64,
+				97 + 27 + i * 128 + ((_skillActCnt - 1)/2) * 64,
 				97 + 40,
 				-(PI / 2),
 				4.0f,
 				4,
-				ImageName::Enemy::Niflheim::bulletFX
+				ImageName::Enemy::Niflheim::bulletFX,
+				1500,
+				FALSE,
+				FALSE
 			);
 		}
 	}

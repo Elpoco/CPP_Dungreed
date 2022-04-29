@@ -52,6 +52,11 @@ private:
 	float _snowX;
 	float _snowY;
 
+	ImageBase* _imgStartDoor;
+	FRAME_INFO _doorFrame;
+	BOOL _isFirst;
+	float _enterTime;
+
 public:
 	MapManager();
 	~MapManager();

@@ -26,3 +26,6 @@ void NPC::render(HDC hdc)
 {
 }
 
+void NPC::initAnimation()
+{
+}

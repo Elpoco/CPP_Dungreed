@@ -1,10 +1,26 @@
 #include "Stdafx.h"
 #include "Effect.h"
 
+Effect::Effect(string imgName, float x, float y, float angle)
+	: _img(nullptr)
+	, _imgName(imgName)
+	, _alpha(255)
+	, _angle(angle)
+	, _degree(0.0f)
+	, _rotateCenter({ 0,0 })
+	, _isFollow(FALSE)
+{
+	_x = x;
+	_y = y;
+
+	this->init();
+}
+
 Effect::Effect(string imgName, float x, float y, BYTE alpha)
 	: _img(nullptr)
 	, _imgName(imgName)
 	, _alpha(alpha)
+	, _angle(0.0f)
 	, _degree(0.0f)
 	, _rotateCenter({ 0,0 })
 	, _isFollow(FALSE)
@@ -19,6 +35,7 @@ Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter)
 	: _img(nullptr)
 	, _imgName(imgName)
 	, _alpha(0)
+	, _angle(0.0f)
 	, _degree(angle)
 	, _rotateCenter(rotateCenter)
 	, _isFollow(FALSE)
@@ -107,6 +124,11 @@ void Effect::render(HDC hdc)
 		{
 			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, _degree, _rotateCenter);
 		}
+	}
+	else if (_angle)
+	{
+		//int a = 0;
+		CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _frameInfo.x, _frameInfo.y, _angle);
 	}
 	else
 	{

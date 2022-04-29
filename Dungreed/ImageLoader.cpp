@@ -70,7 +70,10 @@ void ImageLoader::loadImages()
 	// ½ºÄÌ·¹Åæ
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::SkelIdle, PATH_UNIT"Enemy/Skel/SkelIdle.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::SkelWalk, PATH_UNIT"Enemy/Skel/SkelWalk.bmp", 0, 0, 6, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::SkelBow, PATH_UNIT"Enemy/Skel/SkelBow.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::SkelArrowEffect, PATH_UNIT"Enemy/Skel/ArrowFX.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Enemy::SkelSword, PATH_UNIT"Enemy/Skel/SkelSword.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Enemy::SkelArrow, PATH_UNIT"Enemy/Skel/SkelArrow.bmp", 0, 0, true, ColorSet::MAGENTA);
 
 	// º§¸®¾Ë
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Belial::idle, PATH_UNIT"Enemy/Belial/SkellBossIdle.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
@@ -202,6 +205,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::bullion, PATH_ITEM"Gold/Bullion.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
 	// ¼ô¼Òµå
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword.png");
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::BambooSword, PATH_ITEM"Weapon/BambooSword.png");
 	// ´õ ÄÝÆ®
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt.png", 1, 2);
 	// ÃÑ¾Ë
@@ -214,6 +218,7 @@ void ImageLoader::loadImages()
 #pragma region Effect
 	// °Ë ÀÌÆåÆ®
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::basicSwing, PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::BambooSwing, PATH_ITEM"Effect/BambooSword_Effect.png", 3, 1);
 	// ÃÑ ÀÌÆåÆ®
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shooting, PATH_ITEM"Effect/Shooting.png", 6, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shootingHit, PATH_ITEM"Effect/Shooting_hit.png", 6, 1);
@@ -231,11 +236,15 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::Dungeon::bgLayer1, PATH_IMAGE"Background/BGLayer_1.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Dungeon::Snow, PATH_IMAGE"Background/Snow.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Dungeon::subBg, PATH_IMAGE"Background/SubBG.bmp", WINSIZE_X, WINSIZE_Y, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Dungeon::DungeonInn, PATH_IMAGE"Dungeon/NPC/DungeonInn.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Dungeon::InDungeonShop, PATH_IMAGE"Dungeon/NPC/InDungeonShop.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::StartDoor, PATH_IMAGE"Dungeon/Door/StartDoor.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::Door, PATH_IMAGE"Dungeon/Door/Door.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorLeft, PATH_IMAGE"Dungeon/Door/Door_Left.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorRight, PATH_IMAGE"Dungeon/Door/Door_Right.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::tresureNormal, PATH_IMAGE"Dungeon/Tresure/Stash.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::tresureBoss, PATH_IMAGE"Dungeon/Tresure/YellowTresure.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BasicTresure, PATH_IMAGE"Dungeon/Tresure/BasicTresure.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BlueTresureClosed, PATH_IMAGE"Dungeon/Tresure/BlueTresureClosed.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BossTresureClosed, PATH_IMAGE"Dungeon/Tresure/BossTresureClosed.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
 
 	// ==========
 	// # Object #

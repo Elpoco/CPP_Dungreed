@@ -3,7 +3,19 @@
 class Tresure : public Object
 {
 private:
+	enum class TRESURE_TYPE
+	{
+		BASIC,
+		BLUE,
+
+		TYPE_CNT,
+
+		BOSS,
+	};
+
+private:
 	ImageBase* _img;
+	TRESURE_TYPE _type;
 	BOOL _isOpen;
 
 public:

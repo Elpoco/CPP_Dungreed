@@ -21,7 +21,8 @@ private:
 		GIANT,
 		RED,
 
-		BAT_CNT
+		TYPE_CNT,
+		NONE,
 	};
 
 private:
@@ -32,7 +33,7 @@ private:
 	float _distance;
 
 public:
-	Bat(float x, float y);
+	Bat(float x, float y, Code::UNIT code = Code::UNIT::BAT);
 	virtual ~Bat();
 
 	virtual HRESULT init() override;

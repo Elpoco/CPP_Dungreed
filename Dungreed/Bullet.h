@@ -17,10 +17,11 @@ private:
 
 	BOOL _isGP;
 	BOOL _isSuper;
+	BOOL _isImgRotate;
 
 public:
 	Bullet(string imgName, float x, float y, float angle, float speed, 
-		int damage, string destroyImgName = "", float distance = 1500, BOOL super = FALSE);
+		int damage, string destroyImgName = "", float distance = 1500, BOOL super = FALSE, BOOL imgRotate = TRUE);
 	virtual ~Bullet();
 
 	virtual HRESULT init() override;

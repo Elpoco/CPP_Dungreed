@@ -20,6 +20,7 @@ public:
 	{
 		// ¹«±â
 		_info[TO_INT(Code::ITEM::SHOT_SWORD)]	= { Code::ITEM_TYPE::WEAPON, Code::ITEM::SHOT_SWORD, "¼ô¼Òµå", 8, 10, 3.03f };
+		_info[TO_INT(Code::ITEM::BAMBOO_SWORD)]	= { Code::ITEM_TYPE::WEAPON, Code::ITEM::BAMBOO_SWORD, "Á×µµ", 5, 6, 6.06f };
 		_info[TO_INT(Code::ITEM::COLT)]			= { Code::ITEM_TYPE::WEAPON, Code::ITEM::COLT, "´õ ÄÝÆ®", 3, 5, 8.33f, 1, 12 };
 	}
 	~ItemData() {}

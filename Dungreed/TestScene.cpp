@@ -8,7 +8,7 @@ HRESULT TestScene::init()
 	TILEMANAGER->loadMap(FileName::testSave);
 
 	OBJECTMANAGER->addTresure(360, 1270);
-	OBJECTMANAGER->addEnemy(Code::UNIT::SKEL, 300, 550);
+	OBJECTMANAGER->addEnemy(Code::UNIT::SKEL_BOW, 300, 550);
 
 	return S_OK;
 }

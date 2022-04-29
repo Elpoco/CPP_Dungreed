@@ -11,7 +11,7 @@ DropItem::DropItem(Code::ITEM code, float x, float y, BOOL scatter)
 	_x = x;
 	_y = y;
 	_dropSpeed = RND->getFromFloatTo(0.05f, 0.08f);
-	_gravity = RND->getFromFloatTo(2.0f, 3.5f) * -1;
+	_gravity = RND->getFromFloatTo(1.7f, 2.8f) * -1;
 
 	if (scatter)
 	{

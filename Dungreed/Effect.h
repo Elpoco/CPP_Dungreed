@@ -12,8 +12,9 @@ protected:
 
 	BYTE _alpha;
 
-	int _degree;
 	POINT _rotateCenter;
+	float _angle;
+	int _degree;
 
 	BOOL	_isFollow;
 	float*	_followX;
@@ -21,6 +22,7 @@ protected:
 	int*	_followDegree;
 
 public:
+	Effect(string imgName, float x, float y, float angle);
 	Effect(string imgName, float x, float y, BYTE alpha = 255);
 	Effect(string imgName, float x, float y, int angle, POINT rotateCenter);
 	virtual ~Effect();

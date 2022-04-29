@@ -3,10 +3,25 @@
 
 using namespace BatSet;
 
-Bat::Bat(float x, float y)
+Bat::Bat(float x, float y, Code::UNIT code)
 {
 	_x = x;
 	_y = y;
+
+	switch (code)
+	{
+	case Code::UNIT::BAT:
+		_batType = BAT_TYPE::NORMAL;
+		break;
+	case Code::UNIT::GIANT_BAT:
+		_batType = BAT_TYPE::GIANT;
+		break;
+	case Code::UNIT::RED_GIANT_BAT:
+		_batType = BAT_TYPE::RED;
+		break;
+	default:
+		break;
+	}
 }
 
 Bat::~Bat()
@@ -67,29 +82,28 @@ void Bat::move()
 	if (_isPlayerScan)
 	{
 		if (_attackTime + _info.atkTime < TIMEMANAGER->getWorldTime()) this->attack();
-	}
 
-	if (GetDistance(PointMake(_x, _y), _ptPlayer) > _distance)
-	{
-		if (_state == IDLE) 
+		if (GetDistance(PointMake(_x, _y), _ptPlayer) > _distance)
 		{
-			_distance = RND->getFromFloatTo(400, 700);
-			_angle = GetAngle(PointMake(_x, _y), _ptPlayer);
-			_x += cosf(_angle) * _moveSpeed;
-			_y -= sinf(_angle) * _moveSpeed;
+			if (_state == IDLE)
+			{
+				_distance = RND->getFromFloatTo(400, 700);
+				_angle = GetAngle(PointMake(_x, _y), _ptPlayer);
+				_x += cosf(_angle) * _moveSpeed;
+				_y -= sinf(_angle) * _moveSpeed;
+			}
 		}
 	}
 
-	switch (_state)
+	if (_state == ATTACK)
 	{
-	case ATTACK:
-
 		switch (_batType)
 		{
 		case Bat::BAT_TYPE::NORMAL:
 			if (_shootTime + 0.4f > TIMEMANAGER->getWorldTime()) break;
 			_shootTime = TIMEMANAGER->getWorldTime();
 
+			SOUNDMANAGER->play(SoundName::FireBall, _sound);
 			OBJECTMANAGER->addBullet(
 				ObjectEnum::OBJ_TYPE::ENEMY_OBJ,
 				ImageName::Enemy::BatBullet,
@@ -100,7 +114,7 @@ void Bat::move()
 				_info.dmg,
 				ImageName::Enemy::BatBulletHit
 			);
-			
+
 			break;
 		case Bat::BAT_TYPE::GIANT:
 			if (_shootTime + 0.2f > TIMEMANAGER->getWorldTime()) break;
@@ -108,6 +122,7 @@ void Bat::move()
 
 			for (int i = 0; i < 3; i++)
 			{
+				SOUNDMANAGER->play(SoundName::FireBall, _sound);
 				OBJECTMANAGER->addBullet(
 					ObjectEnum::OBJ_TYPE::ENEMY_OBJ,
 					ImageName::Enemy::BatBullet,
@@ -126,6 +141,7 @@ void Bat::move()
 
 			for (int i = 0; i < 360; i += 30)
 			{
+				SOUNDMANAGER->play(SoundName::FireBall, _sound);
 				OBJECTMANAGER->addBullet(
 					ObjectEnum::OBJ_TYPE::ENEMY_OBJ,
 					ImageName::Enemy::BatBullet,
@@ -141,17 +157,11 @@ void Bat::move()
 		default:
 			break;
 		}
-		break;
-
-	default:
-		break;
 	}
 }
 
 void Bat::initAnimation()
 {
-	_batType = (BAT_TYPE)RND->getInt((int)BAT_TYPE::BAT_CNT);
-
 	switch (_batType)
 	{
 	default:
@@ -181,6 +191,21 @@ void Bat::attack()
 	_state = ATTACK;
 	_frameInfo.x = 0;
 	_angle = GetAngle(PointMake(_x, _y), _ptPlayer);
+
+	switch (_batType)
+	{
+	case Bat::BAT_TYPE::NORMAL:
+		SOUNDMANAGER->play(SoundName::Enemy::Bat, _sound);
+		break;
+	case Bat::BAT_TYPE::GIANT:
+		SOUNDMANAGER->play(SoundName::Enemy::Bat_giant, _sound);
+		break;
+	case Bat::BAT_TYPE::RED:
+		SOUNDMANAGER->play(SoundName::Enemy::Bat_red, _sound);
+		break;
+	default:
+		break;
+	}
 }
 
 void Bat::frameUpdateEvent()

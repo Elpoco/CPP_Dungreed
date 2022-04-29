@@ -85,7 +85,8 @@ void Banshee::attack()
 			_info.dmg,
 			ImageName::Enemy::BansheeBulletFX,
 			1500,
-			TRUE
+			TRUE,
+			FALSE
 		);
 	}
 }

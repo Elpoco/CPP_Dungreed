@@ -2,7 +2,7 @@
 #include "Bullet.h"
 
 Bullet::Bullet(string imgName, float x, float y, float angle, float speed
-	, int damage, string destroyImgName, float distance, BOOL super)
+	, int damage, string destroyImgName, float distance, BOOL super, BOOL imgRotate)
 	: _imgName(imgName)
 	, _startX(x)
 	, _startY(y)
@@ -13,6 +13,7 @@ Bullet::Bullet(string imgName, float x, float y, float angle, float speed
 	, _destroyImgName(destroyImgName)
 	, _isGP(FALSE)
 	, _isSuper(super)
+	, _isImgRotate(imgRotate)
 {
 	_x = x;
 	_y = y;
@@ -76,17 +77,13 @@ void Bullet::render(HDC hdc)
 	}
 	else
 	{
-		if (_frameInfo.isFrame)
+		if (_isImgRotate)
 		{
-			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
+			CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _frameInfo.x, _frameInfo.y,_angle);
 		}
 		else
 		{
-			IMAGEMANAGER->findImage(_imgName)->rotateRender(hdc,
-				CAMERAMANAGER->calRelX(_x),
-				CAMERAMANAGER->calRelY(_y),
-				_frameInfo.x, _frameInfo.y,
-				_angle);
+			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 		}
 	}
 }
@@ -110,7 +107,8 @@ void Bullet::deleteEffect()
 			OBJECTMANAGER->addEffect(
 				_destroyImgName,
 				_x,
-				_y
+				_y,
+				_angle
 			);
 		}
 	}

@@ -8,11 +8,21 @@ private:
 	{
 		IDLE,
 		MOVE,
-		ATTACK,
+	};
+
+	enum class SKEL_TYPE
+	{
+		SWORD,
+		BOW,
+		NONE,
+
+		TYPE_CNT
 	};
 
 private:
-	ImageBase* _sword;
+	ImageBase* _imgWeapon;
+	FRAME_INFO _weaponFrame;
+	SKEL_TYPE  _skelType;
 
 	float _attackTime;
 	float _angleWeapon;
@@ -21,7 +31,7 @@ private:
 	int _atkCnt;
 
 public:
-	Skel(float x, float y);
+	Skel(float x, float y, Code::UNIT code);
 	virtual ~Skel();
 
 	virtual HRESULT init() override;

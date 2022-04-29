@@ -80,6 +80,11 @@ int CameraManager::checkObjectInCamera(float x, float y, int width, int height)
 	return posX < -width || posY < -height || width > WINSIZE_X || height > WINSIZE_Y;
 }
 
+void CameraManager::render(HDC hdc, string imageName, float x, float y)
+{
+	FindImage(imageName)->render(hdc, x - _x, y - _y);
+}
+
 void CameraManager::render(HDC hdc, ImageBase* img, float x, float y)
 {
 	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;
@@ -104,7 +109,7 @@ void CameraManager::render(HDC hdc, ImageBase* img, float x, float y, int angle,
 	img->render(hdc, x - _x, y - _y, angle, rotateCenter);
 }
 
-void CameraManager::render(HDC hdc, ImageBase * img, float x, float y, int sourX, int sourY, int sourWidth, int sourHeight)
+void CameraManager::render(HDC hdc, ImageBase* img, float x, float y, int sourX, int sourY, int sourWidth, int sourHeight)
 {
 	if (this->checkObjectInCamera(x, y, img->getWidth(), img->getHeight())) return;
 

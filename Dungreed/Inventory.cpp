@@ -70,7 +70,10 @@ void Inventory::render(HDC hdc)
 	if (!_isOpen) return;
 	
 	if (_isHover) _imgHover->render(hdc, _rcHover.left, _rcHover.top);
+	string str = to_string(30000);
 	
+	int len = strlen(PLAYERMANAGER->getCoin()) - 1;
+	FONTMANAGER->drawNumber(hdc, 1212 - len * 13, 582, 30, 0, PLAYERMANAGER->getCoin(), ColorSet::YELLOW);
 
 	renderInventoryItem(hdc);
 }
@@ -265,14 +268,15 @@ void Inventory::offClick()
 					{
 						SOUNDMANAGER->play(SoundName::Item::Equip, _sound);
 						_arrSlot[i].item = _arrSlot[_clickCell].item;
+						_arrSlot[_clickCell].item = NULL;
 					}
 				}
 				else
 				{
 					SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
 					_arrSlot[i].item = _arrSlot[_clickCell].item;
+					_arrSlot[_clickCell].item = NULL;
 				}
-				_arrSlot[_clickCell].item = NULL;
 			}
 
 			// 장착 슬롯 아이템 장착
@@ -323,6 +327,18 @@ void Inventory::equipClick()
 		}
 		break;
 	default:
+		// 무기를 둘다 끼고있고, 아이템을 장착하려 한다면
+		if (_arrSlot[WEAPON_0].item && _arrSlot[WEAPON_1].item && _arrSlot[_clickCell].item)
+		{
+			if (_arrSlot[_clickCell].item->getItemType() == Code::ITEM_TYPE::WEAPON)
+			{
+				Item* preItem = _arrSlot[_equipIdx].item;
+				_arrSlot[_equipIdx].item = _arrSlot[_clickCell].item;
+				_arrSlot[_clickCell].item = preItem;
+				_arrSlot[_equipIdx].item->equip();
+				preItem->unequip();
+			}
+		}
 		// 장착
 		for (int i = WEAPON_0; i < ACC_CNT; i++)
 		{

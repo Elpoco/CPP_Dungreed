@@ -38,6 +38,11 @@ HRESULT MapManager::init()
 	_layer = IMAGEMANAGER->findImage(ImageName::Dungeon::subBg);
 	_background = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer0);
 
+	_imgStartDoor = FindImage(ImageName::Dungeon::StartDoor);
+	_doorFrame.maxFrameX = _imgStartDoor->getMaxFrameX();
+	_isFirst = TRUE;
+	_enterTime = TIMEMANAGER->getWorldTime();
+
 	return S_OK;
 }
 
@@ -57,10 +62,39 @@ void MapManager::update()
 		makeParticle();
 		updateParticle();
 	}
+
+	if (_isFirst && _enterTime + 1.0f < TIMEMANAGER->getWorldTime())
+	{
+		if (_doorFrame.cnt++ > _doorFrame.maxFrameX)
+		{
+			_doorFrame.cnt = 0;
+			_doorFrame.x++;
+			if (_doorFrame.x == 5) SOUNDMANAGER->play(SoundName::Dungeon::CloseSteelDoor, _sound);
+			if (_doorFrame.x > _doorFrame.maxFrameX)
+			{
+				_isFirst = FALSE;
+			}
+		}
+	}
 }
 
 void MapManager::render(HDC hdc)
 {
+	switch (_arrMapCode[_curLocation])
+	{
+	case Code::MAP::DUNGEON_START:
+		CAMERAMANAGER->frameRender(hdc, _imgStartDoor, 214, 430, _doorFrame.x, 0);
+		break;
+	case Code::MAP::DUNGEON_SHOP:
+	case Code::MAP::DUNGEON_FOOD:
+		CAMERAMANAGER->render(hdc, ImageName::Dungeon::DungeonInn, 335, 348);
+		if (_curLocation == 14) break;
+		CAMERAMANAGER->render(hdc, ImageName::Dungeon::InDungeonShop, 400, 544);
+		break;
+	default:
+		break;
+	}
+
 	if (_isSnowMap)
 	{
 		renderSnow(hdc);
@@ -137,15 +171,18 @@ void MapManager::settingMonster()
 {
 	_unitCnt = 0;
 
-	for (int i = 0; i < UnitSet::MAX_SPAWN; i++)
+	if (!_arrClearMap[_curLocation])
 	{
-		if (_mapInfo.arrSpawnInfo[i].unit == Code::UNIT::NONE) break;
-		_unitCnt++;
-		OBJECTMANAGER->addEnemy(
-			_mapInfo.arrSpawnInfo[i].unit,
-			_mapInfo.arrSpawnInfo[i].ptSpawn.x,
-			_mapInfo.arrSpawnInfo[i].ptSpawn.y
-		);
+		for (int i = 0; i < UnitSet::MAX_SPAWN; i++)
+		{
+			if (_mapInfo.arrSpawnInfo[i].unit == Code::UNIT::NONE) break;
+			_unitCnt++;
+			OBJECTMANAGER->addEnemy(
+				_mapInfo.arrSpawnInfo[i].unit,
+				_mapInfo.arrSpawnInfo[i].ptSpawn.x,
+				_mapInfo.arrSpawnInfo[i].ptSpawn.y
+			);
+		}
 	}
 
 	if (_unitCnt != 0)
