@@ -87,7 +87,7 @@ void MapManager::render(HDC hdc)
 		break;
 	case Code::MAP::DUNGEON_SHOP:
 	case Code::MAP::DUNGEON_FOOD:
-		CAMERAMANAGER->render(hdc, ImageName::Dungeon::DungeonInn, 335, 348);
+		CAMERAMANAGER->render(hdc, ImageName::Dungeon::DungeonInn, 335, 348); 
 		if (_curLocation == 14) break;
 		CAMERAMANAGER->render(hdc, ImageName::Dungeon::InDungeonShop, 400, 544);
 		break;

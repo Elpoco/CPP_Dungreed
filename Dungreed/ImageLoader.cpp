@@ -173,7 +173,18 @@ void ImageLoader::loadImages()
 
 #pragma endregion
 
-	// Town
+	// =======
+	// # NPC #
+	// =======
+#pragma region NPC
+	IMAGEMANAGER->addFrameImage(ImageName::NPC::Merchant, PATH_UNIT"NPC/NPC_Merchant.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::NPC::giant, PATH_UNIT"NPC/Giant.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA, 3.0f);
+#pragma endregion
+
+	// ========
+	// # Town #
+	// ========
+#pragma region Town
 	IMAGEMANAGER->addImage(ImageName::Town::cloud, PATH_IMAGE"Town/Cloud.bmp", WINSIZE_X, WINSIZE_Y);
 	IMAGEMANAGER->addImage(ImageName::Town::townBgDay, PATH_IMAGE"Town/TownBG_Day.bmp", 0, 0, true, ColorSet::MAGENTA, 4.0f);
 	IMAGEMANAGER->addImage(ImageName::Town::townLayerDay, PATH_IMAGE"Town/TownLayer_Day.bmp", 0, 0, true, ColorSet::MAGENTA, 4.0f);
@@ -195,6 +206,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::Town::StreetLight_1, PATH_IMAGE"Town/StreetLight_1.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::Town::StreetLight_2, PATH_IMAGE"Town/StreetLight_2.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addFrameImage(ImageName::Town::dungeonEat, PATH_IMAGE"Town/DungeonEat.bmp", 0, 0, 28, 1, true, ColorSet::MAGENTA);
+#pragma endregion
 
 	// ========
 	// # Item #
@@ -227,6 +239,7 @@ void ImageLoader::loadImages()
 	// ===========
 	// # Dungeon #
 	// ===========
+#pragma region Dungeon
 	IMAGEMANAGER->addImage(ImageName::Dungeon::sqaure1, PATH_IMAGE"Dungeon/Particle/SqaureParticle_1.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Dungeon::sqaure2, PATH_IMAGE"Dungeon/Particle/SqaureParticle_2.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Dungeon::sqaure3, PATH_IMAGE"Dungeon/Particle/SqaureParticle_3.bmp", 0, 0, true, ColorSet::MAGENTA);
@@ -245,6 +258,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BasicTresure, PATH_IMAGE"Dungeon/Tresure/BasicTresure.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BlueTresureClosed, PATH_IMAGE"Dungeon/Tresure/BlueTresureClosed.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BossTresureClosed, PATH_IMAGE"Dungeon/Tresure/BossTresureClosed.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
+#pragma endregion
 
 	// ==========
 	// # Object #

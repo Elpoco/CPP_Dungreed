@@ -99,6 +99,8 @@ void GameScene::render()
 	}
 
 	if (_isEnter) CAMERAMANAGER->frameRender(getMemDC(), _imgEnter, _rcEnter.left, _rcEnter.top, _enterFrame.x, 0);
+
+	CAMERAMANAGER->render(getMemDC(), ImageName::NPC::giant, 3080, 710);
 }
 
 void GameScene::updateTown()

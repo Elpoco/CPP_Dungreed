@@ -164,6 +164,11 @@ namespace ImageName
 		}
 	}
 
+	namespace NPC
+	{
+		constexpr char* giant = "NPC giant";
+	}
+
 	namespace Background
 	{
 		constexpr char* startCloud1 = "BgStartCloud1";

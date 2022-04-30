@@ -27,7 +27,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	_mg = new MainGame();
 
 #ifdef _DEBUG
-	_isDebug = true;
+	_isDebug = false;
 #else
 	_isDebug = false;
 #endif
