@@ -8,6 +8,8 @@
 #include "Sword.h"
 #include "Gun.h"
 
+#include "Accessory.h"
+
 ItemManager::ItemManager()
 {
 }
@@ -39,6 +41,9 @@ Item* ItemManager::getItem(Code::ITEM code)
 		break;
 	case Code::ITEM::COLT:
 		item = new Gun(code);
+		break;
+	case Code::ITEM::MULTI_BULLET:
+		item = new Accessory(code);
 		break;
 	default:
 		item = new Sword(code);
@@ -80,6 +85,9 @@ ImageBase* ItemManager::findImage(Code::ITEM code)
 		break;
 	case Code::ITEM::COLT:
 		imgName = ImageName::Item::Weapon::colt;
+		break;
+	case Code::ITEM::MULTI_BULLET:
+		imgName = ImageName::Item::Accessory::MultiBullet;
 		break;
 	default:
 		imgName = "";

@@ -249,11 +249,23 @@ void UIManager::renderItemInfo(HDC hdc)
 		string dmg = to_string(_itemInfo.minDmg) + " ~ " + to_string(_itemInfo.maxDmg);
 		if (_itemInfo.minDmg == _itemInfo.maxDmg) dmg = to_string(_itemInfo.minDmg);
 
-		size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 70, 20, 0, "공격력 : ", ColorSet::WHITE);
-		FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 70, 20, 0, dmg.c_str(), ColorSet::YELLOW);
+		if (_itemInfo.minDmg > 0)
+		{
+			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 70, 20, 0, "공격력 : ", ColorSet::WHITE);
+			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 70, 20, 0, dmg.c_str(), ColorSet::YELLOW);
+		}
 
-		size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 90, 20, 0, "초당 공격 횟수 : ", ColorSet::WHITE);
-		FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 90, 20, 0, to_string(_itemInfo.atkSpeed).substr(0, 4).c_str(), ColorSet::YELLOW);
+		if (_itemInfo.accDsc != "")
+		{
+			// 악세 설명
+			FONTMANAGER->drawText(hdc, { _itemInfo.accDsc.c_str(), 130, 45, _itemInfoX + 105, _itemInfoY + 70 }, 20, 0, ColorSet::GREEN);
+		}
+
+		if (_itemInfo.atkSpeed > 0)
+		{
+			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 90, 20, 0, "초당 공격 횟수 : ", ColorSet::WHITE);
+			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 90, 20, 0, to_string(_itemInfo.atkSpeed).substr(0, 4).c_str(), ColorSet::YELLOW);
+		}
 
 		if (_itemInfo.bulletCnt > 0)
 		{
@@ -263,7 +275,7 @@ void UIManager::renderItemInfo(HDC hdc)
 		}
 
 		// 아이템 설명
-		FONTMANAGER->drawText(hdc, { _itemInfo.description.c_str(), 280, 45,_itemInfoX + 25, _itemInfoY + 140 }, 20, 0, ColorSet::ITEM_DSC);
+		FONTMANAGER->drawText(hdc, { _itemInfo.description.c_str(), 260, 45,_itemInfoX + 25, _itemInfoY + 140 }, 20, 0, ColorSet::ITEM_DSC);
 	}
 }
 

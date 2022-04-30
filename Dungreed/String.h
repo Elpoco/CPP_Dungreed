@@ -233,6 +233,11 @@ namespace ImageName
 			constexpr char* bullet02 = "WEAPON bullet02";
 		}
 
+		namespace Accessory
+		{
+			constexpr char* MultiBullet = "ACCESSORY MultiBullet";
+		}
+
 		namespace Gold
 		{
 			constexpr char* coin = "GoldCoin";

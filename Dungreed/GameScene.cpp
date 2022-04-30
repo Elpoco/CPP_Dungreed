@@ -52,14 +52,11 @@ HRESULT GameScene::init()
 	_enterFrame.width = _imgEnter->getFrameWidth();
 	_enterFrame.height = _imgEnter->getFrameHeight();
 
-	OBJECTMANAGER->addPlayer(TileSet::TOTAL_TILE_X * 0.5f, TileSet::TOTAL_TILE_Y * 0.5f);
-	OBJECTMANAGER->addNPC(Code::NPC::SHOP, 2929, 814);
 	UIMANAGER->initMiniMap();
-	UIMANAGER->initInventory();
-	ITEMMANAGER->giveItem(Code::ITEM::SHOT_SWORD);
-	//ITEMMANAGER->giveItem(Code::ITEM::BAMBOO_SWORD);
-	//ITEMMANAGER->giveItem(Code::ITEM::LIGHTSABER);
-	//ITEMMANAGER->giveItem(Code::ITEM::COLT);
+	OBJECTMANAGER->addPlayer(TileSet::TOTAL_TILE_X * 0.5f, TileSet::TOTAL_TILE_Y * 0.5f);
+	OBJECTMANAGER->addNPC(Code::NPC::SHOP, 5241, 715);
+
+	OBJECTMANAGER->addNPC(Code::NPC::SHOP, 2929, 814);
 
 	OBJECTMANAGER->addTresure(488, 696, Code::TRESURE_TYPE::GOLD);
 	OBJECTMANAGER->addTresure(388, 696, Code::TRESURE_TYPE::GOLD);

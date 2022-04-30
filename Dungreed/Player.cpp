@@ -43,6 +43,13 @@ HRESULT Player::init()
 	ITEMMANAGER->setPlayerHand(&_hand);
 	ITEMMANAGER->setPlayerLeft(&_isLeft);
 
+	UIMANAGER->initInventory();
+	ITEMMANAGER->giveItem(Code::ITEM::SHOT_SWORD);
+	//ITEMMANAGER->giveItem(Code::ITEM::BAMBOO_SWORD);
+	//ITEMMANAGER->giveItem(Code::ITEM::LIGHTSABER);
+	ITEMMANAGER->giveItem(Code::ITEM::COLT);
+	ITEMMANAGER->giveItem(Code::ITEM::MULTI_BULLET);
+
 	return S_OK;
 }
 

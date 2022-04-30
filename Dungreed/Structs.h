@@ -83,11 +83,12 @@ typedef struct tagItemInfo
 
 	int price;
 	int minDmg;
-	int maxDmg;
-	float atkSpeed;
-	int def;
-	int bulletCnt;
+	int maxDmg = 0;
+	float atkSpeed = 0;
+	int def = 0;
+	int bulletCnt = 0;
 
+	string accDsc = "";
 
 	tagItemInfo() {}
 	tagItemInfo(Code::ITEM_KIND type, Code::ITEM code, Code::ITEM_GRADE grade, string name, string description,
@@ -104,6 +105,18 @@ typedef struct tagItemInfo
 		this->atkSpeed = atkSpeed;
 		this->def = def;
 		this->bulletCnt = bulletCnt;
+	}
+
+	tagItemInfo(Code::ITEM_KIND type, Code::ITEM code, Code::ITEM_GRADE grade, string name, string description,
+		int price, string accDsc)
+	{
+		this->type = type;
+		this->code = code;
+		this->grade = grade;
+		this->name = name;
+		this->description = description;
+		this->price = price;
+		this->accDsc = accDsc;
 	}
 } ITEM_INFO;
 

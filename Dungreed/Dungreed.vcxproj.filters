@@ -166,6 +166,9 @@
     <Filter Include="MainGame\02. Object\07. NPC\Shop">
       <UniqueIdentifier>{80286c16-509b-49a3-9cb4-4afd526938a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\06. Item\Accessory">
+      <UniqueIdentifier>{0987f3dd-0df2-4e75-8fd0-8ada954fbdcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -374,6 +377,9 @@
     </ClCompile>
     <ClCompile Include="ItemShop.cpp">
       <Filter>MainGame\02. Object\07. NPC\Shop</Filter>
+    </ClCompile>
+    <ClCompile Include="Accessory.cpp">
+      <Filter>MainGame\02. Object\06. Item\Accessory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -616,6 +622,9 @@
     </ClInclude>
     <ClInclude Include="ItemShop.h">
       <Filter>MainGame\02. Object\07. NPC\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="Accessory.h">
+      <Filter>MainGame\02. Object\06. Item\Accessory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

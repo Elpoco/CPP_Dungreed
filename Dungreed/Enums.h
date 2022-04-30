@@ -146,6 +146,9 @@ namespace Code
 		COLT,
 		WEAPON_CNT,
 
+		// ¾Ç¼¼
+		MULTI_BULLET,
+
 		ITEM_CNT
 	};
 
