@@ -8,6 +8,8 @@
 #include "MiniMap.h"
 
 UIManager::UIManager()
+	: _isUI(FALSE)
+	, _isShowItemInfo(FALSE)
 {
 }
 
@@ -18,11 +20,12 @@ UIManager::~UIManager()
 HRESULT UIManager::init()
 {
 	_cursor = new Cursor;
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _cursor);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::CURSOR, _cursor);
 	ShowCursor(false);
 
 	initKeyboard();
 	initReload();
+	initItemInfo();
 
 	return S_OK;
 }
@@ -36,17 +39,63 @@ void UIManager::update()
 	updateKeyboard();
 	updateReload();
 
+	if (IsOnceKeyDown(KEY::INVENTORY)) toggleInventory();
 	if (IsOnceKeyDown(KEY::ESC))
 	{
 		if (_inventory->isOpen())
 		{
 			toggleInventory();
 		}
+		_isUI = FALSE;
 	}
 }
 
 void UIManager::render(HDC hdc)
 {
+	if (_isShowItemInfo)
+	{
+		DWORD itemColor = ColorSet::WHITE;
+		switch (_itemInfo.grade)
+		{
+		case Code::ITEM_GRADE::UNCOMMON:
+			itemColor = ColorSet::UNCOMMON;
+			break;
+		case Code::ITEM_GRADE::RARE:
+			itemColor = ColorSet::RARE;
+			break;
+		case Code::ITEM_GRADE::LEGEND:
+			itemColor = ColorSet::LEGEND;
+			break;
+		default:
+			break;
+		}
+		FONTMANAGER->drawStringCenterX(hdc, _uiCneterX, _itemInfoY + 25, 30, FW_BOLD, _itemInfo.name.c_str(), itemColor);
+
+		_imgItem = ITEMMANAGER->findImage(_itemInfo.code); 
+		_rcItem = RectMakeCenter(_itemInfoX + 56, _itemInfoY + 101, _imgItem->getFrameWidth(), _imgItem->getFrameHeight());
+		_imgItem->frameRender(hdc, _rcItem.left, _rcItem.top, 0, 0);
+
+		// 아이템 능력치
+		SIZE size;
+		string dmg = to_string(_itemInfo.minDmg) + " ~ " + to_string(_itemInfo.maxDmg);
+		if (_itemInfo.minDmg == _itemInfo.maxDmg) dmg = to_string(_itemInfo.minDmg);
+
+		size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 70, 20, 0, "공격력 : ", ColorSet::WHITE);
+		FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 70, 20, 0, dmg.c_str(), ColorSet::YELLOW);
+
+		size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 90, 20, 0, "초당 공격 횟수 : ", ColorSet::WHITE);
+		FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 90, 20, 0, to_string(_itemInfo.atkSpeed).substr(0,4).c_str(), ColorSet::YELLOW);
+
+		if (_itemInfo.bulletCnt > 0)
+		{
+			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 110, 20, 0, "장탄 수 : ", ColorSet::WHITE);
+			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 110, 20, 0, to_string(_itemInfo.bulletCnt).c_str(), ColorSet::YELLOW);
+
+		}
+
+		// 아이템 설명
+		FONTMANAGER->drawText(hdc, { _itemInfo.description.c_str(), 280, 45,_itemInfoX + 25, _itemInfoY + 140 }, 20, 0, ColorSet::ITEM_DSC);
+	}
 }
 
 void UIManager::setCursorType(UIEnum::CURSOR_TYPE cursorType)
@@ -75,14 +124,13 @@ void UIManager::initInventory()
 	ITEMMANAGER->setInventory(_inventory);
 }
 
-BOOL UIManager::onInventory()
-{
-	return _inventory->isOpen();
-}
-
 void UIManager::toggleInventory()
 {
+	if (!_inventory) return;
+
 	_inventory->toggleInventory();
+	if(_inventory->isOpen()) _isUI = TRUE;
+	else _isUI = FALSE;
 }
 
 void UIManager::initPlayerHpBar(int* maxHp, int* curHp)
@@ -146,7 +194,6 @@ void UIManager::initReload()
 
 	OBJECTMANAGER->addUI(_uiReloadBar);
 	OBJECTMANAGER->addUI(_uiReloadBase);
-	//_imgReloadEffect = FindImage(ImageName::UI::Item::reloadEffect);
 }
 
 void UIManager::updateReload()
@@ -176,5 +223,35 @@ void UIManager::showReloadBar(float reloadTime)
 	_isShowReload = TRUE;
 	_uiReloadBase->show();
 	_uiReloadBar->show();
+}
+
+void UIManager::initItemInfo()
+{
+	_uiItemInfo = new UI(ImageName::UI::Item::ItemInfo);
+	_uiItemInfo->setFree();
+	_uiItemInfo->hide();
+
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _uiItemInfo);
+}
+
+void UIManager::showItemInfo(ITEM_INFO itemInfo)
+{
+	_isShowItemInfo = TRUE;
+	_itemInfo = itemInfo;
+	_itemInfoX = _ptMouse.x - _uiItemInfo->getWidth();
+	_itemInfoY = _ptMouse.y - _uiItemInfo->getHeight();
+	_uiCneterX = _ptMouse.x - _uiItemInfo->getWidth() * 0.5f;
+
+	if (_ptMouse.y < CENTER_Y) _itemInfoY = _ptMouse.y;
+
+	_uiItemInfo->setX(_itemInfoX + _uiItemInfo->getWidth() * 0.5f);
+	_uiItemInfo->setY(_itemInfoY + _uiItemInfo->getHeight() * 0.5f);
+	_uiItemInfo->show();
+}
+
+void UIManager::hideItemInfo()
+{
+	_isShowItemInfo = FALSE;
+	_uiItemInfo->hide();
 }
 

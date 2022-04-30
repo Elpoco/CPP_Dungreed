@@ -10,7 +10,7 @@ namespace DoorSet
 	constexpr int PARTICLE_DIS = 50;
 }
 
-class Door : public NPC
+class Door : public Object
 {
 private:
 	enum class DOOR_STATE

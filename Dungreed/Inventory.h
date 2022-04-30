@@ -44,7 +44,6 @@ private:
 	BOOL _isOpen;
 	RECT _rcClose;
 
-
 	// 착용장비 (우측하단)
 	UI* _equipBase;
 	UI* _equipBaseBack;
@@ -57,6 +56,7 @@ private:
 
 	// 인벤토리
 	SLOT_INFO _arrSlot[INVEN_CNT];
+	RECT _rcBase;
 	BOOL _equipIdx;				// 착용 인덱스 0 or 1
 	int _clickCell;
 

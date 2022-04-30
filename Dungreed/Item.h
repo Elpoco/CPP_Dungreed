@@ -7,11 +7,14 @@ protected:
 	ITEM_INFO _info;
 	ImageBase* _img;
 	FRAME_INFO _frameInfo;
+	float _handle;
 
 	BOOL _isEquip;
 	int _degree;
 
 	float _lastAttack;
+
+	BOOL _isHover;
 
 public:
 	Item(Code::ITEM itemCode);
@@ -26,11 +29,13 @@ public:
 
 	void updateDegree();
 
+	void itemHover();
+
 	void equip() { _isEquip = TRUE; }
 	void unequip() { _isEquip = FALSE; }
 
 	ImageBase* getImage() { return _img; }
 	inline virtual int getDmg() override { return RND->getFromIntTo(_info.minDmg, _info.maxDmg); }
-	inline Code::ITEM_TYPE getItemType() { return _info.type; }
+	inline Code::ITEM_KIND getItemType() { return _info.type; }
 
 };

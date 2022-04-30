@@ -97,6 +97,7 @@ void Inventory::settingUI()
 	UI* invenBase = new UI(ImageName::UI::Inventory::Base);
 	invenBase->setX(WINSIZE_X - invenBase->getWidth() * 0.5f);
 	invenBase->setY(CENTER_Y);
+	_rcBase = invenBase->getRect();
 	_vUI.push_back(invenBase);
 	OBJECTMANAGER->addUI(invenBase);
 
@@ -228,16 +229,18 @@ void Inventory::onClick()
 	if (!_arrSlot[_clickCell].item)
 	{
 		_clickCell = CLICK_NONE;
-		return;
 	}
-	
-	SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
+
+	if(_clickCell != CLICK_NONE) SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
 }
 
 void Inventory::offClick()
 {
-	if (MouseInRect(_rcClose)) toggleInventory();
-
+	if (MouseInRect(_rcClose))
+	{
+		toggleInventory();
+		UIMANAGER->offUI();
+	}
 	if (_clickCell == CLICK_NONE) return;
 
 	for (int i = 0; i < INVEN_CNT; i++)
@@ -297,6 +300,7 @@ void Inventory::hoverSlot()
 		{
 			_isHover = TRUE;
 			_rcHover = _arrSlot[i].rc;
+			if (_arrSlot[i].item) _arrSlot[i].item->itemHover();
 			return;
 		}
 	}
@@ -330,13 +334,14 @@ void Inventory::equipClick()
 		// 무기를 둘다 끼고있고, 아이템을 장착하려 한다면
 		if (_arrSlot[WEAPON_0].item && _arrSlot[WEAPON_1].item && _arrSlot[_clickCell].item)
 		{
-			if (_arrSlot[_clickCell].item->getItemType() == Code::ITEM_TYPE::WEAPON)
+			if (_arrSlot[_clickCell].item->getItemType() == Code::ITEM_KIND::WEAPON)
 			{
 				Item* preItem = _arrSlot[_equipIdx].item;
 				_arrSlot[_equipIdx].item = _arrSlot[_clickCell].item;
 				_arrSlot[_clickCell].item = preItem;
 				_arrSlot[_equipIdx].item->equip();
 				preItem->unequip();
+				SOUNDMANAGER->play(SoundName::Item::Equip, _sound);
 			}
 		}
 		// 장착
@@ -362,13 +367,13 @@ BOOL Inventory::checkType(int cellIdx, Item* item)
 
 	switch (item->getItemType())
 	{
-	case Code::ITEM_TYPE::WEAPON:
+	case Code::ITEM_KIND::WEAPON:
 		res = cellIdx == WEAPON_0 || cellIdx == WEAPON_1;
 		break;
-	case Code::ITEM_TYPE::ARMOR:
+	case Code::ITEM_KIND::ARMOR:
 		res = cellIdx == ARMOR_0 || cellIdx == ARMOR_1;
 		break;
-	case Code::ITEM_TYPE::ACCESSORY:
+	case Code::ITEM_KIND::ACCESSORY:
 		res = ACC_0 <= cellIdx && cellIdx <= ACC_3;
 		break;
 	default:

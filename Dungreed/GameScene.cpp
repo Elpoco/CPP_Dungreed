@@ -53,6 +53,7 @@ HRESULT GameScene::init()
 	_enterFrame.height = _imgEnter->getFrameHeight();
 
 	OBJECTMANAGER->addPlayer(TileSet::TOTAL_TILE_X * 0.5f, TileSet::TOTAL_TILE_Y * 0.5f);
+	OBJECTMANAGER->addNPC(Code::NPC::SHOP, 2929, 814);
 
 	return S_OK;
 }
@@ -99,8 +100,6 @@ void GameScene::render()
 	}
 
 	if (_isEnter) CAMERAMANAGER->frameRender(getMemDC(), _imgEnter, _rcEnter.left, _rcEnter.top, _enterFrame.x, 0);
-
-	CAMERAMANAGER->render(getMemDC(), ImageName::NPC::giant, 3080, 710);
 }
 
 void GameScene::updateTown()

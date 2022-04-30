@@ -166,11 +166,15 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::DoorPixel, PATH_IMAGE"UI/MiniMap/MiniMapDoor.bmp");
 	// Å°º¸µå
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::F, PATH_IMAGE"UI/KeyBoard/Keyboard_F.bmp", 23, 25, true, ColorSet::MAGENTA);
-	// ÀçÀåÀü
+	// ¾ÆÀÌÅÛ
+	IMAGEMANAGER->addImage(ImageName::UI::Item::ItemInfo, PATH_IMAGE"UI/Item/ItemInfo.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::Item::reloadBar, PATH_IMAGE"UI/Item/ReloadBar.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::Item::reloadBase, PATH_IMAGE"UI/Item/ReloadBase.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Item::reloadEffect, PATH_IMAGE"UI/Item/ReloadEffect.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA);
-
+	// »óÁ¡
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::ShopBase, PATH_IMAGE"UI/Shop/ShopBase.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::ShopItem, PATH_IMAGE"UI/Shop/ShopItem.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::ShopItem_Selected, PATH_IMAGE"UI/Shop/ShopItem_Selected.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 #pragma endregion
 
 	// =======
@@ -215,10 +219,11 @@ void ImageLoader::loadImages()
 	// °ñµå
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::coin, PATH_ITEM"Gold/Coin.bmp", 0, 0, 8, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Gold::bullion, PATH_ITEM"Gold/Bullion.bmp", 0, 0, 7, 1, true, ColorSet::MAGENTA);
-	// ¼ô¼Òµå
+	// °Ë
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword.png");
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::BambooSword, PATH_ITEM"Weapon/BambooSword.png");
-	// ´õ ÄÝÆ®
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::LightSaber, PATH_ITEM"Weapon/LightSaber.png");
+	// ÃÑ
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt.png", 1, 2);
 	// ÃÑ¾Ë
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::bullet02, PATH_ITEM"Bullet/Bullet02.png");
@@ -231,6 +236,7 @@ void ImageLoader::loadImages()
 	// °Ë ÀÌÆåÆ®
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::basicSwing, PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::BambooSwing, PATH_ITEM"Effect/BambooSword_Effect.png", 3, 1);
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::SwingFX, PATH_ITEM"Effect/SwingFX.png", 3, 1);
 	// ÃÑ ÀÌÆåÆ®
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shooting, PATH_ITEM"Effect/Shooting.png", 6, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shootingHit, PATH_ITEM"Effect/Shooting_hit.png", 6, 1);

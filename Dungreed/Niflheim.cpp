@@ -223,6 +223,7 @@ void Niflheim::initPillar()
 		_pillar[i]->setPosAddress(&_x, &_y);
 		_pillar[i]->settingOrder(i);
 		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::ENEMY, _pillar[i]);
+		_pillar[i]->settingHpBar();
 	}
 	_checkPillar = true;
 }
@@ -283,7 +284,7 @@ void Niflheim::turnAround()
 		this->shootBullet(x, y, angle);
 	}
 
-	if (++_skillActCnt > BULLET_CNT + 20)
+	if (++_skillActCnt > BULLET_CNT + 10)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;
@@ -375,7 +376,7 @@ void Niflheim::teleport()
 	while (GetDistance(_x, _y, telX, telY) < 300)
 	{
 		telX = RND->getFromIntTo(400, 1050);
-		telY = RND->getFromIntTo(300, 480);
+		telY = RND->getFromIntTo(300, 430);
 	}
 	OBJECTMANAGER->addEffect(ImageName::Enemy::dieSmall, _x, _y);
 	_skill = NIFLHEIM_SKILL::NONE;

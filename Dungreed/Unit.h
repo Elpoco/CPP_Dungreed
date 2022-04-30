@@ -53,7 +53,7 @@ public:
 	virtual void deleteEffect() override {}
 
 	void move();
-	void animation();
+	void updateAnimation();
 	virtual void frameUpdateEvent() {}
 
 	void checkCollision();

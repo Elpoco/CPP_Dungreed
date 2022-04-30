@@ -41,6 +41,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Player::dash, PATH_SOUND"Dash.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Player::hit, PATH_SOUND"Hit_Player.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Player::Jumping, PATH_SOUND"Jumping.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Player::step_lth1, PATH_SOUND"step_lth1.wav", false, false);
 
 	// =========
 	// # Enemy #
@@ -84,6 +85,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::swing0, PATH_SOUND"swing0.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::swing1, PATH_SOUND"swing1.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::swing2, PATH_SOUND"swing2.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::Weapon::LightSaver, PATH_SOUND"LightSaver.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::Gun, PATH_SOUND"Gun.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Reload2, PATH_SOUND"Reload2.wav", false, false);
 

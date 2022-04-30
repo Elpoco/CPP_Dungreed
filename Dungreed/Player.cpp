@@ -47,6 +47,7 @@ HRESULT Player::init()
 
 	ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
 	ITEMMANAGER->getItem(Code::ITEM::BAMBOO_SWORD);
+	ITEMMANAGER->getItem(Code::ITEM::LIGHTSABER);
 	ITEMMANAGER->getItem(Code::ITEM::COLT);
 
 	return S_OK;
@@ -105,8 +106,7 @@ void Player::move()
 	_body = PointMake(_x, _y);
 	
 	if (_isStop) return;
-	if (IsOnceKeyDown(KEY::INVENTORY)) UIMANAGER->toggleInventory();
-	if (UIMANAGER->onInventory()) return;
+	if (UIMANAGER->isUI()) return;
 
 	if (IsStayKeyDown(KEY::LEFT))	 this->moveLeft();
 	if (IsStayKeyDown(KEY::RIGHT))	 this->moveRight();
@@ -214,7 +214,7 @@ void Player::moveRight()
 	_state = PLAYER_MOTION::RUN;
 
 	if (!_isCollision[Direction::DIR::RIGHT]) _x += _moveSpeed;
-
+	
 	if (_isDust)
 	{
 		_isDust = FALSE;

@@ -46,7 +46,7 @@ void Unit::release()
 void Unit::update()
 {
 	Object::update();
-	this->animation();
+	this->updateAnimation();
 	this->move();
 	this->updateRect();
 	this->checkCollision();
@@ -114,15 +114,13 @@ void Unit::move()
 	if (_isJump) _y -= _jumpSpeed;
 }
 
-void Unit::animation()
+void Unit::updateAnimation()
 {
 	if (_isStopAnimation) return;
 
 	_imgCurrent = _state;
 
-	_frameInfo.cnt++;
-
-	if (_frameInfo.cnt > _frameInfo.tick)
+	if (_frameInfo.cnt++ > _frameInfo.tick)
 	{
 		_frameInfo.cnt = 0;
 		_frameInfo.x++;

@@ -158,14 +158,24 @@ namespace ImageName
 
 		namespace Item
 		{
+			constexpr char* ItemInfo = "UI ITEM ItemInfo";
 			constexpr char* reloadBar = "UI ITEM reloadBar";
 			constexpr char* reloadBase = "UI ITEM reloadBase";
 			constexpr char* reloadEffect = "UI ITEM reloadEffect";
+		}
+
+		namespace NPC
+		{
+			constexpr char* ShopBase = "UI NPC ShopBase";
+			constexpr char* ShopItem = "UI NPC ShopItem";
+			constexpr char* ShopItem_Selected = "UI NPC ShopItem_Selected";
+
 		}
 	}
 
 	namespace NPC
 	{
+		constexpr char* Merchant = "NPC Merchant";
 		constexpr char* giant = "NPC giant";
 	}
 
@@ -217,6 +227,8 @@ namespace ImageName
 		{
 			constexpr char* basicShotSword = "WEAPON BasicShotSword";
 			constexpr char* BambooSword = "WEAPON BambooSword";
+			constexpr char* LightSaber = "WEAPON LightSaber";
+
 			constexpr char* colt = "WEAPON Colt";
 			constexpr char* bullet02 = "WEAPON bullet02";
 		}
@@ -234,6 +246,7 @@ namespace ImageName
 		{
 			constexpr char* basicSwing = "EFFECT BasicSwing";
 			constexpr char* BambooSwing = "EFFECT BambooSwing";
+			constexpr char* SwingFX = "EFFECT SwingFX";
 			constexpr char* shooting = "EFFECT Shooting";
 			constexpr char* shootingHit = "EFFECT ShootingHit";
 		}
@@ -291,6 +304,7 @@ namespace SoundName
 		constexpr char* dash = "SOUND PLAYER dash";
 		constexpr char* hit = "SOUND PLAYER hit";
 		constexpr char* Jumping = "SOUND PLAYER Jumping";
+		constexpr char* step_lth1 = "SOUND PLAYER step_lth1";
 	}
 
 	namespace Enemy
@@ -330,6 +344,7 @@ namespace SoundName
 			constexpr char* swing0 = "SOUND swing0";
 			constexpr char* swing1 = "SOUND swing1";
 			constexpr char* swing2 = "SOUND swing2";
+			constexpr char* LightSaver = "SOUND LightSaver";
 			constexpr char* Gun = "SOUND Gun";
 		}
 	}

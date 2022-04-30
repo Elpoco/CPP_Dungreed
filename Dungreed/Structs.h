@@ -74,27 +74,34 @@ typedef struct tagEnemyInfo
 
 typedef struct tagItemInfo
 {
-	Code::ITEM_TYPE type;
-	Code::ITEM code;
+	Code::ITEM_KIND  type;
+	Code::ITEM		 code;
+	Code::ITEM_GRADE grade;
+
 	string name;
+	string description;
+
 	int minDmg;
 	int maxDmg;
 	float atkSpeed;
 	int def;
-	int etc;
+	int bulletCnt;
+
 
 	tagItemInfo() {}
-	tagItemInfo(Code::ITEM_TYPE type, Code::ITEM code, string name, 
-		int minDmg, int maxDmg = 0, float atkSpeed = 1.0f, int def = 0, int etc = 0)
+	tagItemInfo(Code::ITEM_KIND type, Code::ITEM code, Code::ITEM_GRADE grade, string name, string description,
+		int minDmg, int maxDmg = 0, float atkSpeed = 1.0f, int def = 0, int bulletCnt = 0)
 	{
 		this->type = type;
 		this->code = code;
+		this->grade = grade;
 		this->name = name;
+		this->description = description;
 		this->minDmg = minDmg;
 		this->maxDmg = maxDmg;
 		this->atkSpeed = atkSpeed;
 		this->def = def;
-		this->etc = etc;
+		this->bulletCnt = bulletCnt;
 	}
 } ITEM_INFO;
 
@@ -148,3 +155,12 @@ typedef struct tagParticle
 		isOn = false;
 	}
 } PARTICLE;
+
+typedef struct tagStringInfo
+{
+	const char* str;
+	float width;  // 문자열이 들어갈 가로크기
+	float height; // 세로크기
+	float startX;
+	float startY;
+} STRING_INFO;

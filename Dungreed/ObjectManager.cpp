@@ -12,6 +12,9 @@
 #include "Effect.h"
 
 #include "Player.h"
+#include "NPC.h"
+#include "ShopNPC.h"
+
 #include "SkelDog.h"
 #include "LittleGhost.h"
 #include "Banshee.h"
@@ -110,6 +113,8 @@ void ObjectManager::render(HDC hdc)
 			}
 		}
 	}
+
+	UIMANAGER->render(hdc);
 }
 
 void ObjectManager::addObject(OBJ_TYPE type, Object* object)
@@ -159,7 +164,20 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 		break;
 	}
 	addObject(OBJ_TYPE::ENEMY, enemy);
-	enemy->settingHpBar();
+	if(code < Code::UNIT::BOSS) enemy->settingHpBar();
+}
+
+void ObjectManager::addNPC(Code::NPC code, float x, float y)
+{
+	NPC* npc;
+	switch (code)
+	{
+	default:
+	case Code::NPC::SHOP:
+		npc = new ShopNPC(x, y);
+		break;
+	}
+	addObject(ObjectEnum::OBJ_TYPE::NPC, npc);
 }
 
 void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage,

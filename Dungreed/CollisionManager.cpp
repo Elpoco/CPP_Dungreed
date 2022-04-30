@@ -374,8 +374,21 @@ void CollisionManager::collisionShooting()
 		{
 			RECT tmp;
 			RECT rcPlayer = player->getRect();
+			RECT rcAttack = player->getAtkRect();
 			RECT rcObj = obj->getRect();
 
+			if (CAMERAMANAGER->checkObjectInCamera(obj))
+			{
+				obj->deleteObject();
+				continue;
+			}
+
+			if (IntersectRect(&tmp, &rcAttack, &rcObj))
+			{
+				obj->collisionObject();
+				continue;
+			}
+		
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{
 				obj->collisionObject();

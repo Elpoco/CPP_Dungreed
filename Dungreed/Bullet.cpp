@@ -79,7 +79,7 @@ void Bullet::render(HDC hdc)
 	{
 		if (_isImgRotate)
 		{
-			CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _frameInfo.x, _frameInfo.y,_angle);
+			CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _frameInfo.x, _frameInfo.y, _angle);
 		}
 		else
 		{
@@ -104,12 +104,23 @@ void Bullet::deleteEffect()
 		}
 		else
 		{
-			OBJECTMANAGER->addEffect(
-				_destroyImgName,
-				_x,
-				_y,
-				_angle
-			);
+			if (_isImgRotate)
+			{
+				OBJECTMANAGER->addEffect(
+					_destroyImgName,
+					_x,
+					_y,
+					_angle
+				);
+			}
+			else
+			{
+				OBJECTMANAGER->addEffect(
+					_destroyImgName,
+					_x,
+					_y
+				);
+			}
 		}
 	}
 }

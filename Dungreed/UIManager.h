@@ -25,10 +25,12 @@ private:
 private:
 	Cursor* _cursor;
 
+	BOOL _isUI; // 켜진 UI가 있는지
+
 	Inventory* _inventory;	
 	MiniMap* _miniMap;
 
-	map<KEY, tagKeyboard> _mKey;
+	map<KEY, tagKeyboard> _mKey; // 키 이미지 보여줄때
 
 	BOOL _isShowReload;
 	UI* _uiReloadBar;
@@ -37,6 +39,18 @@ private:
 	float _reloadY;
 	float _reloadTime;
 	float _reloadStartTime;
+
+	// 아이템 정보
+	UI*			_uiItemInfo;
+	ITEM_INFO	_itemInfo;
+	ImageBase*	_imgItem;
+	RECT		_rcItem;
+	int			_uiCneterX;
+
+	BOOL	_isShowItemInfo;
+	float	_itemInfoX;
+	float	_itemInfoY;
+
 
 public:
 	UIManager();
@@ -50,7 +64,6 @@ public:
 	void setCursorType(UIEnum::CURSOR_TYPE cursorType);
 
 	void initInventory();
-	BOOL onInventory();
 	void toggleInventory();
 
 	void initPlayerHpBar(int* maxHp, int* curHp);
@@ -66,6 +79,14 @@ public:
 	void initReload();
 	void updateReload();
 	void showReloadBar(float reloadTime);
+
+	void initItemInfo();
+	void showItemInfo(ITEM_INFO itemInfo);
+	void hideItemInfo();
+
+	BOOL isUI() { return _isUI; }
+	void onUI() { _isUI = TRUE; }
+	void offUI() { _isUI = FALSE; }
 
 };
 

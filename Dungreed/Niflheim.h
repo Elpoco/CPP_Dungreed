@@ -6,9 +6,9 @@ class NiflheimPillar;
 namespace NiflheimSet
 {
 	constexpr float SKILL_TIME   = 2.0f;
-	constexpr float BULLET_SPEED = 3.5f;
+	constexpr float BULLET_SPEED = 4.0f;
 	constexpr int PILLAR_CNT	 = 4;
-	constexpr int BULLET_CNT	 = 30;
+	constexpr int BULLET_CNT	 = 20;
 	constexpr int BULLET_CNT_L	 = 19;
 	constexpr int BULLET_DMG	 = 6;
 }

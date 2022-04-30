@@ -17,8 +17,13 @@ namespace ColorSet
 	constexpr DWORD GREEN	= RGB(0, 255, 0);
 	constexpr DWORD BLUE	= RGB(0, 0, 255);
 	constexpr DWORD MAGENTA = RGB(255, 0, 255);
-	constexpr DWORD YELLOW = RGB(255, 255, 0);
+	constexpr DWORD YELLOW	= RGB(255, 255, 0);
 	constexpr DWORD WHITE	= RGB(255, 255, 255);
+
+	constexpr DWORD ITEM_DSC = RGB(202, 255, 255);
+	constexpr DWORD UNCOMMON = RGB(43, 123, 255);
+	constexpr DWORD RARE	 = RGB(255, 210, 0);
+	constexpr DWORD LEGEND	 = RGB(255, 0, 142);
 }
 
 namespace UnitSet

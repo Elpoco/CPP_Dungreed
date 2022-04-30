@@ -4,6 +4,8 @@
 Item::Item(Code::ITEM itemCode)
 	: _degree(0)
 	, _lastAttack(0.0f)
+	, _isHover(FALSE)
+	, _handle(0.0f)
 {
 	_info = DBMANAGER->getInfo(itemCode);
 }
@@ -19,6 +21,8 @@ HRESULT Item::init()
 	_frameInfo.width = _img->getFrameWidth();
 	_frameInfo.height = _img->getFrameHeight();
 
+	_handle = _frameInfo.height - 10;
+
 	return S_OK;
 }
 
@@ -30,14 +34,19 @@ void Item::update()
 {
 	if (_isEquip)
 	{
-		if (!UIMANAGER->onInventory()) updateDegree();
+		if (!UIMANAGER->isUI()) updateDegree();
 		
 		_rc = RectMake(
 			ITEMMANAGER->getPlayerHand().x,
-			ITEMMANAGER->getPlayerHand().y - _frameInfo.height * 0.5f,
+			ITEMMANAGER->getPlayerHand().y - _handle,
 			_frameInfo.width, 
 			_frameInfo.height
 		);
+	}
+	if (_isHover)
+	{
+		UIMANAGER->hideItemInfo();
+		_isHover = FALSE;
 	}
 }
 
@@ -56,6 +65,11 @@ void Item::render(HDC hdc)
 			ITEMMANAGER->getPlayerHand()
 		);
 	}
+
+	if (_isHover)
+	{
+		UIMANAGER->showItemInfo(_info);
+	}
 }
 
 void Item::updateDegree()
@@ -66,4 +80,9 @@ void Item::updateDegree()
 		CAMERAMANAGER->calAbsX(_ptMouse.x),
 		CAMERAMANAGER->calAbsY(_ptMouse.y)
 	);
+}
+
+void Item::itemHover()
+{
+	_isHover = TRUE;
 }

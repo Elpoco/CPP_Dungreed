@@ -16,7 +16,7 @@ HRESULT Gun::init()
 {
 	Item::init();
 
-	_bulletCnt = _info.etc;
+	_bulletCnt = _info.bulletCnt;
 	_reloadTime = 1.0f;
 
 	this->settingShootingPoint();
@@ -41,12 +41,12 @@ void Gun::update()
 	if (_bulletCnt <= 0)
 	{
 		_lastAttack += _reloadTime;
-		_bulletCnt = _info.etc;
+		_bulletCnt = _info.bulletCnt;
 		UIMANAGER->showReloadBar(_reloadTime);
 		SOUNDMANAGER->play(SoundName::Item::Reload2, _sound);
 	}
 
-	if (UIMANAGER->onInventory()) return;
+	if (UIMANAGER->isUI()) return;
 	this->settingShootingPoint();
 }
 

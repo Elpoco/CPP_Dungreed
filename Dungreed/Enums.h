@@ -62,11 +62,11 @@ namespace ObjectEnum
 	enum class OBJ_TYPE
 	{
 		EFFECT_BACK,
-		NPC,
 		DUNGEON_OBJ,
 		DUNGEON,
 		ENEMY,
 		ENEMY_OBJ,
+		NPC,
 		PLAYER,
 		ITEM_DROP,
 		ITEM,
@@ -76,6 +76,7 @@ namespace ObjectEnum
 		BUTTON,
 		ITEM_FRONT,
 		UI_FRONT,
+		CURSOR,
 
 		TYPE_CNT
 	};
@@ -83,10 +84,13 @@ namespace ObjectEnum
 
 namespace Code
 {
+	enum class NPC
+	{
+		SHOP,
+	};
+
 	enum class UNIT
 	{
-		PLAYER,
-
 		// 몬스터
 		SKEL_DOG,
 		LITTLE_GHOST,
@@ -98,6 +102,7 @@ namespace Code
 		SKEL_BOW,
 
 		// 보스
+		BOSS,
 		BELIAL,
 		NIFLEHEIM,
 		NIFLEHEIM_PILLAR,
@@ -106,7 +111,7 @@ namespace Code
 		NONE
 	};
 
-	enum class ITEM_TYPE
+	enum class ITEM_KIND
 	{
 		GOLD,
 		WEAPON,
@@ -116,16 +121,29 @@ namespace Code
 		ITEM_TYPE_CNT
 	};
 
+	enum class ITEM_GRADE
+	{
+		COMMON,
+		UNCOMMON,
+		RARE,
+		LEGEND
+	};
+
 	enum class ITEM
 	{
 		COIN,
 		BULLION,
 
 		ITEM,
+
 		// 무기
 		WEAPON_S,
+		// 검
 		SHOT_SWORD = 3,
 		BAMBOO_SWORD,
+		LIGHTSABER,
+
+		// 총
 		COLT,
 		WEAPON_CNT,
 
