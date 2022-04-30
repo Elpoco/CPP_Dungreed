@@ -39,8 +39,8 @@ public:
 	inline void setFree() { _isFree = TRUE; }
 
 	void show(float x, float y);
-	inline void show() { _isShow = TRUE; }
-	inline void hide() { _isShow = FALSE; }
+	virtual void show() { _isShow = TRUE; }
+	virtual void hide() { _isShow = FALSE; }
 
 	inline int getWidth() { return _width; }
 	inline int getHeight() { return _height; }

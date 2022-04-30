@@ -276,8 +276,9 @@ namespace ImageName
 		constexpr char* subBg = "DUNGEON subBg";
 
 		constexpr char* BasicTresure = "DUNGEON BasicTresure";
-		constexpr char* BlueTresureClosed = "DUNGEON BlueTresureClosed";
-		constexpr char* BossTresureClosed = "DUNGEON BossTresureClosed";
+		constexpr char* GoldTresure = "DUNGEON GoldTresure";
+		constexpr char* BlueTresure = "DUNGEON BlueTresure";
+		constexpr char* BossTresure = "DUNGEON BossTresure";
 
 		constexpr char* DungeonInn = "DUNGEON DungeonInn";
 		constexpr char* InDungeonShop = "DUNGEON InDungeonShop";

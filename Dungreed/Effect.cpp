@@ -62,17 +62,17 @@ HRESULT Effect::init()
 	_frameInfo.maxFrameX = _img->getMaxFrameX();
 	_frameInfo.maxFrameY = _img->getMaxFrameY();
 	
-	if (_frameInfo.maxFrameX > 0 || _frameInfo.maxFrameY > 0)
-	{
+	//if (_frameInfo.maxFrameX > 0 || _frameInfo.maxFrameY > 0)
+	//{
 		_frameInfo.isFrame = true;
 		_frameInfo.width = _img->getFrameWidth();
 		_frameInfo.height = _img->getFrameHeight();
-	}
-	else
-	{
-		_frameInfo.width = _img->getWidth();
-		_frameInfo.height = _img->getHeight();
-	}
+	//}
+	//else
+	//{
+	//	_frameInfo.width = _img->getWidth();
+	//	_frameInfo.height = _img->getHeight();
+	//}
 	_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
 
 	return S_OK;

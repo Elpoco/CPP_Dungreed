@@ -27,7 +27,7 @@ void ItemManager::release()
 {
 }
 
-void ItemManager::getItem(Code::ITEM code)
+Item* ItemManager::getItem(Code::ITEM code)
 {
 	Item* item;
 	switch (code)
@@ -44,8 +44,18 @@ void ItemManager::getItem(Code::ITEM code)
 		item = new Sword(code);
 		break;
 	}
+	OBJECTMANAGER->addItem(item);
+	return item;
+}
 
-	_inventory->addItem(item);
+BOOL ItemManager::giveItem(Code::ITEM code)
+{
+	return _inventory->addItem(getItem(code));
+}
+
+BOOL ItemManager::giveItem(Item* item)
+{
+	return _inventory->addItem(item);
 }
 
 ImageBase* ItemManager::findImage(Code::ITEM code)

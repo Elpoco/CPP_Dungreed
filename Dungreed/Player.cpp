@@ -37,18 +37,11 @@ HRESULT Player::init()
 
 	PLAYERMANAGER->init();
 
-	UIMANAGER->initMiniMap();
-	UIMANAGER->initInventory();
 	UIMANAGER->initPlayerHpBar(&_maxHp, &_curHp);
 
 	ITEMMANAGER->setPlayerBody(&_body);
 	ITEMMANAGER->setPlayerHand(&_hand);
 	ITEMMANAGER->setPlayerLeft(&_isLeft);
-
-	ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD);
-	ITEMMANAGER->getItem(Code::ITEM::BAMBOO_SWORD);
-	ITEMMANAGER->getItem(Code::ITEM::LIGHTSABER);
-	ITEMMANAGER->getItem(Code::ITEM::COLT);
 
 	return S_OK;
 }
@@ -275,9 +268,12 @@ void Player::jump()
 	OBJECTMANAGER->addEffect(ImageName::Player::jumpEffect, _x, _rc.bottom - 25);
 }
 
-void Player::getItem(Code::ITEM code)
+BOOL Player::getItem(Code::ITEM code)
 {
-	if (code > Code::ITEM::ITEM) ITEMMANAGER->getItem(code);
+	if (code > Code::ITEM::ITEM)
+	{
+		ITEMMANAGER->giveItem(code);
+	}
 	else
 	{
 		if (code == Code::ITEM::COIN)
@@ -288,5 +284,6 @@ void Player::getItem(Code::ITEM code)
 		{
 			PLAYERMANAGER->addCoin(100);
 		}
+		return true;
 	}
 }

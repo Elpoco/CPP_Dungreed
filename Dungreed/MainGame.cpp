@@ -41,6 +41,7 @@ void MainGame::update(void)
 {
 	GameNode::update();
 
+
 	SCENEMANAGER->update();
 
 	SOUNDMANAGER->update();
@@ -58,8 +59,8 @@ void MainGame::update(void)
 
 	if (IsOnceKeyDown(VK_MBUTTON))
 	{
-		cout << __FUNCTION__ << "_ABS_" << _ptMouse.x << ", " << _ptMouse.y << endl;
-		cout << __FUNCTION__ << "_REL_" << CAMERAMANAGER->calAbsX(_ptMouse.x) << ", " << CAMERAMANAGER->calAbsY(_ptMouse.y) << endl;
+		cout << __FUNCTION__ << "_REL_" << _ptMouse.x << ", " << _ptMouse.y << endl;
+		cout << __FUNCTION__ << "_ABS_" << CAMERAMANAGER->calAbsX(_ptMouse.x) << ", " << CAMERAMANAGER->calAbsY(_ptMouse.y) << endl;
 	}
 }
 

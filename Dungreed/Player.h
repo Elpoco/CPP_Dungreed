@@ -67,7 +67,7 @@ public:
 	void dash();
 	void jump();
 
-	void getItem(Code::ITEM code);
+	BOOL getItem(Code::ITEM code);
 
 };
 

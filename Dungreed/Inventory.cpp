@@ -59,7 +59,7 @@ void Inventory::update()
 	hoverSlot();
 
 	if (IsOnceKeyDown(KEY::CLICK_L)) onClick();
-	if (IsOnceKeyUp(KEY::CLICK_L))   offClick();
+	if (UIMANAGER->isClick())		 offClick();
 	if (IsOnceKeyUp(KEY::CLICK_R))	 equipClick();
 }
 
@@ -70,10 +70,8 @@ void Inventory::render(HDC hdc)
 	if (!_isOpen) return;
 	
 	if (_isHover) _imgHover->render(hdc, _rcHover.left, _rcHover.top);
-	string str = to_string(30000);
 	
-	int len = strlen(PLAYERMANAGER->getCoin()) - 1;
-	FONTMANAGER->drawNumber(hdc, 1212 - len * 13, 582, 30, 0, PLAYERMANAGER->getCoin(), ColorSet::YELLOW);
+	FONTMANAGER->drawNumber(hdc, 1240, 582, 30, 0, PLAYERMANAGER->getCoinChar(), ColorSet::YELLOW, DIR::RIGHT);
 
 	renderInventoryItem(hdc);
 }
@@ -465,7 +463,7 @@ void Inventory::renderInventoryItem(HDC hdc)
 	}
 }
 
-void Inventory::addItem(Item* item)
+BOOL Inventory::addItem(Item* item)
 {
 	for (int i = 0; i < INVEN_CNT; i++)
 	{
@@ -474,9 +472,9 @@ void Inventory::addItem(Item* item)
 		if (i < EQUIP_CNT && !checkType(i, item)) continue;
 
 		_arrSlot[i].item = item;
-		OBJECTMANAGER->addItem(_arrSlot[i].item);
 
 		if (i == _equipIdx) _arrSlot[i].item->equip();
-		return;
+		return TRUE;
 	}
+	return FALSE;
 }

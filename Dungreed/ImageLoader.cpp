@@ -262,8 +262,9 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorLeft, PATH_IMAGE"Dungeon/Door/Door_Left.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::DoorRight, PATH_IMAGE"Dungeon/Door/Door_Right.bmp", 0, 0, 23, 1, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BasicTresure, PATH_IMAGE"Dungeon/Tresure/BasicTresure.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BlueTresureClosed, PATH_IMAGE"Dungeon/Tresure/BlueTresureClosed.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BossTresureClosed, PATH_IMAGE"Dungeon/Tresure/BossTresureClosed.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::GoldTresure, PATH_IMAGE"Dungeon/Tresure/GoldTresure.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BlueTresure, PATH_IMAGE"Dungeon/Tresure/BlueTresure.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BossTresure, PATH_IMAGE"Dungeon/Tresure/BossTresure.bmp", 0, 0, 2, 1, true, ColorSet::MAGENTA);
 #pragma endregion
 
 	// ==========

@@ -90,7 +90,7 @@ public:
 	void renderEquipBase(HDC hdc);
 	void renderInventoryItem(HDC hdc);
 
-	void addItem(Item* item);
+	BOOL addItem(Item* item);
 
 	BOOL isOpen() { return _isOpen; }
 	Item* getEquipItem() { return _arrSlot[_equipIdx].item; }

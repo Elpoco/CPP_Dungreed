@@ -5,7 +5,7 @@ Item::Item(Code::ITEM itemCode)
 	: _degree(0)
 	, _lastAttack(0.0f)
 	, _isHover(FALSE)
-	, _handle(0.0f)
+	, _handleX(0.0f)
 {
 	_info = DBMANAGER->getInfo(itemCode);
 }
@@ -21,7 +21,7 @@ HRESULT Item::init()
 	_frameInfo.width = _img->getFrameWidth();
 	_frameInfo.height = _img->getFrameHeight();
 
-	_handle = _frameInfo.height - 10;
+	_handleY = _frameInfo.height - 5;
 
 	return S_OK;
 }
@@ -37,8 +37,8 @@ void Item::update()
 		if (!UIMANAGER->isUI()) updateDegree();
 		
 		_rc = RectMake(
-			ITEMMANAGER->getPlayerHand().x,
-			ITEMMANAGER->getPlayerHand().y - _handle,
+			ITEMMANAGER->getPlayerHand().x - _handleX,
+			ITEMMANAGER->getPlayerHand().y - _handleY,
 			_frameInfo.width, 
 			_frameInfo.height
 		);

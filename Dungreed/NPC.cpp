@@ -2,7 +2,7 @@
 #include "NPC.h"
 
 #include "UI.h"
-#include "ShopNPC.h"
+#include "ItemShop.h"
 
 NPC::NPC()
 	: _isOpen(FALSE)
@@ -11,12 +11,23 @@ NPC::NPC()
 	_y = CENTER_Y;
 }
 
+NPC::NPC(Code::NPC code, float x, float y)
+	: _code(code)
+{
+	_x = x;
+	_y = y;
+}
+
 NPC::~NPC()
 {
 }
 
 HRESULT NPC::init()
 {
+	_uiNPC = new ItemShop(&_img);
+	_uiNPC->hide();
+	OBJECTMANAGER->addUI(_uiNPC);
+	initAnimation();
 
 	return S_OK;
 }
@@ -37,6 +48,15 @@ void NPC::render(HDC hdc)
 	CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 }
 
+void NPC::initAnimation()
+{
+	_frameInfo.maxFrameX = _img->getMaxFrameX();
+
+	int width = _img->getFrameWidth();
+	int height = _img->getFrameHeight();
+	_rc = RectMakeCenter(_x, _y - height * 0.5f, width, height);
+}
+
 void NPC::updateAnimation()
 {
 	if (!_img) return;
@@ -50,7 +70,7 @@ void NPC::updateAnimation()
 
 void NPC::collisionObject()
 {
-	UIMANAGER->showKeyboard(KEY::F, _x, _rc.top);
+	if(!_isOpen) UIMANAGER->showKeyboard(KEY::F, _x, _rc.top);
 
 	if(IsOnceKeyDown(KEY::F) && !UIMANAGER->isUI()) openNpc();
 }
@@ -63,6 +83,7 @@ void NPC::openNpc()
 	{
 		ui->show();
 	}
+	_uiNPC->show();
 }
 
 void NPC::closeNpc()
@@ -73,4 +94,5 @@ void NPC::closeNpc()
 	{
 		ui->hide();
 	}
+	_uiNPC->hide();
 }

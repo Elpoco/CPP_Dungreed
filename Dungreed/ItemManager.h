@@ -22,7 +22,9 @@ public:
 
 	void setInventory(Inventory* inventory) { _inventory = inventory; }
 
-	void getItem(Code::ITEM code);
+	Item* getItem(Code::ITEM code);
+	BOOL giveItem(Code::ITEM code);
+	BOOL giveItem(Item* item);
 	Item* getEquipItem();
 
 	ImageBase* findImage(Code::ITEM code);

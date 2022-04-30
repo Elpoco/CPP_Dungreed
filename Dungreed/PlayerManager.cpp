@@ -4,7 +4,7 @@
 using namespace PlayerManagerSet;
 
 PlayerManager::PlayerManager() 
-	: _coin(0)
+	: _coin(100)
 {
 }
 

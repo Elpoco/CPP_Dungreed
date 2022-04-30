@@ -14,6 +14,7 @@ Sword::~Sword()
 HRESULT Sword::init()
 {
 	Item::init();
+	_handleX = _frameInfo.width * 0.3f;
 
 	return S_OK;
 }
@@ -33,12 +34,13 @@ void Sword::update()
 
 	if (_isFirst)
 	{
-		if (ITEMMANAGER->getPlayerIsLeft()) _degree -= 180;
+		if (ITEMMANAGER->getPlayerIsLeft()) _degree -= 200;
+		else _degree += 20;
 	}
 	else
 	{
-		if (ITEMMANAGER->getPlayerIsLeft()) _degree += 50;
-		else _degree += 130;
+		if (ITEMMANAGER->getPlayerIsLeft()) _degree += 10;
+		else _degree += 150;
 	}
 }
 

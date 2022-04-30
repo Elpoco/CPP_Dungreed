@@ -372,7 +372,7 @@
     <ClCompile Include="Skel.cpp">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Skel</Filter>
     </ClCompile>
-    <ClCompile Include="ShopNPC.cpp">
+    <ClCompile Include="ItemShop.cpp">
       <Filter>MainGame\02. Object\07. NPC\Shop</Filter>
     </ClCompile>
   </ItemGroup>
@@ -614,7 +614,7 @@
     <ClInclude Include="Skel.h">
       <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Skel</Filter>
     </ClInclude>
-    <ClInclude Include="ShopNPC.h">
+    <ClInclude Include="ItemShop.h">
       <Filter>MainGame\02. Object\07. NPC\Shop</Filter>
     </ClInclude>
   </ItemGroup>

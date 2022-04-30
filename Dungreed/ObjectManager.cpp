@@ -13,7 +13,6 @@
 
 #include "Player.h"
 #include "NPC.h"
-#include "ShopNPC.h"
 
 #include "SkelDog.h"
 #include "LittleGhost.h"
@@ -169,12 +168,12 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 
 void ObjectManager::addNPC(Code::NPC code, float x, float y)
 {
-	NPC* npc;
+	NPC* npc = new NPC(code,x ,y);
 	switch (code)
 	{
 	default:
 	case Code::NPC::SHOP:
-		npc = new ShopNPC(x, y);
+		//npc = new ShopNPC(x, y);
 		break;
 	}
 	addObject(ObjectEnum::OBJ_TYPE::NPC, npc);
@@ -255,9 +254,9 @@ void ObjectManager::addDropItem(Object* obj)
 	addObject(OBJ_TYPE::ITEM_DROP, obj);
 }
 
-void ObjectManager::addTresure(float x, float y)
+void ObjectManager::addTresure(float x, float y, Code::TRESURE_TYPE type)
 {
-	addObject(OBJ_TYPE::DUNGEON_OBJ, new Tresure(x, y));
+	addObject(OBJ_TYPE::DUNGEON_OBJ, new Tresure(x, y, type));
 }
 
 void ObjectManager::clearObjects(ObjectEnum::OBJ_TYPE type)

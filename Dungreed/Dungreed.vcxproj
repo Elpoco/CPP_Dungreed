@@ -175,6 +175,7 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />
+    <ClCompile Include="ItemShop.cpp" />
     <ClCompile Include="JsonSaveLoader.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -191,7 +192,6 @@
     <ClCompile Include="EnemyHpBar.cpp" />
     <ClCompile Include="PlayerHpBar.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
-    <ClCompile Include="ShopNPC.cpp" />
     <ClCompile Include="Skel.cpp" />
     <ClCompile Include="SkelDog.cpp" />
     <ClCompile Include="SoundLoader.cpp" />
@@ -258,6 +258,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemData.h" />
     <ClInclude Include="ItemManager.h" />
+    <ClInclude Include="ItemShop.h" />
     <ClInclude Include="JsonSaveLoader.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -275,7 +276,6 @@
     <ClInclude Include="EnemyHpBar.h" />
     <ClInclude Include="PlayerHpBar.h" />
     <ClInclude Include="PlayerManager.h" />
-    <ClInclude Include="ShopNPC.h" />
     <ClInclude Include="Skel.h" />
     <ClInclude Include="SkelDog.h" />
     <ClInclude Include="SoundLoader.h" />

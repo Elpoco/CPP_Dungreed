@@ -26,6 +26,7 @@ private:
 	Cursor* _cursor;
 
 	BOOL _isUI; // 켜진 UI가 있는지
+	BOOL _clickEvent;
 
 	Inventory* _inventory;	
 	MiniMap* _miniMap;
@@ -51,6 +52,7 @@ private:
 	float	_itemInfoX;
 	float	_itemInfoY;
 
+	// 알림창
 
 public:
 	UIManager();
@@ -73,20 +75,25 @@ public:
 	void enterDungeon();
 
 	void initKeyboard();
-	void showKeyboard(KEY key, float x, float top);
 	void updateKeyboard();
+	void showKeyboard(KEY key, float x, float top);
 
 	void initReload();
 	void updateReload();
 	void showReloadBar(float reloadTime);
 
+	// ==============
+	// # 아이템 정보 #
+	// ==============
 	void initItemInfo();
 	void showItemInfo(ITEM_INFO itemInfo);
 	void hideItemInfo();
+	void renderItemInfo(HDC hdc);
 
 	BOOL isUI() { return _isUI; }
 	void onUI() { _isUI = TRUE; }
 	void offUI() { _isUI = FALSE; }
+	BOOL isClick() { return _clickEvent; }
 
 };
 

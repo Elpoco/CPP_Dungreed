@@ -53,7 +53,8 @@ namespace Direction
 		RIGHT,
 		BOTTOM,
 		DIR_CNT,
-		NONE
+		NONE,
+		CENTER,
 	};
 }
 
@@ -136,10 +137,8 @@ namespace Code
 
 		ITEM,
 
-		// 무기
-		WEAPON_S,
 		// 검
-		SHOT_SWORD = 3,
+		SHOT_SWORD, // 아이템시작
 		BAMBOO_SWORD,
 		LIGHTSABER,
 
@@ -148,6 +147,18 @@ namespace Code
 		WEAPON_CNT,
 
 		ITEM_CNT
+	};
+
+	enum class TRESURE_TYPE
+	{
+		BASIC,
+		BLUE,
+		GOLD,
+
+		TYPE_CNT,
+		NONE,
+
+		BOSS,
 	};
 
 	enum class MAP

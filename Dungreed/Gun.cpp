@@ -18,6 +18,7 @@ HRESULT Gun::init()
 
 	_bulletCnt = _info.bulletCnt;
 	_reloadTime = 1.0f;
+	_handleY = _frameInfo.height * 0.5f;
 
 	this->settingShootingPoint();
 

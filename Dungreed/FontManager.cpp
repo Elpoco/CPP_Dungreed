@@ -61,7 +61,7 @@ void FontManager::drawText(HDC hdc, STRING_INFO stringInfo, int fontSize, int fo
 	SetTextColor(hdc, oldColor);
 }
 
-SIZE FontManager::drawText(HDC hdc, int destX, int destY, char* fontName, int fontSize, int fontWidth, const char* printString, COLORREF color, BOOL centerX)
+SIZE FontManager::drawText(HDC hdc, int destX, int destY, char* fontName, int fontSize, int fontWidth, const char* printString, COLORREF color, Direction::DIR dir)
 {
 	SetBkMode(hdc, TRANSPARENT);
 
@@ -80,8 +80,17 @@ SIZE FontManager::drawText(HDC hdc, int destX, int destY, char* fontName, int fo
 
 	SetTextColor(hdc, color);
 
-	if (centerX) 
+	switch (dir)
+	{
+	case Direction::RIGHT:
+		destX = destX - size.cx;
+		break;
+	case Direction::CENTER:
 		destX = destX - size.cx * 0.5f;
+		break;
+	default:
+		break;
+	}
 
 	TextOut(hdc, destX, destY, printString, strLen);
 
@@ -94,17 +103,12 @@ SIZE FontManager::drawText(HDC hdc, int destX, int destY, char* fontName, int fo
 	return size;
 }
 
-SIZE FontManager::drawNumber(HDC hdc, int destX, int destY, int fontSize, int fontWidth, const char* str, COLORREF colorSet)
+SIZE FontManager::drawNumber(HDC hdc, int destX, int destY, int fontSize, int fontWidth, const char* str, COLORREF colorSet, Direction::DIR dir)
 {
-	return drawText(hdc, destX, destY, FontName::num, fontSize, fontWidth, str, colorSet);
+	return drawText(hdc, destX, destY, FontName::num, fontSize, fontWidth, str, colorSet, dir);
 }
 
-SIZE FontManager::drawString(HDC hdc, int destX, int destY, int fontSize, int fontWidth, const char* str, COLORREF colorSet)
+SIZE FontManager::drawString(HDC hdc, int destX, int destY, int fontSize, int fontWidth, const char* str, COLORREF colorSet, Direction::DIR dir)
 {
-	return drawText(hdc, destX, destY, FontName::text, fontSize, fontWidth, str, colorSet);
-}
-
-SIZE FontManager::drawStringCenterX(HDC hdc, int destX, int destY, int fontSize, int fontWidth, const char* str, COLORREF colorSet)
-{
-	return drawText(hdc, destX, destY, FontName::text, fontSize, fontWidth, str, colorSet, TRUE);
+	return drawText(hdc, destX, destY, FontName::text, fontSize, fontWidth, str, colorSet, dir);
 }

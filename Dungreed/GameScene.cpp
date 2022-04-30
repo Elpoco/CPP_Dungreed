@@ -54,6 +54,16 @@ HRESULT GameScene::init()
 
 	OBJECTMANAGER->addPlayer(TileSet::TOTAL_TILE_X * 0.5f, TileSet::TOTAL_TILE_Y * 0.5f);
 	OBJECTMANAGER->addNPC(Code::NPC::SHOP, 2929, 814);
+	UIMANAGER->initMiniMap();
+	UIMANAGER->initInventory();
+	ITEMMANAGER->giveItem(Code::ITEM::SHOT_SWORD);
+	//ITEMMANAGER->giveItem(Code::ITEM::BAMBOO_SWORD);
+	//ITEMMANAGER->giveItem(Code::ITEM::LIGHTSABER);
+	//ITEMMANAGER->giveItem(Code::ITEM::COLT);
+
+	OBJECTMANAGER->addTresure(488, 696, Code::TRESURE_TYPE::GOLD);
+	OBJECTMANAGER->addTresure(388, 696, Code::TRESURE_TYPE::GOLD);
+	OBJECTMANAGER->addTresure(288, 696, Code::TRESURE_TYPE::GOLD);
 
 	return S_OK;
 }

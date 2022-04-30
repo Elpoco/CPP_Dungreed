@@ -81,6 +81,7 @@ typedef struct tagItemInfo
 	string name;
 	string description;
 
+	int price;
 	int minDmg;
 	int maxDmg;
 	float atkSpeed;
@@ -90,13 +91,14 @@ typedef struct tagItemInfo
 
 	tagItemInfo() {}
 	tagItemInfo(Code::ITEM_KIND type, Code::ITEM code, Code::ITEM_GRADE grade, string name, string description,
-		int minDmg, int maxDmg = 0, float atkSpeed = 1.0f, int def = 0, int bulletCnt = 0)
+		int price, int minDmg, int maxDmg = 0, float atkSpeed = 1.0f, int def = 0, int bulletCnt = 0)
 	{
 		this->type = type;
 		this->code = code;
 		this->grade = grade;
 		this->name = name;
 		this->description = description;
+		this->price = price;
 		this->minDmg = minDmg;
 		this->maxDmg = maxDmg;
 		this->atkSpeed = atkSpeed;

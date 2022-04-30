@@ -1,37 +1,42 @@
 #pragma once
-#include "NPC.h"
+#include "UI.h"
 
-namespace ShopNPCSet
+namespace ItemShopSet
 {
 	constexpr int MAX_ITEM_CNT = 6;
 }
 
-class ShopNPC : public NPC
+class ItemShop : public UI
 {
 private:
 	UI* _uiBase;
 	UI* _uiSelect;
-	UI* _arrUI[ShopNPCSet::MAX_ITEM_CNT];
-	RECT _arrRcUI[ShopNPCSet::MAX_ITEM_CNT];
+	UI* _arrUI[ItemShopSet::MAX_ITEM_CNT];
+	RECT _rcSlots[ItemShopSet::MAX_ITEM_CNT];
+	
+	vector<Item*> _vItems;
 
 	int _itemCnt;
 
 public:
-	ShopNPC(float x, float y);
-	virtual ~ShopNPC();
+	ItemShop();
+	ItemShop(ImageBase** img);
+	virtual ~ItemShop();
 
 	virtual HRESULT init() override;
 	virtual void release() override;
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
+	virtual void show();
+
 	void initAnimation();
 	void initUI();
 
+	void renderItemSlot(HDC hdc);
 	void hoverImg();
 
-	virtual void openNpc() override;
-	virtual void closeNpc() override;
+	void clickItem();
 
 };
 

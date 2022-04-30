@@ -36,6 +36,8 @@ void UIManager::release()
 
 void UIManager::update()
 {
+	_clickEvent = FALSE;
+	if (IsOnceKeyUp(KEY::CLICK_L)) _clickEvent = TRUE;
 	updateKeyboard();
 	updateReload();
 
@@ -52,50 +54,7 @@ void UIManager::update()
 
 void UIManager::render(HDC hdc)
 {
-	if (_isShowItemInfo)
-	{
-		DWORD itemColor = ColorSet::WHITE;
-		switch (_itemInfo.grade)
-		{
-		case Code::ITEM_GRADE::UNCOMMON:
-			itemColor = ColorSet::UNCOMMON;
-			break;
-		case Code::ITEM_GRADE::RARE:
-			itemColor = ColorSet::RARE;
-			break;
-		case Code::ITEM_GRADE::LEGEND:
-			itemColor = ColorSet::LEGEND;
-			break;
-		default:
-			break;
-		}
-		FONTMANAGER->drawStringCenterX(hdc, _uiCneterX, _itemInfoY + 25, 30, FW_BOLD, _itemInfo.name.c_str(), itemColor);
-
-		_imgItem = ITEMMANAGER->findImage(_itemInfo.code); 
-		_rcItem = RectMakeCenter(_itemInfoX + 56, _itemInfoY + 101, _imgItem->getFrameWidth(), _imgItem->getFrameHeight());
-		_imgItem->frameRender(hdc, _rcItem.left, _rcItem.top, 0, 0);
-
-		// 아이템 능력치
-		SIZE size;
-		string dmg = to_string(_itemInfo.minDmg) + " ~ " + to_string(_itemInfo.maxDmg);
-		if (_itemInfo.minDmg == _itemInfo.maxDmg) dmg = to_string(_itemInfo.minDmg);
-
-		size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 70, 20, 0, "공격력 : ", ColorSet::WHITE);
-		FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 70, 20, 0, dmg.c_str(), ColorSet::YELLOW);
-
-		size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 90, 20, 0, "초당 공격 횟수 : ", ColorSet::WHITE);
-		FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 90, 20, 0, to_string(_itemInfo.atkSpeed).substr(0,4).c_str(), ColorSet::YELLOW);
-
-		if (_itemInfo.bulletCnt > 0)
-		{
-			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 110, 20, 0, "장탄 수 : ", ColorSet::WHITE);
-			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 110, 20, 0, to_string(_itemInfo.bulletCnt).c_str(), ColorSet::YELLOW);
-
-		}
-
-		// 아이템 설명
-		FONTMANAGER->drawText(hdc, { _itemInfo.description.c_str(), 280, 45,_itemInfoX + 25, _itemInfoY + 140 }, 20, 0, ColorSet::ITEM_DSC);
-	}
+	renderItemInfo(hdc);
 }
 
 void UIManager::setCursorType(UIEnum::CURSOR_TYPE cursorType)
@@ -225,6 +184,10 @@ void UIManager::showReloadBar(float reloadTime)
 	_uiReloadBar->show();
 }
 
+// ==============
+// # 아이템 정보 #
+// ==============
+
 void UIManager::initItemInfo()
 {
 	_uiItemInfo = new UI(ImageName::UI::Item::ItemInfo);
@@ -240,9 +203,9 @@ void UIManager::showItemInfo(ITEM_INFO itemInfo)
 	_itemInfo = itemInfo;
 	_itemInfoX = _ptMouse.x - _uiItemInfo->getWidth();
 	_itemInfoY = _ptMouse.y - _uiItemInfo->getHeight();
-	_uiCneterX = _ptMouse.x - _uiItemInfo->getWidth() * 0.5f;
 
 	if (_ptMouse.y < CENTER_Y) _itemInfoY = _ptMouse.y;
+	if (_ptMouse.x < CENTER_X) _itemInfoX = _ptMouse.x;
 
 	_uiItemInfo->setX(_itemInfoX + _uiItemInfo->getWidth() * 0.5f);
 	_uiItemInfo->setY(_itemInfoY + _uiItemInfo->getHeight() * 0.5f);
@@ -253,5 +216,54 @@ void UIManager::hideItemInfo()
 {
 	_isShowItemInfo = FALSE;
 	_uiItemInfo->hide();
+}
+
+void UIManager::renderItemInfo(HDC hdc)
+{
+	if (_isShowItemInfo)
+	{
+		DWORD itemColor = ColorSet::WHITE;
+		switch (_itemInfo.grade)
+		{
+		case Code::ITEM_GRADE::UNCOMMON:
+			itemColor = ColorSet::UNCOMMON;
+			break;
+		case Code::ITEM_GRADE::RARE:
+			itemColor = ColorSet::RARE;
+			break;
+		case Code::ITEM_GRADE::LEGEND:
+			itemColor = ColorSet::LEGEND;
+			break;
+		default:
+			break;
+		}
+
+		FONTMANAGER->drawString(hdc, _itemInfoX + _uiItemInfo->getWidth() * 0.5f, _itemInfoY + 25, 30, FW_BOLD, _itemInfo.name.c_str(), itemColor, DIR::CENTER);
+
+		_imgItem = ITEMMANAGER->findImage(_itemInfo.code);
+		_rcItem = RectMakeCenter(_itemInfoX + 56, _itemInfoY + 101, _imgItem->getFrameWidth(), _imgItem->getFrameHeight());
+		_imgItem->frameRender(hdc, _rcItem.left, _rcItem.top, 0, 0);
+
+		// 아이템 능력치
+		SIZE size;
+		string dmg = to_string(_itemInfo.minDmg) + " ~ " + to_string(_itemInfo.maxDmg);
+		if (_itemInfo.minDmg == _itemInfo.maxDmg) dmg = to_string(_itemInfo.minDmg);
+
+		size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 70, 20, 0, "공격력 : ", ColorSet::WHITE);
+		FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 70, 20, 0, dmg.c_str(), ColorSet::YELLOW);
+
+		size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 90, 20, 0, "초당 공격 횟수 : ", ColorSet::WHITE);
+		FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 90, 20, 0, to_string(_itemInfo.atkSpeed).substr(0, 4).c_str(), ColorSet::YELLOW);
+
+		if (_itemInfo.bulletCnt > 0)
+		{
+			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 110, 20, 0, "장탄 수 : ", ColorSet::WHITE);
+			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 110, 20, 0, to_string(_itemInfo.bulletCnt).c_str(), ColorSet::YELLOW);
+
+		}
+
+		// 아이템 설명
+		FONTMANAGER->drawText(hdc, { _itemInfo.description.c_str(), 280, 45,_itemInfoX + 25, _itemInfoY + 140 }, 20, 0, ColorSet::ITEM_DSC);
+	}
 }
 

@@ -1,8 +1,10 @@
 #include "Stdafx.h"
 #include "Tresure.h"
 
-Tresure::Tresure(float x, float y)
+Tresure::Tresure(float x, float y, Code::TRESURE_TYPE type)
 	: _isOpen(FALSE)
+	, _isStop(FALSE)
+	, _type(type)
 {
 	_x = x;
 	_y = y;
@@ -14,29 +16,34 @@ Tresure::~Tresure()
 
 HRESULT Tresure::init()
 {
-	switch (MAPMANAGER->getCurMapCode())
+	if (_type == Code::TRESURE_TYPE::NONE)
 	{
-	case Code::MAP::BELIAL:
-	case Code::MAP::NIFLHEIM:
-		_type = TRESURE_TYPE::BOSS;
-		
-		break;
-	default:
-		_type = RND->getRndEnum(TRESURE_TYPE::BASIC, TRESURE_TYPE::TYPE_CNT);
-		break;
+		switch (MAPMANAGER->getCurMapCode())
+		{
+		case Code::MAP::BELIAL:
+		case Code::MAP::NIFLHEIM:
+			_type = Code::TRESURE_TYPE::BOSS;
+			break;
+		default:
+			_type = RND->getRndEnum(Code::TRESURE_TYPE::BASIC, Code::TRESURE_TYPE::TYPE_CNT);
+			break;
+		}
 	}
 
 	switch (_type)
 	{
 	default:
-	case Tresure::TRESURE_TYPE::BASIC:
+	case Code::TRESURE_TYPE::BASIC:
 		_img = FindImage(ImageName::Dungeon::BasicTresure);
 		break;
-	case Tresure::TRESURE_TYPE::BLUE:
-		_img = FindImage(ImageName::Dungeon::BlueTresureClosed);
+	case Code::TRESURE_TYPE::BLUE:
+		_img = FindImage(ImageName::Dungeon::BlueTresure);
 		break;
-	case Tresure::TRESURE_TYPE::BOSS:
-		_img = FindImage(ImageName::Dungeon::BossTresureClosed);
+	case Code::TRESURE_TYPE::GOLD:
+		_img = FindImage(ImageName::Dungeon::GoldTresure);
+		break;
+	case Code::TRESURE_TYPE::BOSS:
+		_img = FindImage(ImageName::Dungeon::BossTresure);
 		break;
 	}
 
@@ -59,6 +66,11 @@ void Tresure::release()
 
 void Tresure::update()
 {
+	if (!_isStop)
+	{
+		_y++;
+		_rc = RectMakeCenter(_x, _y, _img->getFrameWidth(), _img->getFrameHeight());
+	}
 }
 
 void Tresure::render(HDC hdc)
@@ -77,19 +89,25 @@ void Tresure::collisionObject()
 		SOUNDMANAGER->play(SoundName::Dungeon::OpenTresure, _sound);
 		SOUNDMANAGER->play(SoundName::Item::coin, _sound);
 
-		int maxBullion;
-		int maxCoin;
+		int maxBullion = 0;
+		int maxCoin = 1;
+		BOOL dropItem = TRUE;
 		switch (_type)
 		{
-		case Tresure::TRESURE_TYPE::BASIC:
+		case Code::TRESURE_TYPE::BASIC:
 			maxBullion = 1;
 			maxCoin = 3;
 			break;
-		case Tresure::TRESURE_TYPE::BLUE:
+		case Code::TRESURE_TYPE::BLUE:
 			maxBullion = 3;
 			maxCoin = 7;
 			break;
-		case Tresure::TRESURE_TYPE::BOSS:
+		case Code::TRESURE_TYPE::GOLD:
+			dropItem = FALSE;
+			maxBullion = 5;
+			maxCoin = 12;
+			break;
+		case Code::TRESURE_TYPE::BOSS:
 			maxBullion = 7;
 			maxCoin = 15;
 			break;
@@ -97,14 +115,16 @@ void Tresure::collisionObject()
 			break;
 		}
 
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < maxBullion; i++)
 		{
 			ITEMMANAGER->dropItem(Code::ITEM::BULLION, _x, _y, TRUE);
 		}
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < maxCoin; i++)
 		{
 			ITEMMANAGER->dropItem(Code::ITEM::COIN, _x, _y, TRUE);
 		}
-		ITEMMANAGER->dropItem(RND->getRndEnum(Code::ITEM::WEAPON_S, Code::ITEM::WEAPON_CNT), _x, _y);
+
+		if(dropItem)
+			ITEMMANAGER->dropItem(RND->getRndEnum(Code::ITEM::SHOT_SWORD, Code::ITEM::WEAPON_CNT), _x, _y);
 	}
 }

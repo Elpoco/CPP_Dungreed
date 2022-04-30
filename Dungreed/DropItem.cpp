@@ -3,7 +3,7 @@
 
 DropItem::DropItem(Code::ITEM code, float x, float y, BOOL scatter)
 	: _itemCode(code)
-	, _isStop(false)
+	, _isStop(FALSE)
 	, _dropSpeed(0)
 	, _gravity(0)
 	, _scatterX(0)

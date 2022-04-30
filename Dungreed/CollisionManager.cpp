@@ -195,9 +195,10 @@ void CollisionManager::collisionTile()
 			}
 			break;
 		case OBJ_TYPE::ITEM_DROP:
-			// ==============
-			// # 아이템 충돌 #
-			// ==============
+		case OBJ_TYPE::DUNGEON_OBJ:
+			// ============================
+			// # 아이템, 던전 오브젝트 충돌 #
+			// ============================
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getRect().bottom);
@@ -434,7 +435,7 @@ void CollisionManager::collisionButton()
 		if (PtInRect(&rcBtn, _ptMouse))
 		{
 			btn->setOn();
-			if (IsOnceKeyUp(KEY::CLICK_L))
+			if (UIMANAGER->isClick())
 			{
 				btn->onClick();
 				return;
@@ -463,9 +464,11 @@ void CollisionManager::collisionItem()
 
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj) && item->isStop())
 			{
-				player->getItem(code);
-				item->collisionObject();
-				item->pickUpPlayer(player->getX() > item->getX());
+				if (player->getItem(code))
+				{
+					item->collisionObject();
+					item->pickUpPlayer(player->getX() > item->getX());
+				}
 			}
 		}
 	}
