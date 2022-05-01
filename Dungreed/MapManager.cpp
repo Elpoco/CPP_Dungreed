@@ -43,6 +43,15 @@ HRESULT MapManager::init()
 	_isFirst = TRUE;
 	_enterTime = TIMEMANAGER->getWorldTime();
 
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ITEM_DROP);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::PLAYER_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ENEMY_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::DUNGEON_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::EFFECT);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::EFFECT_BACK);
+
+	OBJECTMANAGER->addNPC(Code::NPC::DUNGEON_SHOP, 838, 619, Code::MAP::DUNGEON_SHOP);
+
 	return S_OK;
 }
 
@@ -215,7 +224,6 @@ void MapManager::chageRoom(DIR dir)
 	TILEMANAGER->loadMap(_arrMapCode[_curLocation]);
 	settingDungeon();
 
-
 	int idx = dir;
 
 	if (idx < 2) idx += 2;
@@ -341,4 +349,15 @@ void MapManager::updateSnow()
 void MapManager::renderSnow(HDC hdc)
 {
 	_imgSnow->loopAlphaRender(hdc, &_rcSnow, _snowX, _snowY, 170);
+}
+
+Code::MAP MapManager::getCurMapCode()
+{
+	if (TILEMANAGER->getCurrentMapName() == FileName::Town ||
+		TILEMANAGER->getCurrentMapName() == FileName::testSave)
+	{
+		return Code::MAP::TOWN;
+	}
+
+	return _arrMapCode[_curLocation]; 
 }

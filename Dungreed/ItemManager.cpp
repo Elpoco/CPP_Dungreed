@@ -43,6 +43,7 @@ Item* ItemManager::getItem(Code::ITEM code)
 		item = new Gun(code);
 		break;
 	case Code::ITEM::MULTI_BULLET:
+	case Code::ITEM::MAGNIFYINGGLASS:
 		item = new Accessory(code);
 		break;
 	default:
@@ -89,6 +90,9 @@ ImageBase* ItemManager::findImage(Code::ITEM code)
 	case Code::ITEM::MULTI_BULLET:
 		imgName = ImageName::Item::Accessory::MultiBullet;
 		break;
+	case Code::ITEM::MAGNIFYINGGLASS:
+		imgName = ImageName::Item::Accessory::MagnifyingGlass;
+		break;
 	default:
 		imgName = "";
 		break;
@@ -105,4 +109,9 @@ void ItemManager::dropItem(Code::ITEM code, float x, float y, BOOL scatter)
 Item* ItemManager::getEquipItem()
 {
 	 return _inventory->getEquipItem(); 
+}
+
+Code::ITEM ItemManager::getEquipAccCode(int idx)
+{
+	return _inventory->getEquipAccCode(idx);
 }

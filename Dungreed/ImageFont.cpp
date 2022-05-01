@@ -69,7 +69,7 @@ void ImageFont::render(HDC hdc)
 			CAMERAMANAGER->frameRender(hdc, _img, _rc.left + i * (_imgWidth - 3), _rc.top, _arrNum[i], 0, _alpha);
 			if (i == _arrLen - 1)
 			{
-				CAMERAMANAGER->frameRender(hdc, _img, _rc.left + (i + 1) * (_imgWidth - 3), _rc.top, 10, 0, _alpha);
+				CAMERAMANAGER->frameRender(hdc, FindImage(ImageName::UI::Font::G), _rc.left + 5 + (i + 1) * (_imgWidth - 3), _rc.top, 0, 0, _alpha);
 			}
 			break;
 

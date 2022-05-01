@@ -26,6 +26,7 @@ public:
 	BOOL giveItem(Code::ITEM code);
 	BOOL giveItem(Item* item);
 	Item* getEquipItem();
+	Code::ITEM getEquipAccCode(int idx);
 
 	ImageBase* findImage(Code::ITEM code);
 

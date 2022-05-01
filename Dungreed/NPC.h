@@ -4,18 +4,17 @@
 class NPC : public Object
 {
 protected:
-	Code::NPC _code;
+	Code::NPC _npcCode;
+	Code::MAP _mapCode;
 	ImageBase* _img;
 	FRAME_INFO _frameInfo;
 
 	BOOL _isOpen;
-	vector<UI*> _vUI;
 
 	UI* _uiNPC;
 
 public:
-	NPC();
-	NPC(Code::NPC code, float x, float y);
+	NPC(Code::NPC code, float x, float y, Code::MAP mapCode = Code::MAP::TOWN);
 	virtual ~NPC();
 
 	virtual HRESULT init() override;

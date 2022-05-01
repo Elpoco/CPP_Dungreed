@@ -15,7 +15,7 @@ private:
 	enum INVENTORY_ENUM
 	{
 		WEAPON_0, WEAPON_1,
-		ARMOR_0, ARMOR_1,
+		SUB_WEAPON_0, SUB_WEAPON_1,
 		WEAPON_CNT = 2,
 
 		ACC_0 = 4,
@@ -78,6 +78,7 @@ public:
 	void settingUI();
 	void toggleInventory();
 	// 마우스 관련 기능
+	void clickEvent();
 	int checkCell();
 	void onClick();
 	void offClick();
@@ -87,13 +88,14 @@ public:
 	BOOL checkType(int cellIdx, Item* item);
 
 	void swapEquipSlot();
-	void renderEquipBase(HDC hdc);
+	void renderEquipBase(HDC hdc); // 우측 하단 장착
 	void renderInventoryItem(HDC hdc);
 
 	BOOL addItem(Item* item);
 
 	BOOL isOpen() { return _isOpen; }
 	Item* getEquipItem() { return _arrSlot[_equipIdx].item; }
+	Code::ITEM getEquipAccCode(int idx);
 
 };
 

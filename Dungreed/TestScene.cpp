@@ -6,9 +6,13 @@ HRESULT TestScene::init()
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
 	OBJECTMANAGER->addPlayer(CENTER_X, 500);
 	TILEMANAGER->loadMap(FileName::testSave);
+	SOUNDMANAGER->play(SoundName::TestScene, _sound);
 
-	OBJECTMANAGER->addTresure(360, 1270);
-	OBJECTMANAGER->addEnemy(Code::UNIT::SKEL_BOW, 300, 550);
+	OBJECTMANAGER->addNPC(Code::NPC::DUNGEON_SHOP, 172, 383);
+	OBJECTMANAGER->addTresure(220, 365, Code::TRESURE_TYPE::GOLD);
+	OBJECTMANAGER->addTresure(300, 365);
+	OBJECTMANAGER->addTresure(380, 365);
+	OBJECTMANAGER->addTresure(460, 365);
 
 	return S_OK;
 }

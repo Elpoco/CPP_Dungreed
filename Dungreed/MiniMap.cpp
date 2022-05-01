@@ -11,7 +11,9 @@ MiniMap::~MiniMap()
 
 HRESULT MiniMap::init()
 {
+	_imgBorder = FindImage(ImageName::UI::MiniMap::BorderPixel);
 	_imgBlock = FindImage(ImageName::UI::MiniMap::MapPixel);
+
 	_imgPlayer = FindImage(ImageName::UI::MiniMap::PlayerPixel);
 	_imgEnemy = FindImage(ImageName::UI::MiniMap::EnemyPixel);
 	_imgDoor = FindImage(ImageName::UI::MiniMap::DoorPixel);
@@ -43,11 +45,11 @@ void MiniMap::render(HDC hdc)
 				_imgBlock->render(hdc, _miniMapX + x * 5, _miniMapY + y * 5);
 			}
 
-			if (_isDungeon && _arrType[y * _tileCntX + x] == MapToolEnum::MAP_OBJ::NONE)
+			if (x == 0 || y == 0 ||
+				x == _tileCntX - 1 || y == _tileCntY - 1)
 			{
-				if (x == 0 || y == 0 || 
-					x == _tileCntX - 1 ||
-					y == _tileCntY - 1)
+				_imgBorder->render(hdc, _miniMapX + x * 5, _miniMapY + y * 5);
+				if (_isDungeon && _arrType[y * _tileCntX + x] == MapToolEnum::MAP_OBJ::NONE)
 				{
 					_imgDoor->render(hdc, _miniMapX + x * 5, _miniMapY + y * 5);
 				}
@@ -63,11 +65,20 @@ void MiniMap::render(HDC hdc)
 		);
 	}
 	_imgPlayer->render(hdc, _miniMapX + _playerX * 5, _miniMapY + _playerY * 5);
-	//PrintRectangleColor(hdc, _miniMapX, _miniMapY, _miniMapW, _miniMapH);
 }
 
 void MiniMap::settingMiniMap()
 {
+	if (TILEMANAGER->getCurrentMapName() == FileName::Town)
+	{
+		_imgBorder = FindImage(ImageName::UI::MiniMap::BorderPixel);
+		_imgBlock = FindImage(ImageName::UI::MiniMap::MapPixel);
+	}
+	else
+	{
+		_imgBlock = FindImage(ImageName::UI::MiniMap::BorderPixel);
+	}
+
 	_tileCntX = TILEMANAGER->getCurrentMapTileCntX();
 	_tileCntY = TILEMANAGER->getCurrentMapTileCntY() + 1;
 	_miniMapX = WINSIZE_X - (_tileCntX * 5) - 20;

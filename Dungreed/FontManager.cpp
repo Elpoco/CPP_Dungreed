@@ -87,6 +87,10 @@ SIZE FontManager::drawText(HDC hdc, int destX, int destY, char* fontName, int fo
 		break;
 	case Direction::CENTER:
 		destX = destX - size.cx * 0.5f;
+		destY = destY - size.cy * 0.5f;
+		break;
+	case Direction::BOTTOM:
+		destY = destY - size.cy;
 		break;
 	default:
 		break;

@@ -71,7 +71,7 @@ void UI::update()
 void UI::render(HDC hdc)
 {
 	if (!_isShow) return;
-
+	if (!_img) return;
 	if (_isFixed)
 	{
 		if (_alpha > 0) _img->frameAlphaRender(hdc, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, _alpha);

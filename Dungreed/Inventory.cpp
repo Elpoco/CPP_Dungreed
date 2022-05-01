@@ -58,9 +58,7 @@ void Inventory::update()
 
 	hoverSlot();
 
-	if (IsOnceKeyDown(KEY::CLICK_L)) onClick();
-	if (UIMANAGER->isClick())		 offClick();
-	if (IsOnceKeyUp(KEY::CLICK_R))	 equipClick();
+	if (MouseInRect(_rcBase) || MouseInRect(_rcClose)) clickEvent();
 }
 
 void Inventory::render(HDC hdc)
@@ -205,6 +203,13 @@ void Inventory::toggleInventory()
 	}
 }
 
+void Inventory::clickEvent()
+{
+	if (IsOnceKeyDown(KEY::CLICK_L)) onClick();
+	if (IsOnceKeyUp(KEY::CLICK_L))	 offClick();
+	if (IsOnceKeyUp(KEY::CLICK_R))	 equipClick();
+}
+
 int Inventory::checkCell()
 {
 	// 마우스가 올라가있는 칸의 인덱스 구하기
@@ -252,13 +257,16 @@ void Inventory::offClick()
 			// 놓을때 아이템이 있는경우
 			if (_arrSlot[i].item)
 			{
-				SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
+				if (checkType(i, _arrSlot[_clickCell].item))
+				{
+					SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
 
-				Item* preItem = _arrSlot[i].item;
-				_arrSlot[i].item = _arrSlot[_clickCell].item;
-				_arrSlot[_clickCell].item = preItem;
+					Item* preItem = _arrSlot[i].item;
+					_arrSlot[i].item = _arrSlot[_clickCell].item;
+					_arrSlot[_clickCell].item = preItem;
 
-				if(i < WEAPON_CNT) preItem->unequip();
+					if (i < WEAPON_CNT) preItem->unequip();
+				}
 			}
 			else
 			{
@@ -313,7 +321,7 @@ void Inventory::equipClick()
 	switch (_clickCell)
 	{
 	case Inventory::WEAPON_0: case Inventory::WEAPON_1:
-	case Inventory::ARMOR_0: case Inventory::ARMOR_1:
+	case Inventory::SUB_WEAPON_0: case Inventory::SUB_WEAPON_1:
 	case Inventory::ACC_0: case Inventory::ACC_1:
 	case Inventory::ACC_2: case Inventory::ACC_3:
 		// 해제
@@ -369,7 +377,7 @@ BOOL Inventory::checkType(int cellIdx, Item* item)
 		res = cellIdx == WEAPON_0 || cellIdx == WEAPON_1;
 		break;
 	case Code::ITEM_KIND::ARMOR:
-		res = cellIdx == ARMOR_0 || cellIdx == ARMOR_1;
+		res = cellIdx == SUB_WEAPON_0 || cellIdx == SUB_WEAPON_1;
 		break;
 	case Code::ITEM_KIND::ACCESSORY:
 		res = ACC_0 <= cellIdx && cellIdx <= ACC_3;
@@ -415,6 +423,18 @@ void Inventory::renderEquipBase(HDC hdc)
 		0, 
 		0
 	);
+
+	BULLET_INFO bulletInfo = _arrSlot[_equipIdx].item->getBulletInfo();
+	if (bulletInfo.maxBulletCnt > 0)
+	{
+		SIZE size;
+		int center = _equipBase->getX() + 15;
+		int bottom = _equipBase->getRect().bottom - 7;
+		size = FONTMANAGER->drawString(hdc, center, bottom, 17, 0, "/", ColorSet::WHITE, DIR::BOTTOM);
+		FONTMANAGER->drawNumber(hdc, center, bottom - size.cy, 17, 0, to_string(bulletInfo.curBulletCnt).c_str(), ColorSet::WHITE, DIR::RIGHT);
+		FONTMANAGER->drawNumber(hdc, center + size.cx, bottom - size.cy, 17, 0, to_string(bulletInfo.maxBulletCnt).c_str(), ColorSet::WHITE);
+	}
+
 }
 
 void Inventory::renderInventoryItem(HDC hdc)
@@ -477,4 +497,14 @@ BOOL Inventory::addItem(Item* item)
 		return TRUE;
 	}
 	return FALSE;
+}
+
+Code::ITEM Inventory::getEquipAccCode(int idx)
+{
+	Code::ITEM code = Code::ITEM::NONE;
+
+	if (_arrSlot[ACC_0 + idx].item)
+		code = _arrSlot[ACC_0 + idx].item->getInfo().code;
+
+	return code; 
 }

@@ -18,6 +18,8 @@ Bullet::Bullet(string imgName, float x, float y, float angle, float speed
 	_x = x;
 	_y = y;
 
+	if (damage < 1) damage = 1;
+
 	this->init();
 }
 

@@ -48,6 +48,7 @@ public:
 	int getCurrentMapTileCntY();
 	float getCurrentMapTileWidth();
 	float getCurrentMapTileHeight();
+	string getCurrentMapName() { return _curMapName; }
 
 	void getDoorPos(POINT* ptDoor);
 

@@ -6,14 +6,15 @@
 using namespace ItemShopSet;
 
 ItemShop::ItemShop()
-	: _itemCnt(MAX_ITEM_CNT)
+	: _itemCnt(0)
+	, _code(Code::NPC::SHOP)
 {
 }
 
-ItemShop::ItemShop(ImageBase** img)
-	: _itemCnt(MAX_ITEM_CNT)
+ItemShop::ItemShop(Code::NPC code)
+	: _itemCnt(0)
+	, _code(code)
 {
-	*img = FindImage(ImageName::NPC::Merchant);
 }
 
 ItemShop::~ItemShop()
@@ -24,13 +25,26 @@ HRESULT ItemShop::init()
 {
 	UI::init();
 
-	//initAnimation();
 	initUI();
+
+	int arrCode[(int)Code::ITEM::ITEM_CNT];
+	for (int i = 0; i < (int)Code::ITEM::ITEM_CNT; i++)
+	{
+		arrCode[i] = i;
+	}
+
+	for (int i = 0; i < (int)Code::ITEM::ITEM_CNT; i++)
+	{
+		int idx = RND->getInt((int)Code::ITEM::ITEM_CNT);
+		int temp = arrCode[i];
+		arrCode[i] = arrCode[idx];
+		arrCode[idx] = temp;
+	}
 
 	for (int i = 0; i < MAX_ITEM_CNT; i++)
 	{
-		Code::ITEM code = RND->getRndEnum(Code::ITEM::SHOT_SWORD, Code::ITEM::WEAPON_CNT);
-		_vItems.push_back(ITEMMANAGER->getItem(code));
+		_vItems.push_back(ITEMMANAGER->getItem((Code::ITEM)arrCode[i]));
+		_itemCnt++;
 	}
 
 	return S_OK;
@@ -48,7 +62,7 @@ void ItemShop::update()
 
 	hoverImg();
 
-	if (UIMANAGER->isClick()) clickItem();
+	if(MouseInRect(_uiBase->getRect())) clickEvent();
 }
 
 void ItemShop::render(HDC hdc)
@@ -68,7 +82,6 @@ void ItemShop::show()
 
 void ItemShop::initAnimation()
 {
-	_img = FindImage(ImageName::NPC::Merchant);
 	_frameInfo.maxFrameX = _img->getMaxFrameX();
 
 	int width = _img->getFrameWidth();
@@ -78,8 +91,14 @@ void ItemShop::initAnimation()
 
 void ItemShop::initUI()
 {
-	_img = FindImage(ImageName::UI::NPC::ShopBase);
-	_uiBase = new UI(ImageName::UI::NPC::ShopBase);
+	if (_code == Code::NPC::SHOP)
+	{
+		_uiBase = new UI(ImageName::UI::NPC::ShopBase);
+	}
+	else
+	{
+		_uiBase = new UI(ImageName::UI::NPC::DungeonShopBase);
+	}
 	_uiBase->setX(_uiBase->getWidth() * 0.5f);
 	_uiBase->setY(CENTER_Y);
 	
@@ -143,7 +162,7 @@ void ItemShop::renderItemSlot(HDC hdc)
 		}
 
 		FONTMANAGER->drawString(hdc, _rcSlots[i].left + 75, _rcSlots[i].top + 5, 26, FW_BOLD, info.name.c_str(), itemColor);
-		FONTMANAGER->drawNumber(hdc, _rcSlots[i].right - 45, _rcSlots[i].bottom - 28, 19, FW_BOLD, to_string(info.price).c_str(), ColorSet::WHITE, DIR::RIGHT);
+		FONTMANAGER->drawNumber(hdc, _rcSlots[i].right - 45, _rcSlots[i].bottom - 28, 19, 0, to_string(info.price).c_str(), ColorSet::WHITE, DIR::RIGHT);
 	}
 }
 
@@ -163,6 +182,11 @@ void ItemShop::hoverImg()
 	}
 }
 
+void ItemShop::clickEvent()
+{
+	if (IsOnceKeyUp(KEY::CLICK_L)) clickItem();
+}
+
 void ItemShop::clickItem()
 {
 	for (int i = 0; i < _itemCnt; i++)
@@ -176,6 +200,8 @@ void ItemShop::clickItem()
 				{
 					_vItems.erase(_vItems.begin() + i);
 					_itemCnt--;
+					PLAYERMANAGER->useCoin(_vItems[i]->getInfo().price);
+					SOUNDMANAGER->play(SoundName::Item::getItem, _sound);
 				}
 			}
 			break;

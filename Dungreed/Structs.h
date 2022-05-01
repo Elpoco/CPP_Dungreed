@@ -179,3 +179,9 @@ typedef struct tagStringInfo
 	float startX;
 	float startY;
 } STRING_INFO;
+
+typedef struct tagBulletInfo
+{
+	int curBulletCnt;
+	int maxBulletCnt;
+} BULLET_INFO;

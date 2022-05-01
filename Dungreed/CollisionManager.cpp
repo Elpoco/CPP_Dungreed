@@ -435,7 +435,7 @@ void CollisionManager::collisionButton()
 		if (PtInRect(&rcBtn, _ptMouse))
 		{
 			btn->setOn();
-			if (UIMANAGER->isClick())
+			if (IsOnceKeyUp(KEY::CLICK_L))
 			{
 				btn->onClick();
 				return;

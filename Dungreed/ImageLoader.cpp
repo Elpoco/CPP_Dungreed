@@ -136,8 +136,9 @@ void ImageLoader::loadImages()
 	// 이미지 폰트
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Normal_s, PATH_IMAGE"UI/Font/NormalFont.bmp", 182 * 2, 56 * 2, 26, 4, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Normal, PATH_IMAGE"UI/Font/NormalFont.bmp", 182 * 3, 56 * 3, 26, 4, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Damage, PATH_IMAGE"UI/Font/DamageFont.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA);
-	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Gold, PATH_IMAGE"UI/Font/GoldFont.bmp", 165, 26, 11, 1, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Damage, PATH_IMAGE"UI/Font/DamageFont.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Font::Gold, PATH_IMAGE"UI/Font/GoldFont.bmp", 0, 0, 10, 1, true, ColorSet::MAGENTA, 2.5f);
+	IMAGEMANAGER->addImage(ImageName::UI::Font::G, PATH_IMAGE"UI/Font/G.bmp", 0, 0, true, ColorSet::MAGENTA, 2.5f);
 	// 인벤토리
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::on, PATH_IMAGE"UI/Inventory/on.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::Base, PATH_IMAGE"UI/Inventory/InventoryBase.bmp");
@@ -164,6 +165,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::PlayerPixel, PATH_IMAGE"UI/MiniMap/MiniMapPlayer.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::EnemyPixel, PATH_IMAGE"UI/MiniMap/MiniMapEnemy.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::DoorPixel, PATH_IMAGE"UI/MiniMap/MiniMapDoor.bmp");
+	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::BorderPixel, PATH_IMAGE"UI/MiniMap/MiniMapBorder.bmp");
 	// 키보드
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::F, PATH_IMAGE"UI/KeyBoard/Keyboard_F.bmp", 23, 25, true, ColorSet::MAGENTA);
 	// 아이템
@@ -173,6 +175,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Item::reloadEffect, PATH_IMAGE"UI/Item/ReloadEffect.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA);
 	// 상점
 	IMAGEMANAGER->addImage(ImageName::UI::NPC::ShopBase, PATH_IMAGE"UI/Shop/ShopBase.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::DungeonShopBase, PATH_IMAGE"UI/Shop/DungeonShopBase.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::NPC::ShopItem, PATH_IMAGE"UI/Shop/ShopItem.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::NPC::ShopItem_Selected, PATH_IMAGE"UI/Shop/ShopItem_Selected.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 #pragma endregion
@@ -182,7 +185,9 @@ void ImageLoader::loadImages()
 	// =======
 #pragma region NPC
 	IMAGEMANAGER->addFrameImage(ImageName::NPC::Merchant, PATH_UNIT"NPC/NPC_Merchant.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA, 3.0f);
-	IMAGEMANAGER->addFrameImage(ImageName::NPC::giant, PATH_UNIT"NPC/Giant.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::NPC::Giant, PATH_UNIT"NPC/NPC_Giant.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::NPC::BlackSmith, PATH_UNIT"NPC/NPC_BlackSmith.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::NPC::Commander, PATH_UNIT"NPC/NPC_Commander.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA, 3.0f);
 #pragma endregion
 
 	// ========
@@ -227,8 +232,10 @@ void ImageLoader::loadImages()
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt.png", 1, 2);
 	// 총알
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::bullet02, PATH_ITEM"Bullet/Bullet02.png");
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Bullet02_big, PATH_ITEM"Bullet/Bullet02_big.png");
 	// 악세
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MultiBullet, PATH_ITEM"Accessory/MultiBullet.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MagnifyingGlass, PATH_ITEM"Accessory/MagnifyingGlass.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 #pragma endregion
 
 	// ==========

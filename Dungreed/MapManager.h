@@ -87,7 +87,7 @@ public:
 
 	void dieMonster() { _unitCnt--; }
 
-	Code::MAP getCurMapCode() { return _arrMapCode[_curLocation]; }
+	Code::MAP getCurMapCode();
 
 };
 

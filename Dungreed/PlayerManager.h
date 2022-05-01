@@ -33,7 +33,7 @@ public:
 	int getDashMaxCnt() { return _dashMaxCnt; }
 
 	void addCoin(int coin) { _coin += coin; }
-	BOOL useCoin(int coin) { _coin -= coin; }
+	void useCoin(int coin) { _coin -= coin; }
 
 	int getCoin() { return _coin; }
 	char* getCoinChar()

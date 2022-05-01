@@ -26,7 +26,8 @@ enum KEY
 
 	// 플레이어
 	INVENTORY = 'V',
-	CHANGE_EQUIP = 192,
+	RELOAD = 'R',
+	CHANGE_EQUIP = 192, // '~'
 };
 
 namespace MapToolEnum
@@ -88,6 +89,9 @@ namespace Code
 	enum class NPC
 	{
 		SHOP,
+		DUNGEON_SHOP,
+		BLACKSMITH,
+		COMMANDER,
 	};
 
 	enum class UNIT
@@ -132,24 +136,21 @@ namespace Code
 
 	enum class ITEM
 	{
-		COIN,
-		BULLION,
-
-		ITEM,
-
 		// 검
 		SHOT_SWORD, // 아이템시작
 		BAMBOO_SWORD,
 		LIGHTSABER,
-
 		// 총
 		COLT,
-		WEAPON_CNT,
-
 		// 악세
 		MULTI_BULLET,
+		MAGNIFYINGGLASS,
+		ITEM_CNT,
 
-		ITEM_CNT
+		COIN,
+		BULLION,
+
+		NONE,
 	};
 
 	enum class TRESURE_TYPE
@@ -200,6 +201,7 @@ namespace Code
 		// └┬┴─
 		// ─┴──
 		MAP_CNT,
+		TOWN,
 	};
 }
 

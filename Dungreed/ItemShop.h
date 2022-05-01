@@ -9,6 +9,7 @@ namespace ItemShopSet
 class ItemShop : public UI
 {
 private:
+	Code::NPC _code;
 	UI* _uiBase;
 	UI* _uiSelect;
 	UI* _arrUI[ItemShopSet::MAX_ITEM_CNT];
@@ -20,7 +21,7 @@ private:
 
 public:
 	ItemShop();
-	ItemShop(ImageBase** img);
+	ItemShop(Code::NPC code);
 	virtual ~ItemShop();
 
 	virtual HRESULT init() override;
@@ -36,6 +37,7 @@ public:
 	void renderItemSlot(HDC hdc);
 	void hoverImg();
 
+	void clickEvent();
 	void clickItem();
 
 };

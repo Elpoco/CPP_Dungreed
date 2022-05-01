@@ -4,6 +4,7 @@
 class MiniMap : public UI
 {
 private:
+	ImageBase* _imgBorder;
 	ImageBase* _imgBlock;
 	ImageBase* _imgPlayer;
 	ImageBase* _imgEnemy;

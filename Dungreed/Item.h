@@ -28,6 +28,8 @@ public:
 
 	virtual RECT attack() { return { 0,0,0,0 }; }
 
+	virtual BULLET_INFO getBulletInfo() { return { 0,0 }; }
+
 	void updateDegree();
 
 	void itemHover();

@@ -36,8 +36,6 @@ void UIManager::release()
 
 void UIManager::update()
 {
-	_clickEvent = FALSE;
-	if (IsOnceKeyUp(KEY::CLICK_L)) _clickEvent = TRUE;
 	updateKeyboard();
 	updateReload();
 
@@ -163,10 +161,10 @@ void UIManager::updateReload()
 	_reloadY = OBJECTMANAGER->getPlayer()->getY() - 45;
 	_uiReloadBase->setX(_reloadX);
 	_uiReloadBase->setY(_reloadY);
-	_uiReloadBar->setX(_reloadX - 32 + 63 * (TIMEMANAGER->getWorldTime() - _reloadStartTime));
+	_uiReloadBar->setX(_reloadX - 32 + 63 * ((TIMEMANAGER->getWorldTime() - _reloadStartTime) / _reloadTick));
 	_uiReloadBar->setY(_reloadY);
 
-	if (_reloadTime <= TIMEMANAGER->getWorldTime() - _reloadStartTime)
+	if (_reloadTick <= TIMEMANAGER->getWorldTime() - _reloadStartTime)
 	{
 		_isShowReload = FALSE;
 		_uiReloadBase->hide();
@@ -175,9 +173,9 @@ void UIManager::updateReload()
 	}
 }
 
-void UIManager::showReloadBar(float reloadTime)
+void UIManager::showReloadBar(float reloadTick)
 {
-	_reloadTime = reloadTime;
+	_reloadTick = reloadTick;
 	_reloadStartTime = TIMEMANAGER->getWorldTime();
 	_isShowReload = TRUE;
 	_uiReloadBase->show();
@@ -238,7 +236,7 @@ void UIManager::renderItemInfo(HDC hdc)
 			break;
 		}
 
-		FONTMANAGER->drawString(hdc, _itemInfoX + _uiItemInfo->getWidth() * 0.5f, _itemInfoY + 25, 30, FW_BOLD, _itemInfo.name.c_str(), itemColor, DIR::CENTER);
+		FONTMANAGER->drawString(hdc, _itemInfoX + _uiItemInfo->getWidth() * 0.5f, _itemInfoY + 38, 30, FW_BOLD, _itemInfo.name.c_str(), itemColor, DIR::CENTER);
 
 		_imgItem = ITEMMANAGER->findImage(_itemInfo.code);
 		_rcItem = RectMakeCenter(_itemInfoX + 56, _itemInfoY + 101, _imgItem->getFrameWidth(), _imgItem->getFrameHeight());

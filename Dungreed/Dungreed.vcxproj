@@ -164,6 +164,7 @@
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="FoodShop.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="ImageFont.cpp" />
     <ClCompile Include="FontManager.cpp" />
@@ -246,6 +247,7 @@
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="FoodShop.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="ImageFont.h" />
     <ClInclude Include="FontManager.h" />

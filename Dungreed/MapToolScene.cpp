@@ -77,7 +77,7 @@ HRESULT MapToolScene::init()
 		_imgTextBox->getFrameHeight()
 	);
 
-	SOUNDMANAGER->play(SoundName::niflheimBG, _sound);
+	SOUNDMANAGER->play(SoundName::MapTool, _sound);
 
 	return S_OK;
 }
@@ -86,7 +86,7 @@ void MapToolScene::release()
 {
 	SAFE_DELETE(_camera);
 	KEYMANAGER->deleteStr();
-	SOUNDMANAGER->stop(SoundName::niflheimBG);
+	SOUNDMANAGER->stop(SoundName::MapTool);
 }
 
 void MapToolScene::update()

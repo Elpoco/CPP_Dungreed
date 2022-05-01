@@ -26,7 +26,6 @@ private:
 	Cursor* _cursor;
 
 	BOOL _isUI; // 켜진 UI가 있는지
-	BOOL _clickEvent;
 
 	Inventory* _inventory;	
 	MiniMap* _miniMap;
@@ -38,7 +37,7 @@ private:
 	UI* _uiReloadBase;
 	float _reloadX;
 	float _reloadY;
-	float _reloadTime;
+	float _reloadTick;
 	float _reloadStartTime;
 
 	// 아이템 정보
@@ -80,7 +79,7 @@ public:
 
 	void initReload();
 	void updateReload();
-	void showReloadBar(float reloadTime);
+	void showReloadBar(float reloadTick);
 
 	// ==============
 	// # 아이템 정보 #
@@ -93,7 +92,6 @@ public:
 	BOOL isUI() { return _isUI; }
 	void onUI() { _isUI = TRUE; }
 	void offUI() { _isUI = FALSE; }
-	BOOL isClick() { return _clickEvent; }
 
 };
 

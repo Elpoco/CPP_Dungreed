@@ -125,6 +125,6 @@ void Tresure::collisionObject()
 		}
 
 		if(dropItem)
-			ITEMMANAGER->dropItem(RND->getRndEnum(Code::ITEM::SHOT_SWORD, Code::ITEM::WEAPON_CNT), _x, _y);
+			ITEMMANAGER->dropItem(RND->getRndEnum(Code::ITEM::SHOT_SWORD, Code::ITEM::ITEM_CNT), _x, _y);
 	}
 }

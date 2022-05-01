@@ -45,10 +45,11 @@ HRESULT Player::init()
 
 	UIMANAGER->initInventory();
 	ITEMMANAGER->giveItem(Code::ITEM::SHOT_SWORD);
-	//ITEMMANAGER->giveItem(Code::ITEM::BAMBOO_SWORD);
-	//ITEMMANAGER->giveItem(Code::ITEM::LIGHTSABER);
+	ITEMMANAGER->giveItem(Code::ITEM::BAMBOO_SWORD);
+	ITEMMANAGER->giveItem(Code::ITEM::LIGHTSABER);
 	ITEMMANAGER->giveItem(Code::ITEM::COLT);
 	ITEMMANAGER->giveItem(Code::ITEM::MULTI_BULLET);
+	ITEMMANAGER->giveItem(Code::ITEM::MAGNIFYINGGLASS);
 
 	return S_OK;
 }
@@ -238,7 +239,7 @@ void Player::attack()
 		if (_isDebug)
 		{
 			// 디버그모드 공격 (무기 안들어야함)
-			_rcAttack = RectMakeCenter(_hand.x, _hand.y, WINSIZE_X * 2, WINSIZE_Y * 2);
+			_rcAttack = RectMakeCenter(_hand.x, _hand.y, WINSIZE_X * 3, WINSIZE_Y * 3);
 		}
 	}
 }
@@ -277,7 +278,7 @@ void Player::jump()
 
 BOOL Player::getItem(Code::ITEM code)
 {
-	if (code > Code::ITEM::ITEM)
+	if (code < Code::ITEM::ITEM_CNT)
 	{
 		ITEMMANAGER->giveItem(code);
 	}

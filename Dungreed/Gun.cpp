@@ -3,8 +3,15 @@
 
 #include "Effect.h"
 
+using namespace GunSet;
+
 Gun::Gun(Code::ITEM code)
 	: Item(code)
+	, _isReload(FALSE)
+	, _bulletSpeed(DEFAULT_BULLET_SPEED)
+	, _reloadTick(DEFAULT_RELOAD_TICK)
+	, _itemAtkSpeed(0.0f)
+	, _itemDmg(0)
 {
 }
 
@@ -17,7 +24,6 @@ HRESULT Gun::init()
 	Item::init();
 
 	_bulletCnt = _info.bulletCnt;
-	_reloadTime = 1.0f;
 	_handleY = _frameInfo.height * 0.5f;
 
 	this->settingShootingPoint();
@@ -38,14 +44,22 @@ void Gun::update()
 	_rc.left -= 10;
 	_frameInfo.y = ITEMMANAGER->getPlayerIsLeft();
 
-
-	if (_bulletCnt <= 0)
+	// 총알을 다 쓰거나 재장전 키 누를때
+	BOOL isReloadKey = IsOnceKeyDown(KEY::RELOAD) && _bulletCnt < _info.bulletCnt;
+	if (!_isReload && (_bulletCnt <= 0 || isReloadKey))
 	{
-		_lastAttack += _reloadTime;
-		_bulletCnt = _info.bulletCnt;
-		UIMANAGER->showReloadBar(_reloadTime);
+		_isReload = TRUE;
+		_lastAttack += _reloadTick;
+		_reloadStartTime = TIMEMANAGER->getWorldTime();
+		UIMANAGER->showReloadBar(_reloadTick);
 		SOUNDMANAGER->play(SoundName::Item::Reload2, _sound);
 	}
+	if (_isReload && _reloadStartTime + _reloadTick < TIMEMANAGER->getWorldTime())
+	{
+		_isReload = FALSE;
+		_bulletCnt = _info.bulletCnt;
+	}
+
 
 	if (UIMANAGER->isUI()) return;
 	this->settingShootingPoint();
@@ -58,7 +72,9 @@ void Gun::render(HDC hdc)
 
 RECT Gun::attack()
 {
-	if (_lastAttack + 1.0f / _info.atkSpeed >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	settingAcc();
+
+	if (_lastAttack + 1.0f / (_info.atkSpeed * _itemAtkSpeed) >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
 	_lastAttack = TIMEMANAGER->getWorldTime();
 	if (--_bulletCnt < 0) return { 0,0,0,0 };
 
@@ -71,20 +87,90 @@ RECT Gun::attack()
 	effect->setFollowing(&_shootingX, &_shootingY, &_degree);
 	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::EFFECT, effect);
 
+	if (_isMulti)
+	{
+		shootMultiBullet();
+	}
+
 	OBJECTMANAGER->addBullet(
 		ObjectEnum::OBJ_TYPE::PLAYER_OBJ,
-		ImageName::Item::Weapon::bullet02,
+		_bulletImgName,
 		_shootingX,
 		_shootingY,
 		_angle + RND->getFloat(0.08f) - 0.04f,
-		5.0f,
-		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
+		_bulletSpeed,
+		RND->getFromIntTo(_info.minDmg + _itemDmg, _info.maxDmg + _itemDmg),
 		ImageName::Effect::Weapon::shootingHit
 	);
 
 	SOUNDMANAGER->play(SoundName::Item::Weapon::Gun, _sound);
 
 	return { 0,0,0,0 };
+}
+
+void Gun::settingAcc()
+{
+	_isMulti = FALSE;
+	_isSize = FALSE;
+	_itemAtkSpeed = 1.0f;
+	_itemDmg = 0;
+
+	for (int i = 0; i < 4; i++)
+	{
+		Code::ITEM code = ITEMMANAGER->getEquipAccCode(i);
+		switch (code)
+		{
+		case Code::ITEM::MULTI_BULLET:
+			_isMulti = TRUE;
+			break;
+		case Code::ITEM::MAGNIFYINGGLASS:
+			_isSize = TRUE;
+			break;
+		default:
+			break;
+		}
+	}
+
+	if (_isSize)
+	{
+		_bulletImgName = ImageName::Item::Weapon::Bullet02_big;
+		_itemAtkSpeed -= 0.7f;
+		_itemDmg += 5;
+	}
+	else
+	{
+		_bulletImgName = ImageName::Item::Weapon::bullet02;
+	}
+
+	if (_isMulti)
+	{
+		_itemDmg -= 3;
+	}
+}
+
+void Gun::shootMultiBullet()
+{
+	OBJECTMANAGER->addBullet(
+		ObjectEnum::OBJ_TYPE::PLAYER_OBJ,
+		_bulletImgName,
+		_shootingX,
+		_shootingY,
+		_angle + RND->getFloat(0.08f) + 0.02f,
+		_bulletSpeed,
+		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
+		ImageName::Effect::Weapon::shootingHit
+	);
+
+	OBJECTMANAGER->addBullet(
+		ObjectEnum::OBJ_TYPE::PLAYER_OBJ,
+		_bulletImgName,
+		_shootingX,
+		_shootingY,
+		_angle + RND->getFloat(0.08f) - 0.1f,
+		_bulletSpeed,
+		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
+		ImageName::Effect::Weapon::shootingHit
+	);
 }
 
 void Gun::settingShootingPoint()

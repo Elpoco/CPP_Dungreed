@@ -24,7 +24,7 @@ public:
 	void addObject(ObjectEnum::OBJ_TYPE type, Object* object);
 	void addPlayer(float x, float y);
 	void addEnemy(Code::UNIT code, float x, float y);
-	void addNPC(Code::NPC code, float x, float y);
+	void addNPC(Code::NPC code, float x, float y, Code::MAP mapCode = Code::MAP::TOWN);
 	void addBullet(ObjectEnum::OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, 
 		int damage = 1, string destroyImgName = "", float distance = 1500, BOOL super = FALSE, BOOL imgRotate = TRUE);
 	

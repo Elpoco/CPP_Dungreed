@@ -28,6 +28,7 @@ public:
 		_info[TO_INT(Code::ITEM::COLT)]			= { Code::ITEM_KIND::WEAPON, Code::ITEM::COLT, Code::ITEM_GRADE::COMMON, "더 콜트", "\"그는 모두를 자유롭게 했고, 그녀는 모두를 평등하게 했다.\"", 500, 3, 5, 8.33f, 1, 12 };
 		// 악세
 		_info[TO_INT(Code::ITEM::MULTI_BULLET)]	= { Code::ITEM_KIND::ACCESSORY, Code::ITEM::MULTI_BULLET, Code::ITEM_GRADE::RARE, "갈래총탄", "\"탄을 세 갈래로 나누어 뿌려준다. 공격력도 세 갈래가 된다.\"", 1500, "총알이 3갈래로 발사되지만, 대미지가 감소" };
+		_info[TO_INT(Code::ITEM::MAGNIFYINGGLASS)]	= { Code::ITEM_KIND::ACCESSORY, Code::ITEM::MAGNIFYINGGLASS, Code::ITEM_GRADE::UNCOMMON, "마법의 돋보기", "\"보는 대상을 실제로 더 크게 만들어 줍니다.\"", 800, "총알의 크기가 커지고 대미지가 증가하지만, 공격속도 30% 감소" };
 	}
 	~ItemData() {}
 

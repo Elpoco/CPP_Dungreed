@@ -31,6 +31,8 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::belialBG, PATH_SOUND"JailBoss.wav", true, true);
 	SOUNDMANAGER->addSound(SoundName::IceDungeon, PATH_SOUND"2.IceField.wav", true, true);
 	SOUNDMANAGER->addSound(SoundName::niflheimBG, PATH_SOUND"2.IceBoss.wav", true, true);
+	SOUNDMANAGER->addSound(SoundName::TestScene, PATH_SOUND"3.junglefield.wav", true, true);
+	SOUNDMANAGER->addSound(SoundName::MapTool, PATH_SOUND"5.forestfield.wav", true, true);
 
 	SOUNDMANAGER->addSound(SoundName::dungeonEat, PATH_SOUND"DungeonEat.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::dungeonEat2, PATH_SOUND"DungeonEat2.wav", false, false);
@@ -87,6 +89,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::swing2, PATH_SOUND"swing2.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::LightSaver, PATH_SOUND"LightSaver.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::Gun, PATH_SOUND"Gun.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::Reload, PATH_SOUND"Reload.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Reload2, PATH_SOUND"Reload2.wav", false, false);
 
 	// ===========

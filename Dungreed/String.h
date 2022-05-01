@@ -111,6 +111,7 @@ namespace ImageName
 			constexpr char* Normal = "FONT Normal";
 			constexpr char* Damage = "FONT Damage";
 			constexpr char* Gold = "FONT Gold";
+			constexpr char* G = "FONT G";
 		}
 
 		namespace Inventory
@@ -149,6 +150,7 @@ namespace ImageName
 			constexpr char* PlayerPixel = "MINIMAP PlayerPixel";
 			constexpr char* EnemyPixel = "MINIMAP EnemyPixel";
 			constexpr char* DoorPixel = "MINIMAP DoorPixel";
+			constexpr char* BorderPixel = "MINIMAP BorderPixel";
 		}
 
 		namespace Keyboard
@@ -167,6 +169,7 @@ namespace ImageName
 		namespace NPC
 		{
 			constexpr char* ShopBase = "UI NPC ShopBase";
+			constexpr char* DungeonShopBase = "UI NPC DungeonShopBase";
 			constexpr char* ShopItem = "UI NPC ShopItem";
 			constexpr char* ShopItem_Selected = "UI NPC ShopItem_Selected";
 
@@ -176,7 +179,9 @@ namespace ImageName
 	namespace NPC
 	{
 		constexpr char* Merchant = "NPC Merchant";
-		constexpr char* giant = "NPC giant";
+		constexpr char* Giant = "NPC Giant";
+		constexpr char* BlackSmith = "NPC BlackSmith";
+		constexpr char* Commander = "NPC Commander";
 	}
 
 	namespace Background
@@ -231,11 +236,13 @@ namespace ImageName
 
 			constexpr char* colt = "WEAPON Colt";
 			constexpr char* bullet02 = "WEAPON bullet02";
+			constexpr char* Bullet02_big = "WEAPON Bullet02_big";
 		}
 
 		namespace Accessory
 		{
 			constexpr char* MultiBullet = "ACCESSORY MultiBullet";
+			constexpr char* MagnifyingGlass = "ACCESSORY MagnifyingGlass";
 		}
 
 		namespace Gold
@@ -304,6 +311,8 @@ namespace SoundName
 	constexpr char* invenOpen = "SOUND invenOpen";
 	constexpr char* swapEquip = "SOUND swapEquip";
 	constexpr char* FireBall = "SOUND FireBall";
+	constexpr char* TestScene = "SOUND TestScene";
+	constexpr char* MapTool = "SOUND MapTool";
 
 	namespace Player
 	{
@@ -343,6 +352,7 @@ namespace SoundName
 		constexpr char* getItem		= "SOUND ITEM getItem";
 		constexpr char* Equip		= "SOUND ITEM Equip";
 		constexpr char* PickUpItem	= "SOUND ITEM PickUpItem";
+		constexpr char* Reload = "SOUND Reload";
 		constexpr char* Reload2		= "SOUND Reload2";
 
 		namespace Weapon
