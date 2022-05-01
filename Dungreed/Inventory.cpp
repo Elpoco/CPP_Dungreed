@@ -332,8 +332,8 @@ void Inventory::equipClick()
 
 			SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
 			_arrSlot[i].item = _arrSlot[_clickCell].item;
-			_arrSlot[_clickCell].item = NULL;
 			_arrSlot[i].item->unequip();
+			_arrSlot[_clickCell].item = NULL;
 			break;
 		}
 		break;
@@ -360,6 +360,7 @@ void Inventory::equipClick()
 			_arrSlot[i].item = _arrSlot[_clickCell].item;
 			_arrSlot[_clickCell].item = NULL;
 			if(i == _equipIdx) _arrSlot[i].item->equip();
+			else if (i >= ACC_0 && i < ACC_CNT) _arrSlot[i].item->equip();
 			break;
 		}
 		break;
@@ -428,7 +429,7 @@ void Inventory::renderEquipBase(HDC hdc)
 	if (bulletInfo.maxBulletCnt > 0)
 	{
 		SIZE size;
-		int center = _equipBase->getX() + 15;
+		int center = _equipBase->getX() + 10;
 		int bottom = _equipBase->getRect().bottom - 7;
 		size = FONTMANAGER->drawString(hdc, center, bottom, 17, 0, "/", ColorSet::WHITE, DIR::BOTTOM);
 		FONTMANAGER->drawNumber(hdc, center, bottom - size.cy, 17, 0, to_string(bulletInfo.curBulletCnt).c_str(), ColorSet::WHITE, DIR::RIGHT);
@@ -494,6 +495,7 @@ BOOL Inventory::addItem(Item* item)
 		_arrSlot[i].item = item;
 
 		if (i == _equipIdx) _arrSlot[i].item->equip();
+		if (i >= ACC_0 &&  i < ACC_CNT) _arrSlot[i].item->equip();
 		return TRUE;
 	}
 	return FALSE;

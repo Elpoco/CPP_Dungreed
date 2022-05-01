@@ -66,10 +66,9 @@ void MainGame::update(void)
 
 void MainGame::render(void)
 {
-	PatBlt(getMemDC(), 0, 0, WINSIZE_X, WINSIZE_Y, WHITENESS);
+	PatBlt(getMemDC(), 0, 0, WINSIZE_X, WINSIZE_Y, BLACKNESS);
 
 	SetTextColor(getMemDC(), ColorSet::BLACK);
-
 
 	if (SCENEMANAGER->getChangeScene())
 	{

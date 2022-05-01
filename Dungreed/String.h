@@ -3,6 +3,7 @@ namespace ImageName
 {
 	constexpr char* none = "IMG none";
 	constexpr char* ChangeScene = "IMG ChangeScene";
+	constexpr char* BossIntro = "IMG BossIntro";
 
 	namespace Player
 	{
@@ -143,6 +144,9 @@ namespace ImageName
 		{
 			constexpr char* back = "MonsterHpBar back";
 			constexpr char* gauge = "MonsterHpBar gauge";
+			constexpr char* BossLifeBack = "MonsterHpBar BossLifeBack";
+			constexpr char* BossLifeBase = "MonsterHpBar BossLifeBase";
+			constexpr char* BossSkellPortrait = "MonsterHpBar BossSkellPortrait";
 		}
 
 		namespace MiniMap
@@ -198,6 +202,11 @@ namespace ImageName
 			constexpr char* Lemonade = "FOOD 08_Lemonade";
 			constexpr char* DeluxeBurger = "FOOD 09_DeluxeBurger";
 			constexpr char* ChocolateCookie = "FOOD 10_ChocolateCookie";
+		}
+
+		namespace Ability
+		{
+			constexpr char* Label = "ABILITY Label";
 		}
 	}
 
@@ -261,6 +270,7 @@ namespace ImageName
 			constexpr char* LightSaber = "WEAPON LightSaber";
 
 			constexpr char* colt = "WEAPON Colt";
+			constexpr char* GatlingGun = "WEAPON GatlingGun";
 			constexpr char* bullet02 = "WEAPON bullet02";
 			constexpr char* Bullet02_big = "WEAPON Bullet02_big";
 		}
@@ -269,6 +279,7 @@ namespace ImageName
 		{
 			constexpr char* MultiBullet = "ACCESSORY MultiBullet";
 			constexpr char* MagnifyingGlass = "ACCESSORY MagnifyingGlass";
+			constexpr char* Wingboots = "ACCESSORY Wingboots";
 		}
 
 		namespace Gold

@@ -20,11 +20,13 @@ void FontManager::drawText(HDC hdc, STRING_INFO stringInfo, int fontSize, int fo
 	int strLen = strlen(stringInfo.str);
 
 	SIZE size;
+	SIZE spaceSize;
 	GetTextExtentPoint32(hdc, stringInfo.str, strLen, &size);
 
 	if (size.cx > stringInfo.width)
 	{
 		// 공백크기는 4, 16
+		GetTextExtentPoint32(hdc, " ", strlen(" "), &spaceSize);
 		int len = strLen + 1;
 		char* tmp = new char[len];
 		strcpy(tmp, stringInfo.str);
@@ -34,16 +36,16 @@ void FontManager::drawText(HDC hdc, STRING_INFO stringInfo, int fontSize, int fo
 		int strWidth = 0;
 		int line = 0;
 
-		for (int i = 0; arrStr != NULL; i++)
+		while (arrStr != NULL)
 		{
-			TextOut(hdc, stringInfo.startX + strWidth, stringInfo.startY + line * size.cy, arrStr, strlen(arrStr));
 			GetTextExtentPoint32(hdc, arrStr, strlen(arrStr), &size);
-			strWidth += size.cx + 4;
-			if (strWidth > stringInfo.width)
+			if (strWidth + size.cx >= stringInfo.width)
 			{
 				strWidth = 0;
 				line++;
 			}
+			TextOut(hdc, stringInfo.startX + strWidth, stringInfo.startY + line * size.cy, arrStr, strlen(arrStr));
+			strWidth += size.cx + spaceSize.cx;
 			arrStr = strtok(NULL, " ");
 		}
 

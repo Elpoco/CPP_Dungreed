@@ -5,6 +5,7 @@ class UI;
 class Cursor;
 class Inventory;
 class MiniMap;
+class ImageFont;
 
 class UIManager : public SingletonBase<UIManager>
 {
@@ -51,7 +52,11 @@ private:
 	float	_itemInfoX;
 	float	_itemInfoY;
 
-	// ¾Ë¸²Ã¢
+	UI* _bossIntro;
+	ImageFont* _bossInfo;
+	BOOL _showBossInfo;
+	float _showStartTime;
+	float _showInfoTime;
 
 public:
 	UIManager();
@@ -92,6 +97,8 @@ public:
 	BOOL isUI() { return _isUI; }
 	void onUI() { _isUI = TRUE; }
 	void offUI() { _isUI = FALSE; }
+
+	void showBossInfo(char* bossName);
 
 };
 

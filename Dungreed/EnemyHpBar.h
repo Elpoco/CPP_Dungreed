@@ -14,6 +14,8 @@ private:
 	ImageBase* _imgGauge;
 	RECT	   _rcGauge;
 
+	BOOL _isBoss;
+
 	float*	_x;
 	float*	_y;
 	float	_moveY;

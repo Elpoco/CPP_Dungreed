@@ -39,7 +39,6 @@ private:
 
 	FRAME_INFO _tableFrame;
 	RECT _rcExitBtn;
-	BOOL _isHoverBtn;
 	tagFood _food[FoodShopSet::TOTAL_FOOD];
 	
 

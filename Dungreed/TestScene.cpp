@@ -8,11 +8,13 @@ HRESULT TestScene::init()
 	TILEMANAGER->loadMap(FileName::testSave);
 	SOUNDMANAGER->play(SoundName::TestScene, _sound);
 
-	OBJECTMANAGER->addNPC(Code::NPC::DUNGEON_SHOP, 172, 383);
-	OBJECTMANAGER->addTresure(220, 365, Code::TRESURE_TYPE::GOLD);
-	OBJECTMANAGER->addTresure(300, 365);
-	OBJECTMANAGER->addTresure(380, 365);
-	OBJECTMANAGER->addTresure(460, 365);
+	OBJECTMANAGER->addNPC(Code::NPC::DUNGEON_SHOP, 172, 386);
+	OBJECTMANAGER->addNPC(Code::NPC::INN, 408, 383);
+	OBJECTMANAGER->addTresure(220, 825, Code::TRESURE_TYPE::GOLD);
+	OBJECTMANAGER->addTresure(300, 825);
+	OBJECTMANAGER->addTresure(380, 825);
+	OBJECTMANAGER->addTresure(460, 825);
+	OBJECTMANAGER->addTresure(540, 820, Code::TRESURE_TYPE::BOSS);
 
 	return S_OK;
 }
@@ -23,10 +25,6 @@ void TestScene::release()
 
 void TestScene::update()
 {
-	if (IsOnceKeyDown('Z'))
-	{
-		OBJECTMANAGER->addEnemy(Code::UNIT::SKEL_DOG, 500, 800);
-	}
 	if (IsStayKeyDown('B') && IsOnceKeyDown(VK_F1))
 	{
 		OBJECTMANAGER->addEnemy(Code::UNIT::BELIAL, 1000, 550);

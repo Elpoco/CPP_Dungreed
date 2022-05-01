@@ -57,6 +57,7 @@ void ImageFont::update()
 
 void ImageFont::render(HDC hdc)
 {
+	if (!_isShow) return;
 	for (int i = 0; i < _arrLen; i++)
 	{
 		switch (_type)
@@ -137,6 +138,7 @@ void ImageFont::initNumber()
 		_arrNum[i] = _num % 10;
 		_num *= 0.1f;
 	}
+	_rc = RectMakeCenter(_x, _y, _imgWidth * _arrLen, _imgHeight);
 }
 
 void ImageFont::initString()
@@ -149,6 +151,7 @@ void ImageFont::initString()
 	{
 		_arrNum[i] = _str[i];
 	}
+	_rc = RectMakeCenter(_x, _y, _imgWidth * _arrLen, _imgHeight);
 }
 
 void ImageFont::settingImage(FONT_TYPE type)
@@ -177,4 +180,10 @@ void ImageFont::setNumber(int num)
 {
 	_num = num;
 	initNumber();
+}
+
+void ImageFont::setString(char* str)
+{
+	_str = str;
+	initString();
 }

@@ -172,6 +172,9 @@
     <Filter Include="MainGame\02. Object\07. NPC\Food">
       <UniqueIdentifier>{3f89c355-e58a-4242-97fc-3ae42770549a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\07. NPC\Ability">
+      <UniqueIdentifier>{2d38a6de-c7a0-40b0-8bc0-629ebd50a36b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -386,6 +389,9 @@
     </ClCompile>
     <ClCompile Include="FoodShop.cpp">
       <Filter>MainGame\02. Object\07. NPC\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Ability.cpp">
+      <Filter>MainGame\02. Object\07. NPC\Ability</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -634,6 +640,9 @@
     </ClInclude>
     <ClInclude Include="FoodShop.h">
       <Filter>MainGame\02. Object\07. NPC\Food</Filter>
+    </ClInclude>
+    <ClInclude Include="Ability.h">
+      <Filter>MainGame\02. Object\07. NPC\Ability</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

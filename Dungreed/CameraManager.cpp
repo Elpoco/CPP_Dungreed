@@ -11,6 +11,14 @@ CameraManager::CameraManager()
 	, _isLock(true)
 	, _mapWidth(WINSIZE_X)
 	, _mapHeight(WINSIZE_Y)
+	, _isShake(FALSE)
+	, _shakingMaxCnt(0)
+	, _shakingCnt(0)
+	, _shakeCnt(0)
+	, _shakeTick(5)
+	, _shakeDirX(1)
+	, _shakeDirY(1)
+	, _isMove(FALSE)
 {
 }
 
@@ -29,6 +37,31 @@ void CameraManager::release()
 
 void CameraManager::update()
 {
+	if (_isMove)
+	{
+		if (GetDistance(_x, _y, _moveX, _moveY) > 10)
+		{
+			float angle = GetAngle(_x, _y, _moveX, _moveY);
+			_x += cosf(angle) * _moveSpeed;
+			_y -= sinf(angle) * _moveSpeed;
+
+			if (_x < 0) _x = 0;
+			if (_y < 0) _y = 0;
+			if (_x > _mapWidth - WINSIZE_X) _x = _mapWidth - WINSIZE_X;
+			if (_y > _mapHeight - WINSIZE_Y) _y = _mapHeight - WINSIZE_Y;
+
+			_lastTime = TIMEMANAGER->getWorldTime();
+		}
+		else
+		{
+			if (_lastTime + _stopTime < TIMEMANAGER->getWorldTime())
+			{
+				_isMove = FALSE;
+			}
+		}
+		return;
+	}
+
 	if (_object != nullptr && _isFollow)
 	{
 		float x = _object->getX();
@@ -43,6 +76,22 @@ void CameraManager::update()
 			if (_y < 0) _y = 0;
 			if (_x > _mapWidth - WINSIZE_X) _x = _mapWidth - WINSIZE_X;
 			if (_y > _mapHeight - WINSIZE_Y) _y = _mapHeight - WINSIZE_Y;
+		}
+	}
+
+	if (_isShake && ++_shakeCnt >= _shakeTick)
+	{
+		_shakeCnt = 0;
+		_x += 3 * _shakeDirX;
+		_y -= 3 * _shakeDirY;
+		_shakeDirX *= -1;
+		if(_shakingCnt % 2 == 0)
+		_shakeDirY *= -1;
+		if (++_shakingCnt >= _shakingMaxCnt)
+		{
+			_isShake = FALSE;
+			_shakingMaxCnt = 0;
+			_shakingCnt = 0;
 		}
 	}
 }
@@ -177,4 +226,20 @@ POINT CameraManager::calRelPt(POINT pt)
 POINT CameraManager::calAbsPt(POINT pt)
 {
 	return PointMake(pt.x + _x, pt.y + _y);
+}
+
+void CameraManager::cameraShake(int cnt)
+{
+	_isShake = TRUE;
+	_shakingMaxCnt = cnt;
+	_shakingCnt = 0;
+}
+
+void CameraManager::cameraMove(float x, float y, float speed, float stopTime)
+{
+	_isMove = TRUE;
+	_moveX = x - CENTER_X;
+	_moveY = y - CENTER_Y;
+	_moveSpeed = speed;
+	_stopTime = stopTime;
 }

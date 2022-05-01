@@ -102,9 +102,14 @@ void Enemy::animation()
 
 void Enemy::hitAttack(int dmg, int dir)
 {
+	if(!PLAYERMANAGER->getTrueDmg())
+		dmg -= _info.def;
+
+	if (dmg < 1) dmg = 1;
+
 	_curHp -= dmg;
 
-	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
+	OBJECTMANAGER->addDynamicImageFont(_x + RND->getInt(10) - 5, _rc.top + RND->getInt(10) - 5, dmg, dir);
 	SOUNDMANAGER->play(SoundName::Enemy::hit, _sound);
 	if (_curHp < 1)
 	{

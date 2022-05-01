@@ -84,8 +84,8 @@ private:
 	int	  _shootDir;
 
 	ImageBase*		_imgHand[STATE_CNT];
-	BELIAL_HAND _hand[RL];
-	int			_laserDir;
+	BELIAL_HAND		_hand[RL];
+	int				_laserDir;
 
 	int _dmg;
 

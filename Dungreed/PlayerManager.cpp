@@ -4,7 +4,9 @@
 using namespace PlayerManagerSet;
 
 PlayerManager::PlayerManager() 
-	: _coin(100)
+	: _level(1)
+	, _coin(0)
+	, _trueDmg(FALSE)
 {
 }
 
@@ -31,6 +33,9 @@ void PlayerManager::release()
 
 void PlayerManager::update()
 {
+	if (IsStayKeyDown(KEY::P) && IsOnceKeyDown(KEY::UP_ARROW)) _level++;
+	if (IsStayKeyDown(KEY::P) && IsOnceKeyDown(KEY::DOWN_ARROW) && _level > 1) _level--;
+
 	chargeDash();
 }
 
@@ -46,7 +51,11 @@ void PlayerManager::dash()
 
 void PlayerManager::chargeDash()
 {
-	if (_dashMaxCnt == _dashCnt) return;
+	if (_dashMaxCnt <= _dashCnt)
+	{
+		_dashCnt = _dashMaxCnt;
+		return;
+	}
 	if (_dashTime + _dashChargeTime < TIMEMANAGER->getWorldTime() || _isDebug)
 	{
 		_dashTime = TIMEMANAGER->getWorldTime();

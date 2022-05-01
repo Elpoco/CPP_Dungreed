@@ -16,6 +16,21 @@ private:
 	float _mapWidth;
 	float _mapHeight;
 
+	BOOL _isShake;
+	int _shakingMaxCnt;
+	int _shakingCnt;
+	int _shakeTick;
+	int _shakeCnt;
+	int _shakeDirX;
+	int _shakeDirY;
+
+	BOOL _isMove;
+	float _moveX;
+	float _moveY;
+	float _moveSpeed;
+	float _lastTime;
+	float _stopTime;
+
 public:
 	CameraManager();
 	~CameraManager();
@@ -46,6 +61,8 @@ public:
 	void followCamera(Object* object);
 	void cameraInitPos();
 	void updateMapSize();
+	void setCameraPos(float x, float y) { _x = x - CENTER_X; _y = y - CENTER_Y; }
+
 	inline void lockCamera() { _isLock = true; }
 	inline void unlockCamera() { _isLock = false; }
 	inline void startFollow() { _isFollow = true; }
@@ -61,6 +78,10 @@ public:
 	inline RECT calRelRc(RECT rc) { return { (long)(rc.left - _x), (long)(rc.top - _y), (long)(rc.right - _x), (long)(rc.bottom - _y) }; }
 	POINT calRelPt(POINT pt);
 	POINT calAbsPt(POINT pt);
+
+	void cameraShake(int cnt);
+	void cameraMove(float x, float y, float speed, float stopTime = 0.0f);
+	BOOL isCameraMove() { return _isMove; }
 
 };
 

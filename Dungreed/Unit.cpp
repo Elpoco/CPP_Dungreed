@@ -10,7 +10,9 @@ Unit::Unit()
 	, _isStopAnimation(false)
 	, _isLeft(FALSE)
 	, _isJump(FALSE)
+	, _isJumpFlag(FALSE)
 	, _isDownJump(FALSE)
+	, _isDownFlag(FALSE)
 	, _isFall(TRUE)
 	, _isFlying(FALSE)
 	, _isHit(FALSE)
@@ -138,7 +140,9 @@ void Unit::checkCollision()
 	{
 		_isFall = FALSE;
 		_isJump = FALSE;
+		_isJumpFlag = FALSE;
 		_isDownJump = FALSE;
+		_isDownFlag = FALSE;
 		_gravity = 0.0f;
 	}
 	else if (_isCollision[Direction::DIR::TOP])
@@ -228,6 +232,8 @@ void Unit::updateRect()
 
 void Unit::jump()
 {
+	if (_isJumpFlag) return;
+	_isJumpFlag = TRUE;
 	_isJump = TRUE;
 	_isDownJump = FALSE;
 	_isFall = TRUE;
@@ -237,7 +243,8 @@ void Unit::jump()
 
 void Unit::downJump()
 {
-	if (_isDownJump) return;
+	if (_isDownFlag) return;
+	_isDownFlag = TRUE;
 	_isDownJump = TRUE;
 	_isFall = TRUE;
 	_gravity = 0.0f;

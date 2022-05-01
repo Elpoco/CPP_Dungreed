@@ -82,7 +82,7 @@ void Skel::move()
 			if (GetDistance(PointMake(_x, _y), _ptPlayer) > 110)
 			{
 				int h = _ptPlayer.y - _y;
-				if (h > 150)
+				if (h > 170)
 				{
 					Unit::downJump();
 				}

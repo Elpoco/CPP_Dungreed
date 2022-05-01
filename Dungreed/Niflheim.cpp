@@ -12,7 +12,7 @@ Niflheim::Niflheim(float x, float y)
 	, _skillTick(0)
 	, _skillCnt(0)
 	, _skillActCnt(0)
-	, _skillAuto(TRUE)
+	, _skillAuto(FALSE)
 	, _skillCooldown(TIMEMANAGER->getWorldTime())
 {
 	_startSpawn = TRUE;
@@ -46,6 +46,9 @@ HRESULT Niflheim::init()
 
 	_bulletSound = TIMEMANAGER->getWorldTime();
 
+	CAMERAMANAGER->cameraMove(_x, _y, 5, 5);
+	UIMANAGER->showBossInfo("Niflheim");
+
 	return S_OK;
 }
 
@@ -67,6 +70,11 @@ void Niflheim::update()
 	this->move();
 	Unit::updateRect();
 	this->animation();
+
+	if (!_skillAuto && !CAMERAMANAGER->isCameraMove())
+	{
+		_skillAuto = TRUE;
+	}
 
 	if (IsStayKeyDown('B') && IsOnceKeyDown('0')) _skillAuto = !_skillAuto;
 	if (IsStayKeyDown('B') && IsOnceKeyDown('1')) _skill = NIFLHEIM_SKILL::AROUND;
@@ -179,8 +187,14 @@ void Niflheim::hitAttack(int dmg, int dir)
 	{
 		if (_pillar[i]) return;
 	}
+
+	if (!PLAYERMANAGER->getTrueDmg())
+		dmg -= _info.def;
+
+	if (dmg < 1) dmg = 1;
+
 	_curHp -= dmg;
-	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
+	OBJECTMANAGER->addDynamicImageFont(_x + RND->getInt(10) - 5, _rc.top + RND->getInt(10) - 5, dmg, dir);
 	if (_curHp < 1)
 	{
 		_isLive = FALSE;

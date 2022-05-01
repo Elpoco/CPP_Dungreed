@@ -203,11 +203,45 @@ void CollisionManager::collisionTile()
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getRect().bottom);
-				if (tile.type == MAP_OBJ::BLOCK ||
-					tile.type == MAP_OBJ::DOWN)
+				RECT rcObj = obj->getRect();
+
+				float moveX = 0.0f;
+				float moveY = 0.0f;
+
+				switch (tile.type)
 				{
+				case MAP_OBJ::BLOCK:
+				case MAP_OBJ::DOWN:
+					if (tile.x < obj->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
+					{
+						obj->pushObject(DIR::LEFT, tile.rc.right);
+					}
+					else if (tile.x > obj->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
+					{
+						obj->pushObject(DIR::RIGHT, tile.rc.left);
+					}
+					else if (obj->getRect().bottom < tile.y)
+					{
+						obj->pushObject(DIR::BOTTOM, tile.rc.top);
+						obj->stopObject();
+					}
+					break;
+				case MAP_OBJ::BLOCK_L:
+				case MAP_OBJ::BLOCK_R:
+					if (tile.type == DOWN_R || tile.type == BLOCK_R)
+					{
+						moveY = rcObj.right - tile.rc.left;
+					}
+					else
+					{
+						moveY = tile.rc.right - rcObj.left;
+					}
+
+					obj->pushObject(DIR::BOTTOM, tile.rc.bottom - moveY + 2);
 					obj->stopObject();
-					obj->pushObject(DIR::BOTTOM, tile.rc.top);
+					break;
+				default:
+					break;
 				}
 			}
 			break;
@@ -261,11 +295,14 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 				case MAP_OBJ::BLOCK_R:	case MAP_OBJ::BLOCK_L:
 					if (unit->isJumping()) break;
 
-					if (tile.type == DOWN_R ||
-						tile.type == BLOCK_R)
+					if (tile.type == DOWN_R || tile.type == BLOCK_R)
+					{
 						moveY = rcObj.right - tile.rc.left;
-					else 
+					}
+					else
+					{
 						moveY = tile.rc.right - rcObj.left;
+					}
 
 					if (moveY >= TILE_SIZE || moveY <= 0) continue;
 
@@ -385,11 +422,12 @@ void CollisionManager::collisionShooting()
 				continue;
 			}
 
-			if (IntersectRect(&tmp, &rcAttack, &rcObj))
-			{
-				obj->collisionObject();
-				continue;
-			}
+			// 적 총알 부수기
+			//if (IntersectRect(&tmp, &rcAttack, &rcObj))
+			//{
+			//	obj->collisionObject();
+			//	continue;
+			//}
 		
 			if (IntersectRect(&tmp, &rcPlayer, &rcObj))
 			{

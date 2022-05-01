@@ -8,6 +8,7 @@ EnemyHpBar::EnemyHpBar(float* x, float* y, int* maxHp, int* curHp)
 	, _y(y)
 	, _maxHp(maxHp)
 	, _curHp(curHp)
+	, _isBoss(FALSE)
 {
 }
 

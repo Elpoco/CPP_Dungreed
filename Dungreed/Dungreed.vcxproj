@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ability.cpp" />
     <ClCompile Include="Accessory.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Banshee.cpp" />
@@ -224,6 +225,7 @@
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ability.h" />
     <ClInclude Include="Accessory.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Banshee.h" />

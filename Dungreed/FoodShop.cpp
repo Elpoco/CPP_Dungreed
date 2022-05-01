@@ -31,10 +31,8 @@ void FoodShop::update()
 	UI::update();
 	animation();
 
-	_isHoverBtn = FALSE;
 	if (MouseInRect(_rcExitBtn))
 	{
-		_isHoverBtn = TRUE;
 		if (IsOnceKeyUp(KEY::CLICK_L)) UIMANAGER->offUI();
 	}
 
@@ -49,7 +47,7 @@ void FoodShop::render(HDC hdc)
 	_imgBack->render(hdc, 0, 0);
 	_imgTable->frameRender(hdc, _uiBase3->getRect().left + 1, _uiBase3->getRect().top + 1, _tableFrame.x, 0);
 	_uiLabel->render(hdc);
-	_imgButton->frameRender(hdc, _rcExitBtn.left, _rcExitBtn.top, 0, _isHoverBtn);
+	_imgButton->frameRender(hdc, _rcExitBtn.left, _rcExitBtn.top, 0, MouseInRect(_rcExitBtn));
 	_uiBase0->render(hdc);
 	_uiBase3->render(hdc);
 	_uiRect->render(hdc);
@@ -109,7 +107,6 @@ void FoodShop::initUI()
 	_imgButton = FindImage(ImageName::UI::Button::Exit);
 
 	_tableFrame.maxFrameX = _imgTable->getMaxFrameX();
-	_isHoverBtn = FALSE;
 
 	_uiLabel = new UI(ImageName::UI::NPC::FoodShopLabel);
 	_uiLabel->setX(CENTER_X);

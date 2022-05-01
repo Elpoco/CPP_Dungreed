@@ -25,7 +25,9 @@ protected:
 
 	BOOL _isLeft;
 	BOOL _isJump;
+	BOOL _isJumpFlag;
 	BOOL _isDownJump;
+	BOOL _isDownFlag;
 	BOOL _isFall;
 	BOOL _isFlying;
 	BOOL _isDash;

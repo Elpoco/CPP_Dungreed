@@ -78,6 +78,8 @@ RECT Sword::attack()
 		break;
 	}
 
+	CAMERAMANAGER->cameraShake(3);
+
 	return OBJECTMANAGER->addEffect(
 		effectName,
 		effectX,
@@ -85,4 +87,32 @@ RECT Sword::attack()
 		RadToDeg(effectAngle),
 		PointMake(effectX, effectY)
 	);
+}
+
+void Sword::equip()
+{
+	Item::equip();
+
+	switch (_info.code)
+	{
+	case Code::ITEM::LIGHTSABER:
+		PLAYERMANAGER->setTrueDmg(TRUE);
+		break;
+	default:
+		break;
+	}
+}
+
+void Sword::unequip()
+{
+	Item::unequip();
+
+	switch (_info.code)
+	{
+	case Code::ITEM::LIGHTSABER:
+		PLAYERMANAGER->setTrueDmg(FALSE);
+		break;
+	default:
+		break;
+	}
 }

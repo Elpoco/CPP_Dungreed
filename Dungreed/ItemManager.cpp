@@ -40,10 +40,12 @@ Item* ItemManager::getItem(Code::ITEM code)
 		item = new Sword(code);
 		break;
 	case Code::ITEM::COLT:
+	case Code::ITEM::GATLINGGUN:
 		item = new Gun(code);
 		break;
 	case Code::ITEM::MULTI_BULLET:
 	case Code::ITEM::MAGNIFYINGGLASS:
+	case Code::ITEM::WINGBOOTS:
 		item = new Accessory(code);
 		break;
 	default:
@@ -87,11 +89,17 @@ ImageBase* ItemManager::findImage(Code::ITEM code)
 	case Code::ITEM::COLT:
 		imgName = ImageName::Item::Weapon::colt;
 		break;
+	case Code::ITEM::GATLINGGUN:
+		imgName = ImageName::Item::Weapon::GatlingGun;
+		break;
 	case Code::ITEM::MULTI_BULLET:
 		imgName = ImageName::Item::Accessory::MultiBullet;
 		break;
 	case Code::ITEM::MAGNIFYINGGLASS:
 		imgName = ImageName::Item::Accessory::MagnifyingGlass;
+		break;
+	case Code::ITEM::WINGBOOTS:
+		imgName = ImageName::Item::Accessory::Wingboots;
 		break;
 	default:
 		imgName = "";

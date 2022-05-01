@@ -78,14 +78,14 @@ RECT Gun::attack()
 	_lastAttack = TIMEMANAGER->getWorldTime();
 	if (--_bulletCnt < 0) return { 0,0,0,0 };
 
-	Effect* effect = new Effect(ImageName::Effect::Weapon::shooting,
-		_shootingX,
-		_shootingY,
-		_degree,
-		PointMake(_shootingX, _shootingY)
-	);
-	effect->setFollowing(&_shootingX, &_shootingY, &_degree);
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::EFFECT, effect);
+	//Effect* effect = new Effect(ImageName::Effect::Weapon::shooting,
+	//	_shootingX,
+	//	_shootingY,
+	//	_degree,
+	//	PointMake(_shootingX, _shootingY)
+	//);
+	//effect->setFollowing(&_shootingX, &_shootingY, &_degree);
+	//OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::EFFECT, effect);
 
 	if (_isMulti)
 	{
@@ -178,7 +178,7 @@ void Gun::settingShootingPoint()
 	// 총구 위치 구하기
 	_angle = GetAngle(ITEMMANAGER->getPlayerBody(), CAMERAMANAGER->calAbsPt(_ptMouse));
 	_shootingX = ITEMMANAGER->getPlayerHand().x + cosf(_angle) * _frameInfo.width;
-	_shootingX += ITEMMANAGER->getPlayerIsLeft() ? 12 : -12;
-	_shootingY = ITEMMANAGER->getPlayerHand().y - sinf(_angle) * _frameInfo.height - 8;
+	_shootingX += ITEMMANAGER->getPlayerIsLeft() ? _frameInfo.width * 0.2 : _frameInfo.width * -0.2;
+	_shootingY = ITEMMANAGER->getPlayerHand().y - sinf(_angle) * _frameInfo.height;
 	_degree = RadToDeg(_angle);
 }

@@ -4,6 +4,7 @@
 #include "UI.h"
 #include "ItemShop.h"
 #include "FoodShop.h"
+#include "Ability.h"
 
 NPC::NPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 	: _isOpen(FALSE)
@@ -28,6 +29,7 @@ NPC::NPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 		_img = FindImage(ImageName::NPC::BlackSmith);
 		break;
 	case Code::NPC::COMMANDER:
+		//_uiNPC = new Ability;
 		_img = FindImage(ImageName::NPC::Commander);
 		break;
 	case Code::NPC::INN:

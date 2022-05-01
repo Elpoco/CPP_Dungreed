@@ -117,4 +117,16 @@ void MiniMap::updateUnitPosition()
 			)
 		);
 	}
+
+	_vObject = OBJECTMANAGER->getNPC();
+	for (auto obj : *_vObject)
+	{
+		if (!obj->isRender()) continue;
+		_vEnemyPt.push_back(
+			PointMake(
+				obj->getX() / TILE_SIZE,
+				obj->getY() / TILE_SIZE
+			)
+		);
+	}
 }

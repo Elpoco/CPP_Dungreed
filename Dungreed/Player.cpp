@@ -41,11 +41,17 @@ HRESULT Player::init()
 
 	UIMANAGER->initInventory();
 	ITEMMANAGER->giveItem(Code::ITEM::SHOT_SWORD);
-	ITEMMANAGER->giveItem(Code::ITEM::BAMBOO_SWORD);
-	ITEMMANAGER->giveItem(Code::ITEM::LIGHTSABER);
-	ITEMMANAGER->giveItem(Code::ITEM::COLT);
-	ITEMMANAGER->giveItem(Code::ITEM::MULTI_BULLET);
-	ITEMMANAGER->giveItem(Code::ITEM::MAGNIFYINGGLASS);
+
+	if (_isDebug)
+	{
+		ITEMMANAGER->giveItem(Code::ITEM::BAMBOO_SWORD);
+		ITEMMANAGER->giveItem(Code::ITEM::LIGHTSABER);
+		ITEMMANAGER->giveItem(Code::ITEM::COLT);
+		ITEMMANAGER->giveItem(Code::ITEM::MULTI_BULLET);
+		ITEMMANAGER->giveItem(Code::ITEM::MAGNIFYINGGLASS);
+		ITEMMANAGER->giveItem(Code::ITEM::WINGBOOTS);
+		ITEMMANAGER->giveItem(Code::ITEM::GATLINGGUN);
+	}
 
 	return S_OK;
 }
@@ -103,7 +109,7 @@ void Player::move()
 	_body = PointMake(_x, _y);
 	
 	if (_isStop) return;
-	if (UIMANAGER->isUI()) return;
+	if (UIMANAGER->isUI() || CAMERAMANAGER->isCameraMove()) return;
 
 	if (IsStayKeyDown(KEY::LEFT))	 this->moveLeft();
 	if (IsStayKeyDown(KEY::RIGHT))	 this->moveRight();
@@ -248,7 +254,7 @@ void Player::dash()
 
 	_isDash = TRUE;
 	_isJump = FALSE;
-	_isDownJump = FALSE;
+	_isDownFlag = TRUE;
 	_dashAngle = GetAngle(PointMake(_x, _y), CAMERAMANAGER->calAbsPt(_ptMouse));
 	
 	if (_isLeft)
@@ -265,7 +271,7 @@ void Player::dash()
 
 void Player::jump()
 {
-	if (_isJump && !_isDebug) return;
+	if (_isJumpFlag && !_isDebug) return;
 
 	SOUNDMANAGER->play(SoundName::Player::Jumping, _sound);
 	Unit::jump();

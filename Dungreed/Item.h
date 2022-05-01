@@ -34,8 +34,8 @@ public:
 
 	void itemHover();
 
-	inline void equip() { _isEquip = TRUE; }
-	inline void unequip() { _isEquip = FALSE; }
+	virtual void equip() { _isEquip = TRUE; }
+	virtual void unequip() { _isEquip = FALSE; }
 
 	inline ImageBase* getImage() { return _img; }
 	inline virtual int getDmg() override { return RND->getFromIntTo(_info.minDmg, _info.maxDmg); }

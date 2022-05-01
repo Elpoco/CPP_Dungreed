@@ -158,7 +158,6 @@ void MapManager::settingDungeon()
 	}
 
 	settingDoor();
-	settingMonster();
 }
 
 void MapManager::settingDoor()
@@ -237,6 +236,8 @@ void MapManager::chageRoom(DIR dir)
 	
 	OBJECTMANAGER->getPlayer()->setX(_door[idx]->getX() + TILE_SIZE * 2 * dirX);
 	OBJECTMANAGER->getPlayer()->setY(_door[idx]->getY() + TILE_SIZE * 2 * dirY);
+	CAMERAMANAGER->setCameraPos(OBJECTMANAGER->getPlayer()->getX(), OBJECTMANAGER->getPlayer()->getY());
+	settingMonster();
 
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ITEM_DROP);
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::PLAYER_OBJ);

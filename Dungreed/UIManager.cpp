@@ -6,6 +6,7 @@
 #include "Inventory.h"
 #include "PlayerHpBar.h"
 #include "MiniMap.h"
+#include "ImageFont.h"
 
 UIManager::UIManager()
 	: _isUI(FALSE)
@@ -26,6 +27,16 @@ HRESULT UIManager::init()
 	initKeyboard();
 	initReload();
 	initItemInfo();
+
+	_bossIntro = new UI(ImageName::BossIntro, CENTER_X, CENTER_Y);
+	_bossIntro->setFree();
+	_bossIntro->hide();
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossIntro);
+
+	_bossInfo = new ImageFont(140, 450, "TEST");
+	_bossInfo->setFree();
+	_bossInfo->hide();
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossInfo);
 
 	return S_OK;
 }
@@ -53,6 +64,17 @@ void UIManager::update()
 void UIManager::render(HDC hdc)
 {
 	renderItemInfo(hdc);
+
+	if (_showBossInfo)
+	{
+		if (!CAMERAMANAGER->isCameraMove())
+		{
+			_showBossInfo = FALSE;
+			_bossInfo->hide();
+			_bossIntro->hide();
+
+		}
+	}
 }
 
 void UIManager::setCursorType(UIEnum::CURSOR_TYPE cursorType)
@@ -262,11 +284,11 @@ void UIManager::renderItemInfo(HDC hdc)
 			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 70, 20, 0, "공격력 : ", ColorSet::WHITE);
 			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 70, 20, 0, dmg.c_str(), ColorSet::YELLOW);
 		}
-
-		if (_itemInfo.accDsc != "")
+		else if (_itemInfo.accDsc != "")
 		{
 			// 악세 설명
-			FONTMANAGER->drawText(hdc, { _itemInfo.accDsc.c_str(), 130, 45, _itemInfoX + 105, _itemInfoY + 70 }, 20, 0, ColorSet::GREEN);
+			FONTMANAGER->drawText(hdc, { _itemInfo.accDsc.c_str(), 225, 45, _itemInfoX + 105, _itemInfoY + 70 }, 20, 0, ColorSet::GREEN);
+			_itemInfo.accDsc = "";
 		}
 
 		if (_itemInfo.atkSpeed > 0)
@@ -279,11 +301,24 @@ void UIManager::renderItemInfo(HDC hdc)
 		{
 			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 110, 20, 0, "장탄 수 : ", ColorSet::WHITE);
 			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 110, 20, 0, to_string(_itemInfo.bulletCnt).c_str(), ColorSet::YELLOW);
-
+		}
+		else if (_itemInfo.accDsc != "")
+		{
+			FONTMANAGER->drawText(hdc, { _itemInfo.accDsc.c_str(), 225, 45, _itemInfoX + 105, _itemInfoY + 110 }, 20, 0, ColorSet::GREEN);
 		}
 
 		// 아이템 설명
-		FONTMANAGER->drawText(hdc, { _itemInfo.description.c_str(), 260, 45,_itemInfoX + 25, _itemInfoY + 140 }, 20, 0, ColorSet::ITEM_DSC);
+		FONTMANAGER->drawText(hdc, { _itemInfo.description.c_str(), 305, 45,_itemInfoX + 25, _itemInfoY + 140 }, 20, 0, ColorSet::ITEM_DSC);
 	}
+}
+
+void UIManager::showBossInfo(char* bossName)
+{
+	_showBossInfo = TRUE;
+	_showStartTime = TIMEMANAGER->getWorldTime();
+	_showInfoTime = 5;
+	_bossIntro->show();
+	_bossInfo->show();
+	_bossInfo->setString(bossName);
 }
 

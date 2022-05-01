@@ -11,5 +11,8 @@ public:
 	virtual void update() override;
 	virtual void render(HDC hdc) override;
 
+	virtual void equip(); 
+	virtual void unequip();
+
 };
 

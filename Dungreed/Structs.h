@@ -59,15 +59,17 @@ typedef struct tagEnemyInfo
 	string name;
 	int hp;
 	int dmg;
+	int def;
 	float atkTime;
 
 	tagEnemyInfo() {}
-	tagEnemyInfo(Code::UNIT code, string name, int hp, int dmg = 1, float atkTime = 1.0f)
+	tagEnemyInfo(Code::UNIT code, string name, int hp, int dmg = 1, int def = 0, float atkTime = 1.0f)
 	{
 		this->code = code;
 		this->name = name;
 		this->hp = hp;
 		this->dmg = dmg;
+		this->def = def;
 		this->atkTime = atkTime;
 	}
 } ENEMY_INFO;

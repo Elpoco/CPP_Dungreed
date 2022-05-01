@@ -10,7 +10,7 @@ Belial::Belial(float x, float y)
 	, _lastSkill(BELIAL_SKILL::NONE)
 	, _skillTick(0)
 	, _skillActCnt(0)
-	, _skillAuto(TRUE)
+	, _skillAuto(FALSE)
 	, _skillCooldown(TIMEMANAGER->getWorldTime())
 	, _shootAngle(0.0f)
 	, _shootDir(1)
@@ -43,6 +43,10 @@ HRESULT Belial::init()
 	SOUNDMANAGER->stop(SoundName::dungeon);
 	SOUNDMANAGER->play(SoundName::belialBG, _sound);
 	SOUNDMANAGER->play(SoundName::Enemy::Skeletonking, _sound);
+
+	CAMERAMANAGER->cameraMove(_x + 23, _y, 5, 5);
+	_imgAlpha = 100;
+	UIMANAGER->showBossInfo("Belial");
 
 	return S_OK;
 }
@@ -89,11 +93,21 @@ void Belial::update()
 	default:
 		break;
 	}
+
+	if (_imgAlpha < 255)
+	{
+		_imgAlpha++;
+	}
+	if (!_skillAuto && !CAMERAMANAGER->isCameraMove())
+	{
+		_skillAuto = TRUE;
+	}
 }
 
 void Belial::render(HDC hdc)
 {
-	CAMERAMANAGER->frameRender(hdc, _imgBack, _rcBack.left, _rcBack.top, _backFrameInfo.x, 0);
+	if(_imgAlpha == 255)
+		CAMERAMANAGER->frameRender(hdc, _imgBack, _rcBack.left, _rcBack.top, _backFrameInfo.x, 0);
 
 	Enemy::render(hdc);
 
@@ -103,7 +117,7 @@ void Belial::render(HDC hdc)
 			hdc,
 			_imgHand[_hand[i].state],
 			_hand[i].rc.left, _hand[i].rc.top,
-			_hand[i].frameInfo.x, i);
+			_hand[i].frameInfo.x, i, _imgAlpha);
 
 		if(_isDebug)
 			CAMERAMANAGER->printRectangle(hdc, _hand[i].rc);
@@ -124,8 +138,7 @@ void Belial::move()
 
 void Belial::animation()
 {
-	_backFrameInfo.cnt++;
-	if (_backFrameInfo.cnt > _backFrameInfo.tick)
+	if (_imgAlpha == 255 && _backFrameInfo.cnt++ > _backFrameInfo.tick)
 	{
 		_backFrameInfo.cnt = 0;
 		_backFrameInfo.x++;
@@ -172,10 +185,10 @@ void Belial::initAnimation()
 	_imgHand[BELIAL_HAND_STATE::LASER] = FindImage(ImageName::Enemy::Belial::handAttack);
 
 	_hand[R].isLeft = false;
-	_hand[R].x = _x + 550;
+	_hand[R].x = _x + 500;
 	_hand[R].y = _y + 100;
 	_hand[L].isLeft = true;
-	_hand[L].x = _x - 510;
+	_hand[L].x = _x - 460;
 	_hand[L].y = _y - 50;
 
 	for (int i = 0; i < RL; i++)

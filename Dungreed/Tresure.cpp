@@ -68,7 +68,7 @@ void Tresure::update()
 {
 	if (!_isStop)
 	{
-		_y++;
+		_y+=3;
 		_rc = RectMakeCenter(_x, _y, _img->getFrameWidth(), _img->getFrameHeight());
 	}
 }

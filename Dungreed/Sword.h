@@ -16,5 +16,8 @@ public:
 
 	virtual RECT attack() override;
 
+	virtual void equip();
+	virtual void unequip();
+
 };
 

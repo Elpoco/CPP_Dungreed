@@ -32,6 +32,8 @@ void PlayerHpBar::update()
 {
 	animation();
 	updateHpUI();
+
+	_uiLevel->setNumber(PLAYERMANAGER->getLevel());
 }
 
 void PlayerHpBar::render(HDC hdc)

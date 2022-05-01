@@ -32,6 +32,7 @@ public:
 	void settingImage(ImageFontEnum::FONT_TYPE type);
 
 	void setNumber(int num);
+	void setString(char* str);
 
 };
 
