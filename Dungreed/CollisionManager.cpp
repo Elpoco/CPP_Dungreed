@@ -154,7 +154,8 @@ void CollisionManager::renderItem(HDC hdc, Object* obj)
 
 void CollisionManager::renderNpc(HDC hdc, Object* obj)
 {
-	CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Snow);
+	if(obj->isRender())
+		CAMERAMANAGER->printRectangle(hdc, obj->getRect(), Color::Snow);
 }
 
 void CollisionManager::renderDungeonObj(HDC hdc, Object* obj)

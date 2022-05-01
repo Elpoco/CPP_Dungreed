@@ -4,8 +4,9 @@
 
 namespace PlayerManagerSet
 {
-	constexpr int DEFAULT_DASH_CNT = 3;
 	constexpr float DEFAULT_DASH_TIME = 1.5f;
+	constexpr int DEFAULT_DASH_CNT = 3;
+	constexpr int DEFAULT_HP = 80;
 }
 
 class PlayerManager : public SingletonBase<PlayerManager>
@@ -15,6 +16,10 @@ private:
 	float _dashTime;
 	int _dashMaxCnt;
 	int _dashCnt;
+
+	int _maxHp;
+	int _curHp;
+
 	int _coin;
 
 public:
@@ -32,9 +37,9 @@ public:
 	int getDashCnt() { return _dashCnt; }
 	int getDashMaxCnt() { return _dashMaxCnt; }
 
+	// °ñµå
 	void addCoin(int coin) { _coin += coin; }
 	void useCoin(int coin) { _coin -= coin; }
-
 	int getCoin() { return _coin; }
 	char* getCoinChar()
 	{
@@ -45,6 +50,10 @@ public:
 		strcpy(arrChar, str.c_str());
 		return arrChar;
 	}
+
+	// Ã¼·Â
+	void hit(int dmg);
+	void recovery(int hp);
 
 };
 

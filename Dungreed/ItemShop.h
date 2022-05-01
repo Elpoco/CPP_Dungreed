@@ -31,7 +31,6 @@ public:
 
 	virtual void show();
 
-	void initAnimation();
 	void initUI();
 
 	void renderItemSlot(HDC hdc);

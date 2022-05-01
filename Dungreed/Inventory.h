@@ -76,7 +76,8 @@ public:
 	virtual void render(HDC hdc) override;
 
 	void settingUI();
-	void toggleInventory();
+	void open();
+	void close();
 	// 마우스 관련 기능
 	void clickEvent();
 	int checkCell();

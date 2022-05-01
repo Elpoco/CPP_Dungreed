@@ -17,6 +17,11 @@ HRESULT PlayerManager::init()
 	_dashMaxCnt = _dashCnt = DEFAULT_DASH_CNT;
 	_dashChargeTime = DEFAULT_DASH_TIME;
 
+	_maxHp = _curHp = DEFAULT_HP;
+
+
+	UIMANAGER->initPlayerHpBar(&_maxHp, &_curHp);
+
 	return S_OK;
 }
 
@@ -47,4 +52,16 @@ void PlayerManager::chargeDash()
 		_dashTime = TIMEMANAGER->getWorldTime();
 		_dashCnt++;
 	}
+}
+
+void PlayerManager::hit(int dmg)
+{
+	_curHp -= dmg;
+	if (_curHp < 0) _curHp = 0;
+}
+
+void PlayerManager::recovery(int hp)
+{
+	_curHp += hp;
+	if (_curHp > _maxHp) _curHp = _maxHp;
 }

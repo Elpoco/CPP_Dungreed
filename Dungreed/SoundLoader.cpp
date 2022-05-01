@@ -33,6 +33,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::niflheimBG, PATH_SOUND"2.IceBoss.wav", true, true);
 	SOUNDMANAGER->addSound(SoundName::TestScene, PATH_SOUND"3.junglefield.wav", true, true);
 	SOUNDMANAGER->addSound(SoundName::MapTool, PATH_SOUND"5.forestfield.wav", true, true);
+	SOUNDMANAGER->addSound(SoundName::Foodshop, PATH_SOUND"Foodshop.wav", true, true);
 
 	SOUNDMANAGER->addSound(SoundName::dungeonEat, PATH_SOUND"DungeonEat.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::dungeonEat2, PATH_SOUND"DungeonEat2.wav", false, false);
@@ -74,6 +75,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::invenOpen, PATH_SOUND"Inventory_open.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::swapEquip, PATH_SOUND"Swap_weapon.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::FireBall, PATH_SOUND"FireBall.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::BuyFood, PATH_SOUND"BuyFood.wav", false, false);
 
 	SOUNDMANAGER->addSound(SoundName::Item::coin, PATH_SOUND"coin.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Equip, PATH_SOUND"Equip.wav", false, false);

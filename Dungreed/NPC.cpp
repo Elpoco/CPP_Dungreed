@@ -3,6 +3,7 @@
 
 #include "UI.h"
 #include "ItemShop.h"
+#include "FoodShop.h"
 
 NPC::NPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 	: _isOpen(FALSE)
@@ -16,7 +17,7 @@ NPC::NPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 	{
 	default:
 	case Code::NPC::SHOP:
-		_uiNPC = new ItemShop();
+		_uiNPC = new ItemShop;
 		_img = FindImage(ImageName::NPC::Merchant);
 		break;
 	case Code::NPC::DUNGEON_SHOP:
@@ -28,6 +29,10 @@ NPC::NPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 		break;
 	case Code::NPC::COMMANDER:
 		_img = FindImage(ImageName::NPC::Commander);
+		break;
+	case Code::NPC::INN:
+		_uiNPC = new FoodShop;
+		_img = FindImage(ImageName::NPC::Inn);
 		break;
 	}
 }
@@ -54,7 +59,9 @@ void NPC::release()
 
 void NPC::update()
 {
+	_isRender = FALSE;
 	if (MAPMANAGER->getCurMapCode() != _mapCode) return;
+	_isRender = TRUE;
 
 	updateAnimation();
 
@@ -105,9 +112,10 @@ void NPC::openNpc()
 {
 	if (MAPMANAGER->getCurMapCode() != _mapCode) return;
 
-	_isOpen = TRUE;
-	UIMANAGER->onUI();
 	_uiNPC->show();
+	UIMANAGER->onUI();
+	_isOpen = TRUE;
+	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::NORMAL);
 }
 
 void NPC::closeNpc()
@@ -117,4 +125,5 @@ void NPC::closeNpc()
 	_isOpen = FALSE;
 	UIMANAGER->offUI();
 	_uiNPC->hide();
+	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
 }

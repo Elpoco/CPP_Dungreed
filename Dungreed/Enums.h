@@ -92,6 +92,7 @@ namespace Code
 		DUNGEON_SHOP,
 		BLACKSMITH,
 		COMMANDER,
+		INN,
 	};
 
 	enum class UNIT

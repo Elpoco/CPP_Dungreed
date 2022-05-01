@@ -20,10 +20,11 @@ namespace ColorSet
 	constexpr DWORD YELLOW	= RGB(255, 255, 0);
 	constexpr DWORD WHITE	= RGB(255, 255, 255);
 
-	constexpr DWORD ITEM_DSC = RGB(202, 255, 255);
-	constexpr DWORD UNCOMMON = RGB(43, 123, 255);
-	constexpr DWORD RARE	 = RGB(255, 210, 0);
-	constexpr DWORD LEGEND	 = RGB(255, 0, 142);
+	constexpr DWORD ITEM_DSC  = RGB(202, 255, 255);
+	constexpr DWORD UNCOMMON  = RGB(43, 123, 255);
+	constexpr DWORD RARE	  = RGB(255, 210, 0);
+	constexpr DWORD LEGEND	  = RGB(255, 0, 142);
+	constexpr DWORD FOOD_NAME = RGB(255, 178 , 144);
 }
 
 namespace UnitSet

@@ -97,6 +97,7 @@ namespace ImageName
 			constexpr char* gameStart = "BUTTON gameStart";
 			constexpr char* mapTool = "BUTTON mapTool";
 			constexpr char* quit = "BUTTON quit";
+			constexpr char* Exit = "BUTTON Exit";
 		}
 
 		namespace Cursor
@@ -156,6 +157,7 @@ namespace ImageName
 		namespace Keyboard
 		{
 			constexpr char* F = "Keyboard F";
+			constexpr char* ESC = "Keyboard ESC";
 		}
 
 		namespace Item
@@ -173,6 +175,29 @@ namespace ImageName
 			constexpr char* ShopItem = "UI NPC ShopItem";
 			constexpr char* ShopItem_Selected = "UI NPC ShopItem_Selected";
 
+			constexpr char* FoodShopLabel = "UI NPC FoodShopLabel";
+			constexpr char* Base_0 = "UI NPC Base_0";
+			constexpr char* Base_3 = "UI NPC Base_3";
+			constexpr char* RestaurantTable = "UI NPC RestaurantTable";
+			constexpr char* RestaurantMenu = "UI NPC RestaurantMenu";
+			constexpr char* RestaurantMenuSelected = "UI NPC RestaurantMenuSelected";
+			constexpr char* RestaurantMenuSell = "UI NPC RestaurantMenuSell";
+			constexpr char* RestaurantRect = "UI NPC RestaurantRect";
+			constexpr char* GoldCoin = "UI NPC GoldCoin";
+		}
+
+		namespace FOOD
+		{
+			constexpr char* Bread = "FOOD 01_Bread";
+			constexpr char* FriedEgg = "FOOD 02_FriedEgg";
+			constexpr char* GrilledMushroom = "FOOD 03_GrilledMushroom";
+			constexpr char* TamatoSoup = "FOOD 04_TamatoSoup";
+			constexpr char* OnionSoup = "FOOD 05_OnionSoup";
+			constexpr char* PeaSoup = "FOOD 06_PeaSoup";
+			constexpr char* VegetableSalsaSoup = "FOOD 07_VegetableSalsaSoup";
+			constexpr char* Lemonade = "FOOD 08_Lemonade";
+			constexpr char* DeluxeBurger = "FOOD 09_DeluxeBurger";
+			constexpr char* ChocolateCookie = "FOOD 10_ChocolateCookie";
 		}
 	}
 
@@ -182,6 +207,7 @@ namespace ImageName
 		constexpr char* Giant = "NPC Giant";
 		constexpr char* BlackSmith = "NPC BlackSmith";
 		constexpr char* Commander = "NPC Commander";
+		constexpr char* Inn = "NPC Inn";
 	}
 
 	namespace Background
@@ -313,6 +339,8 @@ namespace SoundName
 	constexpr char* FireBall = "SOUND FireBall";
 	constexpr char* TestScene = "SOUND TestScene";
 	constexpr char* MapTool = "SOUND MapTool";
+	constexpr char* Foodshop = "SOUND Foodshop";
+	constexpr char* BuyFood = "SOUND BuyFood";
 
 	namespace Player
 	{

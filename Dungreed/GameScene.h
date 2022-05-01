@@ -17,11 +17,13 @@ private:
 	LocationEnum::LOCATION _location;
 
 	// Town
+	Image* _imgSky;
 	Image* _imgLayer;
 	Image* _imgBackground;
 	RECT _rcLayer;
 	RECT _rcBackground;
 	RECT _rcEntrance;
+	float _skyX;
 
 	ImageBase* _imgEnter;
 	FRAME_INFO _enterFrame;

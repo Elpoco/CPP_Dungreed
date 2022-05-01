@@ -33,11 +33,7 @@ HRESULT Player::init()
 	CAMERAMANAGER->followCamera(this);
 	CAMERAMANAGER->lockCamera();
 
-	_maxHp = _curHp = DEFAULT_HP;
-
 	PLAYERMANAGER->init();
-
-	UIMANAGER->initPlayerHpBar(&_maxHp, &_curHp);
 
 	ITEMMANAGER->setPlayerBody(&_body);
 	ITEMMANAGER->setPlayerHand(&_hand);
@@ -83,8 +79,8 @@ void Player::hitAttack(int dmg, int dir)
 	_hitTime = TIMEMANAGER->getWorldTime();
 	_isHit = true;
 	_imgAlpha = HIT_ALPHA;
-	_curHp -= dmg;
-	if (_curHp < 0) _curHp = 0;
+
+	PLAYERMANAGER->hit(dmg);
 
 	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
 	SOUNDMANAGER->play(SoundName::Player::hit, _sound);

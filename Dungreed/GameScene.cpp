@@ -21,8 +21,10 @@ HRESULT GameScene::init()
 
 	// Town
 	TILEMANAGER->loadMap(FileName::Town);
+	_imgSky = IMAGEMANAGER->findImage(ImageName::Town::cloud);
 	_imgLayer = IMAGEMANAGER->findImage(ImageName::Town::townLayerDay);
 	_imgBackground = IMAGEMANAGER->findImage(ImageName::Town::townBgDay);
+	_skyX = 0.0f;
 	SOUNDMANAGER->play(SoundName::town, _sound);
 
 	_vTownDeco.push_back({ FindImage(ImageName::Town::BrokenTemple), 2590, 557 });
@@ -46,7 +48,7 @@ HRESULT GameScene::init()
 	_vTownDeco.push_back({ FindImage(ImageName::Town::StreetLight_2),  5054, 1154 });
 
 	// 던전 입구
-	_rcEntrance = RectMakeCenter(2940, 1296, 750, 1);
+	_rcEntrance = RectMakeCenter(2940, 1296, 750, 10);
 	_imgEnter = FindImage(ImageName::Town::dungeonEat);
 	_enterFrame.maxFrameX = _imgEnter->getMaxFrameX();
 	_enterFrame.width = _imgEnter->getFrameWidth();
@@ -57,6 +59,8 @@ HRESULT GameScene::init()
 	OBJECTMANAGER->addNPC(Code::NPC::SHOP, 5241, 720);
 	OBJECTMANAGER->addNPC(Code::NPC::BLACKSMITH, 5345, 1293);
 	OBJECTMANAGER->addNPC(Code::NPC::COMMANDER, 418, 1294);
+
+	//OBJECTMANAGER->addNPC(Code::NPC::INN, 2943, 814);
 
 	OBJECTMANAGER->addTresure(5440, 696, Code::TRESURE_TYPE::GOLD);
 	OBJECTMANAGER->addTresure(5520, 696, Code::TRESURE_TYPE::GOLD);
@@ -108,10 +112,13 @@ void GameScene::render()
 	}
 
 	if (_isEnter) CAMERAMANAGER->frameRender(getMemDC(), _imgEnter, _rcEnter.left, _rcEnter.top, _enterFrame.x, 0);
+
 }
 
 void GameScene::updateTown()
 {
+	_skyX += 0.1f;
+
 	RECT temp;
 	RECT rcPlayer = OBJECTMANAGER->getPlayer()->getRect();
 
@@ -163,11 +170,12 @@ void GameScene::renderTown(HDC hdc)
 
 void GameScene::renderBackTown(HDC hdc)
 {
-	IMAGEMANAGER->render(ImageName::Town::cloud, hdc);
+	RECT rc = { 0,0, WINSIZE_X, WINSIZE_Y };
+	_imgSky->loopRender(hdc, &rc, _skyX, 0);
 	_rcBackground = RectMake(0, WINSIZE_Y - _imgBackground->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*0.7), WINSIZE_X, WINSIZE_Y);
-	_imgBackground->loopRender(hdc, &_rcBackground, CAMERAMANAGER->getAbsX() / 3, 0);
+	_imgBackground->loopRender(hdc, &_rcBackground, CAMERAMANAGER->getAbsX() * 0.3f, 0);
 	_rcLayer = RectMake(0, WINSIZE_Y - _imgLayer->getHeight() - (100 - (TileSet::TOTAL_TILE_Y - (CAMERAMANAGER->getAbsY() + WINSIZE_Y))*1.2), WINSIZE_X, _imgLayer->getHeight());
-	_imgLayer->loopRender(hdc, &_rcLayer, CAMERAMANAGER->getAbsX()*0.8, 0);
+	_imgLayer->loopRender(hdc, &_rcLayer, CAMERAMANAGER->getAbsX() * 0.8, 0);
 }
 
 void GameScene::loadDungeon()

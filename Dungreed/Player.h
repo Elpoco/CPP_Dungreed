@@ -8,8 +8,6 @@ namespace PlayerSet
 
 	constexpr float DASH_DISTANCE	= 250;
 	constexpr float DASH_SPEED		= 8.0f;
-
-	constexpr int	DEFAULT_HP = 50;
 }
 
 class Player : public Unit
@@ -33,9 +31,6 @@ private:
 	string	_dashImgName;
 	int		_dashMove;
 	float	_dashAngle;
-
-	int _maxHp;
-	int _curHp;
 
 	BOOL _isDust;
 

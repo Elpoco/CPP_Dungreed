@@ -63,13 +63,15 @@ void Inventory::update()
 
 void Inventory::render(HDC hdc)
 {
-	renderEquipBase(hdc);
+	if (!_isOpen)
+	{
+		renderEquipBase(hdc);
+		return;
+	}
 
-	if (!_isOpen) return;
-	
 	if (_isHover) _imgHover->render(hdc, _rcHover.left, _rcHover.top);
 	
-	FONTMANAGER->drawNumber(hdc, 1240, 582, 30, 0, PLAYERMANAGER->getCoinChar(), ColorSet::YELLOW, DIR::RIGHT);
+	FONTMANAGER->drawNumber(hdc, _rcBase.right - 55, _rcBase.bottom - 60, 30, 0, PLAYERMANAGER->getCoinChar(), ColorSet::YELLOW, DIR::RIGHT);
 
 	renderInventoryItem(hdc);
 }
@@ -178,29 +180,28 @@ void Inventory::settingUI()
 	_imgInvenHover = FindImage(ImageName::UI::Inventory::Cell_On);
 }
 
-void Inventory::toggleInventory()
+void Inventory::open()
 {
-	_isOpen = !_isOpen;
-	if (_isOpen)
+	_isOpen = TRUE;
+	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::NORMAL);
+	SOUNDMANAGER->play(SoundName::invenOpen, _sound);
+	for (auto ui : _vUI)
 	{
-		UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::NORMAL);
-		SOUNDMANAGER->play(SoundName::invenOpen, _sound);
-		for (auto ui : _vUI)
-		{
-			if (ui) ui->show();
-		}
-		_equipSlot[_equipIdx]->show();
+		if (ui) ui->show();
 	}
-	else
+	_equipSlot[_equipIdx]->show();
+}
+
+void Inventory::close()
+{
+	_isOpen = FALSE;
+	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
+	_clickCell = CLICK_NONE;
+	for (auto ui : _vUI)
 	{
-		UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
-		_clickCell = CLICK_NONE;
-		for (auto ui : _vUI)
-		{
-			if(ui) ui->hide();
-		}
-		_equipSlot[_equipIdx]->hide();
+		if (ui) ui->hide();
 	}
+	_equipSlot[_equipIdx]->hide();
 }
 
 void Inventory::clickEvent()
@@ -241,7 +242,7 @@ void Inventory::offClick()
 {
 	if (MouseInRect(_rcClose))
 	{
-		toggleInventory();
+		close();
 		UIMANAGER->offUI();
 	}
 	if (_clickCell == CLICK_NONE) return;
@@ -415,7 +416,6 @@ void Inventory::renderEquipBase(HDC hdc)
 	if (!_arrSlot[_equipIdx].item) return;
 	
 	ImageBase* img = _arrSlot[_equipIdx].item->getImage();
-	
 	img->frameRender(
 		hdc,
 		_equipBase->getX() - img->getFrameWidth() * 0.5f,

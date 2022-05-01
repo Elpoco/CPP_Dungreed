@@ -168,18 +168,7 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 
 void ObjectManager::addNPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 {
-	NPC* npc;
-	switch (code)
-	{
-	default:
-	case Code::NPC::SHOP:
-		npc = new NPC(code, x, y);
-		break;
-	case Code::NPC::DUNGEON_SHOP:
-		npc = new NPC(code, x, y, mapCode);
-		break;
-	}
-	addObject(ObjectEnum::OBJ_TYPE::NPC, npc);
+	addObject(ObjectEnum::OBJ_TYPE::NPC, new NPC(code, x, y, mapCode));
 }
 
 void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage,

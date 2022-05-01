@@ -130,6 +130,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Button::gameStart, PATH_IMAGE"UI/Buttons/GameStart.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Button::mapTool, PATH_IMAGE"UI/Buttons/MapTool.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Button::quit, PATH_IMAGE"UI/Buttons/Quit.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Button::Exit, PATH_IMAGE"UI/Buttons/FullWindowExitButton.bmp", 0, 0, 1, 2, true, ColorSet::MAGENTA, 3.0f);
 	// 커서
 	IMAGEMANAGER->addImage(ImageName::UI::Cursor::cursor, PATH_IMAGE"UI/Cursor/BasicCursor.bmp", 0, 0, true, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::Cursor::attack, PATH_IMAGE"UI/Cursor/ShootingCursor.bmp", 0, 0, true, ColorSet::MAGENTA);
@@ -167,7 +168,8 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::DoorPixel, PATH_IMAGE"UI/MiniMap/MiniMapDoor.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::BorderPixel, PATH_IMAGE"UI/MiniMap/MiniMapBorder.bmp");
 	// 키보드
-	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::F, PATH_IMAGE"UI/KeyBoard/Keyboard_F.bmp", 23, 25, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::F, PATH_IMAGE"UI/KeyBoard/Keyboard_F.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::ESC, PATH_IMAGE"UI/KeyBoard/Keyboard_esc.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	// 아이템
 	IMAGEMANAGER->addImage(ImageName::UI::Item::ItemInfo, PATH_IMAGE"UI/Item/ItemInfo.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::Item::reloadBar, PATH_IMAGE"UI/Item/ReloadBar.bmp", 0, 0, true, ColorSet::MAGENTA);
@@ -178,6 +180,28 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::NPC::DungeonShopBase, PATH_IMAGE"UI/Shop/DungeonShopBase.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::NPC::ShopItem, PATH_IMAGE"UI/Shop/ShopItem.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::NPC::ShopItem_Selected, PATH_IMAGE"UI/Shop/ShopItem_Selected.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	// 음식점
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::FoodShopLabel, PATH_IMAGE"UI/FoodShop/Label.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::Base_0, PATH_IMAGE"UI/FoodShop/Base_0.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::Base_3, PATH_IMAGE"UI/FoodShop/Base_3.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::RestaurantMenu, PATH_IMAGE"UI/FoodShop/RestaurantMenu.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::RestaurantMenuSelected, PATH_IMAGE"UI/FoodShop/RestaurantMenuSelected.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::RestaurantMenuSell, PATH_IMAGE"UI/FoodShop/RestaurantMenuSell.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::RestaurantRect, PATH_IMAGE"UI/FoodShop/RestaurantRect.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::NPC::GoldCoin, PATH_IMAGE"UI/FoodShop/GoldCoin.bmp", 0, 0, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::NPC::RestaurantTable, PATH_IMAGE"UI/FoodShop/RestaurantTable.bmp", 0, 0, 3, 1, true, ColorSet::MAGENTA, 3.0f);
+	// 음식
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::Bread, PATH_IMAGE"UI/FoodShop/Food/01_Bread.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::FriedEgg, PATH_IMAGE"UI/FoodShop/Food/02_FriedEgg.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::GrilledMushroom, PATH_IMAGE"UI/FoodShop/Food/03_GrilledMushroom.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::TamatoSoup, PATH_IMAGE"UI/FoodShop/Food/04_TamatoSoup.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::OnionSoup, PATH_IMAGE"UI/FoodShop/Food/05_OnionSoup.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::PeaSoup, PATH_IMAGE"UI/FoodShop/Food/06_PeaSoup.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::VegetableSalsaSoup, PATH_IMAGE"UI/FoodShop/Food/07_VegetableSalsaSoup.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::Lemonade, PATH_IMAGE"UI/FoodShop/Food/08_Lemonade.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::DeluxeBurger, PATH_IMAGE"UI/FoodShop/Food/09_DeluxeBurger.bmp", 0, 0, true, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::FOOD::ChocolateCookie, PATH_IMAGE"UI/FoodShop/Food/10_ChocolateCookie.bmp", 0, 0, true, ColorSet::MAGENTA);
+
 #pragma endregion
 
 	// =======
@@ -188,6 +212,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::NPC::Giant, PATH_UNIT"NPC/NPC_Giant.bmp", 0, 0, 4, 1, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addFrameImage(ImageName::NPC::BlackSmith, PATH_UNIT"NPC/NPC_BlackSmith.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addFrameImage(ImageName::NPC::Commander, PATH_UNIT"NPC/NPC_Commander.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::NPC::Inn, PATH_UNIT"NPC/NPC_Inn.bmp", 0, 0, 6, 1, true, ColorSet::MAGENTA, 3.0f);
 #pragma endregion
 
 	// ========

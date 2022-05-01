@@ -85,9 +85,16 @@ void UIManager::toggleInventory()
 {
 	if (!_inventory) return;
 
-	_inventory->toggleInventory();
-	if(_inventory->isOpen()) _isUI = TRUE;
-	else _isUI = FALSE;
+	if (_isUI)
+	{
+		_inventory->close();
+		_isUI = FALSE;
+	}
+	else
+	{
+		_inventory->open();
+		_isUI = TRUE;
+	}
 }
 
 void UIManager::initPlayerHpBar(int* maxHp, int* curHp)
@@ -118,6 +125,9 @@ void UIManager::initKeyboard()
 	ui = new UI(ImageName::UI::Keyboard::F, 0, 0, FALSE, FALSE, TRUE);
 	_mKey.insert(make_pair(KEY::F, ui));
 	OBJECTMANAGER->addUI(ui);
+	ui = new UI(ImageName::UI::Keyboard::ESC, 0, 0, FALSE, FALSE, TRUE);
+	_mKey.insert(make_pair(KEY::ESC, ui));
+	OBJECTMANAGER->addUI(ui);
 }
 
 void UIManager::showKeyboard(KEY key, float x, float top)
@@ -126,7 +136,7 @@ void UIManager::showKeyboard(KEY key, float x, float top)
 	if (!pair->second.key->isShow())
 	{
 		pair->second.isShow = TRUE;
-		pair->second.key->show(x, top);
+		pair->second.key->show(x, top - pair->second.key->getHeight() * 0.5f);
 	}
 }
 

@@ -76,17 +76,8 @@ void ItemShop::render(HDC hdc)
 
 void ItemShop::show()
 {
-	_isShow = TRUE;
 	UIMANAGER->toggleInventory();
-}
-
-void ItemShop::initAnimation()
-{
-	_frameInfo.maxFrameX = _img->getMaxFrameX();
-
-	int width = _img->getFrameWidth();
-	int height = _img->getFrameHeight();
-	_rc = RectMakeCenter(_x, _y - height * 0.5f, width, height);
+	_isShow = TRUE;
 }
 
 void ItemShop::initUI()
@@ -198,13 +189,13 @@ void ItemShop::clickItem()
 				if (PLAYERMANAGER->getCoin() < _vItems[i]->getInfo().price) return;
 				if (ITEMMANAGER->giveItem(_vItems[i]))
 				{
+					PLAYERMANAGER->useCoin(_vItems[i]->getInfo().price);
 					_vItems.erase(_vItems.begin() + i);
 					_itemCnt--;
-					PLAYERMANAGER->useCoin(_vItems[i]->getInfo().price);
 					SOUNDMANAGER->play(SoundName::Item::getItem, _sound);
+					return;
 				}
 			}
-			break;
 		}
 	}
 }
