@@ -163,7 +163,7 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 		break;
 	}
 	addObject(OBJ_TYPE::ENEMY, enemy);
-	if(code < Code::UNIT::BOSS) enemy->settingHpBar();
+	enemy->settingHpBar();
 }
 
 void ObjectManager::addNPC(Code::NPC code, float x, float y, Code::MAP mapCode)

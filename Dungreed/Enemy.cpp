@@ -121,8 +121,8 @@ void Enemy::settingHpBar()
 {
 	EnemyHpBar* hpBar = new EnemyHpBar(&_x, &_y, &_maxHp, &_curHp);
 	hpBar->settingY(_imgHeight * 0.5f);
-
 	OBJECTMANAGER->addUI(hpBar);
+	if (_info.code > Code::UNIT::BOSS) hpBar->setBossHpBar();
 }
 
 void Enemy::scanPlayer(POINT ptPlayer, RECT rcPlayer)

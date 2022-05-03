@@ -37,6 +37,7 @@ Item* ItemManager::getItem(Code::ITEM code)
 	case Code::ITEM::SHOT_SWORD:
 	case Code::ITEM::BAMBOO_SWORD:
 	case Code::ITEM::LIGHTSABER:
+	case Code::ITEM::COSMOSSWORD:
 		item = new Sword(code);
 		break;
 	case Code::ITEM::COLT:
@@ -85,6 +86,9 @@ ImageBase* ItemManager::findImage(Code::ITEM code)
 		break;
 	case Code::ITEM::LIGHTSABER:
 		imgName = ImageName::Item::Weapon::LightSaber;
+		break;
+	case Code::ITEM::COSMOSSWORD:
+		imgName = ImageName::Item::Weapon::CosmosSword;
 		break;
 	case Code::ITEM::COLT:
 		imgName = ImageName::Item::Weapon::colt;

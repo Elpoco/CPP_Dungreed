@@ -5,8 +5,8 @@
 // ==========
 #define WINNAME	  	(LPSTR)(TEXT("Dungreed"))
 
-#define WINSTART_X	400
-#define WINSTART_Y	100
+#define WINSTART_X	700//-8
+#define WINSTART_Y	100//-32
 #define WINSIZE_X 	960
 #define WINSIZE_Y 	600
 #define WINSTYLE  	WS_CAPTION | WS_SYSMENU

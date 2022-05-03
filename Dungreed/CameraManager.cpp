@@ -39,7 +39,7 @@ void CameraManager::update()
 {
 	if (_isMove)
 	{
-		if (GetDistance(_x, _y, _moveX, _moveY) > 10)
+		if (GetDistance(_x, _y, _moveX, _moveY) > _moveSpeed)
 		{
 			float angle = GetAngle(_x, _y, _moveX, _moveY);
 			_x += cosf(angle) * _moveSpeed;
@@ -126,13 +126,7 @@ int CameraManager::checkObjectInCamera(float x, float y, int width, int height)
 	int posX = x - _x;
 	int posY = y - _y;
 
-	return posX < -width || posY < -height || width > WINSIZE_X || height > WINSIZE_Y;
-}
-
-int CameraManager::checkObjectInCamera(Object* obj)
-{
-	RECT rc = obj->getRect();
-	return checkObjectInCamera(obj->getX(), obj->getY(), (rc.right - rc.left) * 2, (rc.bottom - rc.top) * 2);
+	return posX < -width || posY < -height || posX > WINSIZE_X + width || posY > WINSIZE_Y + height;
 }
 
 void CameraManager::render(HDC hdc, string imageName, float x, float y)

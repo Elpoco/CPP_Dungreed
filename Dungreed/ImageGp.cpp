@@ -113,8 +113,8 @@ void ImageGp::frameRender(HDC hdc, float x, float y, int frameX, int frameY, int
 	_graphics->DrawImage(
 		_img,
 		(int)x, (int)y,
-		frameX * _imageInfo->frameWidth, 
-		frameY * _imageInfo->frameHeight, 
+		frameX * _imageInfo->frameWidth,
+		frameY * _imageInfo->frameHeight,
 		_imageInfo->frameWidth,
 		_imageInfo->frameHeight,
 		Unit::UnitPixel

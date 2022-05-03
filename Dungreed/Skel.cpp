@@ -54,13 +54,18 @@ void Skel::render(HDC hdc)
 {
 	Enemy::render(hdc);
 
-	CAMERAMANAGER->frameRender(hdc, _imgWeapon, _x, _y + 10, _weaponFrame.x, _weaponFrame.y, _angleWeapon);
+	CAMERAMANAGER->frameRender(hdc, _imgWeapon, _x + _handX, _y + 10, _weaponFrame.x, _weaponFrame.y, _angleWeapon);
 }
 
 void Skel::move()
 {
 	if (_isPlayerScan)
 	{
+		if (_info.code == Code::UNIT::SKEL_BOW)
+		{
+			_handX = 15;
+			if (_isLeft) _handX = -15;
+		}
 		_state = IDLE;
 		_rcAttack = { 0,0,0,0 };
 		_anglePlayer = GetAngle(PointMake(_x, _y), _ptPlayer);

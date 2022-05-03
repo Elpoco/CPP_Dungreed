@@ -11,7 +11,7 @@ DropItem::DropItem(Code::ITEM code, float x, float y, BOOL scatter)
 	_x = x;
 	_y = y;
 	_dropSpeed = RND->getFromFloatTo(0.05f, 0.08f);
-	_gravity = RND->getFromFloatTo(1.7f, 2.8f) * -1;
+	_gravity = RND->getFromFloatTo(1.7f, 2.4f) * -1;
 
 	if (scatter)
 	{
@@ -74,12 +74,14 @@ void DropItem::pushObject(DIR dir, float distance)
 	{
 	case Direction::LEFT:
 		_x = distance + _frameInfo.width * 0.5f;
+		_scatterX *= -1;
 		break;
 	case Direction::TOP:
 		_y = distance + _frameInfo.height * 0.5f;
 		break;
 	case Direction::RIGHT:
 		_x = distance - _frameInfo.width * 0.5f;
+		_scatterX *= -1;
 		break;
 	case Direction::BOTTOM:
 		_y = distance - _frameInfo.height * 0.5f;

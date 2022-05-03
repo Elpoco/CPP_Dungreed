@@ -49,6 +49,7 @@ public:
 	Object* getPlayer() { return _mObjects.find(ObjectEnum::OBJ_TYPE::PLAYER)->second[0]; }
 	vObjects* getEnemy() { return &_mObjects.find(ObjectEnum::OBJ_TYPE::ENEMY)->second; }
 	vObjects* getNPC() {return  &_mObjects.find(ObjectEnum::OBJ_TYPE::NPC)->second;}
+	vObjects* getDungeonObj() {return  &_mObjects.find(ObjectEnum::OBJ_TYPE::DUNGEON_OBJ)->second;}
 
 };
 

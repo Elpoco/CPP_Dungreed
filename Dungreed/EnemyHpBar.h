@@ -11,7 +11,9 @@ class EnemyHpBar : public UI
 {
 private:
 	ImageBase* _imgBack;
+	ImageBase* _imgFront;
 	ImageBase* _imgGauge;
+	ImageBase* _imgPortrait;
 	RECT	   _rcGauge;
 
 	BOOL _isBoss;
@@ -34,6 +36,7 @@ public:
 	virtual void render(HDC hdc) override;
 
 	void settingY(float y) { _moveY = y; }
+	void setBossHpBar();
 
 };
 

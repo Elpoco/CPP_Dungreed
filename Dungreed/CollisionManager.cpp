@@ -203,31 +203,38 @@ void CollisionManager::collisionTile()
 			for (Object* obj : pairObject.second)
 			{
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getRect().bottom);
+				TILE leftTile = TILEMANAGER->getTile(obj->getRect().left, obj->getY());
+				TILE rightTile = TILEMANAGER->getTile(obj->getRect().right, obj->getY());
 				RECT rcObj = obj->getRect();
 
 				float moveX = 0.0f;
 				float moveY = 0.0f;
 
+				if (leftTile.type == MAP_OBJ::BLOCK)
+				{
+					obj->pushObject(DIR::LEFT, tile.rc.right);
+				}
+
+				if (rightTile.type == MAP_OBJ::BLOCK)
+				{
+					obj->pushObject(DIR::RIGHT, tile.rc.left);
+				}
+
 				switch (tile.type)
 				{
 				case MAP_OBJ::BLOCK:
 				case MAP_OBJ::DOWN:
-					if (tile.x < obj->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
-					{
-						obj->pushObject(DIR::LEFT, tile.rc.right);
-					}
-					else if (tile.x > obj->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
-					{
-						obj->pushObject(DIR::RIGHT, tile.rc.left);
-					}
-					else if (obj->getRect().bottom < tile.y)
+					if (tile.y > rcObj.bottom)
 					{
 						obj->pushObject(DIR::BOTTOM, tile.rc.top);
 						obj->stopObject();
 					}
+
 					break;
 				case MAP_OBJ::BLOCK_L:
+				case MAP_OBJ::DOWN_L:
 				case MAP_OBJ::BLOCK_R:
+				case MAP_OBJ::DOWN_R:
 					if (tile.type == DOWN_R || tile.type == BLOCK_R)
 					{
 						moveY = rcObj.right - tile.rc.left;
@@ -304,30 +311,13 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 						moveY = tile.rc.right - rcObj.left;
 					}
 
-					if (moveY >= TILE_SIZE || moveY <= 0) continue;
+					if (moveY >= TILE_SIZE) { unit->setCollision(DIR::BOTTOM, true); continue; }
+					if( moveY <= 0) continue;
+					
 
 					unit->pushObject(DIR::NONE, 0, tile.rc.bottom - moveY + 2);
 
 					return;
-
-				case MAP_OBJ::BLOCK:
-					if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
-					{ // ¿ÞÂÊ
-						unit->pushObject(DIR::LEFT, tile.rc.right, 0);
-					}
-					else if (tile.x > unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
-					{ // ¿À¸¥ÂÊ
-						unit->pushObject(DIR::RIGHT, tile.rc.left, 0);
-					}
-					else if (tile.y > rcObj.bottom)
-					{ // ¹Ù´Ú
-						unit->pushObject(DIR::BOTTOM, 0, tile.rc.top);
-					}
-					else
-					{ // ÃµÀå
-						unit->pushObject(DIR::TOP, 0, tile.rc.bottom);
-					}
-					break;
 
 				case MAP_OBJ::DOWN:
 					if (unit->isJumping()) break;
@@ -340,6 +330,26 @@ void CollisionManager::unitTileCollision(ObjectManager::vObjects vObjects)
 						unit->pushObject(DIR::BOTTOM, 0, tile.rc.top);
 					}
 					break;
+
+				case MAP_OBJ::BLOCK:
+					if (tile.x < unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
+					{ // ¿ÞÂÊ
+						unit->pushObject(DIR::LEFT, tile.rc.right, 0);
+					}
+					else if (tile.x > unit->getX() && tile.y < rcObj.bottom && tile.y > rcObj.top)
+					{ // ¿À¸¥ÂÊ
+						unit->pushObject(DIR::RIGHT, tile.rc.left, 0);
+					}
+					else if (tile.y < rcObj.top && tile.rc.left < unit->getX() && tile.rc.right > unit->getX())
+					{ // ÃµÀå
+						unit->pushObject(DIR::TOP, 0, tile.rc.bottom);
+					}
+					else if (tile.y > rcObj.bottom && tile.rc.left <= unit->getX() && tile.rc.right >= unit->getX())
+					{ // ¹Ù´Ú
+						unit->pushObject(DIR::BOTTOM, 0, tile.rc.top);
+					}
+					break;
+
 				default:
 					break;
 				}
@@ -408,19 +418,12 @@ void CollisionManager::collisionShooting()
 	for (Object* objPlayer : pairPlayer->second)
 	{
 		Player* player = dynamic_cast<Player*>(objPlayer);
-
 		for (Object* obj : pairEnemyObj->second)
 		{
 			RECT tmp;
 			RECT rcPlayer = player->getRect();
 			RECT rcAttack = player->getAtkRect();
 			RECT rcObj = obj->getRect();
-
-			if (CAMERAMANAGER->checkObjectInCamera(obj))
-			{
-				obj->deleteObject();
-				continue;
-			}
 
 			// Àû ÃÑ¾Ë ºÎ¼ö±â
 			//if (IntersectRect(&tmp, &rcAttack, &rcObj))

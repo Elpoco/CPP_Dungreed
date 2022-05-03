@@ -58,6 +58,10 @@ private:
 	float _showStartTime;
 	float _showInfoTime;
 
+	ImageFont* _mapInfo;
+	BOOL _showMapInfo;
+	float _infoSpeed;
+
 public:
 	UIManager();
 	~UIManager();
@@ -99,6 +103,9 @@ public:
 	void offUI() { _isUI = FALSE; }
 
 	void showBossInfo(char* bossName);
+	void updateBossInfo();
+	void showMapInfo(char* mapName);
+	void updateMapInfo();
 
 };
 

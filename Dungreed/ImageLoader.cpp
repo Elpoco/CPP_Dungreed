@@ -157,6 +157,7 @@ void ImageLoader::loadImages()
 	// º¸½º HP Bar
 	IMAGEMANAGER->addImage(ImageName::UI::MonsterHpBar::BossLifeBack, PATH_IMAGE"UI/MonsterHp/BossLifeBack.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::MonsterHpBar::BossLifeBase, PATH_IMAGE"UI/MonsterHp/BossLifeBase.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::MonsterHpBar::BossLifeGauge, PATH_IMAGE"UI/MonsterHp/BossLifeGauge.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::MonsterHpBar::BossSkellPortrait, PATH_IMAGE"UI/MonsterHp/BossSkellPortrait.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	// ÇÃ·¹ÀÌ¾î HP Bar
 	IMAGEMANAGER->addImage(ImageName::UI::PlayerHpBar::Back, PATH_IMAGE"UI/PlayerHP/PlayerLifeBack.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
@@ -260,12 +261,15 @@ void ImageLoader::loadImages()
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword.png");
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::BambooSword, PATH_ITEM"Weapon/BambooSword.png");
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::LightSaber, PATH_ITEM"Weapon/LightSaber.png");
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::CosmosSword, PATH_ITEM"Weapon/CosmosSword.png", 12, 1);
 	// ÃÑ
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt.png", 1, 2);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::GatlingGun, PATH_ITEM"Weapon/GatlingGun.png", 1, 2);
 	// ÃÑ¾Ë
-	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::bullet02, PATH_ITEM"Bullet/Bullet02.png");
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Bullet02, PATH_ITEM"Bullet/Bullet02.png");
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Bullet02_big, PATH_ITEM"Bullet/Bullet02_big.png");
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Bullet03, PATH_ITEM"Bullet/Bullet03.png");
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Bullet03_big, PATH_ITEM"Bullet/Bullet03_big.png");
 	// ¾Ç¼¼
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MultiBullet, PATH_ITEM"Accessory/MultiBullet.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MagnifyingGlass, PATH_ITEM"Accessory/MagnifyingGlass.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
@@ -280,6 +284,7 @@ void ImageLoader::loadImages()
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::basicSwing, PATH_ITEM"Effect/BasicShortSwordEffect.png", 3, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::BambooSwing, PATH_ITEM"Effect/BambooSword_Effect.png", 3, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::SwingFX, PATH_ITEM"Effect/SwingFX.png", 3, 1);
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::CosmosSwingFX, PATH_ITEM"Effect/CosmosSwingFX.png", 8, 1);
 	// ÃÑ ÀÌÆåÆ®
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shooting, PATH_ITEM"Effect/Shooting.png", 6, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shootingHit, PATH_ITEM"Effect/Shooting_hit.png", 6, 1);

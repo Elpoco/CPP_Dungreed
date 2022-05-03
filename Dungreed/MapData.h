@@ -206,7 +206,7 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_11)].arrSpawnInfo[6].unit = Code::UNIT::SKEL_DOG;
 		_info[TO_INT(Code::MAP::DUNGEON_11)].arrSpawnInfo[7].ptSpawn = PointMake(390, 1021);
 		_info[TO_INT(Code::MAP::DUNGEON_11)].arrSpawnInfo[7].unit = Code::UNIT::SKEL_DOG;
-		_info[TO_INT(Code::MAP::DUNGEON_11)].ptTresure = { 475, 648 };
+		_info[TO_INT(Code::MAP::DUNGEON_11)].ptTresure = { 1087, 1027 };
 
 		_info[TO_INT(Code::MAP::BELIAL)].arrSpawnInfo[0].ptSpawn = PointMake(750, 526);
 		_info[TO_INT(Code::MAP::BELIAL)].arrSpawnInfo[0].unit = Code::UNIT::BELIAL;

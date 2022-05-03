@@ -104,8 +104,8 @@ void Tresure::collisionObject()
 			break;
 		case Code::TRESURE_TYPE::GOLD:
 			dropItem = FALSE;
-			maxBullion = 5;
-			maxCoin = 12;
+			maxBullion = RND->getFromIntTo(3, 7);
+			maxCoin = RND->getFromIntTo(10, 20);
 			break;
 		case Code::TRESURE_TYPE::BOSS:
 			maxBullion = 7;
@@ -117,14 +117,14 @@ void Tresure::collisionObject()
 
 		for (int i = 0; i < maxBullion; i++)
 		{
-			ITEMMANAGER->dropItem(Code::ITEM::BULLION, _x, _y, TRUE);
+			ITEMMANAGER->dropItem(Code::ITEM::BULLION, _x, _rc.top, TRUE);
 		}
 		for (int i = 0; i < maxCoin; i++)
 		{
-			ITEMMANAGER->dropItem(Code::ITEM::COIN, _x, _y, TRUE);
+			ITEMMANAGER->dropItem(Code::ITEM::COIN, _x, _rc.top, TRUE);
 		}
 
 		if(dropItem)
-			ITEMMANAGER->dropItem(RND->getRndEnum(Code::ITEM::SHOT_SWORD, Code::ITEM::ITEM_CNT), _x, _y);
+			ITEMMANAGER->dropItem(RND->getRndEnum(Code::ITEM::SHOT_SWORD, Code::ITEM::ITEM_CNT), _x, _rc.top);
 	}
 }

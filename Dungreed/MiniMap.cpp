@@ -31,7 +31,7 @@ void MiniMap::release()
 
 void MiniMap::update()
 {
-	updateUnitPosition();
+	updateObjectPosition();
 }
 
 void MiniMap::render(HDC hdc)
@@ -56,7 +56,7 @@ void MiniMap::render(HDC hdc)
 			}
 		}
 	}
-	for (auto pt : _vEnemyPt)
+	for (auto pt : _vObectPt)
 	{
 		_imgEnemy->render(
 			hdc,
@@ -99,18 +99,18 @@ void MiniMap::settingMiniMap()
 	}
 }
 
-void MiniMap::updateUnitPosition()
+void MiniMap::updateObjectPosition()
 {
 	POINT pos = OBJECTMANAGER->getPlayer()->getPt();
 	_playerX = pos.x / TILE_SIZE;
 	_playerY = pos.y / TILE_SIZE;
 
 	_vObject = OBJECTMANAGER->getEnemy();
-	_vEnemyPt.clear();
+	_vObectPt.clear();
 
 	for (auto obj : *_vObject)
 	{
-		_vEnemyPt.push_back(
+		_vObectPt.push_back(
 			PointMake(
 			obj->getX() / TILE_SIZE,
 			obj->getY() / TILE_SIZE
@@ -122,7 +122,19 @@ void MiniMap::updateUnitPosition()
 	for (auto obj : *_vObject)
 	{
 		if (!obj->isRender()) continue;
-		_vEnemyPt.push_back(
+		_vObectPt.push_back(
+			PointMake(
+				obj->getX() / TILE_SIZE,
+				obj->getY() / TILE_SIZE
+			)
+		);
+	}
+
+	_vObject = OBJECTMANAGER->getDungeonObj();
+	for (auto obj : *_vObject)
+	{
+		if (!obj->isRender()) continue;
+		_vObectPt.push_back(
 			PointMake(
 				obj->getX() / TILE_SIZE,
 				obj->getY() / TILE_SIZE

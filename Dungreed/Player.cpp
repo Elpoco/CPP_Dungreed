@@ -51,6 +51,7 @@ HRESULT Player::init()
 		ITEMMANAGER->giveItem(Code::ITEM::MAGNIFYINGGLASS);
 		ITEMMANAGER->giveItem(Code::ITEM::WINGBOOTS);
 		ITEMMANAGER->giveItem(Code::ITEM::GATLINGGUN);
+		ITEMMANAGER->giveItem(Code::ITEM::COSMOSSWORD);
 	}
 
 	return S_OK;
@@ -153,6 +154,7 @@ void Player::move()
 		else
 		{
 			_isDash = FALSE;
+			_isDownFlag = FALSE;
 			_dashMove = DASH_DISTANCE;
 		}
 	}
@@ -203,7 +205,7 @@ void Player::moveLeft()
 {
 	_state = PLAYER_MOTION::RUN;
 
-	if (!_isCollision[Direction::DIR::LEFT]) _x -= _moveSpeed;
+	_x -= _moveSpeed;
 
 	if (_isDust)
 	{

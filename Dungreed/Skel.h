@@ -30,6 +30,8 @@ private:
 
 	int _atkCnt;
 
+	int _handX;
+
 public:
 	Skel(float x, float y, Code::UNIT code);
 	virtual ~Skel();

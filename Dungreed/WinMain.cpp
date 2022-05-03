@@ -27,7 +27,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	_mg = new MainGame();
 
 #ifdef _DEBUG
-	_isDebug = false;
+	_isDebug = true;
 #else
 	_isDebug = false;
 #endif
@@ -84,10 +84,11 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 		{
 			if (message.message == WM_QUIT) break;
-			if (_isWindowFocus){
+			if (_isWindowFocus)
+			{
 				TranslateMessage(&message);
-			DispatchMessage(&message);
-		}
+				DispatchMessage(&message);
+			}
 		}
 		else 
 		{

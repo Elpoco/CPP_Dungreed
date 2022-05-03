@@ -421,7 +421,7 @@ void Inventory::renderEquipBase(HDC hdc)
 		hdc,
 		_equipBase->getX() - img->getFrameWidth() * 0.5f,
 		_equipBase->getY() - img->getFrameHeight() * 0.5f,
-		0, 
+		_arrSlot[_equipIdx].item->getFrameInfo().x,
 		0
 	);
 
@@ -462,7 +462,7 @@ void Inventory::renderInventoryItem(HDC hdc)
 					hdc,
 					_arrSlot[i].pt.x - img->getFrameWidth() * 0.5f,
 					_arrSlot[i].pt.y - img->getFrameHeight() * 0.5f - equip,
-					0,
+					_arrSlot[i].item->getFrameInfo().x,
 					0
 				);
 			}

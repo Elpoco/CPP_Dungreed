@@ -46,7 +46,6 @@ public:
 	void printRectangleCenter(HDC hdc, float x, float y, int width, int height);
 
 	int checkObjectInCamera(float x, float y, int width, int height);
-	int checkObjectInCamera(Object* obj);
 
 	void render(HDC hdc, string imageName, float x, float y);
 	void render(HDC hdc, ImageBase* img, float x, float y);

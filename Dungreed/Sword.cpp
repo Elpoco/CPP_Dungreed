@@ -61,22 +61,27 @@ RECT Sword::attack()
 	float effectY = -sinf(effectAngle) * _frameInfo.height + ITEMMANAGER->getPlayerHand().y;
 
 	string effectName = ImageName::Effect::Weapon::basicSwing;
+	string soundName = SoundName::Item::Weapon::swing2;
 
 	switch (_info.code)
 	{
-	default:
-	case Code::ITEM::SHOT_SWORD:
-		SOUNDMANAGER->play(SoundName::Item::Weapon::swing2, _sound);
-		break;
 	case Code::ITEM::BAMBOO_SWORD:
-		SOUNDMANAGER->play(SoundName::Item::Weapon::swing1, _sound);
 		effectName = ImageName::Effect::Weapon::BambooSwing;
+		soundName = SoundName::Item::Weapon::swing1;
 		break;
 	case Code::ITEM::LIGHTSABER:
-		SOUNDMANAGER->play(SoundName::Item::Weapon::LightSaver, _sound);
 		effectName = ImageName::Effect::Weapon::SwingFX;
+		soundName = SoundName::Item::Weapon::LightSaver;
+		break;
+	case Code::ITEM::COSMOSSWORD:
+		effectName = ImageName::Effect::Weapon::CosmosSwingFX;
+		soundName = SoundName::Item::Weapon::swing5;
+		break;
+	default:
 		break;
 	}
+
+	SOUNDMANAGER->play(soundName, _sound);
 
 	CAMERAMANAGER->cameraShake(3);
 

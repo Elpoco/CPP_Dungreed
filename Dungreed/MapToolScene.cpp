@@ -45,7 +45,7 @@ HRESULT MapToolScene::init()
 	_rcTileWindow = RectMake(0, 0, TOOL_START_X, WINSIZE_Y);
 	_rcToolWindow = RectMake(TOOL_START_X, 0, TOOL_SIZE_X, WINSIZE_Y);
 	_rcObjectWindow = RectMake(TOOL_START_X, 0, TOOL_SIZE_X, TOOL_TILE_SIZE);
-	_rcTilePickWindow = RectMake(TOOL_START_X, TOOL_TILE_SIZE, TOOL_SIZE_X, TOOL_TILE_SIZE + TOOL_TILE_SIZE*15);
+	_rcTilePickWindow = RectMake(TOOL_START_X, TOOL_TILE_SIZE, TOOL_SIZE_X, TOOL_TILE_SIZE + TOOL_TILE_SIZE*14);
 	_rcToolTileHover = RectMake(_rcObjectWindow.left, _rcObjectWindow.top, _rcTilePickWindow.right, _rcTilePickWindow.bottom);
 
 	Button* btnQuit = new Button(ImageName::MapTool::button);
@@ -87,6 +87,7 @@ void MapToolScene::release()
 	SAFE_DELETE(_camera);
 	KEYMANAGER->deleteStr();
 	SOUNDMANAGER->stop(SoundName::MapTool);
+	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::NORMAL);
 }
 
 void MapToolScene::update()

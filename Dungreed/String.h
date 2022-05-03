@@ -146,6 +146,7 @@ namespace ImageName
 			constexpr char* gauge = "MonsterHpBar gauge";
 			constexpr char* BossLifeBack = "MonsterHpBar BossLifeBack";
 			constexpr char* BossLifeBase = "MonsterHpBar BossLifeBase";
+			constexpr char* BossLifeGauge = "MonsterHpBar BossLifeGauge";
 			constexpr char* BossSkellPortrait = "MonsterHpBar BossSkellPortrait";
 		}
 
@@ -268,11 +269,14 @@ namespace ImageName
 			constexpr char* basicShotSword = "WEAPON BasicShotSword";
 			constexpr char* BambooSword = "WEAPON BambooSword";
 			constexpr char* LightSaber = "WEAPON LightSaber";
+			constexpr char* CosmosSword = "WEAPON CosmosSword";
 
 			constexpr char* colt = "WEAPON Colt";
 			constexpr char* GatlingGun = "WEAPON GatlingGun";
-			constexpr char* bullet02 = "WEAPON bullet02";
+			constexpr char* Bullet02 = "WEAPON Bullet02";
 			constexpr char* Bullet02_big = "WEAPON Bullet02_big";
+			constexpr char* Bullet03 = "WEAPON Bullet03";
+			constexpr char* Bullet03_big = "WEAPON Bullet03_big";
 		}
 
 		namespace Accessory
@@ -296,6 +300,7 @@ namespace ImageName
 			constexpr char* basicSwing = "EFFECT BasicSwing";
 			constexpr char* BambooSwing = "EFFECT BambooSwing";
 			constexpr char* SwingFX = "EFFECT SwingFX";
+			constexpr char* CosmosSwingFX = "EFFECT CosmosSwingFX";
 			constexpr char* shooting = "EFFECT Shooting";
 			constexpr char* shootingHit = "EFFECT ShootingHit";
 		}
@@ -399,8 +404,10 @@ namespace SoundName
 			constexpr char* swing0 = "SOUND swing0";
 			constexpr char* swing1 = "SOUND swing1";
 			constexpr char* swing2 = "SOUND swing2";
+			constexpr char* swing5 = "SOUND swing5";
 			constexpr char* LightSaver = "SOUND LightSaver";
 			constexpr char* Gun = "SOUND Gun";
+			constexpr char* GatlingGun = "SOUND GatlingGun";
 		}
 	}
 

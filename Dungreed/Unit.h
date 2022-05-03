@@ -42,7 +42,6 @@ protected:
 	BYTE _imgAlpha;
 	POINT _rotateCenter;
 
-
 public:
 	Unit();
 	virtual ~Unit();

@@ -11,6 +11,8 @@
 UIManager::UIManager()
 	: _isUI(FALSE)
 	, _isShowItemInfo(FALSE)
+	, _showMapInfo(FALSE)
+	, _infoSpeed(0.0f)
 {
 }
 
@@ -29,14 +31,19 @@ HRESULT UIManager::init()
 	initItemInfo();
 
 	_bossIntro = new UI(ImageName::BossIntro, CENTER_X, CENTER_Y);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossIntro);
 	_bossIntro->setFree();
 	_bossIntro->hide();
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossIntro);
 
 	_bossInfo = new ImageFont(140, 450, "TEST");
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossInfo);
 	_bossInfo->setFree();
 	_bossInfo->hide();
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossInfo);
+
+	_mapInfo = new ImageFont(CENTER_X, 200, "TEST");
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _mapInfo);
+	_mapInfo->setFree();
+	_mapInfo->hide();
 
 	return S_OK;
 }
@@ -49,6 +56,8 @@ void UIManager::update()
 {
 	updateKeyboard();
 	updateReload();
+	if (_showBossInfo) updateBossInfo();
+	if (_showMapInfo) updateMapInfo();
 
 	if (IsOnceKeyDown(KEY::INVENTORY)) toggleInventory();
 	if (IsOnceKeyDown(KEY::ESC))
@@ -64,17 +73,6 @@ void UIManager::update()
 void UIManager::render(HDC hdc)
 {
 	renderItemInfo(hdc);
-
-	if (_showBossInfo)
-	{
-		if (!CAMERAMANAGER->isCameraMove())
-		{
-			_showBossInfo = FALSE;
-			_bossInfo->hide();
-			_bossIntro->hide();
-
-		}
-	}
 }
 
 void UIManager::setCursorType(UIEnum::CURSOR_TYPE cursorType)
@@ -315,10 +313,45 @@ void UIManager::renderItemInfo(HDC hdc)
 void UIManager::showBossInfo(char* bossName)
 {
 	_showBossInfo = TRUE;
-	_showStartTime = TIMEMANAGER->getWorldTime();
-	_showInfoTime = 5;
 	_bossIntro->show();
 	_bossInfo->show();
 	_bossInfo->setString(bossName);
+}
+
+void UIManager::updateBossInfo()
+{
+	if (!CAMERAMANAGER->isCameraMove())
+	{
+		_showBossInfo = FALSE;
+		_bossInfo->hide();
+		_bossIntro->hide();
+	}
+}
+
+void UIManager::showMapInfo(char* mapName)
+{
+	_showMapInfo = TRUE;
+	_showStartTime = TIMEMANAGER->getWorldTime();
+	_showInfoTime = 5;
+	_mapInfo->show();
+	_mapInfo->setString(mapName);
+	_mapInfo->setX(-_mapInfo->getWidth());
+	_infoSpeed = 7.0f;
+}
+
+void UIManager::updateMapInfo()
+{
+	int curX = _mapInfo->getX();
+	if (curX > CENTER_X)
+	{
+		_infoSpeed -= 0.15f;
+	}
+	if (_infoSpeed < 7.0f && curX < CENTER_X)
+	{
+		_infoSpeed = 0.0f;
+	}
+	_mapInfo->setX(curX + _infoSpeed);
+	
+	//_mapInfo->hide();
 }
 

@@ -232,7 +232,7 @@ void Unit::updateRect()
 
 void Unit::jump()
 {
-	if (_isJumpFlag) return;
+	if (_isJumpFlag && !_isDebug) return;
 	_isJumpFlag = TRUE;
 	_isJump = TRUE;
 	_isDownJump = FALSE;

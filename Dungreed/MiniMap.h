@@ -24,7 +24,7 @@ private:
 	int _playerY;
 	
 	ObjectManager::vObjects* _vObject;
-	vector<POINT> _vEnemyPt;
+	vector<POINT> _vObectPt;
 
 public:
 	MiniMap();
@@ -36,7 +36,7 @@ public:
 	virtual void render(HDC hdc) override;
 
 	void settingMiniMap();
-	void updateUnitPosition();
+	void updateObjectPosition();
 
 	void setDungeon(BOOL isDungeon) { _isDungeon = isDungeon; }
 };

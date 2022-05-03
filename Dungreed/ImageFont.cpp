@@ -34,10 +34,11 @@ HRESULT ImageFont::init()
 {
 	UI::init();
 
+	settingImage(_type);
+
 	if (_str == "") initNumber();
 	else initString();
 	
-	settingImage(_type);
 
 	_rc = RectMakeCenter(_x, _y, _imgWidth * _arrLen, _imgHeight);
 
@@ -139,6 +140,9 @@ void ImageFont::initNumber()
 		_num *= 0.1f;
 	}
 	_rc = RectMakeCenter(_x, _y, _imgWidth * _arrLen, _imgHeight);
+
+	_width = _imgWidth * _arrLen;
+	_height = _imgHeight;
 }
 
 void ImageFont::initString()
@@ -152,6 +156,9 @@ void ImageFont::initString()
 		_arrNum[i] = _str[i];
 	}
 	_rc = RectMakeCenter(_x, _y, _imgWidth * _arrLen, _imgHeight);
+
+	_width = _imgWidth * _arrLen;
+	_height = _imgHeight;
 }
 
 void ImageFont::settingImage(FONT_TYPE type)

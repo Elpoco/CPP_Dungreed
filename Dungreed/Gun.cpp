@@ -103,7 +103,18 @@ RECT Gun::attack()
 		ImageName::Effect::Weapon::shootingHit
 	);
 
-	SOUNDMANAGER->play(SoundName::Item::Weapon::Gun, _sound);
+	string sound = SoundName::Item::Weapon::Gun;
+
+	//switch (_info.code)
+	//{
+	//case Code::ITEM::GATLINGGUN:
+	//	sound = SoundName::Item::Weapon::GatlingGun;
+	//	break;
+	//default:
+	//	break;
+	//}
+
+	SOUNDMANAGER->play(sound, _sound - 0.5f);
 
 	return { 0,0,0,0 };
 }
@@ -131,15 +142,22 @@ void Gun::settingAcc()
 		}
 	}
 
+	_bulletImgName = ImageName::Item::Weapon::Bullet02;
+
+	switch (_info.code)
+	{
+	case Code::ITEM::GATLINGGUN:
+		_bulletImgName = ImageName::Item::Weapon::Bullet03;
+		break;
+	default:
+		break;
+	}
+
 	if (_isSize)
 	{
-		_bulletImgName = ImageName::Item::Weapon::Bullet02_big;
+		_bulletImgName += "_big";
 		_itemAtkSpeed -= 0.7f;
 		_itemDmg += 5;
-	}
-	else
-	{
-		_bulletImgName = ImageName::Item::Weapon::bullet02;
 	}
 
 	if (_isMulti)
@@ -177,8 +195,8 @@ void Gun::settingShootingPoint()
 {
 	// 총구 위치 구하기
 	_angle = GetAngle(ITEMMANAGER->getPlayerBody(), CAMERAMANAGER->calAbsPt(_ptMouse));
-	_shootingX = ITEMMANAGER->getPlayerHand().x + cosf(_angle) * _frameInfo.width;
-	_shootingX += ITEMMANAGER->getPlayerIsLeft() ? _frameInfo.width * 0.2 : _frameInfo.width * -0.2;
-	_shootingY = ITEMMANAGER->getPlayerHand().y - sinf(_angle) * _frameInfo.height;
+	_shootingX = ITEMMANAGER->getPlayerBody().x + cosf(_angle) * _frameInfo.width + 15;
+	_shootingX += ITEMMANAGER->getPlayerIsLeft() ? _frameInfo.width * -0.3 : _frameInfo.width * -0.1;
+	_shootingY = ITEMMANAGER->getPlayerBody().y - sinf(_angle) * _frameInfo.height + 5;
 	_degree = RadToDeg(_angle);
 }

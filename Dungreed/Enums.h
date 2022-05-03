@@ -142,6 +142,7 @@ namespace Code
 		SHOT_SWORD, // 아이템시작
 		BAMBOO_SWORD,
 		LIGHTSABER,
+		COSMOSSWORD,
 		// 총
 		COLT,
 		GATLINGGUN,

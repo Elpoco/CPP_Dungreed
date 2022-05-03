@@ -44,7 +44,7 @@ HRESULT Belial::init()
 	SOUNDMANAGER->play(SoundName::belialBG, _sound);
 	SOUNDMANAGER->play(SoundName::Enemy::Skeletonking, _sound);
 
-	CAMERAMANAGER->cameraMove(_x + 23, _y, 5, 5);
+	CAMERAMANAGER->cameraMove(_x + 23, _y, 5, 3);
 	_imgAlpha = 100;
 	UIMANAGER->showBossInfo("Belial");
 
@@ -126,7 +126,10 @@ void Belial::render(HDC hdc)
 
 void Belial::deleteEffect()
 {
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ENEMY_OBJ);
 	SOUNDMANAGER->stop(SoundName::belialBG);
+
+	SOUNDMANAGER->play(SoundName::Enemy::MonsterDie, _sound);
 	SOUNDMANAGER->play(SoundName::dungeon, _sound);
 	OBJECTMANAGER->addEffect(ImageName::Enemy::die, _x, _y); 
 	MAPMANAGER->dieMonster();

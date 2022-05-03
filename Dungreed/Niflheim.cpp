@@ -46,7 +46,7 @@ HRESULT Niflheim::init()
 
 	_bulletSound = TIMEMANAGER->getWorldTime();
 
-	CAMERAMANAGER->cameraMove(_x, _y, 5, 5);
+	CAMERAMANAGER->cameraMove(_x, _y, 5, 3);
 	UIMANAGER->showBossInfo("Niflheim");
 
 	return S_OK;
@@ -177,6 +177,8 @@ void Niflheim::deleteEffect()
 {
 	SOUNDMANAGER->stop(SoundName::niflheimBG);
 	SOUNDMANAGER->play(SoundName::IceDungeon, _sound);
+
+	SOUNDMANAGER->play(SoundName::Enemy::MonsterDie, _sound);
 	OBJECTMANAGER->addEffect(ImageName::Enemy::die, _x, _y);
 	MAPMANAGER->dieMonster();
 }
@@ -298,7 +300,7 @@ void Niflheim::turnAround()
 		this->shootBullet(x, y, angle);
 	}
 
-	if (++_skillActCnt > BULLET_CNT + 10)
+	if (++_skillActCnt > BULLET_CNT + 20)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;
@@ -311,8 +313,6 @@ void Niflheim::turnAround()
 
 void Niflheim::moveAndFire()
 {
-	int bulletCnt = BULLET_CNT;
-
 	if (_skillActCnt == 0 && _skillTick == 0)
 	{
 		this->attackAnimation();
@@ -336,7 +336,7 @@ void Niflheim::moveAndFire()
 
 	if (_skillTick++ < _skillFirstTick) return;
 	_skillTick = 0;
-	_skillFirstTick = 10;
+	_skillFirstTick = 8;
 	
 	for (int i = 0; i < PILLAR_CNT; i++)
 	{
@@ -344,8 +344,7 @@ void Niflheim::moveAndFire()
 		
 		if (_skill == NIFLHEIM_SKILL::WIDE_LINE)
 		{
-			bulletCnt = BULLET_CNT_L;
-			int idx = _skillActCnt / 5;
+			int idx = _skillActCnt / 8;
 			if (!_pillar[idx])
 			{
 				_skillTick = _skillFirstTick;
@@ -372,7 +371,7 @@ void Niflheim::moveAndFire()
 		}
 	}
 
-	if (++_skillActCnt >= bulletCnt)
+	if (++_skillActCnt >= BULLET_CNT)
 	{
 		_skillTick = 0;
 		_skillActCnt = 0;

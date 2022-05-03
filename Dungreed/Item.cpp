@@ -20,6 +20,7 @@ HRESULT Item::init()
 
 	_frameInfo.width = _img->getFrameWidth();
 	_frameInfo.height = _img->getFrameHeight();
+	_frameInfo.maxFrameX = _img->getMaxFrameX();
 
 	_handleY = _frameInfo.height - 5;
 
@@ -32,6 +33,13 @@ void Item::release()
 
 void Item::update()
 {
+	if (_frameInfo.cnt++ > _frameInfo.tick)
+	{
+		_frameInfo.cnt = 0;
+		if (++_frameInfo.x > _frameInfo.maxFrameX) _frameInfo.x = 0;
+
+	}
+
 	if (_isEquip)
 	{
 		if (!UIMANAGER->isUI()) updateDegree();
