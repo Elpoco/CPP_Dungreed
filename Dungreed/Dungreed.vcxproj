@@ -177,6 +177,7 @@
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemInfo.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="ItemShop.cpp" />
     <ClCompile Include="JsonSaveLoader.cpp">
@@ -263,6 +264,7 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemData.h" />
+    <ClInclude Include="ItemInfo.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="ItemShop.h" />
     <ClInclude Include="JsonSaveLoader.h">

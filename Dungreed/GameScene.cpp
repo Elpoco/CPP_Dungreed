@@ -26,6 +26,7 @@ HRESULT GameScene::init()
 	_imgBackground = IMAGEMANAGER->findImage(ImageName::Town::townBgDay);
 	_skyX = 0.0f;
 	SOUNDMANAGER->play(SoundName::town, _sound);
+	UIMANAGER->showMapInfo("Town");
 
 	_vTownDeco.push_back({ FindImage(ImageName::Town::BrokenTemple), 2590, 557 });
 	_vTownDeco.push_back({ FindImage(ImageName::Town::Tree0), 3944, 1112 });

@@ -15,8 +15,6 @@ protected:
 
 	float _lastAttack;
 
-	BOOL _isHover;
-
 public:
 	Item(Code::ITEM itemCode);
 	virtual ~Item();

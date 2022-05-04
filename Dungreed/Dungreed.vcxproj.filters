@@ -175,6 +175,9 @@
     <Filter Include="MainGame\02. Object\07. NPC\Ability">
       <UniqueIdentifier>{2d38a6de-c7a0-40b0-8bc0-629ebd50a36b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\05. UI\ItemInfo">
+      <UniqueIdentifier>{37e2bd40-aca9-4296-8beb-7f30d4c3f4a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -392,6 +395,9 @@
     </ClCompile>
     <ClCompile Include="Ability.cpp">
       <Filter>MainGame\02. Object\07. NPC\Ability</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemInfo.cpp">
+      <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -643,6 +649,9 @@
     </ClInclude>
     <ClInclude Include="Ability.h">
       <Filter>MainGame\02. Object\07. NPC\Ability</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemInfo.h">
+      <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

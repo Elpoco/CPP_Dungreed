@@ -7,6 +7,7 @@ HRESULT TestScene::init()
 	OBJECTMANAGER->addPlayer(CENTER_X, 500);
 	TILEMANAGER->loadMap(FileName::testSave);
 	SOUNDMANAGER->play(SoundName::TestScene, _sound);
+	UIMANAGER->showMapInfo("Test Map");
 
 	OBJECTMANAGER->addNPC(Code::NPC::DUNGEON_SHOP, 172, 386);
 	OBJECTMANAGER->addNPC(Code::NPC::INN, 408, 383);

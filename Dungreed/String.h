@@ -4,6 +4,7 @@ namespace ImageName
 	constexpr char* none = "IMG none";
 	constexpr char* ChangeScene = "IMG ChangeScene";
 	constexpr char* BossIntro = "IMG BossIntro";
+	constexpr char* info = "IMG info";
 
 	namespace Player
 	{

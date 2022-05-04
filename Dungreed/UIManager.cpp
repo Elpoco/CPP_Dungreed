@@ -7,10 +7,10 @@
 #include "PlayerHpBar.h"
 #include "MiniMap.h"
 #include "ImageFont.h"
+#include "ItemInfo.h"
 
 UIManager::UIManager()
 	: _isUI(FALSE)
-	, _isShowItemInfo(FALSE)
 	, _showMapInfo(FALSE)
 	, _infoSpeed(0.0f)
 {
@@ -72,7 +72,6 @@ void UIManager::update()
 
 void UIManager::render(HDC hdc)
 {
-	renderItemInfo(hdc);
 }
 
 void UIManager::setCursorType(UIEnum::CURSOR_TYPE cursorType)
@@ -218,7 +217,7 @@ void UIManager::showReloadBar(float reloadTick)
 
 void UIManager::initItemInfo()
 {
-	_uiItemInfo = new UI(ImageName::UI::Item::ItemInfo);
+	_uiItemInfo = new ItemInfo();
 	_uiItemInfo->setFree();
 	_uiItemInfo->hide();
 
@@ -227,87 +226,8 @@ void UIManager::initItemInfo()
 
 void UIManager::showItemInfo(ITEM_INFO itemInfo)
 {
-	_isShowItemInfo = TRUE;
-	_itemInfo = itemInfo;
-	_itemInfoX = _ptMouse.x - _uiItemInfo->getWidth();
-	_itemInfoY = _ptMouse.y - _uiItemInfo->getHeight();
-
-	if (_ptMouse.y < CENTER_Y) _itemInfoY = _ptMouse.y;
-	if (_ptMouse.x < CENTER_X) _itemInfoX = _ptMouse.x;
-
-	_uiItemInfo->setX(_itemInfoX + _uiItemInfo->getWidth() * 0.5f);
-	_uiItemInfo->setY(_itemInfoY + _uiItemInfo->getHeight() * 0.5f);
+	_uiItemInfo->setInfo(itemInfo);
 	_uiItemInfo->show();
-}
-
-void UIManager::hideItemInfo()
-{
-	_isShowItemInfo = FALSE;
-	_uiItemInfo->hide();
-}
-
-void UIManager::renderItemInfo(HDC hdc)
-{
-	if (_isShowItemInfo)
-	{
-		DWORD itemColor = ColorSet::WHITE;
-		switch (_itemInfo.grade)
-		{
-		case Code::ITEM_GRADE::UNCOMMON:
-			itemColor = ColorSet::UNCOMMON;
-			break;
-		case Code::ITEM_GRADE::RARE:
-			itemColor = ColorSet::RARE;
-			break;
-		case Code::ITEM_GRADE::LEGEND:
-			itemColor = ColorSet::LEGEND;
-			break;
-		default:
-			break;
-		}
-
-		FONTMANAGER->drawString(hdc, _itemInfoX + _uiItemInfo->getWidth() * 0.5f, _itemInfoY + 38, 30, FW_BOLD, _itemInfo.name.c_str(), itemColor, DIR::CENTER);
-
-		_imgItem = ITEMMANAGER->findImage(_itemInfo.code);
-		_rcItem = RectMakeCenter(_itemInfoX + 56, _itemInfoY + 101, _imgItem->getFrameWidth(), _imgItem->getFrameHeight());
-		_imgItem->frameRender(hdc, _rcItem.left, _rcItem.top, 0, 0);
-
-		// 아이템 능력치
-		SIZE size;
-		string dmg = to_string(_itemInfo.minDmg) + " ~ " + to_string(_itemInfo.maxDmg);
-		if (_itemInfo.minDmg == _itemInfo.maxDmg) dmg = to_string(_itemInfo.minDmg);
-
-		if (_itemInfo.minDmg > 0)
-		{
-			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 70, 20, 0, "공격력 : ", ColorSet::WHITE);
-			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 70, 20, 0, dmg.c_str(), ColorSet::YELLOW);
-		}
-		else if (_itemInfo.accDsc != "")
-		{
-			// 악세 설명
-			FONTMANAGER->drawText(hdc, { _itemInfo.accDsc.c_str(), 225, 45, _itemInfoX + 105, _itemInfoY + 70 }, 20, 0, ColorSet::GREEN);
-			_itemInfo.accDsc = "";
-		}
-
-		if (_itemInfo.atkSpeed > 0)
-		{
-			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 90, 20, 0, "초당 공격 횟수 : ", ColorSet::WHITE);
-			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 90, 20, 0, to_string(_itemInfo.atkSpeed).substr(0, 4).c_str(), ColorSet::YELLOW);
-		}
-
-		if (_itemInfo.bulletCnt > 0)
-		{
-			size = FONTMANAGER->drawString(hdc, _itemInfoX + 105, _itemInfoY + 110, 20, 0, "장탄 수 : ", ColorSet::WHITE);
-			FONTMANAGER->drawString(hdc, _itemInfoX + 105 + size.cx, _itemInfoY + 110, 20, 0, to_string(_itemInfo.bulletCnt).c_str(), ColorSet::YELLOW);
-		}
-		else if (_itemInfo.accDsc != "")
-		{
-			FONTMANAGER->drawText(hdc, { _itemInfo.accDsc.c_str(), 225, 45, _itemInfoX + 105, _itemInfoY + 110 }, 20, 0, ColorSet::GREEN);
-		}
-
-		// 아이템 설명
-		FONTMANAGER->drawText(hdc, { _itemInfo.description.c_str(), 305, 45,_itemInfoX + 25, _itemInfoY + 140 }, 20, 0, ColorSet::ITEM_DSC);
-	}
 }
 
 void UIManager::showBossInfo(char* bossName)
@@ -331,27 +251,33 @@ void UIManager::updateBossInfo()
 void UIManager::showMapInfo(char* mapName)
 {
 	_showMapInfo = TRUE;
+	_showInfoTime = 3;
 	_showStartTime = TIMEMANAGER->getWorldTime();
-	_showInfoTime = 5;
 	_mapInfo->show();
 	_mapInfo->setString(mapName);
 	_mapInfo->setX(-_mapInfo->getWidth());
-	_infoSpeed = 7.0f;
+	_infoSpeed = 18.0f;
+	_isIn = TRUE;
 }
 
 void UIManager::updateMapInfo()
 {
 	int curX = _mapInfo->getX();
-	if (curX > CENTER_X)
-	{
-		_infoSpeed -= 0.15f;
-	}
-	if (_infoSpeed < 7.0f && curX < CENTER_X)
+
+	_infoSpeed += _isIn ? -0.2f : 0.2f;
+
+	if (curX < CENTER_X && _infoSpeed < 0 && _isIn)
 	{
 		_infoSpeed = 0.0f;
+		if (_showStartTime + _showInfoTime < TIMEMANAGER->getWorldTime())
+		{
+			_infoSpeed = -9.0f;
+			_isIn = FALSE;
+		}
 	}
-	_mapInfo->setX(curX + _infoSpeed);
-	
-	//_mapInfo->hide();
+	else
+	{
+		_mapInfo->setX(curX + _infoSpeed);
+	}
 }
 

@@ -91,6 +91,7 @@ typedef struct tagItemInfo
 	int bulletCnt = 0;
 
 	string accDsc = "";
+	string ability = "";
 
 	tagItemInfo() {}
 	tagItemInfo(Code::ITEM_KIND type, Code::ITEM code, Code::ITEM_GRADE grade, string name, string description,

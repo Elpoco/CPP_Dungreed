@@ -68,6 +68,7 @@ void Gun::update()
 void Gun::render(HDC hdc)
 {
 	Item::render(hdc);
+	CAMERAMANAGER->printRectangle(hdc, _shootingX, _shootingY, 5, 5);
 }
 
 RECT Gun::attack()
@@ -195,8 +196,7 @@ void Gun::settingShootingPoint()
 {
 	// 총구 위치 구하기
 	_angle = GetAngle(ITEMMANAGER->getPlayerBody(), CAMERAMANAGER->calAbsPt(_ptMouse));
-	_shootingX = ITEMMANAGER->getPlayerBody().x + cosf(_angle) * _frameInfo.width + 15;
-	_shootingX += ITEMMANAGER->getPlayerIsLeft() ? _frameInfo.width * -0.3 : _frameInfo.width * -0.1;
-	_shootingY = ITEMMANAGER->getPlayerBody().y - sinf(_angle) * _frameInfo.height + 5;
+	_shootingX = ITEMMANAGER->getPlayerHand().x + cosf(_angle) * _frameInfo.width;
+	_shootingY = ITEMMANAGER->getPlayerHand().y - sinf(_angle) * _frameInfo.width;
 	_degree = RadToDeg(_angle);
 }

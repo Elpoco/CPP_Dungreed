@@ -212,12 +212,12 @@ void CollisionManager::collisionTile()
 
 				if (leftTile.type == MAP_OBJ::BLOCK)
 				{
-					obj->pushObject(DIR::LEFT, tile.rc.right);
+					obj->pushObject(DIR::LEFT, leftTile.rc.right);
 				}
 
 				if (rightTile.type == MAP_OBJ::BLOCK)
 				{
-					obj->pushObject(DIR::RIGHT, tile.rc.left);
+					obj->pushObject(DIR::RIGHT, leftTile.rc.left);
 				}
 
 				switch (tile.type)
@@ -425,6 +425,15 @@ void CollisionManager::collisionShooting()
 			RECT rcAttack = player->getAtkRect();
 			RECT rcObj = obj->getRect();
 
+			BOOL check = CAMERAMANAGER->checkObjectInCamera(
+				obj->getX(), 
+				obj->getY(),
+				rcObj.right - rcObj.left,
+				rcObj.bottom - rcObj.top
+			);
+
+			if (check) continue;
+			
 			// 적 총알 부수기
 			//if (IntersectRect(&tmp, &rcAttack, &rcObj))
 			//{

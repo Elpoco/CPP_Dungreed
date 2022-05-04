@@ -69,9 +69,11 @@ void FoodShop::render(HDC hdc)
 			_uiMenuSelect->setX(_uiMenu[i]->getX());
 			_uiMenuSelect->setY(_uiMenu[i]->getY());
 			_uiMenuSelect->render(hdc);
-			_food[i].img->render(hdc,
+			_food[i].img->alphaRender(hdc,
 				_uiBase3->getX() - _food[i].img->getWidth() * 0.5f,
-				_uiBase3->getY() - _food[i].img->getHeight() * 0.5f);
+				_uiBase3->getY() - _food[i].img->getHeight() * 0.5f,
+				255
+			);
 		}
 		else
 		{

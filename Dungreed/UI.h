@@ -46,5 +46,6 @@ public:
 	inline int getHeight() { return _height; }
 
 	inline void setAlpha(BYTE alpha) { _alpha = alpha; }
+
 };
 

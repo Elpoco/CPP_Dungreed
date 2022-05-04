@@ -24,6 +24,7 @@ void ImageLoader::loadImages()
 {
 	IMAGEMANAGER->addImage(ImageName::none, PATH_IMAGE"None.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::ChangeScene, PATH_IMAGE"ScreenCover.bmp", WINSIZE_X, WINSIZE_Y);
+	IMAGEMANAGER->addImage(ImageName::info, PATH_IMAGE"ScreenCover.bmp", 240, 400);
 	IMAGEMANAGER->addImage(ImageName::BossIntro, PATH_IMAGE"BossIntro.bmp", WINSIZE_X, WINSIZE_Y, TRUE, ColorSet::MAGENTA);
 	
 	// ==========

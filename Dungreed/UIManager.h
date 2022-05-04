@@ -6,6 +6,7 @@ class Cursor;
 class Inventory;
 class MiniMap;
 class ImageFont;
+class ItemInfo;
 
 class UIManager : public SingletonBase<UIManager>
 {
@@ -42,15 +43,8 @@ private:
 	float _reloadStartTime;
 
 	// 아이템 정보
-	UI*			_uiItemInfo;
+	ItemInfo*   _uiItemInfo;
 	ITEM_INFO	_itemInfo;
-	ImageBase*	_imgItem;
-	RECT		_rcItem;
-	int			_uiCneterX;
-
-	BOOL	_isShowItemInfo;
-	float	_itemInfoX;
-	float	_itemInfoY;
 
 	UI* _bossIntro;
 	ImageFont* _bossInfo;
@@ -60,8 +54,9 @@ private:
 
 	ImageFont* _mapInfo;
 	BOOL _showMapInfo;
+	BOOL _isIn;
 	float _infoSpeed;
-
+	
 public:
 	UIManager();
 	~UIManager();
@@ -95,8 +90,6 @@ public:
 	// ==============
 	void initItemInfo();
 	void showItemInfo(ITEM_INFO itemInfo);
-	void hideItemInfo();
-	void renderItemInfo(HDC hdc);
 
 	BOOL isUI() { return _isUI; }
 	void onUI() { _isUI = TRUE; }

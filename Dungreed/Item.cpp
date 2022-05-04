@@ -4,7 +4,6 @@
 Item::Item(Code::ITEM itemCode)
 	: _degree(0)
 	, _lastAttack(0.0f)
-	, _isHover(FALSE)
 	, _handleX(0.0f)
 {
 	_info = DBMANAGER->getInfo(itemCode);
@@ -51,11 +50,6 @@ void Item::update()
 			_frameInfo.height
 		);
 	}
-	if (_isHover)
-	{
-		UIMANAGER->hideItemInfo();
-		_isHover = FALSE;
-	}
 }
 
 void Item::render(HDC hdc)
@@ -74,10 +68,6 @@ void Item::render(HDC hdc)
 		);
 	}
 
-	if (_isHover)
-	{
-		UIMANAGER->showItemInfo(_info);
-	}
 }
 
 void Item::updateDegree()
@@ -92,5 +82,5 @@ void Item::updateDegree()
 
 void Item::itemHover()
 {
-	_isHover = TRUE;
+	UIMANAGER->showItemInfo(_info);
 }

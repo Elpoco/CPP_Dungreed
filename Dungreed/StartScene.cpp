@@ -58,8 +58,7 @@ void StartScene::update()
 		}
 	}
 
-	if(IsOnceKeyDown(KEY::ESC)) exitGame();
-	if (IsOnceKeyDown(KEY::SPACE)) UIMANAGER->showMapInfo("TETEST");
+	if (IsOnceKeyDown(KEY::ESC)) exitGame();
 }
 
 void StartScene::render()
