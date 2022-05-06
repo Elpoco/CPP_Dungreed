@@ -66,6 +66,9 @@ private:
 	BOOL _isHover;
 	RECT _rcHover;
 
+	// ½ºÅ³
+	UI* _uiSkill;
+
 public:
 	Inventory();
 	virtual ~Inventory();

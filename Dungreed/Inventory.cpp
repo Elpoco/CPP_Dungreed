@@ -93,6 +93,12 @@ void Inventory::settingUI()
 	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI, _equipBaseBack);
 	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI, _equipBase);
 
+	// 스킬
+	_uiSkill = new UI(ImageName::UI::Item::Skill);
+	_uiSkill->setX(_equipBase->getX() - 100);
+	_uiSkill->setY(_equipBase->getY());
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI, _uiSkill);
+
 	// 인벤토리 베이스
 	UI* invenBase = new UI(ImageName::UI::Inventory::Base);
 	invenBase->setX(WINSIZE_X - invenBase->getWidth() * 0.5f);

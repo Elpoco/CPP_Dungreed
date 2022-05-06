@@ -25,6 +25,7 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual RECT attack() { return { 0,0,0,0 }; }
+	virtual void Skill() {}
 
 	virtual BULLET_INFO getBulletInfo() { return { 0,0 }; }
 

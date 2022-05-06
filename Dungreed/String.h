@@ -163,12 +163,14 @@ namespace ImageName
 		namespace Keyboard
 		{
 			constexpr char* F = "Keyboard F";
+			constexpr char* Q = "Keyboard Q";
 			constexpr char* ESC = "Keyboard ESC";
 		}
 
 		namespace Item
 		{
 			constexpr char* ItemInfo = "UI ITEM ItemInfo";
+			constexpr char* Skill = "UI ITEM Skill";
 			constexpr char* reloadBar = "UI ITEM reloadBar";
 			constexpr char* reloadBase = "UI ITEM reloadBase";
 			constexpr char* reloadEffect = "UI ITEM reloadEffect";
