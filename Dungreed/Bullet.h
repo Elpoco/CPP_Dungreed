@@ -21,6 +21,8 @@ private:
 
 	BOOL _isSuper;
 	BOOL _isImgRotate;
+	BOOL _isPenetrate;
+	float _initTime;
 
 	BOOL _isAuto;
 	int _dir;
@@ -49,6 +51,9 @@ public:
 	void setSuper() { _isSuper = TRUE; }
 	void setRotate() { _isImgRotate = TRUE; }
 	void setScale(float scale) { _scale = scale; }
+	void setPenetrate() { _isPenetrate = TRUE; }
+	BOOL getPenetrate() { return _isPenetrate; }
+	float getInitTime() { return _initTime; }
 
 };
 

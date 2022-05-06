@@ -16,6 +16,7 @@ Bullet::Bullet(string imgName, float x, float y, float angle, float speed
 	, _isAuto(FALSE)
 	, _dir(1)
 	, _scale(1.0f)
+	, _isPenetrate(FALSE)
 {
 	_x = x;
 	_y = y;
@@ -49,6 +50,8 @@ HRESULT Bullet::init()
 		_frameInfo.width = _img->getWidth();
 		_frameInfo.height = _img->getHeight();
 	}
+
+	_initTime = TIMEMANAGER->getWorldTime();
 
 	return S_OK;
 }
@@ -135,6 +138,7 @@ void Bullet::stopObject()
 
 void Bullet::collisionObject()
 {
+	if (_isPenetrate) return;
 	Object::deleteObject();
 }
 

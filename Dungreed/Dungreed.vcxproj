@@ -158,6 +158,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="CosmosSwrod.cpp" />
     <ClCompile Include="DataBaseManager.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="DropItem.cpp" />
@@ -199,6 +200,7 @@
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Skel.cpp" />
     <ClCompile Include="SkelDog.cpp" />
+    <ClCompile Include="Skill.cpp" />
     <ClCompile Include="SoundLoader.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="TileManager.cpp" />
@@ -240,6 +242,7 @@
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="CosmosSwrod.h" />
     <ClInclude Include="DataBaseManager.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Door.h" />
@@ -288,6 +291,7 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Skel.h" />
     <ClInclude Include="SkelDog.h" />
+    <ClInclude Include="Skill.h" />
     <ClInclude Include="SoundLoader.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Structs.h" />

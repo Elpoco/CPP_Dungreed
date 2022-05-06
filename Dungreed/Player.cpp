@@ -35,9 +35,9 @@ HRESULT Player::init()
 
 	PLAYERMANAGER->init();
 
-	ITEMMANAGER->setPlayerBody(&_body);
-	ITEMMANAGER->setPlayerHand(&_hand);
-	ITEMMANAGER->setPlayerLeft(&_isLeft);
+	PLAYERMANAGER->setPlayerBody(&_body);
+	PLAYERMANAGER->setPlayerHand(&_hand);
+	PLAYERMANAGER->setPlayerLeft(&_isLeft);
 
 	UIMANAGER->initInventory();
 	ITEMMANAGER->giveItem(Code::ITEM::SHOT_SWORD);
@@ -118,6 +118,7 @@ void Player::move()
 	if (IsOnceKeyUp(KEY::RIGHT))	 this->setIdle();
 	if (IsStayKeyDown(KEY::CLICK_L)) this->attack();
 	if (IsOnceKeyDown(KEY::CLICK_R)) this->dash();
+	if (IsOnceKeyDown(KEY::SKILL))	 this->skill();
 
 	if (IsStayKeyDown(KEY::DOWN) && IsOnceKeyDown(KEY::SPACE)) Unit::downJump();
 	if (IsOnceKeyDown(KEY::UP) || IsOnceKeyDown(KEY::SPACE))  this->jump();
@@ -245,6 +246,14 @@ void Player::attack()
 			// 디버그모드 공격 (무기 안들어야함)
 			_rcAttack = RectMakeCenter(_hand.x, _hand.y, WINSIZE_X * 3, WINSIZE_Y * 3);
 		}
+	}
+}
+
+void Player::skill()
+{
+	if (ITEMMANAGER->getEquipItem())
+	{
+		ITEMMANAGER->getEquipItem()->skill();
 	}
 }
 

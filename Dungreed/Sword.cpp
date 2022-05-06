@@ -1,6 +1,8 @@
 #include "Stdafx.h"
 #include "Sword.h"
 
+#include "CosmosSwrod.h"
+
 Sword::Sword(Code::ITEM code)
 	: Item(code)
 	, _isFirst(TRUE)
@@ -15,6 +17,15 @@ HRESULT Sword::init()
 {
 	Item::init();
 	_handleX = _frameInfo.width * 0.3f;
+
+	switch (_itemInfo.code)
+	{
+	case Code::ITEM::COSMOSSWORD:
+		_skill = new CosmosSwrod;
+		break;
+	default:
+		break;
+	}
 
 	return S_OK;
 }
@@ -34,12 +45,12 @@ void Sword::update()
 
 	if (_isFirst)
 	{
-		if (ITEMMANAGER->getPlayerIsLeft()) _degree -= 200;
+		if (PLAYERMANAGER->getPlayerIsLeft()) _degree -= 200;
 		else _degree += 20;
 	}
 	else
 	{
-		if (ITEMMANAGER->getPlayerIsLeft()) _degree += 10;
+		if (PLAYERMANAGER->getPlayerIsLeft()) _degree += 10;
 		else _degree += 150;
 	}
 }
@@ -51,19 +62,19 @@ void Sword::render(HDC hdc)
 
 RECT Sword::attack()
 {
-	if (_lastAttack + 1.0f / _info.atkSpeed >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	if (_lastAttack + 1.0f / _itemInfo.atkSpeed >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
 	_lastAttack = TIMEMANAGER->getWorldTime();
 
 	_isFirst = !_isFirst;
 
-	float effectAngle = GetAngle(ITEMMANAGER->getPlayerHand(), CAMERAMANAGER->calAbsPt(_ptMouse));
-	float effectX = cosf(effectAngle) * _frameInfo.height + ITEMMANAGER->getPlayerHand().x;
-	float effectY = -sinf(effectAngle) * _frameInfo.height + ITEMMANAGER->getPlayerHand().y;
+	float effectAngle = GetAngle(PLAYERMANAGER->getPlayerHand(), CAMERAMANAGER->calAbsPt(_ptMouse));
+	float effectX = cosf(effectAngle) * _frameInfo.height + PLAYERMANAGER->getPlayerHand().x;
+	float effectY = -sinf(effectAngle) * _frameInfo.height + PLAYERMANAGER->getPlayerHand().y;
 
 	string effectName = ImageName::Effect::Weapon::basicSwing;
 	string soundName = SoundName::Item::Weapon::swing2;
 
-	switch (_info.code)
+	switch (_itemInfo.code)
 	{
 	case Code::ITEM::BAMBOO_SWORD:
 		effectName = ImageName::Effect::Weapon::BambooSwing;
@@ -98,7 +109,7 @@ void Sword::equip()
 {
 	Item::equip();
 
-	switch (_info.code)
+	switch (_itemInfo.code)
 	{
 	case Code::ITEM::LIGHTSABER:
 		PLAYERMANAGER->setTrueDmg(TRUE);
@@ -112,7 +123,7 @@ void Sword::unequip()
 {
 	Item::unequip();
 
-	switch (_info.code)
+	switch (_itemInfo.code)
 	{
 	case Code::ITEM::LIGHTSABER:
 		PLAYERMANAGER->setTrueDmg(FALSE);

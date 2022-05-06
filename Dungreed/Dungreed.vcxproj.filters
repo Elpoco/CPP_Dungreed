@@ -178,6 +178,12 @@
     <Filter Include="MainGame\02. Object\05. UI\ItemInfo">
       <UniqueIdentifier>{37e2bd40-aca9-4296-8beb-7f30d4c3f4a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\06. Item\Sword\SKill">
+      <UniqueIdentifier>{3938b358-e784-4963-b466-ae7537a2ce97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\06. Item\Sword\SKill\CosmosSword">
+      <UniqueIdentifier>{1ae523cc-126c-434e-86a9-9a3ac5e6c38a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -401,6 +407,12 @@
     </ClCompile>
     <ClCompile Include="DropItemInfo.cpp">
       <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="CosmosSwrod.cpp">
+      <Filter>MainGame\02. Object\06. Item\Sword\SKill\CosmosSword</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>MainGame\02. Object\06. Item\Sword\SKill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -658,6 +670,12 @@
     </ClInclude>
     <ClInclude Include="DropItemInfo.h">
       <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="CosmosSwrod.h">
+      <Filter>MainGame\02. Object\06. Item\Sword\SKill\CosmosSword</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>MainGame\02. Object\06. Item\Sword\SKill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

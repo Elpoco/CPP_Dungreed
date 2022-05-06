@@ -5,6 +5,7 @@ namespace ImageName
 	constexpr char* ChangeScene = "IMG ChangeScene";
 	constexpr char* BossIntro = "IMG BossIntro";
 	constexpr char* info = "IMG info";
+	constexpr char* skill = "IMG skill";
 
 	namespace Player
 	{
@@ -273,13 +274,13 @@ namespace ImageName
 			constexpr char* BambooSword = "WEAPON BambooSword";
 			constexpr char* LightSaber = "WEAPON LightSaber";
 			constexpr char* CosmosSword = "WEAPON CosmosSword";
+			constexpr char* CosmosSwordAura = "WEAPON CosmosSwordAura";
+			constexpr char* CosmosSkill = "WEAPON CosmosSkill";
 
 			constexpr char* colt = "WEAPON Colt";
 			constexpr char* GatlingGun = "WEAPON GatlingGun";
 			constexpr char* Bullet02 = "WEAPON Bullet02";
-			constexpr char* Bullet02_big = "WEAPON Bullet02_big";
 			constexpr char* Bullet03 = "WEAPON Bullet03";
-			constexpr char* Bullet03_big = "WEAPON Bullet03_big";
 		}
 
 		namespace Accessory
@@ -408,6 +409,7 @@ namespace SoundName
 			constexpr char* swing1 = "SOUND swing1";
 			constexpr char* swing2 = "SOUND swing2";
 			constexpr char* swing5 = "SOUND swing5";
+			constexpr char* CosmicDash = "SOUND CosmicDash";
 			constexpr char* LightSaver = "SOUND LightSaver";
 			constexpr char* Gun = "SOUND Gun";
 			constexpr char* GatlingGun = "SOUND GatlingGun";

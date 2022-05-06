@@ -172,10 +172,11 @@ void ObjectManager::addNPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 }
 
 void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage,
-	string destroyImgName, float distance, BOOL super, BOOL imgRotate, float scale)
+	string destroyImgName, float distance, BOOL super, BOOL imgRotate, float scale, BOOL penetrate)
 {
 	Bullet* bullet = new Bullet(imgName, x, y, angle, speed, damage, destroyImgName, distance, super, imgRotate);
 	bullet->setScale(scale);
+	if(penetrate) bullet->setPenetrate();
 	addObject(type, bullet);
 }
 

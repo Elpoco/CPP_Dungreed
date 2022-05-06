@@ -59,6 +59,7 @@ public:
 	void moveRight();
 	void setIdle();
 	void attack();
+	void skill();
 	void dash();
 	void jump();
 

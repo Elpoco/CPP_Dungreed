@@ -28,6 +28,7 @@ enum KEY
 	// 플레이어
 	INVENTORY = 'V',
 	RELOAD = 'R',
+	SKILL = 'Q',
 	CHANGE_EQUIP = 192, // '~'
 };
 

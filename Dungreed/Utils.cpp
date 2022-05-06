@@ -59,6 +59,11 @@ namespace MY_UTIL
 		return GetAngle(startX, startY, endX, endY) / PI * 180;
 	}
 
+	int GetAngleDeg(POINT startPt, POINT endPt)
+	{
+		return  GetAngle(startPt.x, startPt.y, endPt.x, endPt.y) / PI * 180;
+	}
+
 	int RadToDeg(float angle)
 	{
 		return angle / PI * 180;

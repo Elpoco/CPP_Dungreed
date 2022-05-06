@@ -26,7 +26,8 @@ public:
 	void addEnemy(Code::UNIT code, float x, float y);
 	void addNPC(Code::NPC code, float x, float y, Code::MAP mapCode = Code::MAP::TOWN);
 	void addBullet(ObjectEnum::OBJ_TYPE type, string imgName, float x, float y, float angle, float speed,
-		int damage = 1, string destroyImgName = "", float distance = 1000, BOOL super = FALSE, BOOL imgRotate = FALSE, float scale = 1.0f);
+		int damage = 1, string destroyImgName = "", float distance = 1000, 
+		BOOL super = FALSE, BOOL imgRotate = FALSE, float scale = 1.0f, BOOL penetrate = FALSE);
 	
 	RECT addEffect(string imgName, float x, float y, float angle);
 	RECT addEffect(string imgName, float x, float y, int angle, POINT rotateCenter);

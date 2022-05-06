@@ -97,6 +97,7 @@ void Inventory::settingUI()
 	_uiSkill = new UI(ImageName::UI::Item::Skill);
 	_uiSkill->setX(_equipBase->getX() - 100);
 	_uiSkill->setY(_equipBase->getY());
+	_uiSkill->hide();
 	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI, _uiSkill);
 
 	// 인벤토리 베이스
@@ -450,6 +451,38 @@ void Inventory::renderEquipBase(HDC hdc)
 		FONTMANAGER->drawNumber(hdc, center + size.cx, bottom - size.cy, 17, 0, to_string(bulletInfo.maxBulletCnt).c_str(), ColorSet::WHITE);
 	}
 
+	if (_arrSlot[_equipIdx].item->isSkill())
+	{
+		_uiSkill->show();
+		FindImage(_arrSlot[_equipIdx].item->getSkillIconName())->render(
+			hdc, 
+			_uiSkill->getRect().left,
+			_uiSkill->getRect().top
+		);
+		FindImage(ImageName::UI::Keyboard::Q)->render(
+			hdc,
+			_uiSkill->getRect().left + 5,
+			_uiSkill->getRect().bottom - 25
+		);
+		if (!_arrSlot[_equipIdx].item->isSkillUing())
+		{
+			float time = TIMEMANAGER->getWorldTime() - _arrSlot[_equipIdx].item->getSkillRunTime();
+			float cooltime = _arrSlot[_equipIdx].item->getSkillCooltime();
+			FindImage(ImageName::skill)->alphaRender(
+				hdc,
+				_uiSkill->getRect().left + 3,
+				_uiSkill->getRect().top + 3,
+				0, 0,
+				50 * (1 - time / cooltime),
+				50,
+				150
+			);
+		}
+	}
+	else
+	{
+		_uiSkill->hide();
+	}
 }
 
 void Inventory::renderInventoryItem(HDC hdc)

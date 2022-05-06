@@ -473,7 +473,7 @@ void Image::alphaRender(HDC hdc, float destX, float destY, BYTE alpha)
 	}
 }
 
-void Image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha, float angle)
+void Image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha)
 {
 	if (!_blendImage) this->initForAlphaBlend();
 	_blendFunc.SourceConstantAlpha = alpha;
@@ -846,8 +846,12 @@ void Image::rotateRender(HDC hdc, float destX, float destY, int frameX, int fram
 		ExtFloodFill(_rotateImage->hMemDC, 1, 1, RGB(0, 0, 0), FLOODFILLSURFACE);
 		DeleteObject(hBrush);
 
-		PlgBlt(_rotateImage->hMemDC, rPoint, _imageInfo->hMemDC, 0, 0,
-			_imageInfo->frameWidth, _imageInfo->frameHeight, NULL, 0, 0);
+		PlgBlt(_rotateImage->hMemDC, rPoint, _imageInfo->hMemDC,
+			frameX * _imageInfo->frameWidth,
+			frameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth,
+			_imageInfo->frameHeight,
+			 NULL, 0, 0);
 
 		BitBlt(_scaleImage->hMemDC, 0, 0, _imageInfo->width * scale, _imageInfo->height * scale,
 			hdc, 0, 0, SRCCOPY);

@@ -143,7 +143,7 @@ void Niflheim::update()
 	case Niflheim::NIFLHEIM_SKILL::STUN:
 		if (_stunTime + 1.5f < TIMEMANAGER->getWorldTime())
 		{
-			_skillCooldown = TIMEMANAGER->getWorldTime() - 2.0f;
+			_skillCooldown = TIMEMANAGER->getWorldTime();
 			_onInitPillar = true;
 			_skill = NIFLHEIM_SKILL::NONE;
 		}
@@ -262,7 +262,10 @@ void Niflheim::shootBullet(float x, float y, float angle)
 		angle,
 		BULLET_SPEED,
 		BULLET_DMG,
-		ImageName::Enemy::Niflheim::bulletFX
+		ImageName::Enemy::Niflheim::bulletFX,
+		1000,
+		FALSE,
+		TRUE
 	);
 
 	if (_bulletSound + TIMEMANAGER->getElapsedTime() < TIMEMANAGER->getWorldTime())

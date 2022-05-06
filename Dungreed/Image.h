@@ -91,7 +91,7 @@ public:
 
 	void alphaRender(HDC hdc, BYTE alpha);
 	virtual void alphaRender(HDC hdc, float destX, float destY, BYTE alpha) override;
-	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha, float angle = 0.f);
+	virtual void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha) override;
 
 	void frameRender(HDC hdc, int destX, int destY);
 	virtual void frameRender(HDC hdc, float destX, float destY, int currentFrameX, int currentFrameY) override;

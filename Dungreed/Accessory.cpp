@@ -36,7 +36,7 @@ void Accessory::equip()
 {
 	Item::equip();
 
-	switch (_info.code)
+	switch (_itemInfo.code)
 	{
 	case Code::ITEM::WINGBOOTS:
 		PLAYERMANAGER->addDashCnt(1);
@@ -50,7 +50,7 @@ void Accessory::unequip()
 {
 	Item::unequip();
 
-	switch (_info.code)
+	switch (_itemInfo.code)
 	{
 	case Code::ITEM::WINGBOOTS:
 		PLAYERMANAGER->addDashCnt(-1);

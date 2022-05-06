@@ -25,6 +25,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::none, PATH_IMAGE"None.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::ChangeScene, PATH_IMAGE"ScreenCover.bmp", WINSIZE_X, WINSIZE_Y);
 	IMAGEMANAGER->addImage(ImageName::info, PATH_IMAGE"ScreenCover.bmp", 350, 90);
+	IMAGEMANAGER->addImage(ImageName::skill, PATH_IMAGE"ScreenCover.bmp", 50, 50);
 	IMAGEMANAGER->addImage(ImageName::BossIntro, PATH_IMAGE"BossIntro.bmp", WINSIZE_X, WINSIZE_Y, TRUE, ColorSet::MAGENTA);
 	
 	// ==========
@@ -176,7 +177,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::BorderPixel, PATH_IMAGE"UI/MiniMap/MiniMapBorder.bmp");
 	// 키보드
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::F, PATH_IMAGE"UI/KeyBoard/Keyboard_F.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
-	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::Q, PATH_IMAGE"UI/KeyBoard/Keyboard_Q.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::Q, PATH_IMAGE"UI/KeyBoard/Keyboard_Q.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 1.5f);
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::ESC, PATH_IMAGE"UI/KeyBoard/Keyboard_esc.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	// 아이템
 	IMAGEMANAGER->addImage(ImageName::UI::Item::ItemInfo, PATH_IMAGE"UI/Item/ItemInfo.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
@@ -275,6 +276,10 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MultiBullet, PATH_ITEM"Accessory/MultiBullet.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MagnifyingGlass, PATH_ITEM"Accessory/MagnifyingGlass.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::Wingboots, PATH_ITEM"Accessory/Wingboots.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	// 스킬
+	IMAGEMANAGER->addFrameImage(ImageName::Item::Weapon::CosmosSwordAura, PATH_ITEM"Bullet/CosmosAuror.bmp", 0, 0, 5, 1, TRUE, ColorSet::MAGENTA, 3.0f);
+	// 스킬 아이콘
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::CosmosSkill, PATH_ITEM"Skill/Skill_CosmosSwordAuror.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 #pragma endregion
 
 	// ==========

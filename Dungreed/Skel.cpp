@@ -193,7 +193,10 @@ void Skel::attack()
 			_anglePlayer,
 			5.0f,
 			_info.dmg,
-			ImageName::Enemy::SkelArrowEffect
+			ImageName::Enemy::SkelArrowEffect,
+			1000,
+			FALSE,
+			TRUE
 		);
 
 		SOUNDMANAGER->play(SoundName::Enemy::arrow_shoot, _sound);

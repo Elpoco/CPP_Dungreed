@@ -1,12 +1,14 @@
 #include "Stdafx.h"
 #include "Item.h"
 
+#include "Skill.h"
+
 Item::Item(Code::ITEM itemCode)
 	: _degree(0)
 	, _lastAttack(0.0f)
 	, _handleX(0.0f)
 {
-	_info = DBMANAGER->getInfo(itemCode);
+	_itemInfo = DBMANAGER->getInfo(itemCode);
 }
 
 Item::~Item()
@@ -15,7 +17,7 @@ Item::~Item()
 
 HRESULT Item::init()
 {
-	_img = ITEMMANAGER->findImage(_info.code);
+	_img = ITEMMANAGER->findImage(_itemInfo.code);
 
 	_frameInfo.width = _img->getFrameWidth();
 	_frameInfo.height = _img->getFrameHeight();
@@ -44,8 +46,8 @@ void Item::update()
 		if (!UIMANAGER->isUI()) updateDegree();
 		
 		_rc = RectMake(
-			ITEMMANAGER->getPlayerHand().x - _handleX,
-			ITEMMANAGER->getPlayerHand().y - _handleY,
+			PLAYERMANAGER->getPlayerHand().x - _handleX,
+			PLAYERMANAGER->getPlayerHand().y - _handleY,
 			_frameInfo.width, 
 			_frameInfo.height
 		);
@@ -64,23 +66,47 @@ void Item::render(HDC hdc)
 			_frameInfo.x,
 			_frameInfo.y,
 			_degree,
-			ITEMMANAGER->getPlayerHand()
+			PLAYERMANAGER->getPlayerHand()
 		);
 	}
 
 }
 
+void Item::skill()
+{
+	if (_skill && _skill->isUsing())
+	{
+		_skill->run(PLAYERMANAGER->getPlayerHand().x, PLAYERMANAGER->getPlayerHand().y, _angle);
+	}
+}
+
 void Item::updateDegree()
 {
-	_degree = GetAngleDeg(
-		ITEMMANAGER->getPlayerBody().x,
-		ITEMMANAGER->getPlayerBody().y,
-		CAMERAMANAGER->calAbsX(_ptMouse.x),
-		CAMERAMANAGER->calAbsY(_ptMouse.y)
-	);
+	_degree = GetAngleDeg(PLAYERMANAGER->getPlayerBody(), CAMERAMANAGER->calAbsPt(_ptMouse));
+	_angle = GetAngle(PLAYERMANAGER->getPlayerBody(), CAMERAMANAGER->calAbsPt(_ptMouse));
 }
 
 void Item::itemHover()
 {
-	UIMANAGER->showItemInfo(_info);
+	UIMANAGER->showItemInfo(_itemInfo);
+}
+
+string Item::getSkillIconName()
+{
+	return _skill->getIconName();
+}
+
+float Item::getSkillCooltime()
+{
+	return _skill->getCooltime();
+}
+
+float Item::getSkillRunTime()
+{
+	return _skill->getRunTime();
+}
+
+BOOL Item::isSkillUing()
+{
+	return _skill->isUsing();
 }

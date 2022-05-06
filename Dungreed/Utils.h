@@ -21,6 +21,7 @@ namespace MY_UTIL
 	float GetAngle(float startX, float startY, float endX, float endY);
 	float GetAngle(POINT startPt, POINT endPt);
 	int GetAngleDeg(float startX, float startY, float endX, float endY);
+	int GetAngleDeg(POINT startPt, POINT endPt);
 	int RadToDeg(float angle);
 	float DegToRad(int angle);
 

@@ -13,7 +13,6 @@ private:
 	float _bulletSpeed;
 	float _shootingX;
 	float _shootingY;
-	float _angle;
 	int _bulletCnt;
 
 	BOOL	_isReload;
@@ -41,7 +40,7 @@ public:
 	void settingAcc();
 	void shootMultiBullet();
 
-	virtual BULLET_INFO getBulletInfo() { return { _bulletCnt, _info.bulletCnt }; }
+	virtual BULLET_INFO getBulletInfo() { return { _bulletCnt, _itemInfo.bulletCnt }; }
 
 	void settingShootingPoint();
 };

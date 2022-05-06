@@ -26,6 +26,10 @@ private:
 
 	BOOL _trueDmg;
 
+	POINT* _ptPlayerBody;
+	POINT* _ptPlayerHand;
+	BOOL* _isPlayerLeft;
+
 public:
 	PlayerManager();
 	~PlayerManager();
@@ -65,6 +69,13 @@ public:
 	// 아이템 관련
 	void setTrueDmg(BOOL b) { _trueDmg = b; }
 	BOOL getTrueDmg() { return _trueDmg; }
+
+	void setPlayerBody(POINT* pt) { _ptPlayerBody = pt; }
+	void setPlayerHand(POINT* pt) { _ptPlayerHand = pt; }
+	void setPlayerLeft(BOOL* isLeft) { _isPlayerLeft = isLeft; }
+	POINT getPlayerBody() { return *_ptPlayerBody; }
+	POINT getPlayerHand() { return *_ptPlayerHand; }
+	BOOL getPlayerIsLeft() { return *_isPlayerLeft; }
 
 };
 

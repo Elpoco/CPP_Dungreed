@@ -24,6 +24,8 @@ protected:
 	float _moveHpBarX;
 	float _moveHpBarY;
 
+	vector<float> _atkBulletTime;
+
 public:
 	Enemy();
 	virtual ~Enemy();
@@ -39,6 +41,8 @@ public:
 	void animation();
 
 	virtual void hitAttack(int dmg, int dir) override;
+	void setAtkBulletTime(float bulletTime) { _atkBulletTime.push_back(bulletTime); }
+	BOOL findAtkBulletTime(float bulletTime) { return find(_atkBulletTime.begin(), _atkBulletTime.end(), bulletTime) == _atkBulletTime.end(); }
 	virtual int getDmg() override { return _info.dmg; }
 
 	virtual void settingHpBar();

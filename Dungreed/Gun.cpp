@@ -25,7 +25,7 @@ HRESULT Gun::init()
 {
 	Item::init();
 
-	_bulletCnt = _info.bulletCnt;
+	_bulletCnt = _itemInfo.bulletCnt;
 	_handleY = _frameInfo.height * 0.5f;
 
 	this->settingShootingPoint();
@@ -44,10 +44,10 @@ void Gun::update()
 
 	if (!_isEquip) return;
 	_rc.left -= 10;
-	_frameInfo.y = ITEMMANAGER->getPlayerIsLeft();
+	_frameInfo.y = PLAYERMANAGER->getPlayerIsLeft();
 
 	// 총알을 다 쓰거나 재장전 키 누를때
-	BOOL isReloadKey = IsOnceKeyDown(KEY::RELOAD) && _bulletCnt < _info.bulletCnt;
+	BOOL isReloadKey = IsOnceKeyDown(KEY::RELOAD) && _bulletCnt < _itemInfo.bulletCnt;
 	if (!_isReload && (_bulletCnt <= 0 || isReloadKey))
 	{
 		_isReload = TRUE;
@@ -59,7 +59,7 @@ void Gun::update()
 	if (_isReload && _reloadStartTime + _reloadTick < TIMEMANAGER->getWorldTime())
 	{
 		_isReload = FALSE;
-		_bulletCnt = _info.bulletCnt;
+		_bulletCnt = _itemInfo.bulletCnt;
 	}
 
 
@@ -77,7 +77,7 @@ RECT Gun::attack()
 {
 	settingAcc();
 
-	if (_lastAttack + 1.0f / (_info.atkSpeed * _itemAtkSpeed) >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	if (_lastAttack + 1.0f / (_itemInfo.atkSpeed * _itemAtkSpeed) >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
 	_lastAttack = TIMEMANAGER->getWorldTime();
 	if (--_bulletCnt < 0) return { 0,0,0,0 };
 
@@ -102,7 +102,7 @@ RECT Gun::attack()
 		_shootingY,
 		_angle + RND->getFloat(0.08f) - 0.04f,
 		_bulletSpeed,
-		RND->getFromIntTo(_info.minDmg + _itemDmg, _info.maxDmg + _itemDmg),
+		RND->getFromIntTo(_itemInfo.minDmg + _itemDmg, _itemInfo.maxDmg + _itemDmg),
 		ImageName::Effect::Weapon::shootingHit,
 		1000.0f,
 		FALSE,
@@ -143,7 +143,7 @@ void Gun::settingAcc()
 
 	_bulletImgName = ImageName::Item::Weapon::Bullet02;
 
-	switch (_info.code)
+	switch (_itemInfo.code)
 	{
 	case Code::ITEM::GATLINGGUN:
 		_bulletImgName = ImageName::Item::Weapon::Bullet03;
@@ -174,7 +174,7 @@ void Gun::shootMultiBullet()
 		_shootingY,
 		_angle + RND->getFloat(0.08f) + 0.02f,
 		_bulletSpeed,
-		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
+		RND->getFromIntTo(_itemInfo.minDmg, _itemInfo.maxDmg),
 		ImageName::Effect::Weapon::shootingHit,
 		1000.0f,
 		FALSE,
@@ -189,7 +189,7 @@ void Gun::shootMultiBullet()
 		_shootingY,
 		_angle + RND->getFloat(0.08f) - 0.1f,
 		_bulletSpeed,
-		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
+		RND->getFromIntTo(_itemInfo.minDmg, _itemInfo.maxDmg),
 		ImageName::Effect::Weapon::shootingHit,
 		1000.0f,
 		FALSE,
@@ -201,12 +201,11 @@ void Gun::shootMultiBullet()
 void Gun::settingShootingPoint()
 {
 	// 총구 위치 구하기
-	_angle = GetAngle(ITEMMANAGER->getPlayerBody(), CAMERAMANAGER->calAbsPt(_ptMouse));
-	_shootingX = ITEMMANAGER->getPlayerHand().x + cosf(_angle) * (_frameInfo.width - 10);
-	_shootingY = ITEMMANAGER->getPlayerHand().y - sinf(_angle) * (_frameInfo.width - 10);
+	_shootingX = PLAYERMANAGER->getPlayerHand().x + cosf(_angle) * (_frameInfo.width - 10);
+	_shootingY = PLAYERMANAGER->getPlayerHand().y - sinf(_angle) * (_frameInfo.width - 10);
 	_degree = RadToDeg(_angle);
 
-	switch (_info.code)
+	switch (_itemInfo.code)
 	{
 	case Code::ITEM::GATLINGGUN:
 		break;

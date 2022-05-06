@@ -8,6 +8,7 @@
 #include "Button.h"
 #include "DropItem.h"
 #include "NPC.h"
+#include "Bullet.h"
 
 using namespace ObjectEnum;
 using namespace MapToolEnum;
@@ -456,14 +457,16 @@ void CollisionManager::collisionShooting()
 
 		for (Object* obj : pairPlayerObj->second)
 		{
+			Bullet* bullet = dynamic_cast<Bullet*>(obj);
 			RECT tmp;
 			RECT rcEnemy = enemy->getRect();
-			RECT rcObj = obj->getRect();
+			RECT rcObj = bullet->getRect();
 
-			if (IntersectRect(&tmp, &rcEnemy, &rcObj))
+			if (enemy->findAtkBulletTime(bullet->getInitTime()) && IntersectRect(&tmp, &rcEnemy, &rcObj))
 			{
-				obj->collisionObject();
-				enemy->hitAttack(obj->getDmg(), enemy->getX() > obj->getX());
+				bullet->collisionObject();
+				enemy->hitAttack(bullet->getDmg(), enemy->getX() > bullet->getX());
+				if(bullet->getPenetrate()) enemy->setAtkBulletTime(bullet->getInitTime());
 			}
 		}
 	}
