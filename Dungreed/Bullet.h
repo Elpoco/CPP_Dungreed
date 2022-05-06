@@ -8,20 +8,26 @@ private:
 	string		_imgName; 
 	string		_destroyImgName;
 
+	int _width;
+	int _height;
+
 	float _startX;
 	float _startY;
 	float _angle;
 	float _speed;
 	float _distance;
+	float _scale;
 	int   _damage;
 
-	BOOL _isGP;
 	BOOL _isSuper;
 	BOOL _isImgRotate;
 
+	BOOL _isAuto;
+	int _dir;
+
 public:
 	Bullet(string imgName, float x, float y, float angle, float speed, 
-		int damage, string destroyImgName = "", float distance = 1500, BOOL super = FALSE, BOOL imgRotate = TRUE);
+		int damage, string destroyImgName = "", float distance = 1500, BOOL super = FALSE, BOOL imgRotate = FALSE);
 	virtual ~Bullet();
 
 	virtual HRESULT init() override;
@@ -37,6 +43,12 @@ public:
 
 	void move();
 	void animation();
+
+	void findEnemy();
+
+	void setSuper() { _isSuper = TRUE; }
+	void setRotate() { _isImgRotate = TRUE; }
+	void setScale(float scale) { _scale = scale; }
 
 };
 

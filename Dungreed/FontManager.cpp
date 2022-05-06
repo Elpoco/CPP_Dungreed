@@ -25,7 +25,6 @@ void FontManager::drawText(HDC hdc, STRING_INFO stringInfo, int fontSize, int fo
 
 	if (size.cx > stringInfo.width)
 	{
-		// 공백크기는 4, 16
 		GetTextExtentPoint32(hdc, " ", strlen(" "), &spaceSize);
 		int len = strLen + 1;
 		char* tmp = new char[len];

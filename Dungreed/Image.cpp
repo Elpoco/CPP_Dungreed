@@ -727,6 +727,23 @@ void Image::aniRender(HDC hdc, int destX, int destY, Animation * ani)
 }
 
 
+HRESULT Image::initForStretchBlt(void)
+{
+	HDC hdc = GetDC(_hWnd);
+
+	_scaleImage = new IMAGE_INFO;
+	_scaleImage->loadType = LOAD_FILE;
+	_scaleImage->hMemDC = CreateCompatibleDC(hdc);
+	_scaleImage->hBit = (HBITMAP)CreateCompatibleBitmap(hdc, _imageInfo->width * 10, _imageInfo->height * 10);
+	_scaleImage->hOBit = (HBITMAP)SelectObject(_scaleImage->hMemDC, _scaleImage->hBit);
+	_scaleImage->width = WINSIZE_X * 10;
+	_scaleImage->height = WINSIZE_Y * 10;
+
+	ReleaseDC(_hWnd, hdc);
+
+	return S_OK;
+}
+
 HRESULT Image::initForRotateImage()
 {
 	HDC hdc = GetDC(_hWnd);
@@ -751,16 +768,16 @@ void Image::rotateRender(HDC hdc, float destX, float destY, int frameX, int fram
 	if (!_rotateImage) this->initForRotateImage();
 
 	POINT rPoint[3];
-	int dist = sqrt((_imageInfo->frameWidth / 2) * (_imageInfo->frameWidth / 2) + (_imageInfo->frameHeight / 2) * (_imageInfo->frameHeight / 2));
+	int dist = sqrt((_imageInfo->frameWidth * 0.5f) * (_imageInfo->frameWidth * 0.5f) + (_imageInfo->frameHeight * 0.5f) * (_imageInfo->frameHeight * 0.5f));
 	float baseAngle[3];
-	baseAngle[0] = M_PI - atanf(((float)_imageInfo->frameHeight / 2) / ((float)_imageInfo->frameWidth / 2));
-	baseAngle[1] = atanf(((float)_imageInfo->frameHeight / 2) / ((float)_imageInfo->frameWidth / 2));
-	baseAngle[2] = M_PI + atanf(((float)_imageInfo->frameHeight / 2) / ((float)_imageInfo->frameWidth / 2));
+	baseAngle[0] = M_PI - atanf(((float)_imageInfo->frameHeight * 0.5f) / ((float)_imageInfo->frameWidth * 0.5f));
+	baseAngle[1] = atanf(((float)_imageInfo->frameHeight * 0.5f) / ((float)_imageInfo->frameWidth * 0.5f));
+	baseAngle[2] = M_PI + atanf(((float)_imageInfo->frameHeight * 0.5f) / ((float)_imageInfo->frameWidth * 0.5f));
 
 	for (int i = 0; i < 3; ++i)
 	{
-		rPoint[i].x = (_rotateImage->width / 2 + cosf(baseAngle[i] + angle) * dist);
-		rPoint[i].y = (_rotateImage->height / 2 + -sinf(baseAngle[i] + angle) * dist);
+		rPoint[i].x = (_rotateImage->width * 0.5f + cosf(baseAngle[i] + angle) * dist);
+		rPoint[i].y = (_rotateImage->height * 0.5f + -sinf(baseAngle[i] + angle) * dist);
 	}
 
 	if (_isTrans)
@@ -774,21 +791,90 @@ void Image::rotateRender(HDC hdc, float destX, float destY, int frameX, int fram
 		ExtFloodFill(_rotateImage->hMemDC, 1, 1, RGB(0, 0, 0), FLOODFILLSURFACE);
 		DeleteObject(hBrush);
 
-		PlgBlt(_rotateImage->hMemDC, rPoint, _imageInfo->hMemDC,
-			frameX * _imageInfo->frameWidth,
-			frameY * _imageInfo->frameHeight,
+		PlgBlt(_rotateImage->hMemDC, rPoint, _imageInfo->hMemDC, 0, 0,
 			_imageInfo->frameWidth, _imageInfo->frameHeight, NULL, 0, 0);
 
 		GdiTransparentBlt(hdc,
-			destX - _rotateImage->width / 2,
-			destY - _rotateImage->height / 2,
+			destX - _rotateImage->width * 0.5f,
+			destY - _rotateImage->height * 0.5f,
 			_rotateImage->width,
 			_rotateImage->height,
+			_scaleImage->hMemDC,
+			frameX * _imageInfo->frameWidth,
+			frameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth, 
+			_imageInfo->frameHeight,
+			_transColor);
+	}
+	else
+	{
+		PlgBlt(hdc, rPoint, _imageInfo->hMemDC,
+			frameX * _imageInfo->frameWidth,
+			frameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, NULL, 0, 0);
+	}
+}
+
+void Image::rotateRender(HDC hdc, float destX, float destY, int frameX, int frameY, float angle, float scale)
+{
+	if (!_rotateImage) this->initForRotateImage();
+	if (!_scaleImage) this->initForStretchBlt();
+
+	POINT rPoint[3];
+	int dist = sqrt((_imageInfo->frameWidth * 0.5f) * (_imageInfo->frameWidth * 0.5f) + (_imageInfo->frameHeight * 0.5f) * (_imageInfo->frameHeight * 0.5f));
+	float baseAngle[3];
+	baseAngle[0] = M_PI - atanf(((float)_imageInfo->frameHeight * 0.5f) / ((float)_imageInfo->frameWidth * 0.5f));
+	baseAngle[1] = atanf(((float)_imageInfo->frameHeight * 0.5f) / ((float)_imageInfo->frameWidth * 0.5f));
+	baseAngle[2] = M_PI + atanf(((float)_imageInfo->frameHeight * 0.5f) / ((float)_imageInfo->frameWidth * 0.5f));
+
+	for (int i = 0; i < 3; ++i)
+	{
+		rPoint[i].x = (_rotateImage->width * 0.5f + cosf(baseAngle[i] + angle) * dist);
+		rPoint[i].y = (_rotateImage->height * 0.5f + -sinf(baseAngle[i] + angle) * dist);
+	}
+
+	if (_isTrans)
+	{
+		BitBlt(_rotateImage->hMemDC, 0, 0,
+			_rotateImage->width, _rotateImage->height,
+			hdc, 0, 0, BLACKNESS);
+
+		HBRUSH hBrush = CreateSolidBrush(_transColor);
+		HBRUSH oBrush = (HBRUSH)SelectObject(_rotateImage->hMemDC, hBrush);
+		ExtFloodFill(_rotateImage->hMemDC, 1, 1, RGB(0, 0, 0), FLOODFILLSURFACE);
+		DeleteObject(hBrush);
+
+		PlgBlt(_rotateImage->hMemDC, rPoint, _imageInfo->hMemDC, 0, 0,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, NULL, 0, 0);
+
+		BitBlt(_scaleImage->hMemDC, 0, 0, _imageInfo->width * scale, _imageInfo->height * scale,
+			hdc, 0, 0, SRCCOPY);
+
+		StretchBlt(
+			_scaleImage->hMemDC,
+			0,
+			0,
+			_rotateImage->width * scale,
+			_rotateImage->height * scale,
 			_rotateImage->hMemDC,
 			0,
 			0,
 			_rotateImage->width,
 			_rotateImage->height,
+			SRCCOPY
+		);
+
+
+		GdiTransparentBlt(hdc,
+			destX - _rotateImage->width * 0.5f * scale,
+			destY - _rotateImage->height * 0.5f * scale,
+			_rotateImage->width * scale,
+			_rotateImage->height * scale,
+			_scaleImage->hMemDC,
+			0,
+			0,
+			_rotateImage->width * scale,
+			_rotateImage->height * scale,
 			_transColor);
 	}
 	else

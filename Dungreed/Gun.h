@@ -26,6 +26,7 @@ private:
 
 	float	_itemAtkSpeed;
 	int		_itemDmg;
+	float   _itemScale;
 
 public:
 	Gun(Code::ITEM code);

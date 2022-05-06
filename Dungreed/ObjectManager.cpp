@@ -172,9 +172,11 @@ void ObjectManager::addNPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 }
 
 void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, float angle, float speed, int damage,
-	string destroyImgName, float distance, BOOL super, BOOL imgRotate)
+	string destroyImgName, float distance, BOOL super, BOOL imgRotate, float scale)
 {
-	addObject(type, new Bullet(imgName, x, y, angle, speed, damage, destroyImgName, distance, super, imgRotate));
+	Bullet* bullet = new Bullet(imgName, x, y, angle, speed, damage, destroyImgName, distance, super, imgRotate);
+	bullet->setScale(scale);
+	addObject(type, bullet);
 }
 
 RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, OBJ_TYPE type)

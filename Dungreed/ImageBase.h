@@ -8,6 +8,7 @@ public:
 	virtual void render(HDC hdc, float x, float y, int sourX, int sourY, int sourWidth, int sourHeight) {}
 	virtual void alphaRender(HDC hdc, float x, float y, BYTE alpha) {}
 	virtual void rotateRender(HDC hdc, float destX, float destY, int frameX, int frameY, float angle) {}
+	virtual void rotateRender(HDC hdc, float destX, float destY, int frameX, int frameY, float angle, float scale) {}
 
 	virtual void frameRender(HDC hdc, float x, float y, int frameX, int frameY) {}
 	virtual void frameRender(HDC hdc, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter) {}

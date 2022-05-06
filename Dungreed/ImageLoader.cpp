@@ -267,10 +267,8 @@ void ImageLoader::loadImages()
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt.png", 1, 2);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::GatlingGun, PATH_ITEM"Weapon/GatlingGun.png", 1, 2);
 	// ÃÑ¾Ë
-	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Bullet02, PATH_ITEM"Bullet/Bullet02.png");
-	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Bullet02_big, PATH_ITEM"Bullet/Bullet02_big.png");
-	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Bullet03, PATH_ITEM"Bullet/Bullet03.png");
-	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Bullet03_big, PATH_ITEM"Bullet/Bullet03_big.png");
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::Bullet02, PATH_ITEM"Bullet/Bullet02.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::Bullet03, PATH_ITEM"Bullet/Bullet03.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	// ¾Ç¼¼
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MultiBullet, PATH_ITEM"Accessory/MultiBullet.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MagnifyingGlass, PATH_ITEM"Accessory/MagnifyingGlass.bmp", 0, 0, TRUE, ColorSet::MAGENTA);

@@ -11,9 +11,11 @@ Bullet::Bullet(string imgName, float x, float y, float angle, float speed
 	, _damage(damage)
 	, _distance(distance)
 	, _destroyImgName(destroyImgName)
-	, _isGP(FALSE)
 	, _isSuper(super)
 	, _isImgRotate(imgRotate)
+	, _isAuto(FALSE)
+	, _dir(1)
+	, _scale(1.0f)
 {
 	_x = x;
 	_y = y;
@@ -32,8 +34,6 @@ HRESULT Bullet::init()
 	Object::init();
 
 	_img = FindImage(_imgName);
-	
-	if (GPIMAGEMANAGER->findImage(_imgName)) _isGP = TRUE;
 
 	_frameInfo.maxFrameX = _img->getMaxFrameX();
 	_frameInfo.maxFrameY = _img->getMaxFrameY();
@@ -65,28 +65,28 @@ void Bullet::update()
 
 	this->move();
 
-	_rc = RectMakeCenter(_x, _y, _frameInfo.width, _frameInfo.height);
+	_rc = RectMakeCenter(_x, _y, _frameInfo.width * _scale, _frameInfo.height * _scale);
 
+	//float temp = GetAngle(
+	//	CAMERAMANAGER->calAbsPt(PointMake(0, 0)),
+	//	PointMake(_x, _y));
+	//
+	//if (temp < 0) _angle += 0.04f;
+	//else _angle -= 0.04f;
+		
 }
 
 void Bullet::render(HDC hdc)
 {
 	Object::render(hdc);
 
-	if (_isGP)
+	if (_isImgRotate)
 	{
-		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y, RadToDeg(_angle) + 90, PointMake(_x, _y));
+		CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _frameInfo.x, _frameInfo.y, _angle, _scale);
 	}
 	else
 	{
-		if (_isImgRotate)
-		{
-			CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _frameInfo.x, _frameInfo.y, _angle);
-		}
-		else
-		{
-			CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
-		}
+		CAMERAMANAGER->frameRender(hdc, _img, _rc.left, _rc.top, _frameInfo.x, _frameInfo.y);
 	}
 }
 

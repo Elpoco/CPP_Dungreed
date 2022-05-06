@@ -179,9 +179,11 @@ void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int f
 	img->frameAlphaRender(hdc, x - _x, y - _y, frameX, frameY, alpha);
 }
 
-void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, float angle)
+void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, float angle, float scale)
 {
-	img->rotateRender(hdc, x - _x, y - _y, frameX, frameY, angle);
+	if (this->checkObjectInCamera(x, y, img->getFrameWidth(), img->getFrameHeight())) return;
+
+	img->rotateRender(hdc, x - _x, y - _y, frameX, frameY, angle, scale);
 }
 
 void CameraManager::frameRender(HDC hdc, ImageBase* img, float x, float y, int frameX, int frameY, int angle, POINT rotateCenter)

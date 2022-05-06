@@ -2,6 +2,7 @@
 #include "Gun.h"
 
 #include "Effect.h"
+#include "Bullet.h"
 
 using namespace GunSet;
 
@@ -12,6 +13,7 @@ Gun::Gun(Code::ITEM code)
 	, _reloadTick(DEFAULT_RELOAD_TICK)
 	, _itemAtkSpeed(0.0f)
 	, _itemDmg(0)
+	, _itemScale(1.0f)
 {
 }
 
@@ -101,7 +103,11 @@ RECT Gun::attack()
 		_angle + RND->getFloat(0.08f) - 0.04f,
 		_bulletSpeed,
 		RND->getFromIntTo(_info.minDmg + _itemDmg, _info.maxDmg + _itemDmg),
-		ImageName::Effect::Weapon::shootingHit
+		ImageName::Effect::Weapon::shootingHit,
+		1000.0f,
+		FALSE,
+		TRUE,
+		_itemScale
 	);
 
 	string sound = SoundName::Item::Weapon::Gun;
@@ -126,6 +132,7 @@ void Gun::settingAcc()
 	_isSize = FALSE;
 	_itemAtkSpeed = 1.0f;
 	_itemDmg = 0;
+	_itemScale = 1.0f;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -156,9 +163,9 @@ void Gun::settingAcc()
 
 	if (_isSize)
 	{
-		_bulletImgName += "_big";
 		_itemAtkSpeed -= 0.7f;
 		_itemDmg += 5;
+		_itemScale = 2.0f;
 	}
 
 	if (_isMulti)
@@ -177,7 +184,8 @@ void Gun::shootMultiBullet()
 		_angle + RND->getFloat(0.08f) + 0.02f,
 		_bulletSpeed,
 		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
-		ImageName::Effect::Weapon::shootingHit
+		ImageName::Effect::Weapon::shootingHit,
+		_itemScale
 	);
 
 	OBJECTMANAGER->addBullet(
@@ -188,7 +196,8 @@ void Gun::shootMultiBullet()
 		_angle + RND->getFloat(0.08f) - 0.1f,
 		_bulletSpeed,
 		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
-		ImageName::Effect::Weapon::shootingHit
+		ImageName::Effect::Weapon::shootingHit,
+		_itemScale
 	);
 }
 

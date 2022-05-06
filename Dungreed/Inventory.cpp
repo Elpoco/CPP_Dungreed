@@ -34,6 +34,8 @@ void Inventory::release()
 void Inventory::update()
 {
 	if (IsOnceKeyDown(KEY::CHANGE_EQUIP)) swapEquipSlot();
+	if (IsOnceKeyDown('1')) changeEquipSlot(0);
+	if (IsOnceKeyDown('2')) changeEquipSlot(1);
 
 	if (_isSawp)
 	{
@@ -410,6 +412,12 @@ void Inventory::swapEquipSlot()
 	
 	if (!_isOpen) return;
 	_equipSlot[_equipIdx]->show();
+}
+
+void Inventory::changeEquipSlot(int idx)
+{
+	if (_equipIdx == idx) return;
+	swapEquipSlot();
 }
 
 void Inventory::renderEquipBase(HDC hdc)

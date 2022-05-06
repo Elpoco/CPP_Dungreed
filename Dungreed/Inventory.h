@@ -89,6 +89,7 @@ public:
 	BOOL checkType(int cellIdx, Item* item);
 
 	void swapEquipSlot();
+	void changeEquipSlot(int idx);
 	void renderEquipBase(HDC hdc); // 우측 하단 장착
 	void renderInventoryItem(HDC hdc);
 
