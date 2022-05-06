@@ -8,6 +8,7 @@
 #include "MiniMap.h"
 #include "ImageFont.h"
 #include "ItemInfo.h"
+#include "DropItemInfo.h"
 
 UIManager::UIManager()
 	: _isUI(FALSE)
@@ -29,21 +30,8 @@ HRESULT UIManager::init()
 	initKeyboard();
 	initReload();
 	initItemInfo();
-
-	_bossIntro = new UI(ImageName::BossIntro, CENTER_X, CENTER_Y);
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossIntro);
-	_bossIntro->setFree();
-	_bossIntro->hide();
-
-	_bossInfo = new ImageFont(140, 450, "TEST");
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossInfo);
-	_bossInfo->setFree();
-	_bossInfo->hide();
-
-	_mapInfo = new ImageFont(CENTER_X, 200, "TEST");
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _mapInfo);
-	_mapInfo->setFree();
-	_mapInfo->hide();
+	initBossInfo();
+	initMapInfo();
 
 	return S_OK;
 }
@@ -58,6 +46,7 @@ void UIManager::update()
 	updateReload();
 	if (_showBossInfo) updateBossInfo();
 	if (_showMapInfo) updateMapInfo();
+	if (_isShowItemInfo) updateDropItemInfo();
 
 	if (IsOnceKeyDown(KEY::INVENTORY)) toggleInventory();
 	if (IsOnceKeyDown(KEY::ESC))
@@ -217,17 +206,51 @@ void UIManager::showReloadBar(float reloadTick)
 
 void UIManager::initItemInfo()
 {
-	_uiItemInfo = new ItemInfo();
+	_uiItemInfo = new ItemInfo;
 	_uiItemInfo->setFree();
 	_uiItemInfo->hide();
-
 	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _uiItemInfo);
+
+	_uiDropItemInfo = new DropItemInfo;
+	_uiDropItemInfo->setFree();
+	_uiDropItemInfo->hide();
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _uiDropItemInfo);
 }
 
 void UIManager::showItemInfo(ITEM_INFO itemInfo)
 {
 	_uiItemInfo->setInfo(itemInfo);
 	_uiItemInfo->show();
+}
+
+void UIManager::showDropItemInfo(ITEM_INFO itemInfo)
+{
+	_uiDropItemInfo->setInfo(itemInfo);
+	_uiDropItemInfo->show();
+	_itemInfoTime = TIMEMANAGER->getWorldTime();
+	_isShowItemInfo = TRUE;
+}
+
+void UIManager::updateDropItemInfo()
+{
+	if (_itemInfoTime + 1.5f < TIMEMANAGER->getWorldTime())
+	{
+		_isShowItemInfo = FALSE;
+		_uiDropItemInfo->hide();
+	}
+}
+
+void UIManager::initBossInfo()
+{
+	_bossIntro = new UI(ImageName::BossIntro, CENTER_X, CENTER_Y);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossIntro);
+	_bossIntro->setFree();
+	_bossIntro->hide();
+
+	_bossInfo = new ImageFont(140, 450, "TEST");
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _bossInfo);
+	_bossInfo->setFree();
+	_bossInfo->hide();
 }
 
 void UIManager::showBossInfo(char* bossName)
@@ -246,6 +269,14 @@ void UIManager::updateBossInfo()
 		_bossInfo->hide();
 		_bossIntro->hide();
 	}
+}
+
+void UIManager::initMapInfo()
+{
+	_mapInfo = new ImageFont(CENTER_X, 200, "TEST");
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _mapInfo);
+	_mapInfo->setFree();
+	_mapInfo->hide();
 }
 
 void UIManager::showMapInfo(char* mapName)

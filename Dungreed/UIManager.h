@@ -7,6 +7,7 @@ class Inventory;
 class MiniMap;
 class ImageFont;
 class ItemInfo;
+class DropItemInfo;
 
 class UIManager : public SingletonBase<UIManager>
 {
@@ -44,7 +45,10 @@ private:
 
 	// 아이템 정보
 	ItemInfo*   _uiItemInfo;
+	DropItemInfo* _uiDropItemInfo;
 	ITEM_INFO	_itemInfo;
+	BOOL _isShowItemInfo;
+	float _itemInfoTime;
 
 	UI* _bossIntro;
 	ImageFont* _bossInfo;
@@ -90,13 +94,18 @@ public:
 	// ==============
 	void initItemInfo();
 	void showItemInfo(ITEM_INFO itemInfo);
+	void showDropItemInfo(ITEM_INFO itemInfo);
+	void updateDropItemInfo();
 
 	BOOL isUI() { return _isUI; }
 	void onUI() { _isUI = TRUE; }
 	void offUI() { _isUI = FALSE; }
 
+	void initBossInfo();
 	void showBossInfo(char* bossName);
 	void updateBossInfo();
+
+	void initMapInfo();
 	void showMapInfo(char* mapName);
 	void updateMapInfo();
 

@@ -107,12 +107,12 @@ namespace Code
 		RED_GIANT_BAT,
 		SKEL,
 		SKEL_BOW,
+		NIFLEHEIM_PILLAR,
 
 		// º¸½º
 		BOSS,
 		BELIAL,
 		NIFLEHEIM,
-		NIFLEHEIM_PILLAR,
 
 		UNIT_CNT,
 		NONE

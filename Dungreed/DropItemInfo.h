@@ -1,23 +1,22 @@
 #pragma once
 #include "UI.h"
 
-class ItemInfo : public UI
+class DropItemInfo : public UI
 {
 private:
 	ImageBase* _imgInfo;
 	ImageBase* _imgItem;
 	ITEM_INFO _itemInfo;
+	RECT _rcInfo;
 
 	RECT _rcItem;
 	DWORD _itemColor;
 	float _itemInfoX;
 	float _itemInfoY;
 
-	int _line;
-
 public:
-	ItemInfo();
-	virtual ~ItemInfo();
+	DropItemInfo();
+	virtual ~DropItemInfo();
 
 	virtual HRESULT init() override;
 	virtual void release() override;

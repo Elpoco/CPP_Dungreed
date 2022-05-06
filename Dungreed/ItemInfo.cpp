@@ -26,21 +26,6 @@ void ItemInfo::release()
 void ItemInfo::update()
 {
 	if (!_isShow) return;
-	_itemColor = ColorSet::WHITE;
-	switch (_itemInfo.grade)
-	{
-	case Code::ITEM_GRADE::UNCOMMON:
-		_itemColor = ColorSet::UNCOMMON;
-		break;
-	case Code::ITEM_GRADE::RARE:
-		_itemColor = ColorSet::RARE;
-		break;
-	case Code::ITEM_GRADE::LEGEND:
-		_itemColor = ColorSet::LEGEND;
-		break;
-	default:
-		break;
-	}
 
 	_itemInfoX = _ptMouse.x;
 	_itemInfoY = _ptMouse.y;
@@ -111,4 +96,20 @@ void ItemInfo::setInfo(ITEM_INFO info)
 	_itemInfo = info;
 	_imgItem = ITEMMANAGER->findImage(_itemInfo.code);
 	if (_itemInfo.ability != "") _line++;
+
+	_itemColor = ColorSet::WHITE;
+	switch (_itemInfo.grade)
+	{
+	case Code::ITEM_GRADE::UNCOMMON:
+		_itemColor = ColorSet::UNCOMMON;
+		break;
+	case Code::ITEM_GRADE::RARE:
+		_itemColor = ColorSet::RARE;
+		break;
+	case Code::ITEM_GRADE::LEGEND:
+		_itemColor = ColorSet::LEGEND;
+		break;
+	default:
+		break;
+	}
 }

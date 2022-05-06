@@ -791,7 +791,9 @@ void Image::rotateRender(HDC hdc, float destX, float destY, int frameX, int fram
 		ExtFloodFill(_rotateImage->hMemDC, 1, 1, RGB(0, 0, 0), FLOODFILLSURFACE);
 		DeleteObject(hBrush);
 
-		PlgBlt(_rotateImage->hMemDC, rPoint, _imageInfo->hMemDC, 0, 0,
+		PlgBlt(_rotateImage->hMemDC, rPoint, _imageInfo->hMemDC, 
+			frameX * _imageInfo->frameWidth,
+			frameY * _imageInfo->frameHeight,
 			_imageInfo->frameWidth, _imageInfo->frameHeight, NULL, 0, 0);
 
 		GdiTransparentBlt(hdc,
@@ -799,11 +801,11 @@ void Image::rotateRender(HDC hdc, float destX, float destY, int frameX, int fram
 			destY - _rotateImage->height * 0.5f,
 			_rotateImage->width,
 			_rotateImage->height,
-			_scaleImage->hMemDC,
-			frameX * _imageInfo->frameWidth,
-			frameY * _imageInfo->frameHeight,
-			_imageInfo->frameWidth, 
-			_imageInfo->frameHeight,
+			_rotateImage->hMemDC,
+			0,
+			0,
+			_rotateImage->width,
+			_rotateImage->height,
 			_transColor);
 	}
 	else

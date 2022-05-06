@@ -30,6 +30,7 @@ HRESULT NiflheimPillar::init()
 	_isFlying = TRUE;
 
 	settingHp(_info.hp);
+	Enemy::settingHpBar();
 	
 	_bossAngle = GetAngle(_x, _y, *_niflheimX, *_niflheimY);
 	_bossDistance = GetDistance(_x, _y, *_niflheimX, *_niflheimY);

@@ -161,6 +161,7 @@
     <ClCompile Include="DataBaseManager.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="DropItem.cpp" />
+    <ClCompile Include="DropItemInfo.cpp" />
     <ClCompile Include="DynamicFont.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -243,6 +244,7 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="DropItem.h" />
+    <ClInclude Include="DropItemInfo.h" />
     <ClInclude Include="DynamicFont.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Enemy.h" />

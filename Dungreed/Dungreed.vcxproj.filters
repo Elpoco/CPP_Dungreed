@@ -399,6 +399,9 @@
     <ClCompile Include="ItemInfo.cpp">
       <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
     </ClCompile>
+    <ClCompile Include="DropItemInfo.cpp">
+      <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -651,6 +654,9 @@
       <Filter>MainGame\02. Object\07. NPC\Ability</Filter>
     </ClInclude>
     <ClInclude Include="ItemInfo.h">
+      <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="DropItemInfo.h">
       <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
     </ClInclude>
   </ItemGroup>

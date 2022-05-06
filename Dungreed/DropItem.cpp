@@ -116,7 +116,7 @@ void DropItem::animation()
 
 void DropItem::pickUpPlayer(R_L dir)
 {
-	if (_itemCode <= Code::ITEM::BULLION)
+	if (_itemCode >= Code::ITEM::COIN)
 	{
 		if (_itemCode == Code::ITEM::BULLION)
 			OBJECTMANAGER->addDynamicImageFont(_x + RND->getInt(10) - 5, _rc.top + RND->getInt(10) - 5, 100, dir, ImageFontEnum::FONT_TYPE::GOLD);
@@ -128,5 +128,6 @@ void DropItem::pickUpPlayer(R_L dir)
 	else
 	{
 		SOUNDMANAGER->play(SoundName::Item::getItem, _sound);
+		UIMANAGER->showDropItemInfo(DBMANAGER->getInfo(_itemCode));
 	}
 }

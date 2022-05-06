@@ -70,7 +70,7 @@ void Gun::update()
 void Gun::render(HDC hdc)
 {
 	Item::render(hdc);
-	CAMERAMANAGER->printRectangle(hdc, _shootingX, _shootingY, 5, 5);
+	//CAMERAMANAGER->printRectangle(hdc, _shootingX, _shootingY, 2, 2);
 }
 
 RECT Gun::attack()
@@ -81,14 +81,14 @@ RECT Gun::attack()
 	_lastAttack = TIMEMANAGER->getWorldTime();
 	if (--_bulletCnt < 0) return { 0,0,0,0 };
 
-	//Effect* effect = new Effect(ImageName::Effect::Weapon::shooting,
-	//	_shootingX,
-	//	_shootingY,
-	//	_degree,
-	//	PointMake(_shootingX, _shootingY)
-	//);
-	//effect->setFollowing(&_shootingX, &_shootingY, &_degree);
-	//OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::EFFECT, effect);
+	Effect* effect = new Effect(ImageName::Effect::Weapon::shooting,
+		_shootingX,
+		_shootingY,
+		_degree,
+		PointMake(_shootingX, _shootingY)
+	);
+	effect->setFollowing(&_shootingX, &_shootingY, &_degree);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::EFFECT, effect);
 
 	if (_isMulti)
 	{
@@ -111,15 +111,6 @@ RECT Gun::attack()
 	);
 
 	string sound = SoundName::Item::Weapon::Gun;
-
-	//switch (_info.code)
-	//{
-	//case Code::ITEM::GATLINGGUN:
-	//	sound = SoundName::Item::Weapon::GatlingGun;
-	//	break;
-	//default:
-	//	break;
-	//}
 
 	SOUNDMANAGER->play(sound, _sound - 0.5f);
 
@@ -185,6 +176,9 @@ void Gun::shootMultiBullet()
 		_bulletSpeed,
 		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
 		ImageName::Effect::Weapon::shootingHit,
+		1000.0f,
+		FALSE,
+		TRUE,
 		_itemScale
 	);
 
@@ -197,6 +191,9 @@ void Gun::shootMultiBullet()
 		_bulletSpeed,
 		RND->getFromIntTo(_info.minDmg, _info.maxDmg),
 		ImageName::Effect::Weapon::shootingHit,
+		1000.0f,
+		FALSE,
+		TRUE,
 		_itemScale
 	);
 }
@@ -205,7 +202,15 @@ void Gun::settingShootingPoint()
 {
 	// 총구 위치 구하기
 	_angle = GetAngle(ITEMMANAGER->getPlayerBody(), CAMERAMANAGER->calAbsPt(_ptMouse));
-	_shootingX = ITEMMANAGER->getPlayerHand().x + cosf(_angle) * _frameInfo.width;
-	_shootingY = ITEMMANAGER->getPlayerHand().y - sinf(_angle) * _frameInfo.width;
+	_shootingX = ITEMMANAGER->getPlayerHand().x + cosf(_angle) * (_frameInfo.width - 10);
+	_shootingY = ITEMMANAGER->getPlayerHand().y - sinf(_angle) * (_frameInfo.width - 10);
 	_degree = RadToDeg(_angle);
+
+	switch (_info.code)
+	{
+	case Code::ITEM::GATLINGGUN:
+		break;
+	default:
+		break;
+	}
 }
