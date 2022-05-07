@@ -185,6 +185,7 @@ void GameScene::loadDungeon()
 	MAPMANAGER->init();
 	UIMANAGER->updateMiniMap();
 	UIMANAGER->enterDungeon();
+	UIMANAGER->initWorldMap();
 
 	// 플레이어 셋팅
 	OBJECTMANAGER->getPlayer()->setX(300);

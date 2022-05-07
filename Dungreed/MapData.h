@@ -19,6 +19,9 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_01)].arrSpawnInfo[4].ptSpawn = PointMake(1105, 435);
 		_info[TO_INT(Code::MAP::DUNGEON_01)].arrSpawnInfo[4].unit = Code::UNIT::SKEL_BOW;
 		_info[TO_INT(Code::MAP::DUNGEON_01)].ptTresure = { 770, 455 };
+		_info[TO_INT(Code::MAP::DUNGEON_01)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_01)].door[DIR::TOP] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_01)].door[DIR::RIGHT] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_02)].arrSpawnInfo[0].ptSpawn = PointMake(335, 419);
 		_info[TO_INT(Code::MAP::DUNGEON_02)].arrSpawnInfo[0].unit = Code::UNIT::BAT;
@@ -31,6 +34,9 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_02)].arrSpawnInfo[4].ptSpawn = PointMake(1655, 619);
 		_info[TO_INT(Code::MAP::DUNGEON_02)].arrSpawnInfo[4].unit = Code::UNIT::GIANT_BAT;
 		_info[TO_INT(Code::MAP::DUNGEON_02)].ptTresure = { 1419, 791 };
+		_info[TO_INT(Code::MAP::DUNGEON_02)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_02)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_02)].door[DIR::BOTTOM] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_03)].arrSpawnInfo[0].ptSpawn = PointMake(548, 419);
 		_info[TO_INT(Code::MAP::DUNGEON_03)].arrSpawnInfo[0].unit = Code::UNIT::BANSHEE;
@@ -41,6 +47,8 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_03)].arrSpawnInfo[3].ptSpawn = PointMake(385, 205);
 		_info[TO_INT(Code::MAP::DUNGEON_03)].arrSpawnInfo[3].unit = Code::UNIT::SKEL_DOG;
 		_info[TO_INT(Code::MAP::DUNGEON_03)].ptTresure = { 540, 551 };
+		_info[TO_INT(Code::MAP::DUNGEON_03)].door[DIR::TOP] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_03)].door[DIR::RIGHT] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_04)].arrSpawnInfo[0].ptSpawn = PointMake(217, 470);
 		_info[TO_INT(Code::MAP::DUNGEON_04)].arrSpawnInfo[0].unit = Code::UNIT::GIANT_BAT;
@@ -51,6 +59,8 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_04)].arrSpawnInfo[3].ptSpawn = PointMake(526, 269);
 		_info[TO_INT(Code::MAP::DUNGEON_04)].arrSpawnInfo[3].unit = Code::UNIT::BAT;
 		_info[TO_INT(Code::MAP::DUNGEON_04)].ptTresure = { 700, 551 };
+		_info[TO_INT(Code::MAP::DUNGEON_04)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_04)].door[DIR::BOTTOM] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_05)].arrSpawnInfo[0].ptSpawn = PointMake(900, 500);
 		_info[TO_INT(Code::MAP::DUNGEON_05)].arrSpawnInfo[0].unit = Code::UNIT::LITTLE_GHOST;
@@ -79,6 +89,9 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_05)].arrSpawnInfo[12].ptSpawn = PointMake(1371, 535);
 		_info[TO_INT(Code::MAP::DUNGEON_05)].arrSpawnInfo[12].unit = Code::UNIT::SKEL_BOW;
 		_info[TO_INT(Code::MAP::DUNGEON_05)].ptTresure = { 907, 743 };
+		_info[TO_INT(Code::MAP::DUNGEON_05)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_05)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_05)].door[DIR::BOTTOM] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_06)].arrSpawnInfo[0].ptSpawn = PointMake(1530, 784);
 		_info[TO_INT(Code::MAP::DUNGEON_06)].arrSpawnInfo[0].unit = Code::UNIT::SKEL;
@@ -97,6 +110,8 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_06)].arrSpawnInfo[7].ptSpawn = PointMake(376, 1021);
 		_info[TO_INT(Code::MAP::DUNGEON_06)].arrSpawnInfo[7].unit = Code::UNIT::SKEL_DOG;
 		_info[TO_INT(Code::MAP::DUNGEON_06)].ptTresure = { 922, 457 };
+		_info[TO_INT(Code::MAP::DUNGEON_06)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_06)].door[DIR::BOTTOM] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_07)].arrSpawnInfo[0].ptSpawn = PointMake(900, 500);
 		_info[TO_INT(Code::MAP::DUNGEON_07)].arrSpawnInfo[0].unit = Code::UNIT::SKEL;
@@ -115,6 +130,8 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_07)].arrSpawnInfo[7].ptSpawn = PointMake(654, 859);
 		_info[TO_INT(Code::MAP::DUNGEON_07)].arrSpawnInfo[7].unit = Code::UNIT::BAT;
 		_info[TO_INT(Code::MAP::DUNGEON_07)].ptTresure = { 772, 552 };
+		_info[TO_INT(Code::MAP::DUNGEON_07)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_07)].door[DIR::TOP] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_08)].arrSpawnInfo[0].ptSpawn = PointMake(286, 587);
 		_info[TO_INT(Code::MAP::DUNGEON_08)].arrSpawnInfo[0].unit = Code::UNIT::SKEL_BOW;
@@ -145,6 +162,9 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_08)].arrSpawnInfo[13].ptSpawn = PointMake(1260, 782);
 		_info[TO_INT(Code::MAP::DUNGEON_08)].arrSpawnInfo[13].unit = Code::UNIT::SKEL_DOG;
 		_info[TO_INT(Code::MAP::DUNGEON_08)].ptTresure = { 910, 263 };
+		_info[TO_INT(Code::MAP::DUNGEON_08)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_08)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_08)].door[DIR::BOTTOM] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_09)].arrSpawnInfo[0].ptSpawn = PointMake(166, 154);
 		_info[TO_INT(Code::MAP::DUNGEON_09)].arrSpawnInfo[0].unit = Code::UNIT::SKEL_DOG;
@@ -169,6 +189,9 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_09)].arrSpawnInfo[10].ptSpawn = PointMake(1461, 249);
 		_info[TO_INT(Code::MAP::DUNGEON_09)].arrSpawnInfo[10].unit = Code::UNIT::SKEL;
 		_info[TO_INT(Code::MAP::DUNGEON_09)].ptTresure = { 910, 984 };
+		_info[TO_INT(Code::MAP::DUNGEON_09)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_09)].door[DIR::TOP] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_09)].door[DIR::RIGHT] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_10)].arrSpawnInfo[0].ptSpawn = PointMake(1651, 829);
 		_info[TO_INT(Code::MAP::DUNGEON_10)].arrSpawnInfo[0].unit = Code::UNIT::RED_GIANT_BAT;
@@ -189,6 +212,8 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_10)].arrSpawnInfo[8].ptSpawn = PointMake(403, 1016);
 		_info[TO_INT(Code::MAP::DUNGEON_10)].arrSpawnInfo[8].unit = Code::UNIT::SKEL;
 		_info[TO_INT(Code::MAP::DUNGEON_10)].ptTresure = { 1591, 552 };
+		_info[TO_INT(Code::MAP::DUNGEON_10)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_10)].door[DIR::RIGHT] = TRUE;
 
 		_info[TO_INT(Code::MAP::DUNGEON_11)].arrSpawnInfo[0].ptSpawn = PointMake(1072, 333);
 		_info[TO_INT(Code::MAP::DUNGEON_11)].arrSpawnInfo[0].unit = Code::UNIT::RED_GIANT_BAT;
@@ -207,14 +232,27 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_11)].arrSpawnInfo[7].ptSpawn = PointMake(390, 1021);
 		_info[TO_INT(Code::MAP::DUNGEON_11)].arrSpawnInfo[7].unit = Code::UNIT::SKEL_DOG;
 		_info[TO_INT(Code::MAP::DUNGEON_11)].ptTresure = { 1087, 1027 };
+		_info[TO_INT(Code::MAP::DUNGEON_11)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_11)].door[DIR::TOP] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_11)].door[DIR::RIGHT] = TRUE;
 
 		_info[TO_INT(Code::MAP::BELIAL)].arrSpawnInfo[0].ptSpawn = PointMake(750, 526);
 		_info[TO_INT(Code::MAP::BELIAL)].arrSpawnInfo[0].unit = Code::UNIT::BELIAL;
 		_info[TO_INT(Code::MAP::BELIAL)].ptTresure = { 780, 727 };
+		_info[TO_INT(Code::MAP::BELIAL)].door[DIR::LEFT] = TRUE;
 
 		_info[TO_INT(Code::MAP::NIFLHEIM)].arrSpawnInfo[0].ptSpawn = PointMake(740, 405);
 		_info[TO_INT(Code::MAP::NIFLHEIM)].arrSpawnInfo[0].unit = Code::UNIT::NIFLEHEIM;
 		_info[TO_INT(Code::MAP::NIFLHEIM)].ptTresure = { 746, 490 };
+		_info[TO_INT(Code::MAP::NIFLHEIM)].door[DIR::LEFT] = TRUE;
+
+		_info[TO_INT(Code::MAP::DUNGEON_START)].door[DIR::TOP] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_START)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_START)].door[DIR::BOTTOM] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_SHOP)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_SHOP)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_FOOD)].door[DIR::LEFT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_FOOD)].door[DIR::RIGHT] = TRUE;
 	}
 	~MapData() {}
 

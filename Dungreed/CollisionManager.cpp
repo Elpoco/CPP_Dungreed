@@ -455,6 +455,7 @@ void CollisionManager::collisionShooting()
 	{
 		Bullet* bullet = dynamic_cast<Bullet*>(obj);
 		bullet->eraseEnemy();
+		float dis = 0.0f;
 		for (Object* objEnemy : pairEnemy->second)
 		{
 			Enemy* enemy = dynamic_cast<Enemy*>(objEnemy);
@@ -462,8 +463,13 @@ void CollisionManager::collisionShooting()
 			RECT rcEnemy = enemy->getRect();
 			RECT rcObj = bullet->getRect();
 
-			if (bullet->isAuto()) bullet->findEnemy(enemy->getPt());
-
+			float eDis = GetDistance(bullet->getPt(), enemy->getPt());
+			if (dis > eDis || dis == 0)
+			{
+				dis = eDis;
+				if (bullet->isAuto()) bullet->findEnemy(enemy->getPt());
+			}
+			
 			if (enemy->findAtkBulletTime(bullet->getInitTime()) && IntersectRect(&tmp, &rcEnemy, &rcObj))
 			{
 				bullet->collisionObject();

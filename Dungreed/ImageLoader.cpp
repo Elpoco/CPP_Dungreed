@@ -177,6 +177,13 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::BorderPixel, PATH_IMAGE"UI/MiniMap/MiniMapBorder.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::NPCPixel, PATH_IMAGE"UI/MiniMap/MiniMapNPC.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::MiniMapTresure, PATH_IMAGE"UI/MiniMap/MiniMapTresure.bmp");
+	// 월드맵
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::MapBaseTitle, PATH_IMAGE"UI/WorldMap/MapBaseTitle.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::MapBase, PATH_IMAGE"UI/WorldMap/MapBase.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::Room, PATH_IMAGE"UI/WorldMap/Room.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::CurrentRoom, PATH_IMAGE"UI/WorldMap/CurrentRoom.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::line_h, PATH_IMAGE"UI/WorldMap/line_h.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::line_v, PATH_IMAGE"UI/WorldMap/line_v.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
 	// 키보드
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::F, PATH_IMAGE"UI/KeyBoard/Keyboard_F.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::Q, PATH_IMAGE"UI/KeyBoard/Keyboard_Q.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 1.5f);

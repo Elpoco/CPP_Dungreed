@@ -123,7 +123,7 @@ void NPC::openNpc()
 
 	if (_npcCode == Code::NPC::BLACKSMITH)
 	{
-		SAFE_DELETE(_uiNPC);
+		_uiNPC = nullptr;
 		return;
 	}
 

@@ -135,21 +135,18 @@ typedef struct tagSpawnInfo
 	}
 } SPAWN_INFO;
 
-typedef struct tagDoorInfo
-{
-	Direction::DIR dir;
-	int tileX;
-	int tileY;
-} DOOR_INFO;
-
 typedef struct tagMapInfo
 {
-	DOOR_INFO door[Direction::DIR::DIR_CNT];
+	BOOL door[Direction::DIR::DIR_CNT];
 	SPAWN_INFO arrSpawnInfo[UnitSet::MAX_SPAWN];
 	POINT ptTresure;
 
 	tagMapInfo() 
 	{
+		door[Direction::DIR::LEFT] = FALSE;
+		door[Direction::DIR::TOP] = FALSE;
+		door[Direction::DIR::RIGHT] = FALSE;
+		door[Direction::DIR::BOTTOM] = FALSE;
 		ptTresure = { 0,0 };
 	}
 } MAP_INFO;

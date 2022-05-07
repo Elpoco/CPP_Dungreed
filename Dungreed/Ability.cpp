@@ -40,7 +40,7 @@ void Ability::render(HDC hdc)
 	if (!_isShow) return;
 	UI::render(hdc);
 
-	_imgBack->alphaRender(hdc, 0, 0, 200);
+	FindImage(ImageName::ChangeScene)->alphaRender(hdc, 0, 0, 200);
 	_uiLabel->render(hdc);
 	_imgButton->frameRender(hdc, _rcExitBtn.left, _rcExitBtn.top, 0, MouseInRect(_rcExitBtn));
 }
@@ -57,7 +57,6 @@ void Ability::hide()
 
 void Ability::initUI()
 {
-	_imgBack = FindImage(ImageName::ChangeScene);
 	_imgButton = FindImage(ImageName::UI::Button::Exit);
 
 	_uiLabel = new UI(ImageName::UI::Ability::Label);

@@ -89,5 +89,8 @@ public:
 
 	Code::MAP getCurMapCode();
 
+	BOOL* getClearMap() { return _arrClearMap; }
+	int getCurLocation() { return _curLocation; }
+
 };
 

@@ -199,6 +199,7 @@ void MapManager::settingMonster()
 		_isClear = FALSE;
 		closeDoor();
 	}
+	else _arrClearMap[_curLocation] = TRUE;
 }
 
 void MapManager::chageRoom(DIR dir)

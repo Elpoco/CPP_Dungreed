@@ -190,6 +190,9 @@
     <Filter Include="MainGame\02. Object\07. NPC\BlackSmith">
       <UniqueIdentifier>{2de2076e-5bca-4922-9b3e-4468eba8117d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainGame\02. Object\05. UI\WorldMap">
+      <UniqueIdentifier>{9b445a54-99f2-48e8-97dd-f2cac8d3c864}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -425,6 +428,9 @@
     </ClCompile>
     <ClCompile Include="BlackSmith.cpp">
       <Filter>MainGame\02. Object\07. NPC\BlackSmith</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>MainGame\02. Object\05. UI\WorldMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -694,6 +700,9 @@
     </ClInclude>
     <ClInclude Include="BlackSmith.h">
       <Filter>MainGame\02. Object\07. NPC\BlackSmith</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>MainGame\02. Object\05. UI\WorldMap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

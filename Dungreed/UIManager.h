@@ -5,6 +5,7 @@ class UI;
 class Cursor;
 class Inventory;
 class MiniMap;
+class WorldMap;
 class ImageFont;
 class ItemInfo;
 class DropItemInfo;
@@ -32,6 +33,7 @@ private:
 
 	Inventory* _inventory;	
 	MiniMap* _miniMap;
+	WorldMap* _worldMap;
 
 	map<KEY, tagKeyboard> _mKey; // 키 이미지 보여줄때
 
@@ -80,6 +82,10 @@ public:
 	void initMiniMap();
 	void updateMiniMap();
 	void enterDungeon();
+
+	void initWorldMap();
+	void showWorldMap();
+	void hideWorldMap();
 
 	void initKeyboard();
 	void updateKeyboard();

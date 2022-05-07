@@ -163,6 +163,16 @@ namespace ImageName
 			constexpr char* MiniMapTresure = "MINIMAP MiniMapTresure";
 		}
 
+		namespace WorldMap
+		{
+			constexpr char* MapBaseTitle = "MINIMAP MapBaseTitle";
+			constexpr char* MapBase = "MINIMAP MapBase";
+			constexpr char* Room = "MINIMAP Room";
+			constexpr char* CurrentRoom = "MINIMAP CurrentRoom";
+			constexpr char* line_h = "MINIMAP line_h";
+			constexpr char* line_v = "MINIMAP line_v";
+		}
+
 		namespace Keyboard
 		{
 			constexpr char* F = "Keyboard F";

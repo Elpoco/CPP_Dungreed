@@ -30,6 +30,7 @@ enum KEY
 	RELOAD = 'R',
 	SKILL = 'Q',
 	CHANGE_EQUIP = 192, // '~'
+	WORLD_MAP = VK_TAB,
 };
 
 namespace MapToolEnum

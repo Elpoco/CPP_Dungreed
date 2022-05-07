@@ -6,6 +6,7 @@
 #include "Inventory.h"
 #include "PlayerHpBar.h"
 #include "MiniMap.h"
+#include "WorldMap.h"
 #include "ImageFont.h"
 #include "ItemInfo.h"
 #include "DropItemInfo.h"
@@ -49,6 +50,8 @@ void UIManager::update()
 	if (_isShowItemInfo) updateDropItemInfo();
 
 	if (IsOnceKeyDown(KEY::INVENTORY)) toggleInventory();
+	if (IsStayKeyDown(KEY::WORLD_MAP)) showWorldMap();
+	if (IsOnceKeyUp(KEY::WORLD_MAP)) hideWorldMap();
 	if (IsOnceKeyDown(KEY::ESC))
 	{
 		if (_inventory->isOpen())
@@ -124,6 +127,30 @@ void UIManager::updateMiniMap()
 void UIManager::enterDungeon()
 {
 	_miniMap->setDungeon(TRUE);
+}
+
+void UIManager::initWorldMap()
+{
+	_worldMap = new WorldMap;
+	_worldMap->hide();
+	_worldMap->setFree();
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _worldMap);
+}
+
+void UIManager::showWorldMap()
+{
+	if (!_worldMap) return;
+
+	_worldMap->show();
+	_isUI = TRUE;
+}
+
+void UIManager::hideWorldMap()
+{
+	if (!_worldMap) return;
+
+	_worldMap->hide();
+	_isUI = FALSE;
 }
 
 void UIManager::initKeyboard()
