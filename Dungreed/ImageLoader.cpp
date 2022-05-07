@@ -175,6 +175,8 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::EnemyPixel, PATH_IMAGE"UI/MiniMap/MiniMapEnemy.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::DoorPixel, PATH_IMAGE"UI/MiniMap/MiniMapDoor.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::BorderPixel, PATH_IMAGE"UI/MiniMap/MiniMapBorder.bmp");
+	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::NPCPixel, PATH_IMAGE"UI/MiniMap/MiniMapNPC.bmp");
+	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::MiniMapTresure, PATH_IMAGE"UI/MiniMap/MiniMapTresure.bmp");
 	// Å°º¸µå
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::F, PATH_IMAGE"UI/KeyBoard/Keyboard_F.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::Q, PATH_IMAGE"UI/KeyBoard/Keyboard_Q.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 1.5f);
@@ -266,12 +268,15 @@ void ImageLoader::loadImages()
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::BambooSword, PATH_ITEM"Weapon/BambooSword.png");
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::LightSaber, PATH_ITEM"Weapon/LightSaber.png");
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::CosmosSword, PATH_ITEM"Weapon/CosmosSword.png", 12, 1);
+
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Lala, PATH_ITEM"Weapon/Lala.png");
 	// ÃÑ
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::colt, PATH_ITEM"Weapon/Colt.png", 1, 2);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::GatlingGun, PATH_ITEM"Weapon/GatlingGun.png", 1, 2);
 	// ÃÑ¾Ë
 	IMAGEMANAGER->addImage(ImageName::Item::Weapon::Bullet02, PATH_ITEM"Bullet/Bullet02.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Item::Weapon::Bullet03, PATH_ITEM"Bullet/Bullet03.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Item::Weapon::StarBullet, PATH_ITEM"Bullet/StarBullet.bmp", 0, 0, 4, 1, TRUE, ColorSet::MAGENTA, 3.0f);
 	// ¾Ç¼¼
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MultiBullet, PATH_ITEM"Accessory/MultiBullet.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MagnifyingGlass, PATH_ITEM"Accessory/MagnifyingGlass.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
@@ -280,6 +285,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Weapon::CosmosSwordAura, PATH_ITEM"Bullet/CosmosAuror.bmp", 0, 0, 5, 1, TRUE, ColorSet::MAGENTA, 3.0f);
 	// ½ºÅ³ ¾ÆÀÌÄÜ
 	IMAGEMANAGER->addImage(ImageName::Item::Weapon::CosmosSkill, PATH_ITEM"Skill/Skill_CosmosSwordAuror.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::LalaSkill, PATH_ITEM"Skill/Skill_ShootingStars.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 #pragma endregion
 
 	// ==========
@@ -292,6 +298,7 @@ void ImageLoader::loadImages()
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::SwingFX, PATH_ITEM"Effect/SwingFX.png", 3, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::CosmosSwingFX, PATH_ITEM"Effect/CosmosSwingFX.png", 8, 1);
 	// ÃÑ ÀÌÆåÆ®
+	IMAGEMANAGER->addFrameImage(ImageName::Effect::Weapon::StarBulletFX, PATH_ITEM"Effect/StarBulletFX.bmp", 0, 0, 7, 1, TRUE, ColorSet::MAGENTA, 3.0f);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shooting, PATH_ITEM"Effect/Shooting.png", 6, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shootingHit, PATH_ITEM"Effect/Shooting_hit.png", 6, 1);
 #pragma endregion

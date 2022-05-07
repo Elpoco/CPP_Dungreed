@@ -94,6 +94,9 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::LightSaver, PATH_SOUND"LightSaver.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::Gun, PATH_SOUND"Gun.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Weapon::GatlingGun, PATH_SOUND"GatlingShot.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::Weapon::MagicWandAttack, PATH_SOUND"MagicWandAttack.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::Weapon::MagicWandSkill, PATH_SOUND"MagicWandSkill.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::Weapon::MagicWandPuff, PATH_SOUND"MagicWandPuff.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Reload, PATH_SOUND"Reload.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::Reload2, PATH_SOUND"Reload2.wav", false, false);
 

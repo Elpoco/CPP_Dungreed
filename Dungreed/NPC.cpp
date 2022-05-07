@@ -5,6 +5,7 @@
 #include "ItemShop.h"
 #include "FoodShop.h"
 #include "Ability.h"
+#include "BlackSmith.h"
 
 NPC::NPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 	: _isOpen(FALSE)
@@ -13,8 +14,15 @@ NPC::NPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 {
 	_x = x;
 	_y = y;
+}
 
-	switch (code)
+NPC::~NPC()
+{
+}
+
+HRESULT NPC::init()
+{
+	switch (_npcCode)
 	{
 	default:
 	case Code::NPC::SHOP:
@@ -22,10 +30,13 @@ NPC::NPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 		_img = FindImage(ImageName::NPC::Merchant);
 		break;
 	case Code::NPC::DUNGEON_SHOP:
-		_uiNPC = new ItemShop(code);
+		_uiNPC = new ItemShop(_npcCode);
 		_img = FindImage(ImageName::NPC::Giant);
 		break;
 	case Code::NPC::BLACKSMITH:
+		_uiNPC = new BlackSmith;
+		_uiNPC->setX(_x);
+		_uiNPC->setY(_y - 70);
 		_img = FindImage(ImageName::NPC::BlackSmith);
 		break;
 	case Code::NPC::COMMANDER:
@@ -37,19 +48,13 @@ NPC::NPC(Code::NPC code, float x, float y, Code::MAP mapCode)
 		_img = FindImage(ImageName::NPC::Inn);
 		break;
 	}
-}
 
-NPC::~NPC()
-{
-}
-
-HRESULT NPC::init()
-{
 	if (_uiNPC)
 	{
 		_uiNPC->hide();
 		OBJECTMANAGER->addUI(_uiNPC);
 	}
+
 	initAnimation();
 
 	return S_OK;
@@ -115,6 +120,13 @@ void NPC::openNpc()
 	if (MAPMANAGER->getCurMapCode() != _mapCode) return;
 
 	_uiNPC->show();
+
+	if (_npcCode == Code::NPC::BLACKSMITH)
+	{
+		SAFE_DELETE(_uiNPC);
+		return;
+	}
+
 	UIMANAGER->onUI();
 	_isOpen = TRUE;
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::NORMAL);

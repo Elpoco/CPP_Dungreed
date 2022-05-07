@@ -52,6 +52,7 @@ HRESULT Player::init()
 		ITEMMANAGER->giveItem(Code::ITEM::WINGBOOTS);
 		ITEMMANAGER->giveItem(Code::ITEM::GATLINGGUN);
 		ITEMMANAGER->giveItem(Code::ITEM::COSMOSSWORD);
+		ITEMMANAGER->giveItem(Code::ITEM::LALA);
 	}
 
 	return S_OK;

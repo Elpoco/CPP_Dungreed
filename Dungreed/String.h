@@ -159,6 +159,8 @@ namespace ImageName
 			constexpr char* EnemyPixel = "MINIMAP EnemyPixel";
 			constexpr char* DoorPixel = "MINIMAP DoorPixel";
 			constexpr char* BorderPixel = "MINIMAP BorderPixel";
+			constexpr char* NPCPixel = "MINIMAP NPCPixel";
+			constexpr char* MiniMapTresure = "MINIMAP MiniMapTresure";
 		}
 
 		namespace Keyboard
@@ -276,11 +278,15 @@ namespace ImageName
 			constexpr char* CosmosSword = "WEAPON CosmosSword";
 			constexpr char* CosmosSwordAura = "WEAPON CosmosSwordAura";
 			constexpr char* CosmosSkill = "WEAPON CosmosSkill";
+			constexpr char* LalaSkill = "WEAPON LalaSkill";
+
+			constexpr char* Lala = "WEAPON Lala";
 
 			constexpr char* colt = "WEAPON Colt";
 			constexpr char* GatlingGun = "WEAPON GatlingGun";
 			constexpr char* Bullet02 = "WEAPON Bullet02";
 			constexpr char* Bullet03 = "WEAPON Bullet03";
+			constexpr char* StarBullet = "WEAPON StarBullet";
 		}
 
 		namespace Accessory
@@ -305,6 +311,7 @@ namespace ImageName
 			constexpr char* BambooSwing = "EFFECT BambooSwing";
 			constexpr char* SwingFX = "EFFECT SwingFX";
 			constexpr char* CosmosSwingFX = "EFFECT CosmosSwingFX";
+			constexpr char* StarBulletFX = "EFFECT StarBulletFX";
 			constexpr char* shooting = "EFFECT Shooting";
 			constexpr char* shootingHit = "EFFECT ShootingHit";
 		}
@@ -413,6 +420,9 @@ namespace SoundName
 			constexpr char* LightSaver = "SOUND LightSaver";
 			constexpr char* Gun = "SOUND Gun";
 			constexpr char* GatlingGun = "SOUND GatlingGun";
+			constexpr char* MagicWandAttack = "SOUND MagicWandAttack";
+			constexpr char* MagicWandSkill = "SOUND MagicWandSkill";
+			constexpr char* MagicWandPuff = "SOUND MagicWandPuff";
 		}
 	}
 

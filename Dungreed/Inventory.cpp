@@ -276,6 +276,7 @@ void Inventory::offClick()
 					_arrSlot[_clickCell].item = preItem;
 
 					if (i < WEAPON_CNT) preItem->unequip();
+					if (i >= ACC_0 && _clickCell >= INVEN_0) _arrSlot[i].item->equip();
 				}
 			}
 			else
@@ -288,10 +289,12 @@ void Inventory::offClick()
 						SOUNDMANAGER->play(SoundName::Item::Equip, _sound);
 						_arrSlot[i].item = _arrSlot[_clickCell].item;
 						_arrSlot[_clickCell].item = NULL;
+						if (i >= ACC_0 && _clickCell >= INVEN_0) _arrSlot[i].item->equip();
 					}
 				}
 				else
 				{
+					if (_clickCell < ACC_CNT) _arrSlot[_clickCell].item->unequip();
 					SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
 					_arrSlot[i].item = _arrSlot[_clickCell].item;
 					_arrSlot[_clickCell].item = NULL;

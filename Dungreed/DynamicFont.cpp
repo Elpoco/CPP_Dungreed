@@ -22,6 +22,9 @@ HRESULT DynamicFont::init()
 
 	_initTime = TIMEMANAGER->getWorldTime();
 
+	_x += RND->getInt(30) - 15;
+	_y += RND->getInt(30) - 15;
+
 	return S_OK;
 }
 
@@ -53,8 +56,8 @@ void DynamicFont::move()
 		return;
 	}
 
-	if (_dir == L) ++_x;
-	else --_x;
+	if (_dir == L) _x += 0.5f;
+	else _x -= 0.5f;
 
 	_y -= 1.3 + _down;
 	_down -= 0.02f;

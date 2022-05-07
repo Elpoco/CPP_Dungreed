@@ -40,13 +40,16 @@ HRESULT Belial::init()
 
 	settingHp(_info.hp);
 
-	SOUNDMANAGER->stop(SoundName::dungeon);
-	SOUNDMANAGER->play(SoundName::belialBG, _sound);
-	SOUNDMANAGER->play(SoundName::Enemy::Skeletonking, _sound);
+	if (!_isDebug)
+	{
+		SOUNDMANAGER->stop(SoundName::dungeon);
+		SOUNDMANAGER->play(SoundName::belialBG, _sound);
+		SOUNDMANAGER->play(SoundName::Enemy::Skeletonking, _sound);
 
-	CAMERAMANAGER->cameraMove(_x + 23, _y, 5, 3);
-	_imgAlpha = 100;
-	UIMANAGER->showBossInfo("Belial");
+		CAMERAMANAGER->cameraMove(_x + 23, _y, 5, 3);
+		_imgAlpha = 100;
+		UIMANAGER->showBossInfo("Belial");
+	}
 
 	return S_OK;
 }
@@ -130,7 +133,7 @@ void Belial::deleteEffect()
 	SOUNDMANAGER->stop(SoundName::belialBG);
 
 	SOUNDMANAGER->play(SoundName::Enemy::MonsterDie, _sound);
-	SOUNDMANAGER->play(SoundName::dungeon, _sound);
+	if(!_isDebug) SOUNDMANAGER->play(SoundName::dungeon, _sound);
 	OBJECTMANAGER->addEffect(ImageName::Enemy::die, _x, _y); 
 	MAPMANAGER->dieMonster();
 }

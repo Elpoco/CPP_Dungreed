@@ -29,6 +29,8 @@ void ItemInfo::update()
 
 	_itemInfoX = _ptMouse.x;
 	_itemInfoY = _ptMouse.y;
+	if (_ptMouse.x + _imgInfo->getWidth() > WINSIZE_X) _itemInfoX = _ptMouse.x - _imgInfo->getWidth();
+	if (_ptMouse.y + _imgInfo->getHeight() > WINSIZE_Y) _itemInfoY = _ptMouse.y - _imgInfo->getHeight();
 
 	_rcItem = RectMakeCenter(_itemInfoX + 56, _itemInfoY + 101, _imgItem->getFrameWidth(), _imgItem->getFrameHeight());
 }

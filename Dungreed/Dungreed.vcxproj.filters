@@ -178,11 +178,17 @@
     <Filter Include="MainGame\02. Object\05. UI\ItemInfo">
       <UniqueIdentifier>{37e2bd40-aca9-4296-8beb-7f30d4c3f4a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\06. Item\Sword\SKill">
+    <Filter Include="MainGame\02. Object\06. Item\SKill">
       <UniqueIdentifier>{3938b358-e784-4963-b466-ae7537a2ce97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\06. Item\Sword\SKill\CosmosSword">
+    <Filter Include="MainGame\02. Object\06. Item\SKill\CosmosSword">
       <UniqueIdentifier>{1ae523cc-126c-434e-86a9-9a3ac5e6c38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\06. Item\SKill\LalaMagicWand">
+      <UniqueIdentifier>{0e2de97c-46c3-4511-8174-629999d2cb02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\07. NPC\BlackSmith">
+      <UniqueIdentifier>{2de2076e-5bca-4922-9b3e-4468eba8117d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -409,10 +415,16 @@
       <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
     </ClCompile>
     <ClCompile Include="CosmosSwrod.cpp">
-      <Filter>MainGame\02. Object\06. Item\Sword\SKill\CosmosSword</Filter>
+      <Filter>MainGame\02. Object\06. Item\SKill\CosmosSword</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
-      <Filter>MainGame\02. Object\06. Item\Sword\SKill</Filter>
+      <Filter>MainGame\02. Object\06. Item\SKill</Filter>
+    </ClCompile>
+    <ClCompile Include="LalaMagicWand.cpp">
+      <Filter>MainGame\02. Object\06. Item\SKill\LalaMagicWand</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackSmith.cpp">
+      <Filter>MainGame\02. Object\07. NPC\BlackSmith</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -672,10 +684,16 @@
       <Filter>MainGame\02. Object\05. UI\ItemInfo</Filter>
     </ClInclude>
     <ClInclude Include="CosmosSwrod.h">
-      <Filter>MainGame\02. Object\06. Item\Sword\SKill\CosmosSword</Filter>
+      <Filter>MainGame\02. Object\06. Item\SKill\CosmosSword</Filter>
     </ClInclude>
     <ClInclude Include="Skill.h">
-      <Filter>MainGame\02. Object\06. Item\Sword\SKill</Filter>
+      <Filter>MainGame\02. Object\06. Item\SKill</Filter>
+    </ClInclude>
+    <ClInclude Include="LalaMagicWand.h">
+      <Filter>MainGame\02. Object\06. Item\SKill\LalaMagicWand</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackSmith.h">
+      <Filter>MainGame\02. Object\07. NPC\BlackSmith</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

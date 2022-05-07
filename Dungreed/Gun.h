@@ -20,8 +20,13 @@ private:
 	float	_reloadTick;
 	
 	string _bulletImgName;
+	string _shootingImgName;
+	string _hitImgName;
 	BOOL _isSize;
 	BOOL _isMulti;
+	BOOL _isPenetrate;
+	BOOL _isAuto;
+	BOOL _isSuper;
 
 	float	_itemAtkSpeed;
 	int		_itemDmg;

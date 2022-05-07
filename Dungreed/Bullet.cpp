@@ -14,9 +14,9 @@ Bullet::Bullet(string imgName, float x, float y, float angle, float speed
 	, _isSuper(super)
 	, _isImgRotate(imgRotate)
 	, _isAuto(FALSE)
-	, _dir(1)
 	, _scale(1.0f)
 	, _isPenetrate(FALSE)
+	, _isFind(FALSE)
 {
 	_x = x;
 	_y = y;
@@ -69,14 +69,6 @@ void Bullet::update()
 	this->move();
 
 	_rc = RectMakeCenter(_x, _y, _frameInfo.width * _scale, _frameInfo.height * _scale);
-
-	//float temp = GetAngle(
-	//	CAMERAMANAGER->calAbsPt(PointMake(0, 0)),
-	//	PointMake(_x, _y));
-	//
-	//if (temp < 0) _angle += 0.04f;
-	//else _angle -= 0.04f;
-		
 }
 
 void Bullet::render(HDC hdc)
@@ -151,6 +143,18 @@ void Bullet::move()
 	{
 		_isLive = FALSE;
 	}
+
+	if (_isAuto && _isFind)
+	{
+		float angle = GetAngle(_x, _y, _ptEnemy.x, _ptEnemy.y);
+		float moveAngle = 0.08f;
+		_speed += 0.01f;
+
+		angle -= _angle;
+		angle = angle < -PI ? angle + 2 * PI : angle > PI ? angle - 2 * PI : angle;
+		angle = angle < -moveAngle ? -moveAngle : angle > moveAngle ? moveAngle : angle;
+		_angle += angle;
+	}
 }
 
 void Bullet::animation()
@@ -165,4 +169,11 @@ void Bullet::animation()
 			_frameInfo.x = 0;
 		}
 	}
+}
+
+void Bullet::findEnemy(POINT pt)
+{
+	if (_initTime + 0.1f > TIMEMANAGER->getWorldTime()) return;
+	_isFind = TRUE;
+	_ptEnemy = pt;
 }

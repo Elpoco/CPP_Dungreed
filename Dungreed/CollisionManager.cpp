@@ -451,22 +451,24 @@ void CollisionManager::collisionShooting()
 	}
 
 	// 몬스터가 플레이어 총알에 맞기
-	for (Object* objEnemy : pairEnemy->second)
+	for (Object* obj : pairPlayerObj->second)
 	{
-		Enemy* enemy = dynamic_cast<Enemy*>(objEnemy);
-
-		for (Object* obj : pairPlayerObj->second)
+		Bullet* bullet = dynamic_cast<Bullet*>(obj);
+		bullet->eraseEnemy();
+		for (Object* objEnemy : pairEnemy->second)
 		{
-			Bullet* bullet = dynamic_cast<Bullet*>(obj);
+			Enemy* enemy = dynamic_cast<Enemy*>(objEnemy);
 			RECT tmp;
 			RECT rcEnemy = enemy->getRect();
 			RECT rcObj = bullet->getRect();
+
+			if (bullet->isAuto()) bullet->findEnemy(enemy->getPt());
 
 			if (enemy->findAtkBulletTime(bullet->getInitTime()) && IntersectRect(&tmp, &rcEnemy, &rcObj))
 			{
 				bullet->collisionObject();
 				enemy->hitAttack(bullet->getDmg(), enemy->getX() > bullet->getX());
-				if(bullet->getPenetrate()) enemy->setAtkBulletTime(bullet->getInitTime());
+				if (bullet->getPenetrate()) enemy->setAtkBulletTime(bullet->getInitTime());
 			}
 		}
 	}

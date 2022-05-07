@@ -153,6 +153,7 @@
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Belial.cpp" />
     <ClCompile Include="BelialSword.cpp" />
+    <ClCompile Include="BlackSmith.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -186,6 +187,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="LalaMagicWand.cpp" />
     <ClCompile Include="LittleGhost.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MessageBoxManager.cpp" />
@@ -236,6 +238,7 @@
     <ClInclude Include="Bat.h" />
     <ClInclude Include="Belial.h" />
     <ClInclude Include="BelialSword.h" />
+    <ClInclude Include="BlackSmith.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Button.h" />
@@ -276,6 +279,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="LalaMagicWand.h" />
     <ClInclude Include="LittleGhost.h" />
     <ClInclude Include="MapData.h" />
     <ClInclude Include="MapManager.h" />

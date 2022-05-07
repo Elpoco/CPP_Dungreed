@@ -144,6 +144,8 @@ namespace Code
 		BAMBOO_SWORD,
 		LIGHTSABER,
 		COSMOSSWORD,
+
+		LALA,
 		// รั
 		COLT,
 		GATLINGGUN,

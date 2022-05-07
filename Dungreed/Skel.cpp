@@ -29,7 +29,7 @@ HRESULT Skel::init()
 	Enemy::init();
 
 	_info = DBMANAGER->getInfo(Code::UNIT::SKEL);
-	_scanScale = { 25, 15 };
+	_scanScale = { 20, 15 };
 
 	settingHp(_info.hp);
 
@@ -86,12 +86,13 @@ void Skel::move()
 
 			if (GetDistance(PointMake(_x, _y), _ptPlayer) > 110)
 			{
+				int w = abs(_ptPlayer.x - _x);
 				int h = _ptPlayer.y - _y;
-				if (h > 170)
+				if (h > 170 && w < 250)
 				{
 					Unit::downJump();
 				}
-				if (h < -170)
+				if (h < -170 && w < 250)
 				{
 					Unit::jump();
 				}

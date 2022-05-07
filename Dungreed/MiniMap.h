@@ -4,11 +4,27 @@
 class MiniMap : public UI
 {
 private:
+	enum class MINIMAP_OBJ_TYPE
+	{
+		ENEMY,
+		NPC,
+		OBJ,
+	};
+
+	struct tagMinimapObj
+	{
+		MINIMAP_OBJ_TYPE type;
+		POINT pt;
+	};
+
+private:
 	ImageBase* _imgBorder;
 	ImageBase* _imgBlock;
 	ImageBase* _imgPlayer;
 	ImageBase* _imgEnemy;
 	ImageBase* _imgDoor;
+	ImageBase* _imgNPC;
+	ImageBase* _imgTresure;
 	MapToolEnum::MAP_OBJ* _arrType; // 타일의 타입을 담을 배열
 	BOOL _isDungeon;
 
@@ -24,7 +40,7 @@ private:
 	int _playerY;
 	
 	ObjectManager::vObjects* _vObject;
-	vector<POINT> _vObectPt;
+	vector<tagMinimapObj> _vObect;
 
 public:
 	MiniMap();

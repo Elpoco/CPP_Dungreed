@@ -143,7 +143,7 @@ void Niflheim::update()
 	case Niflheim::NIFLHEIM_SKILL::STUN:
 		if (_stunTime + 1.5f < TIMEMANAGER->getWorldTime())
 		{
-			_skillCooldown = TIMEMANAGER->getWorldTime();
+			_skillCooldown = TIMEMANAGER->getWorldTime() - 1.0f;
 			_onInitPillar = true;
 			_skill = NIFLHEIM_SKILL::NONE;
 		}

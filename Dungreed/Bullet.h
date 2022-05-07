@@ -22,10 +22,10 @@ private:
 	BOOL _isSuper;
 	BOOL _isImgRotate;
 	BOOL _isPenetrate;
-	float _initTime;
-
 	BOOL _isAuto;
-	int _dir;
+	BOOL _isFind;
+	POINT _ptEnemy;
+	float _initTime;
 
 public:
 	Bullet(string imgName, float x, float y, float angle, float speed, 
@@ -46,7 +46,10 @@ public:
 	void move();
 	void animation();
 
-	void findEnemy();
+	BOOL isAuto() { return _isAuto; }
+	void setAuto() { _isAuto = TRUE; }
+	void findEnemy(POINT pt);
+	void eraseEnemy() { _isFind = FALSE; }
 
 	void setSuper() { _isSuper = TRUE; }
 	void setRotate() { _isImgRotate = TRUE; }

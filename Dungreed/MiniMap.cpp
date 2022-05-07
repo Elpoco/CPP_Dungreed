@@ -17,6 +17,8 @@ HRESULT MiniMap::init()
 	_imgPlayer = FindImage(ImageName::UI::MiniMap::PlayerPixel);
 	_imgEnemy = FindImage(ImageName::UI::MiniMap::EnemyPixel);
 	_imgDoor = FindImage(ImageName::UI::MiniMap::DoorPixel);
+	_imgNPC = FindImage(ImageName::UI::MiniMap::NPCPixel);
+	_imgTresure = FindImage(ImageName::UI::MiniMap::MiniMapTresure);
 
 	_isFixed = TRUE;
 	_isDungeon = FALSE;
@@ -56,13 +58,34 @@ void MiniMap::render(HDC hdc)
 			}
 		}
 	}
-	for (auto pt : _vObectPt)
+	for (auto obj : _vObect)
 	{
-		_imgEnemy->render(
-			hdc,
-			_miniMapX + pt.x * 5,
-			_miniMapY + pt.y * 5
-		);
+		switch (obj.type)
+		{
+		case MINIMAP_OBJ_TYPE::ENEMY:
+			_imgEnemy->render(
+				hdc,
+				_miniMapX + obj.pt.x * 5,
+				_miniMapY + obj.pt.y * 5
+			);
+			break;
+		case MINIMAP_OBJ_TYPE::NPC:
+			_imgNPC->render(
+				hdc,
+				_miniMapX + obj.pt.x * 5,
+				_miniMapY + obj.pt.y * 5
+			);
+			break;
+		case MINIMAP_OBJ_TYPE::OBJ:
+			_imgTresure->render(
+				hdc,
+				_miniMapX + obj.pt.x * 5,
+				_miniMapY + obj.pt.y * 5
+			);
+			break;
+		default:
+			break;
+		}
 	}
 	_imgPlayer->render(hdc, _miniMapX + _playerX * 5, _miniMapY + _playerY * 5);
 }
@@ -106,39 +129,42 @@ void MiniMap::updateObjectPosition()
 	_playerY = pos.y / TILE_SIZE;
 
 	_vObject = OBJECTMANAGER->getEnemy();
-	_vObectPt.clear();
+	_vObect.clear();
 
 	for (auto obj : *_vObject)
 	{
-		_vObectPt.push_back(
+		_vObect.push_back({
+			MINIMAP_OBJ_TYPE::ENEMY,
 			PointMake(
-			obj->getX() / TILE_SIZE,
-			obj->getY() / TILE_SIZE
+				obj->getX() / TILE_SIZE,
+				obj->getY() / TILE_SIZE
 			)
-		);
+		});
 	}
 
 	_vObject = OBJECTMANAGER->getNPC();
 	for (auto obj : *_vObject)
 	{
 		if (!obj->isRender()) continue;
-		_vObectPt.push_back(
+		_vObect.push_back({
+			MINIMAP_OBJ_TYPE::NPC,
 			PointMake(
 				obj->getX() / TILE_SIZE,
 				obj->getY() / TILE_SIZE
 			)
-		);
+		});
 	}
 
 	_vObject = OBJECTMANAGER->getDungeonObj();
 	for (auto obj : *_vObject)
 	{
 		if (!obj->isRender()) continue;
-		_vObectPt.push_back(
+		_vObect.push_back({
+			MINIMAP_OBJ_TYPE::OBJ,
 			PointMake(
-				obj->getX() / TILE_SIZE,
+				obj->getX() / TILE_SIZE - 1,
 				obj->getY() / TILE_SIZE
 			)
-		);
+		});
 	}
 }
