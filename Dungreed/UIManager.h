@@ -62,6 +62,11 @@ private:
 	BOOL _showMapInfo;
 	BOOL _isIn;
 	float _infoSpeed;
+
+	UI* _uiPlayerDie;
+	UI* _uiBackground;
+	UI* _uiLevelUp;
+	ImageFont* _uiLevel;
 	
 public:
 	UIManager();
@@ -114,6 +119,13 @@ public:
 	void initMapInfo();
 	void showMapInfo(char* mapName);
 	void updateMapInfo();
+
+	void initPlayerDie();
+	void showPlayerDie();
+	void hidePlayerDie();
+
+	void initLevelUp();
+	void showLevelUp(int level);
 
 };
 

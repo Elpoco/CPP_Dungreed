@@ -89,8 +89,11 @@ typedef struct tagItemInfo
 	float atkSpeed = 0;
 	int def = 0;
 	int bulletCnt = 0;
+	int power = 0;
+	int hp = 0;
 
 	string accDsc = "";
+	string accDsc2 = "";
 	string ability = "";
 
 	tagItemInfo() {}
@@ -140,6 +143,7 @@ typedef struct tagMapInfo
 	BOOL door[Direction::DIR::DIR_CNT];
 	SPAWN_INFO arrSpawnInfo[UnitSet::MAX_SPAWN];
 	POINT ptTresure;
+	POINT ptWorm;
 
 	tagMapInfo() 
 	{
@@ -148,6 +152,7 @@ typedef struct tagMapInfo
 		door[Direction::DIR::RIGHT] = FALSE;
 		door[Direction::DIR::BOTTOM] = FALSE;
 		ptTresure = { 0,0 };
+		ptWorm = { 0,0 };
 	}
 } MAP_INFO;
 

@@ -44,15 +44,10 @@ HRESULT Player::init()
 
 	if (_isDebug)
 	{
-		ITEMMANAGER->giveItem(Code::ITEM::BAMBOO_SWORD);
-		ITEMMANAGER->giveItem(Code::ITEM::LIGHTSABER);
-		ITEMMANAGER->giveItem(Code::ITEM::COLT);
-		ITEMMANAGER->giveItem(Code::ITEM::MULTI_BULLET);
-		ITEMMANAGER->giveItem(Code::ITEM::MAGNIFYINGGLASS);
-		ITEMMANAGER->giveItem(Code::ITEM::WINGBOOTS);
-		ITEMMANAGER->giveItem(Code::ITEM::GATLINGGUN);
-		ITEMMANAGER->giveItem(Code::ITEM::COSMOSSWORD);
-		ITEMMANAGER->giveItem(Code::ITEM::LALA);
+		for (int i = 1; i < (int)Code::ITEM::ITEM_CNT; i++)
+		{
+			ITEMMANAGER->giveItem((Code::ITEM)i);
+		}
 	}
 
 	return S_OK;
@@ -73,6 +68,7 @@ void Player::update()
 	Unit::updateRect();
 	this->animation();
 	PLAYERMANAGER->update();
+	if (_state != DIE && PLAYERMANAGER->getHp() <= 0) die();
 }
 
 void Player::render(HDC hdc)
@@ -88,6 +84,9 @@ void Player::hitAttack(int dmg, int dir)
 	_isHit = true;
 	_imgAlpha = HIT_ALPHA;
 
+	dmg -= PLAYERMANAGER->getDefense();
+	if (dmg < 1) dmg = 1;
+
 	PLAYERMANAGER->hit(dmg);
 
 	OBJECTMANAGER->addDynamicImageFont(_x, _rc.top, dmg, dir);
@@ -102,39 +101,12 @@ int Player::getDmg()
 
 void Player::move()
 {
-	_state = PLAYER_MOTION::IDLE;
-	if (_isJump || _isFall) _state = PLAYER_MOTION::JUMP;
+	if (PLAYERMANAGER->isDie()) return;
 
 	_rcAttack = { 0,0,0,0 };
 
-	_hand = PointMake(_mainHandX, _y + 5);
-	_body = PointMake(_x, _y);
-	
-	if (_isStop) return;
-	if (UIMANAGER->isUI() || CAMERAMANAGER->isCameraMove()) return;
-
-	if (IsStayKeyDown(KEY::LEFT))	 this->moveLeft();
-	if (IsStayKeyDown(KEY::RIGHT))	 this->moveRight();
-	if (IsOnceKeyUp(KEY::LEFT))		 this->setIdle();
-	if (IsOnceKeyUp(KEY::RIGHT))	 this->setIdle();
-	if (IsStayKeyDown(KEY::CLICK_L)) this->attack();
-	if (IsOnceKeyDown(KEY::CLICK_R)) this->dash();
-	if (IsOnceKeyDown(KEY::SKILL))	 this->skill();
-
-	if (IsStayKeyDown(KEY::DOWN) && IsOnceKeyDown(KEY::SPACE)) Unit::downJump();
-	if (IsOnceKeyDown(KEY::UP) || IsOnceKeyDown(KEY::SPACE))  this->jump();
-
-	// дЁ╦╞ем аб©Л
-	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
-	{
-		_isLeft = true;
-		_mainHandX = _x - 20;
-	}
-	else
-	{
-		_isLeft = false;
-		_mainHandX = _x + 19;
-	}
+	_state = PLAYER_MOTION::IDLE;
+	if (_isJump || _isFall) _state = PLAYER_MOTION::JUMP;
 
 	if (_isDash)
 	{
@@ -159,6 +131,41 @@ void Player::move()
 			_isDownFlag = FALSE;
 			_dashMove = DASH_DISTANCE;
 		}
+	}
+
+	if (_isLeft)
+	{
+		_mainHandX = _x - 20;
+	}
+	else
+	{
+		_mainHandX = _x + 19;
+	}
+
+	_hand = PointMake(_mainHandX, _y + 5);
+	_body = PointMake(_x, _y);
+
+	if (_isStop) return;
+	if (UIMANAGER->isUI() || CAMERAMANAGER->isCameraMove()) return;
+
+	if (IsStayKeyDown(KEY::LEFT))	 this->moveLeft();
+	if (IsStayKeyDown(KEY::RIGHT))	 this->moveRight();
+	if (IsOnceKeyUp(KEY::LEFT))		 this->setIdle();
+	if (IsOnceKeyUp(KEY::RIGHT))	 this->setIdle();
+	if (IsStayKeyDown(KEY::CLICK_L)) this->attack();
+	if (IsOnceKeyDown(KEY::CLICK_R)) this->dash();
+	if (IsOnceKeyDown(KEY::SKILL))	 this->skill();
+
+	if (IsStayKeyDown(KEY::DOWN) && IsOnceKeyDown(KEY::SPACE)) Unit::downJump();
+	if (IsOnceKeyDown(KEY::UP) || IsOnceKeyDown(KEY::SPACE))  this->jump();
+
+	if (_ptMouse.x < CAMERAMANAGER->calRelX(_x))
+	{
+		_isLeft = true;
+	}
+	else
+	{
+		_isLeft = false;
 	}
 
 	if (_isJump || _isFall) _state = PLAYER_MOTION::JUMP;
@@ -188,6 +195,7 @@ void Player::initAnimation()
 	_vImages.push_back(FindImage(ImageName::Player::idle));
 	_vImages.push_back(FindImage(ImageName::Player::run));
 	_vImages.push_back(FindImage(ImageName::Player::jump));
+	_vImages.push_back(FindImage(ImageName::Player::die));
 
 	_imgWidth = _vImages[0]->getFrameWidth();
 	_imgHeight = _vImages[0]->getFrameHeight();
@@ -308,4 +316,12 @@ BOOL Player::getItem(Code::ITEM code)
 		}
 		return true;
 	}
+}
+
+void Player::die()
+{
+	PLAYERMANAGER->setDie(TRUE);
+	_state = DIE;
+	SOUNDMANAGER->play(SoundName::Player::playerDie, _sound);
+	UIMANAGER->showPlayerDie();
 }

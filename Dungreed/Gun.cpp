@@ -13,12 +13,9 @@ Gun::Gun(Code::ITEM code)
 	, _isReload(FALSE)
 	, _bulletSpeed(DEFAULT_BULLET_SPEED)
 	, _reloadTick(DEFAULT_RELOAD_TICK)
-	, _itemAtkSpeed(0.0f)
-	, _itemDmg(0)
-	, _itemScale(1.0f)
 	, _isPenetrate(FALSE)
 	, _bulletImgName(ImageName::Item::Weapon::Bullet02)
-	, _shootingImgName(ImageName::Effect::Weapon::shooting)
+	, _shootingImgName(ImageName::Effect::Weapon::ShootEffect)
 	, _hitImgName(ImageName::Effect::Weapon::shootingHit)
 	, _isAuto(FALSE)
 	, _isSuper(FALSE)
@@ -40,6 +37,7 @@ HRESULT Gun::init()
 	{
 	case Code::ITEM::GATLINGGUN:
 		_bulletImgName = ImageName::Item::Weapon::Bullet03;
+		_hitImgName = ImageName::Enemy::BatBulletHit;
 		break;
 	case Code::ITEM::LALA:
 		_bulletImgName = ImageName::Item::Weapon::StarBullet;
@@ -78,12 +76,12 @@ void Gun::update()
 	if (!_isReload && (_bulletCnt <= 0 || isReloadKey))
 	{
 		_isReload = TRUE;
-		_lastAttack += _reloadTick;
+		_lastAttack += _reloadTick - PLAYERMANAGER->getReloadSpeed();
 		_reloadStartTime = TIMEMANAGER->getWorldTime();
-		UIMANAGER->showReloadBar(_reloadTick);
+		UIMANAGER->showReloadBar(_reloadTick - PLAYERMANAGER->getReloadSpeed());
 		SOUNDMANAGER->play(SoundName::Item::Reload2, _sound);
 	}
-	if (_isReload && _reloadStartTime + _reloadTick < TIMEMANAGER->getWorldTime())
+	if (_isReload && _reloadStartTime + _reloadTick - PLAYERMANAGER->getReloadSpeed() < TIMEMANAGER->getWorldTime())
 	{
 		_isReload = FALSE;
 		_bulletCnt = _itemInfo.bulletCnt;
@@ -112,9 +110,7 @@ void Gun::render(HDC hdc)
 
 RECT Gun::attack()
 {
-	settingAcc();
-
-	if (_lastAttack + 1.0f / (_itemInfo.atkSpeed * _itemAtkSpeed) >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	if (_lastAttack + 1.0f / (_itemInfo.atkSpeed * PLAYERMANAGER->getShootSpeed()) >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
 	_lastAttack = TIMEMANAGER->getWorldTime();
 	if (--_bulletCnt < 0) return { 0,0,0,0 };
 
@@ -141,7 +137,7 @@ RECT Gun::attack()
 
 	float bulletAngle = RND->getFloat(0.08f) - 0.04f;
 
-	if (_isMulti)
+	if (PLAYERMANAGER->getMultiBullet())
 	{
 		for (int i = 0; i < 2; i++)
 		{
@@ -150,14 +146,14 @@ RECT Gun::attack()
 				_bulletImgName,
 				_shootingX,
 				_shootingY,
-				_angle + bulletAngle - 0.06f * (i ? 1 : -1),
+				_angle + bulletAngle - 0.1f * (i ? 1 : -1),
 				_bulletSpeed,
-				RND->getFromIntTo(_itemInfo.minDmg, _itemInfo.maxDmg),
+				RND->getFromIntTo(_itemInfo.minDmg + PLAYERMANAGER->getBulletPower(), _itemInfo.maxDmg + PLAYERMANAGER->getBulletPower()),
 				_hitImgName,
 				1000.0f,
 				_isSuper,
 				TRUE,
-				_itemScale,
+				PLAYERMANAGER->getSizeBullset() ? 2.0f : 1.0f,
 				_isPenetrate,
 				_isAuto
 			);
@@ -171,59 +167,24 @@ RECT Gun::attack()
 		_shootingY,
 		_angle + bulletAngle,
 		_bulletSpeed,
-		RND->getFromIntTo(_itemInfo.minDmg + _itemDmg, _itemInfo.maxDmg + _itemDmg),
+		RND->getFromIntTo(_itemInfo.minDmg + PLAYERMANAGER->getBulletPower(), _itemInfo.maxDmg + PLAYERMANAGER->getBulletPower()),
 		_hitImgName,
 		1000.0f,
 		_isSuper,
 		TRUE,
-		_itemScale,
+		PLAYERMANAGER->getSizeBullset() ? 2.0f : 1.0f,
 		_isPenetrate,
 		_isAuto
 	);
 
 	string sound = SoundName::Item::Weapon::Gun;
 	if (_itemInfo.code == Code::ITEM::LALA) sound = SoundName::Item::Weapon::MagicWandAttack;
+	else if (_itemInfo.code == Code::ITEM::GATLINGGUN) sound = SoundName::Item::Weapon::GatlingGun;
 
-	SOUNDMANAGER->play(sound, _sound - 0.5f);
+	if (_itemInfo.code == Code::ITEM::LALA) SOUNDMANAGER->play(sound, _sound);
+	else  SOUNDMANAGER->play(sound, _sound - 0.6f);
 
 	return { 0,0,0,0 };
-}
-
-void Gun::settingAcc()
-{
-	_isMulti = FALSE;
-	_isSize = FALSE;
-	_itemAtkSpeed = 1.0f;
-	_itemDmg = 0;
-	_itemScale = 1.0f;
-
-	for (int i = 0; i < 4; i++)
-	{
-		Code::ITEM code = ITEMMANAGER->getEquipAccCode(i);
-		switch (code)
-		{
-		case Code::ITEM::MULTI_BULLET:
-			_isMulti = TRUE;
-			break;
-		case Code::ITEM::MAGNIFYINGGLASS:
-			_isSize = TRUE;
-			break;
-		default:
-			break;
-		}
-	}
-
-	if (_isSize)
-	{
-		_itemAtkSpeed -= 0.7f;
-		_itemDmg += 5;
-		_itemScale = 2.0f;
-	}
-
-	if (_isMulti)
-	{
-		_itemDmg -= 3;
-	}
 }
 
 void Gun::settingShootingPoint()

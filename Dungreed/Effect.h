@@ -21,6 +21,8 @@ protected:
 	float*	_followY;
 	int*	_followDegree;
 
+	BOOL _isFixed;
+
 public:
 	Effect(string imgName, float x, float y, float angle);
 	Effect(string imgName, float x, float y, BYTE alpha = 255);
@@ -44,5 +46,7 @@ public:
 		_followDegree = degree;
 	}
 
+	void setFixed() { _isFixed = TRUE; }
+	
 };
 

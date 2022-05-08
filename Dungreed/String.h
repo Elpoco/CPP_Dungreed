@@ -28,6 +28,8 @@ namespace ImageName
 		constexpr char* die		 = "ENEMY die";
 		constexpr char* dieSmall = "ENEMY dieSmall";
 
+		constexpr char* Scarecrow = "ENEMY Scarecrow";
+
 		constexpr char* dogIdle = "ENEMY DogIdle";
 		constexpr char* dogRun  = "ENEMY DogRun";
 		constexpr char* dogDie  = "ENEMY DogDie";
@@ -94,6 +96,8 @@ namespace ImageName
 	{
 		constexpr char* logo = "UI logo";
 		constexpr char* bird = "UI bird";
+		constexpr char* ExplorationFailureKor = "UI ExplorationFailureKor";
+		constexpr char* LevelUp = "UI LevelUp";
 
 		namespace Button
 		{
@@ -129,6 +133,9 @@ namespace ImageName
 			constexpr char* Accessory = "INVENTORY Accessory";
 			constexpr char* EquipSlot1On = "INVENTORY EquipSlot1On";
 			constexpr char* EquipSlot2On = "INVENTORY EquipSlot2On";
+			constexpr char* hp = "INVENTORY hp";
+			constexpr char* power = "INVENTORY power";
+			constexpr char* defense = "INVENTORY defense";
 		}
 
 		namespace PlayerHpBar
@@ -161,6 +168,7 @@ namespace ImageName
 			constexpr char* BorderPixel = "MINIMAP BorderPixel";
 			constexpr char* NPCPixel = "MINIMAP NPCPixel";
 			constexpr char* MiniMapTresure = "MINIMAP MiniMapTresure";
+			constexpr char* MiniMapWorm = "MINIMAP MiniMapWorm";
 		}
 
 		namespace WorldMap
@@ -171,12 +179,17 @@ namespace ImageName
 			constexpr char* CurrentRoom = "MINIMAP CurrentRoom";
 			constexpr char* line_h = "MINIMAP line_h";
 			constexpr char* line_v = "MINIMAP line_v";
+			constexpr char* ShopIcon = "MINIMAP ShopIcon";
+			constexpr char* Food = "MINIMAP Food";
+			constexpr char* Worm = "MINIMAP Worm";
+			constexpr char* Worm_Selected = "MINIMAP Worm_Selected";
 		}
 
 		namespace Keyboard
 		{
 			constexpr char* F = "Keyboard F";
 			constexpr char* Q = "Keyboard Q";
+			constexpr char* R = "Keyboard R";
 			constexpr char* ESC = "Keyboard ESC";
 		}
 
@@ -224,6 +237,14 @@ namespace ImageName
 		namespace Ability
 		{
 			constexpr char* Label = "ABILITY Label";
+			constexpr char* Wrath = "ABILITY Wrath";
+			constexpr char* Patience = "ABILITY Patience";
+			constexpr char* Greed = "ABILITY Greed";
+			constexpr char* btnWrath = "ABILITY btnWrath";
+			constexpr char* btnPatience = "ABILITY btnPatience";
+			constexpr char* btnGreed = "ABILITY btnGreed";
+			constexpr char* AbilityFX = "ABILITY AbilityFX";
+			constexpr char* AbilityTextBar = "ABILITY AbilityTextBar";
 		}
 	}
 
@@ -285,6 +306,7 @@ namespace ImageName
 			constexpr char* basicShotSword = "WEAPON BasicShotSword";
 			constexpr char* BambooSword = "WEAPON BambooSword";
 			constexpr char* LightSaber = "WEAPON LightSaber";
+			constexpr char* ThreeTieredBaton = "WEAPON Three-TieredBaton";
 			constexpr char* CosmosSword = "WEAPON CosmosSword";
 			constexpr char* CosmosSwordAura = "WEAPON CosmosSwordAura";
 			constexpr char* CosmosSkill = "WEAPON CosmosSkill";
@@ -296,7 +318,13 @@ namespace ImageName
 			constexpr char* GatlingGun = "WEAPON GatlingGun";
 			constexpr char* Bullet02 = "WEAPON Bullet02";
 			constexpr char* Bullet03 = "WEAPON Bullet03";
+			constexpr char* Bullet07 = "WEAPON Bullet07";
+			constexpr char* Bullet08 = "WEAPON Bullet08";
 			constexpr char* StarBullet = "WEAPON StarBullet";
+
+			constexpr char* Spear = "WEAPON Spear";
+
+			constexpr char* MagicShield = "WEAPON MagicShield";
 		}
 
 		namespace Accessory
@@ -304,6 +332,14 @@ namespace ImageName
 			constexpr char* MultiBullet = "ACCESSORY MultiBullet";
 			constexpr char* MagnifyingGlass = "ACCESSORY MagnifyingGlass";
 			constexpr char* Wingboots = "ACCESSORY Wingboots";
+			constexpr char* Bullion = "ACCESSORY Bullion";
+			constexpr char* LeatherArmor = "ACCESSORY LeatherArmor";
+			constexpr char* ChainArmor = "ACCESSORY ChainArmor";
+			constexpr char* CharmOfAttack = "ACCESSORY CharmOfAttack";
+			constexpr char* CharmOfMadness = "ACCESSORY CharmOfMadness";
+			constexpr char* Jarngreipr = "ACCESSORY Jarngreipr";
+			constexpr char* Speedloader = "ACCESSORY Speedloader";
+			constexpr char* DaisyRing = "ACCESSORY DaisyRing";
 		}
 
 		namespace Gold
@@ -322,8 +358,10 @@ namespace ImageName
 			constexpr char* SwingFX = "EFFECT SwingFX";
 			constexpr char* CosmosSwingFX = "EFFECT CosmosSwingFX";
 			constexpr char* StarBulletFX = "EFFECT StarBulletFX";
+			constexpr char* StarParticle = "EFFECT StarParticle";
 			constexpr char* shooting = "EFFECT Shooting";
 			constexpr char* shootingHit = "EFFECT ShootingHit";
+			constexpr char* ShootEffect = "EFFECT ShootEffect";
 		}
 	}
 
@@ -357,6 +395,9 @@ namespace ImageName
 
 		constexpr char* DungeonInn = "DUNGEON DungeonInn";
 		constexpr char* InDungeonShop = "DUNGEON InDungeonShop";
+
+		constexpr char* WormPassageIdle = "DUNGEON WormPassageIdle";
+		constexpr char* WormPassageEat = "DUNGEON WormPassageEat";
 	}
 
 }
@@ -378,6 +419,7 @@ namespace SoundName
 	constexpr char* MapTool = "SOUND MapTool";
 	constexpr char* Foodshop = "SOUND Foodshop";
 	constexpr char* BuyFood = "SOUND BuyFood";
+	constexpr char* Ability_Up = "SOUND Ability_Up";
 
 	namespace Player
 	{
@@ -385,6 +427,9 @@ namespace SoundName
 		constexpr char* hit = "SOUND PLAYER hit";
 		constexpr char* Jumping = "SOUND PLAYER Jumping";
 		constexpr char* step_lth1 = "SOUND PLAYER step_lth1";
+		constexpr char* dungeonClear = "SOUND PLAYER dungeonClear";
+		constexpr char* playerDie = "SOUND PLAYER playerDie";
+		constexpr char* player_levelup = "SOUND PLAYER player_levelup";
 	}
 
 	namespace Enemy
@@ -417,6 +462,7 @@ namespace SoundName
 		constexpr char* getItem		= "SOUND ITEM getItem";
 		constexpr char* Equip		= "SOUND ITEM Equip";
 		constexpr char* PickUpItem	= "SOUND ITEM PickUpItem";
+		constexpr char* sell = "SOUND ITEM sell";
 		constexpr char* Reload = "SOUND Reload";
 		constexpr char* Reload2		= "SOUND Reload2";
 

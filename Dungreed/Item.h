@@ -44,7 +44,7 @@ public:
 
 	inline ImageBase* getImage() { return _img; }
 	inline FRAME_INFO getFrameInfo() { return _frameInfo; }
-	inline virtual int getDmg() override { return RND->getFromIntTo(_itemInfo.minDmg, _itemInfo.maxDmg); }
+	inline virtual int getDmg() override { return RND->getFromIntTo(_itemInfo.minDmg + PLAYERMANAGER->getPower(), _itemInfo.maxDmg + PLAYERMANAGER->getPower()); }
 	inline Code::ITEM_KIND getItemType() { return _itemInfo.type; }
 	inline ITEM_INFO getInfo() { return _itemInfo; }
 

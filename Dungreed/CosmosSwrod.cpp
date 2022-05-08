@@ -22,7 +22,7 @@ void CosmosSwrod::run(float x, float y, float angle)
 		y,
 		angle,
 		9.0f,
-		30,
+		RND->getFromIntTo(15 + PLAYERMANAGER->getBulletPower(), 25 + PLAYERMANAGER->getBulletPower()),
 		"",
 		2000.0f,
 		TRUE,

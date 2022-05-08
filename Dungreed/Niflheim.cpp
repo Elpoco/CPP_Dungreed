@@ -197,6 +197,7 @@ void Niflheim::hitAttack(int dmg, int dir)
 
 	_curHp -= dmg;
 	OBJECTMANAGER->addDynamicImageFont(_x + RND->getInt(10) - 5, _rc.top + RND->getInt(10) - 5, dmg, dir);
+	SOUNDMANAGER->play(SoundName::Enemy::hit, _sound);
 	if (_curHp < 1)
 	{
 		_isLive = FALSE;

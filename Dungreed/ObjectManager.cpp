@@ -14,6 +14,7 @@
 #include "Player.h"
 #include "NPC.h"
 
+#include "Scarecrow.h"
 #include "SkelDog.h"
 #include "LittleGhost.h"
 #include "Banshee.h"
@@ -112,8 +113,6 @@ void ObjectManager::render(HDC hdc)
 			}
 		}
 	}
-
-	UIMANAGER->render(hdc);
 }
 
 void ObjectManager::addObject(OBJ_TYPE type, Object* object)
@@ -132,6 +131,9 @@ void ObjectManager::addEnemy(Code::UNIT code, float x, float y)
 	Enemy* enemy;
 	switch (code)
 	{
+	case Code::UNIT::SCARECROW:
+		enemy = new Scarecrow(x, y);
+		break;
 	case Code::UNIT::SKEL_DOG:
 		enemy = new SkelDog(x, y);
 		break;
@@ -181,9 +183,12 @@ void ObjectManager::addBullet(OBJ_TYPE type, string imgName, float x, float y, f
 	addObject(type, bullet);
 }
 
-RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, OBJ_TYPE type)
+RECT ObjectManager::addEffect(string imgName, float x, float y, BYTE alpha, OBJ_TYPE type, BOOL fixed)
 {
 	Effect* effect = new Effect(imgName, x, y, alpha);
+
+	if (fixed) effect->setFixed();
+
 	addObject(type, effect);
 
 	return effect->getRect();

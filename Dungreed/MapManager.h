@@ -2,6 +2,7 @@
 #include "SingletonBase.h"
 
 class Door;
+class Worm;
 
 namespace MapManagerSet
 {
@@ -57,6 +58,8 @@ private:
 	BOOL _isFirst;
 	float _enterTime;
 
+	Worm* _worm;
+
 public:
 	MapManager();
 	~MapManager();
@@ -72,8 +75,10 @@ public:
 	void settingDungeon();
 	void settingDoor();
 	void settingMonster();
+	void settingWorm();
 
-	void chageRoom(DIR dir);
+	void changeRoom(DIR dir);
+	void clickWorm(int idx);
 	void openDoor();
 	void closeDoor();
 	void checkMonster();
@@ -91,6 +96,9 @@ public:
 
 	BOOL* getClearMap() { return _arrClearMap; }
 	int getCurLocation() { return _curLocation; }
+	Code::MAP getMapCode(int idx) { return _arrMapCode[idx]; }
+
+	void returnTown();
 
 };
 

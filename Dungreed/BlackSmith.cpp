@@ -21,6 +21,7 @@ void BlackSmith::release()
 
 void BlackSmith::update()
 {
+	if (PLAYERMANAGER->isReturn()) _isDrop = FALSE;
 }
 
 void BlackSmith::render(HDC hdc)
@@ -29,5 +30,9 @@ void BlackSmith::render(HDC hdc)
 
 void BlackSmith::show()
 {
-	ITEMMANAGER->dropItem(RND->getRndEnum(Code::ITEM::SHOT_SWORD, Code::ITEM::ITEM_CNT), _x, _y);
+	if (!_isDrop)
+	{
+		_isDrop = TRUE;
+		ITEMMANAGER->dropItem(RND->getRndEnum(Code::ITEM::SHOT_SWORD, Code::ITEM::ITEM_CNT), _x, _y);
+	}
 }

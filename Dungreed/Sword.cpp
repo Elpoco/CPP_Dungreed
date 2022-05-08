@@ -5,6 +5,8 @@
 
 Sword::Sword(Code::ITEM code)
 	: Item(code)
+	, _effectName(ImageName::Effect::Weapon::basicSwing)
+	, _soundName(SoundName::Item::Weapon::swing2)
 	, _isFirst(TRUE)
 {
 }
@@ -20,8 +22,22 @@ HRESULT Sword::init()
 
 	switch (_itemInfo.code)
 	{
+	case Code::ITEM::BAMBOO_SWORD:
+		_effectName = ImageName::Effect::Weapon::BambooSwing;
+		_soundName = SoundName::Item::Weapon::swing1;
+		break;
+	case Code::ITEM::LIGHTSABER:
+		_effectName = ImageName::Effect::Weapon::SwingFX;
+		_soundName = SoundName::Item::Weapon::LightSaver;
+		break;
 	case Code::ITEM::COSMOSSWORD:
 		_skill = new CosmosSwrod;
+		_effectName = ImageName::Effect::Weapon::CosmosSwingFX;
+		_soundName = SoundName::Item::Weapon::swing5;
+		break;
+	case Code::ITEM::THREETIEREDBATON:
+		_effectName = ImageName::Effect::Weapon::BambooSwing;
+		_soundName = SoundName::Item::Weapon::swing1;
 		break;
 	default:
 		break;
@@ -62,7 +78,7 @@ void Sword::render(HDC hdc)
 
 RECT Sword::attack()
 {
-	if (_lastAttack + 1.0f / _itemInfo.atkSpeed >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
+	if (_lastAttack + 1.0f / (_itemInfo.atkSpeed * PLAYERMANAGER->getAtkSpeed()) >= TIMEMANAGER->getWorldTime()) return { 0,0,0,0 };
 	_lastAttack = TIMEMANAGER->getWorldTime();
 
 	_isFirst = !_isFirst;
@@ -71,33 +87,12 @@ RECT Sword::attack()
 	float effectX = cosf(effectAngle) * _frameInfo.height + PLAYERMANAGER->getPlayerHand().x;
 	float effectY = -sinf(effectAngle) * _frameInfo.height + PLAYERMANAGER->getPlayerHand().y;
 
-	string effectName = ImageName::Effect::Weapon::basicSwing;
-	string soundName = SoundName::Item::Weapon::swing2;
-
-	switch (_itemInfo.code)
-	{
-	case Code::ITEM::BAMBOO_SWORD:
-		effectName = ImageName::Effect::Weapon::BambooSwing;
-		soundName = SoundName::Item::Weapon::swing1;
-		break;
-	case Code::ITEM::LIGHTSABER:
-		effectName = ImageName::Effect::Weapon::SwingFX;
-		soundName = SoundName::Item::Weapon::LightSaver;
-		break;
-	case Code::ITEM::COSMOSSWORD:
-		effectName = ImageName::Effect::Weapon::CosmosSwingFX;
-		soundName = SoundName::Item::Weapon::swing5;
-		break;
-	default:
-		break;
-	}
-
-	SOUNDMANAGER->play(soundName, _sound);
+	SOUNDMANAGER->play(_soundName, _sound);
 
 	CAMERAMANAGER->cameraShake(3);
 
 	return OBJECTMANAGER->addEffect(
-		effectName,
+		_effectName,
 		effectX,
 		effectY,
 		RadToDeg(effectAngle),

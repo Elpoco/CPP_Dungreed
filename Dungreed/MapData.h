@@ -132,6 +132,7 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_07)].ptTresure = { 772, 552 };
 		_info[TO_INT(Code::MAP::DUNGEON_07)].door[DIR::LEFT] = TRUE;
 		_info[TO_INT(Code::MAP::DUNGEON_07)].door[DIR::TOP] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_07)].ptWorm = PointMake(1248, 381);
 
 		_info[TO_INT(Code::MAP::DUNGEON_08)].arrSpawnInfo[0].ptSpawn = PointMake(286, 587);
 		_info[TO_INT(Code::MAP::DUNGEON_08)].arrSpawnInfo[0].unit = Code::UNIT::SKEL_BOW;
@@ -192,6 +193,7 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_09)].door[DIR::LEFT] = TRUE;
 		_info[TO_INT(Code::MAP::DUNGEON_09)].door[DIR::TOP] = TRUE;
 		_info[TO_INT(Code::MAP::DUNGEON_09)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_09)].ptWorm = PointMake(1250, 1006);
 
 		_info[TO_INT(Code::MAP::DUNGEON_10)].arrSpawnInfo[0].ptSpawn = PointMake(1651, 829);
 		_info[TO_INT(Code::MAP::DUNGEON_10)].arrSpawnInfo[0].unit = Code::UNIT::RED_GIANT_BAT;
@@ -212,8 +214,8 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_10)].arrSpawnInfo[8].ptSpawn = PointMake(403, 1016);
 		_info[TO_INT(Code::MAP::DUNGEON_10)].arrSpawnInfo[8].unit = Code::UNIT::SKEL;
 		_info[TO_INT(Code::MAP::DUNGEON_10)].ptTresure = { 1591, 552 };
-		_info[TO_INT(Code::MAP::DUNGEON_10)].door[DIR::LEFT] = TRUE;
 		_info[TO_INT(Code::MAP::DUNGEON_10)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_10)].ptWorm = PointMake(954, 814);
 
 		_info[TO_INT(Code::MAP::DUNGEON_11)].arrSpawnInfo[0].ptSpawn = PointMake(1072, 333);
 		_info[TO_INT(Code::MAP::DUNGEON_11)].arrSpawnInfo[0].unit = Code::UNIT::RED_GIANT_BAT;
@@ -249,10 +251,13 @@ public:
 		_info[TO_INT(Code::MAP::DUNGEON_START)].door[DIR::TOP] = TRUE;
 		_info[TO_INT(Code::MAP::DUNGEON_START)].door[DIR::RIGHT] = TRUE;
 		_info[TO_INT(Code::MAP::DUNGEON_START)].door[DIR::BOTTOM] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_START)].ptWorm = PointMake(565, 622);
 		_info[TO_INT(Code::MAP::DUNGEON_SHOP)].door[DIR::LEFT] = TRUE;
 		_info[TO_INT(Code::MAP::DUNGEON_SHOP)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_SHOP)].ptWorm = PointMake(441, 286);
 		_info[TO_INT(Code::MAP::DUNGEON_FOOD)].door[DIR::LEFT] = TRUE;
 		_info[TO_INT(Code::MAP::DUNGEON_FOOD)].door[DIR::RIGHT] = TRUE;
+		_info[TO_INT(Code::MAP::DUNGEON_FOOD)].ptWorm = PointMake(975, 622);
 	}
 	~MapData() {}
 

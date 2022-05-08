@@ -88,11 +88,11 @@ void Skel::move()
 			{
 				int w = abs(_ptPlayer.x - _x);
 				int h = _ptPlayer.y - _y;
-				if (h > 170 && w < 250)
+				if (h > 120 && w < 200)
 				{
 					Unit::downJump();
 				}
-				if (h < -170 && w < 250)
+				if (h < -120 && w < 200)
 				{
 					Unit::jump();
 				}

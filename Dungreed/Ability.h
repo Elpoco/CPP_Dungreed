@@ -6,9 +6,16 @@ class Ability : public UI
 private:
 	ImageBase* _imgButton;
 	UI* _uiLabel;
-	UI* _uiEsc;
+	UI* _uiR;
 
 	RECT _rcExitBtn;
+
+	UI* _uiWrath;
+	UI* _uiPatience;
+	UI* _uiGreed;
+	ImageBase* _imgAblityBtn[AbilitySet::ABILITY_CNT];
+	RECT _rcBtn[AbilitySet::ABILITY_CNT];
+	BOOL _isHover[AbilitySet::ABILITY_CNT];
 
 public:
 	Ability();
@@ -24,6 +31,8 @@ public:
 
 	void initUI();
 	void animation();
+
+	void clickBtn(int idx);
 
 };
 

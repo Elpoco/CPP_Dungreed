@@ -9,6 +9,7 @@ Effect::Effect(string imgName, float x, float y, float angle)
 	, _degree(0.0f)
 	, _rotateCenter({ 0,0 })
 	, _isFollow(FALSE)
+	, _isFixed(FALSE)
 {
 	_x = x;
 	_y = y;
@@ -24,6 +25,7 @@ Effect::Effect(string imgName, float x, float y, BYTE alpha)
 	, _degree(0.0f)
 	, _rotateCenter({ 0,0 })
 	, _isFollow(FALSE)
+	, _isFixed(FALSE)
 {
 	_x = x;
 	_y = y;
@@ -39,6 +41,7 @@ Effect::Effect(string imgName, float x, float y, int angle, POINT rotateCenter)
 	, _degree(angle)
 	, _rotateCenter(rotateCenter)
 	, _isFollow(FALSE)
+	, _isFixed(FALSE)
 {
 	_x = x; 
 	_y = y;
@@ -105,7 +108,16 @@ void Effect::render(HDC hdc)
 {
 	Object::render(hdc);
 
-	if (_degree)
+	if (_isFixed)
+	{
+		_img->frameRender(hdc,
+			_rc.left,
+			_rc.top,
+			_frameInfo.x,
+			_frameInfo.y
+		);
+	}
+	else if (_degree)
 	{
 		if (_isFollow)
 		{
@@ -140,7 +152,8 @@ void Effect::render(HDC hdc)
 	
 	if (_isDebug)
 	{
-		CAMERAMANAGER->printRectangle(hdc, _rc, Color::Purple);
+		if(_isFixed) PrintRectangleColor(hdc, _rc, Color::Purple);
+		else CAMERAMANAGER->printRectangle(hdc, _rc, Color::Purple);
 	}
 }
 

@@ -9,6 +9,7 @@ private:
 		ENEMY,
 		NPC,
 		OBJ,
+		WORM,
 	};
 
 	struct tagMinimapObj
@@ -25,6 +26,7 @@ private:
 	ImageBase* _imgDoor;
 	ImageBase* _imgNPC;
 	ImageBase* _imgTresure;
+	ImageBase* _imgWorm;	
 	MapToolEnum::MAP_OBJ* _arrType; // 타일의 타입을 담을 배열
 	BOOL _isDungeon;
 
@@ -40,7 +42,7 @@ private:
 	int _playerY;
 	
 	ObjectManager::vObjects* _vObject;
-	vector<tagMinimapObj> _vObect;
+	vector<tagMinimapObj> _vMiniMapObj;
 
 public:
 	MiniMap();

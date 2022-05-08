@@ -3,10 +3,21 @@
 
 using namespace PlayerManagerSet;
 
-PlayerManager::PlayerManager() 
+PlayerManager::PlayerManager()
 	: _level(1)
 	, _coin(0)
-	, _trueDmg(FALSE)
+	, _isTrueDmg(FALSE)
+	, _power(0)
+	, _bulletPower(0)
+	, _wrath(0)
+	, _patience(0)
+	, _greed(0)
+	, _atkSpeed(1.0f)
+	, _shootSpeed(1.0f)
+	, _reloadSpeed(0.0f)
+	, _skillCooltime(1.0f)
+	, _isDie(FALSE)
+	, _isReturn(FALSE)
 {
 }
 
@@ -33,10 +44,17 @@ void PlayerManager::release()
 
 void PlayerManager::update()
 {
-	if (IsStayKeyDown(KEY::P) && IsOnceKeyDown(KEY::UP_ARROW)) _level++;
-	if (IsStayKeyDown(KEY::P) && IsOnceKeyDown(KEY::DOWN_ARROW) && _level > 1) _level--;
+	if (IsOnceKeyDown(KEY::P)) levelUp(1);
 
 	chargeDash();
+	
+	if (_isDie)
+	{
+		if (_dieTime + 3.5f < TIMEMANAGER->getWorldTime())
+		{
+			_isReturn = TRUE;
+		}
+	}
 }
 
 void PlayerManager::render()
@@ -73,4 +91,23 @@ void PlayerManager::recovery(int hp)
 {
 	_curHp += hp;
 	if (_curHp > _maxHp) _curHp = _maxHp;
+}
+
+void PlayerManager::setDie(BOOL b)
+{ 
+	_isDie = b; 
+	_dieTime = TIMEMANAGER->getWorldTime();
+}
+
+void PlayerManager::returnTown()
+{
+	_isReturn = FALSE;
+	_isDie = FALSE;
+	updateMaxHp();
+}
+
+void PlayerManager::levelUp(int level)
+{
+	_level += level;
+	UIMANAGER->showLevelUp(_level);
 }

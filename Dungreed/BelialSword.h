@@ -5,7 +5,7 @@ namespace BelialSwordSet
 {
 	constexpr float SWORD_SPEED		= 12.0f;
 	constexpr float SWORD_LIFE_TIME = 8.0f;
-	constexpr int	SWORD_DAMAGE	= 4;
+	constexpr int	SWORD_DAMAGE	= 15;
 }
 
 class BelialSword : public Object

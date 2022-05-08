@@ -37,6 +37,7 @@ void SoundLoader::loadSounds()
 
 	SOUNDMANAGER->addSound(SoundName::dungeonEat, PATH_SOUND"DungeonEat.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::dungeonEat2, PATH_SOUND"DungeonEat2.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Ability_Up, PATH_SOUND"Ability_Up.wav", false, false);
 
 	// ==========
 	// # Player #
@@ -45,6 +46,9 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Player::hit, PATH_SOUND"Hit_Player.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Player::Jumping, PATH_SOUND"Jumping.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Player::step_lth1, PATH_SOUND"step_lth1.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Player::dungeonClear, PATH_SOUND"dungeonClear.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Player::playerDie, PATH_SOUND"playerDie.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Player::player_levelup, PATH_SOUND"player_levelup.wav", false, false);
 
 	// =========
 	// # Enemy #
@@ -82,6 +86,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Item::getCoin, PATH_SOUND"Get_Coin.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::getItem, PATH_SOUND"Get_Item.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::PickUpItem, PATH_SOUND"PickUpItem.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::sell, PATH_SOUND"sell.wav", false, false);
 
 	// ==========
 	// # Weapon #

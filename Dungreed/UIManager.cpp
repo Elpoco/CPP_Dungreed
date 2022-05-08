@@ -29,10 +29,10 @@ HRESULT UIManager::init()
 	ShowCursor(false);
 
 	initKeyboard();
-	initReload();
-	initItemInfo();
-	initBossInfo();
+	initReload(); 
 	initMapInfo();
+	initPlayerDie();
+	initLevelUp();
 
 	return S_OK;
 }
@@ -50,7 +50,7 @@ void UIManager::update()
 	if (_isShowItemInfo) updateDropItemInfo();
 
 	if (IsOnceKeyDown(KEY::INVENTORY)) toggleInventory();
-	if (IsStayKeyDown(KEY::WORLD_MAP)) showWorldMap();
+	if (IsOnceKeyDown(KEY::WORLD_MAP)) showWorldMap();
 	if (IsOnceKeyUp(KEY::WORLD_MAP)) hideWorldMap();
 	if (IsOnceKeyDown(KEY::ESC))
 	{
@@ -88,8 +88,9 @@ void UIManager::setCursorType(UIEnum::CURSOR_TYPE cursorType)
 void UIManager::initInventory()
 {
 	_inventory = new Inventory;
-	OBJECTMANAGER->addUI(_inventory);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _inventory);
 	ITEMMANAGER->setInventory(_inventory);
+	initItemInfo();
 }
 
 void UIManager::toggleInventory()
@@ -134,13 +135,14 @@ void UIManager::initWorldMap()
 	_worldMap = new WorldMap;
 	_worldMap->hide();
 	_worldMap->setFree();
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _worldMap);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FIRST, _worldMap);
 }
 
 void UIManager::showWorldMap()
 {
-	if (!_worldMap) return;
+	if (!_worldMap || MAPMANAGER->getCurMapCode() == Code::MAP::TOWN) return;
 
+	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::NORMAL);
 	_worldMap->show();
 	_isUI = TRUE;
 }
@@ -149,6 +151,7 @@ void UIManager::hideWorldMap()
 {
 	if (!_worldMap) return;
 
+	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::TARGET);
 	_worldMap->hide();
 	_isUI = FALSE;
 }
@@ -236,12 +239,12 @@ void UIManager::initItemInfo()
 	_uiItemInfo = new ItemInfo;
 	_uiItemInfo->setFree();
 	_uiItemInfo->hide();
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _uiItemInfo);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FIRST, _uiItemInfo);
 
 	_uiDropItemInfo = new DropItemInfo;
 	_uiDropItemInfo->setFree();
 	_uiDropItemInfo->hide();
-	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _uiDropItemInfo);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FIRST, _uiDropItemInfo);
 }
 
 void UIManager::showItemInfo(ITEM_INFO itemInfo)
@@ -282,6 +285,7 @@ void UIManager::initBossInfo()
 
 void UIManager::showBossInfo(char* bossName)
 {
+	if (!_bossIntro) return;
 	_showBossInfo = TRUE;
 	_bossIntro->show();
 	_bossInfo->show();
@@ -337,5 +341,59 @@ void UIManager::updateMapInfo()
 	{
 		_mapInfo->setX(curX + _infoSpeed);
 	}
+}
+
+void UIManager::initPlayerDie()
+{
+	_uiBackground = new UI(ImageName::ChangeScene);
+	_uiBackground->setX(CENTER_X);
+	_uiBackground->setY(CENTER_Y);
+	_uiBackground->hide();
+	_uiBackground->setFree();
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FIRST, _uiBackground);
+
+	_uiPlayerDie = new UI(ImageName::UI::ExplorationFailureKor);
+	_uiPlayerDie->setX(CENTER_X);
+	_uiPlayerDie->setY(CENTER_Y);
+	_uiPlayerDie->hide();
+	_uiPlayerDie->setFree();
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FIRST, _uiPlayerDie);
+}
+
+void UIManager::showPlayerDie()
+{
+	_uiPlayerDie->show();
+	_uiBackground->fadeIn();
+}
+
+void UIManager::hidePlayerDie()
+{
+	_uiPlayerDie->hide();
+	_uiBackground->hide();
+}
+
+void UIManager::initLevelUp()
+{
+	_uiLevelUp = new UI(ImageName::UI::LevelUp);
+	_uiLevelUp->setX(CENTER_X);
+	_uiLevelUp->setY(CENTER_Y);
+	_uiLevelUp->hide();
+	_uiLevelUp->setFree();
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FIRST, _uiLevelUp);
+
+	_uiLevel = new ImageFont(CENTER_X, CENTER_Y, 1);
+	_uiLevel->hide();
+	_uiLevel->setFree();
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FIRST, _uiLevel);
+}
+
+void UIManager::showLevelUp(int level)
+{
+	SOUNDMANAGER->play(SoundName::Player::player_levelup, _sound);
+	_uiLevelUp->showTime(3);
+	_uiLevelUp->show();
+	_uiLevel->setNumber(level);
+	_uiLevel->showTime(3);
+	_uiLevel->show();
 }
 

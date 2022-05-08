@@ -53,6 +53,9 @@ public:
 
 	virtual void deleteEffect() override {}
 
+	virtual void setX(float x) override;
+	virtual void setY(float y) override;
+
 	void move();
 	void updateAnimation();
 	virtual void frameUpdateEvent() {}

@@ -6,6 +6,7 @@ UI::UI()
 	, _isFixed(FALSE)
 	, _isShow(TRUE)
 	, _isFree(FALSE)
+	, _showTime(0.0f)
 {
 }
 
@@ -54,6 +55,21 @@ void UI::release()
 
 void UI::update()
 {
+	//if (!_isShow) return;
+
+	if (_showTime != 0.0f)
+	{
+		if (_showStartTime + _showTime < TIMEMANAGER->getWorldTime())
+		{
+			_isShow = FALSE;
+		}
+	}
+
+	if (_isFadeIn && _alpha < 255)
+	{
+		_alpha++;
+	}
+
 	if (!_isFree && _sceneName != SCENEMANAGER->getCurrentSceneName())
 	{
 		_isLive = FALSE;

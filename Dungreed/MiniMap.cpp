@@ -19,6 +19,7 @@ HRESULT MiniMap::init()
 	_imgDoor = FindImage(ImageName::UI::MiniMap::DoorPixel);
 	_imgNPC = FindImage(ImageName::UI::MiniMap::NPCPixel);
 	_imgTresure = FindImage(ImageName::UI::MiniMap::MiniMapTresure);
+	_imgWorm = FindImage(ImageName::UI::MiniMap::MiniMapWorm);
 
 	_isFixed = TRUE;
 	_isDungeon = FALSE;
@@ -51,14 +52,14 @@ void MiniMap::render(HDC hdc)
 				x == _tileCntX - 1 || y == _tileCntY - 1)
 			{
 				_imgBorder->render(hdc, _miniMapX + x * 5, _miniMapY + y * 5);
-				if (_isDungeon && _arrType[y * _tileCntX + x] == MapToolEnum::MAP_OBJ::NONE)
+				if (_isDungeon && _arrType[y * _tileCntX + x] == MapToolEnum::MAP_OBJ::NONE && MAPMANAGER->getCurMapCode() != Code::MAP::TOWN)
 				{
 					_imgDoor->render(hdc, _miniMapX + x * 5, _miniMapY + y * 5);
 				}
 			}
 		}
 	}
-	for (auto obj : _vObect)
+	for (auto obj : _vMiniMapObj)
 	{
 		switch (obj.type)
 		{
@@ -78,6 +79,13 @@ void MiniMap::render(HDC hdc)
 			break;
 		case MINIMAP_OBJ_TYPE::OBJ:
 			_imgTresure->render(
+				hdc,
+				_miniMapX + obj.pt.x * 5,
+				_miniMapY + obj.pt.y * 5
+			);
+			break;
+		case MINIMAP_OBJ_TYPE::WORM:
+			_imgWorm->render(
 				hdc,
 				_miniMapX + obj.pt.x * 5,
 				_miniMapY + obj.pt.y * 5
@@ -129,42 +137,58 @@ void MiniMap::updateObjectPosition()
 	_playerY = pos.y / TILE_SIZE;
 
 	_vObject = OBJECTMANAGER->getEnemy();
-	_vObect.clear();
+	_vMiniMapObj.clear();
 
 	for (auto obj : *_vObject)
 	{
-		_vObect.push_back({
+		_vMiniMapObj.push_back({
 			MINIMAP_OBJ_TYPE::ENEMY,
 			PointMake(
 				obj->getX() / TILE_SIZE,
-				obj->getY() / TILE_SIZE
-			)
-		});
+				obj->getY() / TILE_SIZE)
+			}
+		);
 	}
 
 	_vObject = OBJECTMANAGER->getNPC();
 	for (auto obj : *_vObject)
 	{
 		if (!obj->isRender()) continue;
-		_vObect.push_back({
+		_vMiniMapObj.push_back({
 			MINIMAP_OBJ_TYPE::NPC,
 			PointMake(
 				obj->getX() / TILE_SIZE,
-				obj->getY() / TILE_SIZE
-			)
-		});
+				obj->getY() / TILE_SIZE)
+			}
+		);
 	}
 
 	_vObject = OBJECTMANAGER->getDungeonObj();
 	for (auto obj : *_vObject)
 	{
 		if (!obj->isRender()) continue;
-		_vObect.push_back({
+		_vMiniMapObj.push_back({
 			MINIMAP_OBJ_TYPE::OBJ,
 			PointMake(
 				obj->getX() / TILE_SIZE - 1,
-				obj->getY() / TILE_SIZE
-			)
-		});
+				obj->getY() / TILE_SIZE)
+			}
+		);
+	}
+
+	_vObject = OBJECTMANAGER->getDungeon();
+	for (auto obj : *_vObject)
+	{
+		if (obj == (*_vObject).back() && obj->getX() != 0)
+		{
+			_vMiniMapObj.push_back({
+			MINIMAP_OBJ_TYPE::WORM,
+			PointMake(
+				obj->getX() / TILE_SIZE,
+				obj->getY() / TILE_SIZE - 1)
+				}
+			);
+		}
+		
 	}
 }

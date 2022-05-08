@@ -40,16 +40,13 @@ HRESULT Belial::init()
 
 	settingHp(_info.hp);
 
-	if (!_isDebug)
-	{
-		SOUNDMANAGER->stop(SoundName::dungeon);
-		SOUNDMANAGER->play(SoundName::belialBG, _sound);
-		SOUNDMANAGER->play(SoundName::Enemy::Skeletonking, _sound);
+	SOUNDMANAGER->stop(SoundName::dungeon);
+	SOUNDMANAGER->play(SoundName::belialBG, _sound);
+	SOUNDMANAGER->play(SoundName::Enemy::Skeletonking, _sound);
 
-		CAMERAMANAGER->cameraMove(_x + 23, _y, 5, 3);
-		_imgAlpha = 100;
-		UIMANAGER->showBossInfo("Belial");
-	}
+	CAMERAMANAGER->cameraMove(_x + 23, _y, 5, 3);
+	_imgAlpha = 100;
+	UIMANAGER->showBossInfo("Belial");
 
 	return S_OK;
 }
@@ -190,12 +187,12 @@ void Belial::initAnimation()
 	_imgHand[BELIAL_HAND_STATE::HAND_IDLE] = FindImage(ImageName::Enemy::Belial::hand);
 	_imgHand[BELIAL_HAND_STATE::LASER] = FindImage(ImageName::Enemy::Belial::handAttack);
 
-	_hand[R].isLeft = false;
-	_hand[R].x = _x + 500;
-	_hand[R].y = _y + 100;
-	_hand[L].isLeft = true;
-	_hand[L].x = _x - 460;
-	_hand[L].y = _y - 50;
+	_hand[DIR_R].isLeft = false;
+	_hand[DIR_R].x = _x + 500;
+	_hand[DIR_R].y = _y + 100;
+	_hand[DIR_L].isLeft = true;
+	_hand[DIR_L].x = _x - 460;
+	_hand[DIR_L].y = _y - 50;
 
 	for (int i = 0; i < RL; i++)
 	{
@@ -286,8 +283,8 @@ void Belial::laser()
 {
 	_rcAttack = { 0,0,0,0 };
 	// 두손다 레이저를 안쏘면 랜덤으로 한손을 정한다
-	if (_hand[R].laserState == BELIAL_LASER_STATE::NONE &&
-		_hand[L].laserState == BELIAL_LASER_STATE::NONE)
+	if (_hand[DIR_R].laserState == BELIAL_LASER_STATE::NONE &&
+		_hand[DIR_L].laserState == BELIAL_LASER_STATE::NONE)
 	{
 		_laserDir = RND->getInt(2);
 	}
@@ -348,7 +345,7 @@ void Belial::laser()
 			_rcAttack.top = rc1.top;
 			_rcAttack.right = rc2.right;
 			_rcAttack.bottom = rc2.bottom;
-			_dmg = 8;
+			_dmg = 20;
 			
 			SOUNDMANAGER->play(SoundName::Enemy::BelialLazer, _sound);
 		}
@@ -366,7 +363,7 @@ void Belial::laser()
 		break;
 	case BELIAL_LASER_STATE::DONE:
 		// 레이저를 쏘고나면 반대쪽 손으로 변경
-		_laserDir = _laserDir ? R : L;
+		_laserDir = _laserDir ? DIR_R : DIR_L;
 		break;
 	default:
 		break;
@@ -377,12 +374,12 @@ void Belial::laser()
 		_imgHand[_hand[_laserDir].state]->getFrameHeight());
 
 	// 두손다 쐈으면 종료
-	if (_hand[R].laserState == BELIAL_LASER_STATE::DONE &&
-		_hand[L].laserState == BELIAL_LASER_STATE::DONE)
+	if (_hand[DIR_R].laserState == BELIAL_LASER_STATE::DONE &&
+		_hand[DIR_L].laserState == BELIAL_LASER_STATE::DONE)
 	{
 		_skill = BELIAL_SKILL::NONE;
 		_skillCooldown = TIMEMANAGER->getWorldTime();
-		_hand[R].laserState = BELIAL_LASER_STATE::NONE;
-		_hand[L].laserState = BELIAL_LASER_STATE::NONE;
+		_hand[DIR_R].laserState = BELIAL_LASER_STATE::NONE;
+		_hand[DIR_L].laserState = BELIAL_LASER_STATE::NONE;
 	}
 }

@@ -9,7 +9,7 @@ namespace NiflheimSet
 	constexpr float BULLET_SPEED = 4.0f;
 	constexpr int PILLAR_CNT	 = 4;
 	constexpr int BULLET_CNT	 = 32;
-	constexpr int BULLET_DMG	 = 6;
+	constexpr int BULLET_DMG	 = 10;
 }
 
 class Niflheim : public Enemy

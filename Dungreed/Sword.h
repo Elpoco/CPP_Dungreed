@@ -1,8 +1,11 @@
 #pragma once
 #include "Item.h"
+
 class Sword : public Item
 {
 private:
+	string _effectName;
+	string _soundName;
 	BOOL _isFirst;
 
 public:

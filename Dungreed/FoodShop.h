@@ -16,11 +16,14 @@ private:
 		string name;
 		int price;
 		int recovery;
+		int power;
 
 		BOOL isSell;
 		tagFood()
 		{
 			isSell = FALSE;
+			recovery = 0;
+			power = 0;
 		}
 	};
 

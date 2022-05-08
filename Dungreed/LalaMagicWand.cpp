@@ -40,7 +40,7 @@ void LalaMagicWand::run(float x, float y, float angle)
 			y,
 			PI_2 / 8 * i,
 			4.0f,
-			RND->getFromIntTo(13, 20),
+			RND->getFromIntTo(13 + PLAYERMANAGER->getBulletPower(), 20 + PLAYERMANAGER->getBulletPower()),
 			"",
 			2000.0f,
 			TRUE,

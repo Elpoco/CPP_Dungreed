@@ -25,6 +25,10 @@ namespace ColorSet
 	constexpr DWORD RARE	  = RGB(255, 210, 0);
 	constexpr DWORD LEGEND	  = RGB(255, 0, 142);
 	constexpr DWORD FOOD_NAME = RGB(255, 178 , 144);
+
+	constexpr DWORD WRATH = RGB(204, 124 , 107);
+	constexpr DWORD PATIENCE = RGB(169, 175 , 186);
+	constexpr DWORD GREED = RGB(223, 175 , 75);
 }
 
 namespace UnitSet
@@ -38,4 +42,12 @@ namespace UnitSet
 namespace MapSet
 {
 	constexpr int MAX_SPAWN = 20;
+}
+
+namespace AbilitySet
+{
+	constexpr int ABILITY_CNT = 3;
+	constexpr int POWER = 2;
+	constexpr int DEFENSE = 1;
+	constexpr int MAX_HP = 5;
 }

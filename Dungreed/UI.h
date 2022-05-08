@@ -14,6 +14,10 @@ protected:
 	int _height;
 	BYTE _alpha;
 
+	BOOL _isFadeIn;
+	float _showStartTime;
+	float _showTime;
+
 public:
 	UI();
 	UI(string imgName, int x = 0, int y = 0, BOOL fixed = TRUE, BOOL show = TRUE, BOOL free = FALSE);
@@ -46,6 +50,8 @@ public:
 	inline int getHeight() { return _height; }
 
 	inline void setAlpha(BYTE alpha) { _alpha = alpha; }
+	inline void fadeIn() { _alpha = 0; _isFadeIn = TRUE; _isShow = TRUE;}
+	inline void showTime(float time) { _showStartTime = TIMEMANAGER->getWorldTime(); _showTime = time; }
 
 };
 

@@ -61,6 +61,7 @@ void Inventory::update()
 	hoverSlot();
 
 	if (MouseInRect(_rcBase) || MouseInRect(_rcClose)) clickEvent();
+	if (_clickCell != CLICK_NONE && !MouseInRect(_rcBase) && IsOnceKeyUp(KEY::CLICK_L)) sellItem();
 }
 
 void Inventory::render(HDC hdc)
@@ -76,6 +77,15 @@ void Inventory::render(HDC hdc)
 	FONTMANAGER->drawNumber(hdc, _rcBase.right - 55, _rcBase.bottom - 60, 30, 0, PLAYERMANAGER->getCoinChar(), ColorSet::YELLOW, DIR::RIGHT);
 
 	renderInventoryItem(hdc);
+	
+	int abilX = _rcBase.left - 120;
+	FindImage(ImageName::ChangeScene)->alphaRender(hdc, abilX, WINSIZE_Y - 186, 0, 0, 120, 186, 200);
+	FindImage(ImageName::UI::Inventory::power)->render(hdc, abilX + 10, WINSIZE_Y - 180);
+	FindImage(ImageName::UI::Inventory::defense)->render(hdc, abilX + 10, WINSIZE_Y - 120);
+	FindImage(ImageName::UI::Inventory::hp)->render(hdc, abilX + 10, WINSIZE_Y - 60);
+	FONTMANAGER->drawNumber(hdc, abilX + 90, WINSIZE_Y - 150, 30, 0, to_string(PLAYERMANAGER->getPower()).c_str(), ColorSet::WHITE, DIR::CENTER);
+	FONTMANAGER->drawNumber(hdc, abilX + 90, WINSIZE_Y - 90, 30, 0, to_string(PLAYERMANAGER->getDefense()).c_str(), ColorSet::WHITE, DIR::CENTER);
+	FONTMANAGER->drawNumber(hdc, abilX + 90, WINSIZE_Y - 30, 30, 0, to_string(PLAYERMANAGER->getMaxHp()).c_str(), ColorSet::WHITE, DIR::CENTER);
 }
 
 void Inventory::settingUI()
@@ -106,7 +116,7 @@ void Inventory::settingUI()
 	invenBase->setY(CENTER_Y);
 	_rcBase = invenBase->getRect();
 	_vUI.push_back(invenBase);
-	OBJECTMANAGER->addUI(invenBase);
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, invenBase);
 
 	RECT rcbase = invenBase->getRect();
 	float baseX = invenBase->getX();
@@ -132,7 +142,7 @@ void Inventory::settingUI()
 	for (int i = 0; i < 2; i++)
 	{
 		_equipSlot[i]->hide();
-		OBJECTMANAGER->addUI(_equipSlot[i]);
+		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _equipSlot[i]);
 
 		int x = _equipSlot[i]->getX();
 		int y = _equipSlot[i]->getY() + 9;
@@ -165,7 +175,7 @@ void Inventory::settingUI()
 		inven->setY(_arrSlot[i].pt.y);
 
 		_vUI.push_back(inven);
-		OBJECTMANAGER->addUI(inven);
+		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, inven);
 	}
 
 	// 인벤 칸들 위치 렉트
@@ -263,6 +273,8 @@ void Inventory::offClick()
 			// 일단 끼던거 해제
 			if (_arrSlot[WEAPON_0].item) _arrSlot[WEAPON_0].item->unequip();
 			if (_arrSlot[WEAPON_1].item) _arrSlot[WEAPON_1].item->unequip();
+			if (_arrSlot[SUB_WEAPON_0].item) _arrSlot[SUB_WEAPON_0].item->unequip();
+			if (_arrSlot[SUB_WEAPON_1].item) _arrSlot[SUB_WEAPON_1].item->unequip();
 
 			// 놓을때 아이템이 있는경우
 			if (_arrSlot[i].item)
@@ -303,6 +315,7 @@ void Inventory::offClick()
 
 			// 장착 슬롯 아이템 장착
 			if (_arrSlot[_equipIdx].item) _arrSlot[_equipIdx].item->equip();
+			if (_arrSlot[_equipIdx+2].item) _arrSlot[_equipIdx+2].item->equip();
 			break;
 		}
 	}
@@ -372,10 +385,23 @@ void Inventory::equipClick()
 			_arrSlot[i].item = _arrSlot[_clickCell].item;
 			_arrSlot[_clickCell].item = NULL;
 			if(i == _equipIdx) _arrSlot[i].item->equip();
+			if(i == _equipIdx+2) _arrSlot[i].item->equip();
 			else if (i >= ACC_0 && i < ACC_CNT) _arrSlot[i].item->equip();
 			break;
 		}
 		break;
+	}
+
+	_clickCell = CLICK_NONE;
+}
+
+void Inventory::sellItem()
+{
+	if (_clickCell >= INVEN_0)
+	{
+		PLAYERMANAGER->addCoin(_arrSlot[_clickCell].item->getInfo().price * 0.7f);
+		SOUNDMANAGER->play(SoundName::Item::sell, _sound);
+		_arrSlot[_clickCell].item = NULL;
 	}
 
 	_clickCell = CLICK_NONE;
@@ -544,7 +570,14 @@ BOOL Inventory::addItem(Item* item)
 
 		_arrSlot[i].item = item;
 
-		if (i == _equipIdx) _arrSlot[i].item->equip();
+		if (i == _equipIdx)
+		{
+			_arrSlot[i].item->equip();
+		}
+		if (i == _equipIdx + 2)
+		{
+			_arrSlot[i].item->equip();
+		}
 		if (i >= ACC_0 &&  i < ACC_CNT) _arrSlot[i].item->equip();
 		return TRUE;
 	}
@@ -555,8 +588,20 @@ Code::ITEM Inventory::getEquipAccCode(int idx)
 {
 	Code::ITEM code = Code::ITEM::NONE;
 
-	if (_arrSlot[ACC_0 + idx].item)
-		code = _arrSlot[ACC_0 + idx].item->getInfo().code;
+	if (_arrSlot[ACC_0 + idx].item) code = _arrSlot[ACC_0 + idx].item->getInfo().code;
 
 	return code; 
+}
+
+void Inventory::clearInventory()
+{
+	for (int i = 0; i < INVEN_CNT; i++)
+	{
+		if (i < EQUIP_CNT)
+		{
+			if (_arrSlot[i].item) _arrSlot[i].item->unequip();
+		}
+		_arrSlot[i].item = NULL;
+	}
+	addItem(ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD));
 }

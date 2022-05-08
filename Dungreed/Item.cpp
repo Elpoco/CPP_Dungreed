@@ -56,7 +56,7 @@ void Item::update()
 
 void Item::render(HDC hdc)
 {
-	if (_isEquip && OBJECTMANAGER->getPlayer()->isRender())
+	if (_isEquip && OBJECTMANAGER->getPlayer()->isRender() && !PLAYERMANAGER->isDie())
 	{
 		CAMERAMANAGER->frameRender(
 			hdc,

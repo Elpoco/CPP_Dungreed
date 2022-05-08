@@ -31,7 +31,7 @@ public:
 	
 	RECT addEffect(string imgName, float x, float y, float angle);
 	RECT addEffect(string imgName, float x, float y, int angle, POINT rotateCenter);
-	RECT addEffect(string imgName, float x, float y, BYTE alpha = 0, ObjectEnum::OBJ_TYPE type = ObjectEnum::OBJ_TYPE::EFFECT);
+	RECT addEffect(string imgName, float x, float y, BYTE alpha = 0, ObjectEnum::OBJ_TYPE type = ObjectEnum::OBJ_TYPE::EFFECT, BOOL fixed = FALSE);
 	
 	void addUI(Object* obj);
 	void addUI(string imgName, int x, int y, BOOL fixed = TRUE, BOOL show = TRUE);
@@ -51,6 +51,7 @@ public:
 	vObjects* getEnemy() { return &_mObjects.find(ObjectEnum::OBJ_TYPE::ENEMY)->second; }
 	vObjects* getNPC() {return  &_mObjects.find(ObjectEnum::OBJ_TYPE::NPC)->second;}
 	vObjects* getDungeonObj() {return  &_mObjects.find(ObjectEnum::OBJ_TYPE::DUNGEON_OBJ)->second;}
+	vObjects* getDungeon() {return  &_mObjects.find(ObjectEnum::OBJ_TYPE::DUNGEON)->second;}
 
 };
 

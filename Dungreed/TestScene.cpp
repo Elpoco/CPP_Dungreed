@@ -11,6 +11,8 @@ HRESULT TestScene::init()
 
 	OBJECTMANAGER->addNPC(Code::NPC::DUNGEON_SHOP, 172, 386);
 	OBJECTMANAGER->addNPC(Code::NPC::INN, 408, 383);
+	OBJECTMANAGER->addNPC(Code::NPC::COMMANDER, 308, 383);
+
 	OBJECTMANAGER->addTresure(85, 825, Code::TRESURE_TYPE::GOLD);
 	OBJECTMANAGER->addTresure(170, 825, Code::TRESURE_TYPE::GOLD);
 	OBJECTMANAGER->addTresure(250, 825, Code::TRESURE_TYPE::GOLD);
@@ -37,9 +39,9 @@ void TestScene::update()
 		OBJECTMANAGER->addEnemy(Code::UNIT::NIFLEHEIM, 1000, 500);
 	}
 
-	if (IsStayKeyDown('M') && IsOnceKeyDown(VK_F1))
+	if (IsOnceKeyDown('M'))
 	{
-		OBJECTMANAGER->addEnemy(Code::UNIT::SKEL, 1000, 550);
+		OBJECTMANAGER->addEnemy(Code::UNIT::SCARECROW, 1000, 550);
 	}
 }
 

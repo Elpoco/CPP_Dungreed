@@ -3,13 +3,11 @@
 
 #include "GameScene.h"
 #include "Door.h"
+#include "Worm.h"
 
 using namespace MapManagerSet;
 
 MapManager::MapManager()
-	: _unitCnt(0)
-	, _isClear(FALSE)
-	, _isSnowMap(FALSE)
 {
 }
 
@@ -19,6 +17,10 @@ MapManager::~MapManager()
 
 HRESULT MapManager::init()
 {
+	_unitCnt = 0;
+	_isClear = FALSE;
+	_isSnowMap = FALSE;
+
 	initMap();
 
 	for (int i = 0; i < DIR::DIR_CNT; i++)
@@ -26,6 +28,9 @@ HRESULT MapManager::init()
 		_door[i] = new Door((DIR)i, 0, 0);
 		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::DUNGEON, _door[i]);
 	}
+
+	_worm = new Worm;
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::DUNGEON, _worm);
 
 	_imgParticle[0] = FindImage(ImageName::Dungeon::sqaure4);
 	_imgParticle[1] = FindImage(ImageName::Dungeon::sqaure5);
@@ -63,6 +68,7 @@ void MapManager::release()
 void MapManager::update()
 {
 	checkMonster();
+
 	if (_isSnowMap)
 	{
 		updateSnow();
@@ -86,6 +92,8 @@ void MapManager::update()
 			}
 		}
 	}
+
+	_worm->update();
 }
 
 void MapManager::render(HDC hdc)
@@ -158,6 +166,8 @@ void MapManager::settingDungeon()
 	}
 
 	settingDoor();
+	settingMonster();
+	settingWorm();
 }
 
 void MapManager::settingDoor()
@@ -202,7 +212,12 @@ void MapManager::settingMonster()
 	else _arrClearMap[_curLocation] = TRUE;
 }
 
-void MapManager::chageRoom(DIR dir)
+void MapManager::settingWorm()
+{
+	_worm->setPos(_mapInfo.ptWorm);
+}
+
+void MapManager::changeRoom(DIR dir)
 {
 	switch (dir)
 	{
@@ -238,7 +253,6 @@ void MapManager::chageRoom(DIR dir)
 	OBJECTMANAGER->getPlayer()->setX(_door[idx]->getX() + TILE_SIZE * 2 * dirX);
 	OBJECTMANAGER->getPlayer()->setY(_door[idx]->getY() + TILE_SIZE * 2 * dirY);
 	CAMERAMANAGER->setCameraPos(OBJECTMANAGER->getPlayer()->getX(), OBJECTMANAGER->getPlayer()->getY());
-	settingMonster();
 
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ITEM_DROP);
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::PLAYER_OBJ);
@@ -248,6 +262,35 @@ void MapManager::chageRoom(DIR dir)
 	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::EFFECT_BACK);
 
 	UIMANAGER->updateMiniMap();
+}
+
+void MapManager::clickWorm(int idx)
+{
+	for (int i = 0; i < DIR::DIR_CNT; i++)
+	{
+		_door[i]->setDisable(TRUE);
+	}
+	_worm->changeRoom();
+
+	_curLocation = idx;
+	TILEMANAGER->loadMap(_arrMapCode[_curLocation]);
+	settingDungeon();
+	OBJECTMANAGER->getPlayer()->setX(_mapInfo.ptWorm.x + 20);
+	OBJECTMANAGER->getPlayer()->setY(_mapInfo.ptWorm.y - 50);
+	CAMERAMANAGER->setCameraPos(OBJECTMANAGER->getPlayer()->getX(), OBJECTMANAGER->getPlayer()->getY());
+
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ITEM_DROP);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::PLAYER_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ENEMY_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::DUNGEON_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::EFFECT);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::EFFECT_BACK);
+
+	UIMANAGER->updateMiniMap();
+	for (int i = 0; i < DIR::DIR_CNT; i++)
+	{
+		_door[i]->setDisable(FALSE);
+	}
 }
 
 void MapManager::openDoor()
@@ -363,4 +406,22 @@ Code::MAP MapManager::getCurMapCode()
 	}
 
 	return _arrMapCode[_curLocation]; 
+}
+
+void MapManager::returnTown()
+{
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ITEM_DROP);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::PLAYER_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ENEMY);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::ENEMY_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::DUNGEON);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::DUNGEON_OBJ);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::EFFECT);
+	OBJECTMANAGER->clearObjects(ObjectEnum::OBJ_TYPE::EFFECT_BACK);
+
+	_unitCnt = 0;
+	_isClear = FALSE;
+	_isFirst = FALSE;
+	_isSnowMap = FALSE;
+	_doorFrame.x = 0;
 }

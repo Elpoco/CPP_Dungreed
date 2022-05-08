@@ -81,8 +81,16 @@ void FoodShop::render(HDC hdc)
 		}
 
 		SIZE size = FONTMANAGER->drawString(hdc, _uiMenu[i]->getRect().left + 10, _uiMenu[i]->getRect().top + 3, 30, 0, _food[i].name.c_str(), ColorSet::FOOD_NAME);
-		SIZE size2 = FONTMANAGER->drawNumber(hdc, _uiMenu[i]->getRect().left + 10, _uiMenu[i]->getRect().top + 3 + size.cy, 17, 0, ("+" + to_string(_food[i].recovery)).c_str(), ColorSet::GREEN);
-		FONTMANAGER->drawString(hdc, _uiMenu[i]->getRect().left + 10 + size2.cx, _uiMenu[i]->getRect().top + 2 + size.cy, 17, FW_BOLD, " 회복", ColorSet::WHITE);
+		if (_food[i].recovery == 0)
+		{
+			SIZE size2 = FONTMANAGER->drawNumber(hdc, _uiMenu[i]->getRect().left + 10, _uiMenu[i]->getRect().top + 3 + size.cy, 17, 0, ("+" + to_string(_food[i].power)).c_str(), ColorSet::GREEN);
+			FONTMANAGER->drawString(hdc, _uiMenu[i]->getRect().left + 10 + size2.cx, _uiMenu[i]->getRect().top + 2 + size.cy, 17, FW_BOLD, " 위력", ColorSet::WHITE);
+		}
+		else
+		{
+			SIZE size2 = FONTMANAGER->drawNumber(hdc, _uiMenu[i]->getRect().left + 10, _uiMenu[i]->getRect().top + 3 + size.cy, 17, 0, ("+" + to_string(_food[i].recovery)).c_str(), ColorSet::GREEN);
+			FONTMANAGER->drawString(hdc, _uiMenu[i]->getRect().left + 10 + size2.cx, _uiMenu[i]->getRect().top + 2 + size.cy, 17, FW_BOLD, " 회복", ColorSet::WHITE);
+		}
 		FONTMANAGER->drawNumber(hdc, _uiMenu[i]->getRect().right - 32, _uiMenu[i]->getRect().bottom - 24, 17, 0, to_string(_food[i].price).c_str(), ColorSet::WHITE, DIR::RIGHT);
 	}
 
@@ -176,30 +184,31 @@ void FoodShop::initUI()
 	_food[4].price = 500;
 	_food[4].recovery = 30;
 
+
 	_food[5].img = FindImage(ImageName::UI::FOOD::PeaSoup);
 	_food[5].name = "완두콩 수프";
-	_food[5].price = 600;
-	_food[5].recovery = 35;
+	_food[5].price = 500;
+	_food[5].power = 1;
 
 	_food[6].img = FindImage(ImageName::UI::FOOD::VegetableSalsaSoup);
 	_food[6].name = "야채 살사 수프";
-	_food[6].price = 700;
-	_food[6].recovery = 40;
+	_food[6].price = 600;
+	_food[6].power = 3;
 
 	_food[7].img = FindImage(ImageName::UI::FOOD::Lemonade);
 	_food[7].name = "레몬에이드";
-	_food[7].price = 50;
-	_food[7].recovery = 5;
+	_food[7].price = 700;
+	_food[7].power = 5;
 
 	_food[8].img = FindImage(ImageName::UI::FOOD::DeluxeBurger);
 	_food[8].name = "디럭스 버거";
-	_food[8].price = 1500;
-	_food[8].recovery = 130;
+	_food[8].price = 800;
+	_food[8].power = 7;
 
 	_food[9].img = FindImage(ImageName::UI::FOOD::ChocolateCookie);
 	_food[9].name = "초콜릿 쿠키";
-	_food[9].price = 800;
-	_food[9].recovery = 70;
+	_food[9].price = 900;
+	_food[9].power = 10;
 
 	for (int i = 0; i < TOTAL_FOOD; i++)
 	{
@@ -228,6 +237,7 @@ void FoodShop::clickEvent()
 			if (PLAYERMANAGER->getCoin() < _food[i].price) return;
 			PLAYERMANAGER->useCoin(_food[i].price);
 			PLAYERMANAGER->recovery(_food[i].recovery);
+			PLAYERMANAGER->powerUp(_food[i].power);
 			_food[i].isSell = TRUE;
 			SOUNDMANAGER->play(SoundName::BuyFood, _sound);
 		}

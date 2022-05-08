@@ -8,6 +8,7 @@ Door::Door(Direction::DIR dir, int tileX, int tileY, BOOL isOpen)
 	, _tileX(tileX)
 	, _tileY(tileY)
 	, _isOpen(isOpen)
+	, _disable(FALSE)
 {
 }
 
@@ -60,7 +61,6 @@ void Door::release()
 void Door::update()
 {
 	animation();
-	if (IsOnceKeyDown(KEY::F4)) openDoor();
 }
 
 void Door::render(HDC hdc)
@@ -87,9 +87,11 @@ void Door::render(HDC hdc)
 
 void Door::collisionObject()
 {
+	if (_disable) return;
+
 	if (_isOpen)
 	{
-		MAPMANAGER->chageRoom(_dir);
+		MAPMANAGER->changeRoom(_dir);
 	}
 	else
 	{

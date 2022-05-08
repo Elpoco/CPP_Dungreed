@@ -81,6 +81,8 @@ namespace ObjectEnum
 		BUTTON,
 		ITEM_FRONT,
 		UI_FRONT,
+		EFFECT_FRONT,
+		UI_FIRST,
 		CURSOR,
 
 		TYPE_CNT
@@ -110,6 +112,8 @@ namespace Code
 		SKEL,
 		SKEL_BOW,
 		NIFLEHEIM_PILLAR,
+
+		SCARECROW,
 
 		// º¸½º
 		BOSS,
@@ -145,17 +149,32 @@ namespace Code
 		BAMBOO_SWORD,
 		LIGHTSABER,
 		COSMOSSWORD,
+		THREETIEREDBATON,
 
 		LALA,
 		// ÃÑ
 		COLT,
 		GATLINGGUN,
+
+		MagicShield,
+
+
 		// ¾Ç¼¼
 		MULTI_BULLET,
 		MAGNIFYINGGLASS,
 		WINGBOOTS,
+		BULLION2,
+		LEATHERARMOR,
+		CHAINARMOR,
+		CharmOfAttack,
+		CharmOfMadness,
+		Jarngreipr,
+		Speedloader,
+		DaisyRing,
 
 		ITEM_CNT,
+		// Ã¢
+		SPEAR,
 
 		COIN,
 		BULLION,

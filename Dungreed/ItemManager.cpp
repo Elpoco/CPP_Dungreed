@@ -7,8 +7,10 @@
 
 #include "Sword.h"
 #include "Gun.h"
+#include "Spear.h"
 
 #include "Accessory.h"
+#include "Armor.h"
 
 ItemManager::ItemManager()
 {
@@ -38,6 +40,7 @@ Item* ItemManager::getItem(Code::ITEM code)
 	case Code::ITEM::BAMBOO_SWORD:
 	case Code::ITEM::LIGHTSABER:
 	case Code::ITEM::COSMOSSWORD:
+	case Code::ITEM::THREETIEREDBATON:
 		item = new Sword(code);
 		break;
 	case Code::ITEM::LALA:
@@ -45,10 +48,23 @@ Item* ItemManager::getItem(Code::ITEM code)
 	case Code::ITEM::GATLINGGUN:
 		item = new Gun(code);
 		break;
+	case Code::ITEM::SPEAR:
+		item = new Spear(code);
+		break;
 	case Code::ITEM::MULTI_BULLET:
 	case Code::ITEM::MAGNIFYINGGLASS:
 	case Code::ITEM::WINGBOOTS:
+	case Code::ITEM::LEATHERARMOR:
+	case Code::ITEM::CHAINARMOR:
+	case Code::ITEM::CharmOfAttack:
+	case Code::ITEM::CharmOfMadness:
+	case Code::ITEM::Jarngreipr:
+	case Code::ITEM::Speedloader:
+	case Code::ITEM::DaisyRing:
 		item = new Accessory(code);
+		break;
+	case Code::ITEM::MagicShield:
+		item = new Armor(code);
 		break;
 	default:
 		item = new Sword(code);
@@ -91,6 +107,12 @@ ImageBase* ItemManager::findImage(Code::ITEM code)
 	case Code::ITEM::COSMOSSWORD:
 		imgName = ImageName::Item::Weapon::CosmosSword;
 		break;
+	case Code::ITEM::THREETIEREDBATON:
+		imgName = ImageName::Item::Weapon::ThreeTieredBaton;
+		break;
+	case Code::ITEM::SPEAR:
+		imgName = ImageName::Item::Weapon::Spear;
+		break;
 	case Code::ITEM::LALA:
 		imgName = ImageName::Item::Weapon::Lala;
 		break;
@@ -109,6 +131,33 @@ ImageBase* ItemManager::findImage(Code::ITEM code)
 	case Code::ITEM::WINGBOOTS:
 		imgName = ImageName::Item::Accessory::Wingboots;
 		break;
+	case Code::ITEM::BULLION2:
+		imgName = ImageName::Item::Accessory::Bullion;
+		break;
+	case Code::ITEM::LEATHERARMOR:
+		imgName = ImageName::Item::Accessory::LeatherArmor;
+		break;
+	case Code::ITEM::CHAINARMOR:
+		imgName = ImageName::Item::Accessory::ChainArmor;
+		break;
+	case Code::ITEM::CharmOfAttack:
+		imgName = ImageName::Item::Accessory::CharmOfAttack;
+		break;
+	case Code::ITEM::CharmOfMadness:
+		imgName = ImageName::Item::Accessory::CharmOfMadness;
+		break;
+	case Code::ITEM::Jarngreipr:
+		imgName = ImageName::Item::Accessory::Jarngreipr;
+		break;
+	case Code::ITEM::Speedloader:
+		imgName = ImageName::Item::Accessory::Speedloader;
+		break;
+	case Code::ITEM::DaisyRing:
+		imgName = ImageName::Item::Accessory::DaisyRing;
+		break;
+	case Code::ITEM::MagicShield:
+		imgName = ImageName::Item::Weapon::MagicShield;
+		break;
 	default:
 		imgName = "";
 		break;
@@ -120,6 +169,11 @@ ImageBase* ItemManager::findImage(Code::ITEM code)
 void ItemManager::dropItem(Code::ITEM code, float x, float y, BOOL scatter)
 {
 	OBJECTMANAGER->addDropItem(new DropItem(code, x, y, scatter));
+}
+
+void ItemManager::clearInventory()
+{
+	_inventory->clearInventory();
 }
 
 Item* ItemManager::getEquipItem()

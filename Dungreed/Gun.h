@@ -22,15 +22,9 @@ private:
 	string _bulletImgName;
 	string _shootingImgName;
 	string _hitImgName;
-	BOOL _isSize;
-	BOOL _isMulti;
 	BOOL _isPenetrate;
 	BOOL _isAuto;
 	BOOL _isSuper;
-
-	float	_itemAtkSpeed;
-	int		_itemDmg;
-	float   _itemScale;
 
 public:
 	Gun(Code::ITEM code);
@@ -42,8 +36,6 @@ public:
 	virtual void render(HDC hdc) override;
 
 	virtual RECT attack() override;
-	void settingAcc();
-	void shootMultiBullet();
 
 	virtual BULLET_INFO getBulletInfo() { return { _bulletCnt, _itemInfo.bulletCnt }; }
 

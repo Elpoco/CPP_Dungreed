@@ -136,9 +136,6 @@
     <Filter Include="MainGame\02. Object\05. UI\HpBar">
       <UniqueIdentifier>{30c21a14-4b8d-4223-b544-16664221318d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\07. NPC">
-      <UniqueIdentifier>{ec43b864-9dae-430e-bd66-7d3c3060b9c9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\02. Object\05. UI\MiniMap">
       <UniqueIdentifier>{f391fbe2-27ab-4e0a-bbec-cc274664d689}</UniqueIdentifier>
     </Filter>
@@ -163,17 +160,8 @@
     <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\Skel">
       <UniqueIdentifier>{852c4eb2-db92-4268-b170-4cf24193ec73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\07. NPC\Shop">
-      <UniqueIdentifier>{80286c16-509b-49a3-9cb4-4afd526938a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\02. Object\06. Item\Accessory">
       <UniqueIdentifier>{0987f3dd-0df2-4e75-8fd0-8ada954fbdcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\02. Object\07. NPC\Food">
-      <UniqueIdentifier>{3f89c355-e58a-4242-97fc-3ae42770549a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainGame\02. Object\07. NPC\Ability">
-      <UniqueIdentifier>{2d38a6de-c7a0-40b0-8bc0-629ebd50a36b}</UniqueIdentifier>
     </Filter>
     <Filter Include="MainGame\02. Object\05. UI\ItemInfo">
       <UniqueIdentifier>{37e2bd40-aca9-4296-8beb-7f30d4c3f4a7}</UniqueIdentifier>
@@ -187,11 +175,35 @@
     <Filter Include="MainGame\02. Object\06. Item\SKill\LalaMagicWand">
       <UniqueIdentifier>{0e2de97c-46c3-4511-8174-629999d2cb02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\02. Object\07. NPC\BlackSmith">
-      <UniqueIdentifier>{2de2076e-5bca-4922-9b3e-4468eba8117d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MainGame\02. Object\05. UI\WorldMap">
       <UniqueIdentifier>{9b445a54-99f2-48e8-97dd-f2cac8d3c864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\01. Unit\Enemy\Monster\Scarecrow">
+      <UniqueIdentifier>{e34f40c2-7dff-4de9-82f0-6d2f736f9a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\06. Item\Spear">
+      <UniqueIdentifier>{a8a66029-f689-4793-9326-21f4931da798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\06. Item\Armor">
+      <UniqueIdentifier>{14599ebf-3e02-4223-a2c7-8780fe382daa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\08. DungeonObj\Worm">
+      <UniqueIdentifier>{e9ea87be-6013-4266-9f29-192b23e51b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\07. NPC">
+      <UniqueIdentifier>{ec43b864-9dae-430e-bd66-7d3c3060b9c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\07. NPC\Shop">
+      <UniqueIdentifier>{80286c16-509b-49a3-9cb4-4afd526938a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\07. NPC\Food">
+      <UniqueIdentifier>{3f89c355-e58a-4242-97fc-3ae42770549a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\07. NPC\Ability">
+      <UniqueIdentifier>{2d38a6de-c7a0-40b0-8bc0-629ebd50a36b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\02. Object\07. NPC\BlackSmith">
+      <UniqueIdentifier>{2de2076e-5bca-4922-9b3e-4468eba8117d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -431,6 +443,18 @@
     </ClCompile>
     <ClCompile Include="WorldMap.cpp">
       <Filter>MainGame\02. Object\05. UI\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Scarecrow.cpp">
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Scarecrow</Filter>
+    </ClCompile>
+    <ClCompile Include="Spear.cpp">
+      <Filter>MainGame\02. Object\06. Item\Spear</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor.cpp">
+      <Filter>MainGame\02. Object\06. Item\Armor</Filter>
+    </ClCompile>
+    <ClCompile Include="Worm.cpp">
+      <Filter>MainGame\02. Object\08. DungeonObj\Worm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -703,6 +727,18 @@
     </ClInclude>
     <ClInclude Include="WorldMap.h">
       <Filter>MainGame\02. Object\05. UI\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Scarecrow.h">
+      <Filter>MainGame\02. Object\01. Unit\Enemy\Monster\Scarecrow</Filter>
+    </ClInclude>
+    <ClInclude Include="Spear.h">
+      <Filter>MainGame\02. Object\06. Item\Spear</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor.h">
+      <Filter>MainGame\02. Object\06. Item\Armor</Filter>
+    </ClInclude>
+    <ClInclude Include="Worm.h">
+      <Filter>MainGame\02. Object\08. DungeonObj\Worm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

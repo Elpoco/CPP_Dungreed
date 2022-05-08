@@ -63,10 +63,10 @@ HRESULT GameScene::init()
 
 	//OBJECTMANAGER->addNPC(Code::NPC::INN, 2943, 814);
 
-	OBJECTMANAGER->addTresure(5360, 696, Code::TRESURE_TYPE::GOLD);
-	OBJECTMANAGER->addTresure(5440, 696, Code::TRESURE_TYPE::GOLD);
-	OBJECTMANAGER->addTresure(5520, 696, Code::TRESURE_TYPE::GOLD);
-	OBJECTMANAGER->addTresure(5600, 696, Code::TRESURE_TYPE::GOLD);
+	//OBJECTMANAGER->addTresure(5360, 696, Code::TRESURE_TYPE::GOLD);
+	//OBJECTMANAGER->addTresure(5440, 696, Code::TRESURE_TYPE::GOLD);
+	//OBJECTMANAGER->addTresure(5520, 696, Code::TRESURE_TYPE::GOLD);
+	//OBJECTMANAGER->addTresure(5600, 696, Code::TRESURE_TYPE::GOLD);
 
 	return S_OK;
 }
@@ -87,6 +87,27 @@ void GameScene::update()
 		break;
 	default:
 		break;
+	}
+
+	if (PLAYERMANAGER->isReturn()) 
+	{
+		PLAYERMANAGER->returnTown();
+		PLAYERMANAGER->levelUp(3);
+		UIMANAGER->hidePlayerDie();
+		ITEMMANAGER->clearInventory();
+		MAPMANAGER->returnTown();
+		SOUNDMANAGER->stop(SoundName::dungeon);
+		_location = LocationEnum::LOCATION::TOWN;
+		TILEMANAGER->loadMap(FileName::Town);
+		_imgSky = IMAGEMANAGER->findImage(ImageName::Town::cloud);
+		_imgLayer = IMAGEMANAGER->findImage(ImageName::Town::townLayerDay);
+		_imgBackground = IMAGEMANAGER->findImage(ImageName::Town::townBgDay);
+		_skyX = 0.0f;
+		SOUNDMANAGER->play(SoundName::town, _sound);
+		UIMANAGER->showMapInfo("Town");
+		UIMANAGER->updateMiniMap();
+		OBJECTMANAGER->getPlayer()->setX(TileSet::TOTAL_TILE_X * 0.5f);
+		OBJECTMANAGER->getPlayer()->setY(TileSet::TOTAL_TILE_Y * 0.5f);
 	}
 }
 
@@ -181,11 +202,14 @@ void GameScene::renderBackTown(HDC hdc)
 
 void GameScene::loadDungeon()
 {
-	// 맵 로드
 	MAPMANAGER->init();
+
+	// 맵 로드
 	UIMANAGER->updateMiniMap();
 	UIMANAGER->enterDungeon();
 	UIMANAGER->initWorldMap();
+	UIMANAGER->showMapInfo("1F - The Jail");
+	UIMANAGER->initBossInfo();
 
 	// 플레이어 셋팅
 	OBJECTMANAGER->getPlayer()->setX(300);

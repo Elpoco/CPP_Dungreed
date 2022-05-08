@@ -104,6 +104,18 @@ void Unit::render(HDC hdc)
 	
 }
 
+inline void Unit::setX(float x)
+{
+	_x = x;
+	updateRect();
+} 
+
+inline void Unit::setY(float y)
+{  
+	_y = y;
+	updateRect();
+}
+
 void Unit::move()
 {
 	if (_isFall && !_isFlying)
@@ -130,8 +142,8 @@ void Unit::updateAnimation()
 		if (_frameInfo.x > _vImages[_imgCurrent]->getMaxFrameX())_frameInfo.x = _frameInfo.startFrameX;
 	}
 
-	if (_isLeft && _vImages[_imgCurrent]->getMaxFrameY() > 0) _frameInfo.y = L;	
-	else _frameInfo.y = R;
+	if (_isLeft && _vImages[_imgCurrent]->getMaxFrameY() > 0) _frameInfo.y = DIR_L;	
+	else _frameInfo.y = DIR_R;
 }
 
 void Unit::checkCollision()

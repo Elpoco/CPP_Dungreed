@@ -40,7 +40,7 @@ HRESULT NPC::init()
 		_img = FindImage(ImageName::NPC::BlackSmith);
 		break;
 	case Code::NPC::COMMANDER:
-		//_uiNPC = new Ability;
+		_uiNPC = new Ability;
 		_img = FindImage(ImageName::NPC::Commander);
 		break;
 	case Code::NPC::INN:
@@ -52,7 +52,7 @@ HRESULT NPC::init()
 	if (_uiNPC)
 	{
 		_uiNPC->hide();
-		OBJECTMANAGER->addUI(_uiNPC);
+		OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FRONT, _uiNPC);
 	}
 
 	initAnimation();
@@ -121,12 +121,8 @@ void NPC::openNpc()
 
 	_uiNPC->show();
 
-	if (_npcCode == Code::NPC::BLACKSMITH)
-	{
-		_uiNPC = nullptr;
-		return;
-	}
-
+	if (_npcCode == Code::NPC::BLACKSMITH) return;
+	
 	UIMANAGER->onUI();
 	_isOpen = TRUE;
 	UIMANAGER->setCursorType(UIEnum::CURSOR_TYPE::NORMAL);

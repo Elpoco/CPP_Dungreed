@@ -27,6 +27,7 @@ public:
 	ImageBase* findImage(Code::ITEM code);
 
 	void dropItem(Code::ITEM code, float x, float y, BOOL scatter = FALSE);
+	void clearInventory();
 
 };
 

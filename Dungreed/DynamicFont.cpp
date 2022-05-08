@@ -56,7 +56,7 @@ void DynamicFont::move()
 		return;
 	}
 
-	if (_dir == L) _x += 0.5f;
+	if (_dir == DIR_L) _x += 0.5f;
 	else _x -= 0.5f;
 
 	_y -= 1.3 + _down;

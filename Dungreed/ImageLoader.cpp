@@ -50,6 +50,8 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::sapwn, PATH_UNIT"Enemy/EnemySpawn.bmp", 0, 0, 15, 1, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::die, PATH_UNIT"Enemy/EnemyDie.bmp", 0, 0, 11, 1, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::dieSmall, PATH_UNIT"Enemy/EnemyDie_small.bmp", 0, 0, 11, 1, TRUE, ColorSet::MAGENTA);
+
+	IMAGEMANAGER->addFrameImage(ImageName::Enemy::Scarecrow, PATH_UNIT"Enemy/Scarecrow/criminalldle.bmp", 0, 0, 5, 2, TRUE, ColorSet::MAGENTA);
 	// »À ¸Û¸ÛÀÌ
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::dogIdle, PATH_UNIT"Enemy/SkelDog/SkelDogIdle.bmp", 0, 0, 5, 2, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Enemy::dogRun, PATH_UNIT"Enemy/SkelDog/SkelDogRun.bmp", 0, 0, 7, 2, TRUE, ColorSet::MAGENTA);
@@ -152,6 +154,9 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::Accessory, PATH_IMAGE"UI/Inventory/Accessory.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::EquipSlot1On, PATH_IMAGE"UI/Inventory/EquipSlot1On.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::UI::Inventory::EquipSlot2On, PATH_IMAGE"UI/Inventory/EquipSlot2On.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::UI::Inventory::hp, PATH_IMAGE"UI/Inventory/hp.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::Inventory::power, PATH_IMAGE"UI/Inventory/power.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::Inventory::defense, PATH_IMAGE"UI/Inventory/defense.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Inventory::exitBtn, PATH_IMAGE"UI/Inventory/InventoryExit.bmp", 0, 0, 1, 2, TRUE, ColorSet::MAGENTA);
 	// ¸ó½ºÅÍ HP Bar
 	IMAGEMANAGER->addImage(ImageName::UI::MonsterHpBar::back, PATH_IMAGE"UI/MonsterHp/MonsterHpBar.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
@@ -177,6 +182,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::BorderPixel, PATH_IMAGE"UI/MiniMap/MiniMapBorder.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::NPCPixel, PATH_IMAGE"UI/MiniMap/MiniMapNPC.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::MiniMapTresure, PATH_IMAGE"UI/MiniMap/MiniMapTresure.bmp");
+	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::MiniMapWorm, PATH_IMAGE"UI/MiniMap/MiniMapWorm.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	// ¿ùµå¸Ê
 	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::MapBaseTitle, PATH_IMAGE"UI/WorldMap/MapBaseTitle.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::MapBase, PATH_IMAGE"UI/WorldMap/MapBase.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
@@ -184,9 +190,14 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::CurrentRoom, PATH_IMAGE"UI/WorldMap/CurrentRoom.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::line_h, PATH_IMAGE"UI/WorldMap/line_h.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::line_v, PATH_IMAGE"UI/WorldMap/line_v.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::ShopIcon, PATH_IMAGE"UI/WorldMap/ShopIcon.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::Food, PATH_IMAGE"UI/WorldMap/Food.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::Worm, PATH_IMAGE"UI/WorldMap/Worm.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::Worm_Selected, PATH_IMAGE"UI/WorldMap/Worm_Selected.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
 	// Å°º¸µå
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::F, PATH_IMAGE"UI/KeyBoard/Keyboard_F.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::Q, PATH_IMAGE"UI/KeyBoard/Keyboard_Q.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 1.5f);
+	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::R, PATH_IMAGE"UI/KeyBoard/Keyboard_R.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 1.5f);
 	IMAGEMANAGER->addImage(ImageName::UI::Keyboard::ESC, PATH_IMAGE"UI/KeyBoard/Keyboard_esc.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	// ¾ÆÀÌÅÛ
 	IMAGEMANAGER->addImage(ImageName::UI::Item::ItemInfo, PATH_IMAGE"UI/Item/ItemInfo.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
@@ -222,6 +233,17 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::FOOD::ChocolateCookie, PATH_IMAGE"UI/FoodShop/Food/10_ChocolateCookie.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	// ¾îºô¸®Æ¼
 	IMAGEMANAGER->addImage(ImageName::UI::Ability::Label, PATH_IMAGE"UI/Ability/AbilityTItle.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::Ability::Wrath, PATH_IMAGE"UI/Ability/AbilityBackground_Wrath.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::Ability::Patience, PATH_IMAGE"UI/Ability/AbilityBackground_Patience.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::Ability::Greed, PATH_IMAGE"UI/Ability/AbilityBackground_Greed.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Ability::btnWrath, PATH_IMAGE"UI/Ability/AbilityBackgroundButton_Wrath.bmp", 0, 0, 1, 2, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Ability::btnPatience, PATH_IMAGE"UI/Ability/AbilityBackgroundButton_Patience.bmp", 0, 0, 1, 2, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Ability::btnGreed, PATH_IMAGE"UI/Ability/AbilityBackgroundButton_Greed.bmp", 0, 0, 1, 2, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Ability::AbilityFX, PATH_IMAGE"UI/Ability/AbilityFX.bmp", 0, 0, 6, 1, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::UI::Ability::AbilityTextBar, PATH_IMAGE"UI/Ability/AbilityTextBar.bmp", 0, 0, 3, 1, TRUE, ColorSet::MAGENTA, 3.0f);
+	// Å½Çè Á¾·á
+	IMAGEMANAGER->addImage(ImageName::UI::ExplorationFailureKor, PATH_IMAGE"UI/ExplorationFailureKor.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::LevelUp, PATH_IMAGE"UI/LevelUp.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 
 #pragma endregion
 
@@ -274,6 +296,7 @@ void ImageLoader::loadImages()
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::basicShotSword, PATH_ITEM"Weapon/BasicShortSword.png");
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::BambooSword, PATH_ITEM"Weapon/BambooSword.png");
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::LightSaber, PATH_ITEM"Weapon/LightSaber.png");
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::ThreeTieredBaton, PATH_ITEM"Weapon/Three-TieredBaton.png");
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Item::Weapon::CosmosSword, PATH_ITEM"Weapon/CosmosSword.png", 12, 1);
 
 	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Lala, PATH_ITEM"Weapon/Lala.png");
@@ -283,11 +306,26 @@ void ImageLoader::loadImages()
 	// ÃÑ¾Ë
 	IMAGEMANAGER->addImage(ImageName::Item::Weapon::Bullet02, PATH_ITEM"Bullet/Bullet02.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Item::Weapon::Bullet03, PATH_ITEM"Bullet/Bullet03.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::Bullet07, PATH_ITEM"Bullet/Bullet07.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 2.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::Bullet08, PATH_ITEM"Bullet/Bullet08.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Weapon::StarBullet, PATH_ITEM"Bullet/StarBullet.bmp", 0, 0, 4, 1, TRUE, ColorSet::MAGENTA, 3.0f);
+	// Ã¢
+	GPIMAGEMANAGER->addImage(getMemDC(), ImageName::Item::Weapon::Spear, PATH_ITEM"Weapon/Spear.png");
+	// ¹æ¾î±¸
+	IMAGEMANAGER->addImage(ImageName::Item::Weapon::MagicShield, PATH_ITEM"Weapon/MagicShield.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+
 	// ¾Ç¼¼
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MultiBullet, PATH_ITEM"Accessory/MultiBullet.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::MagnifyingGlass, PATH_ITEM"Accessory/MagnifyingGlass.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addImage(ImageName::Item::Accessory::Wingboots, PATH_ITEM"Accessory/Wingboots.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Accessory::Bullion, PATH_ITEM"Accessory/Bullion.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Accessory::LeatherArmor, PATH_ITEM"Accessory/LeatherArmor.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Accessory::ChainArmor, PATH_ITEM"Accessory/ChainArmor.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Accessory::CharmOfAttack, PATH_ITEM"Accessory/CharmOfAttack.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Accessory::CharmOfMadness, PATH_ITEM"Accessory/CharmOfMadness.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Accessory::Jarngreipr, PATH_ITEM"Accessory/Jarngreipr.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Accessory::Speedloader, PATH_ITEM"Accessory/Speedloader.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Item::Accessory::DaisyRing, PATH_ITEM"Accessory/DaisyRing.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	// ½ºÅ³
 	IMAGEMANAGER->addFrameImage(ImageName::Item::Weapon::CosmosSwordAura, PATH_ITEM"Bullet/CosmosAuror.bmp", 0, 0, 5, 1, TRUE, ColorSet::MAGENTA, 3.0f);
 	// ½ºÅ³ ¾ÆÀÌÄÜ
@@ -306,8 +344,10 @@ void ImageLoader::loadImages()
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::CosmosSwingFX, PATH_ITEM"Effect/CosmosSwingFX.png", 8, 1);
 	// ÃÑ ÀÌÆåÆ®
 	IMAGEMANAGER->addFrameImage(ImageName::Effect::Weapon::StarBulletFX, PATH_ITEM"Effect/StarBulletFX.bmp", 0, 0, 7, 1, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::Effect::Weapon::StarParticle, PATH_ITEM"Effect/StarParticle.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shooting, PATH_ITEM"Effect/Shooting.png", 6, 1);
 	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::shootingHit, PATH_ITEM"Effect/Shooting_hit.png", 6, 1);
+	GPIMAGEMANAGER->addFrameImage(getMemDC(), ImageName::Effect::Weapon::ShootEffect, PATH_ITEM"Effect/ShootEffect.png", 3, 1);
 #pragma endregion
 
 	// ===========
@@ -333,6 +373,8 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::GoldTresure, PATH_IMAGE"Dungeon/Tresure/GoldTresure.bmp", 0, 0, 2, 1, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BlueTresure, PATH_IMAGE"Dungeon/Tresure/BlueTresure.bmp", 0, 0, 2, 1, TRUE, ColorSet::MAGENTA);
 	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::BossTresure, PATH_IMAGE"Dungeon/Tresure/BossTresure.bmp", 0, 0, 2, 1, TRUE, ColorSet::MAGENTA);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::WormPassageIdle, PATH_IMAGE"Dungeon/Worm/WormPassageIdle.bmp", 0, 0, 9, 1, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addFrameImage(ImageName::Dungeon::WormPassageEat, PATH_IMAGE"Dungeon/Worm/WormPassageEat.bmp", 0, 0, 4, 1, TRUE, ColorSet::MAGENTA, 3.0f);
 #pragma endregion
 
 }

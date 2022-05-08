@@ -27,25 +27,7 @@ HRESULT ItemShop::init()
 
 	initUI();
 
-	int arrCode[(int)Code::ITEM::ITEM_CNT];
-	for (int i = 0; i < (int)Code::ITEM::ITEM_CNT; i++)
-	{
-		arrCode[i] = i;
-	}
-
-	for (int i = 0; i < (int)Code::ITEM::ITEM_CNT; i++)
-	{
-		int idx = RND->getInt((int)Code::ITEM::ITEM_CNT);
-		int temp = arrCode[i];
-		arrCode[i] = arrCode[idx];
-		arrCode[idx] = temp;
-	}
-
-	for (int i = 0; i < MAX_ITEM_CNT; i++)
-	{
-		_vItems.push_back(ITEMMANAGER->getItem((Code::ITEM)arrCode[i]));
-		_itemCnt++;
-	}
+	suffleItem();
 
 	return S_OK;
 }
@@ -62,7 +44,8 @@ void ItemShop::update()
 
 	hoverImg();
 
-	if(MouseInRect(_uiBase->getRect())) clickEvent();
+	if (MouseInRect(_uiBase->getRect())) clickEvent();
+	if (IsOnceKeyDown(KEY::RELOAD)) suffleItem();
 }
 
 void ItemShop::render(HDC hdc)
@@ -197,5 +180,30 @@ void ItemShop::clickItem()
 				}
 			}
 		}
+	}
+}
+
+void ItemShop::suffleItem()
+{
+	_itemCnt = 0;
+	_vItems.clear();
+	int arrCode[(int)Code::ITEM::ITEM_CNT];
+	for (int i = 0; i < (int)Code::ITEM::ITEM_CNT; i++)
+	{
+		arrCode[i] = i;
+	}
+
+	for (int i = 0; i < (int)Code::ITEM::ITEM_CNT; i++)
+	{
+		int idx = RND->getInt((int)Code::ITEM::ITEM_CNT);
+		int temp = arrCode[i];
+		arrCode[i] = arrCode[idx];
+		arrCode[idx] = temp;
+	}
+
+	for (int i = 0; i < MAX_ITEM_CNT; i++)
+	{
+		_vItems.push_back(ITEMMANAGER->getItem((Code::ITEM)arrCode[i]));
+		_itemCnt++;
 	}
 }

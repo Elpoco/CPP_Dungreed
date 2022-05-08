@@ -206,6 +206,7 @@ void CollisionManager::collisionTile()
 				TILE tile = TILEMANAGER->getTile(obj->getX(), obj->getRect().bottom);
 				TILE leftTile = TILEMANAGER->getTile(obj->getRect().left, obj->getY());
 				TILE rightTile = TILEMANAGER->getTile(obj->getRect().right, obj->getY());
+				TILE topTile = TILEMANAGER->getTile(obj->getX(), obj->getRect().top);
 				RECT rcObj = obj->getRect();
 
 				float moveX = 0.0f;
@@ -219,6 +220,11 @@ void CollisionManager::collisionTile()
 				if (rightTile.type == MAP_OBJ::BLOCK)
 				{
 					obj->pushObject(DIR::RIGHT, leftTile.rc.left);
+				}
+
+				if (topTile.type == MAP_OBJ::BLOCK)
+				{
+					obj->pushObject(DIR::TOP, topTile.rc.bottom);
 				}
 
 				switch (tile.type)

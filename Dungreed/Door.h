@@ -33,6 +33,8 @@ private:
 	ImageBase* _imgParticle[DoorSet::PARTICLE_IMG];
 	PARTICLE _particle[DoorSet::PARTICLE_CNT];
 
+	BOOL _disable;
+
 public:
 	Door(Direction::DIR dir, int tileX, int tileY, BOOL isOpen = FALSE);
 	virtual ~Door();
@@ -50,6 +52,8 @@ public:
 	void setTileY(int tileY);
 	void openDoor();
 	void closeDoor();
+
+	void setDisable(BOOL b) { _disable = b; }
 
 };
 

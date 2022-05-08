@@ -88,6 +88,7 @@ public:
 	void offClick();
 	void hoverSlot();
 	void equipClick();
+	void sellItem();
 	// 아이템 타입 비교
 	BOOL checkType(int cellIdx, Item* item);
 
@@ -101,6 +102,8 @@ public:
 	BOOL isOpen() { return _isOpen; }
 	Item* getEquipItem() { return _arrSlot[_equipIdx].item; }
 	Code::ITEM getEquipAccCode(int idx);
+
+	void clearInventory();
 
 };
 

@@ -67,6 +67,7 @@ void NiflheimPillar::hitAttack(int dmg, int dir)
 	if (dmg < 1) dmg = 1;
 
 	OBJECTMANAGER->addDynamicImageFont(_x + RND->getInt(10) - 5, _rc.top + RND->getInt(10) - 5, dmg, dir);
+	SOUNDMANAGER->play(SoundName::Enemy::hit, _sound);
 	_curHp -= dmg;
 	if (_curHp < 1)
 	{

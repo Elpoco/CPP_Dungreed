@@ -75,6 +75,16 @@ void Bullet::render(HDC hdc)
 {
 	Object::render(hdc);
 
+	if (_imgName == ImageName::Item::Weapon::StarBullet)
+	{
+		OBJECTMANAGER->addEffect(
+			ImageName::Effect::Weapon::StarParticle,
+			_x,
+			_y, 
+			100, ObjectEnum::OBJ_TYPE::EFFECT_BACK
+		);
+	}
+
 	if (_isImgRotate)
 	{
 		CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _frameInfo.x, _frameInfo.y, _angle, _scale);
@@ -173,7 +183,7 @@ void Bullet::animation()
 
 void Bullet::findEnemy(POINT pt)
 {
-	if (_initTime + 0.1f > TIMEMANAGER->getWorldTime()) return;
+	if (_initTime + 0.2f > TIMEMANAGER->getWorldTime()) return;
 	_isFind = TRUE;
 	_ptEnemy = pt;
 }

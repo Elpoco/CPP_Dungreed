@@ -19,6 +19,7 @@ private:
 		RUN,
 		JUMP,
 		DASH = 2,
+		DIE
 	};
 
 private:
@@ -64,6 +65,8 @@ public:
 	void jump();
 
 	BOOL getItem(Code::ITEM code);
+
+	void die();
 
 };
 

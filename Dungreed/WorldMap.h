@@ -4,6 +4,14 @@
 class WorldMap : public UI
 {
 private:
+	struct tagRoom
+	{
+		BOOL isClear;
+		BOOL door[DIR::DIR_CNT];
+		BOOL isWorm;
+	};
+
+private:
 	ImageBase* _imgButton;
 	UI* _uiLabel;
 	UI* _uiEsc;
@@ -12,6 +20,7 @@ private:
 
 	UI* _uiCurRoom;
 	UI* _uiRoom[MapManagerSet::MAP_CNT];
+	RECT _rcRoom[MapManagerSet::MAP_CNT];
 
 	RECT _rcExitBtn;
 
@@ -19,6 +28,13 @@ private:
 	float _curRoomTime;
 
 	BOOL* _arrIsClear;
+	tagRoom _arrRoom[MapManagerSet::MAP_CNT];
+
+	UI* _iconShop;
+	UI* _iconFood;
+	int _shopIdx;
+	int _foodIdx;
+	int _hoverIdx;
 
 public:
 	WorldMap();
