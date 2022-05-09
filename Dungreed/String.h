@@ -97,6 +97,7 @@ namespace ImageName
 		constexpr char* logo = "UI logo";
 		constexpr char* bird = "UI bird";
 		constexpr char* ExplorationFailureKor = "UI ExplorationFailureKor";
+		constexpr char* ExplorationSuccessKor = "UI ExplorationSuccessKor";
 		constexpr char* LevelUp = "UI LevelUp";
 
 		namespace Button
@@ -168,6 +169,7 @@ namespace ImageName
 			constexpr char* BorderPixel = "MINIMAP BorderPixel";
 			constexpr char* NPCPixel = "MINIMAP NPCPixel";
 			constexpr char* MiniMapTresure = "MINIMAP MiniMapTresure";
+			constexpr char* MiniMapDungeon = "MINIMAP MiniMapDungeon";
 			constexpr char* MiniMapWorm = "MINIMAP MiniMapWorm";
 		}
 
@@ -420,6 +422,7 @@ namespace SoundName
 	constexpr char* Foodshop = "SOUND Foodshop";
 	constexpr char* BuyFood = "SOUND BuyFood";
 	constexpr char* Ability_Up = "SOUND Ability_Up";
+	constexpr char* clear = "SOUND clear";
 
 	namespace Player
 	{
@@ -465,6 +468,7 @@ namespace SoundName
 		constexpr char* sell = "SOUND ITEM sell";
 		constexpr char* Reload = "SOUND Reload";
 		constexpr char* Reload2		= "SOUND Reload2";
+		constexpr char* blackSmith = "SOUND blackSmith";
 
 		namespace Weapon
 		{

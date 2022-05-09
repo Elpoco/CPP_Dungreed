@@ -34,5 +34,6 @@ void BlackSmith::show()
 	{
 		_isDrop = TRUE;
 		ITEMMANAGER->dropItem(RND->getRndEnum(Code::ITEM::SHOT_SWORD, Code::ITEM::ITEM_CNT), _x, _y);
+		SOUNDMANAGER->play(SoundName::Item::blackSmith, _sound);
 	}
 }

@@ -67,6 +67,8 @@ private:
 	UI* _uiBackground;
 	UI* _uiLevelUp;
 	ImageFont* _uiLevel;
+
+	UI* _uiClear;
 	
 public:
 	UIManager();
@@ -123,6 +125,10 @@ public:
 	void initPlayerDie();
 	void showPlayerDie();
 	void hidePlayerDie();
+
+	void initClear();
+	void showClear();
+	void hideClear();
 
 	void initLevelUp();
 	void showLevelUp(int level);

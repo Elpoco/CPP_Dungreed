@@ -20,6 +20,7 @@ HRESULT MiniMap::init()
 	_imgNPC = FindImage(ImageName::UI::MiniMap::NPCPixel);
 	_imgTresure = FindImage(ImageName::UI::MiniMap::MiniMapTresure);
 	_imgWorm = FindImage(ImageName::UI::MiniMap::MiniMapWorm);
+	_imgDungeon = FindImage(ImageName::UI::MiniMap::MiniMapDungeon);
 
 	_isFixed = TRUE;
 	_isDungeon = FALSE;
@@ -46,6 +47,11 @@ void MiniMap::render(HDC hdc)
 			if (_arrType[y * _tileCntX + x] != MapToolEnum::MAP_OBJ::NONE)
 			{
 				_imgBlock->render(hdc, _miniMapX + x * 5, _miniMapY + y * 5);
+
+				if (MAPMANAGER->getCurMapCode() == Code::MAP::TOWN && x > 52 && x < 70 && y > 25)
+				{
+					_imgDungeon->render(hdc, _miniMapX + x * 5, _miniMapY + y * 5);
+				}
 			}
 
 			if (x == 0 || y == 0 ||

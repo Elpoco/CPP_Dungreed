@@ -69,6 +69,8 @@ private:
 	// ½ºÅ³
 	UI* _uiSkill;
 
+	Code::ITEM _lastItemCode;
+
 public:
 	Inventory();
 	virtual ~Inventory();

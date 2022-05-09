@@ -32,6 +32,7 @@ HRESULT UIManager::init()
 	initReload(); 
 	initMapInfo();
 	initPlayerDie();
+	initClear();
 	initLevelUp();
 
 	return S_OK;
@@ -58,6 +59,7 @@ void UIManager::update()
 		{
 			toggleInventory();
 		}
+		hideWorldMap();
 		_isUI = FALSE;
 	}
 }
@@ -99,7 +101,8 @@ void UIManager::toggleInventory()
 
 	if (_isUI)
 	{
-		_inventory->close();
+		_inventory->close(); 
+		hideWorldMap();
 		_isUI = FALSE;
 	}
 	else
@@ -369,6 +372,31 @@ void UIManager::showPlayerDie()
 void UIManager::hidePlayerDie()
 {
 	_uiPlayerDie->hide();
+	_uiBackground->hide();
+}
+
+void UIManager::initClear()
+{
+	_uiClear = new UI(ImageName::UI::ExplorationSuccessKor);
+	_uiClear->setX(CENTER_X);
+	_uiClear->setY(CENTER_Y);
+	_uiClear->hide();
+	_uiClear->setFree();
+	OBJECTMANAGER->addObject(ObjectEnum::OBJ_TYPE::UI_FIRST, _uiClear);
+}
+
+void UIManager::showClear()
+{
+	_uiClear->show();
+	_uiBackground->fadeIn();
+	SOUNDMANAGER->play(SoundName::clear, _sound);
+	PLAYERMANAGER->clearDungeon();
+	SOUNDMANAGER->stop(SoundName::niflheimBG);
+}
+
+void UIManager::hideClear()
+{
+	_uiClear->hide();
 	_uiBackground->hide();
 }
 

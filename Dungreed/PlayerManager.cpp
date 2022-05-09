@@ -17,6 +17,7 @@ PlayerManager::PlayerManager()
 	, _reloadSpeed(0.0f)
 	, _skillCooltime(1.0f)
 	, _isDie(FALSE)
+	, _isClear(FALSE)
 	, _isReturn(FALSE)
 {
 }
@@ -48,9 +49,9 @@ void PlayerManager::update()
 
 	chargeDash();
 	
-	if (_isDie)
+	if (_isDie || _isClear)
 	{
-		if (_dieTime + 3.5f < TIMEMANAGER->getWorldTime())
+		if (_checkTime + 4.0f < TIMEMANAGER->getWorldTime())
 		{
 			_isReturn = TRUE;
 		}
@@ -95,14 +96,21 @@ void PlayerManager::recovery(int hp)
 
 void PlayerManager::setDie(BOOL b)
 { 
-	_isDie = b; 
-	_dieTime = TIMEMANAGER->getWorldTime();
+	_isDie = b;
+	_checkTime = TIMEMANAGER->getWorldTime();
+}
+
+void PlayerManager::clearDungeon()
+{
+	_isClear = TRUE;
+	_checkTime = TIMEMANAGER->getWorldTime();
 }
 
 void PlayerManager::returnTown()
 {
 	_isReturn = FALSE;
 	_isDie = FALSE;
+	_isClear = FALSE;
 	updateMaxHp();
 }
 

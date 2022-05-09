@@ -88,14 +88,18 @@ void Skel::move()
 			{
 				int w = abs(_ptPlayer.x - _x);
 				int h = _ptPlayer.y - _y;
-				if (h > 120 && w < 200)
+				if (_isCollision[BOTTOM])
 				{
-					Unit::downJump();
+					if (h > 120 && w < 200)
+					{
+						Unit::downJump();
+					}
+					if (h < -120 && w < 200)
+					{
+						Unit::jump();
+					}
 				}
-				if (h < -120 && w < 200)
-				{
-					Unit::jump();
-				}
+				
 				_x += _moveSpeed * _isLeft ? -1 : 1;
 				_state = MOVE;
 				break;

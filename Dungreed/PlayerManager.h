@@ -13,8 +13,9 @@ class PlayerManager : public SingletonBase<PlayerManager>
 {
 private:
 	BOOL _isDie;
+	BOOL _isClear;
 	BOOL _isReturn;
-	float _dieTime;
+	float _checkTime;
 
 	int _level;
 
@@ -113,7 +114,7 @@ public:
 		{
 			_curHp += hp; 
 		}
-		if (_curHp < 0) _curHp = 0;
+		if (_curHp < 0) _curHp = 1;
 	}
 	void setAtkSpeed(float speed) { _atkSpeed += speed; }
 	void setShootSpeed(float speed) { _shootSpeed += speed; }
@@ -141,6 +142,7 @@ public:
 
 	BOOL isDie() { return _isDie; }
 	void setDie(BOOL b);
+	void clearDungeon();
 	BOOL isReturn() { return _isReturn; }
 	void returnTown();
 

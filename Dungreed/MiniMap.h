@@ -27,6 +27,7 @@ private:
 	ImageBase* _imgNPC;
 	ImageBase* _imgTresure;
 	ImageBase* _imgWorm;	
+	ImageBase* _imgDungeon;
 	MapToolEnum::MAP_OBJ* _arrType; // 타일의 타입을 담을 배열
 	BOOL _isDungeon;
 

@@ -182,6 +182,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::BorderPixel, PATH_IMAGE"UI/MiniMap/MiniMapBorder.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::NPCPixel, PATH_IMAGE"UI/MiniMap/MiniMapNPC.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::MiniMapTresure, PATH_IMAGE"UI/MiniMap/MiniMapTresure.bmp");
+	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::MiniMapDungeon, PATH_IMAGE"UI/MiniMap/MiniMapDungeon.bmp");
 	IMAGEMANAGER->addImage(ImageName::UI::MiniMap::MiniMapWorm, PATH_IMAGE"UI/MiniMap/MiniMapWorm.bmp", 0, 0, TRUE, ColorSet::MAGENTA);
 	// ¿ùµå¸Ê
 	IMAGEMANAGER->addImage(ImageName::UI::WorldMap::MapBaseTitle, PATH_IMAGE"UI/WorldMap/MapBaseTitle.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
@@ -243,6 +244,7 @@ void ImageLoader::loadImages()
 	IMAGEMANAGER->addFrameImage(ImageName::UI::Ability::AbilityTextBar, PATH_IMAGE"UI/Ability/AbilityTextBar.bmp", 0, 0, 3, 1, TRUE, ColorSet::MAGENTA, 3.0f);
 	// Å½Çè Á¾·á
 	IMAGEMANAGER->addImage(ImageName::UI::ExplorationFailureKor, PATH_IMAGE"UI/ExplorationFailureKor.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
+	IMAGEMANAGER->addImage(ImageName::UI::ExplorationSuccessKor, PATH_IMAGE"UI/ExplorationSuccessKor.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 	IMAGEMANAGER->addImage(ImageName::UI::LevelUp, PATH_IMAGE"UI/LevelUp.bmp", 0, 0, TRUE, ColorSet::MAGENTA, 3.0f);
 
 #pragma endregion

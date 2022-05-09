@@ -38,6 +38,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::dungeonEat, PATH_SOUND"DungeonEat.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::dungeonEat2, PATH_SOUND"DungeonEat2.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Ability_Up, PATH_SOUND"Ability_Up.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::clear, PATH_SOUND"clear.wav", false, false);
 
 	// ==========
 	// # Player #
@@ -87,6 +88,7 @@ void SoundLoader::loadSounds()
 	SOUNDMANAGER->addSound(SoundName::Item::getItem, PATH_SOUND"Get_Item.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::PickUpItem, PATH_SOUND"PickUpItem.wav", false, false);
 	SOUNDMANAGER->addSound(SoundName::Item::sell, PATH_SOUND"sell.wav", false, false);
+	SOUNDMANAGER->addSound(SoundName::Item::blackSmith, PATH_SOUND"blackSmith.wav", false, false);
 
 	// ==========
 	// # Weapon #

@@ -72,18 +72,7 @@ void Enemy::render(HDC hdc)
 
 void Enemy::deleteEffect()
 {
-	int coinCnt = RND->getInt(5);
-	for (int i = 0; i < coinCnt; i++)
-	{
-		ITEMMANAGER->dropItem(Code::ITEM::COIN, _x, _rc.top - 20, TRUE);
-	}
 	MAPMANAGER->dieMonster();
-	SOUNDMANAGER->play(SoundName::Enemy::MonsterDie, _sound);
-	OBJECTMANAGER->addEffect(
-		ImageName::Enemy::dieSmall,
-		_x,
-		_y
-	);
 }
 
 void Enemy::move()
@@ -114,6 +103,17 @@ void Enemy::hitAttack(int dmg, int dir)
 	if (_curHp < 1)
 	{
 		_isLive = FALSE;
+		int coinCnt = RND->getInt(5);
+		for (int i = 0; i < coinCnt; i++)
+		{
+			ITEMMANAGER->dropItem(Code::ITEM::COIN, _x, _rc.top - 20, TRUE);
+		}
+		SOUNDMANAGER->play(SoundName::Enemy::MonsterDie, _sound);
+		OBJECTMANAGER->addEffect(
+			ImageName::Enemy::dieSmall,
+			_x,
+			_y
+		);
 	}
 }
 

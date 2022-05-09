@@ -75,16 +75,6 @@ void Bullet::render(HDC hdc)
 {
 	Object::render(hdc);
 
-	if (_imgName == ImageName::Item::Weapon::StarBullet)
-	{
-		OBJECTMANAGER->addEffect(
-			ImageName::Effect::Weapon::StarParticle,
-			_x,
-			_y, 
-			100, ObjectEnum::OBJ_TYPE::EFFECT_BACK
-		);
-	}
-
 	if (_isImgRotate)
 	{
 		CAMERAMANAGER->frameRender(hdc, _img, _x, _y, _frameInfo.x, _frameInfo.y, _angle, _scale);
@@ -170,10 +160,23 @@ void Bullet::move()
 void Bullet::animation()
 {
 	_frameInfo.cnt++;
+	if (_frameInfo.cnt % 2)
+	{
+		if (_imgName == ImageName::Item::Weapon::StarBullet)
+		{
+			OBJECTMANAGER->addEffect(
+				ImageName::Effect::Weapon::StarParticle,
+				_x,
+				_y,
+				100, ObjectEnum::OBJ_TYPE::EFFECT_BACK
+			);
+		}
+	}
 	if (_frameInfo.cnt > _frameInfo.tick)
 	{
 		_frameInfo.cnt = 0;
 		_frameInfo.x++;
+
 		if (_frameInfo.x > _frameInfo.maxFrameX)
 		{
 			_frameInfo.x = 0;

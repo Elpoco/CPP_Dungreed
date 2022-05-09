@@ -306,7 +306,7 @@ void Inventory::offClick()
 				}
 				else
 				{
-					if (_clickCell < ACC_CNT) _arrSlot[_clickCell].item->unequip();
+					if (_clickCell >= ACC_0 && _clickCell < ACC_CNT) _arrSlot[_clickCell].item->unequip();
 					SOUNDMANAGER->play(SoundName::Item::PickUpItem, _sound);
 					_arrSlot[i].item = _arrSlot[_clickCell].item;
 					_arrSlot[_clickCell].item = NULL;
@@ -562,9 +562,15 @@ void Inventory::renderInventoryItem(HDC hdc)
 
 BOOL Inventory::addItem(Item* item)
 {
+	_lastItemCode = item->getInfo().code;
+	BOOL checkItem = FALSE;
 	for (int i = 0; i < INVEN_CNT; i++)
 	{
-		// 아이템이 있으면 넘어감
+		if (i >= ACC_0 && i < ACC_CNT) 
+		{
+			if(!checkItem) checkItem = _arrSlot[i].item && _arrSlot[i].item->getInfo().code == item->getInfo().code;
+			if (checkItem) continue;
+		}
 		if (_arrSlot[i].item) continue;
 		if (i < EQUIP_CNT && !checkType(i, item)) continue;
 
@@ -603,5 +609,10 @@ void Inventory::clearInventory()
 		}
 		_arrSlot[i].item = NULL;
 	}
+	if(!PLAYERMANAGER->isDie())
+		addItem(ITEMMANAGER->getItem(_lastItemCode));
+	PLAYERMANAGER->addCoin(PLAYERMANAGER->getCoin() * -0.3f);
 	addItem(ITEMMANAGER->getItem(Code::ITEM::SHOT_SWORD));
+	_equipIdx = 0;
+	_arrSlot[_equipIdx].item->equip();
 }

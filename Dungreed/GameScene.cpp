@@ -91,12 +91,21 @@ void GameScene::update()
 
 	if (PLAYERMANAGER->isReturn()) 
 	{
-		PLAYERMANAGER->returnTown();
-		PLAYERMANAGER->levelUp(3);
-		UIMANAGER->hidePlayerDie();
-		ITEMMANAGER->clearInventory();
 		MAPMANAGER->returnTown();
+
+		if (PLAYERMANAGER->isDie())
+			PLAYERMANAGER->levelUp(3);
+		else
+			PLAYERMANAGER->levelUp(5);
+
+		ITEMMANAGER->clearInventory();
+		PLAYERMANAGER->returnTown();
+		UIMANAGER->hidePlayerDie();
+		UIMANAGER->hideClear();
 		SOUNDMANAGER->stop(SoundName::dungeon);
+		SOUNDMANAGER->stop(SoundName::IceDungeon);
+		SOUNDMANAGER->stop(SoundName::belialBG);
+		SOUNDMANAGER->stop(SoundName::niflheimBG);
 		_location = LocationEnum::LOCATION::TOWN;
 		TILEMANAGER->loadMap(FileName::Town);
 		_imgSky = IMAGEMANAGER->findImage(ImageName::Town::cloud);
@@ -150,7 +159,7 @@ void GameScene::updateTown()
 		SOUNDMANAGER->play(SoundName::dungeonEat2, _sound);
 		_rcEnter = RectMakeCenter(
 			OBJECTMANAGER->getPlayer()->getX(),
-			rcPlayer.bottom - _enterFrame.height * 0.5f,
+			27 * 48 - _enterFrame.height * 0.5f,
 			_enterFrame.width,
 			_enterFrame.height
 		);
