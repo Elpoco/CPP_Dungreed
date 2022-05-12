@@ -40,13 +40,13 @@ void SoundManager::release(void)
 
 			if (_sound != nullptr)
 			{
-				if (_sound != nullptr) _sound[i]->release();
+				if (_sound[i] != nullptr) _sound[i]->release();
 			}
 		}
 	}
 
 	SAFE_DELETE_ARRAY(_channel);
-	SAFE_DELETE_ARRAY(_sound);
+	SAFE_DELETE_ARRAY(_sound); 
 
 	if (_system != nullptr)
 	{

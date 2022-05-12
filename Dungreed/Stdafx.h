@@ -13,11 +13,11 @@
 #pragma comment(lib, "Winmm.lib")
 #pragma comment(lib, "msimg32.lib")
 #pragma comment(lib, "lib/FMOD/fmod_vc.lib")
-#pragma comment(lib, "Jsoncpp/lib_json/json_vc71_libmtd.lib")
+//#pragma comment(lib, "Jsoncpp/lib_json/json_vc71_libmtd.lib")
 
 //!외부 헤더 파일
 #include "inc/FMOD/fmod.hpp"
-#include "Jsoncpp/include/json/json.h"
+//#include "Jsoncpp/include/json/json.h"
 
 //! C 런타임 헤더
 #include <stdlib.h>
@@ -68,7 +68,7 @@ using namespace std;
 #include "TextDataManager.h"
 #include "SceneManager.h"
 #include "SoundManager.h"
-#include "JsonSaveLoader.h"
+//#include "JsonSaveLoader.h"
 
 #include "CameraManager.h"
 #include "ObjectManager.h"
@@ -97,7 +97,7 @@ using namespace MY_UTIL;
 #define TEXTDATAMANAGER		TextDataManager::getSingleton()
 #define SCENEMANAGER		SceneManager::getSingleton()
 #define SOUNDMANAGER		SoundManager::getSingleton()
-#define JSONDATAMANAGER		JsonSaveLoader::getSingleton()
+//#define JSONDATAMANAGER		JsonSaveLoader::getSingleton()
 #define OBJECTMANAGER		ObjectManager::getSingleton()
 #define CAMERAMANAGER		CameraManager::getSingleton()
 #define FILEMANAGER			FileManager::getSingleton()
