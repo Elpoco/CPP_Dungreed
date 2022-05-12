@@ -4,5 +4,8 @@
 WASD 이동 <br>
 V 인벤토리 <br>
 ~ 무기 교체 <br>
+1, 2 무기 변경 <br>
+Tab 월드맵 <br>
+P 플레이어 레벨업 <br>
 F1 디버그 모드 <br>
 F2 타일 오브젝트 on/off <br>
