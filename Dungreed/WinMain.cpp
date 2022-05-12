@@ -84,7 +84,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 		{
 			if (message.message == WM_QUIT) break;
-			if (_isWindowFocus)
+			//if (_isWindowFocus)
 			{
 				TranslateMessage(&message);
 				DispatchMessage(&message);
@@ -92,7 +92,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		}
 		else 
 		{
-			if (_isWindowFocus)
+			//if (_isWindowFocus)
 			{
 				TIMEMANAGER->update(60.0f);
 				_mg->update();

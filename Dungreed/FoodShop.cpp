@@ -27,6 +27,7 @@ void FoodShop::release()
 
 void FoodShop::update()
 {
+	if (PLAYERMANAGER->isReturn()) resetFood();
 	if (!_isShow) return;
 	UI::update();
 	animation();
@@ -35,7 +36,6 @@ void FoodShop::update()
 	{
 		if (IsOnceKeyUp(KEY::CLICK_L)) UIMANAGER->offUI();
 	}
-
 	clickEvent();
 }
 
@@ -210,13 +210,7 @@ void FoodShop::initUI()
 	_food[9].price = 900;
 	_food[9].power = 10;
 
-	for (int i = 0; i < TOTAL_FOOD; i++)
-	{
-		int idx = RND->getInt(TOTAL_FOOD);
-		tagFood temp = _food[i];
-		_food[i] = _food[idx];
-		_food[idx] = temp;
-	}
+	resetFood();
 }
 
 void FoodShop::animation()
@@ -241,5 +235,17 @@ void FoodShop::clickEvent()
 			_food[i].isSell = TRUE;
 			SOUNDMANAGER->play(SoundName::BuyFood, _sound);
 		}
+	}
+}
+
+void FoodShop::resetFood()
+{
+	for (int i = 0; i < TOTAL_FOOD; i++)
+	{
+		_food[i].isSell = FALSE;
+		int idx = RND->getInt(TOTAL_FOOD);
+		tagFood temp = _food[i];
+		_food[i] = _food[idx];
+		_food[idx] = temp;
 	}
 }

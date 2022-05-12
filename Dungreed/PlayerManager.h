@@ -110,11 +110,11 @@ public:
 	void setHp(int hp)
 	{
 		_maxHp += hp;
-		if (_curHp > 0)
+		if (_curHp + hp > 0)
 		{
 			_curHp += hp; 
 		}
-		if (_curHp < 0) _curHp = 1;
+		else _curHp = 1;
 	}
 	void setAtkSpeed(float speed) { _atkSpeed += speed; }
 	void setShootSpeed(float speed) { _shootSpeed += speed; }

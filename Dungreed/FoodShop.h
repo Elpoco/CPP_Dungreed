@@ -62,5 +62,7 @@ public:
 
 	void clickEvent();
 
+	void resetFood();
+
 };
 

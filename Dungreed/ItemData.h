@@ -46,7 +46,7 @@ public:
 		_info[TO_INT(Code::ITEM::CharmOfMadness)]	= { Code::ITEM_KIND::ACCESSORY, Code::ITEM::CharmOfMadness, Code::ITEM_GRADE::UNCOMMON, "광기의 부적", "\"거머리가 붙어 있는 불길한 기분을 계속 느껴야 한다.\"", 1800, "" };
 		_info[TO_INT(Code::ITEM::CharmOfMadness)].power = 20;
 		_info[TO_INT(Code::ITEM::CharmOfMadness)].hp = -20;
-		_info[TO_INT(Code::ITEM::Jarngreipr)]	= { Code::ITEM_KIND::ACCESSORY, Code::ITEM::Jarngreipr, Code::ITEM_GRADE::RARE, "야른그레이프르", "\"뜨거운 무기를 잡을 수 있게 도와주는 장갑\"", 1600, "한손무기 장착 시 공격속도 50% 증가" };
+		_info[TO_INT(Code::ITEM::Jarngreipr)]	= { Code::ITEM_KIND::ACCESSORY, Code::ITEM::Jarngreipr, Code::ITEM_GRADE::RARE, "야른그레이프르", "\"뜨거운 무기를 잡을 수 있게 도와주는 장갑\"", 1600, "장착 시 공격속도 50% 증가" };
 		_info[TO_INT(Code::ITEM::Speedloader)]	= { Code::ITEM_KIND::ACCESSORY, Code::ITEM::Speedloader, Code::ITEM_GRADE::RARE, "스피드 리로더", "\"총기류의 재장전을 도와주는 기구\"", 1600, "재장전속도 70% 증가" };
 		_info[TO_INT(Code::ITEM::DaisyRing)]	= { Code::ITEM_KIND::ACCESSORY, Code::ITEM::DaisyRing, Code::ITEM_GRADE::LEGEND, "데이지 반지", "\"희망을 드리겠어요.\"", 3000, "대쉬 횟수 2 증가, 스킬 쿨타임 80% 감소" };
 		// 방어구

@@ -39,11 +39,11 @@ void ItemShop::release()
 
 void ItemShop::update()
 {
+	if (PLAYERMANAGER->isReturn()) suffleItem();
 	UI::update();
 	if (!_isShow) return;
 
 	hoverImg();
-
 	if (MouseInRect(_uiBase->getRect())) clickEvent();
 	if (IsOnceKeyDown(KEY::RELOAD)) suffleItem();
 }

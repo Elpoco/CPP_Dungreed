@@ -149,15 +149,14 @@ void MapManager::settingDungeon()
 	_mapWidth = TILEMANAGER->getCurrentMapTileWidth() + TILE_SIZE;
 	_mapHeight = TILEMANAGER->getCurrentMapTileHeight() + TILE_SIZE;
 
-	if (!_isSnowMap && _arrMapCode[_curLocation] == Code::MAP::DUNGEON_11)
+	if (!_isSnowMap && _arrMapCode[_curLocation] >= Code::MAP::DUNGEON_10)
 	{
 		_isSnowMap = TRUE;
 		_layer = IMAGEMANAGER->findImage(ImageName::Dungeon::bgLayer1);
 		SOUNDMANAGER->stop(SoundName::dungeon);
 		SOUNDMANAGER->play(SoundName::IceDungeon, _sound);
 	}
-
-	if (_isSnowMap &&  _arrMapCode[_curLocation] == Code::MAP::DUNGEON_08)
+	if (_isSnowMap && _arrMapCode[_curLocation] < Code::MAP::DUNGEON_10)
 	{
 		_isSnowMap = FALSE;
 		_layer = IMAGEMANAGER->findImage(ImageName::Dungeon::subBg);

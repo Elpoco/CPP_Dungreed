@@ -100,7 +100,7 @@ void Bat::move()
 		switch (_batType)
 		{
 		case Bat::BAT_TYPE::NORMAL:
-			if (_shootTime + 0.4f > TIMEMANAGER->getWorldTime()) break;
+			if (_shootTime + 0.5f > TIMEMANAGER->getWorldTime()) break;
 			_shootTime = TIMEMANAGER->getWorldTime();
 
 			SOUNDMANAGER->play(SoundName::FireBall, _sound);
@@ -136,7 +136,7 @@ void Bat::move()
 			}
 			break;
 		case Bat::BAT_TYPE::RED:
-			if (_shootTime + 0.4f > TIMEMANAGER->getWorldTime()) break;
+			if (_shootTime + 0.5f > TIMEMANAGER->getWorldTime()) break;
 			_shootTime = TIMEMANAGER->getWorldTime();
 
 			for (int i = 0; i < 360; i += 30)
