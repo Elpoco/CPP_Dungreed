@@ -1,4 +1,7 @@
 # CPP_Dungreed
+
+결과 영상: https://youtu.be/2GJa40E7roc <br>
+
 좌클릭 공격 <br>
 우클릭 대시 <br>
 WASD 이동 <br>
